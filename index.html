@@ -65,11 +65,20 @@
   <main class="app-layout">
     <!-- Coloana Stângă: Navigare Discipline, Lecții și Heatmap Activitate -->
     <aside class="sidebar">
-      <section class="panel">
-        <h2 class="panel-heading">Discipline &amp; Hobby-uri</h2>
-        <div class="track-tabs" id="track-tabs" role="tablist">
-          <!-- Generat dinamic din curriculum.js -->
+      <section class="panel track-panel" id="track-panel">
+        <div class="panel-header-row track-panel-header" id="track-panel-header" title="Apasă pentru a extinde sau restrânge buzunarul">
+          <h2 class="panel-heading">Discipline &amp; Hobby-uri</h2>
+          <span class="track-count-badge" id="track-count-badge">2 din 6</span>
         </div>
+        <div class="track-tabs-pocket is-collapsed" id="track-tabs-pocket">
+          <div class="track-tabs" id="track-tabs" role="tablist">
+            <!-- Generat dinamic din curriculum.js -->
+          </div>
+        </div>
+        <button id="toggle-tracks-btn" class="track-pocket-toggle-btn" aria-expanded="false" title="Extinde sau restrânge lista de discipline">
+          <span class="pocket-icon" id="toggle-pocket-icon">▾</span>
+          <span class="pocket-text" id="toggle-pocket-text">Mai multe discipline (6)</span>
+        </button>
       </section>
 
       <section class="panel lessons-panel">

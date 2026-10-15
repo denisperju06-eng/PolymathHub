@@ -18,7 +18,8 @@
     activeTrack: "SQL",
     activeLessonId: "sql-1",
     selectedLevel: "ALL",
-    searchQuery: ""
+    searchQuery: "",
+    isTracksExpanded: false // Start collapsed with 2 buttons, toggleable downwards like an accordion pocket
   };
 
   let state = loadState();
@@ -182,7 +183,13 @@
     userRank: document.getElementById("user-rank"),
     dailyProgressText: document.getElementById("daily-progress-text"),
     themeSelector: document.getElementById("theme-selector"),
+    trackPanelHeader: document.getElementById("track-panel-header"),
+    trackTabsPocket: document.getElementById("track-tabs-pocket"),
     trackTabs: document.getElementById("track-tabs"),
+    toggleTracksBtn: document.getElementById("toggle-tracks-btn"),
+    togglePocketIcon: document.getElementById("toggle-pocket-icon"),
+    togglePocketText: document.getElementById("toggle-pocket-text"),
+    trackCountBadge: document.getElementById("track-count-badge"),
     currentTrackTitle: document.getElementById("current-track-title"),
     trackCompletionBadge: document.getElementById("track-completion-badge"),
     trackProgressBar: document.getElementById("track-progress-bar"),
@@ -335,6 +342,83 @@
       });
       els.trackTabs.appendChild(btn);
     });
+
+    updateTrackPocket();
+  }
+
+  // Comutare stare buzunar (pocket accordion)
+  function toggleTracksPocket() {
+    state.isTracksExpanded = !state.isTracksExpanded;
+    saveState();
+    updateTrackPocket();
+  }
+
+  // Actualizează înălțimea și starea vizuală a buzunarului de discipline
+  function updateTrackPocket() {
+    if (!els.trackTabsPocket || !els.toggleTracksBtn) return;
+
+    const tracks = getTracks();
+    const btns = els.trackTabs ? els.trackTabs.querySelectorAll(".track-tab-btn") : [];
+
+    if (tracks.length <= 2) {
+      els.toggleTracksBtn.style.display = "none";
+      els.trackTabsPocket.style.maxHeight = "none";
+      if (els.trackCountBadge) els.trackCountBadge.textContent = `${tracks.length} Discipline`;
+      return;
+    }
+
+    els.toggleTracksBtn.style.display = "flex";
+
+    // Calculează înălțimea exactă a primului rând (2 butoane)
+    let firstRowH = 44;
+    if (btns.length >= 2) {
+      firstRowH = Math.max(btns[0].offsetHeight, btns[1].offsetHeight);
+    } else if (btns.length === 1) {
+      firstRowH = btns[0].offsetHeight;
+    }
+    firstRowH = firstRowH || 44;
+
+    const isExpanded = !!state.isTracksExpanded;
+
+    if (isExpanded) {
+      els.trackTabsPocket.classList.remove("is-collapsed");
+      els.trackTabsPocket.classList.add("is-expanded");
+      els.toggleTracksBtn.classList.add("is-expanded");
+      els.toggleTracksBtn.setAttribute("aria-expanded", "true");
+
+      els.trackTabsPocket.style.maxHeight = `${els.trackTabs.scrollHeight + 4}px`;
+
+      if (els.togglePocketIcon) els.togglePocketIcon.textContent = "▴";
+      if (els.togglePocketText) els.togglePocketText.innerHTML = `Mai puține discipline (Restrânge)`;
+      if (els.trackCountBadge) els.trackCountBadge.textContent = `Toate cele ${tracks.length}`;
+    } else {
+      els.trackTabsPocket.classList.remove("is-expanded");
+      els.trackTabsPocket.classList.add("is-collapsed");
+      els.toggleTracksBtn.classList.remove("is-expanded");
+      els.toggleTracksBtn.setAttribute("aria-expanded", "false");
+
+      els.trackTabsPocket.style.maxHeight = `${firstRowH}px`;
+
+      if (els.togglePocketIcon) els.togglePocketIcon.textContent = "▾";
+
+      // Verifică dacă disciplina activă este ascunsă (index >= 2)
+      const activeIdx = tracks.findIndex(t => t.name === state.activeTrack);
+      const isHidden = activeIdx >= 2;
+
+      if (isHidden) {
+        const activeItem = tracks[activeIdx];
+        const shortName = activeItem.name.replace("Engleză ", "");
+        if (els.togglePocketText) {
+          els.togglePocketText.innerHTML = `Mai multe discipline (${tracks.length}) <span class="pocket-active-indicator">${activeItem.icon} ${shortName}</span>`;
+        }
+      } else {
+        if (els.togglePocketText) {
+          els.togglePocketText.textContent = `Mai multe discipline (${tracks.length})`;
+        }
+      }
+
+      if (els.trackCountBadge) els.trackCountBadge.textContent = `2 din ${tracks.length}`;
+    }
   }
 
   // Randarea listei de lecții din disciplina curentă
@@ -671,6 +755,17 @@
     const searchInputEl = document.getElementById("search-lessons");
     if (levelFilterEl) levelFilterEl.addEventListener("change", renderLessonList);
     if (searchInputEl) searchInputEl.addEventListener("input", renderLessonList);
+
+    // Comutator buzunar discipline (pocket accordion)
+    if (els.toggleTracksBtn) {
+      els.toggleTracksBtn.addEventListener("click", toggleTracksPocket);
+    }
+    if (els.trackPanelHeader) {
+      els.trackPanelHeader.addEventListener("click", toggleTracksPocket);
+    }
+    window.addEventListener("resize", () => {
+      updateTrackPocket();
+    });
   }
 
   function renderAll() {
