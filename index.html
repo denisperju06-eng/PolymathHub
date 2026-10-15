@@ -102,6 +102,28 @@
         <option value="daylight-clean">Daylight Clean</option>
       </select>
 
+      <!-- Comutator Rapid Utilizator / Conturi Multiple -->
+      <div class="header-user-switcher" id="header-user-switcher">
+        <button type="button" class="header-switch-user-btn" id="header-switch-user-btn" title="Comută rapid între conturi / utilizatori" aria-haspopup="true" aria-expanded="false">
+          <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span class="header-switch-user-label" id="header-switch-user-label">Conturi</span>
+        </button>
+        <div class="header-profiles-dropdown hidden" id="header-profiles-dropdown">
+          <div class="dropdown-header">
+            <span>Conturi Înregistrate</span>
+          </div>
+          <div class="dropdown-profiles-list" id="dropdown-profiles-list">
+            <!-- Injectat dinamic -->
+          </div>
+          <div class="dropdown-footer">
+            <button type="button" class="btn-dropdown-add" id="btn-dropdown-add-profile">
+              <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              + Adaugă Profil Nou
+            </button>
+          </div>
+        </div>
+      </div>
+
       <button class="header-profile-btn" id="header-profile-btn" title="Deschide Profilul și Setările">
         <div class="header-avatar-circle" id="header-avatar-icon">
           <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -485,6 +507,73 @@
 
       <!-- Panou Editare Date & Setări -->
       <div class="profile-main-content">
+        <!-- Administrare Profiluri & Conturi Multiple -->
+        <section class="settings-section-card profile-multiuser-card" id="profiles-management-section">
+          <div class="profile-multiuser-header">
+            <div>
+              <h3 class="settings-card-title" style="margin-bottom:0.35rem; border-bottom:none; padding-bottom:0;">
+                <svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-primary);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                Conturi &amp; Profiluri Multiple
+              </h3>
+              <p class="settings-card-desc" style="font-size:0.83rem; color:var(--text-secondary); margin:0.35rem 0 1rem 0;">
+                Fiecare membru sau prieten poate avea propriul cont separat pe acest dispozitiv: cu XP, streak zilnic, rang în ligi și capitole rezolvate independent.
+              </p>
+            </div>
+            <button type="button" class="btn-primary" id="btn-toggle-add-profile-form" style="display:inline-flex; align-items:center; gap:0.4rem; white-space:nowrap;">
+              <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              + Creează Profil Nou
+            </button>
+          </div>
+
+          <!-- Formular Creare Profil Nou (Ascuns implicit) -->
+          <div id="add-profile-box" class="add-profile-box hidden">
+            <h4 class="add-profile-title">Adăugare Cont Nou (pentru tine sau un prieten)</h4>
+            <form id="add-profile-form">
+              <div class="form-grid-2">
+                <div class="form-field">
+                  <label for="new-profile-name-input">Prenume / Nume Utilizator *:</label>
+                  <input type="text" id="new-profile-name-input" class="form-input" required placeholder="Ex: Mihai">
+                </div>
+                <div class="form-field">
+                  <label for="new-profile-last-name-input">Nume de Familie (opțional):</label>
+                  <input type="text" id="new-profile-last-name-input" class="form-input" placeholder="Ex: Popescu">
+                </div>
+              </div>
+              <div class="form-grid-2">
+                <div class="form-field">
+                  <label for="new-profile-email-input">Adresă de Email *:</label>
+                  <input type="email" id="new-profile-email-input" class="form-input" required placeholder="Ex: prieten@polymath.com">
+                </div>
+                <div class="form-field">
+                  <label>Alege Avatarul:</label>
+                  <div class="avatar-selector-grid-sm" id="new-profile-avatar-grid">
+                    <button type="button" class="avatar-opt-btn-sm selected" data-avatar="🚀">🚀</button>
+                    <button type="button" class="avatar-opt-btn-sm" data-avatar="🎓">🎓</button>
+                    <button type="button" class="avatar-opt-btn-sm" data-avatar="🦉">🦉</button>
+                    <button type="button" class="avatar-opt-btn-sm" data-avatar="💻">💻</button>
+                    <button type="button" class="avatar-opt-btn-sm" data-avatar="⚡">⚡</button>
+                    <button type="button" class="avatar-opt-btn-sm" data-avatar="🧙">🧙</button>
+                    <button type="button" class="avatar-opt-btn-sm" data-avatar="📖">📖</button>
+                  </div>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="new-profile-bio-input">Motto / Descriere (opțional):</label>
+                <input type="text" id="new-profile-bio-input" class="form-input" placeholder="Ex: Învăț Python și C++ de la zero.">
+              </div>
+              <div style="display:flex; gap:0.75rem; align-items:center; margin-top:0.75rem;">
+                <button type="submit" class="btn-primary">Creează și Activează Contul</button>
+                <button type="button" class="btn-secondary" id="cancel-add-profile-btn">Anulează</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Lista Cardurilor de Profiluri -->
+          <div class="profiles-list-grid" id="profiles-list-container">
+            <!-- Cardurile sunt generate dinamic -->
+          </div>
+        </section>
+
         <!-- Formular Date Cont -->
         <section class="settings-section-card">
           <h3 class="settings-card-title">Date Utilizator &amp; Cont</h3>
@@ -624,6 +713,9 @@
       <ul class="lesson-list" id="pocket-lesson-list"></ul>
     </div>
   </aside>
+
+  <!-- TOAST CONTAINER PENTRU NOTIFICĂRI SISTEM -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
   <!-- SCRIPTE CURRICULUM & APLICAȚIE -->
   <script src="curriculum.js"></script>

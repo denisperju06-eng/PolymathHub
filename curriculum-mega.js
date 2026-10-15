@@ -57,12 +57,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Execuția verifică x > 20 (fals), apoi testează elif x >= 10 (adevărat), afișează 'B' și oprește evaluarea lanțului."
     },
     "task": "Completează structura if - elif - else pentru variabila 'scor':\n- dacă scor >= 90, afișează 'Excelent' (print('Excelent'))\n- elif scor >= 50, afișează 'Admis' (print('Admis'))\n- else, afișează 'Respins' (print('Respins')).",
-    "starterCode": "scor = 85\n\n# Scrie condiția if, elif și else:\nif scor >= 90:\n    print(\"Excelent\")\nelif scor >= 50:\n    print(\"Admis\")\nelse:\n    print(\"Respins\")\n",
+    "starterCode": "scor = 85\n\n# Scrie condiția if, elif și else:\n",
     "expectedOutputPattern": "if\\s+scor\\s*>=\\s*90\\s*:[\\s\\S]+?elif\\s+scor\\s*>=\\s*50\\s*:[\\s\\S]+?else\\s*:",
     "hint": "Folosește if scor >= 90:, apoi elif scor >= 50: și finalizează cu else:.",
+    "officialSolution": "if scor >= 90:\n    print(\"Excelent\")\nelif scor >= 50:\n    print(\"Admis\")\nelse:\n    print(\"Respins\")",
+    "example": "nota = 8\nif nota >= 9:\n    print(\"Excelent\")\nelif nota >= 5:\n    print(\"Admis\")\nelse:\n    print(\"Respins\")",
     "prompt": "Completează structura if - elif - else pentru variabila 'scor':\n- dacă scor >= 90, afișează 'Excelent' (print('Excelent'))\n- elif scor >= 50, afișează 'Admis' (print('Admis'))\n- else, afișează 'Respins' (print('Respins')).",
-    "officialSolution": "Folosește if scor >= 90:, apoi elif scor >= 50: și finalizează cu else:.",
-    "example": "Folosește if scor >= 90:, apoi elif scor >= 50: și finalizează cu else:.",
     "regexPattern": "if\\s+scor\\s*>=\\s*90\\s*:[\\s\\S]+?elif\\s+scor\\s*>=\\s*50\\s*:[\\s\\S]+?else\\s*:"
   },
   {
@@ -125,9 +125,9 @@ const MEGA_EXPANDED_CURRICULUM = [
     "starterCode": "data = [1, 2, 3, 4, 5]\nreversed_data = ",
     "expectedOutputPattern": "reversed_data\\s*=\\s*data\\[::-1\\]",
     "hint": "Folosește slicing-ul data[::-1] pentru a crea o copie inversată a listei.",
+    "officialSolution": "data = [1, 2, 3, 4, 5]\nreversed_data = data[::-1]",
+    "example": "numbers = [10, 20, 30]\ninverse = numbers[::-1]",
     "prompt": "Inversează lista 'data' folosind sintaxa slicing cu step negativ și stochează rezultatul în variabila 'reversed_data'.",
-    "officialSolution": "Folosește slicing-ul data[::-1] pentru a crea o copie inversată a listei.",
-    "example": "Folosește slicing-ul data[::-1] pentru a crea o copie inversată a listei.",
     "regexPattern": "reversed_data\\s*=\\s*data\\[::-1\\]"
   },
   {
@@ -190,9 +190,9 @@ const MEGA_EXPANDED_CURRICULUM = [
     "starterCode": "settings = {\"host\": \"localhost\"}\ntimeout = ",
     "expectedOutputPattern": "timeout\\s*=\\s*settings\\.get\\([\"']timeout[\"'],\\s*30\\)",
     "hint": "Apelează settings.get('timeout', 30).",
+    "officialSolution": "settings = {\"host\": \"localhost\"}\ntimeout = settings.get(\"timeout\", 30)",
+    "example": "config = {\"port\": 8080}\nval = config.get(\"timeout\", 60)",
     "prompt": "Extrage din dicționarul 'settings' cheia 'timeout' cu valoarea implicită 30 folosind metoda .get().",
-    "officialSolution": "Apelează settings.get('timeout', 30).",
-    "example": "Apelează settings.get('timeout', 30).",
     "regexPattern": "timeout\\s*=\\s*settings\\.get\\([\"']timeout[\"'],\\s*30\\)"
   },
   {
@@ -255,9 +255,9 @@ const MEGA_EXPANDED_CURRICULUM = [
     "starterCode": "numbers = [1, 2, 3, 4, 5, 6, 7, 8]\nevens = ",
     "expectedOutputPattern": "evens\\s*=\\s*\\[\\s*x\\s+for\\s+x\\s+in\\s+numbers\\s+if\\s+x\\s*%\\s*2\\s*==\\s*0\\s*\\]",
     "hint": "Scrie: [x for x in numbers if x % 2 == 0].",
+    "officialSolution": "numbers = [1, 2, 3, 4, 5, 6, 7, 8]\nevens = [x for x in numbers if x % 2 == 0]",
+    "example": "squares = [n ** 2 for n in range(10) if n % 2 == 0]",
     "prompt": "Creează o listă 'evens' conținând numerele pare din 'numbers' folosind un list comprehension cu clauza 'if x % 2 == 0'.",
-    "officialSolution": "Scrie: [x for x in numbers if x % 2 == 0].",
-    "example": "Scrie: [x for x in numbers if x % 2 == 0].",
     "regexPattern": "evens\\s*=\\s*\\[\\s*x\\s+for\\s+x\\s+in\\s+numbers\\s+if\\s+x\\s*%\\s*2\\s*==\\s*0\\s*\\]"
   },
   {
@@ -317,12 +317,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Context managerul garantează execuția metodei __exit__() care închide fișierul indiferent dacă apare o eroare în blocul with."
     },
     "task": "Deschide fișierul 'data.txt' în modul citire ('r') cu encoding-ul 'utf-8' folosind instrucțiunea 'with open(...) as f:'.",
-    "starterCode": "Scrie: with open('data.txt', 'r', encoding='utf-8') as f:.",
+    "starterCode": "with open(\"data.txt\", \"r\", encoding=\"utf-8\") as f:\n    pass",
     "expectedOutputPattern": "with\\s+open\\([\"']data\\.txt[\"'],\\s*[\"']r[\"'],\\s*encoding=[\"']utf-8[\"']\\)\\s+as\\s+f\\s*:",
     "hint": "Scrie: with open('data.txt', 'r', encoding='utf-8') as f:.",
+    "officialSolution": "with open(\"data.txt\", \"r\", encoding=\"utf-8\") as f:\n    pass",
+    "example": "with open(\"config.json\", \"r\", encoding=\"utf-8\") as file:\n    pass",
     "prompt": "Deschide fișierul 'data.txt' în modul citire ('r') cu encoding-ul 'utf-8' folosind instrucțiunea 'with open(...) as f:'.",
-    "officialSolution": "Scrie: with open('data.txt', 'r', encoding='utf-8') as f:.",
-    "example": "Scrie: with open('data.txt', 'r', encoding='utf-8') as f:.",
     "regexPattern": "with\\s+open\\([\"']data\\.txt[\"'],\\s*[\"']r[\"'],\\s*encoding=[\"']utf-8[\"']\\)\\s+as\\s+f\\s*:"
   },
   {
@@ -382,12 +382,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "În Python, blocul else din try-except se execută doar dacă nicio excepție nu a fost aruncată în interiorul blocului try."
     },
     "task": "Scrie un bloc try-except care încearcă conversia 'val = int(text)' și capturează 'ValueError as e:' afișând print('Invalid').",
-    "starterCode": "text = \"abc\"\n# Scrie blocul try-except\n",
+    "starterCode": "text = \"abc\"\n# Scrie blocul try-except:\n",
     "expectedOutputPattern": "try\\s*:[\\s\\S]+?val\\s*=\\s*int\\(text\\)[\\s\\S]+?except\\s+ValueError\\s+as\\s+\\w+\\s*:[\\s\\S]+?print\\([\"']Invalid[\"']\\)",
     "hint": "Scrie try: urmat de val = int(text) și except ValueError as e: print('Invalid').",
+    "officialSolution": "text = \"abc\"\ntry:\n    val = int(text)\nexcept ValueError as e:\n    print(\"Invalid\")",
+    "example": "try:\n    num = int(\"123\")\nexcept ValueError as err:\n    print(\"Eroare conversie\")",
     "prompt": "Scrie un bloc try-except care încearcă conversia 'val = int(text)' și capturează 'ValueError as e:' afișând print('Invalid').",
-    "officialSolution": "try: urmat de val = int(text) și except ValueError as e: print('Invalid').",
-    "example": "try: urmat de val = int(text) și except ValueError as e: print('Invalid').",
     "regexPattern": "try\\s*:[\\s\\S]+?val\\s*=\\s*int\\(text\\)[\\s\\S]+?except\\s+ValueError\\s+as\\s+\\w+\\s*:[\\s\\S]+?print\\([\"']Invalid[\"']\\)"
   },
   {
@@ -447,12 +447,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Parametrul self asigură accesul la atributele și metodele instanței curente pe care s-a efectuat apelul."
     },
     "task": "Definește o clasă 'Developer' al cărei constructor '__init__(self, name, role)' setează 'self.name = name' și 'self.role = role'.",
-    "starterCode": "class Developer: urmat de def __init__(self, name, role): self.name = name; self.role = role.",
+    "starterCode": "class Developer:\n    def __init__(self, name, role):\n        self.name = name\n        self.role = role",
     "expectedOutputPattern": "class\\s+Developer\\s*:[\\s\\S]+?def\\s+__init__\\s*\\(\\s*self,\\s*name,\\s*role\\s*\\)\\s*:[\\s\\S]+?self\\.name\\s*=\\s*name[\\s\\S]+?self\\.role\\s*=\\s*role",
     "hint": "Scrie class Developer: urmat de def __init__(self, name, role): self.name = name; self.role = role.",
+    "officialSolution": "class Developer:\n    def __init__(self, name, role):\n        self.name = name\n        self.role = role",
+    "example": "class Student:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age",
     "prompt": "Definește o clasă 'Developer' al cărei constructor '__init__(self, name, role)' setează 'self.name = name' și 'self.role = role'.",
-    "officialSolution": "class Developer: urmat de def __init__(self, name, role): self.name = name; self.role = role.",
-    "example": "class Developer: urmat de def __init__(self, name, role): self.name = name; self.role = role.",
     "regexPattern": "class\\s+Developer\\s*:[\\s\\S]+?def\\s+__init__\\s*\\(\\s*self,\\s*name,\\s*role\\s*\\)\\s*:[\\s\\S]+?self\\.name\\s*=\\s*name[\\s\\S]+?self\\.role\\s*=\\s*role"
   },
   {
@@ -512,12 +512,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "@property permite accesarea obj.price în mod idiomatic și adăugarea ulterioară de validare fără modificarea codului apelant."
     },
     "task": "Definește un getter '@property def balance(self): return self._balance' în interiorul unei clase.",
-    "starterCode": "class Account:\n    def __init__(self, amount):\n        self._balance = amount\n\n    # Adaugă @property pentru balance\n",
+    "starterCode": "class Account:\n    def __init__(self, amount):\n        self._balance = amount\n\n    # Adaugă @property pentru balance:\n",
     "expectedOutputPattern": "@property\\s+def\\s+balance\\s*\\(\\s*self\\s*\\)\\s*:\\s*\\n\\s*return\\s+self\\._balance",
     "hint": "Scrie @property pe o linie, urmat de def balance(self): return self._balance.",
+    "officialSolution": "class Account:\n    def __init__(self, amount):\n        self._balance = amount\n\n    @property\n    def balance(self):\n        return self._balance",
+    "example": "class Circle:\n    def __init__(self, radius):\n        self._r = radius\n\n    @property\n    def radius(self):\n        return self._r",
     "prompt": "Definește un getter '@property def balance(self): return self._balance' în interiorul unei clase.",
-    "officialSolution": "@property pe o linie, urmat de def balance(self): return self._balance.",
-    "example": "@property pe o linie, urmat de def balance(self): return self._balance.",
     "regexPattern": "@property\\s+def\\s+balance\\s*\\(\\s*self\\s*\\)\\s*:\\s*\\n\\s*return\\s+self\\._balance"
   },
   {
@@ -577,12 +577,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "**kwargs împachetează toți parametrii transmiși sub formă de cheie=valoare într-un dicționar standard Python."
     },
     "task": "Definește o funcție 'sum_all(*args)' care returnează suma argumentelor primite folosind 'return sum(args)'.",
-    "starterCode": "Scrie: def sum_all(*args): return sum(args).",
+    "starterCode": "def sum_all(*args):\n    return sum(args)",
     "expectedOutputPattern": "def\\s+sum_all\\s*\\(\\s*\\*args\\s*\\)\\s*:\\s*\\n\\s*return\\s+sum\\(args\\)",
     "hint": "Scrie: def sum_all(*args): return sum(args).",
+    "officialSolution": "def sum_all(*args):\n    return sum(args)",
+    "example": "def multiply_all(*numbers):\n    res = 1\n    for n in numbers: res *= n\n    return res",
     "prompt": "Definește o funcție 'sum_all(*args)' care returnează suma argumentelor primite folosind 'return sum(args)'.",
-    "officialSolution": "Scrie: def sum_all(*args): return sum(args).",
-    "example": "Scrie: def sum_all(*args): return sum(args).",
     "regexPattern": "def\\s+sum_all\\s*\\(\\s*\\*args\\s*\\)\\s*:\\s*\\n\\s*return\\s+sum\\(args\\)"
   },
   {
@@ -645,9 +645,9 @@ const MEGA_EXPANDED_CURRICULUM = [
     "starterCode": "from functools import wraps\n\ndef log_call(func):\n    # Aplică decoratorul wraps\n    def wrapper(*args, **kwargs):\n        return func(*args, **kwargs)\n    return wrapper\n",
     "expectedOutputPattern": "@wraps\\(func\\)\\s*\\n\\s*def\\s+wrapper\\s*\\(\\s*\\*args,\\s*\\*\\*kwargs\\s*\\)",
     "hint": "Pune @wraps(func) chiar deasupra liniei def wrapper(*args, **kwargs):.",
+    "officialSolution": "from functools import wraps\n\ndef log_call(func):\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        return func(*args, **kwargs)\n    return wrapper",
+    "example": "from functools import wraps\n\ndef timer(fn):\n    @wraps(fn)\n    def inner(*args, **kwargs):\n        return fn(*args, **kwargs)\n    return inner",
     "prompt": "Completează decoratorul 'log_call' aplicând '@wraps(func)' deasupra funcției interne 'wrapper(*args, **kwargs)'.",
-    "officialSolution": "Pune @wraps(func) chiar deasupra liniei def wrapper(*args, **kwargs):.",
-    "example": "Pune @wraps(func) chiar deasupra liniei def wrapper(*args, **kwargs):.",
     "regexPattern": "@wraps\\(func\\)\\s*\\n\\s*def\\s+wrapper\\s*\\(\\s*\\*args,\\s*\\*\\*kwargs\\s*\\)"
   },
   {
@@ -707,12 +707,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Generatoarele nu stochează valorile în memorie, ci memorează doar starea de execuție și algoritmul de calcul."
     },
     "task": "Scrie o funcție generator 'count_up(limit)' care generează numere de la 1 la limit folosind 'for i in range(1, limit + 1): yield i'.",
-    "starterCode": "def count_up(limit): for i in range(1, limit + 1): yield i.",
+    "starterCode": "def count_up(limit):\n    for i in range(1, limit + 1):\n        yield i",
     "expectedOutputPattern": "def\\s+count_up\\s*\\(\\s*limit\\s*\\)\\s*:[\\s\\S]+?for\\s+i\\s+in\\s+range\\(1,\\s*limit\\s*\\+\\s*1\\)\\s*:[\\s\\S]+?yield\\s+i",
     "hint": "Scrie def count_up(limit): for i in range(1, limit + 1): yield i.",
+    "officialSolution": "def count_up(limit):\n    for i in range(1, limit + 1):\n        yield i",
+    "example": "def generate_even(n):\n    for i in range(0, n, 2):\n        yield i",
     "prompt": "Scrie o funcție generator 'count_up(limit)' care generează numere de la 1 la limit folosind 'for i in range(1, limit + 1): yield i'.",
-    "officialSolution": "def count_up(limit): for i in range(1, limit + 1): yield i.",
-    "example": "def count_up(limit): for i in range(1, limit + 1): yield i.",
     "regexPattern": "def\\s+count_up\\s*\\(\\s*limit\\s*\\)\\s*:[\\s\\S]+?for\\s+i\\s+in\\s+range\\(1,\\s*limit\\s*\\+\\s*1\\)\\s*:[\\s\\S]+?yield\\s+i"
   },
   {
@@ -775,9 +775,9 @@ const MEGA_EXPANDED_CURRICULUM = [
     "starterCode": "from collections import defaultdict\nuser_roles = ",
     "expectedOutputPattern": "user_roles\\s*=\\s*defaultdict\\(list\\)",
     "hint": "Scrie user_roles = defaultdict(list).",
+    "officialSolution": "from collections import defaultdict\nuser_roles = defaultdict(list)",
+    "example": "from collections import defaultdict\ncounts = defaultdict(int)",
     "prompt": "Inițializează un 'defaultdict' cu fabrică de tip 'list' în variabila 'user_roles = defaultdict(list)'.",
-    "officialSolution": "user_roles = defaultdict(list).",
-    "example": "user_roles = defaultdict(list).",
     "regexPattern": "user_roles\\s*=\\s*defaultdict\\(list\\)"
   },
   {
@@ -837,12 +837,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Optional[T] este un shorthand formal pentru Union[T, None], indicând explicit posibilitatea absenței valorii."
     },
     "task": "Adaugă type hinting complet pentru o funcție 'def get_length(text: str) -> int:' care returnează len(text).",
-    "starterCode": "Scrie: def get_length(text: str) -> int: return len(text).",
+    "starterCode": "def get_length(text: str) -> int:\n    return len(text)",
     "expectedOutputPattern": "def\\s+get_length\\s*\\(\\s*text\\s*:\\s*str\\s*\\)\\s*->\\s*int\\s*:[\\s\\S]+?return\\s+len\\(text\\)",
     "hint": "Scrie: def get_length(text: str) -> int: return len(text).",
+    "officialSolution": "def get_length(text: str) -> int:\n    return len(text)",
+    "example": "def greet(name: str) -> str:\n    return f\"Hello, {name}\"",
     "prompt": "Adaugă type hinting complet pentru o funcție 'def get_length(text: str) -> int:' care returnează len(text).",
-    "officialSolution": "Scrie: def get_length(text: str) -> int: return len(text).",
-    "example": "Scrie: def get_length(text: str) -> int: return len(text).",
     "regexPattern": "def\\s+get_length\\s*\\(\\s*text\\s*:\\s*str\\s*\\)\\s*->\\s*int\\s*:[\\s\\S]+?return\\s+len\\(text\\)"
   },
   {
@@ -902,12 +902,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "La fel ca la parametrii funcțiilor, valorile implicite mutabile sunt evaluate o singură dată la definire; default_factory garantează o listă nouă per instanță."
     },
     "task": "Creează o clasă '@dataclass' numită 'Server' cu atributele 'host: str' și 'port: int = 8080'.",
-    "starterCode": "from dataclasses import dataclass\n\n# Definește @dataclass Server\n",
+    "starterCode": "from dataclasses import dataclass\n\n# Definește @dataclass Server:\n",
     "expectedOutputPattern": "@dataclass\\s*\\n\\s*class\\s+Server\\s*:[\\s\\S]+?host\\s*:\\s*str[\\s\\S]+?port\\s*:\\s*int\\s*=\\s*8080",
     "hint": "Scrie @dataclass pe prima linie, urmat de class Server: host: str; port: int = 8080.",
+    "officialSolution": "from dataclasses import dataclass\n\n@dataclass\nclass Server:\n    host: str\n    port: int = 8080",
+    "example": "from dataclasses import dataclass\n\n@dataclass\nclass Point:\n    x: float\n    y: float = 0.0",
     "prompt": "Creează o clasă '@dataclass' numită 'Server' cu atributele 'host: str' și 'port: int = 8080'.",
-    "officialSolution": "@dataclass pe prima linie, urmat de class Server: host: str; port: int = 8080.",
-    "example": "@dataclass pe prima linie, urmat de class Server: host: str; port: int = 8080.",
     "regexPattern": "@dataclass\\s*\\n\\s*class\\s+Server\\s*:[\\s\\S]+?host\\s*:\\s*str[\\s\\S]+?port\\s*:\\s*int\\s*=\\s*8080"
   },
   {
@@ -967,12 +967,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Apelul unei coroutine fără await doar creează obiectul coroutine; acesta trebuie programat în Event Loop sau așteptat cu await pentru execuție."
     },
     "task": "Scrie o coroutină 'async def fetch_status(): await asyncio.sleep(0.1); return 200'.",
-    "starterCode": "import asyncio\n\n# Definește coroutina fetch_status\n",
+    "starterCode": "import asyncio\n\n# Definește coroutina fetch_status:\n",
     "expectedOutputPattern": "async\\s+def\\s+fetch_status\\s*\\(\\s*\\)\\s*:[\\s\\S]+?await\\s+asyncio\\.sleep\\(0\\.1\\)[\\s\\S]+?return\\s+200",
     "hint": "Scrie: async def fetch_status(): await asyncio.sleep(0.1); return 200.",
+    "officialSolution": "import asyncio\n\nasync def fetch_status():\n    await asyncio.sleep(0.1)\n    return 200",
+    "example": "import asyncio\n\nasync def ping():\n    await asyncio.sleep(0.05)\n    return \"pong\"",
     "prompt": "Scrie o coroutină 'async def fetch_status(): await asyncio.sleep(0.1); return 200'.",
-    "officialSolution": "Scrie: async def fetch_status(): await asyncio.sleep(0.1); return 200.",
-    "example": "Scrie: async def fetch_status(): await asyncio.sleep(0.1); return 200.",
     "regexPattern": "async\\s+def\\s+fetch_status\\s*\\(\\s*\\)\\s*:[\\s\\S]+?await\\s+asyncio\\.sleep\\(0\\.1\\)[\\s\\S]+?return\\s+200"
   },
   {
@@ -1032,12 +1032,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Pentru CPU-bound, thread-urile se blochează reciproc la GIL. Doar procesele distincte rulează în paralel pe nuclee diferite."
     },
     "task": "Importă 'Pool' din 'multiprocessing' și inițializează un context manager 'with Pool() as pool:'.",
-    "starterCode": "from multiprocessing import Pool pe prima linie și with Pool() as pool: dedesubt.",
+    "starterCode": "from multiprocessing import Pool\n\nwith Pool() as pool:\n    pass",
     "expectedOutputPattern": "from\\s+multiprocessing\\s+import\\s+Pool[\\s\\S]+?with\\s+Pool\\(\\)\\s+as\\s+pool\\s*:",
     "hint": "Scrie from multiprocessing import Pool pe prima linie și with Pool() as pool: dedesubt.",
+    "officialSolution": "from multiprocessing import Pool\n\nwith Pool() as pool:\n    pass",
+    "example": "from multiprocessing import Pool\n\nwith Pool(processes=4) as p:\n    pass",
     "prompt": "Importă 'Pool' din 'multiprocessing' și inițializează un context manager 'with Pool() as pool:'.",
-    "officialSolution": "from multiprocessing import Pool pe prima linie și with Pool() as pool: dedesubt.",
-    "example": "from multiprocessing import Pool pe prima linie și with Pool() as pool: dedesubt.",
     "regexPattern": "from\\s+multiprocessing\\s+import\\s+Pool[\\s\\S]+?with\\s+Pool\\(\\)\\s+as\\s+pool\\s*:"
   },
   {
@@ -1097,12 +1097,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "__init_subclass__ elimină nevoia de a scrie clase derivate din type, oferind o sintaxă mult mai lizibilă și evitând conflictele de metaclase."
     },
     "task": "Definește metoda '__init_subclass__(cls, **kwargs):' care apelează 'super().__init_subclass__(**kwargs)'.",
-    "starterCode": "class Base:\n    # Adaugă __init_subclass__\n",
+    "starterCode": "class Base:\n    # Adaugă __init_subclass__:\n",
     "expectedOutputPattern": "def\\s+__init_subclass__\\s*\\(\\s*cls,\\s*\\*\\*kwargs\\s*\\)\\s*:[\\s\\S]+?super\\(\\)\\.__init_subclass__\\(\\*\\*kwargs\\)",
     "hint": "Scrie def __init_subclass__(cls, **kwargs): super().__init_subclass__(**kwargs).",
+    "officialSolution": "class Base:\n    def __init_subclass__(cls, **kwargs):\n        super().__init_subclass__(**kwargs)",
+    "example": "class PluginBase:\n    def __init_subclass__(cls, **kwargs):\n        super().__init_subclass__(**kwargs)",
     "prompt": "Definește metoda '__init_subclass__(cls, **kwargs):' care apelează 'super().__init_subclass__(**kwargs)'.",
-    "officialSolution": "def __init_subclass__(cls, **kwargs): super().__init_subclass__(**kwargs).",
-    "example": "def __init_subclass__(cls, **kwargs): super().__init_subclass__(**kwargs).",
     "regexPattern": "def\\s+__init_subclass__\\s*\\(\\s*cls,\\s*\\*\\*kwargs\\s*\\)\\s*:[\\s\\S]+?super\\(\\)\\.__init_subclass__\\(\\*\\*kwargs\\)"
   },
   {
@@ -1162,12 +1162,12 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Pydantic este o bibliotecă de parsare și validare: încearcă coerciția sigură de tip; doar dacă '123' nu poate deveni int va arunca ValidationError."
     },
     "task": "Definește un model Pydantic 'class Item(BaseModel):' cu câmpurile 'name: str' și 'price: float'.",
-    "starterCode": "from pydantic import BaseModel\n\n# Definește schema Item\n",
+    "starterCode": "from pydantic import BaseModel\n\n# Definește schema Item:\n",
     "expectedOutputPattern": "class\\s+Item\\s*\\(\\s*BaseModel\\s*\\)\\s*:[\\s\\S]+?name\\s*:\\s*str[\\s\\S]+?price\\s*:\\s*float",
     "hint": "Scrie class Item(BaseModel): name: str; price: float pe linii separate indentate.",
+    "officialSolution": "from pydantic import BaseModel\n\nclass Item(BaseModel):\n    name: str\n    price: float",
+    "example": "from pydantic import BaseModel\n\nclass UserSchema(BaseModel):\n    username: str\n    email: str",
     "prompt": "Definește un model Pydantic 'class Item(BaseModel):' cu câmpurile 'name: str' și 'price: float'.",
-    "officialSolution": "class Item(BaseModel): name: str; price: float pe linii separate indentate.",
-    "example": "class Item(BaseModel): name: str; price: float pe linii separate indentate.",
     "regexPattern": "class\\s+Item\\s*\\(\\s*BaseModel\\s*\\)\\s*:[\\s\\S]+?name\\s*:\\s*str[\\s\\S]+?price\\s*:\\s*float"
   },
   {

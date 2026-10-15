@@ -212,6 +212,10 @@
   padding: 0;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-primary);
@@ -221,6 +225,7 @@ body {
   text-wrap: pretty;
   overflow-wrap: break-word;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
 
 #confetti-canvas {
@@ -240,7 +245,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 1.5rem;
+  padding: 0.75rem 1rem;
+  gap: 0.65rem;
   background-color: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
@@ -2355,6 +2361,397 @@ button {
   display: none !important;
 }
 
+/* =========================================================================
+   SISTEM CONTURI & PROFILURI MULTIPLE (MULTI-USER)
+   ========================================================================= */
+
+/* Header User Switcher */
+.header-user-switcher {
+  position: relative;
+}
+
+.header-switch-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--bg-elevated);
+  border: 1.5px solid var(--border-color);
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem;
+  min-height: 34px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: inherit;
+}
+
+.header-switch-user-btn:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-soft);
+  color: var(--accent-primary);
+}
+
+.header-switch-user-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.header-profiles-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 260px;
+  background-color: var(--bg-elevated);
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: 0 14px 35px -5px rgba(0, 0, 0, 0.45);
+  padding: 0.5rem;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  animation: dropdownFade 0.2s ease-out;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-header {
+  padding: 0.4rem 0.65rem 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.dropdown-profiles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.dropdown-profile-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-left: 3px solid transparent;
+}
+
+.dropdown-profile-item:hover {
+  background-color: var(--accent-soft);
+}
+
+.dropdown-profile-item.active {
+  background-color: var(--accent-soft);
+  border-left-color: var(--accent-primary);
+}
+
+.dropdown-profile-avatar {
+  font-size: 1.25rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dropdown-profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dropdown-profile-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-profile-sub {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.dropdown-footer {
+  border-top: 1px solid var(--border-color);
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+}
+
+.btn-dropdown-add {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: none;
+  color: var(--accent-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.45rem 0.65rem;
+  border-radius: 7px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-dropdown-add:hover {
+  background-color: var(--accent-soft);
+}
+
+/* Secțiune Administrare Profiluri în Pagina de Profil */
+.profile-multiuser-card {
+  margin-bottom: 1.5rem;
+}
+
+.profile-multiuser-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.add-profile-box {
+  background: var(--bg-elevated);
+  border: 1.5px dashed var(--accent-primary);
+  border-radius: 14px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.add-profile-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  margin-bottom: 1rem;
+}
+
+.avatar-selector-grid-sm {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.avatar-opt-btn-sm {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-color);
+  background-color: var(--bg-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.avatar-opt-btn-sm:hover {
+  border-color: var(--accent-primary);
+}
+
+.avatar-opt-btn-sm.selected {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-soft);
+  transform: scale(1.08);
+}
+
+.profiles-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+}
+
+.profile-user-card {
+  background-color: var(--bg-elevated);
+  border: 1.5px solid var(--border-color);
+  border-radius: 14px;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.profile-user-card:hover {
+  border-color: var(--accent-primary);
+}
+
+.profile-user-card.active {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.profile-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.profile-user-avatar-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  border: 1.5px solid var(--border-color);
+}
+
+.profile-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-user-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-user-email {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-badge-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  white-space: nowrap;
+}
+
+.profile-stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 0.75rem;
+  background-color: var(--bg-primary);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.profile-stat-badge {
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.profile-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.btn-primary-sm {
+  padding: 0.4rem 0.85rem;
+  border-radius: 7px;
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-primary-sm:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-ghost-danger-sm {
+  padding: 0.4rem 0.65rem;
+  border-radius: 7px;
+  background-color: transparent;
+  color: var(--error-red);
+  border: 1px solid var(--border-color);
+  font-weight: 700;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-ghost-danger-sm:hover {
+  border-color: var(--error-red);
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.active-profile-indicator {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.polymath-toast {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1.5px solid var(--accent-primary);
+  border-radius: 10px;
+  padding: 0.75rem 1.15rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+  animation: toastSlide 0.25s ease-out;
+}
+
+@keyframes toastSlide {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Responsiv */
 @media (max-width: 860px) {
   .profile-grid-layout {
@@ -2367,13 +2764,53 @@ button {
 
 @media (max-width: 768px) {
   .top-bar {
-    padding: 0.65rem 1rem;
+    padding: 0.65rem 0.75rem;
     flex-wrap: wrap;
-    gap: 0.65rem;
+    gap: 0.5rem;
+  }
+
+  .brand {
+    order: 1;
+  }
+
+  .controls-cluster {
+    order: 2;
+    margin-left: auto;
+    gap: 0.3rem;
+  }
+
+  .theme-select {
+    max-width: 105px;
+    padding: 0.35rem 0.4rem;
+    font-size: 0.72rem;
+  }
+
+  .header-switch-user-btn {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.75rem;
+    min-height: 34px;
+  }
+
+  .header-profile-btn {
+    padding: 0.25rem 0.5rem 0.25rem 0.35rem;
+    font-size: 0.75rem;
+    min-height: 34px;
+  }
+
+  .stats-cluster {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .stat-pill {
+    flex: 1;
+    justify-content: center;
+    padding: 0.35rem 0.45rem;
   }
 
   .top-nav-links {
-    order: 3;
+    order: 4;
     width: 100%;
     overflow-x: auto;
     padding-bottom: 0.25rem;
@@ -2385,16 +2822,5 @@ button {
 
   .matching-columns-grid {
     grid-template-columns: 1fr;
-  }
-
-  .stats-cluster {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .stat-pill {
-    flex: 1;
-    justify-content: center;
-    padding: 0.35rem 0.45rem;
   }
 }

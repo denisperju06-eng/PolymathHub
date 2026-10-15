@@ -2,7 +2,9 @@
   "use strict";
 
   const STORAGE_KEY = "polymath_edtech_state_v2";
+  const PROFILES_REGISTRY_KEY = "polymath_profiles_v1";
   const DAILY_GOAL_TARGET = 3;
+  let activeProfileId = "profile_default";
 
   const defaultState = {
     streak: 0,
@@ -249,13 +251,129 @@
     return toLocalDateKey(d);
   }
 
-  // Încărcare stare cu migrare automată din v1 / stări anterioare
-  function loadState() {
+  // Utilitare Securitate & Notificări
+  function escapeHtml(str) {
+    if (typeof str !== "string") return "";
+    return str.replace(/[&<>"']/g, m => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[m]));
+  }
+
+  function showToast(message) {
+    let container = document.getElementById("toast-container");
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "toast-container";
+      container.className = "toast-container";
+      document.body.appendChild(container);
+    }
+    const toast = document.createElement("div");
+    toast.className = "polymath-toast";
+    toast.textContent = message;
+    container.appendChild(toast);
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transform = "translateY(10px)";
+      toast.style.transition = "all 0.3s ease";
+      setTimeout(() => toast.remove(), 300);
+    }, 3200);
+  }
+
+  // Extragere defensivă a soluției oficiale fără riscul de 'undefined'
+  function getLessonOfficialSolution(lesson) {
+    if (!lesson) return "";
+    if (typeof lesson.officialSolution === "string" && lesson.officialSolution.trim() !== "") {
+      return lesson.officialSolution;
+    }
+    if (Array.isArray(lesson.acceptedAnswers) && lesson.acceptedAnswers.length > 0 && typeof lesson.acceptedAnswers[0] === "string" && lesson.acceptedAnswers[0].trim() !== "") {
+      return lesson.acceptedAnswers[0];
+    }
+    if (lesson.hint && typeof lesson.hint === "string") {
+      const cleaned = lesson.hint.replace(/^[Ss]crie\s+/i, "").replace(/^['"`]|['"`]$/g, "").trim();
+      if (cleaned) return cleaned;
+    }
+    if (lesson.example && typeof lesson.example === "string" && lesson.example.trim()) {
+      return lesson.example.trim();
+    }
+    return lesson.starterCode || "";
+  }
+
+  // =========================================================================
+  // SISTEM ADMINISTRATIV PROFILURI MULTIPLE (MULTI-USER ENGINE)
+  // =========================================================================
+  function getProfilesRegistry() {
     try {
-      let raw = window.localStorage.getItem(STORAGE_KEY);
+      const raw = window.localStorage.getItem(PROFILES_REGISTRY_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && Array.isArray(parsed.profiles) && parsed.profiles.length > 0) {
+          if (!parsed.activeProfileId || !parsed.profiles.some(p => p.id === parsed.activeProfileId)) {
+            parsed.activeProfileId = parsed.profiles[0].id;
+          }
+          return parsed;
+        }
+      }
+    } catch (_) {}
+
+    // Migrare automată a utilizatorului existent
+    let initialUser = defaultState.user;
+    try {
+      const legacyRaw = window.localStorage.getItem(STORAGE_KEY);
+      if (legacyRaw) {
+        const legacy = JSON.parse(legacyRaw);
+        if (legacy && legacy.user) initialUser = legacy.user;
+      }
+    } catch (_) {}
+
+    const defaultProfile = {
+      id: "profile_default",
+      name: (initialUser && initialUser.firstName) || "Denis",
+      lastName: (initialUser && initialUser.lastName) || "Perju",
+      email: (initialUser && initialUser.email) || "denis@polymath.com",
+      bio: (initialUser && initialUser.bio) || "Pasionat de programare, limbi străine și cunoaștere polimată.",
+      avatar: (initialUser && initialUser.avatar) || "🎓",
+      createdAt: new Date().toISOString()
+    };
+
+    const initialRegistry = {
+      activeProfileId: defaultProfile.id,
+      profiles: [defaultProfile]
+    };
+
+    try {
+      window.localStorage.setItem(PROFILES_REGISTRY_KEY, JSON.stringify(initialRegistry));
+    } catch (_) {}
+
+    return initialRegistry;
+  }
+
+  function saveProfilesRegistry(reg) {
+    try {
+      window.localStorage.setItem(PROFILES_REGISTRY_KEY, JSON.stringify(reg));
+    } catch (e) {
+      console.error("Eroare la salvarea registrului de profiluri:", e);
+    }
+  }
+
+  function getActiveProfileId() {
+    const reg = getProfilesRegistry();
+    return reg.activeProfileId || "profile_default";
+  }
+
+  function loadProfileState(profileId) {
+    const profileKey = "polymath_state_" + profileId;
+    try {
+      let raw = window.localStorage.getItem(profileKey);
+      if (!raw && profileId === "profile_default") {
+        raw = window.localStorage.getItem(STORAGE_KEY);
+      }
       if (!raw) {
         const v1Raw = window.localStorage.getItem("polymath_edtech_state_v1");
-        if (v1Raw) {
+        if (v1Raw && profileId === "profile_default") {
           try {
             const v1 = JSON.parse(v1Raw);
             const migrated = {
@@ -281,10 +399,44 @@
             }
             window.localStorage.removeItem("polymath_edtech_state_v1");
             window.localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
+            window.localStorage.setItem(profileKey, JSON.stringify(migrated));
             return migrated;
           } catch (_) {}
         }
-        return { ...defaultState };
+
+        const reg = getProfilesRegistry();
+        const pInfo = reg.profiles.find(p => p.id === profileId);
+        const blank = {
+          ...defaultState,
+          streak: 0,
+          longestStreak: 0,
+          lastCompletionDate: null,
+          xp: 0,
+          completedLessons: [],
+          masteryPoints: {},
+          dailyHistory: {},
+          assistedHistory: {},
+          customLessons: [],
+          activeTrack: "SQL",
+          activeLessonId: "sql-1",
+          activePracticeMode: "write",
+          activeView: "catalog",
+          user: {
+            firstName: (pInfo && pInfo.name) || "Utilizator",
+            lastName: (pInfo && pInfo.lastName) || "",
+            email: (pInfo && pInfo.email) || "student@polymath.com",
+            bio: (pInfo && pInfo.bio) || "Pasionat de programare și limbi străine.",
+            avatar: (pInfo && pInfo.avatar) || "🚀"
+          },
+          preferences: {
+            dailyTarget: 3,
+            confettiEnabled: true
+          }
+        };
+        try {
+          window.localStorage.setItem(profileKey, JSON.stringify(blank));
+        } catch (_) {}
+        return blank;
       }
 
       const parsed = { ...defaultState, ...JSON.parse(raw) };
@@ -304,12 +456,16 @@
       parsed.theme = parsed.theme || "emerald-forest";
       parsed.activeView = parsed.activeView || "catalog";
       parsed.customLessons = [];
+
+      const reg = getProfilesRegistry();
+      const pInfo = reg.profiles.find(p => p.id === profileId);
+
       parsed.user = {
-        firstName: (parsed.user && parsed.user.firstName) || "Denis",
-        lastName: (parsed.user && parsed.user.lastName) || "Perju",
-        email: (parsed.user && parsed.user.email) || "denis@polymath.com",
-        bio: (parsed.user && parsed.user.bio) || "Pasionat de programare, limbi străine și cunoaștere polimată.",
-        avatar: (parsed.user && parsed.user.avatar) || "🎓"
+        firstName: (parsed.user && parsed.user.firstName) || (pInfo && pInfo.name) || "Denis",
+        lastName: (parsed.user && parsed.user.lastName) || (pInfo && pInfo.lastName) || "Perju",
+        email: (parsed.user && parsed.user.email) || (pInfo && pInfo.email) || "denis@polymath.com",
+        bio: (parsed.user && parsed.user.bio) || (pInfo && pInfo.bio) || "Pasionat de programare, limbi străine și cunoaștere polimată.",
+        avatar: (parsed.user && parsed.user.avatar) || (pInfo && pInfo.avatar) || "🎓"
       };
       parsed.preferences = {
         dailyTarget: (parsed.preferences && parsed.preferences.dailyTarget) ? Number(parsed.preferences.dailyTarget) : 3,
@@ -321,16 +477,192 @@
     }
   }
 
+  function loadState() {
+    activeProfileId = getActiveProfileId();
+    return loadProfileState(activeProfileId);
+  }
+
   function getDailyTarget() {
     return (state.preferences && state.preferences.dailyTarget) ? Number(state.preferences.dailyTarget) : DAILY_GOAL_TARGET;
   }
 
   function saveState() {
     try {
+      const profileKey = "polymath_state_" + activeProfileId;
+      window.localStorage.setItem(profileKey, JSON.stringify(state));
+      // Sincronizare cheie globală pentru compatibilitate cu teste de integrare
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+
+      // Sincronizare registru profiluri
+      const reg = getProfilesRegistry();
+      const p = reg.profiles.find(item => item.id === activeProfileId);
+      if (p && state.user) {
+        p.name = state.user.firstName || p.name;
+        p.lastName = state.user.lastName || "";
+        p.email = state.user.email || p.email;
+        p.bio = state.user.bio || "";
+        p.avatar = state.user.avatar || p.avatar;
+        saveProfilesRegistry(reg);
+      }
     } catch (e) {
       console.error("Eroare la salvare:", e);
     }
+  }
+
+  function switchProfile(targetProfileId) {
+    if (!targetProfileId || targetProfileId === activeProfileId) return;
+    const reg = getProfilesRegistry();
+    const target = reg.profiles.find(p => p.id === targetProfileId);
+    if (!target) return;
+
+    // 1. Salvează profilul actual
+    saveState();
+
+    // 2. Comută registrul
+    reg.activeProfileId = targetProfileId;
+    saveProfilesRegistry(reg);
+    activeProfileId = targetProfileId;
+
+    // 3. Încarcă starea profilului selectat
+    state = loadProfileState(targetProfileId);
+    saveState();
+
+    // 4. Aplică tema profilului
+    applyTheme(state.theme || "emerald-forest");
+    lessonSessionAssisted = false;
+
+    // 5. Asigură lecția activă validă
+    if (state.activeLessonId && !allLessons.some(l => l.id === state.activeLessonId)) {
+      const fallbackInTrack = allLessons.find(l => l.track === state.activeTrack);
+      state.activeLessonId = fallbackInTrack ? fallbackInTrack.id : (allLessons[0] ? allLessons[0].id : "sql-1");
+    }
+
+    // 6. Resetare formular / editor
+    if (els.userAnswerInput) {
+      const activeLesson = allLessons.find(l => l.id === state.activeLessonId);
+      els.userAnswerInput.value = (activeLesson && activeLesson.starterCode) || "";
+    }
+    if (els.inputZone) els.inputZone.classList.remove("state-error", "state-success");
+    if (els.solutionDrawer) els.solutionDrawer.classList.add("hidden");
+    if (els.hintDrawer) els.hintDrawer.classList.add("hidden");
+
+    // 7. Re-randare completă
+    renderAllViews();
+    showToast(`Ai comutat pe profilul: ${target.name} ${target.avatar || '👤'}!`);
+  }
+
+  function createNewProfile(name, lastName, email, avatar, bio) {
+    const reg = getProfilesRegistry();
+    const newId = "profile_" + Date.now();
+    const cleanName = (name || "").trim() || "Utilizator";
+    const cleanLastName = (lastName || "").trim();
+    const cleanEmail = (email || "").trim() || `${cleanName.toLowerCase().replace(/\s+/g, "")}@polymath.com`;
+    const cleanAvatar = avatar || "🚀";
+    const cleanBio = (bio || "").trim() || "Pasionat de programare și științe polimate.";
+
+    const newProfile = {
+      id: newId,
+      name: cleanName,
+      lastName: cleanLastName,
+      email: cleanEmail,
+      avatar: cleanAvatar,
+      bio: cleanBio,
+      createdAt: new Date().toISOString()
+    };
+
+    const newProfileState = {
+      ...defaultState,
+      streak: 0,
+      longestStreak: 0,
+      lastCompletionDate: null,
+      xp: 0,
+      completedLessons: [],
+      masteryPoints: {},
+      dailyHistory: {},
+      assistedHistory: {},
+      theme: state.theme || "emerald-forest",
+      customLessons: [],
+      activeTrack: "Python",
+      activeLessonId: "py-new-1",
+      activePracticeMode: "write",
+      activeView: "profile",
+      user: {
+        firstName: cleanName,
+        lastName: cleanLastName,
+        email: cleanEmail,
+        bio: cleanBio,
+        avatar: cleanAvatar
+      },
+      preferences: {
+        dailyTarget: 3,
+        confettiEnabled: true
+      }
+    };
+
+    try {
+      window.localStorage.setItem("polymath_state_" + newId, JSON.stringify(newProfileState));
+    } catch (e) {
+      console.error(e);
+    }
+
+    reg.profiles.push(newProfile);
+    reg.activeProfileId = newId;
+    saveProfilesRegistry(reg);
+
+    activeProfileId = newId;
+    state = newProfileState;
+    saveState();
+    applyTheme(state.theme);
+
+    renderAllViews();
+    showToast(`Profil nou creat: ${cleanName} ${cleanAvatar}. Bine ai venit!`);
+  }
+
+  function deleteProfile(profileId) {
+    const reg = getProfilesRegistry();
+    if (reg.profiles.length <= 1) {
+      alert("Nu poți șterge singurul profil existent. Dacă dorești să resetezi datele, folosește opțiunea „Șterge Contul și Resetează Totul de la Zero”.");
+      return;
+    }
+    const target = reg.profiles.find(p => p.id === profileId);
+    if (!target) return;
+
+    if (!confirm(`Ești sigur că vrei să ștergi contul „${target.name}”?\n\nToate punctele XP, streak-ul și progresul acestui profil vor fi eliminate definitiv.`)) {
+      return;
+    }
+
+    try {
+      window.localStorage.removeItem("polymath_state_" + profileId);
+    } catch (_) {}
+
+    reg.profiles = reg.profiles.filter(p => p.id !== profileId);
+
+    if (reg.activeProfileId === profileId) {
+      const fallback = reg.profiles[0];
+      reg.activeProfileId = fallback.id;
+      saveProfilesRegistry(reg);
+      activeProfileId = fallback.id;
+      state = loadProfileState(fallback.id);
+      saveState();
+      applyTheme(state.theme);
+      renderAllViews();
+      showToast(`Profilul „${target.name}” a fost șters. Ai fost comutat pe „${fallback.name}”.`);
+    } else {
+      saveProfilesRegistry(reg);
+      renderProfileView();
+      renderHeaderProfilesDropdown();
+      showToast(`Profilul „${target.name}” a fost șters.`);
+    }
+  }
+
+  function renderAllViews() {
+    renderStats();
+    renderHeaderProfilesDropdown();
+    renderProfileView();
+    if (state.activeView === "catalog") renderCatalog();
+    else if (state.activeView === "study") renderStudyView();
+    else if (state.activeView === "activity") renderActivityView();
+    else if (state.activeView === "leagues") renderLeaguesView();
   }
 
   // Sistem Dinamic de Mastery (Bronz -> Argint -> Aur -> Platină -> Diamant)
@@ -494,6 +826,11 @@
     headerProfileBtn: document.getElementById("header-profile-btn"),
     headerAvatarIcon: document.getElementById("header-avatar-icon"),
     headerProfileName: document.getElementById("header-profile-name"),
+    headerSwitchUserBtn: document.getElementById("header-switch-user-btn"),
+    headerSwitchUserLabel: document.getElementById("header-switch-user-label"),
+    headerProfilesDropdown: document.getElementById("header-profiles-dropdown"),
+    dropdownProfilesList: document.getElementById("dropdown-profiles-list"),
+    btnDropdownAddProfile: document.getElementById("btn-dropdown-add-profile"),
 
     // Stats Cluster
     streakPill: document.getElementById("streak-pill"),
@@ -620,6 +957,18 @@
     settingsDailyTarget: document.getElementById("settings-daily-target"),
     settingsConfettiToggle: document.getElementById("settings-confetti-toggle"),
     profileDeleteAccountBtn: document.getElementById("profile-delete-account-btn"),
+
+    // Multi-User Profile Management
+    profilesListContainer: document.getElementById("profiles-list-container"),
+    btnToggleAddProfileForm: document.getElementById("btn-toggle-add-profile-form"),
+    addProfileBox: document.getElementById("add-profile-box"),
+    addProfileForm: document.getElementById("add-profile-form"),
+    newProfileNameInput: document.getElementById("new-profile-name-input"),
+    newProfileLastNameInput: document.getElementById("new-profile-last-name-input"),
+    newProfileEmailInput: document.getElementById("new-profile-email-input"),
+    newProfileBioInput: document.getElementById("new-profile-bio-input"),
+    newProfileAvatarGrid: document.getElementById("new-profile-avatar-grid"),
+    cancelAddProfileBtn: document.getElementById("cancel-add-profile-btn"),
 
     confettiCanvas: document.getElementById("confetti-canvas")
   };
@@ -764,6 +1113,7 @@
     // Sincronizare Header Profil
     if (els.headerAvatarIcon) els.headerAvatarIcon.textContent = state.user.avatar || "🎓";
     if (els.headerProfileName) els.headerProfileName.textContent = state.user.firstName || "Denis";
+    renderHeaderProfilesDropdown();
   }
 
   // =========================================================================
@@ -1047,7 +1397,7 @@
     els.nextLessonBtn.classList.add("hidden");
 
     els.hintText.textContent = lesson.hint || "Analizează dicționarul de termeni și modelul asemănător de mai sus.";
-    els.officialSolutionText.textContent = lesson.officialSolution || lesson.starterCode || "";
+    els.officialSolutionText.textContent = getLessonOfficialSolution(lesson);
     els.officialSolutionExplanation.textContent = lesson.explanation || lesson.hint || "";
 
     renderMatchingGame(lesson);
@@ -1658,6 +2008,113 @@
     if (els.settingsConfettiToggle) {
       els.settingsConfettiToggle.value = String(state.preferences.confettiEnabled !== false);
     }
+
+    renderProfilesList();
+    renderHeaderProfilesDropdown();
+  }
+
+  function renderProfilesList() {
+    if (!els.profilesListContainer) return;
+    const reg = getProfilesRegistry();
+    els.profilesListContainer.innerHTML = "";
+
+    reg.profiles.forEach(p => {
+      let pXp = 0;
+      let pStreak = 0;
+      let pLessonsCount = 0;
+
+      if (p.id === activeProfileId) {
+        pXp = state.xp;
+        pStreak = state.streak;
+        pLessonsCount = state.completedLessons.length;
+      } else {
+        try {
+          const raw = window.localStorage.getItem("polymath_state_" + p.id);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            pXp = parsed.xp || 0;
+            pStreak = parsed.streak || 0;
+            pLessonsCount = Array.isArray(parsed.completedLessons) ? parsed.completedLessons.length : 0;
+          }
+        } catch (_) {}
+      }
+
+      const card = document.createElement("div");
+      card.className = `profile-user-card ${p.id === activeProfileId ? "active" : ""}`;
+      card.innerHTML = `
+        <div class="profile-card-top">
+          <div class="profile-user-avatar-circle">${escapeHtml(p.avatar || "🎓")}</div>
+          <div class="profile-user-info">
+            <h4 class="profile-user-name">${escapeHtml(p.name)} ${escapeHtml(p.lastName || "")}</h4>
+            <span class="profile-user-email">${escapeHtml(p.email || "")}</span>
+          </div>
+          ${p.id === activeProfileId ? `<span class="profile-badge-active">✓ Activ</span>` : ""}
+        </div>
+        <div class="profile-stats-row">
+          <span>XP: <strong class="profile-stat-badge">${pXp}</strong></span>
+          <span>Streak: <strong class="profile-stat-badge">${pStreak} ${pStreak === 1 ? "zi" : "zile"}</strong></span>
+          <span>Capitole: <strong class="profile-stat-badge">${pLessonsCount}</strong></span>
+        </div>
+        <div class="profile-actions-row">
+          ${p.id === activeProfileId ? `
+            <span class="active-profile-indicator">Ești pe acest cont</span>
+          ` : `
+            <button type="button" class="btn-primary-sm btn-switch-profile" data-profile-id="${p.id}">Comută pe acest cont</button>
+            <button type="button" class="btn-ghost-danger-sm btn-delete-profile" data-profile-id="${p.id}" title="Șterge contul ${escapeHtml(p.name)}">🗑️ Șterge</button>
+          `}
+        </div>
+      `;
+
+      const switchBtn = card.querySelector(".btn-switch-profile");
+      if (switchBtn) {
+        switchBtn.addEventListener("click", () => switchProfile(p.id));
+      }
+
+      const delBtn = card.querySelector(".btn-delete-profile");
+      if (delBtn) {
+        delBtn.addEventListener("click", () => deleteProfile(p.id));
+      }
+
+      els.profilesListContainer.appendChild(card);
+    });
+  }
+
+  function renderHeaderProfilesDropdown() {
+    if (!els.dropdownProfilesList) return;
+    const reg = getProfilesRegistry();
+    els.dropdownProfilesList.innerHTML = "";
+
+    reg.profiles.forEach(p => {
+      let pXp = (p.id === activeProfileId) ? state.xp : 0;
+      let pStreak = (p.id === activeProfileId) ? state.streak : 0;
+      if (p.id !== activeProfileId) {
+        try {
+          const raw = window.localStorage.getItem("polymath_state_" + p.id);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            pXp = parsed.xp || 0;
+            pStreak = parsed.streak || 0;
+          }
+        } catch (_) {}
+      }
+
+      const item = document.createElement("div");
+      item.className = `dropdown-profile-item ${p.id === activeProfileId ? "active" : ""}`;
+      item.innerHTML = `
+        <span class="dropdown-profile-avatar">${escapeHtml(p.avatar || "🎓")}</span>
+        <div class="dropdown-profile-info">
+          <div class="dropdown-profile-name">${escapeHtml(p.name)} ${p.id === activeProfileId ? "(Activ)" : ""}</div>
+          <div class="dropdown-profile-sub">${pXp} XP • ${pStreak} zile streak</div>
+        </div>
+      `;
+
+      item.addEventListener("click", () => {
+        if (els.headerProfilesDropdown) els.headerProfilesDropdown.classList.add("hidden");
+        switchProfile(p.id);
+      });
+
+      els.dropdownProfilesList.appendChild(item);
+    });
   }
 
   function launchConfetti() {
@@ -1843,7 +2300,8 @@
         const lesson = allLessons.find(l => l.id === state.activeLessonId);
         if (!lesson) return;
         lessonSessionAssisted = true;
-        if (els.userAnswerInput) els.userAnswerInput.value = lesson.officialSolution;
+        const solutionToApply = getLessonOfficialSolution(lesson);
+        if (els.userAnswerInput) els.userAnswerInput.value = solutionToApply;
         verifyCurrentAnswer();
       });
     }
@@ -1971,36 +2429,114 @@
       });
     }
 
+    // =========================================================================
+    // EVENIMENTE: ADMINISTRARE PROFILURI & CONTURI MULTIPLE
+    // =========================================================================
+
+    // 1. Dropdown comutator rapid în antet
+    if (els.headerSwitchUserBtn && els.headerProfilesDropdown) {
+      els.headerSwitchUserBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        renderHeaderProfilesDropdown();
+        els.headerProfilesDropdown.classList.toggle("hidden");
+      });
+
+      document.addEventListener("click", e => {
+        if (els.headerProfilesDropdown && !els.headerProfilesDropdown.classList.contains("hidden")) {
+          if (!els.headerProfilesDropdown.contains(e.target) && !els.headerSwitchUserBtn.contains(e.target)) {
+            els.headerProfilesDropdown.classList.add("hidden");
+          }
+        }
+      });
+    }
+
+    if (els.btnDropdownAddProfile) {
+      els.btnDropdownAddProfile.addEventListener("click", () => {
+        if (els.headerProfilesDropdown) els.headerProfilesDropdown.classList.add("hidden");
+        switchView("profile");
+        if (els.addProfileBox) {
+          els.addProfileBox.classList.remove("hidden");
+          if (els.newProfileNameInput) els.newProfileNameInput.focus();
+        }
+      });
+    }
+
+    // 2. Toggle formular adăugare profil în pagina de profil
+    if (els.btnToggleAddProfileForm && els.addProfileBox) {
+      els.btnToggleAddProfileForm.addEventListener("click", () => {
+        els.addProfileBox.classList.toggle("hidden");
+        if (!els.addProfileBox.classList.contains("hidden") && els.newProfileNameInput) {
+          els.newProfileNameInput.focus();
+        }
+      });
+    }
+
+    if (els.cancelAddProfileBtn && els.addProfileBox) {
+      els.cancelAddProfileBtn.addEventListener("click", () => {
+        els.addProfileBox.classList.add("hidden");
+      });
+    }
+
+    // 3. Selector avatar formular profil nou
+    let selectedNewAvatar = "🚀";
+    if (els.newProfileAvatarGrid) {
+      els.newProfileAvatarGrid.querySelectorAll(".avatar-opt-btn-sm").forEach(btn => {
+        btn.addEventListener("click", () => {
+          els.newProfileAvatarGrid.querySelectorAll(".avatar-opt-btn-sm").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          selectedNewAvatar = btn.getAttribute("data-avatar") || "🚀";
+        });
+      });
+    }
+
+    // 4. Trimitere formular profil nou
+    if (els.addProfileForm) {
+      els.addProfileForm.addEventListener("submit", e => {
+        e.preventDefault();
+        const name = els.newProfileNameInput ? els.newProfileNameInput.value.trim() : "";
+        const lastName = els.newProfileLastNameInput ? els.newProfileLastNameInput.value.trim() : "";
+        const email = els.newProfileEmailInput ? els.newProfileEmailInput.value.trim() : "";
+        const bio = els.newProfileBioInput ? els.newProfileBioInput.value.trim() : "";
+
+        if (!name) {
+          alert("Te rugăm să introduci un prenume sau nume de utilizator.");
+          return;
+        }
+
+        createNewProfile(name, lastName, email, selectedNewAvatar, bio);
+        if (els.addProfileBox) els.addProfileBox.classList.add("hidden");
+        if (els.addProfileForm) els.addProfileForm.reset();
+      });
+    }
+
     // Resetare Totală Cont & Date de la Zero (Zona de Pericol)
     if (els.profileDeleteAccountBtn) {
       els.profileDeleteAccountBtn.addEventListener("click", () => {
-        if (window.confirm("Atenție: Această acțiune va șterge ireversibil profilul, toate punctele XP, nivelul ligii, capitolele rezolvate și streak-ul.\n\nEști sigur că vrei să resetezi totul de la zero?")) {
-          // 1. Șterge stocarea locală pe toate versiunile
-          window.localStorage.removeItem(STORAGE_KEY);
-          window.localStorage.removeItem("polymath_edtech_state_v1");
-          window.localStorage.removeItem("polymath_state");
-          window.localStorage.removeItem("polymath_history");
-
-          // 2. Resetare obiect stare
+        if (window.confirm("Atenție: Această acțiune va reseta contul curent, toate punctele XP, nivelul ligii, capitolele rezolvate și streak-ul.\n\nEști sigur că vrei să resetezi acest cont de la zero?")) {
+          // Resetare doar pentru profilul activ
           state = {
             ...defaultState,
-            theme: "emerald-forest",
-            user: {
-              firstName: "Denis",
-              lastName: "Perju",
-              email: "denis@polymath.com",
-              bio: "Pasionat de programare, limbi străine și cunoaștere polimată.",
-              avatar: "🎓"
-            },
-            preferences: {
-              dailyTarget: 3,
-              confettiEnabled: true
-            }
+            streak: 0,
+            longestStreak: 0,
+            lastCompletionDate: null,
+            xp: 0,
+            completedLessons: [],
+            masteryPoints: {},
+            dailyHistory: {},
+            assistedHistory: {},
+            customLessons: [],
+            activeTrack: "SQL",
+            activeLessonId: "sql-1",
+            activePracticeMode: "write",
+            activeView: "profile",
+            theme: state.theme || "emerald-forest",
+            user: { ...state.user },
+            preferences: { ...state.preferences }
           };
           saveState();
           applyTheme(state.theme);
 
-          // 3. Resetare interfață de studiu
+          // Resetare interfață de studiu
           lessonSessionAssisted = false;
           if (els.userAnswerInput) els.userAnswerInput.value = "";
           if (els.inputZone) els.inputZone.classList.remove("state-error", "state-success");
@@ -2008,8 +2544,8 @@
           if (els.hintDrawer) els.hintDrawer.classList.add("hidden");
           if (els.nextLessonBtn) els.nextLessonBtn.classList.add("hidden");
 
-          switchView("catalog");
-          renderAll();
+          renderAllViews();
+          showToast("Contul activ a fost resetat de la zero.");
         }
       });
     }
