@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ro" data-theme="cyber-dark">
+<html lang="ro" data-theme="emerald-forest">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>PolymathHub | Enciclopedie & Laborator Interactiv</title>
+  <title>PolymathHub | Enciclopedie &amp; Laborator Interactiv</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
   <link rel="stylesheet" href="styles.css">
@@ -14,8 +14,9 @@
 <body>
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
+  <!-- BARA SUPERIOARĂ STATISTICI & CONTROALE -->
   <header class="top-bar">
-    <div class="brand">
+    <div class="brand" id="brand-home-btn" role="button" tabindex="0" title="Mergi la Pagina Principală (Catalog Domenii)">
       <div class="brand-logo" aria-hidden="true">📖</div>
       <div>
         <h1 class="brand-title">Polymath<span>Book</span></h1>
@@ -23,237 +24,309 @@
       </div>
     </div>
 
+    <!-- Cluster Statistici Interactive -->
     <div class="stats-cluster">
-      <div class="stat-pill streak-pill" id="streak-pill" title="Zile consecutive de studiu">
-        <span class="stat-icon">🔥</span>
+      <!-- 1. Streak Pill -> Deschide Calendarul Lunar -->
+      <div class="stat-pill streak-pill" id="streak-pill" role="button" tabindex="0" title="Apasă pentru Calendarul de Activitate &amp; Streak" aria-haspopup="dialog">
+        <span class="stat-icon" aria-hidden="true">🔥</span>
         <div class="stat-content">
           <span class="stat-value" id="streak-count">0</span>
           <span class="stat-label">Streak</span>
         </div>
       </div>
 
-      <div class="stat-pill xp-pill" title="Puncte de experiență și rang">
-        <span class="stat-icon">🏆</span>
+      <!-- 2. XP Pill -> Deschide Ligile & Clasamentele -->
+      <div class="stat-pill xp-pill" id="xp-pill" role="button" tabindex="0" title="Apasă pentru Ligi &amp; Ranguri de Măiestrie" aria-haspopup="dialog">
+        <span class="stat-icon" aria-hidden="true">🏆</span>
         <div class="stat-content">
           <span class="stat-value" id="xp-count">0 XP</span>
           <span class="stat-label" id="user-rank">Inițiat</span>
         </div>
       </div>
 
-      <div class="stat-pill goal-pill" title="Obiectiv zilnic">
-        <span class="stat-icon">🎯</span>
+      <!-- 3. Obiectiv Zilnic -> Bifa la 3/3 + Tooltip/Popover explicativ -->
+      <div class="stat-pill goal-pill" id="goal-pill" role="button" tabindex="0" title="Obiectiv zilnic (Apasă pentru detalii)" aria-haspopup="true">
+        <span class="stat-icon" id="goal-icon" aria-hidden="true">🎯</span>
         <div class="stat-content">
           <span class="stat-value" id="daily-progress-text">0/3</span>
-          <span class="stat-label">Azi</span>
+          <span class="stat-label" id="daily-progress-label">Azi</span>
+        </div>
+        <div class="goal-tooltip-content" id="goal-tooltip-content" role="tooltip">
+          <strong id="goal-tooltip-title">🎯 Obiectiv Zilnic</strong>
+          <p id="goal-tooltip-text">Azi ai rezolvat 0 din 3 sarcini. În total ai rezolvat 0 sarcini.</p>
         </div>
       </div>
     </div>
 
+    <!-- Cluster Controale: Teme & Adăugare Capitol -->
     <div class="controls-cluster">
-      <select id="theme-selector" class="theme-select" aria-label="Selectează tema">
+      <select id="theme-selector" class="theme-select" aria-label="Selectează tema de culori">
+        <option value="emerald-forest" selected>🌲 Emerald Zen (Verde)</option>
         <option value="cyber-dark">🌌 Cyber Dark</option>
         <option value="sepia-book">📜 Carte Clasică (Sepia)</option>
-        <option value="emerald-forest">🌲 Emerald Zen</option>
-        <option value="daylight-clean">☀️ Daylight Light</option>
+        <option value="neon-amethyst">🔮 Neon Amethyst</option>
+        <option value="sunset-amber">🌅 Sunset Amber</option>
+        <option value="ocean-deep">🌊 Ocean Deep</option>
+        <option value="daylight-clean">☀️ Daylight Clean</option>
       </select>
-      <button id="open-custom-modal-btn" class="btn-secondary btn-sm" title="Adaugă lecție nouă">+ Creare</button>
+      <button id="open-custom-modal-btn" class="btn-secondary btn-sm" title="Adaugă un capitol nou în enciclopedie">+ Creare</button>
     </div>
   </header>
 
-  <main class="app-layout">
-    <!-- Sidebar Minimalist cu butoane + / - -->
-    <aside class="sidebar">
-      <!-- Panou Discipline (Inițial doar 2, + extinde toate) -->
-      <section class="panel">
-        <div class="panel-header-row">
-          <h2 class="panel-heading">Domenii <span id="tracks-counter-label" class="muted-count"></span></h2>
-          <button id="toggle-tracks-btn" class="btn-icon-toggle" title="Arată / Ascunde toate domeniile" aria-expanded="false">+</button>
-        </div>
-        <div class="track-tabs" id="track-tabs" role="tablist"></div>
-      </section>
+  <!-- =========================================================================
+       VIEW 1: PAGINA PRINCIPALĂ (CATALOG & DOMENII FĂRĂ SARCINI CLUTTER)
+       ========================================================================= -->
+  <main id="catalog-view" class="catalog-layout">
+    <section class="catalog-hero">
+      <h2>📖 Enciclopedia &amp; Laboratorul Tău Interactiv</h2>
+      <p>Selectează un domeniu de studiu pentru a explora capitolele enciclopedice și a începe practica activă.</p>
+    </section>
 
-      <!-- Panou Teme / Lecții (Inițial doar tema curentă, + deschide lista și filtrele) -->
-      <section class="panel lessons-panel">
-        <div class="panel-header-row">
-          <h2 class="panel-heading" id="current-track-title">Tema Curentă</h2>
-          <div class="panel-header-actions">
-            <span class="completion-badge" id="track-completion-badge">0%</span>
-            <button id="toggle-lessons-btn" class="btn-icon-toggle" title="Arată / Ascunde toate lecțiile și filtrele" aria-expanded="false">+</button>
-          </div>
-        </div>
+    <!-- Grila celor 7 Domenii de Curs -->
+    <section class="domain-grid" id="catalog-domains-grid" aria-label="Domenii de studiu">
+      <!-- Generat dinamic din curriculum -->
+    </section>
 
-        <div class="progress-bar-track" aria-hidden="true">
-          <div class="progress-bar-fill" id="track-progress-bar"></div>
+    <!-- Secțiunea de Capitole a Domeniului Selectat -->
+    <section class="catalog-chapters-section" id="catalog-chapters-section">
+      <div class="catalog-chapters-header">
+        <div>
+          <span class="chapter-level-tag" id="catalog-domain-subtitle">DOMENIUL SELECTAT</span>
+          <h3 class="catalog-chapters-title" id="catalog-selected-domain-title">Toate Capitolele</h3>
         </div>
-
-        <div id="lessons-filter-box" class="filter-controls hidden">
-          <select id="level-filter" class="theme-select" style="width: 100%;">
-            <option value="ALL">📊 Toate Nivelele (Începător → Exemplar)</option>
-            <option value="1. Începător">🥉 1. Începător (1 pt Mastery)</option>
-            <option value="2. Junior">🥈 2. Junior (2 pt Mastery)</option>
-            <option value="3. Middle">🥇 3. Middle (3 pt Mastery)</option>
-            <option value="4. Senior">💠 4. Senior (4 pt Mastery)</option>
-            <option value="5. Exemplar">💎 5. Exemplar (5 pt Mastery)</option>
+        <div class="catalog-filters-row">
+          <select id="catalog-level-filter" class="theme-select" aria-label="Filtrează după nivel">
+            <option value="ALL">📊 Toate Nivelele</option>
           </select>
           <input
             type="search"
-            id="search-lessons"
+            id="catalog-search-input"
             class="search-input"
-            placeholder="🔍 Caută în enciclopedie (for, join, familie, hobby...)"
+            placeholder="🔍 Caută capitol (join, familie, hobby, bucla...)"
+            aria-label="Caută în capitole"
           >
         </div>
+      </div>
 
-        <ul class="lesson-list" id="lesson-list"></ul>
-      </section>
-
-      <!-- Panou Statistici & Calendar (Colapsat implicit, + pentru detalii) -->
-      <section class="panel heatmap-panel">
-        <div class="panel-header-row">
-          <h2 class="panel-heading">Activitate &amp; Record (<strong id="longest-streak-val">0</strong> zile)</h2>
-          <button id="toggle-heatmap-btn" class="btn-icon-toggle" title="Arată / Ascunde calendarul" aria-expanded="false">+</button>
-        </div>
-        <div id="heatmap-collapsible" class="hidden">
-          <div class="heatmap-grid" id="heatmap-grid"></div>
-          <div class="heatmap-actions">
-            <button id="reset-progress-btn" class="btn-ghost-danger">Resetează Progresul</button>
-          </div>
-        </div>
-      </section>
-    </aside>
-
-    <!-- Zona Centrală: Enciclopedie Detaliată + Practică Multi-Mod -->
-    <section class="workspace">
-      <!-- 1. CAPITOLUL ENCICLOPEDIC (Teorie Amplă + Dicționar + Model Asemănător) -->
-      <article class="card theory-card">
-        <div class="lesson-meta-bar">
-          <span class="badge-category" id="lesson-category-badge">Domeniu</span>
-          <span class="badge-level" id="lesson-level-badge">Nivel</span>
-          <span class="badge-mastery" id="lesson-status-badge">🥉 0/1</span>
-        </div>
-
-        <h2 class="lesson-title" id="lesson-title">Titlu Capitol</h2>
-
-        <!-- Conținutul de tip Carte / Enciclopedie -->
-        <div class="book-reader" id="lesson-theory"></div>
-
-        <!-- Dicționar / Tabel de Concepte și Vocabular al Lecției -->
-        <div class="dictionary-box" id="dictionary-box">
-          <div class="dictionary-header">
-            <span>📚 Dicționar &amp; Enciclopedie de Termeni / Sintaxă</span>
-          </div>
-          <div class="dictionary-grid" id="lesson-dictionary"></div>
-        </div>
-
-        <!-- Model Sintactic / Exemplu Asemănător (Diferit de întrebarea practică!) -->
-        <div class="example-box">
-          <div class="example-header">
-            <span>💡 Exemplu Asemănător &amp; Model de Rezolvare (Nu este răspunsul la întrebare!)</span>
-            <button id="copy-example-btn" class="btn-copy">Copiază</button>
-          </div>
-          <pre class="code-display"><code id="lesson-example"></code></pre>
-        </div>
-      </article>
-
-      <!-- 2. LABORATORUL INTERACTIV (3 Moduri: Potrivire 2 Coloane, Grilă, Scriere/Traducere) -->
-      <article class="card practice-card" id="practice-card">
-        <div class="practice-header">
-          <div>
-            <h3 class="practice-title">⚡ Antrenament Practic Interactiv</h3>
-            <p class="practice-subtitle">Alege modul de exersare: Potrivire între 2 coloane, Alegere rapidă sau Scriere/Traducere completă.</p>
-          </div>
-          <span class="xp-reward-tag" id="lesson-xp-tag">+30 XP</span>
-        </div>
-
-        <!-- Comutator Moduri de Practică -->
-        <div class="mode-switcher" role="tablist">
-          <button class="mode-tab active" role="tab" aria-selected="true" data-mode="write" id="tab-mode-write">✍️ 1. Scriere &amp; Traducere</button>
-          <button class="mode-tab" role="tab" aria-selected="false" data-mode="match" id="tab-mode-match">🔗 2. Potrivire 2 Coloane</button>
-          <button class="mode-tab" role="tab" aria-selected="false" data-mode="quiz" id="tab-mode-quiz">🎯 3. Gramatică &amp; Sintaxă (Alegere)</button>
-        </div>
-
-        <!-- MODUL 1: SCRIERE COD / TRADUCERE FĂRĂ SPOILER ÎN CONTEXT -->
-        <div id="practice-mode-write" class="practice-mode-pane">
-          <div class="question-highlight-box">
-            <span class="question-badge">❓ ÎNTREBAREA / CERINȚA TA:</span>
-            <p class="question-text" id="lesson-prompt"></p>
-          </div>
-
-          <div class="input-zone" id="input-zone">
-            <label for="user-answer-input" class="input-label">Scrie răspunsul tău mai jos (rămâne roșu până este 100% corect):</label>
-            <textarea
-              id="user-answer-input"
-              class="answer-textarea"
-              rows="3"
-              placeholder="Tastează codul sau traducerea aici..."
-              spellcheck="false"
-              autocomplete="off"
-            ></textarea>
-            <div class="validation-feedback" id="validation-feedback" role="alert" aria-live="polite">
-              Citește cerința de mai sus și apasă „Verifică Răspunsul”.
-            </div>
-          </div>
-
-          <div class="action-buttons-row">
-            <button id="verify-btn" class="btn-primary">✓ Verifică Răspunsul</button>
-            <button id="hint-btn" class="btn-secondary">💡 Indiciu Fără Spoiler</button>
-            <button id="give-up-btn" class="btn-give-up">🏳️ M-am dat bătut (Arată Răspunsul)</button>
-            <button id="next-lesson-btn" class="btn-success hidden">Capitolul Următor →</button>
-          </div>
-
-          <div class="hint-drawer hidden" id="hint-drawer">
-            <strong>Indiciu de Ghidare:</strong> <span id="hint-text"></span>
-          </div>
-
-          <div class="solution-drawer hidden" id="solution-drawer">
-            <div class="solution-drawer-header">
-              <span>🔓 Varianta Corectă Oficială</span>
-              <button id="apply-solution-btn" class="btn-apply-solution">Copiază în Editor &amp; Validează</button>
-            </div>
-            <pre class="solution-code"><code id="official-solution-text"></code></pre>
-            <p class="solution-explanation" id="official-solution-explanation"></p>
-          </div>
-        </div>
-
-        <!-- MODUL 2: POTRIVIRE ÎNTRE DOUĂ COLOANE (MATCHING GAME) -->
-        <div id="practice-mode-match" class="practice-mode-pane hidden">
-          <div class="question-highlight-box">
-            <span class="question-badge">🔗 POTRIVEȘTE CELE DOUĂ COLOANE:</span>
-            <p class="question-text">Selectează un element din <strong>Coloana Stângă</strong> și apoi corespondentul său corect din <strong>Coloana Dreaptă</strong>.</p>
-          </div>
-          <div class="matching-columns-grid">
-            <div class="matching-col" id="match-col-left"></div>
-            <div class="matching-col" id="match-col-right"></div>
-          </div>
-          <div class="matching-footer">
-            <span id="match-status-msg" class="validation-feedback">Potrivește toate perechile pentru a câștiga puncte de Mastery!</span>
-            <button id="reset-match-btn" class="btn-secondary btn-sm">🔄 Reamestecă Coloanele</button>
-          </div>
-        </div>
-
-        <!-- MODUL 3: ALEGERE MULTIPLĂ / GRAMATICĂ & SINTAXĂ -->
-        <div id="practice-mode-quiz" class="practice-mode-pane hidden">
-          <div class="question-highlight-box">
-            <span class="question-badge">🎯 ALEGE VARIANTA CORECTĂ:</span>
-            <p class="question-text" id="quiz-question-text"></p>
-          </div>
-          <div class="quiz-options-grid" id="quiz-options-grid"></div>
-          <div id="quiz-feedback-msg" class="validation-feedback" style="margin-top:0.85rem;">Selectează opțiunea corectă.</div>
-        </div>
-      </article>
+      <div class="catalog-chapters-grid" id="catalog-chapters-grid">
+        <!-- Generat dinamic din JavaScript -->
+      </div>
     </section>
   </main>
 
-  <!-- Modal pentru Adăugarea unui Capitol Personalizat -->
-  <div class="modal-backdrop hidden" id="custom-modal" role="dialog" aria-modal="true">
+  <!-- =========================================================================
+       VIEW 2: SPAȚIU DE STUDIU FOCALIZAT (THEORY + INTERACTIVE LAB)
+       ========================================================================= -->
+  <main id="study-view" class="study-layout hidden">
+    <!-- Bara Superioară de Navigare în Modul Studiu -->
+    <nav class="study-top-nav" aria-label="Navigare Studiu">
+      <button id="back-to-catalog-btn" class="study-nav-btn" title="Înapoi la Catalogul General">
+        ← Înapoi la Cursuri
+      </button>
+      <div class="study-nav-center">
+        <span class="study-current-track-tag" id="study-track-indicator">SQL</span>
+      </div>
+      <button id="open-pocket-drawer-btn" class="study-nav-btn study-pocket-btn" title="Deschide buzunarul de capitole" aria-expanded="false" aria-controls="pocket-drawer">
+        📂 Schimbă Capitolul (Buzunar)
+      </button>
+    </nav>
+
+    <!-- 1. CAPITOLUL ENCICLOPEDIC (Teorie Stil Carte + Dicționar + Model Paralel) -->
+    <article class="card theory-card">
+      <div class="lesson-meta-bar">
+        <span class="badge-category" id="lesson-category-badge">Domeniu</span>
+        <span class="badge-level" id="lesson-level-badge">Nivel</span>
+        <span class="badge-mastery" id="lesson-status-badge">🥉 0/1</span>
+      </div>
+
+      <h2 class="lesson-title" id="lesson-title">Titlu Capitol</h2>
+
+      <!-- Conținut stil carte / enciclopedie -->
+      <div class="book-reader" id="lesson-theory"></div>
+
+      <!-- Dicționar & Tabel Concepte / Vocabular -->
+      <div class="dictionary-box" id="dictionary-box">
+        <div class="dictionary-header">
+          <span>📚 Dicționar &amp; Sintaxă Esențială</span>
+        </div>
+        <div class="dictionary-grid" id="lesson-dictionary"></div>
+      </div>
+
+      <!-- Exemplu Asemănător & Model de Rezolvare (FĂRĂ răspunsul la întrebare) -->
+      <div class="example-box">
+        <div class="example-header">
+          <span>💡 Exemplu Asemănător &amp; Model (Diferit de întrebarea practică!)</span>
+          <button id="copy-example-btn" class="btn-copy">Copiază</button>
+        </div>
+        <pre class="code-display"><code id="lesson-example"></code></pre>
+      </div>
+    </article>
+
+    <!-- 2. LABORATORUL INTERACTIV (Scriere/Traducere, Potrivire 2 Coloane, Quiz 2x2) -->
+    <article class="card practice-card" id="practice-card">
+      <div class="practice-header">
+        <div>
+          <h3 class="practice-title">⚡ Antrenament Practic Interactiv</h3>
+          <p class="practice-subtitle">Alege modul de exersare: Scriere/Traducere, Potrivire între 2 coloane sau Alegere multiplă.</p>
+        </div>
+        <span class="xp-reward-tag" id="lesson-xp-tag">+30 XP</span>
+      </div>
+
+      <!-- Comutator Moduri de Practică -->
+      <div class="mode-switcher" role="tablist">
+        <button class="mode-tab active" role="tab" aria-selected="true" data-mode="write" id="tab-mode-write">✍️ 1. Scriere &amp; Traducere</button>
+        <button class="mode-tab" role="tab" aria-selected="false" data-mode="match" id="tab-mode-match">🔗 2. Potrivire 2 Coloane</button>
+        <button class="mode-tab" role="tab" aria-selected="false" data-mode="quiz" id="tab-mode-quiz">🎯 3. Gramatică &amp; Sintaxă (Quiz)</button>
+      </div>
+
+      <!-- MODUL 1: SCRIERE & TRADUCERE FĂRĂ SPOILER -->
+      <div id="practice-mode-write" class="practice-mode-pane">
+        <div class="question-highlight-box">
+          <span class="question-badge">❓ ÎNTREBAREA / CERINȚA TA:</span>
+          <p class="question-text" id="lesson-prompt"></p>
+        </div>
+
+        <div class="input-zone" id="input-zone">
+          <label for="user-answer-input" class="input-label">Scrie răspunsul tău mai jos (rămâne roșu până este 100% corect):</label>
+          <textarea
+            id="user-answer-input"
+            class="answer-textarea"
+            rows="3"
+            placeholder="Tastează codul sau traducerea aici..."
+            spellcheck="false"
+            autocomplete="off"
+          ></textarea>
+          <div class="validation-feedback" id="validation-feedback" role="alert" aria-live="polite">
+            Citește cerința de mai sus și apasă „Verifică Răspunsul”.
+          </div>
+        </div>
+
+        <div class="action-buttons-row">
+          <button id="verify-btn" class="btn-primary">✓ Verifică Răspunsul</button>
+          <button id="hint-btn" class="btn-secondary">💡 Indiciu Fără Spoiler</button>
+          <button id="give-up-btn" class="btn-give-up">🏳️ M-am dat bătut (Arată Răspunsul)</button>
+          <button id="next-lesson-btn" class="btn-success hidden">Capitolul Următor →</button>
+        </div>
+
+        <div class="hint-drawer hidden" id="hint-drawer">
+          <strong>Indiciu de Ghidare:</strong> <span id="hint-text"></span>
+        </div>
+
+        <div class="solution-drawer hidden" id="solution-drawer">
+          <div class="solution-drawer-header">
+            <span>🔓 Varianta Corectă Oficială</span>
+            <button id="apply-solution-btn" class="btn-apply-solution">Copiază în Editor &amp; Validează (50/50)</button>
+          </div>
+          <pre class="solution-code"><code id="official-solution-text"></code></pre>
+          <p class="solution-explanation" id="official-solution-explanation"></p>
+        </div>
+      </div>
+
+      <!-- MODUL 2: POTRIVIRE 2 COLOANE (MATCHING GAME) -->
+      <div id="practice-mode-match" class="practice-mode-pane hidden">
+        <div class="question-highlight-box">
+          <span class="question-badge">🔗 POTRIVEȘTE CELE DOUĂ COLOANE:</span>
+          <p class="question-text">Selectează un element din <strong>Coloana Stângă</strong> și apoi corespondentul său din <strong>Coloana Dreaptă</strong>.</p>
+        </div>
+        <div class="matching-columns-grid">
+          <div class="matching-col" id="match-col-left"></div>
+          <div class="matching-col" id="match-col-right"></div>
+        </div>
+        <div class="matching-footer">
+          <span id="match-status-msg" class="validation-feedback">Potrivește toate perechile pentru a câștiga puncte de Măiestrie!</span>
+          <button id="reset-match-btn" class="btn-secondary btn-sm">🔄 Reamestecă Coloanele</button>
+        </div>
+      </div>
+
+      <!-- MODUL 3: QUIZ 2x2 (ALEGERE MULTIPLĂ SIMETRICĂ) -->
+      <div id="practice-mode-quiz" class="practice-mode-pane hidden">
+        <div class="question-highlight-box">
+          <span class="question-badge">🎯 ALEGE VARIANTA CORECTĂ:</span>
+          <p class="question-text" id="quiz-question-text"></p>
+        </div>
+        <div class="quiz-options-grid" id="quiz-options-grid"></div>
+        <div id="quiz-feedback-msg" class="validation-feedback" style="margin-top:0.85rem;">Selectează opțiunea corectă de mai sus.</div>
+      </div>
+    </article>
+  </main>
+
+  <!-- =========================================================================
+       BUZUNAR GLISANT OFF-CANVAS (POCKET DRAWER PENTRU SCHIMBARE RAPIDĂ)
+       ========================================================================= -->
+  <div id="pocket-drawer-backdrop" class="pocket-drawer-backdrop hidden"></div>
+  <aside id="pocket-drawer" class="pocket-drawer" aria-label="Buzunar Navigare Capitole">
+    <div class="pocket-drawer-header">
+      <h3 class="pocket-drawer-title">📂 Schimbă Tema / Capitolul</h3>
+      <button id="close-pocket-drawer-btn" class="btn-close" aria-label="Închide buzunarul">&times;</button>
+    </div>
+    <div class="pocket-drawer-body">
+      <div class="pocket-track-tabs" id="pocket-track-tabs" role="tablist"></div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin: 1rem 0 0.5rem 0;">
+        <h4 style="font-size:0.75rem; text-transform:uppercase; color:var(--text-secondary); font-weight:700;">Capitole</h4>
+        <span id="pocket-completion-badge" class="completion-badge" style="font-size:0.72rem;">0%</span>
+      </div>
+      <ul class="lesson-list" id="pocket-lesson-list"></ul>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       MODAL: CALENDAR ACTIVITATE & STREAK
+       ========================================================================= -->
+  <div class="modal-backdrop hidden" id="calendar-modal" role="dialog" aria-modal="true" aria-labelledby="calendar-modal-title">
     <div class="modal-card">
       <div class="modal-header">
-        <h2>Adaugă Capitol sau Hobby Nou</h2>
-        <button id="close-custom-modal-btn" class="btn-close">&times;</button>
+        <h2 id="calendar-modal-title">📅 Calendar Activitate Lunar &amp; Streak</h2>
+        <button id="close-calendar-modal-btn" class="btn-close" aria-label="Închide">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="calendar-legend">
+          <div class="legend-item"><span class="legend-dot legend-green"></span> 🟢 3/3 Obiectiv Complet</div>
+          <div class="legend-item"><span class="legend-dot legend-orange"></span> 🟠 Streak Păstrat (1-2 sarcini)</div>
+          <div class="legend-item"><span class="legend-dot legend-yellow"></span> 🟡 50/50 Cu Asistență</div>
+          <div class="legend-item"><span class="legend-dot legend-empty"></span> ⚪ Fără activitate</div>
+        </div>
+        <div class="calendar-grid" id="calendar-days-grid"></div>
+        <div style="margin-top: 1.25rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+          Streak Curent: <strong id="modal-streak-val">0</strong> zile | Record Istoric: <strong id="modal-longest-streak-val">0</strong> zile
+        </div>
+        <div style="margin-top: 1rem; text-align: right;">
+          <button id="reset-progress-btn" class="btn-ghost-danger">Resetează Progresul Local</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: CLASAMENT, LIGI & RANGURI DE MĂIESTRIE
+       ========================================================================= -->
+  <div class="modal-backdrop hidden" id="leagues-modal" role="dialog" aria-modal="true" aria-labelledby="leagues-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="leagues-modal-title">🏆 Ligi &amp; Ranguri de Măiestrie</h2>
+        <button id="close-leagues-modal-btn" class="btn-close" aria-label="Închide">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="leagues-list" id="leagues-list">
+          <!-- Generat dinamic din JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL: ADĂUGARE CAPITOL / HOBBY NOU
+       ========================================================================= -->
+  <div class="modal-backdrop hidden" id="custom-modal" role="dialog" aria-modal="true" aria-labelledby="custom-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="custom-modal-title">Adaugă Capitol sau Hobby Nou</h2>
+        <button id="close-custom-modal-btn" class="btn-close" aria-label="Închide">&times;</button>
       </div>
       <form id="custom-lesson-form" class="modal-form">
         <div class="form-row">
           <label for="custom-track">Domeniu / Hobby:</label>
-          <input type="text" id="custom-track" required placeholder="Ex: SQL, Engleză: Familie & Hobby, Istorie...">
+          <input type="text" id="custom-track" required placeholder="Ex: SQL, Engleză: Familie &amp; Hobby, Istorie...">
         </div>
         <div class="form-row">
           <label for="custom-title">Titlul Capitolului:</label>
@@ -287,6 +360,7 @@
     </div>
   </div>
 
+  <!-- SCRIPTE CURRICULUM & APLICAȚIE -->
   <script src="curriculum.js"></script>
   <script src="curriculum-extended.js"></script>
   <script src="curriculum-advanced.js"></script>
