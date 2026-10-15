@@ -926,12 +926,347 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
 
   // ==========================================================================
-  // TRACK 4: ENGLEZĂ (B1 INTERMEDIATE -> B2 -> C1 -> C2 MASTERY)
+  // TRACK 4: ENGLEZĂ (A1–A2: BEGINNER & ELEMENTARY)
   // ==========================================================================
-  // --- NIVEL B1: INTERMEDIATE (CONVERSAȚIE, STRUCTURI DE BAZĂ, WORKPLACE) ---
+  // --- NIVEL A1: BEGINNER (VERBUL TO BE, ARTICOLE, POSESIVE, RUTINE) ---
+  {
+    id: "eng-a1-1",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "1. A1 Începător",
+    xp: 20,
+    title: "Verbul 'to be' la Prezent: am, is, are",
+    theory: "Verbul <code>to be</code> (a fi) are trei forme la Present Simple: <code>am</code> (pentru I), <code>is</code> (pentru he, she, it) și <code>are</code> (pentru you, we, they).",
+    example: "I am a programmer.\nShe is in the office.\nThey are ready.",
+    prompt: "Completează cu forma corectă a verbului to be: „I ___ a software developer.” (scrie întreaga propoziție).",
+    starterContext: "I am a software developer.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I am a software developer.",
+      "I am a software developer",
+      "I'm a software developer.",
+      "I'm a software developer"
+    ],
+    officialSolution: "I am a software developer.",
+    explanation: "Subiectul 'I' se acordă obligatoriu cu forma 'am' a verbului to be.",
+    hint: "Scrie: I am a software developer."
+  },
+  {
+    id: "eng-a1-2",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "1. A1 Începător",
+    xp: 20,
+    title: "Articolele Nehotărâte: 'a' vs 'an'",
+    theory: "Folosim <code>a</code> înaintea cuvintelor care încep cu un sunet consonantic (<em>a developer, a computer</em>) și <code>an</code> înaintea celor cu sunet vocalic (<em>an engineer, an application</em>).",
+    example: "He is a designer, but she is an engineer.",
+    prompt: "Completează propoziția cu articolul corect (a sau an): „She is an engineer.” (scrie întreaga propoziție).",
+    starterContext: "She is an engineer.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "She is an engineer.",
+      "She is an engineer"
+    ],
+    officialSolution: "She is an engineer.",
+    explanation: "Cuvântul 'engineer' începe cu sunetul vocalic 'e', cerând articolul 'an'.",
+    hint: "Scrie: She is an engineer."
+  },
+  {
+    id: "eng-a1-3",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "1. A1 Începător",
+    xp: 20,
+    title: "Adjectivele Posesive: my, your, his, her",
+    theory: "Adjectivele posesive determină un substantiv: <code>my</code> (meu), <code>your</code> (tău), <code>his</code> (lui), <code>her</code> (ei), <code>our</code> (nostru), <code>their</code> (lor).",
+    example: "This is my keyboard and that is his monitor.",
+    prompt: "Tradu în engleză: „Acesta este laptopul meu.” folosind 'This is my laptop.'",
+    starterContext: "This is my laptop.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "This is my laptop.",
+      "This is my laptop"
+    ],
+    officialSolution: "This is my laptop.",
+    explanation: "'This is my laptop' utilizează pronumele demonstrativ de apropiere 'this' și posesivul 'my'.",
+    hint: "Scrie: This is my laptop."
+  },
+  {
+    id: "eng-a1-4",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "1. A1 Începător",
+    xp: 20,
+    title: "Present Simple: Rutine Zilnice",
+    theory: "Present Simple descrie activități recurente. La persoana a III-a singular (he, she, it), adăugăm sufixul <code>-s</code> sau <code>-es</code> la verb.",
+    example: "I work from 9 to 5.\nHe works from home.",
+    prompt: "Tradu: „El lucrează de acasă.” folosind 'He works from home.'",
+    starterContext: "He works from home.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "He works from home.",
+      "He works from home"
+    ],
+    officialSolution: "He works from home.",
+    explanation: "Verbul 'work' primește terminația '-s' la persoana a III-a singular: 'works'.",
+    hint: "Scrie: He works from home."
+  },
+  {
+    id: "eng-a1-5",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "1. A1 Începător",
+    xp: 20,
+    title: "Negația la Prezent: don't vs doesn't",
+    theory: "Negația la Present Simple se formează cu auxiliarul <code>do not (don't)</code> pentru I/you/we/they și <code>does not (doesn't)</code> pentru he/she/it.",
+    example: "I don't drink coffee.\nShe doesn't write code.",
+    prompt: "Tradu: „Eu nu beau cafea.” folosind 'I don't drink coffee.'",
+    starterContext: "I don't drink coffee.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I don't drink coffee.",
+      "I don't drink coffee",
+      "I do not drink coffee.",
+      "I do not drink coffee"
+    ],
+    officialSolution: "I don't drink coffee.",
+    explanation: "Pentru persoana întâi singular folosim auxiliarul negativ 'don't' urmat de verbul de bază 'drink'.",
+    hint: "Scrie: I don't drink coffee."
+  },
+  {
+    id: "eng-a1-6",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "1. A1 Începător",
+    xp: 20,
+    title: "Verbul Modal 'Can': Abilități",
+    theory: "Verbul modal <code>can</code> exprimă capacitatea fizică sau intelectuală și se folosește direct cu infinitivul scurt al verbului următor.",
+    example: "I can write code.\nCan you help me?",
+    prompt: "Tradu: „Pot să vorbesc engleză.” folosind 'I can speak English.'",
+    starterContext: "I can speak English.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I can speak English.",
+      "I can speak English"
+    ],
+    officialSolution: "I can speak English.",
+    explanation: "'Can' este urmat de verbul de bază 'speak' fără prepoziția 'to'.",
+    hint: "Scrie: I can speak English."
+  },
+  {
+    id: "eng-a1-7",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "1. A1 Începător",
+    xp: 20,
+    title: "Cuvinte Interogative: Where, What, Who",
+    theory: "Întrebările de informare încep cu un cuvânt interogativ: <code>Where</code> (unde), <code>What</code> (ce), <code>When</code> (când), <code>Who</code> (cine).",
+    example: "Where is the office?\nWhat is your name?",
+    prompt: "Tradu: „Unde este biroul?” folosind 'Where is the office?'",
+    starterContext: "Where is the office?",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "Where is the office?",
+      "Where is the office",
+      "Where's the office?",
+      "Where's the office"
+    ],
+    officialSolution: "Where is the office?",
+    explanation: "Construcția necesită ordinea: cuvânt interogativ (Where) + verb (is) + subiect (the office).",
+    hint: "Scrie: Where is the office?"
+  },
+  {
+    id: "eng-a1-8",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "1. A1 Începător",
+    xp: 20,
+    title: "Pluralul Substantivelor: -s și -es",
+    theory: "Majoritatea substantivelor primesc <code>-s</code> la plural (<em>screens, books</em>), iar cele terminate în sunete sibilante primesc <code>-es</code> (<em>boxes</em>).",
+    example: "one screen -> two screens\none box -> two boxes",
+    prompt: "Completează propoziția: „I have two screens on my desk.” (scrie întreaga propoziție).",
+    starterContext: "I have two screens on my desk.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I have two screens on my desk.",
+      "I have two screens on my desk"
+    ],
+    officialSolution: "I have two screens on my desk.",
+    explanation: "'Screen' este un substantiv regulat care primește sufixul -s la plural.",
+    hint: "Scrie: I have two screens on my desk."
+  },
+
+  // --- NIVEL A2: ELEMENTARY (PAST SIMPLE, PREPOZIȚII, VIITOR CU GOING TO) ---
+  {
+    id: "eng-a2-1",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "2. A2 Elementar",
+    xp: 20,
+    title: "Past Simple cu 'to be': was și were",
+    theory: "Formele de trecut ale verbului to be sunt: <code>was</code> (pentru I, he, she, it) și <code>were</code> (pentru you, we, they).",
+    example: "I was at home yesterday.\nThey were at the conference.",
+    prompt: "Tradu: „Eram la birou ieri.” folosind 'I was at the office yesterday.'",
+    starterContext: "I was at the office yesterday.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I was at the office yesterday.",
+      "I was at the office yesterday"
+    ],
+    officialSolution: "I was at the office yesterday.",
+    explanation: "Subiectul 'I' la timpul trecut cere forma 'was'.",
+    hint: "Scrie: I was at the office yesterday."
+  },
+  {
+    id: "eng-a2-2",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "2. A2 Elementar",
+    xp: 20,
+    title: "Past Simple: Verbe Regulate cu -ed",
+    theory: "Verbele regulate formează Past Simple prin adăugarea terminației <code>-ed</code> la forma de bază: <em>work -> worked, finish -> finished</em>.",
+    example: "I finished my work at 6 PM.",
+    prompt: "Tradu: „Am terminat proiectul aseară.” folosind 'I finished the project last night.'",
+    starterContext: "I finished the project last night.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I finished the project last night.",
+      "I finished the project last night"
+    ],
+    officialSolution: "I finished the project last night.",
+    explanation: "Verbul 'finish' primește terminația '-ed' pentru a indica o acțiune încheiată în trecut.",
+    hint: "Scrie: I finished the project last night."
+  },
+  {
+    id: "eng-a2-3",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "2. A2 Elementar",
+    xp: 20,
+    title: "Past Simple: Verbe Neregulate Uzuale",
+    theory: "Verbele neregulate au forme proprii de trecut: <em>send -> sent, go -> went, make -> made, see -> saw</em>.",
+    example: "She sent an email to the client.",
+    prompt: "Tradu: „Am trimis un email în această dimineață.” folosind verbul neregulat 'sent': 'I sent an email this morning.'",
+    starterContext: "I sent an email this morning.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I sent an email this morning.",
+      "I sent an email this morning"
+    ],
+    officialSolution: "I sent an email this morning.",
+    explanation: "Forma de Past Simple pentru verbul neregulat 'send' este 'sent'.",
+    hint: "Scrie: I sent an email this morning."
+  },
+  {
+    id: "eng-a2-4",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "2. A2 Elementar",
+    xp: 20,
+    title: "Viitorul Intenționat: be going to",
+    theory: "Folosim <code>am/is/are + going to + verb</code> pentru planuri și decizii luate înainte de momentul vorbirii.",
+    example: "I am going to study tonight.\nWe are going to deploy the app.",
+    prompt: "Tradu: „Urmează să învăț JavaScript.” folosind 'I am going to learn JavaScript.'",
+    starterContext: "I am going to learn JavaScript.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I am going to learn JavaScript.",
+      "I am going to learn JavaScript",
+      "I'm going to learn JavaScript.",
+      "I'm going to learn JavaScript"
+    ],
+    officialSolution: "I am going to learn JavaScript.",
+    explanation: "'Be going to' semnalează o intenție fermă de învățare în viitorul apropiat.",
+    hint: "Scrie: I am going to learn JavaScript."
+  },
+  {
+    id: "eng-a2-5",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "2. A2 Elementar",
+    xp: 20,
+    title: "Prepoziții de Timp: at, on, in",
+    theory: "Regulă practică: <code>at</code> pentru ore exacte (<em>at 9 AM</em>), <code>on</code> pentru zile ale săptămânii (<em>on Monday</em>), <code>in</code> pentru luni sau ani.",
+    example: "The meeting is at 10 AM on Tuesday.",
+    prompt: "Completează propoziția: „The meeting starts at 9 AM on Monday.”",
+    starterContext: "The meeting starts at 9 AM on Monday.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "The meeting starts at 9 AM on Monday.",
+      "The meeting starts at 9 AM on Monday"
+    ],
+    officialSolution: "The meeting starts at 9 AM on Monday.",
+    explanation: "Se folosește 'at 9 AM' pentru oră și 'on Monday' pentru ziua săptămânii.",
+    hint: "Scrie: The meeting starts at 9 AM on Monday."
+  },
+  {
+    id: "eng-a2-6",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "2. A2 Elementar",
+    xp: 20,
+    title: "Modul Imperativ: Instrucțiuni Directe",
+    theory: "Imperativul utilizează forma de bază a verbului fără subiect la începutul propoziției pentru comenzi și instrucțiuni de utilizare.",
+    example: "Click the link below.\nPress Enter to submit.",
+    prompt: "Tradu: „Apasă butonul pentru a continua.” folosind 'Press the button to continue.'",
+    starterContext: "Press the button to continue.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "Press the button to continue.",
+      "Press the button to continue"
+    ],
+    officialSolution: "Press the button to continue.",
+    explanation: "'Press the button to continue' este formula clasică de ghidare în interfețe software.",
+    hint: "Scrie: Press the button to continue."
+  },
+  {
+    id: "eng-a2-7",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "2. A2 Elementar",
+    xp: 20,
+    title: "Comparativul Adjectivelor Scurte: -er + than",
+    theory: "Adjectivele monosilabice primesc sufixul <code>-er</code> la gradul comparativ: <em>fast -> faster, old -> older, new -> newer</em>.",
+    example: "This computer is faster than my old laptop.",
+    prompt: "Tradu: „Acest calculator este mai rapid.” folosind 'This computer is faster.'",
+    starterContext: "This computer is faster.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "This computer is faster.",
+      "This computer is faster"
+    ],
+    officialSolution: "This computer is faster.",
+    explanation: "Adjectivul scurt 'fast' formează comparativul sintetic 'faster'.",
+    hint: "Scrie: This computer is faster."
+  },
+  {
+    id: "eng-a2-8",
+    track: "Engleză (A1–A2)",
+    icon: "🇬🇧",
+    level: "2. A2 Elementar",
+    xp: 20,
+    title: "Oferirea de Asistență: 'Can I help you?'",
+    theory: "Formula politicoasă standard pentru a oferi sprijin colegilor este <code>Can I help you with + problemă?</code>.",
+    example: "Can I help you with your task?",
+    prompt: "Tradu formula politicoasă: „Pot să te ajut cu această problemă?” folosind 'Can I help you with this problem?'",
+    starterContext: "Can I help you with this problem?",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "Can I help you with this problem?",
+      "Can I help you with this problem"
+    ],
+    officialSolution: "Can I help you with this problem?",
+    explanation: "'Can I help you with this problem?' este întrebarea optimă de colaborare în echipă.",
+    hint: "Scrie: Can I help you with this problem?"
+  },
+
+  // ==========================================================================
+  // TRACK 5: ENGLEZĂ (B1–B2: INTERMEDIATE & UPPER-INTERMEDIATE)
+  // ==========================================================================
+  // --- SUB-NIVEL B1: INTERMEDIATE ---
   {
     id: "eng-b1-1",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "1. B1 Intermediate",
     xp: 20,
@@ -953,7 +1288,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b1-2",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "1. B1 Intermediate",
     xp: 20,
@@ -975,7 +1310,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b1-3",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "1. B1 Intermediate",
     xp: 20,
@@ -997,7 +1332,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b1-4",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "1. B1 Intermediate",
     xp: 20,
@@ -1019,7 +1354,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b1-5",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "1. B1 Intermediate",
     xp: 20,
@@ -1041,7 +1376,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b1-6",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "1. B1 Intermediate",
     xp: 20,
@@ -1063,7 +1398,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b1-7",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "1. B1 Intermediate",
     xp: 20,
@@ -1085,7 +1420,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b1-8",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "1. B1 Intermediate",
     xp: 20,
@@ -1105,7 +1440,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b1-9",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "1. B1 Intermediate",
     xp: 20,
@@ -1125,7 +1460,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b1-10",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "1. B1 Intermediate",
     xp: 20,
@@ -1145,7 +1480,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-1",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "1. B1 Intermediate",
     xp: 20,
@@ -1166,10 +1501,10 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     hint: "Model: He must be at home; the lights are on."
   },
 
-  // --- NIVEL B2: UPPER-INTERMEDIATE (BUSINESS, PHRASAL VERBS, PASIV) ---
+  // --- SUB-NIVEL B2: UPPER-INTERMEDIATE ---
   {
     id: "eng-b2-1",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1189,7 +1524,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b2-2",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1211,7 +1546,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b2-3",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1233,7 +1568,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b2-4",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1255,7 +1590,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b2-5",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1275,7 +1610,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b2-6",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1297,7 +1632,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b2-7",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1319,7 +1654,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b2-8",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1341,7 +1676,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b2-9",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1363,7 +1698,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-b2-10",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1385,7 +1720,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-2",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1405,7 +1740,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-3",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (B1–B2)",
     icon: "🇬🇧",
     level: "2. B2 Upper-Intermediate",
     xp: 25,
@@ -1426,12 +1761,15 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     hint: "Scrie: We cannot cut corners when it comes to security."
   },
 
-  // --- NIVEL C1: ADVANCED (SUBJONCTIV, VOCABULAR ELEVAT, INVERSIUNI) ---
+  // ==========================================================================
+  // TRACK 6: ENGLEZĂ (C1–C2: ADVANCED & PROFICIENCY)
+  // ==========================================================================
+  // --- SUB-NIVEL C1: ADVANCED ---
   {
     id: "eng-adv-4",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "3. C1 Advanced",
+    level: "1. C1 Advanced",
     xp: 30,
     title: "Subjonctivul Mandativ Formal: 'that he be'",
     theory: "În engleza academică și profesională formală, după adjective precum <em>imperative, essential, crucial</em> sau verbe ca <em>demand, insist</em>, verbul din clauza subordonată rămâne la forma de bază neinflectată (bare subjunctive), indiferent de persoană.",
@@ -1449,9 +1787,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-5",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "3. C1 Advanced",
+    level: "1. C1 Advanced",
     xp: 30,
     title: "Inversiune Emfatică: 'Little did they know'",
     theory: "Inversiunile cu adverbe restrictive plasează verbul auxiliar înaintea subiectului pentru un efect dramatic sau narativ puternic: <code>Little did + subiect + verb de bază</code>.",
@@ -1469,9 +1807,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-6",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "3. C1 Advanced",
+    level: "1. C1 Advanced",
     xp: 30,
     title: "Vocabular Tehnic C1: 'Paradigm shift'",
     theory: "Termenul <code>paradigm shift</code> desemnează o schimbare fundamentală în conceptele de bază și practicile experimentale ale unei discipline tehnologice sau științifice.",
@@ -1489,9 +1827,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-7",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "3. C1 Advanced",
+    level: "1. C1 Advanced",
     xp: 30,
     title: "Vocabular de Audit C1: 'Discrepancy'",
     theory: "Substantivul <code>discrepancy</code> indică o diferență ilogică, neașteptată sau inacceptabilă între două fapte, sume sau înregistrări care ar trebui să coincidă.",
@@ -1511,9 +1849,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-8",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "3. C1 Advanced",
+    level: "1. C1 Advanced",
     xp: 30,
     title: "Conector Academic C1: 'Notwithstanding'",
     theory: "Prepoziția și conectorul formal <code>notwithstanding</code> este sinonimul elevat al lui 'in spite of' sau 'despite', fiind foarte des întâlnit în contracte și publicații tehnice.",
@@ -1530,12 +1868,12 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     hint: "Scrie: Notwithstanding the challenges, the project was delivered on schedule."
   },
 
-  // --- NIVEL C1+: PROFESSIONAL (CONDIȚIONALE MIXTE, SCRUTINIZE, INVERSIUNI HAD) ---
+  // --- SUB-NIVEL C1+: PROFESSIONAL ---
   {
     id: "eng-adv-9",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "4. C1+ Professional",
+    level: "2. C1+ Professional",
     xp: 40,
     title: "Condițional Mixt: Past Action -> Present Consequence",
     theory: "Condiționalele mixte combină o ipoteză nereală din trecut (Past Perfect) cu un rezultat ipotetic în prezent (would + verb de bază).",
@@ -1553,9 +1891,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-10",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "4. C1+ Professional",
+    level: "2. C1+ Professional",
     xp: 40,
     title: "Inversiune Condițională Eleganta: 'Had I known...'",
     theory: "În engleza de elită, 'if' poate fi omis în frazele condiționale de tip 3 prin inversarea subiectului cu auxiliarul: <code>Had + subiect + past participle</code>.",
@@ -1573,9 +1911,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-11",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "4. C1+ Professional",
+    level: "2. C1+ Professional",
     xp: 40,
     title: "Vocabular C1: 'Ubiquitous' (Omniprezent)",
     theory: "Adjectivul <code>ubiquitous</code> descrie ceva care este prezent, întâlnit sau pare să existe peste tot în același timp.",
@@ -1593,9 +1931,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-12",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "4. C1+ Professional",
+    level: "2. C1+ Professional",
     xp: 40,
     title: "Vocabular C1: 'A pragmatic approach'",
     theory: "Adjectivul <code>pragmatic</code> caracterizează o gândire orientată pe rezultate concrete, eficiență și realism practic, evitând teoriile pure sau dogmele.",
@@ -1615,9 +1953,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-13",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "4. C1+ Professional",
+    level: "2. C1+ Professional",
     xp: 40,
     title: "Verbe de Inspecție C1: 'Scrutinize'",
     theory: "Verbul <code>to scrutinize</code> înseamnă a examina ceva extrem de minuțios, critic și cu o atenție desăvârșită la fiecare detaliu ascuns.",
@@ -1635,12 +1973,12 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     hint: "Scrie: The committee will scrutinize every line of code."
   },
 
-  // --- NIVEL C2: MASTERY (INVERSIUNI COMPLEXE, RETORICĂ NATIVĂ, PROFICIENCY) ---
+  // --- SUB-NIVEL C2: MASTERY ---
   {
     id: "eng-adv-14",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "5. C2 Mastery",
+    level: "3. C2 Mastery",
     xp: 50,
     title: "Inversiune Negativă C2: 'Seldom have we...'",
     theory: "Adverbul restrictiv <code>seldom</code> (rar) declanșează inversiunea topică a propoziției (auxiliarul plasat înaintea subiectului), creând un ton retoric magistral de nivel C2 Mastery.",
@@ -1658,9 +1996,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-15",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "5. C2 Mastery",
+    level: "3. C2 Mastery",
     xp: 50,
     title: "Verbe Strategice C2: 'Mitigate'",
     theory: "Verbul <code>to mitigate</code> înseamnă a reduce gravitatea, nocivitatea sau severitatea unei probleme sau a unui risc. Opusul său direct este <code>to exacerbate</code>.",
@@ -1680,9 +2018,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-16",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "5. C2 Mastery",
+    level: "3. C2 Mastery",
     xp: 50,
     title: "Argumentare Critică C2: 'Play devil's advocate'",
     theory: "Expresia <code>to play devil's advocate</code> înseamnă a susține în mod deliberat o opinie contrară celei comune pentru a testa temeinicia unui argument și a descoperi vulnerabilități logice.",
@@ -1702,9 +2040,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-17",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "5. C2 Mastery",
+    level: "3. C2 Mastery",
     xp: 50,
     title: "Colocație Academică C2: 'Mounting evidence'",
     theory: "Colocația <code>mounting evidence</code> descrie un volum de dovezi sau date concrete care continuă să crească și devine tot mai greu de combătut.",
@@ -1724,9 +2062,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-18",
-    track: "Engleză (B1 → C2)",
+    track: "Engleză (C1–C2)",
     icon: "🇬🇧",
-    level: "5. C2 Mastery",
+    level: "3. C2 Mastery",
     xp: 50,
     title: "Adjective de Impact C2: 'Unprecedented'",
     theory: "Adjectivul <code>unprecedented</code> desemnează un fenomen sau o stare de fapt care nu a mai fost niciodată întâlnită, experimentată sau înregistrată în istorie.",
@@ -1746,21 +2084,40 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   }
 ];
 
-// Fuziune sigură și normalizare automată a nivelurilor CEFR pentru limba engleză
+// Fuziune sigură și normalizare automată a celor 3 discipline distincte de limba engleză
 if (typeof DEFAULT_CURRICULUM !== "undefined" && Array.isArray(DEFAULT_CURRICULUM)) {
   DEFAULT_CURRICULUM.push(...ADVANCED_CURRICULUM_EXPANSION);
 
-  // Normalizare completă a disciplinei de limba engleză (B1 -> C2)
+  // Normalizare în 3 discipline distincte: A1-A2, B1-B2, C1-C2
   DEFAULT_CURRICULUM.forEach(l => {
     if (l.track && l.track.includes("Engleză")) {
-      l.track = "Engleză (B1 → C2)";
       l.icon = "🇬🇧";
-      if (!l.level) l.level = "1. B1 Intermediate";
-      else if (l.level.includes("B1") || l.level.startsWith("1. Începător") || l.level === "1. Începător") l.level = "1. B1 Intermediate";
-      else if (l.level.includes("B2") || l.level.startsWith("2. Junior") || l.level === "2. Junior") l.level = "2. B2 Upper-Intermediate";
-      else if (l.level.startsWith("3. Middle") || l.level === "3. Middle" || (l.level.includes("C1") && !l.level.includes("C1+") && !l.level.includes("C2"))) l.level = "3. C1 Advanced";
-      else if (l.level.startsWith("4. Senior") || l.level === "4. Senior" || l.level.includes("C1+")) l.level = "4. C1+ Professional";
-      else if (l.level.startsWith("5. Exemplar") || l.level === "5. Exemplar" || l.level.includes("C2")) l.level = "5. C2 Mastery";
+      if (l.id.startsWith("eng-a1") || l.id.startsWith("eng-a2") || l.level.includes("A1") || l.level.includes("A2")) {
+        l.track = "Engleză (A1–A2)";
+        if (l.id.startsWith("eng-a1") || l.level.includes("A1")) l.level = "1. A1 Începător";
+        else l.level = "2. A2 Elementar";
+      } else if (
+        l.id.startsWith("eng-b1") || l.id.startsWith("eng-b2") ||
+        l.id === "eng-adv-1" || l.id === "eng-adv-2" || l.id === "eng-adv-3" ||
+        l.id === "eng-v1" || l.id === "eng-lexical-4" || l.id === "eng-lexical-12" ||
+        l.level.includes("B1") || l.level.includes("B2")
+      ) {
+        l.track = "Engleză (B1–B2)";
+        if (l.id.startsWith("eng-b1") || l.id === "eng-adv-1" || l.level.includes("B1")) {
+          l.level = "1. B1 Intermediate";
+        } else {
+          l.level = "2. B2 Upper-Intermediate";
+        }
+      } else {
+        l.track = "Engleză (C1–C2)";
+        if (l.level.includes("C2") || l.id.startsWith("eng-adv-14") || l.id.startsWith("eng-adv-15") || l.id.startsWith("eng-adv-16") || l.id.startsWith("eng-adv-17") || l.id.startsWith("eng-adv-18") || l.id === "eng-v6") {
+          l.level = "3. C2 Mastery";
+        } else if (l.id.startsWith("eng-adv-9") || l.id.startsWith("eng-adv-10") || l.id.startsWith("eng-adv-11") || l.id.startsWith("eng-adv-12") || l.id.startsWith("eng-adv-13") || l.level.includes("C1+")) {
+          l.level = "2. C1+ Professional";
+        } else {
+          l.level = "1. C1 Advanced";
+        }
+      }
     }
   });
 }

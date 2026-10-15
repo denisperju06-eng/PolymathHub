@@ -22,22 +22,44 @@
   };
 
   let state = loadState();
-  if (state.activeTrack && state.activeTrack.includes("Engleză")) {
-    state.activeTrack = "Engleză (B1 → C2)";
+  if (state.activeTrack && (state.activeTrack.includes("Engleză") || state.activeTrack === "Engleză C1" || state.activeTrack === "Engleză (B1 → C2)")) {
+    if (state.activeTrack !== "Engleză (A1–A2)" && state.activeTrack !== "Engleză (B1–B2)" && state.activeTrack !== "Engleză (C1–C2)") {
+      state.activeTrack = "Engleză (A1–A2)";
+      state.activeLessonId = "eng-a1-1";
+    }
   }
   let allLessons = [...DEFAULT_CURRICULUM, ...(state.customLessons || [])];
 
-  // Asigurare compatibilitate și mapare niveluri CEFR pentru limba engleză
+  // Asigurare compatibilitate și mapare în 3 discipline distincte de limba engleză
   allLessons.forEach(l => {
     if (l.track && l.track.includes("Engleză")) {
-      l.track = "Engleză (B1 → C2)";
       l.icon = "🇬🇧";
-      if (!l.level) l.level = "1. B1 Intermediate";
-      else if (l.level.includes("B1") || l.level.startsWith("1. Începător") || l.level === "1. Începător") l.level = "1. B1 Intermediate";
-      else if (l.level.includes("B2") || l.level.startsWith("2. Junior") || l.level === "2. Junior") l.level = "2. B2 Upper-Intermediate";
-      else if (l.level.startsWith("3. Middle") || l.level === "3. Middle" || (l.level.includes("C1") && !l.level.includes("C1+") && !l.level.includes("C2"))) l.level = "3. C1 Advanced";
-      else if (l.level.startsWith("4. Senior") || l.level === "4. Senior" || l.level.includes("C1+")) l.level = "4. C1+ Professional";
-      else if (l.level.startsWith("5. Exemplar") || l.level === "5. Exemplar" || l.level.includes("C2")) l.level = "5. C2 Mastery";
+      if (l.id.startsWith("eng-a1") || l.id.startsWith("eng-a2") || l.level.includes("A1") || l.level.includes("A2")) {
+        l.track = "Engleză (A1–A2)";
+        if (l.id.startsWith("eng-a1") || l.level.includes("A1")) l.level = "1. A1 Începător";
+        else l.level = "2. A2 Elementar";
+      } else if (
+        l.id.startsWith("eng-b1") || l.id.startsWith("eng-b2") ||
+        l.id === "eng-adv-1" || l.id === "eng-adv-2" || l.id === "eng-adv-3" ||
+        l.id === "eng-v1" || l.id === "eng-lexical-4" || l.id === "eng-lexical-12" ||
+        l.level.includes("B1") || l.level.includes("B2")
+      ) {
+        l.track = "Engleză (B1–B2)";
+        if (l.id.startsWith("eng-b1") || l.id === "eng-adv-1" || l.level.includes("B1")) {
+          l.level = "1. B1 Intermediate";
+        } else {
+          l.level = "2. B2 Upper-Intermediate";
+        }
+      } else {
+        l.track = "Engleză (C1–C2)";
+        if (l.level.includes("C2") || l.id.startsWith("eng-adv-14") || l.id.startsWith("eng-adv-15") || l.id.startsWith("eng-adv-16") || l.id.startsWith("eng-adv-17") || l.id.startsWith("eng-adv-18") || l.id === "eng-v6") {
+          l.level = "3. C2 Mastery";
+        } else if (l.id.startsWith("eng-adv-9") || l.id.startsWith("eng-adv-10") || l.id.startsWith("eng-adv-11") || l.id.startsWith("eng-adv-12") || l.id.startsWith("eng-adv-13") || l.level.includes("C1+")) {
+          l.level = "2. C1+ Professional";
+        } else {
+          l.level = "1. C1 Advanced";
+        }
+      }
     }
   });
 
@@ -253,22 +275,32 @@
     }
   }
 
-  // Actualizează dinamic opțiunile filtrului de nivel (CEFR pentru engleză vs Nivele standard pentru programare)
+  // Actualizează dinamic opțiunile filtrului de nivel pentru fiecare disciplină
   function updateLevelFilterOptions() {
     const levelFilterEl = document.getElementById("level-filter");
     if (!levelFilterEl) return;
 
     const currentVal = levelFilterEl.value;
-    const isEnglish = state.activeTrack && state.activeTrack.includes("Engleză");
+    const track = state.activeTrack || "";
 
-    if (isEnglish) {
+    if (track === "Engleză (A1–A2)") {
       levelFilterEl.innerHTML = `
-        <option value="ALL">📊 Toate Nivelele (B1 → C2)</option>
-        <option value="1. B1">🟢 Nivel B1 (Intermediate)</option>
-        <option value="2. B2">🔵 Nivel B2 (Upper-Intermediate)</option>
-        <option value="3. C1">🟣 Nivel C1 (Advanced)</option>
-        <option value="4. C1+">🟠 Nivel C1+ (Professional & Inversiuni)</option>
-        <option value="5. C2">🔴 Nivel C2 (Mastery & Fluency)</option>
+        <option value="ALL">📊 Toate Nivelele (A1 → A2)</option>
+        <option value="1. A1">🟢 Nivel A1 (Beginner / Baze)</option>
+        <option value="2. A2">🔵 Nivel A2 (Elementary / Rutină & Trecut)</option>
+      `;
+    } else if (track === "Engleză (B1–B2)") {
+      levelFilterEl.innerHTML = `
+        <option value="ALL">📊 Toate Nivelele (B1 → B2)</option>
+        <option value="1. B1">🟢 Nivel B1 (Intermediate / Conversație)</option>
+        <option value="2. B2">🔵 Nivel B2 (Upper-Intermediate / Business & Phrasal)</option>
+      `;
+    } else if (track === "Engleză (C1–C2)") {
+      levelFilterEl.innerHTML = `
+        <option value="ALL">📊 Toate Nivelele (C1 → C2)</option>
+        <option value="1. C1">🟣 Nivel C1 (Advanced / Academic & Vocabular)</option>
+        <option value="2. C1+">🟠 Nivel C1+ (Professional / Inversiuni & Mixte)</option>
+        <option value="3. C2">🔴 Nivel C2 (Mastery / Retorică Nativă)</option>
       `;
     } else {
       levelFilterEl.innerHTML = `
