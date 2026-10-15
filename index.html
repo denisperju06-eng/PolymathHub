@@ -44,10 +44,6 @@
         <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
         Ligi
       </button>
-      <button class="nav-link-btn" data-view="profile" id="nav-profile-btn">
-        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        Profil &amp; Setări
-      </button>
     </nav>
 
     <!-- Cluster Statistici Interactive (Navighează Direct la Paginile Dedicate) -->
@@ -90,46 +86,17 @@
       </div>
     </div>
 
-    <!-- Cluster Controale: Teme & Profil Utilizator -->
+    <!-- Cluster Controale: Schimbare Fundal / Temă cu Emoji Colorat -->
     <div class="controls-cluster">
       <select id="theme-selector" class="theme-select" aria-label="Selectează tema de culori">
-        <option value="emerald-forest" selected>Emerald Zen (Verde)</option>
-        <option value="cyber-dark">Cyber Dark</option>
-        <option value="sepia-book">Carte Sepia</option>
-        <option value="neon-amethyst">Amethyst Neon</option>
-        <option value="sunset-amber">Sunset Amber</option>
-        <option value="ocean-deep">Ocean Deep</option>
-        <option value="daylight-clean">Daylight Clean</option>
+        <option value="emerald-forest" selected>🟢 Emerald Zen (Verde)</option>
+        <option value="cyber-dark">🌑 Cyber Dark (Negru)</option>
+        <option value="sepia-book">📜 Carte Sepia (Cald)</option>
+        <option value="neon-amethyst">🟣 Amethyst Neon (Violet)</option>
+        <option value="sunset-amber">🌅 Sunset Amber (Apus)</option>
+        <option value="ocean-deep">🌊 Ocean Deep (Albastru)</option>
+        <option value="daylight-clean">☀️ Daylight Clean (Luminos)</option>
       </select>
-
-      <!-- Comutator Rapid Utilizator / Conturi Multiple -->
-      <div class="header-user-switcher" id="header-user-switcher">
-        <button type="button" class="header-switch-user-btn" id="header-switch-user-btn" title="Comută rapid între conturi / utilizatori" aria-haspopup="true" aria-expanded="false">
-          <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-          <span class="header-switch-user-label" id="header-switch-user-label">Conturi</span>
-        </button>
-        <div class="header-profiles-dropdown hidden" id="header-profiles-dropdown">
-          <div class="dropdown-header">
-            <span>Conturi Înregistrate</span>
-          </div>
-          <div class="dropdown-profiles-list" id="dropdown-profiles-list">
-            <!-- Injectat dinamic -->
-          </div>
-          <div class="dropdown-footer">
-            <button type="button" class="btn-dropdown-add" id="btn-dropdown-add-profile">
-              <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              + Adaugă Profil Nou
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <button class="header-profile-btn" id="header-profile-btn" title="Deschide Profilul și Setările">
-        <div class="header-avatar-circle" id="header-avatar-icon">
-          <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        </div>
-        <span class="header-profile-name" id="header-profile-name">Denis</span>
-      </button>
     </div>
   </header>
 
@@ -463,232 +430,6 @@
       <h3 class="settings-card-title">Realizări &amp; Trofee Polimate</h3>
       <div class="achievements-grid" id="page-achievements-grid"></div>
     </section>
-  </main>
-
-  <!-- =========================================================================
-       VIEW 5: PAGINĂ COMPLETĂ PROFIL & SETĂRI UTILIZATOR
-       ========================================================================= -->
-  <main id="profile-view" class="page-layout hidden">
-    <section class="page-hero">
-      <h2>
-        <svg class="ui-icon heading-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        Profilul Tău &amp; Setări Generale
-      </h2>
-      <p>Personalizează-ți datele de identificare, tema de lucru și preferințele de studiu.</p>
-    </section>
-
-    <div class="profile-grid-layout">
-      <!-- Sidebar Profil -->
-      <aside class="profile-sidebar-card">
-        <div class="profile-avatar-display" id="profile-card-avatar">🎓</div>
-        <h3 class="profile-name" id="profile-card-name">Denis Perju</h3>
-        <span class="profile-email-badge" id="profile-card-email">student@polymath.com</span>
-        <p class="profile-bio-text" id="profile-card-bio">Pasionat de programare, limbi străine și cunoaștere polimată.</p>
-
-        <div class="profile-stat-box">
-          <div class="profile-mini-stat">
-            <span class="profile-mini-stat-val" id="profile-stat-xp">0 XP</span>
-            <span class="profile-mini-stat-label">Experiență</span>
-          </div>
-          <div class="profile-mini-stat">
-            <span class="profile-mini-stat-val" id="profile-stat-rank">Rang I</span>
-            <span class="profile-mini-stat-label">Ligă</span>
-          </div>
-          <div class="profile-mini-stat">
-            <span class="profile-mini-stat-val" id="profile-stat-streak">0 zile</span>
-            <span class="profile-mini-stat-label">Streak</span>
-          </div>
-          <div class="profile-mini-stat">
-            <span class="profile-mini-stat-val" id="profile-stat-lessons">0</span>
-            <span class="profile-mini-stat-label">Capitole</span>
-          </div>
-        </div>
-      </aside>
-
-      <!-- Panou Editare Date & Setări -->
-      <div class="profile-main-content">
-        <!-- Administrare Profiluri & Conturi Multiple -->
-        <section class="settings-section-card profile-multiuser-card" id="profiles-management-section">
-          <div class="profile-multiuser-header">
-            <div>
-              <h3 class="settings-card-title" style="margin-bottom:0.35rem; border-bottom:none; padding-bottom:0;">
-                <svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-primary);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                Conturi &amp; Profiluri Multiple
-              </h3>
-              <p class="settings-card-desc" style="font-size:0.83rem; color:var(--text-secondary); margin:0.35rem 0 1rem 0;">
-                Fiecare membru sau prieten poate avea propriul cont separat pe acest dispozitiv: cu XP, streak zilnic, rang în ligi și capitole rezolvate independent.
-              </p>
-            </div>
-            <button type="button" class="btn-primary" id="btn-toggle-add-profile-form" style="display:inline-flex; align-items:center; gap:0.4rem; white-space:nowrap;">
-              <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              + Creează Profil Nou
-            </button>
-          </div>
-
-          <!-- Formular Creare Profil Nou (Ascuns implicit) -->
-          <div id="add-profile-box" class="add-profile-box hidden">
-            <h4 class="add-profile-title">Adăugare Cont Nou (pentru tine sau un prieten)</h4>
-            <form id="add-profile-form">
-              <div class="form-grid-2">
-                <div class="form-field">
-                  <label for="new-profile-name-input">Prenume / Nume Utilizator *:</label>
-                  <input type="text" id="new-profile-name-input" class="form-input" required placeholder="Ex: Mihai">
-                </div>
-                <div class="form-field">
-                  <label for="new-profile-last-name-input">Nume de Familie (opțional):</label>
-                  <input type="text" id="new-profile-last-name-input" class="form-input" placeholder="Ex: Popescu">
-                </div>
-              </div>
-              <div class="form-grid-2">
-                <div class="form-field">
-                  <label for="new-profile-email-input">Adresă de Email *:</label>
-                  <input type="email" id="new-profile-email-input" class="form-input" required placeholder="Ex: prieten@polymath.com">
-                </div>
-                <div class="form-field">
-                  <label>Alege Avatarul:</label>
-                  <div class="avatar-selector-grid-sm" id="new-profile-avatar-grid">
-                    <button type="button" class="avatar-opt-btn-sm selected" data-avatar="🚀">🚀</button>
-                    <button type="button" class="avatar-opt-btn-sm" data-avatar="🎓">🎓</button>
-                    <button type="button" class="avatar-opt-btn-sm" data-avatar="🦉">🦉</button>
-                    <button type="button" class="avatar-opt-btn-sm" data-avatar="💻">💻</button>
-                    <button type="button" class="avatar-opt-btn-sm" data-avatar="⚡">⚡</button>
-                    <button type="button" class="avatar-opt-btn-sm" data-avatar="🧙">🧙</button>
-                    <button type="button" class="avatar-opt-btn-sm" data-avatar="📖">📖</button>
-                  </div>
-                </div>
-              </div>
-              <div class="form-field">
-                <label for="new-profile-bio-input">Motto / Descriere (opțional):</label>
-                <input type="text" id="new-profile-bio-input" class="form-input" placeholder="Ex: Învăț Python și C++ de la zero.">
-              </div>
-              <div style="display:flex; gap:0.75rem; align-items:center; margin-top:0.75rem;">
-                <button type="submit" class="btn-primary">Creează și Activează Contul</button>
-                <button type="button" class="btn-secondary" id="cancel-add-profile-btn">Anulează</button>
-              </div>
-            </form>
-          </div>
-
-          <!-- Lista Cardurilor de Profiluri -->
-          <div class="profiles-list-grid" id="profiles-list-container">
-            <!-- Cardurile sunt generate dinamic -->
-          </div>
-        </section>
-
-        <!-- Formular Date Cont -->
-        <section class="settings-section-card">
-          <h3 class="settings-card-title">Date Utilizator &amp; Cont</h3>
-          <form id="profile-form">
-            <div class="form-grid-2">
-              <div class="form-field">
-                <label for="profile-first-name-input">Prenume:</label>
-                <input type="text" id="profile-first-name-input" class="form-input" required placeholder="Ex: Denis">
-              </div>
-              <div class="form-field">
-                <label for="profile-last-name-input">Nume de Familie:</label>
-                <input type="text" id="profile-last-name-input" class="form-input" required placeholder="Ex: Perju">
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label for="profile-email-input">Adresă de Email (obligatoriu @ și domeniu .com / .ru / .md / etc.):</label>
-              <input type="email" id="profile-email-input" class="form-input" required placeholder="Ex: denis@gmail.com sau utilizator@mail.ru">
-              <div id="email-validation-feedback" class="field-validation-msg">Trebuie să conțină @ și un domeniu valid (ex: .com, .ru, .ro, .md).</div>
-            </div>
-
-            <div class="form-field">
-              <label for="profile-bio-input">Motto / Despre Tine:</label>
-              <textarea id="profile-bio-input" class="form-input" rows="2" placeholder="O scurtă descriere despre pasiunile tale de studiu..."></textarea>
-            </div>
-
-            <div class="form-field">
-              <label>Alege Avatarul Tău:</label>
-              <div class="avatar-selector-grid" id="avatar-selector-grid">
-                <button type="button" class="avatar-opt-btn" data-avatar="🎓">🎓</button>
-                <button type="button" class="avatar-opt-btn" data-avatar="🚀">🚀</button>
-                <button type="button" class="avatar-opt-btn" data-avatar="🦉">🦉</button>
-                <button type="button" class="avatar-opt-btn" data-avatar="⚡">⚡</button>
-                <button type="button" class="avatar-opt-btn" data-avatar="💻">💻</button>
-                <button type="button" class="avatar-opt-btn" data-avatar="📖">📖</button>
-                <button type="button" class="avatar-opt-btn" data-avatar="🧙">🧙</button>
-              </div>
-            </div>
-
-            <button type="submit" class="btn-primary" style="margin-top:0.75rem;">
-              <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-              Salvează Datele Profilului
-            </button>
-            <span id="profile-save-status" style="margin-left:1rem; font-size:0.82rem; font-weight:700; color:var(--success-green);" class="hidden">✓ Datele au fost salvate cu succes!</span>
-          </form>
-        </section>
-
-        <!-- Setări Temă & Preferințe Studiu -->
-        <section class="settings-section-card">
-          <h3 class="settings-card-title">Aspect Vizual &amp; Preferințe Studiu</h3>
-
-          <div class="form-field">
-            <label>Schimbare Fundal / Temă Vizuală (sincronizată cu bara de sus):</label>
-            <div class="theme-picker-grid" id="settings-theme-picker">
-              <button type="button" class="theme-card-opt" data-theme-val="emerald-forest">
-                <span>Emerald Zen (Verde)</span>
-              </button>
-              <button type="button" class="theme-card-opt" data-theme-val="cyber-dark">
-                <span>Cyber Dark</span>
-              </button>
-              <button type="button" class="theme-card-opt" data-theme-val="sepia-book">
-                <span>Carte Sepia</span>
-              </button>
-              <button type="button" class="theme-card-opt" data-theme-val="neon-amethyst">
-                <span>Amethyst Neon</span>
-              </button>
-              <button type="button" class="theme-card-opt" data-theme-val="sunset-amber">
-                <span>Sunset Amber</span>
-              </button>
-              <button type="button" class="theme-card-opt" data-theme-val="ocean-deep">
-                <span>Ocean Deep</span>
-              </button>
-              <button type="button" class="theme-card-opt" data-theme-val="daylight-clean">
-                <span>Daylight Clean</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="form-grid-2" style="margin-top:1.25rem;">
-            <div class="form-field">
-              <label for="settings-daily-target">Țintă Obiectiv Zilnic:</label>
-              <select id="settings-daily-target" class="theme-select" style="width:100%;">
-                <option value="3">3 sarcini / zi (Standard)</option>
-                <option value="5">5 sarcini / zi (Intensiv)</option>
-                <option value="10">10 sarcini / zi (Maraton Polimat)</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="settings-confetti-toggle">Animații de Reușită (Confetti):</label>
-              <select id="settings-confetti-toggle" class="theme-select" style="width:100%;">
-                <option value="true">Activate</option>
-                <option value="false">Off (Fără animații)</option>
-              </select>
-            </div>
-          </div>
-        </section>
-
-        <!-- Zona de Pericol: Ștergere Cont & Resetare Progres -->
-        <section class="danger-zone-card">
-          <div class="danger-zone-header">
-            <span>
-              <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem; color:var(--error-red); vertical-align:-3px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-              Zona de Pericol: Ștergere Cont &amp; Date
-            </span>
-          </div>
-          <p class="danger-zone-desc">
-            Această acțiune va șterge definitiv toate datele de cont, punctele XP, nivelul ligii, capitolele rezolvate și streak-ul înregistrat. Aplicația va fi readusă la starea inițială de la zero.
-          </p>
-          <button id="profile-delete-account-btn" class="btn-ghost-danger">
-            <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-            Șterge Contul și Resetează Totul de la Zero
-          </button>
-        </section>
-      </div>
-    </div>
   </main>
 
   <!-- =========================================================================

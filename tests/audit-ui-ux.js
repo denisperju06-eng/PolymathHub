@@ -292,104 +292,71 @@ async function runAudit() {
       issues.push(`Pagina de Ligi a eșuat: ligi ${leaguesCount}, realizări ${achievementsCount}.`);
     }
 
-    // 9c. Pagina Profil & Setări prin Nav Bar
-    await page.click("#nav-profile-btn");
-    await new Promise(r => setTimeout(r, 200));
-    const isProfileVisible = await page.evaluate(() => {
-      const prof = document.getElementById("profile-view");
-      const navBtn = document.getElementById("nav-profile-btn");
-      return !prof.classList.contains("hidden") && navBtn.classList.contains("active");
+    // 9c. Verificare Absență Profil & Structură Lean (4 Pagini SPA: Catalog, Studiu, Activitate, Ligi)
+    const profileAbsence = await page.evaluate(() => {
+      const profView = document.getElementById("profile-view");
+      const navProf = document.getElementById("nav-profile-btn");
+      const headerProf = document.getElementById("header-profile-btn");
+      const switcher = document.getElementById("header-user-switcher");
+      return !profView && !navProf && !headerProf && !switcher;
     });
-    if (isProfileVisible) {
-      successes.push("✓ Pagina completă Profil & Setări Utilizator este accesibilă și activată în meniu.");
+    if (profileAbsence) {
+      successes.push("✓ Interfață Lean: Butonul de profil, setările de profil și comutatorul multi-user au fost eliminate complet.");
     } else {
-      issues.push("Navigarea la Pagina de Profil a eșuat.");
+      issues.push("Elementele de profil sau switcher încă există în DOM.");
     }
 
-    // 10. Testare Formular Profil, Validare Email (@ și domeniu) și Sincronizare Teme
-    console.log("👤 Testare Date Profil, Validare Email (@ + domeniu) și Sincronizare Setări...");
+    // 10. Testare Comutator Fundal / Teme cu Emoji Colorat în Antet
+    console.log("🎨 Testare Selector Fundal / Teme cu Emoji Colorat...");
 
-    // Test email invalid (fără domeniu valid)
-    await page.evaluate(() => {
-      const emailInput = document.getElementById("profile-email-input");
-      emailInput.value = "utilizator_fara_domeniu@mail";
-      emailInput.dispatchEvent(new Event("input"));
+    const themesOptions = await page.evaluate(() => {
+      const select = document.getElementById("theme-selector");
+      if (!select) return [];
+      return Array.from(select.options).map(o => ({ value: o.value, text: o.text }));
     });
-    await new Promise(r => setTimeout(r, 100));
-    const isInvalidMarked = await page.evaluate(() => {
-      const fb = document.getElementById("email-validation-feedback");
-      return fb && fb.classList.contains("invalid");
-    });
-    if (isInvalidMarked) {
-      successes.push("✓ Validare Email: Adresa incompletă fără extensie de domeniu este respinsă corect cu alertă.");
-    } else {
-      issues.push("Validarea emailului nu a semnalat adresa incorectă ca fiind invalidă.");
+
+    const expectedThemes = [
+      { value: "emerald-forest", emoji: "🟢" },
+      { value: "cyber-dark", emoji: "🌑" },
+      { value: "sepia-book", emoji: "📜" },
+      { value: "neon-amethyst", emoji: "🟣" },
+      { value: "sunset-amber", emoji: "🌅" },
+      { value: "ocean-deep", emoji: "🌊" },
+      { value: "daylight-clean", emoji: "☀️" }
+    ];
+
+    let allEmojisMatch = true;
+    for (const exp of expectedThemes) {
+      const found = themesOptions.find(t => t.value === exp.value);
+      if (!found || !found.text.includes(exp.emoji)) {
+        allEmojisMatch = false;
+        issues.push(`Tema ${exp.value} nu are emoji-ul ${exp.emoji} în textul vizibil: ${found ? found.text : "lipsă"}`);
+      }
     }
 
-    // Test email valid cu @ și domeniu .ru / .com / .md
-    await page.evaluate(() => {
-      const emailInput = document.getElementById("profile-email-input");
-      emailInput.value = "denis.student@polymath.ru";
-      emailInput.dispatchEvent(new Event("input"));
-    });
-    await new Promise(r => setTimeout(r, 100));
-    const isValidMarked = await page.evaluate(() => {
-      const fb = document.getElementById("email-validation-feedback");
-      return fb && fb.classList.contains("valid");
-    });
-    if (isValidMarked) {
-      successes.push("✓ Validare Email: Adresa 'denis.student@polymath.ru' (@ + .ru) este validată cu succes.");
-    } else {
-      issues.push("Validarea emailului nu a marcat emailul valid ca fiind corect.");
+    if (allEmojisMatch && themesOptions.length === 7) {
+      successes.push("✓ Toate cele 7 teme au emoji-uri colorate distincte în selectorul din colțul de sus.");
     }
 
-    // Salvare Profil (Nume, Prenume, Avatar nou)
-    await page.evaluate(() => {
-      document.getElementById("profile-first-name-input").value = "Denis";
-      document.getElementById("profile-last-name-input").value = "Perju";
-      // Selectare avatar rachetă 🚀
-      const rocketBtn = document.querySelector(".avatar-opt-btn[data-avatar='🚀']");
-      if (rocketBtn) rocketBtn.click();
-      // Trimitere formular
-      const form = document.getElementById("profile-form");
-      form.dispatchEvent(new Event("submit", { cancelable: true }));
-    });
-    await new Promise(r => setTimeout(r, 200));
-
-    // Verificare sincronizare în Header și Profil Card
-    const headerSyncSuccess = await page.evaluate(() => {
-      const headerName = document.getElementById("header-profile-name").textContent;
-      const headerAvatar = document.getElementById("header-avatar-icon").textContent;
-      const cardName = document.getElementById("profile-card-name").textContent;
-      return headerName === "Denis" && headerAvatar === "🚀" && cardName.includes("Denis Perju");
-    });
-    if (headerSyncSuccess) {
-      successes.push("✓ Datele de profil salvate (Nume, Avatar 🚀) s-au sincronizat instant în Antet și Sidebar.");
-    } else {
-      issues.push("Sincronizarea profilului în antet/sidebar a eșuat.");
-    }
-
-    // Sincronizare teme din Setări Profil cu bara de sus
-    await page.evaluate(() => {
-      const cyberDarkBtn = document.querySelector(".theme-card-opt[data-theme-val='cyber-dark']");
-      if (cyberDarkBtn) cyberDarkBtn.click();
-    });
+    // Testare comutare temă și verificare atribut data-theme
+    await page.select("#theme-selector", "cyber-dark");
     await new Promise(r => setTimeout(r, 150));
+    const isCyberDark = await page.evaluate(() => document.documentElement.getAttribute("data-theme") === "cyber-dark");
 
-    const themeSyncSuccess = await page.evaluate(() => {
-      const docTheme = document.documentElement.getAttribute("data-theme");
-      const selectorVal = document.getElementById("theme-selector").value;
-      return docTheme === "cyber-dark" && selectorVal === "cyber-dark";
-    });
-    if (themeSyncSuccess) {
-      successes.push("✓ Teme Sincronizate: Schimbarea din Setări a actualizat atât fundalul cât și selectorul din antet.");
-    } else {
-      issues.push("Sincronizarea temei din setări cu antetul a eșuat.");
-    }
+    await page.select("#theme-selector", "sunset-amber");
+    await new Promise(r => setTimeout(r, 150));
+    const isSunsetAmber = await page.evaluate(() => document.documentElement.getAttribute("data-theme") === "sunset-amber");
 
-    // Revenire la tema verde inițială
+    // Revenire la verde
     await page.select("#theme-selector", "emerald-forest");
     await new Promise(r => setTimeout(r, 150));
+    const isEmerald = await page.evaluate(() => document.documentElement.getAttribute("data-theme") === "emerald-forest");
+
+    if (isCyberDark && isSunsetAmber && isEmerald) {
+      successes.push("✓ Comutatorul de fundal schimbă instant și corect tema vizuală a aplicației.");
+    } else {
+      issues.push(`Comutarea temelor a eșuat: cyber-dark: ${isCyberDark}, sunset-amber: ${isSunsetAmber}, emerald: ${isEmerald}`);
+    }
 
     // 11. Testare Soluție Asistată 50/50 (Anti-Cheat & Penalizare XP)
     console.log("⚖️ Testare regulă anti-cheat și penalizare pentru soluție asistată (50/50)...");

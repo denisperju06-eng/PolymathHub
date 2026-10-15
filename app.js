@@ -2,9 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "polymath_edtech_state_v2";
-  const PROFILES_REGISTRY_KEY = "polymath_profiles_v1";
   const DAILY_GOAL_TARGET = 3;
-  let activeProfileId = "profile_default";
 
   const defaultState = {
     streak: 0,
@@ -20,7 +18,7 @@
     activeTrack: "SQL",
     activeLessonId: "sql-1",
     activePracticeMode: "write", // "write" | "match" | "quiz"
-    activeView: "catalog",       // "catalog" | "study" | "activity" | "leagues" | "profile"
+    activeView: "catalog",       // "catalog" | "study" | "activity" | "leagues"
     user: {
       firstName: "Denis",
       lastName: "Perju",
@@ -303,142 +301,17 @@
   }
 
   // =========================================================================
-  // SISTEM ADMINISTRATIV PROFILURI MULTIPLE (MULTI-USER ENGINE)
+  // GESTIUNE STARE PERSISTENTĂ (LOCALSTORAGE)
   // =========================================================================
-  function getProfilesRegistry() {
+  function loadState() {
     try {
-      const raw = window.localStorage.getItem(PROFILES_REGISTRY_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (parsed && Array.isArray(parsed.profiles) && parsed.profiles.length > 0) {
-          if (!parsed.activeProfileId || !parsed.profiles.some(p => p.id === parsed.activeProfileId)) {
-            parsed.activeProfileId = parsed.profiles[0].id;
-          }
-          return parsed;
-        }
-      }
-    } catch (_) {}
-
-    // Migrare automată a utilizatorului existent
-    let initialUser = defaultState.user;
-    try {
-      const legacyRaw = window.localStorage.getItem(STORAGE_KEY);
-      if (legacyRaw) {
-        const legacy = JSON.parse(legacyRaw);
-        if (legacy && legacy.user) initialUser = legacy.user;
-      }
-    } catch (_) {}
-
-    const defaultProfile = {
-      id: "profile_default",
-      name: (initialUser && initialUser.firstName) || "Denis",
-      lastName: (initialUser && initialUser.lastName) || "Perju",
-      email: (initialUser && initialUser.email) || "denis@polymath.com",
-      bio: (initialUser && initialUser.bio) || "Pasionat de programare, limbi străine și cunoaștere polimată.",
-      avatar: (initialUser && initialUser.avatar) || "🎓",
-      createdAt: new Date().toISOString()
-    };
-
-    const initialRegistry = {
-      activeProfileId: defaultProfile.id,
-      profiles: [defaultProfile]
-    };
-
-    try {
-      window.localStorage.setItem(PROFILES_REGISTRY_KEY, JSON.stringify(initialRegistry));
-    } catch (_) {}
-
-    return initialRegistry;
-  }
-
-  function saveProfilesRegistry(reg) {
-    try {
-      window.localStorage.setItem(PROFILES_REGISTRY_KEY, JSON.stringify(reg));
-    } catch (e) {
-      console.error("Eroare la salvarea registrului de profiluri:", e);
-    }
-  }
-
-  function getActiveProfileId() {
-    const reg = getProfilesRegistry();
-    return reg.activeProfileId || "profile_default";
-  }
-
-  function loadProfileState(profileId) {
-    const profileKey = "polymath_state_" + profileId;
-    try {
-      let raw = window.localStorage.getItem(profileKey);
-      if (!raw && profileId === "profile_default") {
-        raw = window.localStorage.getItem(STORAGE_KEY);
+      let raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        raw = window.localStorage.getItem("polymath_state_profile_default") || window.localStorage.getItem("polymath_edtech_state_v1");
       }
       if (!raw) {
-        const v1Raw = window.localStorage.getItem("polymath_edtech_state_v1");
-        if (v1Raw && profileId === "profile_default") {
-          try {
-            const v1 = JSON.parse(v1Raw);
-            const migrated = {
-              ...defaultState,
-              streak: v1.streak || 0,
-              longestStreak: v1.longestStreak || 0,
-              lastCompletionDate: v1.lastCompletionDate || null,
-              xp: v1.xp || 0,
-              completedLessons: Array.isArray(v1.completedLessons) ? v1.completedLessons : [],
-              dailyHistory: v1.dailyHistory || {},
-              assistedHistory: {},
-              theme: "emerald-forest",
-              customLessons: v1.customLessons || [],
-              activeTrack: v1.activeTrack || "SQL",
-              activeLessonId: v1.activeLessonId || "sql-1",
-              masteryPoints: {},
-              activeView: "catalog"
-            };
-            if (v1.masteryCounts) {
-              Object.keys(v1.masteryCounts).forEach(id => {
-                migrated.masteryPoints[id] = v1.masteryCounts[id];
-              });
-            }
-            window.localStorage.removeItem("polymath_edtech_state_v1");
-            window.localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
-            window.localStorage.setItem(profileKey, JSON.stringify(migrated));
-            return migrated;
-          } catch (_) {}
-        }
-
-        const reg = getProfilesRegistry();
-        const pInfo = reg.profiles.find(p => p.id === profileId);
-        const blank = {
-          ...defaultState,
-          streak: 0,
-          longestStreak: 0,
-          lastCompletionDate: null,
-          xp: 0,
-          completedLessons: [],
-          masteryPoints: {},
-          dailyHistory: {},
-          assistedHistory: {},
-          customLessons: [],
-          activeTrack: "SQL",
-          activeLessonId: "sql-1",
-          activePracticeMode: "write",
-          activeView: "catalog",
-          user: {
-            firstName: (pInfo && pInfo.name) || "Utilizator",
-            lastName: (pInfo && pInfo.lastName) || "",
-            email: (pInfo && pInfo.email) || "student@polymath.com",
-            bio: (pInfo && pInfo.bio) || "Pasionat de programare și limbi străine.",
-            avatar: (pInfo && pInfo.avatar) || "🚀"
-          },
-          preferences: {
-            dailyTarget: 3,
-            confettiEnabled: true
-          }
-        };
-        try {
-          window.localStorage.setItem(profileKey, JSON.stringify(blank));
-        } catch (_) {}
-        return blank;
+        return { ...defaultState };
       }
-
       const parsed = { ...defaultState, ...JSON.parse(raw) };
       const today = getTodayKey();
       const yesterday = getYesterdayKey();
@@ -454,19 +327,8 @@
       parsed.dailyHistory = parsed.dailyHistory || {};
       parsed.assistedHistory = parsed.assistedHistory || {};
       parsed.theme = parsed.theme || "emerald-forest";
-      parsed.activeView = parsed.activeView || "catalog";
+      parsed.activeView = ["catalog", "study", "activity", "leagues"].includes(parsed.activeView) ? parsed.activeView : "catalog";
       parsed.customLessons = [];
-
-      const reg = getProfilesRegistry();
-      const pInfo = reg.profiles.find(p => p.id === profileId);
-
-      parsed.user = {
-        firstName: (parsed.user && parsed.user.firstName) || (pInfo && pInfo.name) || "Denis",
-        lastName: (parsed.user && parsed.user.lastName) || (pInfo && pInfo.lastName) || "Perju",
-        email: (parsed.user && parsed.user.email) || (pInfo && pInfo.email) || "denis@polymath.com",
-        bio: (parsed.user && parsed.user.bio) || (pInfo && pInfo.bio) || "Pasionat de programare, limbi străine și cunoaștere polimată.",
-        avatar: (parsed.user && parsed.user.avatar) || (pInfo && pInfo.avatar) || "🎓"
-      };
       parsed.preferences = {
         dailyTarget: (parsed.preferences && parsed.preferences.dailyTarget) ? Number(parsed.preferences.dailyTarget) : 3,
         confettiEnabled: (parsed.preferences && typeof parsed.preferences.confettiEnabled === "boolean") ? parsed.preferences.confettiEnabled : true
@@ -477,188 +339,20 @@
     }
   }
 
-  function loadState() {
-    activeProfileId = getActiveProfileId();
-    return loadProfileState(activeProfileId);
-  }
-
   function getDailyTarget() {
     return (state.preferences && state.preferences.dailyTarget) ? Number(state.preferences.dailyTarget) : DAILY_GOAL_TARGET;
   }
 
   function saveState() {
     try {
-      const profileKey = "polymath_state_" + activeProfileId;
-      window.localStorage.setItem(profileKey, JSON.stringify(state));
-      // Sincronizare cheie globală pentru compatibilitate cu teste de integrare
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-
-      // Sincronizare registru profiluri
-      const reg = getProfilesRegistry();
-      const p = reg.profiles.find(item => item.id === activeProfileId);
-      if (p && state.user) {
-        p.name = state.user.firstName || p.name;
-        p.lastName = state.user.lastName || "";
-        p.email = state.user.email || p.email;
-        p.bio = state.user.bio || "";
-        p.avatar = state.user.avatar || p.avatar;
-        saveProfilesRegistry(reg);
-      }
     } catch (e) {
       console.error("Eroare la salvare:", e);
     }
   }
 
-  function switchProfile(targetProfileId) {
-    if (!targetProfileId || targetProfileId === activeProfileId) return;
-    const reg = getProfilesRegistry();
-    const target = reg.profiles.find(p => p.id === targetProfileId);
-    if (!target) return;
-
-    // 1. Salvează profilul actual
-    saveState();
-
-    // 2. Comută registrul
-    reg.activeProfileId = targetProfileId;
-    saveProfilesRegistry(reg);
-    activeProfileId = targetProfileId;
-
-    // 3. Încarcă starea profilului selectat
-    state = loadProfileState(targetProfileId);
-    saveState();
-
-    // 4. Aplică tema profilului
-    applyTheme(state.theme || "emerald-forest");
-    lessonSessionAssisted = false;
-
-    // 5. Asigură lecția activă validă
-    if (state.activeLessonId && !allLessons.some(l => l.id === state.activeLessonId)) {
-      const fallbackInTrack = allLessons.find(l => l.track === state.activeTrack);
-      state.activeLessonId = fallbackInTrack ? fallbackInTrack.id : (allLessons[0] ? allLessons[0].id : "sql-1");
-    }
-
-    // 6. Resetare formular / editor
-    if (els.userAnswerInput) {
-      const activeLesson = allLessons.find(l => l.id === state.activeLessonId);
-      els.userAnswerInput.value = (activeLesson && activeLesson.starterCode) || "";
-    }
-    if (els.inputZone) els.inputZone.classList.remove("state-error", "state-success");
-    if (els.solutionDrawer) els.solutionDrawer.classList.add("hidden");
-    if (els.hintDrawer) els.hintDrawer.classList.add("hidden");
-
-    // 7. Re-randare completă
-    renderAllViews();
-    showToast(`Ai comutat pe profilul: ${target.name} ${target.avatar || '👤'}!`);
-  }
-
-  function createNewProfile(name, lastName, email, avatar, bio) {
-    const reg = getProfilesRegistry();
-    const newId = "profile_" + Date.now();
-    const cleanName = (name || "").trim() || "Utilizator";
-    const cleanLastName = (lastName || "").trim();
-    const cleanEmail = (email || "").trim() || `${cleanName.toLowerCase().replace(/\s+/g, "")}@polymath.com`;
-    const cleanAvatar = avatar || "🚀";
-    const cleanBio = (bio || "").trim() || "Pasionat de programare și științe polimate.";
-
-    const newProfile = {
-      id: newId,
-      name: cleanName,
-      lastName: cleanLastName,
-      email: cleanEmail,
-      avatar: cleanAvatar,
-      bio: cleanBio,
-      createdAt: new Date().toISOString()
-    };
-
-    const newProfileState = {
-      ...defaultState,
-      streak: 0,
-      longestStreak: 0,
-      lastCompletionDate: null,
-      xp: 0,
-      completedLessons: [],
-      masteryPoints: {},
-      dailyHistory: {},
-      assistedHistory: {},
-      theme: state.theme || "emerald-forest",
-      customLessons: [],
-      activeTrack: "Python",
-      activeLessonId: "py-new-1",
-      activePracticeMode: "write",
-      activeView: "profile",
-      user: {
-        firstName: cleanName,
-        lastName: cleanLastName,
-        email: cleanEmail,
-        bio: cleanBio,
-        avatar: cleanAvatar
-      },
-      preferences: {
-        dailyTarget: 3,
-        confettiEnabled: true
-      }
-    };
-
-    try {
-      window.localStorage.setItem("polymath_state_" + newId, JSON.stringify(newProfileState));
-    } catch (e) {
-      console.error(e);
-    }
-
-    reg.profiles.push(newProfile);
-    reg.activeProfileId = newId;
-    saveProfilesRegistry(reg);
-
-    activeProfileId = newId;
-    state = newProfileState;
-    saveState();
-    applyTheme(state.theme);
-
-    renderAllViews();
-    showToast(`Profil nou creat: ${cleanName} ${cleanAvatar}. Bine ai venit!`);
-  }
-
-  function deleteProfile(profileId) {
-    const reg = getProfilesRegistry();
-    if (reg.profiles.length <= 1) {
-      alert("Nu poți șterge singurul profil existent. Dacă dorești să resetezi datele, folosește opțiunea „Șterge Contul și Resetează Totul de la Zero”.");
-      return;
-    }
-    const target = reg.profiles.find(p => p.id === profileId);
-    if (!target) return;
-
-    if (!confirm(`Ești sigur că vrei să ștergi contul „${target.name}”?\n\nToate punctele XP, streak-ul și progresul acestui profil vor fi eliminate definitiv.`)) {
-      return;
-    }
-
-    try {
-      window.localStorage.removeItem("polymath_state_" + profileId);
-    } catch (_) {}
-
-    reg.profiles = reg.profiles.filter(p => p.id !== profileId);
-
-    if (reg.activeProfileId === profileId) {
-      const fallback = reg.profiles[0];
-      reg.activeProfileId = fallback.id;
-      saveProfilesRegistry(reg);
-      activeProfileId = fallback.id;
-      state = loadProfileState(fallback.id);
-      saveState();
-      applyTheme(state.theme);
-      renderAllViews();
-      showToast(`Profilul „${target.name}” a fost șters. Ai fost comutat pe „${fallback.name}”.`);
-    } else {
-      saveProfilesRegistry(reg);
-      renderProfileView();
-      renderHeaderProfilesDropdown();
-      showToast(`Profilul „${target.name}” a fost șters.`);
-    }
-  }
-
   function renderAllViews() {
     renderStats();
-    renderHeaderProfilesDropdown();
-    renderProfileView();
     if (state.activeView === "catalog") renderCatalog();
     else if (state.activeView === "study") renderStudyView();
     else if (state.activeView === "activity") renderActivityView();
@@ -822,15 +516,7 @@
     navStudyBtn: document.getElementById("nav-study-btn"),
     navActivityBtn: document.getElementById("nav-activity-btn"),
     navLeaguesBtn: document.getElementById("nav-leagues-btn"),
-    navProfileBtn: document.getElementById("nav-profile-btn"),
-    headerProfileBtn: document.getElementById("header-profile-btn"),
-    headerAvatarIcon: document.getElementById("header-avatar-icon"),
-    headerProfileName: document.getElementById("header-profile-name"),
-    headerSwitchUserBtn: document.getElementById("header-switch-user-btn"),
-    headerSwitchUserLabel: document.getElementById("header-switch-user-label"),
-    headerProfilesDropdown: document.getElementById("header-profiles-dropdown"),
-    dropdownProfilesList: document.getElementById("dropdown-profiles-list"),
-    btnDropdownAddProfile: document.getElementById("btn-dropdown-add-profile"),
+
 
     // Stats Cluster
     streakPill: document.getElementById("streak-pill"),
@@ -935,40 +621,6 @@
     pageLeaguesList: document.getElementById("page-leagues-list"),
     pageAchievementsGrid: document.getElementById("page-achievements-grid"),
 
-    // View 5: Profil & Setări
-    profileView: document.getElementById("profile-view"),
-    profileCardAvatar: document.getElementById("profile-card-avatar"),
-    profileCardName: document.getElementById("profile-card-name"),
-    profileCardEmail: document.getElementById("profile-card-email"),
-    profileCardBio: document.getElementById("profile-card-bio"),
-    profileStatXp: document.getElementById("profile-stat-xp"),
-    profileStatRank: document.getElementById("profile-stat-rank"),
-    profileStatStreak: document.getElementById("profile-stat-streak"),
-    profileStatLessons: document.getElementById("profile-stat-lessons"),
-    profileForm: document.getElementById("profile-form"),
-    profileFirstNameInput: document.getElementById("profile-first-name-input"),
-    profileLastNameInput: document.getElementById("profile-last-name-input"),
-    profileEmailInput: document.getElementById("profile-email-input"),
-    emailValidationFeedback: document.getElementById("email-validation-feedback"),
-    profileBioInput: document.getElementById("profile-bio-input"),
-    avatarSelectorGrid: document.getElementById("avatar-selector-grid"),
-    profileSaveStatus: document.getElementById("profile-save-status"),
-    settingsThemePicker: document.getElementById("settings-theme-picker"),
-    settingsDailyTarget: document.getElementById("settings-daily-target"),
-    settingsConfettiToggle: document.getElementById("settings-confetti-toggle"),
-    profileDeleteAccountBtn: document.getElementById("profile-delete-account-btn"),
-
-    // Multi-User Profile Management
-    profilesListContainer: document.getElementById("profiles-list-container"),
-    btnToggleAddProfileForm: document.getElementById("btn-toggle-add-profile-form"),
-    addProfileBox: document.getElementById("add-profile-box"),
-    addProfileForm: document.getElementById("add-profile-form"),
-    newProfileNameInput: document.getElementById("new-profile-name-input"),
-    newProfileLastNameInput: document.getElementById("new-profile-last-name-input"),
-    newProfileEmailInput: document.getElementById("new-profile-email-input"),
-    newProfileBioInput: document.getElementById("new-profile-bio-input"),
-    newProfileAvatarGrid: document.getElementById("new-profile-avatar-grid"),
-    cancelAddProfileBtn: document.getElementById("cancel-add-profile-btn"),
 
     confettiCanvas: document.getElementById("confetti-canvas")
   };
@@ -977,15 +629,6 @@
     const validTheme = themeName || "emerald-forest";
     document.documentElement.setAttribute("data-theme", validTheme);
     if (els.themeSelector) els.themeSelector.value = validTheme;
-    if (els.settingsThemePicker) {
-      els.settingsThemePicker.querySelectorAll(".theme-card-opt").forEach(btn => {
-        if (btn.getAttribute("data-theme-val") === validTheme) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-    }
     state.theme = validTheme;
     saveState();
   }
@@ -1110,17 +753,14 @@
       }
     }
 
-    // Sincronizare Header Profil
-    if (els.headerAvatarIcon) els.headerAvatarIcon.textContent = state.user.avatar || "🎓";
-    if (els.headerProfileName) els.headerProfileName.textContent = state.user.firstName || "Denis";
-    renderHeaderProfilesDropdown();
+
   }
 
   // =========================================================================
-  // VIEW SWITCHING (SPA MULTI-PAGE: CATALOG, STUDY, ACTIVITY, LEAGUES, PROFILE)
+  // VIEW SWITCHING (SPA MULTI-PAGE: CATALOG, STUDY, ACTIVITY, LEAGUES)
   // =========================================================================
   function switchView(viewName) {
-    const validViews = ["catalog", "study", "activity", "leagues", "profile"];
+    const validViews = ["catalog", "study", "activity", "leagues"];
     const target = validViews.includes(viewName) ? viewName : "catalog";
     state.activeView = target;
     saveState();
@@ -1129,8 +769,7 @@
       els.catalogView,
       els.studyView,
       els.activityView,
-      els.leaguesView,
-      els.profileView
+      els.leaguesView
     ];
     views.forEach(v => {
       if (v) v.classList.add("hidden");
@@ -1158,9 +797,6 @@
     } else if (target === "leagues") {
       if (els.leaguesView) els.leaguesView.classList.remove("hidden");
       renderLeaguesView();
-    } else if (target === "profile") {
-      if (els.profileView) els.profileView.classList.remove("hidden");
-      renderProfileView();
     }
 
     renderStats();
@@ -1938,185 +1574,6 @@
     }
   }
 
-  // =========================================================================
-  // VIEW 5: PAGINĂ COMPLETĂ PROFIL & SETĂRI UTILIZATOR
-  // =========================================================================
-  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.(com|ru|md|ro|org|net|io|edu|dev|me|info|[a-z]{2,})$/i;
-
-  function validateEmailFormat(email) {
-    return EMAIL_REGEX.test((email || "").trim());
-  }
-
-  function checkEmailFieldValidity(val) {
-    if (!els.emailValidationFeedback) return;
-    if (validateEmailFormat(val)) {
-      els.emailValidationFeedback.textContent = "✓ Adresă de email validă (@ și extensie recunoscută).";
-      els.emailValidationFeedback.className = "field-validation-msg valid";
-    } else {
-      els.emailValidationFeedback.textContent = "Trebuie să conțină @ și un domeniu valid (ex: .com, .ru, .ro, .md).";
-      els.emailValidationFeedback.className = "field-validation-msg invalid";
-    }
-  }
-
-  function renderProfileView() {
-    // Profil Sidebar
-    if (els.profileCardAvatar) els.profileCardAvatar.textContent = state.user.avatar || "🎓";
-    if (els.profileCardName) els.profileCardName.textContent = `${state.user.firstName || "Denis"} ${state.user.lastName || "Perju"}`.trim();
-    if (els.profileCardEmail) els.profileCardEmail.textContent = state.user.email || "denis@polymath.com";
-    if (els.profileCardBio) els.profileCardBio.textContent = state.user.bio || "Pasionat de programare, limbi străine și cunoaștere polimată.";
-
-    if (els.profileStatXp) els.profileStatXp.textContent = `${state.xp} XP`;
-    if (els.profileStatRank) els.profileStatRank.textContent = getRankTitle(state.xp);
-    if (els.profileStatStreak) els.profileStatStreak.textContent = `${state.streak} ${state.streak === 1 ? "zi" : "zile"}`;
-    if (els.profileStatLessons) els.profileStatLessons.textContent = state.completedLessons.length;
-
-    // Form inputs
-    if (els.profileFirstNameInput) els.profileFirstNameInput.value = state.user.firstName || "";
-    if (els.profileLastNameInput) els.profileLastNameInput.value = state.user.lastName || "";
-    if (els.profileEmailInput) {
-      els.profileEmailInput.value = state.user.email || "";
-      checkEmailFieldValidity(state.user.email || "");
-    }
-    if (els.profileBioInput) els.profileBioInput.value = state.user.bio || "";
-
-    // Avatar Grid selection
-    if (els.avatarSelectorGrid) {
-      els.avatarSelectorGrid.querySelectorAll(".avatar-opt-btn").forEach(btn => {
-        if (btn.getAttribute("data-avatar") === (state.user.avatar || "🎓")) {
-          btn.classList.add("selected");
-        } else {
-          btn.classList.remove("selected");
-        }
-      });
-    }
-
-    // Theme Picker selection
-    if (els.settingsThemePicker) {
-      els.settingsThemePicker.querySelectorAll(".theme-card-opt").forEach(btn => {
-        if (btn.getAttribute("data-theme-val") === state.theme) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-    }
-
-    // Study Preferences
-    if (els.settingsDailyTarget) {
-      els.settingsDailyTarget.value = String(getDailyTarget());
-    }
-    if (els.settingsConfettiToggle) {
-      els.settingsConfettiToggle.value = String(state.preferences.confettiEnabled !== false);
-    }
-
-    renderProfilesList();
-    renderHeaderProfilesDropdown();
-  }
-
-  function renderProfilesList() {
-    if (!els.profilesListContainer) return;
-    const reg = getProfilesRegistry();
-    els.profilesListContainer.innerHTML = "";
-
-    reg.profiles.forEach(p => {
-      let pXp = 0;
-      let pStreak = 0;
-      let pLessonsCount = 0;
-
-      if (p.id === activeProfileId) {
-        pXp = state.xp;
-        pStreak = state.streak;
-        pLessonsCount = state.completedLessons.length;
-      } else {
-        try {
-          const raw = window.localStorage.getItem("polymath_state_" + p.id);
-          if (raw) {
-            const parsed = JSON.parse(raw);
-            pXp = parsed.xp || 0;
-            pStreak = parsed.streak || 0;
-            pLessonsCount = Array.isArray(parsed.completedLessons) ? parsed.completedLessons.length : 0;
-          }
-        } catch (_) {}
-      }
-
-      const card = document.createElement("div");
-      card.className = `profile-user-card ${p.id === activeProfileId ? "active" : ""}`;
-      card.innerHTML = `
-        <div class="profile-card-top">
-          <div class="profile-user-avatar-circle">${escapeHtml(p.avatar || "🎓")}</div>
-          <div class="profile-user-info">
-            <h4 class="profile-user-name">${escapeHtml(p.name)} ${escapeHtml(p.lastName || "")}</h4>
-            <span class="profile-user-email">${escapeHtml(p.email || "")}</span>
-          </div>
-          ${p.id === activeProfileId ? `<span class="profile-badge-active">✓ Activ</span>` : ""}
-        </div>
-        <div class="profile-stats-row">
-          <span>XP: <strong class="profile-stat-badge">${pXp}</strong></span>
-          <span>Streak: <strong class="profile-stat-badge">${pStreak} ${pStreak === 1 ? "zi" : "zile"}</strong></span>
-          <span>Capitole: <strong class="profile-stat-badge">${pLessonsCount}</strong></span>
-        </div>
-        <div class="profile-actions-row">
-          ${p.id === activeProfileId ? `
-            <span class="active-profile-indicator">Ești pe acest cont</span>
-          ` : `
-            <button type="button" class="btn-primary-sm btn-switch-profile" data-profile-id="${p.id}">Comută pe acest cont</button>
-            <button type="button" class="btn-ghost-danger-sm btn-delete-profile" data-profile-id="${p.id}" title="Șterge contul ${escapeHtml(p.name)}">🗑️ Șterge</button>
-          `}
-        </div>
-      `;
-
-      const switchBtn = card.querySelector(".btn-switch-profile");
-      if (switchBtn) {
-        switchBtn.addEventListener("click", () => switchProfile(p.id));
-      }
-
-      const delBtn = card.querySelector(".btn-delete-profile");
-      if (delBtn) {
-        delBtn.addEventListener("click", () => deleteProfile(p.id));
-      }
-
-      els.profilesListContainer.appendChild(card);
-    });
-  }
-
-  function renderHeaderProfilesDropdown() {
-    if (!els.dropdownProfilesList) return;
-    const reg = getProfilesRegistry();
-    els.dropdownProfilesList.innerHTML = "";
-
-    reg.profiles.forEach(p => {
-      let pXp = (p.id === activeProfileId) ? state.xp : 0;
-      let pStreak = (p.id === activeProfileId) ? state.streak : 0;
-      if (p.id !== activeProfileId) {
-        try {
-          const raw = window.localStorage.getItem("polymath_state_" + p.id);
-          if (raw) {
-            const parsed = JSON.parse(raw);
-            pXp = parsed.xp || 0;
-            pStreak = parsed.streak || 0;
-          }
-        } catch (_) {}
-      }
-
-      const item = document.createElement("div");
-      item.className = `dropdown-profile-item ${p.id === activeProfileId ? "active" : ""}`;
-      item.innerHTML = `
-        <span class="dropdown-profile-avatar">${escapeHtml(p.avatar || "🎓")}</span>
-        <div class="dropdown-profile-info">
-          <div class="dropdown-profile-name">${escapeHtml(p.name)} ${p.id === activeProfileId ? "(Activ)" : ""}</div>
-          <div class="dropdown-profile-sub">${pXp} XP • ${pStreak} zile streak</div>
-        </div>
-      `;
-
-      item.addEventListener("click", () => {
-        if (els.headerProfilesDropdown) els.headerProfilesDropdown.classList.add("hidden");
-        switchProfile(p.id);
-      });
-
-      els.dropdownProfilesList.appendChild(item);
-    });
-  }
-
   function launchConfetti() {
     if (state.preferences && state.preferences.confettiEnabled === false) return;
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -2182,7 +1639,7 @@
     }
 
     // Navigație Pagini Top SPA (Catalog, Studiu, Activitate, Ligi, Profil)
-    [els.navCatalogBtn, els.navStudyBtn, els.navActivityBtn, els.navLeaguesBtn, els.navProfileBtn].forEach(btn => {
+    [els.navCatalogBtn, els.navStudyBtn, els.navActivityBtn, els.navLeaguesBtn].forEach(btn => {
       if (btn) {
         btn.addEventListener("click", () => {
           const view = btn.getAttribute("data-view");
@@ -2191,10 +1648,7 @@
       }
     });
 
-    // Buton Profil din Header
-    if (els.headerProfileBtn) {
-      els.headerProfileBtn.addEventListener("click", () => switchView("profile"));
-    }
+
 
     // Cluster Statistici Navigabil Direct
     if (els.streakPill) {
@@ -2347,208 +1801,6 @@
       els.themeSelector.addEventListener("change", e => applyTheme(e.target.value));
     }
 
-    // Comutator Teme din Setări Profil
-    if (els.settingsThemePicker) {
-      els.settingsThemePicker.querySelectorAll(".theme-card-opt").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const th = btn.getAttribute("data-theme-val");
-          if (th) applyTheme(th);
-        });
-      });
-    }
-
-    // Validare Email în Timp Real la Tastare
-    if (els.profileEmailInput) {
-      els.profileEmailInput.addEventListener("input", e => {
-        checkEmailFieldValidity(e.target.value);
-      });
-    }
-
-    // Formular Profil & Date Utilizator
-    if (els.profileForm) {
-      els.profileForm.addEventListener("submit", e => {
-        e.preventDefault();
-        const emailVal = els.profileEmailInput ? els.profileEmailInput.value.trim() : "";
-        if (!validateEmailFormat(emailVal)) {
-          checkEmailFieldValidity(emailVal);
-          if (els.profileEmailInput) els.profileEmailInput.focus();
-          return;
-        }
-
-        state.user = {
-          firstName: (els.profileFirstNameInput ? els.profileFirstNameInput.value.trim() : "") || "Denis",
-          lastName: (els.profileLastNameInput ? els.profileLastNameInput.value.trim() : "") || "Perju",
-          email: emailVal,
-          bio: els.profileBioInput ? els.profileBioInput.value.trim() : "",
-          avatar: state.user.avatar || "🎓"
-        };
-
-        saveState();
-        renderProfileView();
-        renderStats();
-
-        if (els.profileSaveStatus) {
-          els.profileSaveStatus.classList.remove("hidden");
-          setTimeout(() => {
-            if (els.profileSaveStatus) els.profileSaveStatus.classList.add("hidden");
-          }, 2500);
-        }
-      });
-    }
-
-    // Selector Avatar în Setări Profil
-    if (els.avatarSelectorGrid) {
-      els.avatarSelectorGrid.querySelectorAll(".avatar-opt-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const av = btn.getAttribute("data-avatar");
-          if (av) {
-            state.user.avatar = av;
-            saveState();
-            renderProfileView();
-            renderStats();
-          }
-        });
-      });
-    }
-
-    // Preferințe Studiu: Țintă Obiectiv Zilnic
-    if (els.settingsDailyTarget) {
-      els.settingsDailyTarget.addEventListener("change", e => {
-        state.preferences.dailyTarget = Number(e.target.value) || 3;
-        saveState();
-        renderStats();
-        if (state.activeView === "activity") renderActivityView();
-      });
-    }
-
-    // Preferințe Studiu: Animații Confetti
-    if (els.settingsConfettiToggle) {
-      els.settingsConfettiToggle.addEventListener("change", e => {
-        state.preferences.confettiEnabled = e.target.value === "true";
-        saveState();
-      });
-    }
-
-    // =========================================================================
-    // EVENIMENTE: ADMINISTRARE PROFILURI & CONTURI MULTIPLE
-    // =========================================================================
-
-    // 1. Dropdown comutator rapid în antet
-    if (els.headerSwitchUserBtn && els.headerProfilesDropdown) {
-      els.headerSwitchUserBtn.addEventListener("click", e => {
-        e.stopPropagation();
-        renderHeaderProfilesDropdown();
-        els.headerProfilesDropdown.classList.toggle("hidden");
-      });
-
-      document.addEventListener("click", e => {
-        if (els.headerProfilesDropdown && !els.headerProfilesDropdown.classList.contains("hidden")) {
-          if (!els.headerProfilesDropdown.contains(e.target) && !els.headerSwitchUserBtn.contains(e.target)) {
-            els.headerProfilesDropdown.classList.add("hidden");
-          }
-        }
-      });
-    }
-
-    if (els.btnDropdownAddProfile) {
-      els.btnDropdownAddProfile.addEventListener("click", () => {
-        if (els.headerProfilesDropdown) els.headerProfilesDropdown.classList.add("hidden");
-        switchView("profile");
-        if (els.addProfileBox) {
-          els.addProfileBox.classList.remove("hidden");
-          if (els.newProfileNameInput) els.newProfileNameInput.focus();
-        }
-      });
-    }
-
-    // 2. Toggle formular adăugare profil în pagina de profil
-    if (els.btnToggleAddProfileForm && els.addProfileBox) {
-      els.btnToggleAddProfileForm.addEventListener("click", () => {
-        els.addProfileBox.classList.toggle("hidden");
-        if (!els.addProfileBox.classList.contains("hidden") && els.newProfileNameInput) {
-          els.newProfileNameInput.focus();
-        }
-      });
-    }
-
-    if (els.cancelAddProfileBtn && els.addProfileBox) {
-      els.cancelAddProfileBtn.addEventListener("click", () => {
-        els.addProfileBox.classList.add("hidden");
-      });
-    }
-
-    // 3. Selector avatar formular profil nou
-    let selectedNewAvatar = "🚀";
-    if (els.newProfileAvatarGrid) {
-      els.newProfileAvatarGrid.querySelectorAll(".avatar-opt-btn-sm").forEach(btn => {
-        btn.addEventListener("click", () => {
-          els.newProfileAvatarGrid.querySelectorAll(".avatar-opt-btn-sm").forEach(b => b.classList.remove("selected"));
-          btn.classList.add("selected");
-          selectedNewAvatar = btn.getAttribute("data-avatar") || "🚀";
-        });
-      });
-    }
-
-    // 4. Trimitere formular profil nou
-    if (els.addProfileForm) {
-      els.addProfileForm.addEventListener("submit", e => {
-        e.preventDefault();
-        const name = els.newProfileNameInput ? els.newProfileNameInput.value.trim() : "";
-        const lastName = els.newProfileLastNameInput ? els.newProfileLastNameInput.value.trim() : "";
-        const email = els.newProfileEmailInput ? els.newProfileEmailInput.value.trim() : "";
-        const bio = els.newProfileBioInput ? els.newProfileBioInput.value.trim() : "";
-
-        if (!name) {
-          alert("Te rugăm să introduci un prenume sau nume de utilizator.");
-          return;
-        }
-
-        createNewProfile(name, lastName, email, selectedNewAvatar, bio);
-        if (els.addProfileBox) els.addProfileBox.classList.add("hidden");
-        if (els.addProfileForm) els.addProfileForm.reset();
-      });
-    }
-
-    // Resetare Totală Cont & Date de la Zero (Zona de Pericol)
-    if (els.profileDeleteAccountBtn) {
-      els.profileDeleteAccountBtn.addEventListener("click", () => {
-        if (window.confirm("Atenție: Această acțiune va reseta contul curent, toate punctele XP, nivelul ligii, capitolele rezolvate și streak-ul.\n\nEști sigur că vrei să resetezi acest cont de la zero?")) {
-          // Resetare doar pentru profilul activ
-          state = {
-            ...defaultState,
-            streak: 0,
-            longestStreak: 0,
-            lastCompletionDate: null,
-            xp: 0,
-            completedLessons: [],
-            masteryPoints: {},
-            dailyHistory: {},
-            assistedHistory: {},
-            customLessons: [],
-            activeTrack: "SQL",
-            activeLessonId: "sql-1",
-            activePracticeMode: "write",
-            activeView: "profile",
-            theme: state.theme || "emerald-forest",
-            user: { ...state.user },
-            preferences: { ...state.preferences }
-          };
-          saveState();
-          applyTheme(state.theme);
-
-          // Resetare interfață de studiu
-          lessonSessionAssisted = false;
-          if (els.userAnswerInput) els.userAnswerInput.value = "";
-          if (els.inputZone) els.inputZone.classList.remove("state-error", "state-success");
-          if (els.solutionDrawer) els.solutionDrawer.classList.add("hidden");
-          if (els.hintDrawer) els.hintDrawer.classList.add("hidden");
-          if (els.nextLessonBtn) els.nextLessonBtn.classList.add("hidden");
-
-          renderAllViews();
-          showToast("Contul activ a fost resetat de la zero.");
-        }
-      });
-    }
   }
 
   function renderAll() {
