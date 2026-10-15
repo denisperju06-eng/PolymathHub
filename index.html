@@ -69,7 +69,6 @@
         <option value="ocean-deep">🌊 Ocean Deep</option>
         <option value="daylight-clean">☀️ Daylight Clean</option>
       </select>
-      <button id="open-custom-modal-btn" class="btn-secondary btn-sm" title="Adaugă un capitol nou în enciclopedie">+ Creare</button>
     </div>
   </header>
 
@@ -98,13 +97,16 @@
           <select id="catalog-level-filter" class="theme-select" aria-label="Filtrează după nivel">
             <option value="ALL">📊 Toate Nivelele</option>
           </select>
-          <input
-            type="search"
-            id="catalog-search-input"
-            class="search-input"
-            placeholder="🔍 Caută capitol (join, familie, hobby, bucla...)"
-            aria-label="Caută în capitole"
-          >
+          <div class="catalog-search-wrapper">
+            <span class="catalog-search-icon" aria-hidden="true">🔍</span>
+            <input
+              type="search"
+              id="catalog-search-input"
+              class="search-input"
+              placeholder="Caută capitol (join, familie, buclă...)"
+              aria-label="Caută în capitole"
+            >
+          </div>
         </div>
       </div>
 
@@ -313,52 +315,6 @@
           <!-- Generat dinamic din JS -->
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       MODAL: ADĂUGARE CAPITOL / HOBBY NOU
-       ========================================================================= -->
-  <div class="modal-backdrop hidden" id="custom-modal" role="dialog" aria-modal="true" aria-labelledby="custom-modal-title">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h2 id="custom-modal-title">Adaugă Capitol sau Hobby Nou</h2>
-        <button id="close-custom-modal-btn" class="btn-close" aria-label="Închide">&times;</button>
-      </div>
-      <form id="custom-lesson-form" class="modal-form">
-        <div class="form-row">
-          <label for="custom-track">Domeniu / Hobby:</label>
-          <input type="text" id="custom-track" required placeholder="Ex: SQL, Engleză: Familie &amp; Hobby, Istorie...">
-        </div>
-        <div class="form-row">
-          <label for="custom-title">Titlul Capitolului:</label>
-          <input type="text" id="custom-title" required placeholder="Ex: Expresii despre Familie și Relații">
-        </div>
-        <div class="form-row">
-          <label for="custom-theory">Teorie &amp; Explicații pe Larg (stil carte):</label>
-          <textarea id="custom-theory" rows="4" required placeholder="Scrie explicația detaliată..."></textarea>
-        </div>
-        <div class="form-row">
-          <label for="custom-example">Exemplu Asemănător (Model diferit de întrebare):</label>
-          <textarea id="custom-example" rows="2" required placeholder="Un exemplu paralel care nu dă răspunsul direct..."></textarea>
-        </div>
-        <div class="form-row">
-          <label for="custom-prompt">Întrebarea / Cerința Practică:</label>
-          <textarea id="custom-prompt" rows="2" required placeholder="Ce trebuie să scrie sau să traducă utilizatorul?"></textarea>
-        </div>
-        <div class="form-row">
-          <label for="custom-solution">Răspunsul Corect:</label>
-          <input type="text" id="custom-solution" required placeholder="Răspunsul exact...">
-        </div>
-        <div class="form-row">
-          <label for="custom-hint">Indiciu Fără Spoiler:</label>
-          <input type="text" id="custom-hint" placeholder="Un indiciu despre structură fără a spune răspunsul...">
-        </div>
-        <div class="modal-actions">
-          <button type="button" id="cancel-modal-btn" class="btn-secondary">Anulează</button>
-          <button type="submit" class="btn-primary">Salvează Capitolul</button>
-        </div>
-      </form>
     </div>
   </div>
 

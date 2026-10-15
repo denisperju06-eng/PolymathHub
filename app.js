@@ -32,14 +32,13 @@
     matchedIndices: new Set()
   };
 
-  // 1. Încărcarea și Fuzionarea Tuturor Lecțiilor din Curriculum
+  // 1. Încărcarea și Fuzionarea Tuturor Lecțiilor din Curriculum Oficial
   const allLessonsRaw = [
     ...(typeof DEFAULT_CURRICULUM !== "undefined" ? DEFAULT_CURRICULUM : []),
     ...(typeof EXTENDED_MODULES !== "undefined" ? EXTENDED_MODULES : []),
     ...(typeof EXTENDED_CURRICULUM !== "undefined" && typeof EXTENDED_MODULES === "undefined" ? EXTENDED_CURRICULUM : []),
     ...(typeof ADVANCED_CURRICULUM_EXPANSION !== "undefined" ? ADVANCED_CURRICULUM_EXPANSION : []),
-    ...(typeof ADVANCED_CURRICULUM !== "undefined" && typeof ADVANCED_CURRICULUM_EXPANSION === "undefined" ? ADVANCED_CURRICULUM : []),
-    ...(state.customLessons || [])
+    ...(typeof ADVANCED_CURRICULUM !== "undefined" && typeof ADVANCED_CURRICULUM_EXPANSION === "undefined" ? ADVANCED_CURRICULUM : [])
   ];
 
   // Deduplicare inteligentă pe baza ID-ului
@@ -174,6 +173,7 @@
       parsed.assistedHistory = parsed.assistedHistory || {};
       parsed.theme = parsed.theme || "emerald-forest";
       parsed.activeView = parsed.activeView || "catalog";
+      parsed.customLessons = [];
       return parsed;
     } catch (e) {
       return { ...defaultState };
@@ -319,7 +319,6 @@
     goalTooltipTitle: document.getElementById("goal-tooltip-title"),
     goalTooltipText: document.getElementById("goal-tooltip-text"),
     themeSelector: document.getElementById("theme-selector"),
-    openCustomModalBtn: document.getElementById("open-custom-modal-btn"),
 
     // View 1: Catalog
     catalogView: document.getElementById("catalog-view"),
@@ -402,11 +401,6 @@
     leaguesModal: document.getElementById("leagues-modal"),
     closeLeaguesModalBtn: document.getElementById("close-leagues-modal-btn"),
     leaguesList: document.getElementById("leagues-list"),
-
-    customModal: document.getElementById("custom-modal"),
-    closeCustomModalBtn: document.getElementById("close-custom-modal-btn"),
-    cancelModalBtn: document.getElementById("cancel-modal-btn"),
-    customLessonForm: document.getElementById("custom-lesson-form"),
 
     confettiCanvas: document.getElementById("confetti-canvas")
   };
@@ -1021,9 +1015,13 @@
     els.pocketTrackTabs.innerHTML = "";
 
     tracks.forEach(t => {
+      const countInTrack = allLessons.filter(l => l.track === t.name).length;
       const btn = document.createElement("button");
       btn.className = `track-tab-btn ${state.activeTrack === t.name ? "active" : ""}`;
-      btn.innerHTML = `<span>${t.icon} ${t.name}</span>`;
+      btn.innerHTML = `
+        <span style="display:flex; align-items:center; gap:0.4rem;">${t.icon} ${t.name}</span>
+        <span style="font-size:0.75rem; color:var(--text-secondary); opacity:0.85;">${countInTrack} cap.</span>
+      `;
       btn.addEventListener("click", () => {
         state.activeTrack = t.name;
         saveState();
@@ -1362,52 +1360,6 @@
         switchView("catalog");
         renderAll();
       }
-    });
-
-    // Modal Creare Capitol Personalizat
-    els.openCustomModalBtn.addEventListener("click", () => els.customModal.classList.remove("hidden"));
-    const closeCustomModal = () => els.customModal.classList.add("hidden");
-    els.closeCustomModalBtn.addEventListener("click", closeCustomModal);
-    els.cancelModalBtn.addEventListener("click", closeCustomModal);
-    els.customModal.addEventListener("click", e => {
-      if (e.target === els.customModal) closeCustomModal();
-    });
-
-    els.customLessonForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const trackName = document.getElementById("custom-track").value.trim();
-      const title = document.getElementById("custom-title").value.trim();
-      const theory = `<p>${document.getElementById("custom-theory").value.trim()}</p>`;
-      const example = document.getElementById("custom-example").value.trim();
-      const prompt = document.getElementById("custom-prompt").value.trim();
-      const solution = document.getElementById("custom-solution").value.trim();
-      const hint = document.getElementById("custom-hint").value.trim();
-
-      const newLesson = {
-        id: "custom-" + Date.now(),
-        track: trackName,
-        icon: "📖",
-        level: "3. Middle",
-        xp: 40,
-        title,
-        theory,
-        example,
-        prompt,
-        caseSensitive: false,
-        acceptedAnswers: [solution],
-        officialSolution: solution,
-        explanation: "Capitol personalizat adăugat în enciclopedie.",
-        hint: hint || "Analizează exemplul demonstrativ."
-      };
-
-      state.customLessons.push(newLesson);
-      allLessons.push(newLesson);
-      state.activeTrack = trackName;
-      state.activeLessonId = newLesson.id;
-      saveState();
-      els.customLessonForm.reset();
-      closeCustomModal();
-      switchView("study");
     });
   }
 
