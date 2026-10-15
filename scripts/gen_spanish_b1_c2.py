@@ -375,13 +375,13 @@ Ellos / Ustedes han hablado / comido / vivido
 <p><code>Subiect + [OI] + [OD] + Verb</code><br>
 <em>¿Me dejas tu libro? &rarr; Sí, <strong>te lo</strong> dejo.</em> (te = OI, lo = OD).</p>
 <h4>2. Regula Eufonică Supremă: LE / LES devine SE!</h4>
-<p>În spaniolă este interzisă cacofonia a două pronume consecutive ce încep cu 'L' (*le lo*, *le la*, *les los*). Prin urmare, <strong>le / les se transformă întotdeauna în SE</strong>:</p>
-<p><em>¿Das el regalo a María? &rarr; Sí, <strong>se lo</strong> doy.</em> (în loc de *le lo doy*!).</p>
+<p>În spaniolă este interzisă cacofonia a două pronume consecutive ce încep cu 'L' (<em>le lo</em>, <em>le la</em>, <em>les los</em>). Prin urmare, <strong>le / les se transformă întotdeauna în SE</strong>:</p>
+<p><em>¿Das el regalo a María? &rarr; Sí, <strong>se lo</strong> doy.</em> (în loc de <em>le lo doy</em>!).</p>
 """,
             "glossary": [
                 {"term": "Regla SE LO", "def": "Transformarea eufonică a lui le/les în 'se' în fața pronumelor lo, la, los, las."},
                 {"term": "Orden OI + OD", "def": "Indirectul precede întotdeauna directul în secvența pronominală spaniolă."},
-                {"term": "Cacofonía evitada", "def": "Evitarea sunetului dublu l-l (*le lo) prin conversia în sunetul sibilant 'se'."},
+                {"term": "Cacofonía evitada", "def": "Evitarea sunetului dublu l-l (<em>le lo</em>) prin conversia în sunetul sibilant 'se'."},
                 {"term": "Te lo juro", "def": "'Ți-o jur' — expresie populară ilustrând combinarea pronumelor te + lo."}
             ],
             "matchingPairs": [
@@ -784,7 +784,7 @@ Ellos / Ustedes han hablado / comido / vivido
                 {"term": "Oraciones condicionales", "def": "Fraze ipotetice introduse de conjuncția 'si' ce reglementează corelația timpurilor."},
                 {"term": "Si + subjuntivo imperfecto", "def": "Combinația specifică pentru a exprima o ipoteză imaginară în prezent."},
                 {"term": "Condicional en la principal", "def": "Propoziția principală conține consecința la modul condițional (viajaría)."},
-                {"term": "Interdicția viitorului după SI", "def": "Nu se poate spune *Si tendré*, ci doar 'Si tengo'."}
+                {"term": "Interdicția viitorului după SI", "def": "Nu se poate spune <em>Si tendré</em>, ci doar 'Si tengo'."}
             ],
             "matchingPairs": [
                 {"left": "Si llueve mañana", "right": "no iremos a la playa (Si + presente &rarr; futuro)"},

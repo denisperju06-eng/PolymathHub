@@ -70,12 +70,19 @@
 
   let allLessons = Array.from(uniqueLessonsMap.values());
 
-  // Elimină vechile fragmente disparate pentru franceză și spaniolă în favoarea curriculumului canonic de 45 de capitole de la zero
-  const deprecatedPolyglotLangIds = new Set([
+  // Elimină vechile fragmente disparate pentru franceză, spaniolă și python în favoarea curriculumului canonic de capitole complete
+  const deprecatedLegacyIds = new Set([
     "fr-a1-1", "fr-a1-2", "fr-a1-3", "fr-b1-1-ex1", "fr-b1-1-ex2", "fr-b1-1-ex3", "fr-b1-2-ex1", "fr-b1-2-ex2", "fr-c1-1-ex1",
-    "es-a1-1", "es-a1-2", "es-a1-3", "es-b1-1-ex1", "es-b1-1-ex2", "es-b1-2-ex1", "es-b1-2-ex2", "es-c1-1-ex1"
+    "es-a1-1", "es-a1-2", "es-a1-3", "es-b1-1-ex1", "es-b1-1-ex2", "es-b1-2-ex1", "es-b1-2-ex2", "es-c1-1-ex1",
+    "py-core-1", "py-core-2", "py-core-3", "py-core-4"
   ]);
-  allLessons = allLessons.filter(l => !deprecatedPolyglotLangIds.has(l.id));
+  allLessons = allLessons.filter(l => !deprecatedLegacyIds.has(l.id));
+
+  // Asigură că activeLessonId din localStorage nu punctează la o lecție eliminată / inexistentă
+  if (state.activeLessonId && !allLessons.some(l => l.id === state.activeLessonId)) {
+    const fallbackInTrack = allLessons.find(l => l.track === state.activeTrack);
+    state.activeLessonId = fallbackInTrack ? fallbackInTrack.id : (allLessons[0] ? allLessons[0].id : "sql-1");
+  }
 
   // Normalizare structură discipline pentru o clasificare clară și intuitivă
   allLessons.forEach(l => {
@@ -167,6 +174,49 @@
     return str
       .replace(/\b([aAîÎoOuUeE|și|de|la|pe|cu|un|o])\s+/g, "$1\u00A0")
       .replace(/\s+([!?:;])/g, "\u00A0$1");
+  }
+
+  // Parser robust pentru Markdown și entități speciale în textul teoriei (elimină orice asteriscuri brute)
+  function parseMarkdownToHtml(str) {
+    if (!str || typeof str !== "string") return "";
+    let html = str;
+
+    // LaTeX săgeți matematice / gramaticale
+    html = html.replace(/\$\\rightarrow\$/g, "&rarr;").replace(/\\rightarrow/g, "&rarr;");
+
+    // Markdown bold: **text** -> <strong>text</strong>
+    html = html.replace(/\*\*([^*\n\r]+?)\*\*/g, "<strong>$1</strong>");
+
+    // Markdown italic: *text* (fără a strica pointeri C++ sau operatori de multiplicare)
+    html = html.replace(/(?<=[\s\(\[\{>]|^)\*([a-zA-Z0-9àâäéèêëîïôöùûüÿçœæÀÂÄÉÈÊËÎÏÔÖÙÛÜŸÇŒÆáéíóúñÁÉÍÓÚÑ_\s\(\)\,\.\:\'\’\?!\/-]+?)\*(?=[\s\)\]\},.;:!?<]|$)/g, "<em>$1</em>");
+
+    // Inline backticks: `code` -> <code>code</code>
+    html = html.replace(/`([^`\n\r]+?)`/g, "<code>$1</code>");
+
+    // Dacă teoria este text simplu fără structură de paragrafe HTML, transformă în paragrafe și liste
+    if (!/<p>|<div>|<h4>|<ul>|<ol>|<pre>/i.test(html)) {
+      const paragraphs = html.split(/\n\s*\n/);
+      html = paragraphs.map(p => {
+        p = p.trim();
+        if (!p) return "";
+        if (p.startsWith("- ") || p.startsWith("* ")) {
+          const items = p.split(/\n(?=[-*]\s+)/).map(li => `<li>${li.replace(/^[-*]\s+/, "")}</li>`).join("");
+          return `<ul>${items}</ul>`;
+        }
+        if (/^\d+\.\s+/.test(p)) {
+          const items = p.split(/\n(?=\d+\.\s+)/).map(li => `<li>${li.replace(/^\d+\.\s+/, "")}</li>`).join("");
+          return `<ol>${items}</ol>`;
+        }
+        return `<p>${p.replace(/\n/g, "<br>")}</p>`;
+      }).join("\n");
+    }
+
+    return html;
+  }
+
+  function formatTheoryContent(theory) {
+    if (!theory) return "";
+    return formatRomanianTypography(parseMarkdownToHtml(theory));
   }
 
   function toLocalDateKey(dateObj) {
@@ -953,7 +1003,7 @@
     els.lessonStatusBadge.textContent = mStatus.label;
 
     els.lessonTitle.textContent = formatRomanianTypography(lesson.title);
-    els.lessonTheory.innerHTML = formatRomanianTypography(lesson.theory);
+    els.lessonTheory.innerHTML = formatTheoryContent(lesson.theory);
 
     // Dicționar & Tabel de Concepte / Vocabular
     const glossaryItems = lesson.glossary || getMatchingPairsForLesson(lesson).map(p => ({ term: p.left, def: p.right }));
@@ -971,21 +1021,21 @@
       els.lessonDictionary.appendChild(div);
     });
 
-    els.lessonExample.textContent = lesson.example;
+    els.lessonExample.textContent = lesson.example || lesson.starterCode || "";
     els.lessonXpTag.textContent = `+${lesson.xp || 30} XP`;
-    els.lessonPrompt.textContent = formatRomanianTypography(lesson.prompt);
+    els.lessonPrompt.textContent = formatRomanianTypography(lesson.prompt || lesson.task || "");
 
     // Resetare casetă scriere
     els.inputZone.classList.remove("state-error", "state-success");
-    els.userAnswerInput.value = "";
+    els.userAnswerInput.value = lesson.starterCode || "";
     els.validationFeedback.textContent = "Citește cerința evidențiată mai sus și tastează răspunsul.";
     els.hintDrawer.classList.add("hidden");
     els.solutionDrawer.classList.add("hidden");
     els.nextLessonBtn.classList.add("hidden");
 
     els.hintText.textContent = lesson.hint || "Analizează dicționarul de termeni și modelul asemănător de mai sus.";
-    els.officialSolutionText.textContent = lesson.officialSolution;
-    els.officialSolutionExplanation.textContent = lesson.explanation || "";
+    els.officialSolutionText.textContent = lesson.officialSolution || lesson.starterCode || "";
+    els.officialSolutionExplanation.textContent = lesson.explanation || lesson.hint || "";
 
     renderMatchingGame(lesson);
     renderQuizMode(lesson);
@@ -1249,14 +1299,15 @@
     const rawInput = els.userAnswerInput.value;
     const normalizedUser = normalizeInput(rawInput, lesson.caseSensitive);
 
-    let isCorrect = lesson.acceptedAnswers.some(
+    let isCorrect = Array.isArray(lesson.acceptedAnswers) && lesson.acceptedAnswers.some(
       ans => normalizeInput(ans, lesson.caseSensitive) === normalizedUser
     );
 
-    if (!isCorrect && lesson.regexPattern) {
+    const pattern = lesson.regexPattern || lesson.expectedOutputPattern;
+    if (!isCorrect && pattern) {
       try {
         const flags = lesson.caseSensitive ? "" : "i";
-        const re = new RegExp(lesson.regexPattern, flags);
+        const re = new RegExp(pattern, flags);
         isCorrect = re.test(rawInput.trim());
       } catch (e) {
         // Fallback

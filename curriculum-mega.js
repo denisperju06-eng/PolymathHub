@@ -7,59 +7,59 @@ const MEGA_EXPANDED_CURRICULUM = [
     "icon": "🐍",
     "level": "1. Începător",
     "xp": 30,
-    "title": "Capitolul 1: Sintaxă & Structuri Fundamentale de Control",
-    "theory": "\n<p>Python este un limbaj cu tipizare dinamică și sintaxă bazată pe indentare strictă (4 spații conform PEP 8). În Python, blocurile de cod nu folosesc acolade, ci două puncte (<code>:</code>) urmate de bloc indentat.</p>\n<h4>1. Instrucțiuni Condiționale</h4>\n<p>Lanțul <code>if - elif - else</code> evaluează expresii booleene. Operatorii logici sunt cuvinte native: <code>and</code>, <code>or</code>, <code>not</code>.</p>\n<h4>2. Bucle & Iterare Idiomatică</h4>\n<p>Buclele <code>for item in iterable:</code> sunt cel mai eficient mod de a parcurge secvențe. Când avem nevoie de index, folosim funcția nativă <code>enumerate(iterable, start=0)</code> în loc să incrementăm manual un contor.</p>\n",
+    "title": "Capitolul 1: Sintaxă, Structuri Condiționale (if-elif-else) & Bucle",
+    "theory": "\n<p>Python este un limbaj de programare cu tipizare dinamică și sintaxă bazată pe <strong>indentare strictă</strong> (4 spații conform standardului PEP 8). În Python, blocurile de cod nu folosesc acolade <code>{}</code>, ci caracterul două puncte (<code>:</code>) urmat de un bloc indentat.</p>\n\n<h4>1. Structura Condițională: if, elif și else</h4>\n<p>Instrucțiunea <code>if</code> evaluează o expresie booleană (<code>True</code> sau <code>False</code>). Dacă prima condiție este falsă, se evaluează succesiv ramurile <code>elif</code> (prescurtare de la <em>else if</em>), iar dacă toate eșuează, se execută ramura opțională <code>else</code>.</p>\n\n<pre><code># Exemplu 1: Clasificarea unui scor numeric\nscor = 85\n\nif scor >= 90:\n    calificativ = \"Excelent\"\nelif scor >= 70:\n    calificativ = \"Bine\"\nelif scor >= 50:\n    calificativ = \"Suficient\"\nelse:\n    calificativ = \"Respins\"\n\nprint(f\"Rezultat final: {calificativ}\")\n# Output: Rezultat final: Bine\n</code></pre>\n\n<h4>2. Operatori Logici & Expresii Ternare</h4>\n<p>Operatorii logici sunt cuvinte native: <code>and</code> (și logic), <code>or</code> (sau logic), <code>not</code> (negație). De asemenea, Python oferă o sintaxă ternară elegantă într-o singură linie: <code>valoare_daca_true if conditie else valoare_daca_false</code>.</p>\n\n<pre><code># Exemplu 2: Verificare cu operatori logici și ternar\nvarsta = 20\nare_permis = True\n\nif varsta >= 18 and are_permis:\n    print(\"Poate conduce pe drumuri publice.\")\n\n# Operatorul ternar într-o singură linie:\nstatut = \"Major\" if varsta >= 18 else \"Minor\"\nprint(f\"Statut: {statut}\")\n</code></pre>\n\n<h4>3. Bucle & Iterare Idiomatică cu enumerate()</h4>\n<p>Bucla <code>for element in iterabil:</code> parcurge direct valorile unei colecții. Când ai nevoie atât de <strong>indexul</strong> elementului, cât și de <strong>valoarea</strong> lui, folosești funcția nativă <code>enumerate(iterabil, start=0)</code>:</p>\n\n<pre><code># Exemplu 3: Iterare cu index și valoare\ncursuri = [\"Python\", \"SQL\", \"Docker\"]\n\nfor idx, curs in enumerate(cursuri, start=1):\n    print(f\"Modulul {idx}: {curs}\")\n# Output:\n# Modulul 1: Python\n# Modulul 2: SQL\n# Modulul 3: Docker\n</code></pre>\n",
     "glossary": [
       {
         "term": "Indentare (PEP 8)",
-        "def": "Regulă strictă de 4 spații per nivel de bloc de cod în loc de acolade."
+        "def": "Regulă strictă de 4 spații per nivel de bloc de cod în loc de acolade sau begin/end."
       },
       {
         "term": "elif",
-        "def": "Prescurtare de la 'else if', testează o condiție secundară dacă prima a eșuat."
+        "def": "Prescurtare de la 'else if', testează o condiție secundară dacă anterioara a fost falsă."
+      },
+      {
+        "term": "Operator Ternar",
+        "def": "Expresie compactă: x if conditie else y ce returnează o valoare condiționată."
       },
       {
         "term": "enumerate()",
-        "def": "Funcție nativă ce returnează perechi de tipul (index, element) la fiecare iterație."
-      },
-      {
-        "term": "zip()",
-        "def": "Îmbină două sau mai multe iterabile element cu element în tupluri paralele."
+        "def": "Funcție nativă ce generează tupluri de tipul (index, element) la fiecare pas al buclei."
       }
     ],
     "matchingPairs": [
       {
-        "left": "enumerate(names)",
-        "right": "Generează perechi (index, nume)"
+        "left": "if conditie:",
+        "right": "Verifică prima condiție booleană"
       },
       {
-        "left": "zip(keys, values)",
-        "right": "Îmbină liste paralele în tupluri"
+        "left": "elif alta_conditie:",
+        "right": "Condiție alternativă când if a eșuat"
       },
       {
-        "left": "range(1, 10, 2)",
-        "right": "Generează 1, 3, 5, 7, 9"
+        "left": "else:",
+        "right": "Se execută când toate ramurile if/elif sunt false"
       },
       {
-        "left": "elif condition:",
-        "right": "Ramură condițională alternativă"
+        "left": "enumerate(lista)",
+        "right": "Generează perechi paralele (index, valoare)"
       }
     ],
     "quiz": {
-      "question": "Care este modul corect și idiomatic în Python de a itera o listă când ai nevoie și de index și de valoare?",
+      "question": "Ce va afișa următorul cod Python?\n\nx = 15\nif x > 20:\n    print('A')\nelif x >= 10:\n    print('B')\nelse:\n    print('C')",
       "options": [
-        "for i, val in enumerate(my_list):",
-        "for i in range(len(my_list)): val = my_list[i]",
-        "while i < len(my_list): val = my_list[i]; i += 1",
-        "for val in my_list.with_index():"
+        "B (deoarece prima condiție e falsă, iar 15 >= 10 este True)",
+        "A",
+        "C",
+        "A și B simultan"
       ],
       "correctIndex": 0,
-      "explanation": "Funcția nativă enumerate() este mecanismul idiomatic în Python, oferind lizibilitate maximă și performanță optimă."
+      "explanation": "Execuția verifică x > 20 (fals), apoi testează elif x >= 10 (adevărat), afișează 'B' și oprește evaluarea lanțului."
     },
-    "task": "Scrie o iterație folosind 'enumerate' peste lista 'users' și afișează fiecare pereche cu print(f'{idx}: {name}').",
-    "starterCode": "users = [\"Ana\", \"Bogdan\", \"Cristi\"]\n# Iterează cu enumerate\n",
-    "expectedOutputPattern": "for\\s+\\w+,\\s*\\w+\\s+in\\s+enumerate\\(users\\):",
-    "hint": "Folosește: for idx, name in enumerate(users): urmat de blocul indentat cu print."
+    "task": "Completează structura if - elif - else pentru variabila 'scor':\n- dacă scor >= 90, afișează 'Excelent' (print('Excelent'))\n- elif scor >= 50, afișează 'Admis' (print('Admis'))\n- else, afișează 'Respins' (print('Respins')).",
+    "starterCode": "scor = 85\n\n# Scrie condiția if, elif și else:\nif scor >= 90:\n    print(\"Excelent\")\nelif scor >= 50:\n    print(\"Admis\")\nelse:\n    print(\"Respins\")\n",
+    "expectedOutputPattern": "if\\s+scor\\s*>=\\s*90\\s*:[\\s\\S]+?elif\\s+scor\\s*>=\\s*50\\s*:[\\s\\S]+?else\\s*:",
+    "hint": "Folosește if scor >= 90:, apoi elif scor >= 50: și finalizează cu else:."
   },
   {
     "id": "py-new-2",
@@ -69,7 +69,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător",
     "xp": 30,
     "title": "Capitolul 2: Liste, Tuple-uri & Tehnica Slicing",
-    "theory": "\n<p>Listele (<code>list</code>) sunt structuri mutabile ordonate, pe când tuple-urile (<code>tuple</code>) sunt secvențe imutabile protejate împotriva modificării accidentale.</p>\n<h4>1. Sintaxa Slicing [start:stop:step]</h4>\n<p>Slicing-ul permite extragerea de subsecvențe fără a modifica lista originală. Indexul de <code>stop</code> este exclusiv. Un pas negativ (<code>[::-1]</code>) inversează eficient întreaga secvență.</p>\n<h4>2. Unpacking de Secvențe</h4>\n<p>Python permite despachetarea directă a elementelor: <code>first, *middle, last = numbers</code> capturează primul, ultimul și toate elementele intermediare într-o listă separată.</p>\n",
+    "theory": "\n<p>Listele (<code>list</code>) sunt structuri mutabile ordonate, pe când tuple-urile (<code>tuple</code>) sunt secvențe imutabile protejate împotriva modificării accidentale.</p>\n\n<h4>1. Sintaxa Slicing [start:stop:step]</h4>\n<p>Slicing-ul permite extragerea de felii dintr-o secvență fără a modifica lista originală. Indexul de <code>stop</code> este exclusiv. Un pas negativ (<code>step = -1</code>) inversează întreaga secvență:</p>\n\n<pre><code># Exemplu 1: Slicing pe liste\nnumere = [10, 20, 30, 40, 50, 60]\n\nsublista = numere[1:4]   # De la index 1 la 3: [20, 30, 40]\ninvers = numere[::-1]     # Inversare O(n): [60, 50, 40, 30, 20, 10]\npas_doi = numere[::2]     # Fiecare al 2-lea element: [10, 30, 50]\n</code></pre>\n\n<h4>2. Unpacking de Secvențe (Star Operator)</h4>\n<p>Operatorul steluță (<code>*</code>) permite capturarea restului elementelor la despachetare:</p>\n\n<pre><code># Exemplu 2: Extended Unpacking\ncoordonate = (100, 20, 30, 40, 500)\nprimul, *mijloc, ultimul = coordonate\n\nprint(primul)   # 100\nprint(mijloc)   # [20, 30, 40]\nprint(ultimul)  # 500\n</code></pre>\n",
     "glossary": [
       {
         "term": "Mutable",
@@ -117,7 +117,7 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Slicing-ul începe de la indexul 1 (valoarea 20) și se oprește înainte de indexul 4 (valoarea 50), rezultând [20, 30, 40]."
     },
-    "task": "Inversează lista 'data' folosind sintaxa slicing cu step negativ și stochează rezultatul în 'reversed_data'.",
+    "task": "Inversează lista 'data' folosind sintaxa slicing cu step negativ și stochează rezultatul în variabila 'reversed_data'.",
     "starterCode": "data = [1, 2, 3, 4, 5]\nreversed_data = ",
     "expectedOutputPattern": "reversed_data\\s*=\\s*data\\[::-1\\]",
     "hint": "Folosește slicing-ul data[::-1] pentru a crea o copie inversată a listei."
@@ -130,7 +130,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător",
     "xp": 35,
     "title": "Capitolul 3: Dicționare & Seturi (Hash Tables Native)",
-    "theory": "\n<p>Dicționarele (<code>dict</code>) și seturile (<code>set</code>) din Python sunt implementate ca tabele hash de înaltă performanță, oferind timp mediu de căutare și inserare $O(1)$.</p>\n<h4>1. Dicționare & Metoda .get()</h4>\n<p>Accesarea unei chei inexistente cu <code>dict[key]</code> aruncă o excepție <code>KeyError</code>. Metoda <code>dict.get(key, default)</code> returnează o valoare fallback fără a întrerupe execuția.</p>\n<h4>2. Seturi & Teoria Mulțimilor</h4>\n<p>Seturile elimină automat duplicatele și oferă operatori rapizi: reuniune (<code>|</code>), intersecție (<code>&</code>), diferență (<code>-</code>) și diferență simetrică (<code>^</code>).</p>\n",
+    "theory": "\n<p>Dicționarele (<code>dict</code>) și seturile (<code>set</code>) din Python sunt implementate ca tabele hash de înaltă performanță, oferind timp mediu de căutare, inserare și ștergere $O(1)$.</p>\n\n<h4>1. Dicționare & Acces Securizat cu .get()</h4>\n<p>Accesarea unei chei inexistente cu <code>dict[cheie]</code> aruncă o excepție <code>KeyError</code>. Metoda <code>dict.get(cheie, default)</code> returnează valoarea fallback fără a întrerupe execuția programului:</p>\n\n<pre><code># Exemplu 1: Utilizarea metodei .get()\nconfiguratie = {\"host\": \"localhost\", \"port\": 5432}\n\n# Sigur, returnează 30 dacă cheia 'timeout' nu există:\ntimeout = configuratie.get(\"timeout\", 30)\nprint(f\"Timeout aplicat: {timeout} secunde\")\n</code></pre>\n\n<h4>2. Seturi (Mulțimi Matematice)</h4>\n<p>Seturile elimină automat duplicatele și oferă operatori rapizi de mulțimi:</p>\n\n<pre><code># Exemplu 2: Operații pe mulțimi\nbackend = {\"Python\", \"SQL\", \"Docker\"}\nfrontend = {\"JavaScript\", \"React\", \"Docker\"}\n\ncomune = backend & frontend      # Intersecție: {'Docker'}\ntoate = backend | frontend       # Reuniune: {'Python', 'SQL', 'Docker', 'JavaScript', 'React'}\ndoar_backend = backend - frontend # Diferență: {'Python', 'SQL'}\n</code></pre>\n",
     "glossary": [
       {
         "term": "dict.get(k, default)",
@@ -141,12 +141,12 @@ const MEGA_EXPANDED_CURRICULUM = [
         "def": "Colecție neordonată de elemente unice și hashable cu căutare în timp O(1)."
       },
       {
-        "term": "Hashable",
-        "def": "Proprietate a unui obiect de a avea o valoare hash constantă pe durata vieții sale."
-      },
-      {
         "term": "Intersecție (&)",
         "def": "Operație între două seturi ce returnează doar elementele comune ambelor mulțimi."
+      },
+      {
+        "term": "Reuniune (|)",
+        "def": "Operație ce unește toate elementele distincte din două mulțimi."
       }
     ],
     "matchingPairs": [
@@ -191,58 +191,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 35,
     "title": "Capitolul 4: List, Dict & Set Comprehensions",
-    "theory": "\n<p>Comprehensions sunt construcții declarative sintetice și optimizate la nivel de bytecode CPython, fiind semnificativ mai rapide decât buclele clasice <code>for</code> cu <code>.append()</code>.</p>\n<h4>1. List Comprehensions cu Filtrare</h4>\n<p>Sintaxa de bază este <code>[expr for item in iterable if condition]</code>. Filtrul <code>if</code> de la final selectează elementele înainte de aplicarea transformării.</p>\n<h4>2. Dict & Set Comprehensions</h4>\n<p>Dict comprehensions folosesc acolade și două puncte: <code>{k: v for k, v in pairs}</code>. Set comprehensions folosesc acolade simple: <code>{x.strip() for x in raw_strings}</code>.</p>\n",
+    "theory": "\n<p>Comprehensions sunt construcții declarative sintetice și optimizate la nivel de bytecode CPython, fiind semnificativ mai rapide decât buclele clasice <code>for</code> cu <code>.append()</code>.</p>\n\n<h4>1. List Comprehensions cu Filtrare</h4>\n<p>Sintaxa de bază este: <code>[expresie for element in iterabil if conditie]</code>.</p>\n\n<pre><code># Exemplu 1: List Comprehension\nnumere = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n\n# Pătratele numerelor pare:\npatrate_pare = [x ** 2 for x in numere if x % 2 == 0]\nprint(patrate_pare) # [4, 16, 36, 64, 100]\n</code></pre>\n\n<h4>2. Dict Comprehensions</h4>\n<p>Sintaxa pentru dicționare este: <code>{cheie_expr: val_expr for element in iterabil if conditie}</code>.</p>\n\n<pre><code># Exemplu 2: Dict Comprehension\nutilizatori = [\"ana\", \"bogdan\", \"cristi\"]\nlungimi = {nume: len(nume) for nume in utilizatori}\nprint(lungimi) # {'ana': 3, 'bogdan': 6, 'cristi': 6}\n</code></pre>\n",
     "glossary": [
       {
         "term": "List Comprehension",
-        "def": "Construcție declarativă pentru crearea unei liste dintr-un iterabil existent."
+        "def": "Sintaxă compactă [expr for x in iterable if cond] ce creează o listă nouă."
       },
       {
         "term": "Dict Comprehension",
-        "def": "Sintaxă {k: v for ...} ce mapează dinamic chei la valori calculate."
+        "def": "Construcție {k: v for x in iterable} pentru generarea rapidă de dicționare."
       },
       {
-        "term": "Bytecode CPython",
-        "def": "Instrucțiuni compilate de nivel jos executate de mașina virtuală Python."
+        "term": "Bytecode Optimization",
+        "def": "Comprehensions rulează într-o instrucțiune CPython optimizată fără overhead de funcție."
       },
       {
-        "term": "Filtrare Inline",
-        "def": "Clauza 'if condition' adăugată la sfârșitul unui comprehension pentru selecție."
+        "term": "Filtru 'if'",
+        "def": "Clauză opțională plasată la final pentru selectarea elementelor ce respectă un criteriu."
       }
     ],
     "matchingPairs": [
       {
-        "left": "[x*2 for x in nums]",
-        "right": "Dublează fiecare element din listă"
+        "left": "[x*2 for x in data]",
+        "right": "Dublează fiecare element într-o listă"
       },
       {
-        "left": "[x for x in nums if x > 0]",
-        "right": "Filtrează doar numerele strict pozitive"
+        "left": "{x: x**2 for x in range(5)}",
+        "right": "Creează un dicționar cu pătrate"
       },
       {
-        "left": "{x: len(x) for x in words}",
-        "right": "Creează un dicționar cu lungimea cuvintelor"
+        "left": "{x for x in data}",
+        "right": "Set comprehension (valori unice)"
       },
       {
-        "left": "{x.lower() for x in tags}",
-        "right": "Set de tag-uri unice transformate în litere mici"
+        "left": "[x for x in data if x > 0]",
+        "right": "Filtrează doar numerele pozitive"
       }
     ],
     "quiz": {
-      "question": "Care este rezultatul expresiei [x for x in range(6) if x % 2 == 0]?",
+      "question": "Ce va produce expresia [x for x in range(6) if x % 2 != 0]?",
       "options": [
+        "[1, 3, 5]",
         "[0, 2, 4]",
-        "[2, 4, 6]",
-        "[0, 2, 4, 6]",
-        "[1, 3, 5]"
+        "[1, 2, 3, 4, 5]",
+        "[2, 4, 6]"
       ],
       "correctIndex": 0,
-      "explanation": "range(6) generează numerele de la 0 la 5. Numerele pare dintre acestea sunt 0, 2 și 4."
+      "explanation": "range(6) produce 0..5, iar condiția x % 2 != 0 filtrează exclusiv numerele impare: [1, 3, 5]."
     },
-    "task": "Creează o listă 'evens' ce conține pătratele numerelor pare din lista 'numbers' folosind list comprehension.",
-    "starterCode": "numbers = [1, 2, 3, 4, 5, 6]\nevens = ",
-    "expectedOutputPattern": "evens\\s*=\\s*\\[x\\s*\\*\\*\\s*2\\s+for\\s+x\\s+in\\s+numbers\\s+if\\s+x\\s*%\\s*2\\s*==\\s*0\\]",
-    "hint": "Folosește: [x**2 for x in numbers if x % 2 == 0]"
+    "task": "Creează o listă 'evens' conținând numerele pare din 'numbers' folosind un list comprehension cu clauza 'if x % 2 == 0'.",
+    "starterCode": "numbers = [1, 2, 3, 4, 5, 6, 7, 8]\nevens = ",
+    "expectedOutputPattern": "evens\\s*=\\s*\\[\\s*x\\s+for\\s+x\\s+in\\s+numbers\\s+if\\s+x\\s*%\\s*2\\s*==\\s*0\\s*\\]",
+    "hint": "Scrie: [x for x in numbers if x % 2 == 0]."
   },
   {
     "id": "py-new-5",
@@ -252,58 +252,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 40,
     "title": "Capitolul 5: Manipularea Fișierelor & Context Managers ('with')",
-    "theory": "\n<p>Gestionarea corectă a resurselor I/O (fișiere, conexiuni socket) necesită eliberarea garantată a descriptorilor de fișiere din sistemul de operare.</p>\n<h4>1. Instrucțiunea 'with'</h4>\n<p>Instrucțiunea <code>with open('file.txt', 'r', encoding='utf-8') as f:</code> garantează apelarea automată a metodei <code>close()</code> la ieșirea din bloc, chiar dacă se aruncă o excepție neașteptată.</p>\n<h4>2. Moduri de Deschidere</h4>\n<p>Modurile esențiale sunt: <code>'r'</code> (read), <code>'w'</code> (write cu suprascriere), <code>'a'</code> (append la final) și <code>'b'</code> (binary pentru imagini sau fișiere comprimate).</p>\n",
+    "theory": "\n<p>Gestionarea resurselor externe (fișiere, conexiuni socket, baze de date) necesită eliberarea garantată a descriptorilor de fișiere pentru a preveni memory leaks.</p>\n\n<h4>1. Instrucțiunea 'with' & Protocolul Context Manager</h4>\n<p>Blocul <code>with</code> apelează automat metoda <code>__enter__()</code> la intrare și garantează apelul metodei <code>__exit__()</code> la ieșire, chiar dacă survine o eroare sau o excepție neașteptată:</p>\n\n<pre><code># Exemplu 1: Citirea sigură a unui fișier cu encoding UTF-8\nwith open(\"raport.txt\", \"r\", encoding=\"utf-8\") as f:\n    continut = f.read()\n    # Fișierul este automat închis la ieșirea din bloc!\n</code></pre>\n\n<h4>2. Scriere & Adăugare (Append)</h4>\n<p>Modul <code>'w'</code> suprascrie fișierul, în timp ce <code>'a'</code> adaugă conținut nou la sfârșit:</p>\n\n<pre><code># Exemplu 2: Scriere de date\nwith open(\"log.txt\", \"a\", encoding=\"utf-8\") as f:\n    f.write(\"Eveniment salvat cu succes.\\n\")\n</code></pre>\n",
     "glossary": [
       {
         "term": "Context Manager",
-        "def": "Obiect ce implementează metodele protocolului __enter__ și __exit__ pentru gestiunea resurselor."
+        "def": "Obiect ce implementează __enter__ și __exit__ pentru administrarea sigură a resurselor."
       },
       {
-        "term": "File Descriptor Leak",
-        "def": "Epuizarea descriptorilor din sistemul de operare cauzată de fișiere lăsate deschise."
+        "term": "with open(...) as f",
+        "def": "Construcție idiomatică ce asigură închiderea fișierului fără apel manual la f.close()."
       },
       {
-        "term": "encoding='utf-8'",
-        "def": "Standardul modern de codare a caracterelor internaționale în operațiuni textuale."
+        "term": "__exit__()",
+        "def": "Metodă apelată automat ce eliberează resursele chiar și în cazul unei excepții aruncate."
       },
       {
-        "term": "f.readlines()",
-        "def": "Metodă ce citește toate liniile unui fișier și le returnează ca listă de șiruri."
+        "term": "Encoding UTF-8",
+        "def": "Standardul recomandat pentru citirea și scrierea caracterelor cu diacritice."
       }
     ],
     "matchingPairs": [
       {
+        "left": "open(file, 'r')",
+        "right": "Deschide fișierul pentru citire"
+      },
+      {
+        "left": "open(file, 'w')",
+        "right": "Deschide pentru scriere (suprascrie)"
+      },
+      {
+        "left": "open(file, 'a')",
+        "right": "Deschide pentru adăugare la final (append)"
+      },
+      {
         "left": "with open(...) as f:",
-        "right": "Închidere automată garantată a resursei"
-      },
-      {
-        "left": "mode='a'",
-        "right": "Deschide fișierul pentru adăugare la final"
-      },
-      {
-        "left": "mode='w'",
-        "right": "Deschide pentru scriere suprascriind conținutul"
-      },
-      {
-        "left": "f.read()",
-        "right": "Citește întregul conținut într-un singur string"
+        "right": "Închide automat fișierul la ieșire"
       }
     ],
     "quiz": {
-      "question": "De ce este obligatorie utilizarea blocului 'with' la deschiderea fișierelor în Python?",
+      "question": "De ce este considerată utilizarea clauzei 'with open(...)' o practică superioară apelului 'f = open(...); f.close()'?",
       "options": [
-        "Garantează închiderea fișierului chiar și în cazul apariției unei excepții.",
-        "Mărește viteza de citire a hard diskului de zece ori.",
-        "Criptează automat fișierul pe disc cu algoritmul AES.",
-        "Permite citirea fișierului fără încărcare în RAM."
+        "Garantează închiderea fișierului chiar dacă apare o excepție în interiorul blocului.",
+        "Rulează citirea pe mai multe thread-uri paralele în fundal.",
+        "Comprimă automat datele pe hard disk.",
+        "Permite doar fișiere de tip JSON."
       ],
       "correctIndex": 0,
-      "explanation": "Protocolul context manager ('with') apelează automat __exit__() și închide descriptorul de fișier indiferent cum se părăsește blocul de cod."
+      "explanation": "Context managerul garantează execuția metodei __exit__() care închide fișierul indiferent dacă apare o eroare în blocul with."
     },
-    "task": "Deschide fișierul 'log.txt' în modul adăugare ('a') cu codare 'utf-8' folosind un bloc 'with' și variabila 'f'.",
-    "starterCode": "# Folosește blocul with pentru a deschide log.txt în modul 'a'\n",
-    "expectedOutputPattern": "with\\s+open\\([\"']log\\.txt[\"'],\\s*[\"']a[\"'],\\s*encoding=[\"']utf-8[\"']\\)\\s+as\\s+f:",
-    "hint": "Scrie: with open('log.txt', 'a', encoding='utf-8') as f: urmat de corpul blocului."
+    "task": "Deschide fișierul 'data.txt' în modul citire ('r') cu encoding-ul 'utf-8' folosind instrucțiunea 'with open(...) as f:'.",
+    "starterCode": "# Deschide fișierul cu with\n",
+    "expectedOutputPattern": "with\\s+open\\([\"']data\\.txt[\"'],\\s*[\"']r[\"'],\\s*encoding=[\"']utf-8[\"']\\)\\s+as\\s+f\\s*:",
+    "hint": "Scrie: with open('data.txt', 'r', encoding='utf-8') as f:."
   },
   {
     "id": "py-new-6",
@@ -313,58 +313,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 40,
     "title": "Capitolul 6: Gestiunea Excepțiilor & Clauza 'finally'",
-    "theory": "\n<p>Tratarea robustă a erorilor în Python se realizează prin blocul <code>try - except - else - finally</code>. Principiul Pythonic <em>EAFP</em> (Easier to Ask for Forgiveness than Permission) recomandă execuția directă protejată prin <code>try</code> în loc de verificări preliminare stufoase.</p>\n<h4>1. Specificitatea Excepțiilor</h4>\n<p>Nu captura niciodată <code>except Exception:</code> generic dacă poți captura excepții specifice precum <code>ValueError</code>, <code>FileNotFoundError</code> sau <code>ZeroDivisionError</code>.</p>\n<h4>2. Clauzele 'else' și 'finally'</h4>\n<p>Blocul <code>else</code> rulează DOAR dacă blocul <code>try</code> a finalizat fără nicio eroare. Blocul <code>finally</code> se execută ÎNTOTDEAUNA, indiferent de apariția sau capturarea erorii.</p>\n",
+    "theory": "\n<p>În Python, tratarea excepțiilor se realizează prin blocul <code>try - except - else - finally</code>.</p>\n\n<h4>1. Anatomia Completă a Gestiunii Excepțiilor</h4>\n<ul>\n  <li><code>try</code>: Conține codul periculos ce poate arunca o excepție.</li>\n  <li><code>except TipExceptie as err</code>: Tratează specific tipul de eroare interceptat.</li>\n  <li><code>else</code>: Se execută <strong>doar dacă nu s-a aruncat nicio excepție</strong> în blocul <code>try</code>.</li>\n  <li><code>finally</code>: Se execută <strong>întotdeauna</strong>, indiferent dacă a apărut sau nu o eroare.</li>\n</ul>\n\n<pre><code># Exemplu complet de gestiune a erorilor\ndef parseaza_varsta(text):\n    try:\n        valoare = int(text)\n    except ValueError as err:\n        print(f\"Eroare de conversie: {err}\")\n        return None\n    else:\n        print(f\"Număr convertit cu succes: {valoare}\")\n        return valoare\n    finally:\n        print(\"Curățare resurse finalizată.\")\n</code></pre>\n",
     "glossary": [
       {
-        "term": "EAFP",
-        "def": "'Easier to Ask for Forgiveness than Permission' - filozofie de programare Pythonic."
+        "term": "try - except",
+        "def": "Mecanismul de bază de capturare și remediere a erorilor runtime."
       },
       {
-        "term": "try / except",
-        "def": "Mecanism de interceptare și tratare a excepțiilor la rulare."
+        "term": "clauza else",
+        "def": "Bloc opțional ce rulează exclusiv dacă blocul try s-a încheiat fără nicio eroare."
       },
       {
-        "term": "else (în try)",
-        "def": "Bloc executat exclusiv atunci când nu s-a declanșat nicio excepție în try."
+        "term": "clauza finally",
+        "def": "Bloc garantat de curățare ce rulează indiferent de succesul sau eșecul try-ului."
       },
       {
-        "term": "finally",
-        "def": "Secțiune de curățare a resurselor care se execută garantat în orice scenariu."
+        "term": "ValueError",
+        "def": "Excepție aruncată când o funcție primește un argument de tip corect dar cu valoare invalidă."
       }
     ],
     "matchingPairs": [
       {
         "left": "except ValueError as e:",
-        "right": "Capturează conversii de date invalide"
+        "right": "Capturează eroarea de conversie într-o variabilă"
+      },
+      {
+        "left": "else:",
+        "right": "Rulează doar când nu a apărut nicio eroare"
       },
       {
         "left": "finally:",
-        "right": "Execuție necondiționată după try/except"
-      },
-      {
-        "left": "else: (după try)",
-        "right": "Rulare doar când nu a apărut nicio eroare"
+        "right": "Se execută întotdeauna la final"
       },
       {
         "left": "raise RuntimeError('msg')",
-        "right": "Aruncă intenționat o nouă excepție"
+        "right": "Aruncă explicit o excepție nouă"
       }
     ],
     "quiz": {
-      "question": "Când se execută codul aflat într-un bloc 'else' atașat unui bloc 'try-except'?",
+      "question": "Când se execută codul aflat în interiorul clauzei 'else' a unui bloc try-except?",
       "options": [
-        "Numai dacă blocul try a finalizat cu succes, fără nicio excepție.",
-        "Întotdeauna după ce s-a executat blocul finally.",
-        "Numai dacă o excepție a fost aruncată și capturată cu succes.",
-        "Dacă utilizatorul apasă tasta Cancel în consolă."
+        "Doar atunci când blocul try se finalizează cu succes, fără nicio excepție.",
+        "Întotdeauna, la fel ca blocul finally.",
+        "Doar atunci când apare o excepție de tip KeyError.",
+        "Niciodată, este ignorat de interpreter."
       ],
       "correctIndex": 0,
-      "explanation": "Clauza else din structura try-except este destinată codului care trebuie să ruleze doar dacă operațiunea din try nu a generat nicio eroare."
+      "explanation": "În Python, blocul else din try-except se execută doar dacă nicio excepție nu a fost aruncată în interiorul blocului try."
     },
-    "task": "Scrie un bloc try-except care convertește stringul 'raw_val' în 'int(raw_val)' și capturează 'ValueError' returnând 0.",
-    "starterCode": "def parse_int(raw_val):\n    # Completează cu try-except\n",
-    "expectedOutputPattern": "try:\\s+return\\s+int\\(raw_val\\)\\s+except\\s+ValueError:\\s+return\\s+0",
-    "hint": "Scrie try: return int(raw_val) urmat de except ValueError: return 0."
+    "task": "Scrie un bloc try-except care încearcă conversia 'val = int(text)' și capturează 'ValueError as e:' afișând print('Invalid').",
+    "starterCode": "text = \"abc\"\n# Scrie blocul try-except\n",
+    "expectedOutputPattern": "try\\s*:[\\s\\S]+?val\\s*=\\s*int\\(text\\)[\\s\\S]+?except\\s+ValueError\\s+as\\s+\\w+\\s*:[\\s\\S]+?print\\([\"']Invalid[\"']\\)",
+    "hint": "Scrie try: urmat de val = int(text) și except ValueError as e: print('Invalid')."
   },
   {
     "id": "py-new-7",
@@ -374,58 +374,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 45,
     "title": "Capitolul 7: POO — Clase, Constructori '__init__' & 'self'",
-    "theory": "\n<p>În Python, orice clasă este un tip de date personalizat. Instanțierea unui obiect invocă automat metoda magică <code>__init__(self, ...)</code>, unde <code>self</code> reprezintă referința explicită către instanța curentă.</p>\n<h4>1. Metode de Instanță & Atribute</h4>\n<p>Atributele definite pe <code>self</code> (ex: <code>self.name = name</code>) aparțin fiecărui obiect individual. Variabilele definite direct în corpul clasei sunt atribute de clasă partajate între toate instanțele.</p>\n<h4>2. Reprezentare Textuală: '__repr__' vs '__str__'</h4>\n<p><code>__str__</code> oferă o descriere lizibilă destinată utilizatorului final, în timp ce <code>__repr__</code> este destinat dezvoltatorilor pentru depanare și ar trebui să fie cât mai exact și neambiguu.</p>\n",
+    "theory": "\n<p>Programarea Orientată pe Obiecte (POO) în Python structurează datele și comportamentul asociat în <strong>clase</strong>.</p>\n\n<h4>1. Constructorul __init__ și Referința self</h4>\n<p>Metoda specială <code>__init__(self, ...)</code> este inițializatorul clasei. Parametrul <code>self</code> reprezintă instanța curentă a obiectului și este transmis automat la apelarea metodelor:</p>\n\n<pre><code># Exemplu complet de clasă POO\nclass Utilizator:\n    def __init__(self, nume: str, email: str):\n        self.nume = nume\n        self.email = email\n        self.activ = True\n\n    def trimite_notificare(self, mesaj: str) -> None:\n        if self.activ:\n            print(f\"Trimitere către {self.email}: {mesaj}\")\n\n# Instanțiere:\nu = Utilizator(\"Andrei\", \"andrei@polymath.com\")\nu.trimite_notificare(\"Bine ai venit!\")\n</code></pre>\n",
     "glossary": [
       {
         "term": "__init__",
-        "def": "Metodă inițializatoare apelată imediat după crearea instanței cu __new__."
+        "def": "Metoda constructor/inițializator apelată automat la crearea unei noi instanțe."
       },
       {
         "term": "self",
-        "def": "Primul parametru obligatoriu al metodelor de instanță, referă obiectul curent."
+        "def": "Referință explicită către instanța curentă a clasei transmisă ca prim parametru metodelor."
       },
       {
-        "term": "__repr__",
-        "def": "Reprezentare oficială de depanare a obiectului pentru dezvoltatori."
+        "term": "Atribut de instanță",
+        "def": "Variabilă legată de un obiect specific prin self.atribut."
       },
       {
-        "term": "Atribut de Clasă",
-        "def": "Variabilă partajată la nivelul întregii clase, comună tuturor instanțelor."
+        "term": "Instanțiere",
+        "def": "Crearea unui obiect concret pe baza șablonului definit de o clasă."
       }
     ],
     "matchingPairs": [
       {
-        "left": "def __init__(self, x):",
-        "right": "Inițializează atributele noii instanțe"
+        "left": "class Utilizator:",
+        "right": "Declară șablonul unei noi clase"
       },
       {
-        "left": "def __str__(self):",
-        "right": "Descriere lizibilă pentru utilizatori"
+        "left": "def __init__(self, name):",
+        "right": "Constructorul clasei cu inițializare"
       },
       {
-        "left": "def __repr__(self):",
-        "right": "String detaliat de depanare pentru developeri"
+        "left": "self.name = name",
+        "right": "Atribuie valoarea unui câmp de instanță"
       },
       {
-        "left": "self.x = x",
-        "right": "Asignează valoarea atributului instanței"
+        "left": "user = Utilizator('Ion')",
+        "right": "Instanțiază un nou obiect"
       }
     ],
     "quiz": {
-      "question": "Ce reprezintă parametrul 'self' în definiția unei metode de clasă în Python?",
+      "question": "Ce rol are parametrul 'self' în definiția metodelor unei clase în Python?",
       "options": [
-        "Referința către instanța curentă a clasei pe care se invocă metoda.",
-        "Un cuvânt cheie rezervat de compilator echivalent cu 'static'.",
-        "Pointer către clasa părinte din care moștenește clasa curentă.",
-        "O variabilă globală accesibilă în toate fișierele din proiect."
+        "Reprezintă referința către instanța curentă a obiectului apelant.",
+        "Este o variabilă globală accesibilă din orice modul.",
+        "Este un cuvânt cheie rezervat ce obligă clasa să fie statică.",
+        "Indică numărul de parametri transmiși funcției."
       ],
       "correctIndex": 0,
-      "explanation": "'self' este o convenție standard în Python prin care prima referință transmisă metodei este chiar obiectul pe care se face apelul."
+      "explanation": "Parametrul self asigură accesul la atributele și metodele instanței curente pe care s-a efectuat apelul."
     },
-    "task": "Definește clasa 'User' cu metoda __init__ care primește parametrii 'self', 'username' și 'email' și îi asignează pe instanță.",
-    "starterCode": "class User:\n    # Definește constructorul __init__\n",
-    "expectedOutputPattern": "def\\s+__init__\\(self,\\s*username,\\s*email\\):\\s+self\\.username\\s*=\\s*username\\s+self\\.email\\s*=\\s*email",
-    "hint": "Scrie def __init__(self, username, email): urmat de self.username = username și self.email = email."
+    "task": "Definește o clasă 'Developer' al cărei constructor '__init__(self, name, role)' setează 'self.name = name' și 'self.role = role'.",
+    "starterCode": "# Definește clasa Developer\n",
+    "expectedOutputPattern": "class\\s+Developer\\s*:[\\s\\S]+?def\\s+__init__\\s*\\(\\s*self,\\s*name,\\s*role\\s*\\)\\s*:[\\s\\S]+?self\\.name\\s*=\\s*name[\\s\\S]+?self\\.role\\s*=\\s*role",
+    "hint": "Scrie class Developer: urmat de def __init__(self, name, role): self.name = name; self.role = role."
   },
   {
     "id": "py-new-8",
@@ -435,58 +435,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 45,
     "title": "Capitolul 8: Încapsulare cu '@property' și Setter",
-    "theory": "\n<p>Spre deosebire de Java sau C++, Python nu are specificatori rigizi de acces precum <code>private</code> sau <code>protected</code>. Convenția PEP 8 folosește un singur underscore prefixat (<code>_attr</code>) pentru a semnala un atribut intern.</p>\n<h4>1. Decoratorul '@property'</h4>\n<p>Decoratorul <code>@property</code> transformă o metodă într-un getter accesibil ca un atribut simplu fără paranteze: <code>user.full_name</code>.</p>\n<h4>2. Validare cu '@prop.setter'</h4>\n<p>Decoratorul <code>@name.setter</code> interceptează atribuirea de valori, permițând validări de integritate (ex: prețul nu poate fi negativ) menținând totodată o sintaxă curată.</p>\n",
+    "theory": "\n<p>Decoratorul <code>@property</code> permite definirea de metode ce pot fi accesate ca atribute obișnuite, permițând validarea datelor și calculul dinamic (getter și setter).</p>\n\n<pre><code># Exemplu complet de @property cu validare în setter\nclass Produs:\n    def __init__(self, pret_initial: float):\n        self._pret = pret_initial\n\n    @property\n    def pret(self) -> float:\n        \"\"\"Getter pentru preț.\"\"\"\n        return self._pret\n\n    @pret.setter\n    def pret(self, valoare_noua: float) -> None:\n        \"\"\"Setter cu validare strictă.\"\"\"\n        if valoare_noua < 0:\n            raise ValueError(\"Prețul nu poate fi negativ!\")\n        self._pret = valoare_noua\n\np = Produs(100.0)\np.pret = 150.0  # Apelează transparent setter-ul cu validare\nprint(p.pret)   # 150.0\n</code></pre>\n",
     "glossary": [
       {
         "term": "@property",
-        "def": "Decorator ce permite apelarea unei metode ca pe un atribut simplu de citire."
+        "def": "Decorator ce transformă o metodă într-un getter accesibil fără paranteze ca un atribut."
       },
       {
         "term": "@x.setter",
-        "def": "Decorator complementar ce definește logica de scriere și validare a proprietății."
+        "def": "Decorator asociat getter-ului pentru interceptarea și validarea modificărilor valorii."
       },
       {
-        "term": "Leading Underscore (_x)",
-        "def": "Convenție comunitară ce semnalează că o variabilă este de uz intern."
+        "term": "_atribut_privat",
+        "def": "Convenție PEP 8 cu underscore inițial ce semnalează că atributul este intern clasei."
       },
       {
-        "term": "Dunder Name Mangling (__x)",
-        "def": "Prefixarea cu două underscore-uri ce redenumește intern variabila pentru a preveni coliziuni în moștenire."
+        "term": "Încapsulare",
+        "def": "Principiu POO de protejare a stării interne și control al accesului prin metode dedicate."
       }
     ],
     "matchingPairs": [
       {
         "left": "@property",
-        "right": "Creează un getter accesibil ca atribut"
+        "right": "Definește getter-ul proprietății"
       },
       {
         "left": "@price.setter",
-        "right": "Validează noua valoare la atribuire"
+        "right": "Definește setter-ul de validare a proprietății"
       },
       {
-        "left": "self._balance",
-        "right": "Atribut protejat prin convenție"
+        "left": "self._price",
+        "right": "Atribut intern protejat prin convenție"
       },
       {
-        "left": "self.__secret",
-        "right": "Name mangling activat de CPython"
+        "left": "p.price = 200",
+        "right": "Invocare transparentă a metodei setter"
       }
     ],
     "quiz": {
-      "question": "Care este principalul avantaj al utilizării decoratorului @property în Python?",
+      "question": "Ce avantaj major oferă utilizarea decoratorului @property în loc de metode clasice get_price() și set_price()?",
       "options": [
-        "Permite adăugarea logicii de validare fără a modifica API-ul public de accesare a atributului.",
-        "Face ca variabila să fie stocată direct în cache-ul L1 al procesorului.",
-        "Transformă automat clasa într-o bază de date relațională.",
-        "Previne ștergerea fișierului sursă de către alți utilizatori."
+        "Păstrează o interfață curată de atribut (obj.price) permițând validare internă fără a strica backward-compatibility.",
+        "Crește viteza de execuție de 10 ori prin compilare C.",
+        "Obligă clasa să devină imutabilă pe durata execuției.",
+        "Ascunde codul sursă de utilizatorii externi."
       ],
       "correctIndex": 0,
-      "explanation": "Cu @property poți începe cu un atribut public simplu și, ulterior, poți adăuga validare fără a forța clienții să schimbe codul din obj.attr în obj.get_attr()."
+      "explanation": "@property permite accesarea obj.price în mod idiomatic și adăugarea ulterioară de validare fără modificarea codului apelant."
     },
-    "task": "Definește un getter @property numit 'age' în clasa 'Person' care returnează valoarea atributului protejat 'self._age'.",
-    "starterCode": "class Person:\n    def __init__(self, age):\n        self._age = age\n\n    # Adaugă @property age\n",
-    "expectedOutputPattern": "@property\\s+def\\s+age\\(self\\):\\s+return\\s+self\\._age",
-    "hint": "Folosește @property urmat de def age(self): return self._age."
+    "task": "Definește un getter '@property def balance(self): return self._balance' în interiorul unei clase.",
+    "starterCode": "class Account:\n    def __init__(self, amount):\n        self._balance = amount\n\n    # Adaugă @property pentru balance\n",
+    "expectedOutputPattern": "@property\\s+def\\s+balance\\s*\\(\\s*self\\s*\\)\\s*:\\s*\\n\\s*return\\s+self\\._balance",
+    "hint": "Scrie @property pe o linie, urmat de def balance(self): return self._balance."
   },
   {
     "id": "py-new-9",
@@ -496,58 +496,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 50,
     "title": "Capitolul 9: Argumente Variabile '*args' și '**kwargs'",
-    "theory": "\n<p>Operatorii de despachetare <code>*</code> și <code>**</code> permit funcțiilor să accepte un număr dinamic de parametri poziționali și nominali.</p>\n<h4>1. Tuple-ul '*args'</h4>\n<p>Parametrul <code>*args</code> împachetează toate argumentele poziționale suplimentare într-un <code>tuple</code> imutabil.</p>\n<h4>2. Dicționarul '**kwargs'</h4>\n<p>Parametrul <code>**kwargs</code> împachetează toate argumentele transmise ca perechi cheie-valoare într-un <code>dict</code> standard. Este fundamentul prin care decoratorii transmit mai departe argumentele funcției decorate.</p>\n",
+    "theory": "\n<p>Sintaxa <code>*args</code> și <code>**kwargs</code> permite funcțiilor să accepte un număr dinamic și variabil de argumente poziționale și numite (keyword arguments).</p>\n\n<pre><code># Exemplu complet de funcție flexibilă cu *args și **kwargs\ndef construieste_interogare(tabel: str, *coloane, **filtre) -> str:\n    cols = \", \".join(coloane) if coloane else \"*\"\n    where = \" AND \".join([f\"{k} = '{v}'\" for k, v in filtre.items()])\n    \n    query = f\"SELECT {cols} FROM {tabel}\"\n    if where:\n        query += f\" WHERE {where}\"\n    return query\n\n# Apel flexibil:\nsql = construieste_interogare(\"users\", \"id\", \"email\", status=\"active\", role=\"admin\")\nprint(sql)\n# Output: SELECT id, email FROM users WHERE status = 'active' AND role = 'admin'\n</code></pre>\n",
     "glossary": [
       {
         "term": "*args",
-        "def": "Colectează argumentele poziționale excedentare într-un tuple."
+        "def": "Colectează argumentele poziționale adiționale într-un tuplu (tuple)."
       },
       {
         "term": "**kwargs",
-        "def": "Colectează argumentele cu nume (keyword arguments) într-un dicționar."
+        "def": "Colectează argumentele numite (cheie=valoare) într-un dicționar (dict)."
       },
       {
         "term": "Argument Unpacking",
-        "def": "Transmiterea unei liste cu *list sau a unui dicționar cu **dict într-un apel de funcție."
+        "def": "Transmiterea unei liste (*list) sau a unui dicționar (**dict) la apelul unei funcții."
       },
       {
-        "term": "Keyword-Only Argument",
-        "def": "Argument ce poate fi transmis doar cu nume, plasat după un '*' solitar."
+        "term": "Flexibilitate API",
+        "def": "Capacitatea funcțiilor utilitare de a primi parametri necunoscuți în avans."
       }
     ],
     "matchingPairs": [
       {
-        "left": "def func(*args):",
-        "right": "args este un tuple cu parametri poziționali"
+        "left": "def f(*args):",
+        "right": "Primește argumente poziționale ca tuplu"
       },
       {
-        "left": "def func(**kwargs):",
-        "right": "kwargs este un dict cu perechi cheie-valoare"
+        "left": "def f(**kwargs):",
+        "right": "Primește argumente cu nume ca dicționar"
       },
       {
         "left": "func(*my_list)",
-        "right": "Despachetează lista ca parametri individuali"
+        "right": "Despachetează lista în argumente poziționale"
       },
       {
         "left": "func(**my_dict)",
-        "right": "Despachetează dicționarul ca parametri numiți"
+        "right": "Despachetează dicționarul în keyword arguments"
       }
     ],
     "quiz": {
-      "question": "Ce tip de date are parametrul 'kwargs' în corpul funcției 'def log_event(**kwargs):'?",
+      "question": "Ce tip de date are parametrul kwargs în interiorul funcției def test(**kwargs)?",
       "options": [
-        "dict (dicționar standard Python)",
+        "dict (dicționar de perechi cheie-valoare)",
         "tuple (tuplu imutabil)",
-        "list (listă dinamică)",
+        "list (listă ordonată)",
         "set (mulțime de valori unice)"
       ],
       "correctIndex": 0,
-      "explanation": "**kwargs capturează toate argumentele denumite (keyword arguments) într-un dicționar standard de tip dict."
+      "explanation": "**kwargs împachetează toți parametrii transmiși sub formă de cheie=valoare într-un dicționar standard Python."
     },
-    "task": "Definește funcția 'wrapper(*args, **kwargs)' care apelează și returnează 'target(*args, **kwargs)'.",
-    "starterCode": "def wrapper(*args, **kwargs):\n    # Apelează target și returnează rezultatul\n",
-    "expectedOutputPattern": "return\\s+target\\(\\*args,\\s*\\*\\*kwargs\\)",
-    "hint": "Scrie: return target(*args, **kwargs)"
+    "task": "Definește o funcție 'sum_all(*args)' care returnează suma argumentelor primite folosind 'return sum(args)'.",
+    "starterCode": "# Definește funcția sum_all\n",
+    "expectedOutputPattern": "def\\s+sum_all\\s*\\(\\s*\\*args\\s*\\)\\s*:\\s*\\n\\s*return\\s+sum\\(args\\)",
+    "hint": "Scrie: def sum_all(*args): return sum(args)."
   },
   {
     "id": "py-new-10",
@@ -557,58 +557,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 50,
     "title": "Capitolul 10: Decoratori & Metaprogramare cu '@functools.wraps'",
-    "theory": "\n<p>Un decorator este o funcție de ordin superior care primește o funcție ca argument și returnează o versiune extinsă a acesteia, adăugând comportamente transversale (logging, benchmarking, autentificare) fără a altera codul original.</p>\n<h4>1. Structura Clasică a unui Decorator</h4>\n<p>Un decorator definește o funcție internă <code>wrapper(*args, **kwargs)</code> care execută cod înainte și după funcția țintă.</p>\n<h4>2. Salvarea Metadatelor cu @functools.wraps</h4>\n<p>Fără <code>@wraps(func)</code>, numele (<code>__name__</code>) și documentația (<code>__doc__</code>) a funcției originale sunt suprascrise de cele ale wrapper-ului. Folosirea <code>@wraps</code> păstrează identitatea intactă.</p>\n",
+    "theory": "\n<p>Un decorator este o funcție care primește o altă funcție ca argument și îi extinde comportamentul fără a-i modifica codul sursă. Pentru a păstra numele, docstring-ul și metadatele funcției originale, folosim întotdeauna <code>@functools.wraps</code>.</p>\n\n<pre><code>import time\nfrom functools import wraps\n\n# Decorator complet de măsurare a performanței:\ndef masoara_timp(func):\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        start = time.perf_counter()\n        rezultat = func(*args, **kwargs)\n        durata = time.perf_counter() - start\n        print(f\"[{func.__name__}] Executat în {durata:.6f}s\")\n        return rezultat\n    return wrapper\n\n@masoara_timp\ndef calcul_intensiv(n):\n    \"\"\"Calculează suma pătratelor.\"\"\"\n    return sum(i ** 2 for i in range(n))\n\nval = calcul_intensiv(1000000)\nprint(calcul_intensiv.__name__) # 'calcul_intensiv' (datorită @wraps!)\n</code></pre>\n",
     "glossary": [
       {
-        "term": "Higher-Order Function",
-        "def": "Funcție ce acceptă alte funcții ca argumente sau returnează funcții."
+        "term": "Decorator",
+        "def": "Funcție de ordin superior ce împachetează o altă funcție modificându-i comportamentul."
       },
       {
         "term": "@functools.wraps",
-        "def": "Decorator auxiliar ce copiază numele și docstringul funcției originale pe wrapper."
+        "def": "Utilitar esențial ce copiază docstring-ul, numele și semnătura funcției originale în wrapper."
       },
       {
-        "term": "Closure (Închidere)",
-        "def": "Funcție internă ce reține accesul la variabilele din scope-ul funcției exterioare."
+        "term": "Funcție de Ordin Superior",
+        "def": "Funcție ce poate primi sau returna alte funcții ca valori cetățeni de rang 1."
       },
       {
-        "term": "Aspect-Oriented Design",
-        "def": "Separarea preocupărilor transversale precum loggingul sau autorizarea de logica de business."
+        "term": "Metaprogramare",
+        "def": "Tehnică prin care codul manipulează sau inspectează alte structuri de cod la runtime."
       }
     ],
     "matchingPairs": [
       {
-        "left": "@wraps(fn)",
-        "right": "Păstrează __name__ și __doc__ ale funcției originale"
+        "left": "@my_decorator",
+        "right": "Aplică decoratorul peste funcția definită dedesubt"
+      },
+      {
+        "left": "@wraps(func)",
+        "right": "Păstrează metadatele și numele funcției originale"
       },
       {
         "left": "wrapper(*args, **kwargs)",
-        "right": "Interceptează apelul și rulează logica transversală"
+        "right": "Funcția internă ce interceptează apelul"
       },
       {
-        "left": "@my_decorator",
-        "right": "Zahăr sintactic pentru fn = my_decorator(fn)"
-      },
-      {
-        "left": "fn(*args, **kwargs)",
-        "right": "Execuția funcției decorate originale"
+        "left": "return wrapper",
+        "right": "Decoratorul returnează funcția îmbunătățită"
       }
     ],
     "quiz": {
-      "question": "Ce problemă rezolvă adăugarea @functools.wraps(func) pe funcția wrapper a unui decorator?",
+      "question": "Ce problemă rezolvă adăugarea @functools.wraps(func) pe funcția wrapper din interiorul unui decorator?",
       "options": [
-        "Păstrează numele (__name__) și docstringul (__doc__) funcției decorate originale.",
-        "Face ca funcția să ruleze pe toate nucleele procesorului simultan.",
-        "Previne complet apariția excepțiilor de tip TypeError.",
-        "Compilează funcția direct în limbaj de asamblare x86."
+        "Păstrează numele funcției originale (__name__) și docstring-ul, evitând suprascrierea cu 'wrapper'.",
+        "Permite rularea funcției asincron pe GPU.",
+        "Optimizează memoria prin compilare în C.",
+        "Verifică tipurile de date ale argumentelor."
       ],
       "correctIndex": 0,
-      "explanation": "Fără @wraps(func), funcția decorată își pierde identitatea și va apărea în traceback-uri și unelte de depanare ca având numele 'wrapper'."
+      "explanation": "Fără @wraps(func), introspecția (func.__name__) ar returna numele generic 'wrapper', perturbând logging-ul și documentația."
     },
-    "task": "Scrie un decorator simplu 'my_dec(fn)' care conține un wrapper decorat cu '@wraps(fn)' ce returnează 'fn(*args, **kwargs)'.",
-    "starterCode": "from functools import wraps\n\ndef my_dec(fn):\n    # Completează wrapper-ul\n",
-    "expectedOutputPattern": "@wraps\\(fn\\)\\s+def\\s+wrapper\\(\\*args,\\s*\\*\\*kwargs\\):\\s+return\\s+fn\\(\\*args,\\s*\\*\\*kwargs\\)",
-    "hint": "Folosește @wraps(fn) deasupra lui def wrapper(*args, **kwargs): return fn(*args, **kwargs) și returnează wrapper."
+    "task": "Completează decoratorul 'log_call' aplicând '@wraps(func)' deasupra funcției interne 'wrapper(*args, **kwargs)'.",
+    "starterCode": "from functools import wraps\n\ndef log_call(func):\n    # Aplică decoratorul wraps\n    def wrapper(*args, **kwargs):\n        return func(*args, **kwargs)\n    return wrapper\n",
+    "expectedOutputPattern": "@wraps\\(func\\)\\s*\\n\\s*def\\s+wrapper\\s*\\(\\s*\\*args,\\s*\\*\\*kwargs\\s*\\)",
+    "hint": "Pune @wraps(func) chiar deasupra liniei def wrapper(*args, **kwargs):."
   },
   {
     "id": "py-new-11",
@@ -618,58 +618,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 55,
     "title": "Capitolul 11: Generatoare & Protocolul Iterator ('yield')",
-    "theory": "\n<p>Generatoarele sunt funcții speciale care produc valori secvențial la cerere folosind cuvântul cheie <code>yield</code>, în loc să construiască o listă completă în memorie.</p>\n<h4>1. Eficiență Memorie $O(1)$</h4>\n<p>Când o funcție întâlnește <code>yield</code>, starea sa de execuție este înghețată și valoarea este trimisă apelantului. La următoarea cerere (via <code>next()</code> sau într-o buclă <code>for</code>), execuția se reia exact de la instrucțiunea următoare.</p>\n<h4>2. Generator Expressions</h4>\n<p>Sintaxa <code>(x * 2 for x in large_stream)</code> creează un generator anonim fără a aloca memorie pentru întreaga colecție, fiind esențial pentru procesarea fișierelor de zeci de gigaocteți.</p>\n",
+    "theory": "\n<p>Generatoarele produc valori <em>la cerere</em> (lazy evaluation) prin instrucțiunea <code>yield</code>, păstrându-și starea între apeluri fără a încărca întreaga colecție în memoria RAM ($O(1)$ memory footprint).</p>\n\n<pre><code># Exemplu complet de generator de date:\ndef citeste_linii_mari(cale_fisier):\n    \"\"\"Produce linii una câte una fără a bloca memoria.\"\"\"\n    with open(cale_fisier, \"r\", encoding=\"utf-8\") as f:\n        for linie in f:\n            yield linie.strip()\n\n# Generator expressions (sintaxă cu paranteze rotunde):\npatrate_gen = (x ** 2 for x in range(1000000000))\n# Memoria ocupată: doar câțiva octeți!\nprint(next(patrate_gen)) # 0\nprint(next(patrate_gen)) # 1\n</code></pre>\n",
     "glossary": [
       {
         "term": "yield",
-        "def": "Instrucțiune ce returnează o valoare intermediară și suspendă execuția funcției generator."
+        "def": "Instrucțiune ce suspendă funcția și returnează o valoare intermediară, reluând execuția ulterior."
       },
       {
         "term": "Lazy Evaluation",
-        "def": "Calculul valorilor este amânat până în momentul precis în care acestea sunt solicitate."
-      },
-      {
-        "term": "StopIteration",
-        "def": "Excepție internă semnalată automat când generatorul nu mai are elemente de produs."
+        "def": "Calcul amânat până în momentul precis în care valoarea este solicitată de consumator."
       },
       {
         "term": "next(iterator)",
-        "def": "Funcție nativă ce solicită următoarea valoare disponibilă dintr-un generator."
+        "def": "Funcție nativă ce solicită următoarea valoare dintr-un generator sau aruncă StopIteration."
+      },
+      {
+        "term": "O(1) Memory",
+        "def": "Consum constant de memorie indiferent de dimensiunea secvenței generate."
       }
     ],
     "matchingPairs": [
       {
-        "left": "yield item",
-        "right": "Trimite valoarea și îngheață starea funcției"
+        "left": "yield x",
+        "right": "Emite valoarea x și suspendă execuția funcției"
       },
       {
         "left": "next(gen)",
-        "right": "Reia execuția până la următorul yield"
-      },
-      {
-        "left": "(x for x in data)",
-        "right": "Generator expression cu consum O(1) de memorie"
+        "right": "Avansează generatorul la următorul yield"
       },
       {
         "left": "StopIteration",
-        "right": "Excepție ce marchează epuizarea generatorului"
+        "right": "Excepție ce semnalează epuizarea generatorului"
+      },
+      {
+        "left": "(x for x in data)",
+        "right": "Generator expression cu evaluare leneșă"
       }
     ],
     "quiz": {
-      "question": "Care este principalul avantaj al unui generator cu 'yield' față de o funcție ce returnează o listă de 10.000.000 de elemente?",
+      "question": "Ce se întâmplă în memorie când creezi un generator cu g = (x for x in range(10**9))?",
       "options": [
-        "Consum constant de memorie O(1), deoarece elementele sunt produse la cerere.",
-        "Codul este compilat automat în WebAssembly.",
-        "Generatoarele nu pot arunca niciodată excepții.",
-        "Elementele pot fi accesate instant prin indexare directă gen gen[500]."
+        "Ocupă o cantitate minusculă de memorie constantă O(1), valorile fiind produse una câte una la cerere.",
+        "Aruncă MemoryError deoarece nu încap un miliard de elemente în RAM.",
+        "Pre-alocă 8 GB de memorie virtuală.",
+        "Se blochează interpreterul până când se termină bucla."
       ],
       "correctIndex": 0,
-      "explanation": "Generatoarele generează fiecare element la cerere (lazy), fără a aloca memorie RAM pentru întreaga colecție simultan."
+      "explanation": "Generatoarele nu stochează valorile în memorie, ci memorează doar starea de execuție și algoritmul de calcul."
     },
-    "task": "Scrie o funcție generator 'count_up(n)' care iterează de la 0 la n-1 folosind o buclă for și emite fiecare valoare cu 'yield'.",
-    "starterCode": "def count_up(n):\n    # Folosește for și yield\n",
-    "expectedOutputPattern": "for\\s+i\\s+in\\s+range\\(n\\):\\s+yield\\s+i",
-    "hint": "Scrie for i in range(n): urmat de yield i."
+    "task": "Scrie o funcție generator 'count_up(limit)' care generează numere de la 1 la limit folosind 'for i in range(1, limit + 1): yield i'.",
+    "starterCode": "# Definește generatorul count_up\n",
+    "expectedOutputPattern": "def\\s+count_up\\s*\\(\\s*limit\\s*\\)\\s*:[\\s\\S]+?for\\s+i\\s+in\\s+range\\(1,\\s*limit\\s*\\+\\s*1\\)\\s*:[\\s\\S]+?yield\\s+i",
+    "hint": "Scrie def count_up(limit): for i in range(1, limit + 1): yield i."
   },
   {
     "id": "py-new-12",
@@ -679,58 +679,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 55,
     "title": "Capitolul 12: Structuri Avansate din Modulul 'collections'",
-    "theory": "\n<p>Modulul standard <code>collections</code> oferă alternative optimizate în C la tipurile de date de bază din Python, rezolvând probleme comune de arhitectură.</p>\n<h4>1. defaultdict & Counter</h4>\n<p><code>defaultdict(factory)</code> elimină verificările repetitive de chei lipsă, instanțiind automat valoarea implicită (ex: <code>defaultdict(list)</code>). <code>Counter(iterable)</code> numără instant frecvența aparițiilor fiecărui element.</p>\n<h4>2. deque (Double-Ended Queue)</h4>\n<p>În timp ce adăugarea/ștergerea de la începutul unei liste clasice (<code>list.pop(0)</code>) costă $O(n)$, <code>collections.deque</code> oferă operațiuni de tip <code>appendleft()</code> și <code>popleft()</code> garantate în timp $O(1)$.</p>\n",
+    "theory": "\n<p>Modulul standard <code>collections</code> oferă containere de înaltă performanță optimizate în C, ideale pentru statistici, procesare de fluxuri și cache-uri:</p>\n\n<pre><code>from collections import Counter, defaultdict, deque\n\n# 1. Counter: numărare instantă de frecvențe\ncuvinte = [\"python\", \"sql\", \"python\", \"docker\", \"python\", \"sql\"]\nfrecvente = Counter(cuvinte)\nprint(frecvente.most_common(2)) # [('python', 3), ('sql', 2)]\n\n# 2. defaultdict: previne KeyError cu valori implicite automate\ngrupe = defaultdict(list)\ngrupe[\"admin\"].append(\"Alex\") # Creează lista automat dacă cheia lipsește!\n\n# 3. deque: coadă dublu înlănțuită cu append/pop O(1) la ambele capete\ncoada = deque([1, 2, 3])\ncoada.appendleft(0) # Inserare instantanee la început O(1)\n</code></pre>\n",
     "glossary": [
       {
-        "term": "defaultdict(list)",
-        "def": "Dicționar ce inițializează automat o listă nouă la accesarea unei chei inexistente."
-      },
-      {
         "term": "Counter",
-        "def": "Subclasă de dict specializată în numărarea și ordonarea elementelor hashable."
+        "def": "Subclasă de dict optimizată pentru contorizarea frecvenței elementelor hashable."
       },
       {
-        "term": "deque",
-        "def": "Coadă dublă optimizată pentru adăugare și eliminare O(1) la ambele capete."
+        "term": "defaultdict",
+        "def": "Dicționar ce apelează o fabrică (ex: list, int) când este accesată o cheie nouă."
       },
       {
-        "term": "namedtuple",
-        "def": "Tuplu ale cărui câmpuri pot fi accesate atât prin index, cât și prin nume de atribut."
+        "term": "deque (Double-ended queue)",
+        "def": "Coadă bidirecțională optimizată pentru inserare și extragere O(1) la ambele capete."
+      },
+      {
+        "term": "Counter.most_common(n)",
+        "def": "Returnează cele mai frecvente n elemente ordonate descrescător."
       }
     ],
     "matchingPairs": [
       {
-        "left": "deque.popleft()",
-        "right": "Eliminare garantată în timp O(1) de la început"
+        "left": "Counter(items)",
+        "right": "Numără aparițiile fiecărui element"
       },
       {
-        "left": "Counter(words).most_common(3)",
-        "right": "Returnează top 3 cele mai frecvente cuvinte"
+        "left": "defaultdict(list)",
+        "right": "Inițializează automat o listă goală pentru chei noi"
       },
       {
-        "left": "defaultdict(int)",
-        "right": "Inițializează automat cheile lipsă cu 0"
+        "left": "deque.appendleft(x)",
+        "right": "Inserare în timp constant O(1) la începutul cozii"
       },
       {
-        "left": "namedtuple('Point', ['x', 'y'])",
-        "right": "Tuplu imutabil cu acces prin nume de câmp"
+        "left": "counts.most_common(1)",
+        "right": "Extrage elementul cu cea mai mare frecvență"
       }
     ],
     "quiz": {
-      "question": "De ce este preferabil să folosești collections.deque în loc de list când implementezi o coadă FIFO?",
+      "question": "De ce este structura collections.deque superioară listei native pentru operații de inserare la începutul colecției?",
       "options": [
-        "Operația popleft() pe deque durează O(1), în timp ce pe o listă clasică costă O(n).",
-        "Listele clasice nu suportă adăugarea la final prin append().",
-        "deque poate stoca doar numere întregi pe 64 de biți.",
-        "deque criptează datele din coadă în memorie."
+        "deque oferă complexitate O(1) la inserare la ambele capete, pe când list.insert(0, x) necesită deplasare O(n).",
+        "deque ocupă de 10 ori mai puțin spațiu pe disc.",
+        "listele native nu suportă valori de tip șir de caractere.",
+        "deque nu permite valori duplicate."
       ],
       "correctIndex": 0,
-      "explanation": "Listele Python sunt vectori contigui; ștergerea primului element necesită deplasarea tuturor celorlalte elemente din memorie (O(n)). deque folosește blocuri legate în timp O(1)."
+      "explanation": "Listele Python sunt tablouri dinamice contigue unde inserarea la index 0 cere mutarea tuturor elementelor O(n), pe când deque este dublu înlănțuit O(1)."
     },
-    "task": "Creează un dicționar 'groups' de tip 'defaultdict(list)' din modulul 'collections'.",
-    "starterCode": "from collections import defaultdict\n\ngroups = ",
-    "expectedOutputPattern": "groups\\s*=\\s*defaultdict\\(list\\)",
-    "hint": "Scrie groups = defaultdict(list)."
+    "task": "Inițializează un 'defaultdict' cu fabrică de tip 'list' în variabila 'user_roles = defaultdict(list)'.",
+    "starterCode": "from collections import defaultdict\nuser_roles = ",
+    "expectedOutputPattern": "user_roles\\s*=\\s*defaultdict\\(list\\)",
+    "hint": "Scrie user_roles = defaultdict(list)."
   },
   {
     "id": "py-new-13",
@@ -740,58 +740,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 60,
     "title": "Capitolul 13: Type Hinting Modern & Modulul 'typing'",
-    "theory": "\n<p>Începând cu Python 3.9 și 3.10, adnotările de tipuri au devenit native (ex: <code>list[str]</code>, <code>dict[str, int]</code>, union-ul cu bară <code>int | None</code>), facilitând analiza statică prin unelte precum <code>mypy</code>.</p>\n<h4>1. Tipuri Opționale & Union</h4>\n<p>Sintaxa modernă <code>val: str | None = None</code> este echivalentă cu <code>Optional[str]</code> din modulul <code>typing</code>, indicând că o variabilă poate conține un șir sau valoarea <code>None</code>.</p>\n<h4>2. Protocol & Callable</h4>\n<p><code>Callable[[Arg1, Arg2], ReturnType]</code> tipizează semnătura unei funcții transmise ca parametru. Clasele ce moștenesc <code>typing.Protocol</code> permit implementarea de tipare structurală (Duck Typing verificat static).</p>\n",
+    "theory": "\n<p>Type hints (PEP 484 / PEP 604) transformă Python într-un limbaj robust pentru companii enterprise, oferind autocompletare avansată în IDE și analiză statică cu <code>mypy</code>.</p>\n\n<pre><code>from typing import Optional, Union, List, Dict, Callable\n\n# În Python 3.10+, se poate folosi operatorul '|' (Union):\ndef gaseste_utilizator(user_id: int) -> Optional[dict]:\n    \"\"\"Returnează un dicționar sau None dacă utilizatorul lipsește.\"\"\"\n    if user_id <= 0:\n        return None\n    return {\"id\": user_id, \"name\": \"Elena\"}\n\n# Type alias modern:\nUserId = int\nScoresMap = Dict[str, List[float]]\n\ndef calculeaza_medie(scoruri: ScoresMap) -> float:\n    toate = [nota for note in scoruri.values() for nota in note]\n    return sum(toate) / len(toate) if toate else 0.0\n</code></pre>\n",
     "glossary": [
       {
-        "term": "Type Hints (PEP 484)",
-        "def": "Adnotări de tip utilizate de linters și IDE-uri pentru detectarea erorilor înainte de rulare."
+        "term": "Optional[T]",
+        "def": "Echivalent cu Union[T, None], semnalează că valoarea poate fi de tip T sau None."
       },
       {
-        "term": "Union (A | B)",
-        "def": "Operator ce specifică că o valoare poate fi de oricare dintre tipurile indicate."
+        "term": "Union[A, B] (A | B)",
+        "def": "Specifică faptul că un parametru sau return poate avea unul din tipurile menționate."
       },
       {
-        "term": "Callable[[A], R]",
-        "def": "Tip ce descrie o funcție care primește un argument de tip A și returnează R."
+        "term": "mypy",
+        "def": "Linterul oficial de verificare statică a tipurilor pentru Python."
       },
       {
-        "term": "Duck Typing",
-        "def": "'Dacă merge ca o rață și măcăne ca o rață, este o rață' - compatibilitate pe bază de comportament."
+        "term": "Type Alias",
+        "def": "Definirea unui nume intuitiv pentru o compoziție complexă de tipuri."
       }
     ],
     "matchingPairs": [
       {
-        "left": "items: list[str]",
-        "right": "Listă ce conține exclusiv șiruri de caractere"
+        "left": "Optional[str]",
+        "right": "Poate fi un șir de caractere sau None"
       },
       {
-        "left": "val: int | None",
-        "right": "Valoare opțională: întreg sau None"
+        "left": "int | float",
+        "right": "Sintaxă modernă Python 3.10+ pentru Union de tipuri"
       },
       {
-        "left": "fn: Callable[[int], bool]",
-        "right": "Funcție ce primește int și returnează bool"
+        "left": "Callable[[int], bool]",
+        "right": "Semnătură de funcție ce primește int și returnează bool"
       },
       {
-        "left": "cache: dict[str, Any]",
-        "right": "Dicționar cu chei string și valori de orice tip"
+        "left": "def f(x: int) -> str:",
+        "right": "Parametru de tip întreg și retur de tip string"
       }
     ],
     "quiz": {
-      "question": "Ce reprezintă adnotarea de tip 'def find_user(id: int) -> User | None:'?",
+      "question": "Ce indică type hint-ul Optional[int] pentru valoarea de return a unei funcții?",
       "options": [
-        "Funcția primește un întreg și poate returna un obiect User sau valoarea None dacă nu a fost găsit.",
-        "Funcția aruncă o eroare dacă nu găsește un User în baza de date.",
-        "ID-ul utilizatorului este convertit automat din User în None.",
-        "Funcția se execută doar dacă ID-ul este număr impar."
+        "Funcția poate returna fie un număr întreg (int), fie valoarea None.",
+        "Parametrul este opțional și nu trebuie furnizat la apel.",
+        "Valoarea returnată este convertită automat în float dacă este pară.",
+        "Funcția rulează doar în mod opțional."
       ],
       "correctIndex": 0,
-      "explanation": "Adnotarea 'User | None' semnalează static că funcția poate returna fie o instanță validă a clasei User, fie valoarea None."
+      "explanation": "Optional[T] este un shorthand formal pentru Union[T, None], indicând explicit posibilitatea absenței valorii."
     },
-    "task": "Definește o funcție tipizată 'calculate(x: int, y: int) -> int:' care returnează suma lor.",
-    "starterCode": "# Scrie funcția tipizată calculate\n",
-    "expectedOutputPattern": "def\\s+calculate\\(x:\\s*int,\\s*y:\\s*int\\)\\s*->\\s*int:\\s+return\\s+x\\s*\\+\\s*y",
-    "hint": "Scrie def calculate(x: int, y: int) -> int: return x + y."
+    "task": "Adaugă type hinting complet pentru o funcție 'def get_length(text: str) -> int:' care returnează len(text).",
+    "starterCode": "# Scrie funcția cu type hints complete\n",
+    "expectedOutputPattern": "def\\s+get_length\\s*\\(\\s*text\\s*:\\s*str\\s*\\)\\s*->\\s*int\\s*:[\\s\\S]+?return\\s+len\\(text\\)",
+    "hint": "Scrie: def get_length(text: str) -> int: return len(text)."
   },
   {
     "id": "py-new-14",
@@ -801,58 +801,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 60,
     "title": "Capitolul 14: Clase de Date Moderne — '@dataclass'",
-    "theory": "\n<p>Decoratorul <code>@dataclass</code> din modulul standard <code>dataclasses</code> generează automat metodele <code>__init__</code>, <code>__repr__</code>, <code>__eq__</code> și altele pe baza adnotărilor de tip, eliminând codul de tip boilerplate.</p>\n<h4>1. Imutabilitate cu frozen=True</h4>\n<p>Specificarea <code>@dataclass(frozen=True)</code> transformă instanțele în obiecte imutabile și automat <em>hashable</em>, permițându-le să fie utilizate drept chei în dicționare sau elemente în seturi.</p>\n<h4>2. Câmpuri cu 'field(default_factory=...)'</h4>\n<p>Valorile implicite mutabile (precum liste goale) nu trebuie niciodată declarate ca <code>items: list = []</code>. Se folosește <code>field(default_factory=list)</code> pentru a asigura o instanță nouă pentru fiecare obiect.</p>\n",
+    "theory": "\n<p>Modulul <code>dataclasses</code> generează automat metodele <code>__init__</code>, <code>__repr__</code>, <code>__eq__</code> și comparatori pe baza type annotations, eliminând complet codul boilerplate.</p>\n\n<pre><code>from dataclasses import dataclass, field\n\n@dataclass(frozen=True) # Obiect imutabil și hashable!\nclass Tranzactie:\n    id: str\n    suma: float\n    moneda: str = \"EUR\"\n    taguri: list = field(default_factory=list)\n\n# Utilizare:\nt1 = Tranzactie(\"tx_101\", 250.0, \"EUR\")\nt2 = Tranzactie(\"tx_101\", 250.0, \"EUR\")\n\nprint(t1)        # Tranzactie(id='tx_101', suma=250.0, moneda='EUR', taguri=[])\nprint(t1 == t2)  # True (comparație automată pe valori!)\n# t1.suma = 300 # Aruncă FrozenInstanceError dacă frozen=True!\n</code></pre>\n",
     "glossary": [
       {
         "term": "@dataclass",
-        "def": "Decorator ce autogenerează constructorul, egalitatea și reprezentarea pentru clase de date."
+        "def": "Decorator standard ce sintetizează automat metodele de instanțiere și reprezentare."
       },
       {
         "term": "frozen=True",
-        "def": "Parametru ce interzice modificarea atributelor după instanțiere, făcând obiectul hashable."
+        "def": "Opțiune ce transformă instanța într-un obiect imutabil protejat împotriva mutațiilor."
       },
       {
-        "term": "default_factory",
-        "def": "Funcție furnizoare de valori implicite mutabile unice per instanță (ex: list, dict)."
+        "term": "field(default_factory=...)",
+        "def": "Metodă corectă de a atribui valori implicite mutabile (list, dict) într-o dataclass."
       },
       {
-        "term": "__post_init__",
-        "def": "Metodă specială apelată automat după __init__ pentru validări suplimentare."
+        "term": "__repr__ automat",
+        "def": "Afișare lizibilă pentru debugging fără a scrie manual cod de formatare."
       }
     ],
     "matchingPairs": [
       {
-        "left": "@dataclass(frozen=True)",
-        "right": "Generează o clasă de date complet imutabilă"
+        "left": "@dataclass",
+        "right": "Generează automat __init__, __repr__ și __eq__"
       },
       {
-        "left": "field(default_factory=list)",
-        "right": "Evită partajarea listei mutabile între instanțe"
+        "left": "frozen=True",
+        "right": "Face instanța imutabilă și compatibilă cu hash-uri"
       },
       {
-        "left": "def __post_init__(self):",
-        "right": "Execută validări imediat după inițializare"
+        "left": "default_factory=list",
+        "right": "Inițializare sigură pentru colecții mutabile"
       },
       {
-        "left": "asdict(my_dataclass)",
-        "right": "Convertește instant instanța într-un dicționar"
+        "left": "order_a == order_b",
+        "right": "Compară câmpurile obiectelor valoare cu valoare"
       }
     ],
     "quiz": {
-      "question": "De ce este interzisă atribuirea directă 'tags: list[str] = []' în interiorul unei @dataclass?",
+      "question": "De ce este interzis să scrii 'tags: list = []' direct ca valoare implicită într-o @dataclass?",
       "options": [
-        "Aceeași listă ar fi partajată periculos între toate instanțele clasei (eroare de valoare implicită mutabilă).",
-        "Python refuză să ruleze dacă găsește caracterele '[]' într-o clasă.",
-        "Listele ocupă prea multă memorie pe procesoarele ARM.",
-        "Dataclass suportă doar tuple-uri, nu și liste."
+        "Lista ar fi partajată ca obiect mutabil comun între toate instanțele; trebuie folosit field(default_factory=list).",
+        "Python nu suportă liste în interiorul dataclasses.",
+        "Aruncă eroare de compilare CPython.",
+        "Trebuie folosit exclusiv tuplu."
       ],
       "correctIndex": 0,
-      "explanation": "Valorile implicite mutabile sunt evaluate o singură dată la definirea clasei. Fără default_factory=list, toate instanțele ar partaja aceeași listă în memorie."
+      "explanation": "La fel ca la parametrii funcțiilor, valorile implicite mutabile sunt evaluate o singură dată la definire; default_factory garantează o listă nouă per instanță."
     },
-    "task": "Definește un @dataclass numit 'Product' cu atributele 'name: str' și 'price: float'.",
-    "starterCode": "from dataclasses import dataclass\n\n# Creează dataclass Product\n",
-    "expectedOutputPattern": "@dataclass\\s+class\\s+Product:\\s+name:\\s*str\\s+price:\\s*float",
-    "hint": "Scrie @dataclass deasupra lui class Product: name: str price: float."
+    "task": "Creează o clasă '@dataclass' numită 'Server' cu atributele 'host: str' și 'port: int = 8080'.",
+    "starterCode": "from dataclasses import dataclass\n\n# Definește @dataclass Server\n",
+    "expectedOutputPattern": "@dataclass\\s*\\n\\s*class\\s+Server\\s*:[\\s\\S]+?host\\s*:\\s*str[\\s\\S]+?port\\s*:\\s*int\\s*=\\s*8080",
+    "hint": "Scrie @dataclass pe prima linie, urmat de class Server: host: str; port: int = 8080."
   },
   {
     "id": "py-new-15",
@@ -862,58 +862,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 65,
     "title": "Capitolul 15: Asincronism Nativa cu 'asyncio' (Event Loop)",
-    "theory": "\n<p>Modulul <code>asyncio</code> oferă o arhitectură concurentă cu cooperare bazată pe un singur fir de execuție (Single-Threaded Event Loop), ideală pentru operațiuni I/O bound (apeluri HTTP, baze de date).</p>\n<h4>1. Coroutine cu 'async def' și 'await'</h4>\n<p>O funcție declarată cu <code>async def</code> este o coroutină. Instrucțiunea <code>await coro()</code> suspendă coroutina curentă și cedează controlul Event Loop-ului până când rezultatul este gata, permițând altor coroutine să ruleze.</p>\n<h4>2. Execuție Concurentă cu asyncio.gather</h4>\n<p>Funcția <code>asyncio.gather(*tasks)</code> lansează multiple operațiuni asincrone în paralel și returnează toate rezultatele agregate când toate s-au încheiat.</p>\n",
+    "theory": "\n<p>Modulul <code>asyncio</code> oferă execuție concurentă cooperativă prin <strong>coroutine</strong> bazate pe <code>async/await</code>, gestionate de un <strong>Event Loop</strong> single-threaded de înaltă performanță pentru sarcini I/O-bound (apeluri API, microservicii, websockets).</p>\n\n<pre><code>import asyncio\n\nasync def preia_utilizator(user_id: int) -> dict:\n    print(f\"Start fetch {user_id}...\")\n    await asyncio.sleep(0.5) # Simulare I/O asincron neblocant\n    return {\"id\": user_id, \"status\": \"activ\"}\n\nasync def main():\n    # Rulare concurentă cu asyncio.gather:\n    rezultate = await asyncio.gather(\n        preia_utilizator(1),\n        preia_utilizator(2),\n        preia_utilizator(3)\n    )\n    print(\"Toate datele preluate:\", rezultate)\n\n# Rulare Event Loop:\n# asyncio.run(main())\n</code></pre>\n",
     "glossary": [
       {
         "term": "Event Loop",
-        "def": "Bucle centrală ce gestionează și distribuie execuția coroutinelor și evenimentelor asincrone."
+        "def": "Bucla centrală ce programează și distribuie execuția coroutinelor asincrone."
       },
       {
-        "term": "Coroutine",
-        "def": "Funcție specială declarată cu 'async def' ce poate fi suspendată și reluată prin 'await'."
+        "term": "async def",
+        "def": "Definește o coroutină nativă ce nu rulează imediat, ci returnează un obiect awaitable."
+      },
+      {
+        "term": "await",
+        "def": "Punct de suspendare a execuției curente ce cedează controlul către Event Loop până la finalizarea I/O."
       },
       {
         "term": "asyncio.gather()",
-        "def": "Metodă ce execută concurent mai multe coroutine și agregă rezultatele acestora."
-      },
-      {
-        "term": "I/O Bound",
-        "def": "Operațiuni a căror viteză depinde de rețea sau disc, nu de viteza procesorului."
+        "def": "Lansează multiple coroutine concurent și așteaptă toate rezultatele simultan."
       }
     ],
     "matchingPairs": [
       {
-        "left": "async def fetch():",
-        "right": "Definește o coroutină asincronă"
+        "left": "async def f():",
+        "right": "Declară o funcție asincronă (coroutină)"
       },
       {
-        "left": "await response.json()",
-        "right": "Cedează controlul buclei până la finalizarea I/O"
+        "left": "await coro()",
+        "right": "Așteaptă neblocant rezultatul unei coroutine"
+      },
+      {
+        "left": "asyncio.gather(*tasks)",
+        "right": "Rulează multiple task-uri concurent"
       },
       {
         "left": "asyncio.run(main())",
-        "right": "Inițializează și rulează bucla Event Loop"
-      },
-      {
-        "left": "asyncio.gather(t1, t2)",
-        "right": "Lansează task-urile în concurență deplină"
+        "right": "Inițializează și rulează Event Loop-ul"
       }
     ],
     "quiz": {
-      "question": "Ce se întâmplă dacă apelezi o funcție declarată cu 'async def my_func():' fără a folosi cuvântul 'await'?",
+      "question": "Ce se întâmplă dacă apelezi o funcție declarată cu 'async def' fără să folosești operatorul 'await'?",
       "options": [
-        "Funcția NU se execută; este returnat doar un obiect de tip coroutine neevaluat.",
-        "Funcția se execută automat într-un fir de execuție separat din sistemul de operare.",
-        "Sistemul aruncă o excepție fatală de tip Segmentation Fault.",
-        "Programul se blochează într-o buclă infinită de tip busy-wait."
+        "Funcția nu se execută, returnând doar un obiect de tip coroutină neevaluat.",
+        "Funcția rulează sincron pe un nou thread.",
+        "Aplicația se închide cu eroare de sintaxă.",
+        "Returnează valoarea None instantaneu."
       ],
       "correctIndex": 0,
-      "explanation": "Apelul unei funcții asincrone creează doar un obiect coroutină. Pentru a programa execuția acesteia pe Event Loop este obligatoriu să folosești 'await' sau asyncio.create_task()."
+      "explanation": "Apelul unei coroutine fără await doar creează obiectul coroutine; acesta trebuie programat în Event Loop sau așteptat cu await pentru execuție."
     },
-    "task": "Scrie funcția asincronă 'main()' care apelează 'await fetch_data()' și returnează rezultatul obținut.",
-    "starterCode": "async def main():\n    # Așteaptă fetch_data() și returnează\n",
-    "expectedOutputPattern": "async\\s+def\\s+main\\(\\):\\s+(?:res\\s*=\\s*)?await\\s+fetch_data\\(\\)(?:\\s+return\\s+res)?",
-    "hint": "Scrie async def main(): return await fetch_data() (sau stochează într-o variabilă și returneaz-o)."
+    "task": "Scrie o coroutină 'async def fetch_status(): await asyncio.sleep(0.1); return 200'.",
+    "starterCode": "import asyncio\n\n# Definește coroutina fetch_status\n",
+    "expectedOutputPattern": "async\\s+def\\s+fetch_status\\s*\\(\\s*\\)\\s*:[\\s\\S]+?await\\s+asyncio\\.sleep\\(0\\.1\\)[\\s\\S]+?return\\s+200",
+    "hint": "Scrie: async def fetch_status(): await asyncio.sleep(0.1); return 200."
   },
   {
     "id": "py-new-16",
@@ -923,58 +923,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 70,
     "title": "Capitolul 16: Arhitectura GIL & Concurență: Multiprocessing vs Threading",
-    "theory": "\n<p>În CPython, <strong>GIL</strong> (Global Interpreter Lock) este un mutex care permite unui singur fir nativ de execuție să dețină controlul interpretorului Python la un moment dat, protejând managementul memoriei bazat pe reference counting.</p>\n<h4>1. CPU-Bound vs I/O-Bound</h4>\n<p>Pentru operațiuni <em>I/O-Bound</em>, multithreading-ul sau <code>asyncio</code> sunt suficiente deoarece GIL este eliberat în timpul așteptării rețelei/discului. Pentru sarcini intensive <em>CPU-Bound</em> (calcule matematice, machine learning), este obligatoriu modulul <code>multiprocessing</code>, care lansează procese OS separate cu spații de memorie independente și interpretor propriu.</p>\n<h4>2. concurrent.futures.ProcessPoolExecutor</h4>\n<p>Interfața unificată <code>ProcessPoolExecutor(max_workers=N)</code> permite distribuirea task-urilor pe toate nucleele hardware ale procesorului fără a gestiona manual procesele individuale.</p>\n",
+    "theory": "\n<p><strong>Global Interpreter Lock (GIL)</strong> din CPython este un mutex care permite unui singur thread să execute bytecode Python la un moment dat. Din acest motiv, multi-threading-ul nu scalează pe CPU multicore pentru calcule intensive.</p>\n\n<pre><code># Matricea Decizională de Arhitect:\n# 1. I/O-Bound (Rețea, Disc) -> asyncio sau threading.Thread\n# 2. CPU-Bound (Machine Learning, Criptografie, Video) -> multiprocessing.Pool\n\nfrom multiprocessing import Pool\n\ndef calcul_greu(x):\n    return sum(i * i for i in range(x))\n\nif __name__ == \"__main__\":\n    # Ocolește complet GIL prin procese OS separate cu memorie izolată:\n    with Pool() as p:\n        rezultate = p.map(calcul_greu, [1000000, 2000000, 3000000])\n        print(\"Calcule paralele finalizate pe toate nucleele CPU:\", rezultate)\n</code></pre>\n",
     "glossary": [
       {
         "term": "GIL (Global Interpreter Lock)",
-        "def": "Mutex intern din CPython ce restricționează execuția bytecode-ului la un singur thread per proces."
+        "def": "Mecanism de sincronizare CPython ce previne execuția paralelă nativă a thread-urilor Python."
       },
       {
-        "term": "CPU-Bound",
-        "def": "Operație al cărei timp de execuție depinde exclusiv de puterea de calcul a procesorului."
+        "term": "I/O-Bound Tasks",
+        "def": "Operații ce așteaptă rețeaua sau discul, eliberând GIL-ul pe durata așteptării."
       },
       {
-        "term": "ProcessPoolExecutor",
-        "def": "Pool de procese separate din sistem ce ocolesc complet limitarea impusă de GIL."
+        "term": "CPU-Bound Tasks",
+        "def": "Calcule intensive ce necesită modulul multiprocessing pentru a utiliza toate nucleele procesorului."
       },
       {
-        "term": "IPC (Inter-Process Comm)",
-        "def": "Mecanisme de transfer de date între procese OS diferite (pipe-uri, shared memory)."
+        "term": "multiprocessing.Pool",
+        "def": "Pool de procese de sistem separate ce ocolesc GIL prin instanțierea de procese paralele."
       }
     ],
     "matchingPairs": [
       {
-        "left": "ProcessPoolExecutor",
-        "right": "Execuție paralelă reală pe nuclee CPU multiple"
+        "left": "multiprocessing",
+        "right": "Procese separate cu propriul interpreter CPython (fără limitare GIL)"
       },
       {
-        "left": "ThreadPoolExecutor",
-        "right": "Optim pentru operațiuni I/O bound cu I/O blocant"
+        "left": "threading",
+        "right": "Thread-uri partajând aceeași memorie, limitate de GIL la CPU"
       },
       {
-        "left": "Global Interpreter Lock",
-        "right": "Protejează sistemul intern de reference counting"
+        "left": "I/O-bound",
+        "right": "Sarcini ce beneficiază de asyncio sau threading"
       },
       {
-        "left": "multiprocessing.Queue",
-        "right": "Canal de comunicare thread/process-safe între procese"
+        "left": "CPU-bound",
+        "right": "Sarcini matematice ce cer multiprocessing multicore"
       }
     ],
     "quiz": {
-      "question": "De ce este necesar să folosești 'multiprocessing' în loc de 'threading' pentru procesare matematică intensivă în CPython?",
+      "question": "De ce este recomandat modulul multiprocessing în locul modulului threading pentru un algoritm de compresie video CPU-bound în Python?",
       "options": [
-        "Deoarece GIL împiedică thread-urile Python să ruleze cod bytecode simultan pe nuclee multiple.",
-        "Thread-urile din Python sunt limitate la maxim 1 MB de memorie RAM.",
-        "Modulul threading nu poate fi importat pe sisteme Linux sau macOS.",
-        "Procesoarele moderne refuză thread-urile care nu folosesc C++."
+        "multiprocessing pornește procese de sistem independente, fiecare având propriul GIL și interpreter, scalând pe toate nucleele CPU.",
+        "threading nu are voie să citească fișiere de pe disc.",
+        "multiprocessing consumă mai puțină memorie decât un singur thread.",
+        "GIL-ul accelerează doar codul matematic."
       ],
       "correctIndex": 0,
-      "explanation": "GIL permite unui singur fir să ruleze instrucțiuni Python în același timp. Doar procesele separate (multiprocessing) au fiecare propriul lor GIL și pot rula în paralel pe nuclee diferite."
+      "explanation": "Pentru CPU-bound, thread-urile se blochează reciproc la GIL. Doar procesele distincte rulează în paralel pe nuclee diferite."
     },
-    "task": "Instanțiază un pool de procese folosind 'ProcessPoolExecutor(max_workers=4)' din modulul 'concurrent.futures' în variabila 'executor'.",
-    "starterCode": "from concurrent.futures import ProcessPoolExecutor\n\nexecutor = ",
-    "expectedOutputPattern": "executor\\s*=\\s*ProcessPoolExecutor\\(max_workers=4\\)",
-    "hint": "Scrie executor = ProcessPoolExecutor(max_workers=4)."
+    "task": "Importă 'Pool' din 'multiprocessing' și inițializează un context manager 'with Pool() as pool:'.",
+    "starterCode": "# Scrie importul și contextul Pool\n",
+    "expectedOutputPattern": "from\\s+multiprocessing\\s+import\\s+Pool[\\s\\S]+?with\\s+Pool\\(\\)\\s+as\\s+pool\\s*:",
+    "hint": "Scrie from multiprocessing import Pool pe prima linie și with Pool() as pool: dedesubt."
   },
   {
     "id": "py-new-17",
@@ -984,58 +984,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 70,
     "title": "Capitolul 17: Metaclase & '__init_subclass__' (Metaprogramare la Nivel de Clasă)",
-    "theory": "\n<p>În Python, clasele înseși sunt obiecte, fiind instanțe ale unei metaclase (implicit <code>type</code>). O metaclase permite interceptarea și modificarea modului în care clasele sunt construite.</p>\n<h4>1. '__init_subclass__' — Alternativa Modernă (PEP 487)</h4>\n<p>Înainte de Python 3.6, validarea claselor derivate necesita scrierea unei metaclase complexe moștenite din <code>type</code>. Metoda <code>__init_subclass__(cls, **kwargs)</code> simplifică radical acest proces, fiind apelată automat pe clasa de bază ori de câte ori cineva o moștenește.</p>\n<h4>2. Înregistrarea Automată de Plugin-uri</h4>\n<p>Prin <code>__init_subclass__</code>, un framework poate înregistra automat toate clasele copil într-un registru intern fără a necesita decoratori explicite.</p>\n",
+    "theory": "\n<p>O <strong>metaclasă</strong> este o „clasă a unei clase” (șablonul din care sunt instanțiate clasele). În Python modern (3.6+), metoda specială <code>__init_subclass__</code> oferă 90% din puterea metaclaselor într-o manieră mult mai simplă și lizibilă.</p>\n\n<pre><code># Exemplu de Plugin Registry automat cu __init_subclass__:\nclass PluginBase:\n    REGISTRY = {}\n\n    def __init_subclass__(cls, plugin_name=None, **kwargs):\n        super().__init_subclass__(**kwargs)\n        name = plugin_name or cls.__name__.lower()\n        cls.REGISTRY[name] = cls\n        print(f\"Plugin înregistrat automat în framework: '{name}'\")\n\n# Orice subclasă se înregistrează automat la definire:\nclass AudioPlugin(PluginBase, plugin_name=\"audio_mp3\"):\n    pass\n\nclass VideoPlugin(PluginBase, plugin_name=\"video_mp4\"):\n    pass\n\nprint(PluginBase.REGISTRY.keys()) # dict_keys(['audio_mp3', 'video_mp4'])\n</code></pre>\n",
     "glossary": [
       {
         "term": "Metaclass",
-        "def": "Clasa unei clase; definește cum este construită și validată o definiție de clasă."
+        "def": "Clasă a cărei instanță este o altă clasă (default este 'type')."
       },
       {
         "term": "__init_subclass__",
-        "def": "Cârlig nativ (hook) invocat automat pe clasa părinte când este creată o subclasă."
+        "def": "Cârlig (hook) apelat automat la moștenire pentru validarea și înregistrarea subclaselor."
       },
       {
-        "term": "type (ca metaclasă)",
-        "def": "Metaclasa implicită responsabilă pentru crearea tuturor claselor în Python."
+        "term": "Plugin Architecture",
+        "def": "Design pattern ce permite descoperirea și activarea automată a modulelor fără cuplaj strâns."
       },
       {
-        "term": "Plugin Registry",
-        "def": "Mecanism arhitectural de colectare și activare dinamică a extensiilor."
+        "term": "type(name, bases, dict)",
+        "def": "Constructorul dinamic primitiv din CPython pentru crearea claselor la runtime."
       }
     ],
     "matchingPairs": [
       {
-        "left": "def __init_subclass__(cls):",
-        "right": "Interceptează crearea oricărei subclase derivate"
+        "left": "__init_subclass__",
+        "right": "Hook automat declanșat la crearea oricărei subclase"
       },
       {
-        "left": "type(name, bases, dict)",
-        "right": "Instanțierea dinamică a unei clase la runtime"
+        "left": "metaclass=type",
+        "right": "Specificarea explicită a clasei părinte a clasei"
       },
       {
-        "left": "class Meta(type):",
-        "right": "Definirea unei metaclase clasice"
+        "left": "PluginBase.REGISTRY",
+        "right": "Registru centralizat populat automat la import"
       },
       {
-        "left": "super().__init_subclass__()",
-        "right": "Propagă apelul către clasele de bază superioare"
+        "left": "super().__init_subclass__",
+        "right": "Păstrează lanțul de cooperare MRO"
       }
     ],
     "quiz": {
-      "question": "Care este principalul avantaj al utilizării '__init_subclass__' în locul unei metaclase moștenite din 'type'?",
+      "question": "Ce avantaj oferă metoda __init_subclass__ introdusă în PEP 487 comparativ cu definirea unei metaclase clasice?",
       "options": [
-        "Este mult mai simplu de scris și evită conflictele complexe de metaclase în moșteniri multiple.",
-        "Reduce consumul de energie electrică al serverului cu 50%.",
-        "Compilează clasa direct în binar nativ C fără verificare de tipuri.",
-        "Elimină complet necesitatea utilizării metodei __init__."
+        "Permite personalizarea și validarea claselor derivate printr-o metodă curată fără complexitatea conflictelor de metaclase.",
+        "Crește viteza de compilare a bytecode-ului.",
+        "Interzice moștenirea multiplă.",
+        "Este obligatorie pentru funcții asincrone."
       ],
       "correctIndex": 0,
-      "explanation": "__init_subclass__ (introdus în PEP 487) permite validarea și înregistrarea claselor derivate printr-o simplă metodă de clasă, evitând metaclasele greoaie."
+      "explanation": "__init_subclass__ elimină nevoia de a scrie clase derivate din type, oferind o sintaxă mult mai lizibilă și evitând conflictele de metaclase."
     },
-    "task": "Definește metoda '__init_subclass__(cls, **kwargs)' pe clasa 'Plugin' care apelează 'super().__init_subclass__(**kwargs)'.",
-    "starterCode": "class Plugin:\n    # Definește __init_subclass__\n",
-    "expectedOutputPattern": "def\\s+__init_subclass__\\(cls,\\s*\\*\\*kwargs\\):\\s+super\\(\\)\\.__init_subclass__\\(\\*\\*kwargs\\)",
-    "hint": "Scrie @classmethod def __init_subclass__(cls, **kwargs): urmat de super().__init_subclass__(**kwargs)."
+    "task": "Definește metoda '__init_subclass__(cls, **kwargs):' care apelează 'super().__init_subclass__(**kwargs)'.",
+    "starterCode": "class Base:\n    # Adaugă __init_subclass__\n",
+    "expectedOutputPattern": "def\\s+__init_subclass__\\s*\\(\\s*cls,\\s*\\*\\*kwargs\\s*\\)\\s*:[\\s\\S]+?super\\(\\)\\.__init_subclass__\\(\\*\\*kwargs\\)",
+    "hint": "Scrie def __init_subclass__(cls, **kwargs): super().__init_subclass__(**kwargs)."
   },
   {
     "id": "py-new-18",
@@ -1045,58 +1045,58 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 75,
     "title": "Capitolul 18: Validare Robustă de Date cu Pydantic",
-    "theory": "\n<p><strong>Pydantic</strong> este biblioteca etalon în Python modern (la baza FastAPI) pentru validarea datelor, serializare JSON și definirea schemelor pe baza adnotărilor de tip native.</p>\n<h4>1. Modele 'BaseModel'</h4>\n<p>O clasă ce moștenește <code>pydantic.BaseModel</code> validează automat tipurile la instanțiere, convertind dacă este posibil datele (coercion) și aruncând un <code>ValidationError</code> structurat în caz de nepotrivire.</p>\n<h4>2. Constrângeri cu 'Field'</h4>\n<p>Metoda <code>Field(gt=0, le=100, max_length=50)</code> permite definirea de reguli de validare direct la nivel declarativ (ex: prețul strict mai mare ca 0).</p>\n",
+    "theory": "\n<p><strong>Pydantic</strong> (nucleul framework-ului FastAPI) este biblioteca etalon pentru parsarea, validarea strictă și serializarea datelor bazată pe type hints de Python.</p>\n\n<pre><code>from pydantic import BaseModel, Field, EmailStr\n\n# Schemă robustă de date validate automat:\nclass UserSchema(BaseModel):\n    id: int\n    username: str = Field(min_length=3, max_length=20)\n    email: str\n    is_active: bool = True\n\n# Date primite dintr-un request JSON HTTP:\npayload_valid = {\"id\": 1, \"username\": \"dan_developer\", \"email\": \"dan@polymath.com\"}\nuser = UserSchema(**payload_valid)\nprint(user.username)     # 'dan_developer'\nprint(user.model_dump()) # Dicționar serializat curat\n\n# Dacă datele sunt greșite (ex: id=\"not_a_number\"), Pydantic aruncă ValidationError detaliat!\n</code></pre>\n",
     "glossary": [
       {
         "term": "BaseModel",
-        "def": "Clasa de bază din Pydantic pentru modelarea și validarea datelor structurate."
-      },
-      {
-        "term": "ValidationError",
-        "def": "Excepție ce conține detalii precise despre fiecare câmp care a eșuat validarea."
-      },
-      {
-        "term": "Type Coercion",
-        "def": "Conversia automată securizată a datelor compatibile (ex: '123' în int 123)."
+        "def": "Clasa de bază Pydantic ce oferă validare, parsare de tipuri și serializare JSON."
       },
       {
         "term": "Field()",
-        "def": "Funcție de adnotare a constrângerilor de validare pe proprietăți."
+        "def": "Funcție pentru constrângeri avansate (min_length, ge, le, regex) și descrieri OpenAPI."
+      },
+      {
+        "term": "ValidationError",
+        "def": "Excepție structurată ce conține detalii precise despre câmpul invalid și motivul respingerii."
+      },
+      {
+        "term": "model_dump()",
+        "def": "Metodă Pydantic v2 de export al modelului într-un dicționar Python nativ."
       }
     ],
     "matchingPairs": [
       {
-        "left": "class User(BaseModel):",
-        "right": "Definește o schemă cu validare automată"
+        "left": "class Model(BaseModel):",
+        "right": "Definește o schemă Pydantic cu validare automată"
       },
       {
         "left": "Field(gt=0)",
-        "right": "Validează ca valoarea să fie strict mai mare ca 0"
+        "right": "Constrângere numerică (mai mare decât 0)"
       },
       {
         "left": "model.model_dump()",
-        "right": "Serializare în dicționar standard Python"
+        "right": "Serializare în dicționar nativ"
       },
       {
-        "left": "model.model_dump_json()",
-        "right": "Serializare directă în format JSON string"
+        "left": "Model.model_validate(json)",
+        "right": "Validare și parsare a datelor de intrare"
       }
     ],
     "quiz": {
-      "question": "Ce face Pydantic atunci când primește valoarea '42' (ca string) pentru un câmp adnotat cu tipul 'age: int'?",
+      "question": "Ce face Pydantic atunci când primește un payload unde câmpul 'id' este șirul \"123\", deși a fost declarat ca 'id: int'?",
       "options": [
-        "Efectuează conversie automată (coercion) și setează valoarea numerică 42.",
-        "Aruncă imediat ValidationError fără nicio încercare de conversie.",
-        "Ignoră câmpul și îi atribuie valoarea None.",
-        "Termină execuția programului cu cod de eroare 1."
+        "Convertește automat (coerciție de tip) șirul \"123\" în numărul întreg 123.",
+        "Aruncă imediat ValidationError.",
+        "Ignoră câmpul și îi dă valoarea None.",
+        "Oprește serverul web."
       ],
       "correctIndex": 0,
-      "explanation": "Pydantic realizează conversie automată (type coercion) pentru tipurile compatibile; astfel, stringul '42' este parsat cu succes în întregul 42."
+      "explanation": "Pydantic este o bibliotecă de parsare și validare: încearcă coerciția sigură de tip; doar dacă '123' nu poate deveni int va arunca ValidationError."
     },
-    "task": "Definește un model Pydantic 'Item' cu câmpul 'title: str' și 'price: float' care moștenește 'BaseModel'.",
-    "starterCode": "from pydantic import BaseModel\n\n# Definește modelul Item\n",
-    "expectedOutputPattern": "class\\s+Item\\(BaseModel\\):\\s+title:\\s*str\\s+price:\\s*float",
-    "hint": "Scrie class Item(BaseModel): urmat de title: str și price: float."
+    "task": "Definește un model Pydantic 'class Item(BaseModel):' cu câmpurile 'name: str' și 'price: float'.",
+    "starterCode": "from pydantic import BaseModel\n\n# Definește schema Item\n",
+    "expectedOutputPattern": "class\\s+Item\\s*\\(\\s*BaseModel\\s*\\)\\s*:[\\s\\S]+?name\\s*:\\s*str[\\s\\S]+?price\\s*:\\s*float",
+    "hint": "Scrie class Item(BaseModel): name: str; price: float pe linii separate indentate."
   },
   {
     "id": "cs-new-1",
@@ -9951,7 +9951,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 40,
     "title": "Capitolul 33: Combinarea Pronumelor OD + OI & Transformarea „SE LO / SE LA”",
-    "theory": "\n<p>Când o frază conține atât un pronume de Obiect Indirect (cui?) cât și unul de Obiect Direct (ce?), se aplică două reguli fundamentale:</p>\n<h4>1. Ordinea Canonica: INDIRECTUL PRIMUL!</h4>\n<p><code>Subiect + [OI] + [OD] + Verb</code><br>\n<em>¿Me dejas tu libro? &rarr; Sí, <strong>te lo</strong> dejo.</em> (te = OI, lo = OD).</p>\n<h4>2. Regula Eufonică Supremă: LE / LES devine SE!</h4>\n<p>În spaniolă este interzisă cacofonia a două pronume consecutive ce încep cu 'L' (*le lo*, *le la*, *les los*). Prin urmare, <strong>le / les se transformă întotdeauna în SE</strong>:</p>\n<p><em>¿Das el regalo a María? &rarr; Sí, <strong>se lo</strong> doy.</em> (în loc de *le lo doy*!).</p>\n",
+    "theory": "\n<p>Când o frază conține atât un pronume de Obiect Indirect (cui?) cât și unul de Obiect Direct (ce?), se aplică două reguli fundamentale:</p>\n<h4>1. Ordinea Canonica: INDIRECTUL PRIMUL!</h4>\n<p><code>Subiect + [OI] + [OD] + Verb</code><br>\n<em>¿Me dejas tu libro? &rarr; Sí, <strong>te lo</strong> dejo.</em> (te = OI, lo = OD).</p>\n<h4>2. Regula Eufonică Supremă: LE / LES devine SE!</h4>\n<p>În spaniolă este interzisă cacofonia a două pronume consecutive ce încep cu 'L' (<em>le lo</em>, <em>le la</em>, <em>les los</em>). Prin urmare, <strong>le / les se transformă întotdeauna în SE</strong>:</p>\n<p><em>¿Das el regalo a María? &rarr; Sí, <strong>se lo</strong> doy.</em> (în loc de <em>le lo doy</em>!).</p>\n",
     "glossary": [
       {
         "term": "Regla SE LO",
@@ -9963,7 +9963,7 @@ const MEGA_EXPANDED_CURRICULUM = [
       },
       {
         "term": "Cacofonía evitada",
-        "def": "Evitarea sunetului dublu l-l (*le lo) prin conversia în sunetul sibilant 'se'."
+        "def": "Evitarea sunetului dublu l-l (<em>le lo</em>) prin conversia în sunetul sibilant 'se'."
       },
       {
         "term": "Te lo juro",
@@ -10455,7 +10455,7 @@ const MEGA_EXPANDED_CURRICULUM = [
       },
       {
         "term": "Interdicția viitorului după SI",
-        "def": "Nu se poate spune *Si tendré*, ci doar 'Si tengo'."
+        "def": "Nu se poate spune <em>Si tendré</em>, ci doar 'Si tengo'."
       }
     ],
     "matchingPairs": [

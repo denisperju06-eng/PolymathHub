@@ -15,6 +15,13 @@
   --accent-hover: #059669;
   --accent-soft: rgba(16, 185, 129, 0.16);
   --border-color: #1f4f42;
+  --code-bg: rgba(16, 185, 129, 0.15);
+  --code-text: #6ee7b7;
+  --code-border: rgba(52, 211, 153, 0.35);
+  --code-pre-bg: #03130d;
+  --code-pre-text: #ecfdf5;
+  --code-mark-bg: rgba(16, 185, 129, 0.25);
+  --code-mark-text: #a7f3d0;
   --error-red: #f87171;
   --error-bg: rgba(248, 113, 113, 0.16);
   --success-green: #10b981;
@@ -37,6 +44,13 @@
   --accent-hover: #6366f1;
   --accent-soft: rgba(99, 102, 241, 0.16);
   --border-color: #2e3c51;
+  --code-bg: rgba(99, 102, 241, 0.16);
+  --code-text: #a5b4fc;
+  --code-border: rgba(129, 140, 248, 0.35);
+  --code-pre-bg: #070a12;
+  --code-pre-text: #f8fafc;
+  --code-mark-bg: rgba(99, 102, 241, 0.25);
+  --code-mark-text: #c7d2fe;
   --error-red: #ef4444;
   --error-bg: rgba(239, 68, 68, 0.15);
   --success-green: #10b981;
@@ -59,6 +73,13 @@
   --accent-hover: #732a10;
   --accent-soft: rgba(140, 54, 22, 0.12);
   --border-color: #dccaa6;
+  --code-bg: rgba(140, 54, 22, 0.1);
+  --code-text: #9a3412;
+  --code-border: rgba(154, 52, 18, 0.3);
+  --code-pre-bg: #221b14;
+  --code-pre-text: #fef3c7;
+  --code-mark-bg: rgba(217, 119, 6, 0.18);
+  --code-mark-text: #78350f;
   --error-red: #c53030;
   --error-bg: #fff5f5;
   --success-green: #2f855a;
@@ -81,6 +102,13 @@
   --accent-hover: #a855f7;
   --accent-soft: rgba(192, 132, 252, 0.16);
   --border-color: #3b2263;
+  --code-bg: rgba(192, 132, 252, 0.16);
+  --code-text: #f5d0fe;
+  --code-border: rgba(192, 132, 252, 0.35);
+  --code-pre-bg: #0b0413;
+  --code-pre-text: #faf5ff;
+  --code-mark-bg: rgba(192, 132, 252, 0.25);
+  --code-mark-text: #f3e8ff;
   --error-red: #f87171;
   --error-bg: rgba(248, 113, 113, 0.16);
   --success-green: #34d399;
@@ -103,6 +131,13 @@
   --accent-hover: #d97706;
   --accent-soft: rgba(245, 158, 11, 0.16);
   --border-color: #482f18;
+  --code-bg: rgba(245, 158, 11, 0.16);
+  --code-text: #fde68a;
+  --code-border: rgba(245, 158, 11, 0.35);
+  --code-pre-bg: #120903;
+  --code-pre-text: #fffbeb;
+  --code-mark-bg: rgba(245, 158, 11, 0.25);
+  --code-mark-text: #fef3c7;
   --error-red: #ef4444;
   --error-bg: rgba(239, 68, 68, 0.16);
   --success-green: #10b981;
@@ -125,6 +160,13 @@
   --accent-hover: #0284c7;
   --accent-soft: rgba(56, 189, 248, 0.16);
   --border-color: #1e4570;
+  --code-bg: rgba(56, 189, 248, 0.16);
+  --code-text: #bae6fd;
+  --code-border: rgba(56, 189, 248, 0.35);
+  --code-pre-bg: #030a13;
+  --code-pre-text: #f0fdf4;
+  --code-mark-bg: rgba(56, 189, 248, 0.25);
+  --code-mark-text: #e0f2fe;
   --error-red: #f87171;
   --error-bg: rgba(248, 113, 113, 0.16);
   --success-green: #34d399;
@@ -147,6 +189,13 @@
   --accent-hover: #1e40af;
   --accent-soft: rgba(29, 78, 216, 0.1);
   --border-color: #cbd5e1;
+  --code-bg: rgba(29, 78, 216, 0.08);
+  --code-text: #1e40af;
+  --code-border: rgba(30, 64, 175, 0.25);
+  --code-pre-bg: #0f172a;
+  --code-pre-text: #f1f5f9;
+  --code-mark-bg: rgba(29, 78, 216, 0.14);
+  --code-mark-text: #1e3a8a;
   --error-red: #b91c1c;
   --error-bg: #fee2e2;
   --success-green: #047857;
@@ -886,13 +935,63 @@ body {
   margin-bottom: 0.4rem;
 }
 
+/* Tokeni de cod și cuvinte accentuate în teorie (contrast ridicat WCAG AAA pe toate temele) */
 .book-reader code {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  background-color: var(--bg-code);
-  color: var(--accent-primary);
+  font-size: 0.86rem;
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  border: 1px solid var(--code-border);
+  padding: 0.15rem 0.45rem;
+  border-radius: 5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  display: inline-block;
+  line-height: 1.35;
+}
+
+.book-reader pre {
+  background-color: var(--code-pre-bg);
+  color: var(--code-pre-text);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem;
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.book-reader pre code {
+  background: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-size: inherit !important;
+  font-weight: 400 !important;
+  display: inline !important;
+  line-height: inherit !important;
+}
+
+.book-reader mark {
+  background-color: var(--code-mark-bg);
+  color: var(--code-mark-text);
   padding: 0.15rem 0.4rem;
   border-radius: 4px;
+  font-weight: 600;
+}
+
+.book-reader strong {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.book-reader em {
+  font-style: italic;
+  color: var(--text-secondary);
 }
 
 /* Dicționar de Concepte & Vocabular */
