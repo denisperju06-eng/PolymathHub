@@ -14,7 +14,7 @@
 <body>
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
-  <!-- BARA SUPERIOARĂ STATISTICI & CONTROALE -->
+  <!-- BARA SUPERIOARĂ STATISTICI, NAVIGAȚIE PAGINI & PROFIL -->
   <header class="top-bar">
     <div class="brand" id="brand-home-btn" role="button" tabindex="0" title="Mergi la Pagina Principală (Catalog Domenii)">
       <div class="brand-logo" aria-hidden="true">📖</div>
@@ -24,10 +24,29 @@
       </div>
     </div>
 
-    <!-- Cluster Statistici Interactive -->
+    <!-- Navigație Pagini SPA (Elimină Pop-up-urile Agasante) -->
+    <nav class="top-nav-links" aria-label="Navigație Pagini Aplicație">
+      <button class="nav-link-btn active" data-view="catalog" id="nav-catalog-btn">
+        <span aria-hidden="true">📖</span> Catalog
+      </button>
+      <button class="nav-link-btn" data-view="study" id="nav-study-btn">
+        <span aria-hidden="true">⚡</span> Studiu
+      </button>
+      <button class="nav-link-btn" data-view="activity" id="nav-activity-btn">
+        <span aria-hidden="true">📅</span> Activitate
+      </button>
+      <button class="nav-link-btn" data-view="leagues" id="nav-leagues-btn">
+        <span aria-hidden="true">🏆</span> Ligi
+      </button>
+      <button class="nav-link-btn" data-view="profile" id="nav-profile-btn">
+        <span aria-hidden="true">👤</span> Profil &amp; Setări
+      </button>
+    </nav>
+
+    <!-- Cluster Statistici Interactive (Navighează Direct la Paginile Dedicate) -->
     <div class="stats-cluster">
-      <!-- 1. Streak Pill -> Deschide Calendarul Lunar -->
-      <div class="stat-pill streak-pill" id="streak-pill" role="button" tabindex="0" title="Apasă pentru Calendarul de Activitate &amp; Streak" aria-haspopup="dialog">
+      <!-- 1. Streak Pill -> Navighează la Pagina de Activitate & Calendar -->
+      <div class="stat-pill streak-pill" id="streak-pill" role="button" tabindex="0" title="Apasă pentru Pagina de Activitate &amp; Calendar">
         <span class="stat-icon" aria-hidden="true">🔥</span>
         <div class="stat-content">
           <span class="stat-value" id="streak-count">0</span>
@@ -35,8 +54,8 @@
         </div>
       </div>
 
-      <!-- 2. XP Pill -> Deschide Ligile & Clasamentele -->
-      <div class="stat-pill xp-pill" id="xp-pill" role="button" tabindex="0" title="Apasă pentru Ligi &amp; Ranguri de Măiestrie" aria-haspopup="dialog">
+      <!-- 2. XP Pill -> Navighează la Pagina de Ligi & Clasamente -->
+      <div class="stat-pill xp-pill" id="xp-pill" role="button" tabindex="0" title="Apasă pentru Pagina de Ligi &amp; Ranguri">
         <span class="stat-icon" aria-hidden="true">🏆</span>
         <div class="stat-content">
           <span class="stat-value" id="xp-count">0 XP</span>
@@ -45,7 +64,7 @@
       </div>
 
       <!-- 3. Obiectiv Zilnic -> Bifa la 3/3 + Tooltip/Popover explicativ -->
-      <div class="stat-pill goal-pill" id="goal-pill" role="button" tabindex="0" title="Obiectiv zilnic (Apasă pentru detalii)" aria-haspopup="true">
+      <div class="stat-pill goal-pill" id="goal-pill" role="button" tabindex="0" title="Obiectiv zilnic (Apasă pentru detalii)">
         <span class="stat-icon" id="goal-icon" aria-hidden="true">🎯</span>
         <div class="stat-content">
           <span class="stat-value" id="daily-progress-text">0/3</span>
@@ -58,7 +77,7 @@
       </div>
     </div>
 
-    <!-- Cluster Controale: Teme & Adăugare Capitol -->
+    <!-- Cluster Controale: Teme & Profil Utilizator -->
     <div class="controls-cluster">
       <select id="theme-selector" class="theme-select" aria-label="Selectează tema de culori">
         <option value="emerald-forest" selected>🌲 Emerald Zen (Verde)</option>
@@ -69,11 +88,16 @@
         <option value="ocean-deep">🌊 Ocean Deep</option>
         <option value="daylight-clean">☀️ Daylight Clean</option>
       </select>
+
+      <button class="header-profile-btn" id="header-profile-btn" title="Deschide Profilul și Setările">
+        <div class="header-avatar-circle" id="header-avatar-icon">🎓</div>
+        <span class="header-profile-name" id="header-profile-name">Denis</span>
+      </button>
     </div>
   </header>
 
   <!-- =========================================================================
-       VIEW 1: PAGINA PRINCIPALĂ (CATALOG & DOMENII FĂRĂ SARCINI CLUTTER)
+       VIEW 1: PAGINA PRINCIPALĂ (CATALOG & DOMENII DE CURS)
        ========================================================================= -->
   <main id="catalog-view" class="catalog-layout">
     <section class="catalog-hero">
@@ -133,7 +157,7 @@
       </button>
     </nav>
 
-    <!-- 1. CAPITOLUL ENCICLOPEDIC (Teorie Stil Carte + Dicționar + Model Paralel) -->
+    <!-- 1. CAPITOLUL ENCICLOPEDIC (Teorie Stil Carte + Dicționar 2x2 + Model Paralel) -->
     <article class="card theory-card">
       <div class="lesson-meta-bar">
         <span class="badge-category" id="lesson-category-badge">Domeniu</span>
@@ -146,10 +170,10 @@
       <!-- Conținut stil carte / enciclopedie -->
       <div class="book-reader" id="lesson-theory"></div>
 
-      <!-- Dicționar & Tabel Concepte / Vocabular -->
+      <!-- Dicționar & Tabel Concepte / Vocabular (Grilă 2x2) -->
       <div class="dictionary-box" id="dictionary-box">
         <div class="dictionary-header">
-          <span>📚 Dicționar &amp; Sintaxă Esențială</span>
+          <span>📚 Dicționar &amp; Sintaxă Esențială (2x2)</span>
         </div>
         <div class="dictionary-grid" id="lesson-dictionary"></div>
       </div>
@@ -240,7 +264,7 @@
         </div>
       </div>
 
-      <!-- MODUL 3: QUIZ 2x2 (ALEGERE MULTIPLĂ SIMETRICĂ) -->
+      <!-- MODUL 3: QUIZ 2x2 (ALEGERE MULTIPLĂ CU BLOCARE LA RĂSPUNSUL CORECT) -->
       <div id="practice-mode-quiz" class="practice-mode-pane hidden">
         <div class="question-highlight-box">
           <span class="question-badge">🎯 ALEGE VARIANTA CORECTĂ:</span>
@@ -250,6 +274,247 @@
         <div id="quiz-feedback-msg" class="validation-feedback" style="margin-top:0.85rem;">Selectează opțiunea corectă de mai sus.</div>
       </div>
     </article>
+  </main>
+
+  <!-- =========================================================================
+       VIEW 3: PAGINĂ COMPLETĂ ACTIVITATE & CALENDAR (FĂRĂ POP-UP)
+       ========================================================================= -->
+  <main id="activity-view" class="page-layout hidden">
+    <section class="page-hero">
+      <h2>📅 Activitate, Calendar &amp; Istoric de Studiu</h2>
+      <p>Urmărește-ți constanța zilnică, numărul de capitole parcurse și progresul de la o zi la alta.</p>
+    </section>
+
+    <!-- Grilă Metrici Activitate -->
+    <div class="stats-overview-grid">
+      <div class="stat-metric-card">
+        <span class="stat-metric-icon" aria-hidden="true">🔥</span>
+        <div class="stat-metric-info">
+          <span class="stat-metric-val" id="act-streak-val">0 zile</span>
+          <span class="stat-metric-label">Streak Curent</span>
+        </div>
+      </div>
+      <div class="stat-metric-card">
+        <span class="stat-metric-icon" aria-hidden="true">⭐</span>
+        <div class="stat-metric-info">
+          <span class="stat-metric-val" id="act-longest-streak-val">0 zile</span>
+          <span class="stat-metric-label">Record Istoric Streak</span>
+        </div>
+      </div>
+      <div class="stat-metric-card">
+        <span class="stat-metric-icon" aria-hidden="true">🎯</span>
+        <div class="stat-metric-info">
+          <span class="stat-metric-val" id="act-today-val">0/3</span>
+          <span class="stat-metric-label">Obiectiv Zilnic Azi</span>
+        </div>
+      </div>
+      <div class="stat-metric-card">
+        <span class="stat-metric-icon" aria-hidden="true">📚</span>
+        <div class="stat-metric-info">
+          <span class="stat-metric-val" id="act-total-tasks-val">0</span>
+          <span class="stat-metric-label">Sarcini Rezolvate Total</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calendar Lunar Integrat -->
+    <section class="settings-section-card">
+      <h3 class="settings-card-title">📅 Calendar Activitate Lunar (Ultimele 28 de Zile)</h3>
+      <div class="calendar-legend">
+        <div class="legend-item"><span class="legend-dot legend-green"></span> 🟢 3/3 Obiectiv Complet</div>
+        <div class="legend-item"><span class="legend-dot legend-orange"></span> 🟠 Streak Păstrat (1-2 sarcini)</div>
+        <div class="legend-item"><span class="legend-dot legend-yellow"></span> 🟡 50/50 Cu Asistență</div>
+        <div class="legend-item"><span class="legend-dot legend-empty"></span> ⚪ Fără activitate</div>
+      </div>
+      <div class="calendar-grid" id="activity-calendar-grid"></div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       VIEW 4: PAGINĂ COMPLETĂ LIGI & REALIZĂRI (FĂRĂ POP-UP)
+       ========================================================================= -->
+  <main id="leagues-view" class="page-layout hidden">
+    <section class="page-hero">
+      <h2>🏆 Ligi de Măiestrie &amp; Realizări</h2>
+      <p>Acumulează puncte de experiență (XP) rezolvând exerciții autonome pentru a avansa în ligile polimate.</p>
+    </section>
+
+    <!-- Banner Liga Curentă -->
+    <div class="league-hero-card">
+      <div class="league-hero-icon" id="page-league-icon">🥉</div>
+      <div class="league-hero-details">
+        <h3 class="league-hero-title" id="page-league-title">Rang I: Inițiat</h3>
+        <p class="league-hero-desc" id="page-league-desc">Primul pas în călătoria enciclopedică polimată.</p>
+        <div class="league-xp-progress-bar">
+          <div class="league-xp-progress-fill" id="page-league-progress-fill" style="width: 0%;"></div>
+        </div>
+        <div class="league-xp-status-row">
+          <span id="page-league-xp-status">0 / 100 XP</span>
+          <span id="page-league-next-status">Următorul: Rang II (100 XP)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toate Ligile -->
+    <section class="settings-section-card">
+      <h3 class="settings-card-title">🎖️ Toate Ligile de Măiestrie</h3>
+      <div class="leagues-list" id="page-leagues-list"></div>
+    </section>
+
+    <!-- Sistem Realizări (Achievements) -->
+    <section class="settings-section-card">
+      <h3 class="settings-card-title">🌟 Realizări &amp; Trofee Polimate</h3>
+      <div class="achievements-grid" id="page-achievements-grid"></div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       VIEW 5: PAGINĂ COMPLETĂ PROFIL & SETĂRI UTILIZATOR
+       ========================================================================= -->
+  <main id="profile-view" class="page-layout hidden">
+    <section class="page-hero">
+      <h2>👤 Profilul Tău &amp; Setări Generale</h2>
+      <p>Personalizează-ți datele de identificare, tema de lucru și preferințele de studiu.</p>
+    </section>
+
+    <div class="profile-grid-layout">
+      <!-- Sidebar Profil -->
+      <aside class="profile-sidebar-card">
+        <div class="profile-avatar-display" id="profile-card-avatar">🎓</div>
+        <h3 class="profile-name" id="profile-card-name">Denis Perju</h3>
+        <span class="profile-email-badge" id="profile-card-email">student@polymath.com</span>
+        <p class="profile-bio-text" id="profile-card-bio">Pasionat de programare, limbi străine și cunoaștere polimată.</p>
+
+        <div class="profile-stat-box">
+          <div class="profile-mini-stat">
+            <span class="profile-mini-stat-val" id="profile-stat-xp">0 XP</span>
+            <span class="profile-mini-stat-label">Experiență</span>
+          </div>
+          <div class="profile-mini-stat">
+            <span class="profile-mini-stat-val" id="profile-stat-rank">Rang I</span>
+            <span class="profile-mini-stat-label">Ligă</span>
+          </div>
+          <div class="profile-mini-stat">
+            <span class="profile-mini-stat-val" id="profile-stat-streak">0 zile</span>
+            <span class="profile-mini-stat-label">Streak</span>
+          </div>
+          <div class="profile-mini-stat">
+            <span class="profile-mini-stat-val" id="profile-stat-lessons">0</span>
+            <span class="profile-mini-stat-label">Capitole</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Panou Editare Date & Setări -->
+      <div class="profile-main-content">
+        <!-- Formular Date Cont -->
+        <section class="settings-section-card">
+          <h3 class="settings-card-title">📝 Date Utilizator &amp; Cont</h3>
+          <form id="profile-form">
+            <div class="form-grid-2">
+              <div class="form-field">
+                <label for="profile-first-name-input">Prenume:</label>
+                <input type="text" id="profile-first-name-input" class="form-input" required placeholder="Ex: Denis">
+              </div>
+              <div class="form-field">
+                <label for="profile-last-name-input">Nume de Familie:</label>
+                <input type="text" id="profile-last-name-input" class="form-input" required placeholder="Ex: Perju">
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="profile-email-input">Adresă de Email (obligatoriu @ și domeniu .com / .ru / .md / etc.):</label>
+              <input type="email" id="profile-email-input" class="form-input" required placeholder="Ex: denis@gmail.com sau utilizator@mail.ru">
+              <div id="email-validation-feedback" class="field-validation-msg">Trebuie să conțină @ și un domeniu valid (ex: .com, .ru, .ro, .md).</div>
+            </div>
+
+            <div class="form-field">
+              <label for="profile-bio-input">Motto / Despre Tine:</label>
+              <textarea id="profile-bio-input" class="form-input" rows="2" placeholder="O scurtă descriere despre pasiunile tale de studiu..."></textarea>
+            </div>
+
+            <div class="form-field">
+              <label>Alege Avatarul Tău:</label>
+              <div class="avatar-selector-grid" id="avatar-selector-grid">
+                <button type="button" class="avatar-opt-btn" data-avatar="🎓">🎓</button>
+                <button type="button" class="avatar-opt-btn" data-avatar="🚀">🚀</button>
+                <button type="button" class="avatar-opt-btn" data-avatar="🦉">🦉</button>
+                <button type="button" class="avatar-opt-btn" data-avatar="⚡">⚡</button>
+                <button type="button" class="avatar-opt-btn" data-avatar="💻">💻</button>
+                <button type="button" class="avatar-opt-btn" data-avatar="📖">📖</button>
+                <button type="button" class="avatar-opt-btn" data-avatar="🧙">🧙</button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary" style="margin-top:0.75rem;">💾 Salvează Datele Profilului</button>
+            <span id="profile-save-status" style="margin-left:1rem; font-size:0.82rem; font-weight:700; color:var(--success-green);" class="hidden">✓ Datele au fost salvate cu succes!</span>
+          </form>
+        </section>
+
+        <!-- Setări Temă & Preferințe Studiu -->
+        <section class="settings-section-card">
+          <h3 class="settings-card-title">🎨 Aspect Vizual &amp; Preferințe Studiu</h3>
+
+          <div class="form-field">
+            <label>Schimbare Fundal / Temă Vizuală (sincronizată cu bara de sus):</label>
+            <div class="theme-picker-grid" id="settings-theme-picker">
+              <button type="button" class="theme-card-opt" data-theme-val="emerald-forest">
+                <span>🌲 Emerald Zen</span>
+              </button>
+              <button type="button" class="theme-card-opt" data-theme-val="cyber-dark">
+                <span>🌌 Cyber Dark</span>
+              </button>
+              <button type="button" class="theme-card-opt" data-theme-val="sepia-book">
+                <span>📜 Carte Sepia</span>
+              </button>
+              <button type="button" class="theme-card-opt" data-theme-val="neon-amethyst">
+                <span>🔮 Amethyst</span>
+              </button>
+              <button type="button" class="theme-card-opt" data-theme-val="sunset-amber">
+                <span>🌅 Sunset Amber</span>
+              </button>
+              <button type="button" class="theme-card-opt" data-theme-val="ocean-deep">
+                <span>🌊 Ocean Deep</span>
+              </button>
+              <button type="button" class="theme-card-opt" data-theme-val="daylight-clean">
+                <span>☀️ Daylight Clean</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-grid-2" style="margin-top:1.25rem;">
+            <div class="form-field">
+              <label for="settings-daily-target">Țintă Obiectiv Zilnic:</label>
+              <select id="settings-daily-target" class="theme-select" style="width:100%;">
+                <option value="3">🎯 3 sarcini / zi (Standard)</option>
+                <option value="5">🔥 5 sarcini / zi (Intensiv)</option>
+                <option value="10">⚡ 10 sarcini / zi (Maraton Polimat)</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="settings-confetti-toggle">Animații de Reușită (Confetti):</label>
+              <select id="settings-confetti-toggle" class="theme-select" style="width:100%;">
+                <option value="true">🎉 Activate</option>
+                <option value="false">Off (Fără animații)</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Zona de Pericol: Ștergere Cont & Resetare Progres -->
+        <section class="danger-zone-card">
+          <div class="danger-zone-header">
+            <span>⚠️ Zona de Pericol: Ștergere Cont &amp; Date</span>
+          </div>
+          <p class="danger-zone-desc">
+            Această acțiune va șterge definitiv toate datele de cont, punctele XP, nivelul ligii, capitolele rezolvate și streak-ul înregistrat. Aplicația va fi readusă la starea inițială de la zero.
+          </p>
+          <button id="profile-delete-account-btn" class="btn-ghost-danger">
+            🗑️ Șterge Contul și Resetează Totul de la Zero
+          </button>
+        </section>
+      </div>
+    </div>
   </main>
 
   <!-- =========================================================================
@@ -271,52 +536,6 @@
       <ul class="lesson-list" id="pocket-lesson-list"></ul>
     </div>
   </aside>
-
-  <!-- =========================================================================
-       MODAL: CALENDAR ACTIVITATE & STREAK
-       ========================================================================= -->
-  <div class="modal-backdrop hidden" id="calendar-modal" role="dialog" aria-modal="true" aria-labelledby="calendar-modal-title">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h2 id="calendar-modal-title">📅 Calendar Activitate Lunar &amp; Streak</h2>
-        <button id="close-calendar-modal-btn" class="btn-close" aria-label="Închide">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="calendar-legend">
-          <div class="legend-item"><span class="legend-dot legend-green"></span> 🟢 3/3 Obiectiv Complet</div>
-          <div class="legend-item"><span class="legend-dot legend-orange"></span> 🟠 Streak Păstrat (1-2 sarcini)</div>
-          <div class="legend-item"><span class="legend-dot legend-yellow"></span> 🟡 50/50 Cu Asistență</div>
-          <div class="legend-item"><span class="legend-dot legend-empty"></span> ⚪ Fără activitate</div>
-        </div>
-        <div class="calendar-grid" id="calendar-days-grid"></div>
-        <div style="margin-top: 1.25rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
-          Streak Curent: <strong id="modal-streak-val">0</strong> zile | Record Istoric: <strong id="modal-longest-streak-val">0</strong> zile
-        </div>
-        <div class="calendar-modal-actions">
-          <button id="reset-progress-btn" class="btn-ghost-danger" title="Șterge tot istoricul, scorul și reîncepe de la zero">
-            🗑️ Resetează Progresul de la Zero
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       MODAL: CLASAMENT, LIGI & RANGURI DE MĂIESTRIE
-       ========================================================================= -->
-  <div class="modal-backdrop hidden" id="leagues-modal" role="dialog" aria-modal="true" aria-labelledby="leagues-modal-title">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h2 id="leagues-modal-title">🏆 Ligi &amp; Ranguri de Măiestrie</h2>
-        <button id="close-leagues-modal-btn" class="btn-close" aria-label="Închide">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="leagues-list" id="leagues-list">
-          <!-- Generat dinamic din JS -->
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- SCRIPTE CURRICULUM & APLICAȚIE -->
   <script src="curriculum.js"></script>

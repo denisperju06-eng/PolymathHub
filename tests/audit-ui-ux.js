@@ -214,6 +214,8 @@ async function runAudit() {
 
     // 8. Testare Buzunar Glisant (Pocket Drawer)
     console.log("📂 Testare Buzunar Glisant (Pocket Drawer)...");
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await new Promise(r => setTimeout(r, 100));
     await page.click("#open-pocket-drawer-btn");
     await new Promise(r => setTimeout(r, 200));
     const isPocketOpen = await page.evaluate(() => document.getElementById("pocket-drawer").classList.contains("open"));
@@ -231,36 +233,144 @@ async function runAudit() {
       issues.push("Buzunarul glisant nu s-a închis la click pe X.");
     }
 
-    // 9. Testare Modale Interactive (Calendar & Ligi)
-    console.log("🏆 Testare Modale Interactive (Streak & XP)...");
-    // Modal Calendar
+    // 9. Testare Arhitectură Multi-Pagină SPA (Activitate, Ligi, Profil - Fără Pop-up-uri)
+    console.log("🌐 Testare Arhitectură Multi-Pagină SPA (Activitate, Ligi, Profil)...");
+    
+    // 9a. Pagina Activitate & Calendar prin click pe Streak Pill
     await page.click("#streak-pill");
     await new Promise(r => setTimeout(r, 200));
-    const isCalendarOpen = await page.evaluate(() => !document.getElementById("calendar-modal").classList.contains("hidden"));
-    const calendarCellsCount = await page.evaluate(() => document.querySelectorAll("#calendar-days-grid .calendar-cell").length);
-    if (isCalendarOpen && calendarCellsCount >= 28) {
-      successes.push(`✓ Modalul Calendar Lunar se deschide corect și conține ${calendarCellsCount} celule zilnice cu culori de legendă.`);
+    const isActivityVisible = await page.evaluate(() => {
+      const act = document.getElementById("activity-view");
+      const cat = document.getElementById("catalog-view");
+      const navBtn = document.getElementById("nav-activity-btn");
+      return !act.classList.contains("hidden") && cat.classList.contains("hidden") && navBtn.classList.contains("active");
+    });
+    const calendarCellsCount = await page.evaluate(() => document.querySelectorAll("#activity-calendar-grid .calendar-cell").length);
+    if (isActivityVisible && calendarCellsCount >= 28) {
+      successes.push(`✓ Pagina dedicată Activitate & Calendar afișează corect ${calendarCellsCount} celule zilnice cu heatmap și statistici fără pop-up.`);
     } else {
-      issues.push("Modalul calendar nu s-a deschis sau nu are celule suficiente.");
+      issues.push("Navigarea la Pagina de Activitate a eșuat sau celulele de calendar lipsesc.");
     }
-    await page.click("#close-calendar-modal-btn");
-    await new Promise(r => setTimeout(r, 150));
 
-    // Modal Ligi
+    // 9b. Pagina Ligi & Realizări prin click pe XP Pill
     await page.click("#xp-pill");
     await new Promise(r => setTimeout(r, 200));
-    const isLeaguesOpen = await page.evaluate(() => !document.getElementById("leagues-modal").classList.contains("hidden"));
-    const leaguesCount = await page.evaluate(() => document.querySelectorAll("#leagues-list .league-row").length);
-    if (isLeaguesOpen && leaguesCount === 5) {
-      successes.push(`✓ Modalul Ligi se deschide corect și afișează toate cele 5 ranguri de măiestrie.`);
+    const isLeaguesVisible = await page.evaluate(() => {
+      const lg = document.getElementById("leagues-view");
+      const navBtn = document.getElementById("nav-leagues-btn");
+      return !lg.classList.contains("hidden") && navBtn.classList.contains("active");
+    });
+    const leaguesCount = await page.evaluate(() => document.querySelectorAll("#page-leagues-list .league-row").length);
+    const achievementsCount = await page.evaluate(() => document.querySelectorAll("#page-achievements-grid .achievement-card").length);
+    if (isLeaguesVisible && leaguesCount === 5 && achievementsCount === 5) {
+      successes.push(`✓ Pagina Ligi & Realizări afișează toate cele 5 ranguri de măiestrie și 5 trofee polimate.`);
     } else {
-      issues.push(`Modalul ligi nu s-a deschis sau nu afișează 5 ranguri (afiseaza: ${leaguesCount}).`);
+      issues.push(`Pagina de Ligi a eșuat: ligi ${leaguesCount}, realizări ${achievementsCount}.`);
     }
-    await page.click("#close-leagues-modal-btn");
+
+    // 9c. Pagina Profil & Setări prin Nav Bar
+    await page.click("#nav-profile-btn");
+    await new Promise(r => setTimeout(r, 200));
+    const isProfileVisible = await page.evaluate(() => {
+      const prof = document.getElementById("profile-view");
+      const navBtn = document.getElementById("nav-profile-btn");
+      return !prof.classList.contains("hidden") && navBtn.classList.contains("active");
+    });
+    if (isProfileVisible) {
+      successes.push("✓ Pagina completă Profil & Setări Utilizator este accesibilă și activată în meniu.");
+    } else {
+      issues.push("Navigarea la Pagina de Profil a eșuat.");
+    }
+
+    // 10. Testare Formular Profil, Validare Email (@ și domeniu) și Sincronizare Teme
+    console.log("👤 Testare Date Profil, Validare Email (@ + domeniu) și Sincronizare Setări...");
+
+    // Test email invalid (fără domeniu valid)
+    await page.evaluate(() => {
+      const emailInput = document.getElementById("profile-email-input");
+      emailInput.value = "utilizator_fara_domeniu@mail";
+      emailInput.dispatchEvent(new Event("input"));
+    });
+    await new Promise(r => setTimeout(r, 100));
+    const isInvalidMarked = await page.evaluate(() => {
+      const fb = document.getElementById("email-validation-feedback");
+      return fb && fb.classList.contains("invalid");
+    });
+    if (isInvalidMarked) {
+      successes.push("✓ Validare Email: Adresa incompletă fără extensie de domeniu este respinsă corect cu alertă.");
+    } else {
+      issues.push("Validarea emailului nu a semnalat adresa incorectă ca fiind invalidă.");
+    }
+
+    // Test email valid cu @ și domeniu .ru / .com / .md
+    await page.evaluate(() => {
+      const emailInput = document.getElementById("profile-email-input");
+      emailInput.value = "denis.student@polymath.ru";
+      emailInput.dispatchEvent(new Event("input"));
+    });
+    await new Promise(r => setTimeout(r, 100));
+    const isValidMarked = await page.evaluate(() => {
+      const fb = document.getElementById("email-validation-feedback");
+      return fb && fb.classList.contains("valid");
+    });
+    if (isValidMarked) {
+      successes.push("✓ Validare Email: Adresa 'denis.student@polymath.ru' (@ + .ru) este validată cu succes.");
+    } else {
+      issues.push("Validarea emailului nu a marcat emailul valid ca fiind corect.");
+    }
+
+    // Salvare Profil (Nume, Prenume, Avatar nou)
+    await page.evaluate(() => {
+      document.getElementById("profile-first-name-input").value = "Denis";
+      document.getElementById("profile-last-name-input").value = "Perju";
+      // Selectare avatar rachetă 🚀
+      const rocketBtn = document.querySelector(".avatar-opt-btn[data-avatar='🚀']");
+      if (rocketBtn) rocketBtn.click();
+      // Trimitere formular
+      const form = document.getElementById("profile-form");
+      form.dispatchEvent(new Event("submit", { cancelable: true }));
+    });
+    await new Promise(r => setTimeout(r, 200));
+
+    // Verificare sincronizare în Header și Profil Card
+    const headerSyncSuccess = await page.evaluate(() => {
+      const headerName = document.getElementById("header-profile-name").textContent;
+      const headerAvatar = document.getElementById("header-avatar-icon").textContent;
+      const cardName = document.getElementById("profile-card-name").textContent;
+      return headerName === "Denis" && headerAvatar === "🚀" && cardName.includes("Denis Perju");
+    });
+    if (headerSyncSuccess) {
+      successes.push("✓ Datele de profil salvate (Nume, Avatar 🚀) s-au sincronizat instant în Antet și Sidebar.");
+    } else {
+      issues.push("Sincronizarea profilului în antet/sidebar a eșuat.");
+    }
+
+    // Sincronizare teme din Setări Profil cu bara de sus
+    await page.evaluate(() => {
+      const cyberDarkBtn = document.querySelector(".theme-card-opt[data-theme-val='cyber-dark']");
+      if (cyberDarkBtn) cyberDarkBtn.click();
+    });
     await new Promise(r => setTimeout(r, 150));
 
-    // 10. Testare Soluție Asistată 50/50 (Anti-Cheat & Penalizare XP)
+    const themeSyncSuccess = await page.evaluate(() => {
+      const docTheme = document.documentElement.getAttribute("data-theme");
+      const selectorVal = document.getElementById("theme-selector").value;
+      return docTheme === "cyber-dark" && selectorVal === "cyber-dark";
+    });
+    if (themeSyncSuccess) {
+      successes.push("✓ Teme Sincronizate: Schimbarea din Setări a actualizat atât fundalul cât și selectorul din antet.");
+    } else {
+      issues.push("Sincronizarea temei din setări cu antetul a eșuat.");
+    }
+
+    // Revenire la tema verde inițială
+    await page.select("#theme-selector", "emerald-forest");
+    await new Promise(r => setTimeout(r, 150));
+
+    // 11. Testare Soluție Asistată 50/50 (Anti-Cheat & Penalizare XP)
     console.log("⚖️ Testare regulă anti-cheat și penalizare pentru soluție asistată (50/50)...");
+    await page.click("#nav-study-btn");
+    await new Promise(r => setTimeout(r, 200));
     await page.click("#tab-mode-write");
     await new Promise(r => setTimeout(r, 150));
 
@@ -283,12 +393,12 @@ async function runAudit() {
       issues.push(`Penalizarea de asistență a eșuat: XP a crescut de la ${initialXp} la ${newXp}, mesaj: ${feedbackText}`);
     }
 
-    // 11. Revenire în Catalog
-    await page.click("#back-to-catalog-btn");
+    // 12. Revenire în Catalog
+    await page.click("#nav-catalog-btn");
     await new Promise(r => setTimeout(r, 200));
     const isBackInCatalog = await page.evaluate(() => !document.getElementById("catalog-view").classList.contains("hidden"));
     if (isBackInCatalog) {
-      successes.push("✓ Butonul '← Înapoi la Cursuri' navighează cu succes înapoi la catalog.");
+      successes.push("✓ Navigarea înapoi la Catalog funcționează impecabil.");
     } else {
       issues.push("Revenirea la catalog a eșuat.");
     }

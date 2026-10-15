@@ -18,7 +18,18 @@
     activeTrack: "SQL",
     activeLessonId: "sql-1",
     activePracticeMode: "write", // "write" | "match" | "quiz"
-    activeView: "catalog"        // "catalog" | "study"
+    activeView: "catalog",       // "catalog" | "study" | "activity" | "leagues" | "profile"
+    user: {
+      firstName: "Denis",
+      lastName: "Perju",
+      email: "denis@polymath.com",
+      bio: "Pasionat de programare, limbi străine și cunoaștere polimată.",
+      avatar: "🎓"
+    },
+    preferences: {
+      dailyTarget: 3,
+      confettiEnabled: true
+    }
   };
 
   let state = loadState();
@@ -174,10 +185,25 @@
       parsed.theme = parsed.theme || "emerald-forest";
       parsed.activeView = parsed.activeView || "catalog";
       parsed.customLessons = [];
+      parsed.user = {
+        firstName: (parsed.user && parsed.user.firstName) || "Denis",
+        lastName: (parsed.user && parsed.user.lastName) || "Perju",
+        email: (parsed.user && parsed.user.email) || "denis@polymath.com",
+        bio: (parsed.user && parsed.user.bio) || "Pasionat de programare, limbi străine și cunoaștere polimată.",
+        avatar: (parsed.user && parsed.user.avatar) || "🎓"
+      };
+      parsed.preferences = {
+        dailyTarget: (parsed.preferences && parsed.preferences.dailyTarget) ? Number(parsed.preferences.dailyTarget) : 3,
+        confettiEnabled: (parsed.preferences && typeof parsed.preferences.confettiEnabled === "boolean") ? parsed.preferences.confettiEnabled : true
+      };
       return parsed;
     } catch (e) {
       return { ...defaultState };
     }
+  }
+
+  function getDailyTarget() {
+    return (state.preferences && state.preferences.dailyTarget) ? Number(state.preferences.dailyTarget) : DAILY_GOAL_TARGET;
   }
 
   function saveState() {
@@ -305,8 +331,18 @@
 
   // Referințe DOM
   const els = {
-    // Header & Stats
+    // Header & Navigație Top SPA
     brandHomeBtn: document.getElementById("brand-home-btn"),
+    navCatalogBtn: document.getElementById("nav-catalog-btn"),
+    navStudyBtn: document.getElementById("nav-study-btn"),
+    navActivityBtn: document.getElementById("nav-activity-btn"),
+    navLeaguesBtn: document.getElementById("nav-leagues-btn"),
+    navProfileBtn: document.getElementById("nav-profile-btn"),
+    headerProfileBtn: document.getElementById("header-profile-btn"),
+    headerAvatarIcon: document.getElementById("header-avatar-icon"),
+    headerProfileName: document.getElementById("header-profile-name"),
+
+    // Stats Cluster
     streakPill: document.getElementById("streak-pill"),
     streakCount: document.getElementById("streak-count"),
     xpPill: document.getElementById("xp-pill"),
@@ -390,17 +426,47 @@
     pocketCompletionBadge: document.getElementById("pocket-completion-badge"),
     pocketLessonList: document.getElementById("pocket-lesson-list"),
 
-    // Modale
-    calendarModal: document.getElementById("calendar-modal"),
-    closeCalendarModalBtn: document.getElementById("close-calendar-modal-btn"),
-    calendarDaysGrid: document.getElementById("calendar-days-grid"),
-    modalStreakVal: document.getElementById("modal-streak-val"),
-    modalLongestStreakVal: document.getElementById("modal-longest-streak-val"),
-    resetProgressBtn: document.getElementById("reset-progress-btn"),
+    // View 3: Activitate & Calendar Lunar
+    activityView: document.getElementById("activity-view"),
+    actStreakVal: document.getElementById("act-streak-val"),
+    actLongestStreakVal: document.getElementById("act-longest-streak-val"),
+    actTodayVal: document.getElementById("act-today-val"),
+    actTotalTasksVal: document.getElementById("act-total-tasks-val"),
+    activityCalendarGrid: document.getElementById("activity-calendar-grid"),
 
-    leaguesModal: document.getElementById("leagues-modal"),
-    closeLeaguesModalBtn: document.getElementById("close-leagues-modal-btn"),
-    leaguesList: document.getElementById("leagues-list"),
+    // View 4: Ligi & Realizări
+    leaguesView: document.getElementById("leagues-view"),
+    pageLeagueIcon: document.getElementById("page-league-icon"),
+    pageLeagueTitle: document.getElementById("page-league-title"),
+    pageLeagueDesc: document.getElementById("page-league-desc"),
+    pageLeagueProgressFill: document.getElementById("page-league-progress-fill"),
+    pageLeagueXpStatus: document.getElementById("page-league-xp-status"),
+    pageLeagueNextStatus: document.getElementById("page-league-next-status"),
+    pageLeaguesList: document.getElementById("page-leagues-list"),
+    pageAchievementsGrid: document.getElementById("page-achievements-grid"),
+
+    // View 5: Profil & Setări
+    profileView: document.getElementById("profile-view"),
+    profileCardAvatar: document.getElementById("profile-card-avatar"),
+    profileCardName: document.getElementById("profile-card-name"),
+    profileCardEmail: document.getElementById("profile-card-email"),
+    profileCardBio: document.getElementById("profile-card-bio"),
+    profileStatXp: document.getElementById("profile-stat-xp"),
+    profileStatRank: document.getElementById("profile-stat-rank"),
+    profileStatStreak: document.getElementById("profile-stat-streak"),
+    profileStatLessons: document.getElementById("profile-stat-lessons"),
+    profileForm: document.getElementById("profile-form"),
+    profileFirstNameInput: document.getElementById("profile-first-name-input"),
+    profileLastNameInput: document.getElementById("profile-last-name-input"),
+    profileEmailInput: document.getElementById("profile-email-input"),
+    emailValidationFeedback: document.getElementById("email-validation-feedback"),
+    profileBioInput: document.getElementById("profile-bio-input"),
+    avatarSelectorGrid: document.getElementById("avatar-selector-grid"),
+    profileSaveStatus: document.getElementById("profile-save-status"),
+    settingsThemePicker: document.getElementById("settings-theme-picker"),
+    settingsDailyTarget: document.getElementById("settings-daily-target"),
+    settingsConfettiToggle: document.getElementById("settings-confetti-toggle"),
+    profileDeleteAccountBtn: document.getElementById("profile-delete-account-btn"),
 
     confettiCanvas: document.getElementById("confetti-canvas")
   };
@@ -409,6 +475,15 @@
     const validTheme = themeName || "emerald-forest";
     document.documentElement.setAttribute("data-theme", validTheme);
     if (els.themeSelector) els.themeSelector.value = validTheme;
+    if (els.settingsThemePicker) {
+      els.settingsThemePicker.querySelectorAll(".theme-card-opt").forEach(btn => {
+        if (btn.getAttribute("data-theme-val") === validTheme) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+    }
     state.theme = validTheme;
     saveState();
   }
@@ -446,47 +521,89 @@
     const totalAutonomous = Object.values(state.dailyHistory).reduce((a, b) => a + b, 0);
     const totalAssisted = Object.values(state.assistedHistory).reduce((a, b) => a + b, 0);
     const totalExercises = totalAutonomous + totalAssisted;
+    const dailyTarget = getDailyTarget();
 
-    els.streakCount.textContent = state.streak;
-    els.xpCount.textContent = `${state.xp} XP`;
-    els.userRank.textContent = getRankTitle(state.xp);
+    if (els.streakCount) els.streakCount.textContent = state.streak;
+    if (els.xpCount) els.xpCount.textContent = `${state.xp} XP`;
+    if (els.userRank) els.userRank.textContent = getRankTitle(state.xp);
 
-    // Stare Obiectiv Zilnic 3/3
-    if (todayAutonomous >= DAILY_GOAL_TARGET) {
-      els.goalPill.classList.add("goal-completed");
-      els.dailyProgressText.textContent = `✅ ${DAILY_GOAL_TARGET}/${DAILY_GOAL_TARGET}`;
-      els.dailyProgressLabel.textContent = "Complet!";
-      els.goalIcon.textContent = "✅";
-      els.goalTooltipTitle.textContent = "🎉 Obiectiv Zilnic Completat!";
-      els.goalTooltipText.innerHTML = `Azi ai îndeplinit cu succes scopul de <strong>3/3</strong> sarcini rezolvate autonom.<br>În total ai finalizat <strong>${totalExercises}</strong> sarcini în enciclopedie.`;
-    } else {
-      els.goalPill.classList.remove("goal-completed");
-      els.dailyProgressText.textContent = `${todayAutonomous}/${DAILY_GOAL_TARGET}`;
-      els.dailyProgressLabel.textContent = "Azi";
-      els.goalIcon.textContent = "🎯";
-      els.goalTooltipTitle.textContent = "🎯 Obiectiv Zilnic";
-      els.goalTooltipText.innerHTML = `Azi ai rezolvat autonom <strong>${todayAutonomous} din 3</strong> sarcini.<br>În total ai finalizat <strong>${totalExercises}</strong> sarcini.`;
+    // Stare Obiectiv Zilnic
+    if (els.goalPill) {
+      if (todayAutonomous >= dailyTarget) {
+        els.goalPill.classList.add("goal-completed");
+        if (els.dailyProgressText) els.dailyProgressText.textContent = `✅ ${dailyTarget}/${dailyTarget}`;
+        if (els.dailyProgressLabel) els.dailyProgressLabel.textContent = "Complet!";
+        if (els.goalIcon) els.goalIcon.textContent = "✅";
+        if (els.goalTooltipTitle) els.goalTooltipTitle.textContent = "🎉 Obiectiv Zilnic Completat!";
+        if (els.goalTooltipText) {
+          els.goalTooltipText.innerHTML = `Azi ai îndeplinit cu succes scopul de <strong>${dailyTarget}/${dailyTarget}</strong> sarcini rezolvate autonom.<br>În total ai finalizat <strong>${totalExercises}</strong> sarcini în enciclopedie.`;
+        }
+      } else {
+        els.goalPill.classList.remove("goal-completed");
+        if (els.dailyProgressText) els.dailyProgressText.textContent = `${todayAutonomous}/${dailyTarget}`;
+        if (els.dailyProgressLabel) els.dailyProgressLabel.textContent = "Azi";
+        if (els.goalIcon) els.goalIcon.textContent = "🎯";
+        if (els.goalTooltipTitle) els.goalTooltipTitle.textContent = "🎯 Obiectiv Zilnic";
+        if (els.goalTooltipText) {
+          els.goalTooltipText.innerHTML = `Azi ai rezolvat autonom <strong>${todayAutonomous} din ${dailyTarget}</strong> sarcini.<br>În total ai finalizat <strong>${totalExercises}</strong> sarcini.`;
+        }
+      }
     }
+
+    // Sincronizare Header Profil
+    if (els.headerAvatarIcon) els.headerAvatarIcon.textContent = state.user.avatar || "🎓";
+    if (els.headerProfileName) els.headerProfileName.textContent = state.user.firstName || "Denis";
   }
 
   // =========================================================================
-  // VIEW SWITCHING (CATALOG vs STUDY)
+  // VIEW SWITCHING (SPA MULTI-PAGE: CATALOG, STUDY, ACTIVITY, LEAGUES, PROFILE)
   // =========================================================================
   function switchView(viewName) {
-    state.activeView = viewName;
+    const validViews = ["catalog", "study", "activity", "leagues", "profile"];
+    const target = validViews.includes(viewName) ? viewName : "catalog";
+    state.activeView = target;
     saveState();
 
-    if (viewName === "catalog") {
-      els.catalogView.classList.remove("hidden");
-      els.studyView.classList.add("hidden");
-      closePocketDrawer();
+    const views = [
+      els.catalogView,
+      els.studyView,
+      els.activityView,
+      els.leaguesView,
+      els.profileView
+    ];
+    views.forEach(v => {
+      if (v) v.classList.add("hidden");
+    });
+
+    document.querySelectorAll(".nav-link-btn").forEach(btn => {
+      if (btn.getAttribute("data-view") === target) {
+        btn.classList.add("active");
+      } else {
+        btn.classList.remove("active");
+      }
+    });
+
+    closePocketDrawer();
+
+    if (target === "catalog") {
+      if (els.catalogView) els.catalogView.classList.remove("hidden");
       renderCatalogView();
-    } else {
-      els.catalogView.classList.add("hidden");
-      els.studyView.classList.remove("hidden");
+    } else if (target === "study") {
+      if (els.studyView) els.studyView.classList.remove("hidden");
       renderStudyView();
+    } else if (target === "activity") {
+      if (els.activityView) els.activityView.classList.remove("hidden");
+      renderActivityView();
+    } else if (target === "leagues") {
+      if (els.leaguesView) els.leaguesView.classList.remove("hidden");
+      renderLeaguesView();
+    } else if (target === "profile") {
+      if (els.profileView) els.profileView.classList.remove("hidden");
+      renderProfileView();
     }
+
     renderStats();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   // =========================================================================
@@ -1066,17 +1183,25 @@
   }
 
   // =========================================================================
-  // MODALE: CALENDAR LUNAR ACTIVITATE & LIGI/RANGURI
+  // VIEW 3: PAGINĂ COMPLETĂ ACTIVITATE & CALENDAR (FĂRĂ POP-UP)
   // =========================================================================
-  function openCalendarModal() {
-    els.calendarModal.classList.remove("hidden");
-    els.modalStreakVal.textContent = state.streak;
-    els.modalLongestStreakVal.textContent = state.longestStreak;
-
-    // Generare Calendar Lunar curent (30 de zile recente)
-    els.calendarDaysGrid.innerHTML = "";
+  function renderActivityView() {
     const today = getTodayKey();
+    const todayAutonomous = state.dailyHistory[today] || 0;
+    const totalAutonomous = Object.values(state.dailyHistory).reduce((a, b) => a + b, 0);
+    const totalAssisted = Object.values(state.assistedHistory).reduce((a, b) => a + b, 0);
+    const totalExercises = totalAutonomous + totalAssisted;
+    const dailyTarget = getDailyTarget();
 
+    if (els.actStreakVal) els.actStreakVal.textContent = `${state.streak} ${state.streak === 1 ? "zi" : "zile"}`;
+    if (els.actLongestStreakVal) els.actLongestStreakVal.textContent = `${state.longestStreak} ${state.longestStreak === 1 ? "zi" : "zile"}`;
+    if (els.actTodayVal) els.actTodayVal.textContent = `${todayAutonomous}/${dailyTarget}`;
+    if (els.actTotalTasksVal) els.actTotalTasksVal.textContent = totalExercises;
+
+    if (!els.activityCalendarGrid) return;
+    els.activityCalendarGrid.innerHTML = "";
+
+    // Ultimele 28 de zile în ordine cronologică
     for (let i = 27; i >= 0; i--) {
       const d = new Date();
       d.setDate(d.getDate() - i);
@@ -1088,15 +1213,15 @@
       const cell = document.createElement("div");
       cell.className = "calendar-cell";
 
-      if (autonomousCount >= DAILY_GOAL_TARGET) {
+      if (autonomousCount >= dailyTarget) {
         cell.classList.add("cell-complete"); // 🟢 Verde
-        cell.title = `${key}: Obiectiv 3/3 atins (${autonomousCount} rezolvări autonome)`;
+        cell.title = `${key}: Obiectiv ${dailyTarget}/${dailyTarget} atins (${autonomousCount} rezolvări autonome)`;
       } else if (autonomousCount > 0) {
         cell.classList.add("cell-streak"); // 🟠 Portocaliu
         cell.title = `${key}: Streak păstrat (${autonomousCount} sarcini)`;
       } else if (assistedCount > 0) {
         cell.classList.add("cell-assisted"); // 🟡 Galben/Chihlimbar
-        cell.title = `${key}: Studiu asistat 50/50 (${assistedCount} sarcini asistate)`;
+        cell.title = `${key}: Studiu asistat 50/50 (${assistedCount} sarcini)`;
       } else {
         cell.title = `${key}: Fără activitate înregistrată`;
       }
@@ -1104,45 +1229,194 @@
       if (key === today) cell.classList.add("today-cell");
       cell.textContent = d.getDate();
 
-      els.calendarDaysGrid.appendChild(cell);
+      els.activityCalendarGrid.appendChild(cell);
     }
   }
 
-  function closeCalendarModal() {
-    els.calendarModal.classList.add("hidden");
-  }
+  // =========================================================================
+  // VIEW 4: PAGINĂ COMPLETĂ LIGI & REALIZĂRI (FĂRĂ POP-UP)
+  // =========================================================================
+  const ACHIEVEMENTS = [
+    {
+      id: "first_step",
+      icon: "🚀",
+      title: "Primul Pas",
+      desc: "Finalizează cu succes prima ta sarcină enciclopedică.",
+      isUnlocked: s => Object.values(s.dailyHistory).reduce((a, b) => a + b, 0) >= 1
+    },
+    {
+      id: "streak_fire",
+      icon: "🔥",
+      title: "Flacăra Constanței",
+      desc: "Menține un streak activ de minimum 3 zile de studiu consecutiv.",
+      isUnlocked: s => s.streak >= 3 || s.longestStreak >= 3
+    },
+    {
+      id: "daily_target",
+      icon: "🎯",
+      title: "Disciplină de Fier",
+      desc: "Îndeplinește obiectivul zilnic complet într-o singură zi.",
+      isUnlocked: s => (s.dailyHistory[getTodayKey()] || 0) >= getDailyTarget()
+    },
+    {
+      id: "xp_seeker",
+      icon: "💎",
+      title: "Căutător de Comori",
+      desc: "Acumulează cel puțin 250 XP în contul tău enciclopedic.",
+      isUnlocked: s => s.xp >= 250
+    },
+    {
+      id: "polymath_master",
+      icon: "👑",
+      title: "Maestru Polimat",
+      desc: "Stăpânește și finalizează cel puțin 15 capitole distincte.",
+      isUnlocked: s => s.completedLessons.length >= 15
+    }
+  ];
 
-  function openLeaguesModal() {
-    els.leaguesModal.classList.remove("hidden");
-    els.leaguesList.innerHTML = "";
-
+  function renderLeaguesView() {
     const userXp = state.xp;
+    const currentLeague = LEAGUES.slice().reverse().find(l => userXp >= l.minXp) || LEAGUES[0];
+    const nextLeague = LEAGUES.find(l => l.minXp > userXp);
 
-    LEAGUES.forEach(league => {
-      const isReached = userXp >= league.minXp;
-      const isCurrent = userXp >= league.minXp && (league.maxXp === Infinity || userXp <= league.maxXp);
+    if (els.pageLeagueIcon) els.pageLeagueIcon.textContent = currentLeague.icon;
+    if (els.pageLeagueTitle) els.pageLeagueTitle.textContent = currentLeague.name;
+    if (els.pageLeagueDesc) els.pageLeagueDesc.textContent = currentLeague.desc;
 
-      const row = document.createElement("div");
-      row.className = `league-row ${isCurrent ? "current-league" : ""}`;
-      row.innerHTML = `
-        <div class="league-icon" aria-hidden="true">${league.icon}</div>
-        <div class="league-info">
-          <div class="league-name">${league.name} ${isCurrent ? '<span class="league-status-badge">👑 Rangul Tău</span>' : ''}</div>
-          <div class="league-req">Cerință: ${league.minXp} XP ${league.maxXp !== Infinity ? "– " + league.maxXp + " XP" : "+"}</div>
-          <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.25rem;">${league.desc}</p>
-        </div>
-      `;
-      els.leaguesList.appendChild(row);
-    });
+    if (nextLeague) {
+      const span = nextLeague.minXp - currentLeague.minXp;
+      const progress = Math.min(100, Math.max(0, Math.round(((userXp - currentLeague.minXp) / span) * 100)));
+      if (els.pageLeagueProgressFill) els.pageLeagueProgressFill.style.width = `${progress}%`;
+      if (els.pageLeagueXpStatus) els.pageLeagueXpStatus.textContent = `${userXp} / ${nextLeague.minXp} XP`;
+      if (els.pageLeagueNextStatus) els.pageLeagueNextStatus.textContent = `Următorul: ${nextLeague.name} (${nextLeague.minXp} XP)`;
+    } else {
+      if (els.pageLeagueProgressFill) els.pageLeagueProgressFill.style.width = "100%";
+      if (els.pageLeagueXpStatus) els.pageLeagueXpStatus.textContent = `${userXp} XP (Rang Maxim)`;
+      if (els.pageLeagueNextStatus) els.pageLeagueNextStatus.textContent = "🏆 Măiestrie Supremă Atingă";
+    }
+
+    // Lista tuturor celor 5 ligi
+    if (els.pageLeaguesList) {
+      els.pageLeaguesList.innerHTML = "";
+      LEAGUES.forEach(league => {
+        const isCurrent = league.id === currentLeague.id;
+        const isPassed = userXp >= league.maxXp && league.maxXp !== Infinity;
+        const row = document.createElement("div");
+        row.className = `league-row ${isCurrent ? "current-league" : ""}`;
+        row.innerHTML = `
+          <div class="league-icon" aria-hidden="true">${league.icon}</div>
+          <div class="league-info">
+            <div class="league-name">
+              ${league.name}
+              ${isCurrent ? '<span class="league-status-badge">👑 Rangul Tău Curent</span>' : (isPassed ? '<span class="league-status-badge" style="background:var(--border-color); color:var(--text-secondary);">✓ Rang Depășit</span>' : '')}
+            </div>
+            <div class="league-req">Cerință: ${league.minXp} XP ${league.maxXp !== Infinity ? "– " + league.maxXp + " XP" : "+"}</div>
+            <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.25rem;">${league.desc}</p>
+          </div>
+        `;
+        els.pageLeaguesList.appendChild(row);
+      });
+    }
+
+    // Realizări și Trofee
+    if (els.pageAchievementsGrid) {
+      els.pageAchievementsGrid.innerHTML = "";
+      ACHIEVEMENTS.forEach(ach => {
+        const unlocked = ach.isUnlocked(state);
+        const card = document.createElement("div");
+        card.className = `achievement-card ${unlocked ? "unlocked" : "locked"}`;
+        card.innerHTML = `
+          <div class="achievement-icon" aria-hidden="true">${ach.icon}</div>
+          <div class="achievement-info">
+            <div class="achievement-title">
+              ${ach.title}
+              <span class="achievement-badge ${unlocked ? "unlocked" : "locked"}">${unlocked ? "✓ Deblocat" : "🔒 Blocat"}</span>
+            </div>
+            <p class="achievement-desc">${ach.desc}</p>
+          </div>
+        `;
+        els.pageAchievementsGrid.appendChild(card);
+      });
+    }
   }
 
-  function closeLeaguesModal() {
-    els.leaguesModal.classList.add("hidden");
+  // =========================================================================
+  // VIEW 5: PAGINĂ COMPLETĂ PROFIL & SETĂRI UTILIZATOR
+  // =========================================================================
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.(com|ru|md|ro|org|net|io|edu|dev|me|info|[a-z]{2,})$/i;
+
+  function validateEmailFormat(email) {
+    return EMAIL_REGEX.test((email || "").trim());
+  }
+
+  function checkEmailFieldValidity(val) {
+    if (!els.emailValidationFeedback) return;
+    if (validateEmailFormat(val)) {
+      els.emailValidationFeedback.textContent = "✓ Adresă de email validă (@ și extensie recunoscută).";
+      els.emailValidationFeedback.className = "field-validation-msg valid";
+    } else {
+      els.emailValidationFeedback.textContent = "Trebuie să conțină @ și un domeniu valid (ex: .com, .ru, .ro, .md).";
+      els.emailValidationFeedback.className = "field-validation-msg invalid";
+    }
+  }
+
+  function renderProfileView() {
+    // Profil Sidebar
+    if (els.profileCardAvatar) els.profileCardAvatar.textContent = state.user.avatar || "🎓";
+    if (els.profileCardName) els.profileCardName.textContent = `${state.user.firstName || "Denis"} ${state.user.lastName || "Perju"}`.trim();
+    if (els.profileCardEmail) els.profileCardEmail.textContent = state.user.email || "denis@polymath.com";
+    if (els.profileCardBio) els.profileCardBio.textContent = state.user.bio || "Pasionat de programare, limbi străine și cunoaștere polimată.";
+
+    if (els.profileStatXp) els.profileStatXp.textContent = `${state.xp} XP`;
+    if (els.profileStatRank) els.profileStatRank.textContent = getRankTitle(state.xp);
+    if (els.profileStatStreak) els.profileStatStreak.textContent = `${state.streak} ${state.streak === 1 ? "zi" : "zile"}`;
+    if (els.profileStatLessons) els.profileStatLessons.textContent = state.completedLessons.length;
+
+    // Form inputs
+    if (els.profileFirstNameInput) els.profileFirstNameInput.value = state.user.firstName || "";
+    if (els.profileLastNameInput) els.profileLastNameInput.value = state.user.lastName || "";
+    if (els.profileEmailInput) {
+      els.profileEmailInput.value = state.user.email || "";
+      checkEmailFieldValidity(state.user.email || "");
+    }
+    if (els.profileBioInput) els.profileBioInput.value = state.user.bio || "";
+
+    // Avatar Grid selection
+    if (els.avatarSelectorGrid) {
+      els.avatarSelectorGrid.querySelectorAll(".avatar-opt-btn").forEach(btn => {
+        if (btn.getAttribute("data-avatar") === (state.user.avatar || "🎓")) {
+          btn.classList.add("selected");
+        } else {
+          btn.classList.remove("selected");
+        }
+      });
+    }
+
+    // Theme Picker selection
+    if (els.settingsThemePicker) {
+      els.settingsThemePicker.querySelectorAll(".theme-card-opt").forEach(btn => {
+        if (btn.getAttribute("data-theme-val") === state.theme) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+    }
+
+    // Study Preferences
+    if (els.settingsDailyTarget) {
+      els.settingsDailyTarget.value = String(getDailyTarget());
+    }
+    if (els.settingsConfettiToggle) {
+      els.settingsConfettiToggle.value = String(state.preferences.confettiEnabled !== false);
+    }
   }
 
   function launchConfetti() {
+    if (state.preferences && state.preferences.confettiEnabled === false) return;
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const canvas = els.confettiCanvas;
+    if (!canvas) return;
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -1192,47 +1466,71 @@
   // =========================================================================
   function bindEvents() {
     // Navigare Brand spre Pagina Principală (Catalog)
-    els.brandHomeBtn.addEventListener("click", () => switchView("catalog"));
-    els.brandHomeBtn.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        switchView("catalog");
+    if (els.brandHomeBtn) {
+      els.brandHomeBtn.addEventListener("click", () => switchView("catalog"));
+      els.brandHomeBtn.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          switchView("catalog");
+        }
+      });
+    }
+
+    // Navigație Pagini Top SPA (Catalog, Studiu, Activitate, Ligi, Profil)
+    [els.navCatalogBtn, els.navStudyBtn, els.navActivityBtn, els.navLeaguesBtn, els.navProfileBtn].forEach(btn => {
+      if (btn) {
+        btn.addEventListener("click", () => {
+          const view = btn.getAttribute("data-view");
+          if (view) switchView(view);
+        });
       }
     });
+
+    // Buton Profil din Header
+    if (els.headerProfileBtn) {
+      els.headerProfileBtn.addEventListener("click", () => switchView("profile"));
+    }
+
+    // Cluster Statistici Navigabil Direct
+    if (els.streakPill) {
+      els.streakPill.addEventListener("click", () => switchView("activity"));
+      els.streakPill.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          switchView("activity");
+        }
+      });
+    }
+
+    if (els.xpPill) {
+      els.xpPill.addEventListener("click", () => switchView("leagues"));
+      els.xpPill.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          switchView("leagues");
+        }
+      });
+    }
+
+    if (els.goalPill) {
+      els.goalPill.addEventListener("click", () => switchView("activity"));
+      els.goalPill.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          switchView("activity");
+        }
+      });
+    }
 
     // Buton Înapoi la Catalog din Studiul Focalizat
-    els.backToCatalogBtn.addEventListener("click", () => switchView("catalog"));
+    if (els.backToCatalogBtn) {
+      els.backToCatalogBtn.addEventListener("click", () => switchView("catalog"));
+    }
 
     // Buzunar Glisant (Pocket Drawer)
-    els.openPocketDrawerBtn.addEventListener("click", openPocketDrawer);
-    els.closePocketDrawerBtn.addEventListener("click", closePocketDrawer);
-    els.pocketDrawerBackdrop.addEventListener("click", closePocketDrawer);
-
-    // Modal Calendar Lunar Activitate
-    els.streakPill.addEventListener("click", openCalendarModal);
-    els.streakPill.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openCalendarModal();
-      }
-    });
-    els.closeCalendarModalBtn.addEventListener("click", closeCalendarModal);
-    els.calendarModal.addEventListener("click", e => {
-      if (e.target === els.calendarModal) closeCalendarModal();
-    });
-
-    // Modal Ligi & Ranguri de Măiestrie
-    els.xpPill.addEventListener("click", openLeaguesModal);
-    els.xpPill.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openLeaguesModal();
-      }
-    });
-    els.closeLeaguesModalBtn.addEventListener("click", closeLeaguesModal);
-    els.leaguesModal.addEventListener("click", e => {
-      if (e.target === els.leaguesModal) closeLeaguesModal();
-    });
+    if (els.openPocketDrawerBtn) els.openPocketDrawerBtn.addEventListener("click", openPocketDrawer);
+    if (els.closePocketDrawerBtn) els.closePocketDrawerBtn.addEventListener("click", closePocketDrawer);
+    if (els.pocketDrawerBackdrop) els.pocketDrawerBackdrop.addEventListener("click", closePocketDrawer);
 
     // Filtre & Căutare în Catalog
     if (els.catalogLevelFilter) {
@@ -1243,134 +1541,226 @@
     }
 
     // Comutator Moduri de Practică în Studiul Focalizat
-    els.tabModeWrite.addEventListener("click", () => switchPracticeMode("write"));
-    els.tabModeMatch.addEventListener("click", () => switchPracticeMode("match"));
-    els.tabModeQuiz.addEventListener("click", () => switchPracticeMode("quiz"));
+    if (els.tabModeWrite) els.tabModeWrite.addEventListener("click", () => switchPracticeMode("write"));
+    if (els.tabModeMatch) els.tabModeMatch.addEventListener("click", () => switchPracticeMode("match"));
+    if (els.tabModeQuiz) els.tabModeQuiz.addEventListener("click", () => switchPracticeMode("quiz"));
 
     // Buton Reamestecare Joc de Potrivire
-    els.resetMatchBtn.addEventListener("click", () => {
-      const lesson = allLessons.find(l => l.id === state.activeLessonId);
-      if (lesson) renderMatchingGame(lesson);
-    });
+    if (els.resetMatchBtn) {
+      els.resetMatchBtn.addEventListener("click", () => {
+        const lesson = allLessons.find(l => l.id === state.activeLessonId);
+        if (lesson) renderMatchingGame(lesson);
+      });
+    }
 
     // Validare Răspuns Scris
-    els.verifyBtn.addEventListener("click", verifyCurrentAnswer);
-    els.userAnswerInput.addEventListener("keydown", e => {
-      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-        e.preventDefault();
-        verifyCurrentAnswer();
-      }
-    });
+    if (els.verifyBtn) els.verifyBtn.addEventListener("click", verifyCurrentAnswer);
+    if (els.userAnswerInput) {
+      els.userAnswerInput.addEventListener("keydown", e => {
+        if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+          e.preventDefault();
+          verifyCurrentAnswer();
+        }
+      });
+    }
 
     // Indiciu Fără Spoiler
-    els.hintBtn.addEventListener("click", () => {
-      els.hintDrawer.classList.toggle("hidden");
-    });
+    if (els.hintBtn) {
+      els.hintBtn.addEventListener("click", () => {
+        if (els.hintDrawer) els.hintDrawer.classList.toggle("hidden");
+      });
+    }
 
     // M-am Dat Bătut (Arată Soluția -> Activează penalizarea 50/50)
-    els.giveUpBtn.addEventListener("click", () => {
-      lessonSessionAssisted = true;
-      els.solutionDrawer.classList.remove("hidden");
-    });
+    if (els.giveUpBtn) {
+      els.giveUpBtn.addEventListener("click", () => {
+        lessonSessionAssisted = true;
+        if (els.solutionDrawer) els.solutionDrawer.classList.remove("hidden");
+      });
+    }
 
     // Copiază Soluția & Validează (Activează penalizarea 50/50)
-    els.applySolutionBtn.addEventListener("click", () => {
-      const lesson = allLessons.find(l => l.id === state.activeLessonId);
-      if (!lesson) return;
-      lessonSessionAssisted = true;
-      els.userAnswerInput.value = lesson.officialSolution;
-      verifyCurrentAnswer();
-    });
+    if (els.applySolutionBtn) {
+      els.applySolutionBtn.addEventListener("click", () => {
+        const lesson = allLessons.find(l => l.id === state.activeLessonId);
+        if (!lesson) return;
+        lessonSessionAssisted = true;
+        if (els.userAnswerInput) els.userAnswerInput.value = lesson.officialSolution;
+        verifyCurrentAnswer();
+      });
+    }
 
     // Capitolul Următor
-    els.nextLessonBtn.addEventListener("click", () => {
-      const trackLessons = allLessons
-        .filter(l => l.track === state.activeTrack)
-        .sort((a, b) => (a.level || "").localeCompare(b.level || ""));
-      const idx = trackLessons.findIndex(l => l.id === state.activeLessonId);
+    if (els.nextLessonBtn) {
+      els.nextLessonBtn.addEventListener("click", () => {
+        const trackLessons = allLessons
+          .filter(l => l.track === state.activeTrack)
+          .sort((a, b) => (a.level || "").localeCompare(b.level || ""));
+        const idx = trackLessons.findIndex(l => l.id === state.activeLessonId);
 
-      if (idx !== -1 && idx + 1 < trackLessons.length) {
-        state.activeLessonId = trackLessons[idx + 1].id;
-      } else {
-        const globalIdx = allLessons.findIndex(l => l.id === state.activeLessonId);
-        const nextGlobal = allLessons[(globalIdx + 1) % allLessons.length];
-        state.activeTrack = nextGlobal.track;
-        state.activeLessonId = nextGlobal.id;
-      }
-      lessonSessionAssisted = false;
-      saveState();
-      renderStudyView();
-      renderStats();
-    });
+        if (idx !== -1 && idx + 1 < trackLessons.length) {
+          state.activeLessonId = trackLessons[idx + 1].id;
+        } else {
+          const globalIdx = allLessons.findIndex(l => l.id === state.activeLessonId);
+          const nextGlobal = allLessons[(globalIdx + 1) % allLessons.length];
+          state.activeTrack = nextGlobal.track;
+          state.activeLessonId = nextGlobal.id;
+        }
+        lessonSessionAssisted = false;
+        saveState();
+        renderStudyView();
+        renderStats();
+      });
+    }
 
     // Copiere Exemplu
-    els.copyExampleBtn.addEventListener("click", () => {
-      navigator.clipboard.writeText(els.lessonExample.textContent);
-      els.copyExampleBtn.textContent = "✓ Copiat";
-      setTimeout(() => {
-        els.copyExampleBtn.textContent = "Copiază";
-      }, 1400);
-    });
+    if (els.copyExampleBtn) {
+      els.copyExampleBtn.addEventListener("click", () => {
+        if (els.lessonExample) {
+          navigator.clipboard.writeText(els.lessonExample.textContent);
+          els.copyExampleBtn.textContent = "✓ Copiat";
+          setTimeout(() => {
+            if (els.copyExampleBtn) els.copyExampleBtn.textContent = "Copiază";
+          }, 1400);
+        }
+      });
+    }
 
-    // Comutator Teme
-    els.themeSelector.addEventListener("change", e => applyTheme(e.target.value));
+    // Comutator Teme Header
+    if (els.themeSelector) {
+      els.themeSelector.addEventListener("change", e => applyTheme(e.target.value));
+    }
 
-    // Resetare Progres Local de la Zero
-    els.resetProgressBtn.addEventListener("click", () => {
-      if (window.confirm("Atenție: Resetezi întregul istoric și progres local? Toate punctele, capitolele rezolvate și streak-ul vor fi șterse de la zero.")) {
-        // 1. Șterge toate versiunile de date stocate anterior (v2, v1, legacy)
-        window.localStorage.removeItem(STORAGE_KEY);
-        window.localStorage.removeItem("polymath_edtech_state_v1");
-        window.localStorage.removeItem("polymath_state");
-        window.localStorage.removeItem("polymath_history");
+    // Comutator Teme din Setări Profil
+    if (els.settingsThemePicker) {
+      els.settingsThemePicker.querySelectorAll(".theme-card-opt").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const th = btn.getAttribute("data-theme-val");
+          if (th) applyTheme(th);
+        });
+      });
+    }
 
-        // 2. Păstrează doar tema vizuală activă a utilizatorului
-        const currentTheme = state.theme || "emerald-forest";
+    // Validare Email în Timp Real la Tastare
+    if (els.profileEmailInput) {
+      els.profileEmailInput.addEventListener("input", e => {
+        checkEmailFieldValidity(e.target.value);
+      });
+    }
 
-        // 3. Resetează obiectul de stare complet de la zero
-        state = {
-          ...defaultState,
-          theme: currentTheme,
-          streak: 0,
-          longestStreak: 0,
-          lastCompletionDate: null,
-          xp: 0,
-          completedLessons: [],
-          masteryPoints: {},
-          dailyHistory: {},
-          assistedHistory: {},
-          customLessons: [],
-          activeTrack: "SQL",
-          activeLessonId: "sql-1",
-          activePracticeMode: "write",
-          activeView: "catalog"
+    // Formular Profil & Date Utilizator
+    if (els.profileForm) {
+      els.profileForm.addEventListener("submit", e => {
+        e.preventDefault();
+        const emailVal = els.profileEmailInput ? els.profileEmailInput.value.trim() : "";
+        if (!validateEmailFormat(emailVal)) {
+          checkEmailFieldValidity(emailVal);
+          if (els.profileEmailInput) els.profileEmailInput.focus();
+          return;
+        }
+
+        state.user = {
+          firstName: (els.profileFirstNameInput ? els.profileFirstNameInput.value.trim() : "") || "Denis",
+          lastName: (els.profileLastNameInput ? els.profileLastNameInput.value.trim() : "") || "Perju",
+          email: emailVal,
+          bio: els.profileBioInput ? els.profileBioInput.value.trim() : "",
+          avatar: state.user.avatar || "🎓"
         };
+
         saveState();
+        renderProfileView();
+        renderStats();
 
-        // 4. Curăță câmpurile active din interfață
-        lessonSessionAssisted = false;
-        if (els.userAnswerInput) els.userAnswerInput.value = "";
-        if (els.inputZone) els.inputZone.classList.remove("state-error", "state-success");
-        if (els.solutionDrawer) els.solutionDrawer.classList.add("hidden");
-        if (els.hintDrawer) els.hintDrawer.classList.add("hidden");
-        if (els.nextLessonBtn) els.nextLessonBtn.classList.add("hidden");
+        if (els.profileSaveStatus) {
+          els.profileSaveStatus.classList.remove("hidden");
+          setTimeout(() => {
+            if (els.profileSaveStatus) els.profileSaveStatus.classList.add("hidden");
+          }, 2500);
+        }
+      });
+    }
 
-        // 5. Închide modalul și reafișează interfața la starea curată de început
-        closeCalendarModal();
-        switchView("catalog");
-        renderAll();
-      }
-    });
+    // Selector Avatar în Setări Profil
+    if (els.avatarSelectorGrid) {
+      els.avatarSelectorGrid.querySelectorAll(".avatar-opt-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const av = btn.getAttribute("data-avatar");
+          if (av) {
+            state.user.avatar = av;
+            saveState();
+            renderProfileView();
+            renderStats();
+          }
+        });
+      });
+    }
+
+    // Preferințe Studiu: Țintă Obiectiv Zilnic
+    if (els.settingsDailyTarget) {
+      els.settingsDailyTarget.addEventListener("change", e => {
+        state.preferences.dailyTarget = Number(e.target.value) || 3;
+        saveState();
+        renderStats();
+        if (state.activeView === "activity") renderActivityView();
+      });
+    }
+
+    // Preferințe Studiu: Animații Confetti
+    if (els.settingsConfettiToggle) {
+      els.settingsConfettiToggle.addEventListener("change", e => {
+        state.preferences.confettiEnabled = e.target.value === "true";
+        saveState();
+      });
+    }
+
+    // Resetare Totală Cont & Date de la Zero (Zona de Pericol)
+    if (els.profileDeleteAccountBtn) {
+      els.profileDeleteAccountBtn.addEventListener("click", () => {
+        if (window.confirm("Atenție: Această acțiune va șterge ireversibil profilul, toate punctele XP, nivelul ligii, capitolele rezolvate și streak-ul.\n\nEști sigur că vrei să resetezi totul de la zero?")) {
+          // 1. Șterge stocarea locală pe toate versiunile
+          window.localStorage.removeItem(STORAGE_KEY);
+          window.localStorage.removeItem("polymath_edtech_state_v1");
+          window.localStorage.removeItem("polymath_state");
+          window.localStorage.removeItem("polymath_history");
+
+          // 2. Resetare obiect stare
+          state = {
+            ...defaultState,
+            theme: "emerald-forest",
+            user: {
+              firstName: "Denis",
+              lastName: "Perju",
+              email: "denis@polymath.com",
+              bio: "Pasionat de programare, limbi străine și cunoaștere polimată.",
+              avatar: "🎓"
+            },
+            preferences: {
+              dailyTarget: 3,
+              confettiEnabled: true
+            }
+          };
+          saveState();
+          applyTheme(state.theme);
+
+          // 3. Resetare interfață de studiu
+          lessonSessionAssisted = false;
+          if (els.userAnswerInput) els.userAnswerInput.value = "";
+          if (els.inputZone) els.inputZone.classList.remove("state-error", "state-success");
+          if (els.solutionDrawer) els.solutionDrawer.classList.add("hidden");
+          if (els.hintDrawer) els.hintDrawer.classList.add("hidden");
+          if (els.nextLessonBtn) els.nextLessonBtn.classList.add("hidden");
+
+          switchView("catalog");
+          renderAll();
+        }
+      });
+    }
   }
 
   function renderAll() {
     applyTheme(state.theme);
     renderStats();
-    if (state.activeView === "study") {
-      switchView("study");
-    } else {
-      switchView("catalog");
-    }
+    switchView(state.activeView || "catalog");
   }
 
   document.addEventListener("DOMContentLoaded", () => {

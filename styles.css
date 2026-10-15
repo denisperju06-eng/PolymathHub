@@ -1643,17 +1643,517 @@ button {
   border: 1px solid var(--border-color);
 }
 
+/* ==========================================================================
+   VIEW 3, 4, 5: ACTIVITATE, LIGI & PROFIL CU SETĂRI
+   ========================================================================== */
+
+.page-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.page-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-hero h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.page-hero p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Metric Cards Grid */
+.stats-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-metric-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow-card);
+}
+
+.stat-metric-icon {
+  font-size: 2rem;
+}
+
+.stat-metric-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-metric-val {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.stat-metric-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Leagues Banner */
+.league-hero-card {
+  background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-secondary) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.league-hero-icon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.league-hero-details {
+  flex: 1;
+}
+
+.league-hero-title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+
+.league-hero-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.league-xp-progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--bg-primary);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.45rem;
+}
+
+.league-xp-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-primary) 0%, #34d399 100%);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.league-xp-status-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Achievements Grid */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.achievement-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease;
+}
+
+.achievement-card.unlocked {
+  border-color: var(--accent-primary);
+  background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bg-secondary) 100%);
+}
+
+.achievement-card.locked {
+  opacity: 0.6;
+}
+
+.achievement-icon {
+  font-size: 2.2rem;
+}
+
+.achievement-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.achievement-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.achievement-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  display: inline-block;
+  margin-top: 0.35rem;
+}
+
+.achievement-badge.badge-unlocked {
+  background-color: var(--success-bg);
+  color: var(--success-green);
+}
+
+.achievement-badge.badge-locked {
+  background-color: var(--bg-elevated);
+  color: var(--text-secondary);
+}
+
+/* Profile Page Layout */
+.profile-grid-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+}
+
+.profile-sidebar-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  height: fit-content;
+}
+
+.profile-avatar-display {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-soft) 0%, var(--bg-elevated) 100%);
+  border: 3px solid var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.profile-name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.profile-email-badge {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  word-break: break-all;
+}
+
+.profile-bio-text {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.profile-stat-box {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.profile-mini-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-mini-stat-val {
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--accent-primary);
+}
+
+.profile-mini-stat-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+/* Profile Form & Settings */
+.settings-section-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.settings-card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.65rem 0.95rem;
+  border-radius: 8px;
+  background-color: var(--bg-elevated);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.form-input.is-valid {
+  border-color: var(--success-green);
+}
+
+.form-input.is-invalid {
+  border-color: var(--error-red);
+}
+
+.field-validation-msg {
+  font-size: 0.72rem;
+  margin-top: 0.25rem;
+  font-weight: 600;
+}
+
+.field-validation-msg.valid {
+  color: var(--success-green);
+}
+
+.field-validation-msg.invalid {
+  color: var(--error-red);
+}
+
+.avatar-selector-grid {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.avatar-opt-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-elevated);
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.avatar-opt-btn:hover {
+  transform: scale(1.1);
+  border-color: var(--accent-primary);
+}
+
+.avatar-opt-btn.active {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-soft);
+  transform: scale(1.1);
+}
+
+/* Theme Cards in Settings */
+.theme-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.theme-card-opt {
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-elevated);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.theme-card-opt:hover {
+  border-color: var(--accent-primary);
+}
+
+.theme-card-opt.active {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-soft);
+  color: var(--accent-primary);
+}
+
+/* Danger Zone Card */
+.danger-zone-card {
+  border: 1.5px solid rgba(239, 68, 68, 0.4);
+  background-color: rgba(239, 68, 68, 0.04);
+  border-radius: 16px;
+  padding: 1.75rem;
+}
+
+.danger-zone-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--error-red);
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.danger-zone-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+/* Header Avatar Icon */
+.header-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-elevated);
+  border: 1.5px solid var(--border-color);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem 0.25rem 0.35rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-primary);
+}
+
+.header-profile-btn:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-soft);
+}
+
+.header-avatar-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.header-profile-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* Utility Hidden */
 .hidden {
   display: none !important;
 }
 
 /* Responsiv */
+@media (max-width: 860px) {
+  .profile-grid-layout {
+    grid-template-columns: 1fr;
+  }
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .top-bar {
     padding: 0.65rem 1rem;
     flex-wrap: wrap;
     gap: 0.65rem;
+  }
+
+  .top-nav-links {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
   }
 
   .quiz-options-grid {
