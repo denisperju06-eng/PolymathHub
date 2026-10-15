@@ -254,8 +254,9 @@ body {
 }
 
 .muted-count {
-  font-weight: 500;
-  opacity: 0.8;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
 }
 
 /* Butonul Minimalist + / - */
@@ -434,7 +435,7 @@ body {
 
 .badge-category {
   background-color: var(--accent-soft);
-  color: var(--accent-primary);
+  color: var(--text-primary);
   border: 1px solid var(--accent-primary);
 }
 
@@ -515,7 +516,7 @@ body {
   border-bottom: 1px solid var(--border-color);
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .dictionary-grid {
@@ -809,8 +810,9 @@ button {
 }
 
 .btn-sm {
-  padding: 0.4rem 0.75rem;
-  font-size: 0.78rem;
+  min-height: 34px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
 }
 
 .btn-primary {
@@ -839,8 +841,12 @@ button {
 
 .btn-copy,
 .btn-apply-solution {
-  padding: 0.28rem 0.6rem;
-  font-size: 0.75rem;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
   border-radius: 6px;
   background-color: var(--accent-primary);
   color: #ffffff;

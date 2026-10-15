@@ -387,6 +387,8 @@
       const countInTrack = allLessons.filter(l => l.track === t.name).length;
       const btn = document.createElement("button");
       btn.className = `track-tab-btn ${state.activeTrack === t.name ? "active" : ""}`;
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-selected", state.activeTrack === t.name ? "true" : "false");
       btn.innerHTML = `
         <span>${t.icon} ${t.name}</span>
         <span style="font-size:0.72rem; opacity:0.75;">${countInTrack} cap.</span>
@@ -655,8 +657,11 @@
   function switchPracticeMode(mode) {
     state.activePracticeMode = mode;
     els.tabModeWrite.classList.toggle("active", mode === "write");
+    els.tabModeWrite.setAttribute("aria-selected", mode === "write" ? "true" : "false");
     els.tabModeMatch.classList.toggle("active", mode === "match");
+    els.tabModeMatch.setAttribute("aria-selected", mode === "match" ? "true" : "false");
     els.tabModeQuiz.classList.toggle("active", mode === "quiz");
+    els.tabModeQuiz.setAttribute("aria-selected", mode === "quiz" ? "true" : "false");
 
     els.paneWrite.classList.toggle("hidden", mode !== "write");
     els.paneMatch.classList.toggle("hidden", mode !== "match");
