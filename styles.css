@@ -261,45 +261,7 @@ body {
   margin-bottom: 0;
 }
 
-/* Butoanele de selecție a disciplinei și Buzunarul Colapsabil (Pocket) */
-.track-panel {
-  position: relative;
-  transition: all 0.25s ease;
-}
-
-.track-panel-header {
-  cursor: pointer;
-  user-select: none;
-  transition: opacity 0.2s ease;
-}
-
-.track-panel-header:hover {
-  opacity: 0.85;
-}
-
-.track-count-badge {
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
-  background-color: var(--bg-elevated);
-  border: 1px solid var(--border-color);
-  color: var(--accent-primary);
-  letter-spacing: 0.02em;
-}
-
-.track-tabs-pocket {
-  position: relative;
-  overflow: hidden;
-  max-height: 44px; /* Valoare fallback pentru 1 rând (2 butoane) */
-  transition: max-height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: max-height;
-}
-
-.track-tabs-pocket.is-expanded {
-  max-height: 500px;
-}
-
+/* Butoanele de selecție a disciplinei */
 .track-tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -320,80 +282,16 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.track-tab-btn span:last-child {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .track-tab-btn:hover {
   border-color: var(--accent-primary);
-  transform: translateY(-1px);
 }
 
 .track-tab-btn.active {
   background-color: var(--accent-soft);
   border-color: var(--accent-primary);
   color: var(--text-primary);
-  box-shadow: 0 0 10px rgba(99, 102, 241, 0.15);
-}
-
-/* Butonul de Comutare a Buzunarului (Pocket Accordion Toggle) */
-.track-pocket-toggle-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-  margin-top: 0.65rem;
-  padding: 0.48rem 0.75rem;
-  border-radius: 10px;
-  border: 1px dashed var(--border-color);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  user-select: none;
-}
-
-.track-pocket-toggle-btn:hover {
-  background: var(--bg-elevated);
-  border-color: var(--accent-primary);
-  border-style: solid;
-  color: var(--text-primary);
-  box-shadow: 0 2px 12px rgba(99, 102, 241, 0.15);
-}
-
-.track-pocket-toggle-btn .pocket-icon {
-  display: inline-block;
-  font-size: 0.85rem;
-  color: var(--accent-primary);
-  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.track-pocket-toggle-btn.is-expanded .pocket-icon {
-  transform: rotate(180deg);
-}
-
-.track-pocket-toggle-btn .pocket-active-indicator {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--accent-primary);
-  background: var(--accent-soft);
-  padding: 0.12rem 0.45rem;
-  border-radius: 999px;
-  margin-left: 0.25rem;
-  border: 1px solid var(--accent-primary);
 }
 
 /* Bara de progres și lista de lecții */
