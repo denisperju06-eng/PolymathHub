@@ -136,14 +136,38 @@ async function runAudit() {
     // Resetare viewport pe Desktop
     await page.setViewport({ width: 1280, height: 800 });
 
-    // 5. Testare Pagina Principală (Catalog & Domenii)
-    console.log("📚 Testare Pagina Principală (Catalog View)...");
+    // 5. Testare Pagina Principală (Catalog & Domenii & Filtre Diviziuni)
+    console.log("📚 Testare Pagina Principală (Catalog View & Diviziuni)...");
     const domainCardsCount = await page.evaluate(() => document.querySelectorAll(".domain-card").length);
-    if (domainCardsCount === 7) {
-      successes.push(`✓ Pagina Principală conține exact toate cele 7 domenii de studiu.`);
+    if (domainCardsCount === 15) {
+      successes.push(`✓ Pagina Principală conține exact toate cele 15 domenii de studiu.`);
     } else {
-      issues.push(`Număr neașteptat de domenii în catalog: ${domainCardsCount} (așteptat: 7).`);
+      issues.push(`Număr neașteptat de domenii în catalog: ${domainCardsCount} (așteptat: 15).`);
     }
+
+    // Testare filtrare pe Diviziunea Informatică (9 domenii)
+    await page.click('.division-pill-btn[data-division="Informatică și Programare"]');
+    await new Promise(r => setTimeout(r, 150));
+    const infoCount = await page.evaluate(() => document.querySelectorAll(".domain-card").length);
+    if (infoCount === 9) {
+      successes.push(`✓ Filtrarea pe Diviziunea Informatică & Programare afișează exact 9 discipline.`);
+    } else {
+      issues.push(`Filtrarea pe Informatică a eșuat: găsite ${infoCount} (așteptat: 9).`);
+    }
+
+    // Testare filtrare pe Diviziunea Limbi Străine (6 domenii)
+    await page.click('.division-pill-btn[data-division="Limbi Străine & Comunicare"]');
+    await new Promise(r => setTimeout(r, 150));
+    const langCount = await page.evaluate(() => document.querySelectorAll(".domain-card").length);
+    if (langCount === 6) {
+      successes.push(`✓ Filtrarea pe Diviziunea Limbi Străine & Comunicare afișează exact 6 discipline.`);
+    } else {
+      issues.push(`Filtrarea pe Limbi Străine a eșuat: găsite ${langCount} (așteptat: 6).`);
+    }
+
+    // Revenire la Toate Disciplinele (15 domenii)
+    await page.click('.division-pill-btn[data-division="ALL"]');
+    await new Promise(r => setTimeout(r, 150));
 
     // Verifică lista de capitole din catalog
     const chaptersCount = await page.evaluate(() => document.querySelectorAll(".catalog-chapter-item").length);

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>PolymathHub | Enciclopedie &amp; Laborator Interactiv</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2310b981%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z%22/><path d=%22M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z%22/></svg>">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,9 @@
   <!-- BARA SUPERIOARĂ STATISTICI, NAVIGAȚIE PAGINI & PROFIL -->
   <header class="top-bar">
     <div class="brand" id="brand-home-btn" role="button" tabindex="0" title="Mergi la Pagina Principală (Catalog Domenii)">
-      <div class="brand-logo" aria-hidden="true">📖</div>
+      <div class="brand-logo" aria-hidden="true">
+        <svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+      </div>
       <div>
         <h1 class="brand-title">Polymath<span>Book</span></h1>
         <p class="brand-subtitle">Enciclopedie &amp; Practică Activă</p>
@@ -27,19 +29,24 @@
     <!-- Navigație Pagini SPA (Elimină Pop-up-urile Agasante) -->
     <nav class="top-nav-links" aria-label="Navigație Pagini Aplicație">
       <button class="nav-link-btn active" data-view="catalog" id="nav-catalog-btn">
-        <span aria-hidden="true">📖</span> Catalog
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Catalog
       </button>
       <button class="nav-link-btn" data-view="study" id="nav-study-btn">
-        <span aria-hidden="true">⚡</span> Studiu
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        Studiu
       </button>
       <button class="nav-link-btn" data-view="activity" id="nav-activity-btn">
-        <span aria-hidden="true">📅</span> Activitate
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Activitate
       </button>
       <button class="nav-link-btn" data-view="leagues" id="nav-leagues-btn">
-        <span aria-hidden="true">🏆</span> Ligi
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+        Ligi
       </button>
       <button class="nav-link-btn" data-view="profile" id="nav-profile-btn">
-        <span aria-hidden="true">👤</span> Profil &amp; Setări
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Profil &amp; Setări
       </button>
     </nav>
 
@@ -47,7 +54,9 @@
     <div class="stats-cluster">
       <!-- 1. Streak Pill -> Navighează la Pagina de Activitate & Calendar -->
       <div class="stat-pill streak-pill" id="streak-pill" role="button" tabindex="0" title="Apasă pentru Pagina de Activitate &amp; Calendar">
-        <span class="stat-icon" aria-hidden="true">🔥</span>
+        <span class="stat-icon" aria-hidden="true">
+          <svg class="ui-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-primary);"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+        </span>
         <div class="stat-content">
           <span class="stat-value" id="streak-count">0</span>
           <span class="stat-label">Streak</span>
@@ -56,7 +65,9 @@
 
       <!-- 2. XP Pill -> Navighează la Pagina de Ligi & Clasamente -->
       <div class="stat-pill xp-pill" id="xp-pill" role="button" tabindex="0" title="Apasă pentru Pagina de Ligi &amp; Ranguri">
-        <span class="stat-icon" aria-hidden="true">🏆</span>
+        <span class="stat-icon" aria-hidden="true">
+          <svg class="ui-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#f59e0b;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H8v4h8v-4h-1c-.55 0-1-.45-1-1v-2.34"></path><path d="M6 4h12v7a6 6 0 0 1-12 0V4z"></path></svg>
+        </span>
         <div class="stat-content">
           <span class="stat-value" id="xp-count">0 XP</span>
           <span class="stat-label" id="user-rank">Inițiat</span>
@@ -65,13 +76,15 @@
 
       <!-- 3. Obiectiv Zilnic -> Bifa la 3/3 + Tooltip/Popover explicativ -->
       <div class="stat-pill goal-pill" id="goal-pill" role="button" tabindex="0" title="Obiectiv zilnic (Apasă pentru detalii)">
-        <span class="stat-icon" id="goal-icon" aria-hidden="true">🎯</span>
+        <span class="stat-icon" id="goal-icon" aria-hidden="true">
+          <svg class="ui-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+        </span>
         <div class="stat-content">
           <span class="stat-value" id="daily-progress-text">0/3</span>
           <span class="stat-label" id="daily-progress-label">Azi</span>
         </div>
         <div class="goal-tooltip-content" id="goal-tooltip-content" role="tooltip">
-          <strong id="goal-tooltip-title">🎯 Obiectiv Zilnic</strong>
+          <strong id="goal-tooltip-title">Obiectiv Zilnic</strong>
           <p id="goal-tooltip-text">Azi ai rezolvat 0 din 3 sarcini. În total ai rezolvat 0 sarcini.</p>
         </div>
       </div>
@@ -80,17 +93,19 @@
     <!-- Cluster Controale: Teme & Profil Utilizator -->
     <div class="controls-cluster">
       <select id="theme-selector" class="theme-select" aria-label="Selectează tema de culori">
-        <option value="emerald-forest" selected>🌲 Emerald Zen (Verde)</option>
-        <option value="cyber-dark">🌌 Cyber Dark</option>
-        <option value="sepia-book">📜 Carte Clasică (Sepia)</option>
-        <option value="neon-amethyst">🔮 Neon Amethyst</option>
-        <option value="sunset-amber">🌅 Sunset Amber</option>
-        <option value="ocean-deep">🌊 Ocean Deep</option>
-        <option value="daylight-clean">☀️ Daylight Clean</option>
+        <option value="emerald-forest" selected>Emerald Zen (Verde)</option>
+        <option value="cyber-dark">Cyber Dark</option>
+        <option value="sepia-book">Carte Sepia</option>
+        <option value="neon-amethyst">Amethyst Neon</option>
+        <option value="sunset-amber">Sunset Amber</option>
+        <option value="ocean-deep">Ocean Deep</option>
+        <option value="daylight-clean">Daylight Clean</option>
       </select>
 
       <button class="header-profile-btn" id="header-profile-btn" title="Deschide Profilul și Setările">
-        <div class="header-avatar-circle" id="header-avatar-icon">🎓</div>
+        <div class="header-avatar-circle" id="header-avatar-icon">
+          <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </div>
         <span class="header-profile-name" id="header-profile-name">Denis</span>
       </button>
     </div>
@@ -101,11 +116,27 @@
        ========================================================================= -->
   <main id="catalog-view" class="catalog-layout">
     <section class="catalog-hero">
-      <h2>📖 Enciclopedia &amp; Laboratorul Tău Interactiv</h2>
-      <p>Selectează un domeniu de studiu pentru a explora capitolele enciclopedice și a începe practica activă.</p>
+      <h2>Enciclopedia &amp; Laboratorul Interactiv</h2>
+      <p>Selectează o disciplină de studiu din domeniul Informatică sau Limbi Străine pentru a explora capitolele enciclopedice și a începe practica activă.</p>
     </section>
 
-    <!-- Grila celor 7 Domenii de Curs -->
+    <!-- Filtru Categorii / Diviziuni (Informatică & Programare vs Limbi Străine) -->
+    <div class="catalog-division-pills" id="catalog-division-pills" role="group" aria-label="Filtrare după domeniu principal">
+      <button class="division-pill-btn active" data-division="ALL">
+        <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Toate Disciplinele (15)
+      </button>
+      <button class="division-pill-btn" data-division="Informatică și Programare">
+        <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        Informatică &amp; Programare (9)
+      </button>
+      <button class="division-pill-btn" data-division="Limbi Străine & Comunicare">
+        <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        Limbi Străine &amp; Comunicare (6)
+      </button>
+    </div>
+
+    <!-- Grila Domeniilor de Curs -->
     <section class="domain-grid" id="catalog-domains-grid" aria-label="Domenii de studiu">
       <!-- Generat dinamic din curriculum -->
     </section>
@@ -119,15 +150,17 @@
         </div>
         <div class="catalog-filters-row">
           <select id="catalog-level-filter" class="theme-select" aria-label="Filtrează după nivel">
-            <option value="ALL">📊 Toate Nivelele</option>
+            <option value="ALL">Toate Nivelele</option>
           </select>
           <div class="catalog-search-wrapper">
-            <span class="catalog-search-icon" aria-hidden="true">🔍</span>
+            <span class="catalog-search-icon" aria-hidden="true">
+              <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
             <input
               type="search"
               id="catalog-search-input"
               class="search-input"
-              placeholder="Caută capitol (join, familie, buclă...)"
+              placeholder="Caută capitol (join, raii, async, dom...)"
               aria-label="Caută în capitole"
             >
           </div>
@@ -147,13 +180,15 @@
     <!-- Bara Superioară de Navigare în Modul Studiu -->
     <nav class="study-top-nav" aria-label="Navigare Studiu">
       <button id="back-to-catalog-btn" class="study-nav-btn" title="Înapoi la Catalogul General">
-        ← Înapoi la Cursuri
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Înapoi la Cursuri
       </button>
       <div class="study-nav-center">
         <span class="study-current-track-tag" id="study-track-indicator">SQL</span>
       </div>
       <button id="open-pocket-drawer-btn" class="study-nav-btn study-pocket-btn" title="Deschide buzunarul de capitole" aria-expanded="false" aria-controls="pocket-drawer">
-        📂 Schimbă Capitolul (Buzunar)
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        Schimbă Capitolul
       </button>
     </nav>
 
@@ -162,7 +197,7 @@
       <div class="lesson-meta-bar">
         <span class="badge-category" id="lesson-category-badge">Domeniu</span>
         <span class="badge-level" id="lesson-level-badge">Nivel</span>
-        <span class="badge-mastery" id="lesson-status-badge">🥉 0/1</span>
+        <span class="badge-mastery" id="lesson-status-badge">0/1</span>
       </div>
 
       <h2 class="lesson-title" id="lesson-title">Titlu Capitol</h2>
@@ -173,7 +208,7 @@
       <!-- Dicționar & Tabel Concepte / Vocabular (Grilă 2x2) -->
       <div class="dictionary-box" id="dictionary-box">
         <div class="dictionary-header">
-          <span>📚 Dicționar &amp; Sintaxă Esențială (2x2)</span>
+          <span>Dicționar &amp; Concepte Esențiale (2x2)</span>
         </div>
         <div class="dictionary-grid" id="lesson-dictionary"></div>
       </div>
@@ -181,7 +216,7 @@
       <!-- Exemplu Asemănător & Model de Rezolvare (FĂRĂ răspunsul la întrebare) -->
       <div class="example-box">
         <div class="example-header">
-          <span>💡 Exemplu Asemănător &amp; Model (Diferit de întrebarea practică!)</span>
+          <span>Model Paralel &amp; Exemplu de Referință</span>
           <button id="copy-example-btn" class="btn-copy">Copiază</button>
         </div>
         <pre class="code-display"><code id="lesson-example"></code></pre>
@@ -192,7 +227,10 @@
     <article class="card practice-card" id="practice-card">
       <div class="practice-header">
         <div>
-          <h3 class="practice-title">⚡ Antrenament Practic Interactiv</h3>
+          <h3 class="practice-title">
+            <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem; color:var(--accent-primary);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Antrenament Practic Interactiv
+          </h3>
           <p class="practice-subtitle">Alege modul de exersare: Scriere/Traducere, Potrivire între 2 coloane sau Alegere multiplă.</p>
         </div>
         <span class="xp-reward-tag" id="lesson-xp-tag">+30 XP</span>
@@ -200,15 +238,24 @@
 
       <!-- Comutator Moduri de Practică -->
       <div class="mode-switcher" role="tablist">
-        <button class="mode-tab active" role="tab" aria-selected="true" data-mode="write" id="tab-mode-write">✍️ 1. Scriere &amp; Traducere</button>
-        <button class="mode-tab" role="tab" aria-selected="false" data-mode="match" id="tab-mode-match">🔗 2. Potrivire 2 Coloane</button>
-        <button class="mode-tab" role="tab" aria-selected="false" data-mode="quiz" id="tab-mode-quiz">🎯 3. Gramatică &amp; Sintaxă (Quiz)</button>
+        <button class="mode-tab active" role="tab" aria-selected="true" data-mode="write" id="tab-mode-write">
+          <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+          1. Scriere &amp; Rezolvare
+        </button>
+        <button class="mode-tab" role="tab" aria-selected="false" data-mode="match" id="tab-mode-match">
+          <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          2. Potrivire Concepte
+        </button>
+        <button class="mode-tab" role="tab" aria-selected="false" data-mode="quiz" id="tab-mode-quiz">
+          <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+          3. Test Grilă (Quiz)
+        </button>
       </div>
 
       <!-- MODUL 1: SCRIERE & TRADUCERE FĂRĂ SPOILER -->
       <div id="practice-mode-write" class="practice-mode-pane">
         <div class="question-highlight-box">
-          <span class="question-badge">❓ ÎNTREBAREA / CERINȚA TA:</span>
+          <span class="question-badge">CERINȚĂ PRACTICĂ:</span>
           <p class="question-text" id="lesson-prompt"></p>
         </div>
 
@@ -228,9 +275,18 @@
         </div>
 
         <div class="action-buttons-row">
-          <button id="verify-btn" class="btn-primary">✓ Verifică Răspunsul</button>
-          <button id="hint-btn" class="btn-secondary">💡 Indiciu Fără Spoiler</button>
-          <button id="give-up-btn" class="btn-give-up">🏳️ M-am dat bătut (Arată Răspunsul)</button>
+          <button id="verify-btn" class="btn-primary">
+            <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Verifică Răspunsul
+          </button>
+          <button id="hint-btn" class="btn-secondary">
+            <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg>
+            Indiciu Fără Spoiler
+          </button>
+          <button id="give-up-btn" class="btn-give-up">
+            <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            Soluție Asistată (50/50)
+          </button>
           <button id="next-lesson-btn" class="btn-success hidden">Capitolul Următor →</button>
         </div>
 
@@ -240,7 +296,7 @@
 
         <div class="solution-drawer hidden" id="solution-drawer">
           <div class="solution-drawer-header">
-            <span>🔓 Varianta Corectă Oficială</span>
+            <span>Varianta Corectă Oficială</span>
             <button id="apply-solution-btn" class="btn-apply-solution">Copiază în Editor &amp; Validează (50/50)</button>
           </div>
           <pre class="solution-code"><code id="official-solution-text"></code></pre>
@@ -251,7 +307,7 @@
       <!-- MODUL 2: POTRIVIRE 2 COLOANE (MATCHING GAME) -->
       <div id="practice-mode-match" class="practice-mode-pane hidden">
         <div class="question-highlight-box">
-          <span class="question-badge">🔗 POTRIVEȘTE CELE DOUĂ COLOANE:</span>
+          <span class="question-badge">POTRIVEȘTE CELE DOUĂ COLOANE:</span>
           <p class="question-text">Selectează un element din <strong>Coloana Stângă</strong> și apoi corespondentul său din <strong>Coloana Dreaptă</strong>.</p>
         </div>
         <div class="matching-columns-grid">
@@ -260,14 +316,17 @@
         </div>
         <div class="matching-footer">
           <span id="match-status-msg" class="validation-feedback">Potrivește toate perechile pentru a câștiga puncte de Măiestrie!</span>
-          <button id="reset-match-btn" class="btn-secondary btn-sm">🔄 Reamestecă Coloanele</button>
+          <button id="reset-match-btn" class="btn-secondary btn-sm">
+            <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            Reamestecă Coloanele
+          </button>
         </div>
       </div>
 
       <!-- MODUL 3: QUIZ 2x2 (ALEGERE MULTIPLĂ CU BLOCARE LA RĂSPUNSUL CORECT) -->
       <div id="practice-mode-quiz" class="practice-mode-pane hidden">
         <div class="question-highlight-box">
-          <span class="question-badge">🎯 ALEGE VARIANTA CORECTĂ:</span>
+          <span class="question-badge">ALEGE VARIANTA CORECTĂ:</span>
           <p class="question-text" id="quiz-question-text"></p>
         </div>
         <div class="quiz-options-grid" id="quiz-options-grid"></div>
@@ -281,35 +340,46 @@
        ========================================================================= -->
   <main id="activity-view" class="page-layout hidden">
     <section class="page-hero">
-      <h2>📅 Activitate, Calendar &amp; Istoric de Studiu</h2>
+      <h2>
+        <svg class="ui-icon heading-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Activitate &amp; Calendar Istoric
+      </h2>
       <p>Urmărește-ți constanța zilnică, numărul de capitole parcurse și progresul de la o zi la alta.</p>
     </section>
 
     <!-- Grilă Metrici Activitate -->
     <div class="stats-overview-grid">
       <div class="stat-metric-card">
-        <span class="stat-metric-icon" aria-hidden="true">🔥</span>
+        <span class="stat-metric-icon" aria-hidden="true">
+          <svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-primary);"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+        </span>
         <div class="stat-metric-info">
           <span class="stat-metric-val" id="act-streak-val">0 zile</span>
           <span class="stat-metric-label">Streak Curent</span>
         </div>
       </div>
       <div class="stat-metric-card">
-        <span class="stat-metric-icon" aria-hidden="true">⭐</span>
+        <span class="stat-metric-icon" aria-hidden="true">
+          <svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#f59e0b;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </span>
         <div class="stat-metric-info">
           <span class="stat-metric-val" id="act-longest-streak-val">0 zile</span>
           <span class="stat-metric-label">Record Istoric Streak</span>
         </div>
       </div>
       <div class="stat-metric-card">
-        <span class="stat-metric-icon" aria-hidden="true">🎯</span>
+        <span class="stat-metric-icon" aria-hidden="true">
+          <svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+        </span>
         <div class="stat-metric-info">
           <span class="stat-metric-val" id="act-today-val">0/3</span>
           <span class="stat-metric-label">Obiectiv Zilnic Azi</span>
         </div>
       </div>
       <div class="stat-metric-card">
-        <span class="stat-metric-icon" aria-hidden="true">📚</span>
+        <span class="stat-metric-icon" aria-hidden="true">
+          <svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        </span>
         <div class="stat-metric-info">
           <span class="stat-metric-val" id="act-total-tasks-val">0</span>
           <span class="stat-metric-label">Sarcini Rezolvate Total</span>
@@ -319,12 +389,12 @@
 
     <!-- Calendar Lunar Integrat -->
     <section class="settings-section-card">
-      <h3 class="settings-card-title">📅 Calendar Activitate Lunar (Ultimele 28 de Zile)</h3>
+      <h3 class="settings-card-title">Calendar Activitate Lunar (Ultimele 28 de Zile)</h3>
       <div class="calendar-legend">
-        <div class="legend-item"><span class="legend-dot legend-green"></span> 🟢 3/3 Obiectiv Complet</div>
-        <div class="legend-item"><span class="legend-dot legend-orange"></span> 🟠 Streak Păstrat (1-2 sarcini)</div>
-        <div class="legend-item"><span class="legend-dot legend-yellow"></span> 🟡 50/50 Cu Asistență</div>
-        <div class="legend-item"><span class="legend-dot legend-empty"></span> ⚪ Fără activitate</div>
+        <div class="legend-item"><span class="legend-dot legend-green"></span> Obiectiv Complet (3/3)</div>
+        <div class="legend-item"><span class="legend-dot legend-orange"></span> Activitate Parțială (1-2 sarcini)</div>
+        <div class="legend-item"><span class="legend-dot legend-yellow"></span> Asistat (50/50)</div>
+        <div class="legend-item"><span class="legend-dot legend-empty"></span> Fără activitate</div>
       </div>
       <div class="calendar-grid" id="activity-calendar-grid"></div>
     </section>
@@ -335,13 +405,18 @@
        ========================================================================= -->
   <main id="leagues-view" class="page-layout hidden">
     <section class="page-hero">
-      <h2>🏆 Ligi de Măiestrie &amp; Realizări</h2>
+      <h2>
+        <svg class="ui-icon heading-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+        Ligi de Măiestrie &amp; Realizări
+      </h2>
       <p>Acumulează puncte de experiență (XP) rezolvând exerciții autonome pentru a avansa în ligile polimate.</p>
     </section>
 
     <!-- Banner Liga Curentă -->
     <div class="league-hero-card">
-      <div class="league-hero-icon" id="page-league-icon">🥉</div>
+      <div class="league-hero-icon" id="page-league-icon">
+        <svg class="ui-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+      </div>
       <div class="league-hero-details">
         <h3 class="league-hero-title" id="page-league-title">Rang I: Inițiat</h3>
         <p class="league-hero-desc" id="page-league-desc">Primul pas în călătoria enciclopedică polimată.</p>
@@ -357,13 +432,13 @@
 
     <!-- Toate Ligile -->
     <section class="settings-section-card">
-      <h3 class="settings-card-title">🎖️ Toate Ligile de Măiestrie</h3>
+      <h3 class="settings-card-title">Toate Ligile de Măiestrie</h3>
       <div class="leagues-list" id="page-leagues-list"></div>
     </section>
 
     <!-- Sistem Realizări (Achievements) -->
     <section class="settings-section-card">
-      <h3 class="settings-card-title">🌟 Realizări &amp; Trofee Polimate</h3>
+      <h3 class="settings-card-title">Realizări &amp; Trofee Polimate</h3>
       <div class="achievements-grid" id="page-achievements-grid"></div>
     </section>
   </main>
@@ -373,7 +448,10 @@
        ========================================================================= -->
   <main id="profile-view" class="page-layout hidden">
     <section class="page-hero">
-      <h2>👤 Profilul Tău &amp; Setări Generale</h2>
+      <h2>
+        <svg class="ui-icon heading-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Profilul Tău &amp; Setări Generale
+      </h2>
       <p>Personalizează-ți datele de identificare, tema de lucru și preferințele de studiu.</p>
     </section>
 
@@ -409,7 +487,7 @@
       <div class="profile-main-content">
         <!-- Formular Date Cont -->
         <section class="settings-section-card">
-          <h3 class="settings-card-title">📝 Date Utilizator &amp; Cont</h3>
+          <h3 class="settings-card-title">Date Utilizator &amp; Cont</h3>
           <form id="profile-form">
             <div class="form-grid-2">
               <div class="form-field">
@@ -446,38 +524,41 @@
               </div>
             </div>
 
-            <button type="submit" class="btn-primary" style="margin-top:0.75rem;">💾 Salvează Datele Profilului</button>
+            <button type="submit" class="btn-primary" style="margin-top:0.75rem;">
+              <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              Salvează Datele Profilului
+            </button>
             <span id="profile-save-status" style="margin-left:1rem; font-size:0.82rem; font-weight:700; color:var(--success-green);" class="hidden">✓ Datele au fost salvate cu succes!</span>
           </form>
         </section>
 
         <!-- Setări Temă & Preferințe Studiu -->
         <section class="settings-section-card">
-          <h3 class="settings-card-title">🎨 Aspect Vizual &amp; Preferințe Studiu</h3>
+          <h3 class="settings-card-title">Aspect Vizual &amp; Preferințe Studiu</h3>
 
           <div class="form-field">
             <label>Schimbare Fundal / Temă Vizuală (sincronizată cu bara de sus):</label>
             <div class="theme-picker-grid" id="settings-theme-picker">
               <button type="button" class="theme-card-opt" data-theme-val="emerald-forest">
-                <span>🌲 Emerald Zen</span>
+                <span>Emerald Zen (Verde)</span>
               </button>
               <button type="button" class="theme-card-opt" data-theme-val="cyber-dark">
-                <span>🌌 Cyber Dark</span>
+                <span>Cyber Dark</span>
               </button>
               <button type="button" class="theme-card-opt" data-theme-val="sepia-book">
-                <span>📜 Carte Sepia</span>
+                <span>Carte Sepia</span>
               </button>
               <button type="button" class="theme-card-opt" data-theme-val="neon-amethyst">
-                <span>🔮 Amethyst</span>
+                <span>Amethyst Neon</span>
               </button>
               <button type="button" class="theme-card-opt" data-theme-val="sunset-amber">
-                <span>🌅 Sunset Amber</span>
+                <span>Sunset Amber</span>
               </button>
               <button type="button" class="theme-card-opt" data-theme-val="ocean-deep">
-                <span>🌊 Ocean Deep</span>
+                <span>Ocean Deep</span>
               </button>
               <button type="button" class="theme-card-opt" data-theme-val="daylight-clean">
-                <span>☀️ Daylight Clean</span>
+                <span>Daylight Clean</span>
               </button>
             </div>
           </div>
@@ -486,15 +567,15 @@
             <div class="form-field">
               <label for="settings-daily-target">Țintă Obiectiv Zilnic:</label>
               <select id="settings-daily-target" class="theme-select" style="width:100%;">
-                <option value="3">🎯 3 sarcini / zi (Standard)</option>
-                <option value="5">🔥 5 sarcini / zi (Intensiv)</option>
-                <option value="10">⚡ 10 sarcini / zi (Maraton Polimat)</option>
+                <option value="3">3 sarcini / zi (Standard)</option>
+                <option value="5">5 sarcini / zi (Intensiv)</option>
+                <option value="10">10 sarcini / zi (Maraton Polimat)</option>
               </select>
             </div>
             <div class="form-field">
               <label for="settings-confetti-toggle">Animații de Reușită (Confetti):</label>
               <select id="settings-confetti-toggle" class="theme-select" style="width:100%;">
-                <option value="true">🎉 Activate</option>
+                <option value="true">Activate</option>
                 <option value="false">Off (Fără animații)</option>
               </select>
             </div>
@@ -504,13 +585,17 @@
         <!-- Zona de Pericol: Ștergere Cont & Resetare Progres -->
         <section class="danger-zone-card">
           <div class="danger-zone-header">
-            <span>⚠️ Zona de Pericol: Ștergere Cont &amp; Date</span>
+            <span>
+              <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem; color:var(--error-red); vertical-align:-3px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              Zona de Pericol: Ștergere Cont &amp; Date
+            </span>
           </div>
           <p class="danger-zone-desc">
             Această acțiune va șterge definitiv toate datele de cont, punctele XP, nivelul ligii, capitolele rezolvate și streak-ul înregistrat. Aplicația va fi readusă la starea inițială de la zero.
           </p>
           <button id="profile-delete-account-btn" class="btn-ghost-danger">
-            🗑️ Șterge Contul și Resetează Totul de la Zero
+            <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            Șterge Contul și Resetează Totul de la Zero
           </button>
         </section>
       </div>
@@ -523,7 +608,10 @@
   <div id="pocket-drawer-backdrop" class="pocket-drawer-backdrop hidden"></div>
   <aside id="pocket-drawer" class="pocket-drawer" aria-label="Buzunar Navigare Capitole">
     <div class="pocket-drawer-header">
-      <h3 class="pocket-drawer-title">📂 Schimbă Tema / Capitolul</h3>
+      <h3 class="pocket-drawer-title">
+        <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem; color:var(--accent-primary);"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        Schimbă Tema / Capitolul
+      </h3>
       <button id="close-pocket-drawer-btn" class="btn-close" aria-label="Închide buzunarul">&times;</button>
     </div>
     <div class="pocket-drawer-body">
@@ -541,6 +629,7 @@
   <script src="curriculum.js"></script>
   <script src="curriculum-extended.js"></script>
   <script src="curriculum-advanced.js"></script>
+  <script src="curriculum-polyglot.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

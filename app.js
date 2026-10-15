@@ -49,7 +49,8 @@
     ...(typeof EXTENDED_MODULES !== "undefined" ? EXTENDED_MODULES : []),
     ...(typeof EXTENDED_CURRICULUM !== "undefined" && typeof EXTENDED_MODULES === "undefined" ? EXTENDED_CURRICULUM : []),
     ...(typeof ADVANCED_CURRICULUM_EXPANSION !== "undefined" ? ADVANCED_CURRICULUM_EXPANSION : []),
-    ...(typeof ADVANCED_CURRICULUM !== "undefined" && typeof ADVANCED_CURRICULUM_EXPANSION === "undefined" ? ADVANCED_CURRICULUM : [])
+    ...(typeof ADVANCED_CURRICULUM !== "undefined" && typeof ADVANCED_CURRICULUM_EXPANSION === "undefined" ? ADVANCED_CURRICULUM : []),
+    ...(typeof NEW_EXPANDED_CURRICULUM !== "undefined" ? NEW_EXPANDED_CURRICULUM : [])
   ];
 
   // Deduplicare inteligentă pe baza ID-ului
@@ -69,13 +70,44 @@
 
   // Normalizare structură discipline pentru o clasificare clară și intuitivă
   allLessons.forEach(l => {
-    if (l.track && l.track.includes("Engleză")) {
+    if (l.track === "JavaScript: DOM & Events") {
+      l.track = "JavaScript";
+      l.division = "Informatică și Programare";
+      if (!l.level || l.level.startsWith("1.")) {
+        l.level = "4. DOM & Evenimente Browser";
+      }
+    } else if (l.track && l.track.includes("C & C++")) {
+      l.track = "C & C++";
+      l.division = "Informatică și Programare";
+    } else if (l.track && l.track.includes("C#")) {
+      l.track = "C#";
+      l.division = "Informatică și Programare";
+    } else if (l.track && l.track.includes("Python")) {
+      l.track = "Python";
+      l.division = "Informatică și Programare";
+    } else if (l.track && l.track.includes("DevOps")) {
+      l.track = "DevOps & Sisteme Linux";
+      l.division = "Informatică și Programare";
+    } else if (l.track && l.track.includes("TypeScript")) {
+      l.track = "TypeScript & React";
+      l.division = "Informatică și Programare";
+    } else if (l.track && l.track.includes("Algoritmi")) {
+      l.track = "Algoritmi & Structuri de Date";
+      l.division = "Informatică și Programare";
+    } else if (l.track && l.track.includes("Franceză")) {
+      l.track = "Limba Franceză";
+      l.division = "Limbi Străine & Comunicare";
+    } else if (l.track && l.track.includes("Spaniolă")) {
+      l.track = "Limba Spaniolă";
+      l.division = "Limbi Străine & Comunicare";
+    } else if (l.track === "SQL" || l.track === "Java" || l.track === "JavaScript") {
+      l.division = "Informatică și Programare";
+    } else if (l.track && l.track.includes("Engleză")) {
+      l.division = "Limbi Străine & Comunicare";
       if (l.track.includes("Familie") || l.id.startsWith("eng-fam")) {
         l.track = "Engleză: Familie & Hobby";
-        l.icon = "🏡";
       } else if (l.id.startsWith("eng-a1") || l.id.startsWith("eng-a2") || (l.level && (l.level.includes("A1") || l.level.includes("A2")))) {
         l.track = "Engleză (A1–A2)";
-        l.icon = "🇬🇧";
         if (l.id.startsWith("eng-a1") || (l.level && l.level.includes("A1"))) l.level = "1. A1 Începător";
         else l.level = "2. A2 Elementar";
       } else if (
@@ -85,7 +117,6 @@
         (l.level && (l.level.includes("B1") || l.level.includes("B2")))
       ) {
         l.track = "Engleză (B1–B2)";
-        l.icon = "🇬🇧";
         if (l.id.startsWith("eng-b1") || l.id === "eng-adv-1" || (l.level && l.level.includes("B1"))) {
           l.level = "1. B1 Intermediate";
         } else {
@@ -93,7 +124,6 @@
         }
       } else {
         l.track = "Engleză (C1–C2)";
-        l.icon = "🇬🇧";
         if (l.level && (l.level.includes("C2") || l.id.startsWith("eng-adv-14") || l.id.startsWith("eng-adv-15") || l.id.startsWith("eng-adv-16") || l.id.startsWith("eng-adv-17") || l.id.startsWith("eng-adv-18") || l.id === "eng-v6")) {
           l.level = "3. C2 Mastery";
         } else if (l.level && (l.id.startsWith("eng-adv-9") || l.id.startsWith("eng-adv-10") || l.id.startsWith("eng-adv-11") || l.id.startsWith("eng-adv-12") || l.id.startsWith("eng-adv-13") || l.level.includes("C1+"))) {
@@ -217,12 +247,12 @@
   // Sistem Dinamic de Mastery (Bronz -> Argint -> Aur -> Platină -> Diamant)
   function getMasteryConfig(levelStr) {
     const lvl = levelStr || "1. Începător";
-    if (lvl.startsWith("1.") || lvl.includes("A1") || lvl.includes("Începător")) return { max: 1, icon: "🥉", tier: "Bronz" };
-    if (lvl.startsWith("2.") || lvl.includes("A2") || lvl.includes("Junior")) return { max: 2, icon: "🥈", tier: "Argint" };
-    if (lvl.startsWith("3.") || lvl.includes("B1") || lvl.includes("Middle")) return { max: 3, icon: "🥇", tier: "Aur" };
-    if (lvl.startsWith("4.") || lvl.includes("B2") || lvl.includes("C1") || lvl.includes("Senior")) return { max: 4, icon: "💠", tier: "Platină" };
-    if (lvl.startsWith("5.") || lvl.includes("C2") || lvl.includes("Exemplar")) return { max: 5, icon: "💎", tier: "Diamant" };
-    return { max: 2, icon: "🏅", tier: "Practician" };
+    if (lvl.startsWith("1.") || lvl.includes("A1") || lvl.includes("Începător")) return { max: 1, tier: "Bronz" };
+    if (lvl.startsWith("2.") || lvl.includes("A2") || lvl.includes("Junior")) return { max: 2, tier: "Argint" };
+    if (lvl.startsWith("3.") || lvl.includes("B1") || lvl.includes("Middle")) return { max: 3, tier: "Aur" };
+    if (lvl.startsWith("4.") || lvl.includes("B2") || lvl.includes("C1") || lvl.includes("Senior")) return { max: 4, tier: "Platină" };
+    if (lvl.startsWith("5.") || lvl.includes("C2") || lvl.includes("Exemplar")) return { max: 5, tier: "Diamant" };
+    return { max: 2, tier: "Practician" };
   }
 
   function getLessonMasteryStatus(lesson) {
@@ -232,9 +262,8 @@
     return {
       current,
       max: cfg.max,
-      icon: isMaxed ? "👑" : cfg.icon,
       tier: cfg.tier,
-      label: `${isMaxed ? "👑 Maestru" : cfg.icon + " " + cfg.tier} ${current}/${cfg.max}`
+      label: `${isMaxed ? "Maestru" : cfg.tier} ${current}/${cfg.max}`
     };
   }
 
@@ -304,11 +333,46 @@
   }
 
   const LEAGUES = [
-    { id: 1, name: "Rang I: Inițiat", minXp: 0, maxXp: 99, icon: "🥉", desc: "Primul pas în călătoria enciclopedică polimată." },
-    { id: 2, name: "Rang II: Explorator Activ", minXp: 100, maxXp: 279, icon: "🥈", desc: "Practică susținută și consolidare de concepte de bază." },
-    { id: 3, name: "Rang III: Practician Avansat", minXp: 280, maxXp: 549, icon: "🥇", desc: "Stăpânire autonomă a sintaxei și a lexicului complex." },
-    { id: 4, name: "Rang IV: Arhitect Sintactic", minXp: 550, maxXp: 899, icon: "💠", desc: "Nivel înalt de finețe tehnică și fluență." },
-    { id: 5, name: "Rang V: Enciclopedist Polimat", minXp: 900, maxXp: Infinity, icon: "💎", desc: "Măiestrie absolută în toate domeniile studiate." }
+    {
+      id: 1,
+      name: "Rang I: Inițiat",
+      minXp: 0,
+      maxXp: 99,
+      icon: `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#cd7f32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`,
+      desc: "Primul pas în călătoria enciclopedică polimată."
+    },
+    {
+      id: 2,
+      name: "Rang II: Explorator Activ",
+      minXp: 100,
+      maxXp: 279,
+      icon: `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`,
+      desc: "Practică susținută și consolidare de concepte de bază."
+    },
+    {
+      id: 3,
+      name: "Rang III: Practician Avansat",
+      minXp: 280,
+      maxXp: 549,
+      icon: `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`,
+      desc: "Stăpânire autonomă a sintaxei și a lexicului complex."
+    },
+    {
+      id: 4,
+      name: "Rang IV: Arhitect Sintactic",
+      minXp: 550,
+      maxXp: 899,
+      icon: `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`,
+      desc: "Nivel înalt de finețe tehnică și fluență."
+    },
+    {
+      id: 5,
+      name: "Rang V: Enciclopedist Polimat",
+      minXp: 900,
+      maxXp: Infinity,
+      icon: `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`,
+      desc: "Măiestrie absolută în toate domeniile studiate."
+    }
   ];
 
   function getRankTitle(xp) {
@@ -488,28 +552,82 @@
     saveState();
   }
 
-  function getTracks() {
-    const descriptions = {
-      "SQL": "Baze de date relaționale, clauze SELECT, filtrări WHERE, JOIN-uri și agregări.",
-      "Java": "Programare Orientată pe Obiecte (POO), clase, polimorfism, colecții și algoritmi.",
-      "JavaScript": "Dezvoltare web modernă, funcții ES6+, asincronism async/await și manipulare DOM.",
-      "Engleză (A1–A2)": "Fundamente gramaticale, prezent simplu/continuu, verbe neregulate și dialog uzual.",
-      "Engleză (B1–B2)": "Timpuri compuse, diateză pasivă, fraze condiționale și vocabular intermediar.",
-      "Engleză (C1–C2)": "Structuri de inversiune, modale deductive, nuanțe stilistice și colocuiri academice.",
-      "Engleză: Familie & Hobby": "Vocabular aplicat pentru viața de zi cu zi, activități, pasiuni și familie."
-    };
+  const TRACK_ICONS = {
+    "SQL": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>`,
+    "Java": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>`,
+    "JavaScript": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
+    "TypeScript & React": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`,
+    "C & C++": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>`,
+    "C#": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>`,
+    "Python": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>`,
+    "DevOps & Sisteme Linux": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>`,
+    "Algoritmi & Structuri de Date": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>`,
+    "Engleză (A1–A2)": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
+    "Engleză (B1–B2)": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>`,
+    "Engleză (C1–C2)": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`,
+    "Engleză: Familie & Hobby": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`,
+    "Limba Franceză": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>`,
+    "Limba Spaniolă": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`
+  };
 
-    const map = new Map();
-    allLessons.forEach(item => {
-      if (!map.has(item.track)) {
-        map.set(item.track, {
-          name: item.track,
-          icon: item.icon || "📘",
-          description: descriptions[item.track] || "Capitole enciclopedice și exerciții practice complete."
+  const trackDescriptions = {
+    "SQL": "Baze de date relaționale, clauze SELECT, filtrări WHERE, JOIN-uri și agregări analitice.",
+    "Java": "POO, clase, polimorfism, colecții avansate și Spring Boot REST API.",
+    "JavaScript": "Dezvoltare web modernă, funcții ES6+, asincronism async/await și manipulare DOM Tree.",
+    "TypeScript & React": "Sintaxă strictă statică, interfețe, hooks React (useState, useEffect) și componente modulare.",
+    "C & C++": "Inginerie de sistem, pointeri, gestiune RAII, concurrency std::jthread și move semantics.",
+    "C#": "Arhitectură .NET Core, LINQ, programare orientată pe obiecte, delegates și evenimente.",
+    "Python": "Sintaxă expresivă, structuri de date native, list comprehensions și algoritmi.",
+    "DevOps & Sisteme Linux": "Comenzi terminal Bash, pipes, Docker multi-stage, Git internals și protocoale de rețea.",
+    "Algoritmi & Structuri de Date": "Tehnici Two Pointers, căutare binară O(log n), stive și optimizarea complexității.",
+    "Engleză (A1–A2)": "Fundamente gramaticale, prezent simplu/continuu, verbe neregulate și dialog uzual.",
+    "Engleză (B1–B2)": "Timpuri compuse, diateză pasivă, fraze condiționale și vocabular intermediar.",
+    "Engleză (C1–C2)": "Structuri de inversiune, modale deductive, nuanțe stilistice și colocuiri academice.",
+    "Engleză: Familie & Hobby": "Vocabular aplicat pentru viața de zi cu zi, activități, pasiuni și familie.",
+    "Limba Franceză": "De la A1 (fonetică, être/avoir) până la moduri avansate B2/C1 (Subjonctif, nuanțe literare).",
+    "Limba Spaniolă": "De la A1 (ser vs estar, vocabular) până la moduri complexe B2/C1 (Modo Subjuntivo)."
+  };
+
+  const trackDivisions = {
+    "SQL": "Informatică și Programare",
+    "Java": "Informatică și Programare",
+    "JavaScript": "Informatică și Programare",
+    "TypeScript & React": "Informatică și Programare",
+    "C & C++": "Informatică și Programare",
+    "C#": "Informatică și Programare",
+    "Python": "Informatică și Programare",
+    "DevOps & Sisteme Linux": "Informatică și Programare",
+    "Algoritmi & Structuri de Date": "Informatică și Programare",
+    "Engleză (A1–A2)": "Limbi Străine & Comunicare",
+    "Engleză (B1–B2)": "Limbi Străine & Comunicare",
+    "Engleză (C1–C2)": "Limbi Străine & Comunicare",
+    "Engleză: Familie & Hobby": "Limbi Străine & Comunicare",
+    "Limba Franceză": "Limbi Străine & Comunicare",
+    "Limba Spaniolă": "Limbi Străine & Comunicare"
+  };
+
+  let currentDivisionFilter = "ALL";
+
+  function getTracks() {
+    const tracksOrder = [
+      "SQL", "Java", "JavaScript", "TypeScript & React", "C & C++", "C#", "Python",
+      "DevOps & Sisteme Linux", "Algoritmi & Structuri de Date",
+      "Engleză (A1–A2)", "Engleză (B1–B2)", "Engleză (C1–C2)", "Engleză: Familie & Hobby",
+      "Limba Franceză", "Limba Spaniolă"
+    ];
+    const list = [];
+    tracksOrder.forEach(name => {
+      const hasAny = allLessons.some(l => l.track === name);
+      if (hasAny) {
+        list.push({
+          name,
+          icon: TRACK_ICONS[name] || `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle></svg>`,
+          description: trackDescriptions[name] || "Capitole enciclopedice și exerciții practice complete.",
+          division: trackDivisions[name] || "Informatică și Programare"
         });
       }
     });
-    return Array.from(map.values());
+    return list;
   }
 
   // Actualizare Cluster Statistici (Streak, Rang, Obiectiv Zilnic cu Tooltip)
@@ -531,10 +649,12 @@
     if (els.goalPill) {
       if (todayAutonomous >= dailyTarget) {
         els.goalPill.classList.add("goal-completed");
-        if (els.dailyProgressText) els.dailyProgressText.textContent = `✅ ${dailyTarget}/${dailyTarget}`;
+        if (els.dailyProgressText) els.dailyProgressText.textContent = `${dailyTarget}/${dailyTarget}`;
         if (els.dailyProgressLabel) els.dailyProgressLabel.textContent = "Complet!";
-        if (els.goalIcon) els.goalIcon.textContent = "✅";
-        if (els.goalTooltipTitle) els.goalTooltipTitle.textContent = "🎉 Obiectiv Zilnic Completat!";
+        if (els.goalIcon) {
+          els.goalIcon.innerHTML = `<svg class="ui-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--success-green);"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+        }
+        if (els.goalTooltipTitle) els.goalTooltipTitle.textContent = "Obiectiv Zilnic Completat!";
         if (els.goalTooltipText) {
           els.goalTooltipText.innerHTML = `Azi ai îndeplinit cu succes scopul de <strong>${dailyTarget}/${dailyTarget}</strong> sarcini rezolvate autonom.<br>În total ai finalizat <strong>${totalExercises}</strong> sarcini în enciclopedie.`;
         }
@@ -542,8 +662,10 @@
         els.goalPill.classList.remove("goal-completed");
         if (els.dailyProgressText) els.dailyProgressText.textContent = `${todayAutonomous}/${dailyTarget}`;
         if (els.dailyProgressLabel) els.dailyProgressLabel.textContent = "Azi";
-        if (els.goalIcon) els.goalIcon.textContent = "🎯";
-        if (els.goalTooltipTitle) els.goalTooltipTitle.textContent = "🎯 Obiectiv Zilnic";
+        if (els.goalIcon) {
+          els.goalIcon.innerHTML = `<svg class="ui-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>`;
+        }
+        if (els.goalTooltipTitle) els.goalTooltipTitle.textContent = "Obiectiv Zilnic";
         if (els.goalTooltipText) {
           els.goalTooltipText.innerHTML = `Azi ai rezolvat autonom <strong>${todayAutonomous} din ${dailyTarget}</strong> sarcini.<br>În total ai finalizat <strong>${totalExercises}</strong> sarcini.`;
         }
@@ -613,7 +735,12 @@
     const tracks = getTracks();
     els.catalogDomainsGrid.innerHTML = "";
 
-    tracks.forEach(track => {
+    const visibleTracks = tracks.filter(track => {
+      if (!currentDivisionFilter || currentDivisionFilter === "ALL") return true;
+      return track.division === currentDivisionFilter;
+    });
+
+    visibleTracks.forEach(track => {
       const trackLessons = allLessons.filter(l => l.track === track.name);
       const completedCount = trackLessons.filter(l => (state.masteryPoints[l.id] || 0) > 0).length;
       const pct = trackLessons.length ? Math.round((completedCount / trackLessons.length) * 100) : 0;
@@ -626,7 +753,10 @@
       card.innerHTML = `
         <div class="domain-card-header">
           <span class="domain-card-icon" aria-hidden="true">${track.icon}</span>
-          <span class="domain-card-badge">${trackLessons.length} capitole</span>
+          <div style="display:flex; gap:0.4rem; align-items:center;">
+            <span class="domain-division-badge">${track.division === "Informatică și Programare" ? "Informatică" : "Limbi Străine"}</span>
+            <span class="domain-card-badge">${trackLessons.length} capitole</span>
+          </div>
         </div>
         <h3 class="domain-card-title">${track.name}</h3>
         <p class="domain-card-desc">${track.description}</p>
@@ -669,33 +799,35 @@
     const currentVal = els.catalogLevelFilter ? els.catalogLevelFilter.value : "ALL";
     const track = state.activeTrack || "";
 
-    if (track === "Engleză (A1–A2)") {
+    if (track === "Engleză (A1–A2)" || track.includes("Franceză") || track.includes("Spaniolă")) {
       els.catalogLevelFilter.innerHTML = `
-        <option value="ALL">📊 Toate Nivelele (A1 → A2)</option>
-        <option value="1.">🟢 Nivel A1 (1 pt Mastery)</option>
-        <option value="2.">🔵 Nivel A2 (2 pt Mastery)</option>
+        <option value="ALL">Toate Nivelurile</option>
+        <option value="1.">Nivel A1 (1 pt Mastery)</option>
+        <option value="2.">Nivel A2 (2 pt Mastery)</option>
+        <option value="3.">Nivel B1 (3 pt Mastery)</option>
+        <option value="4.">Nivel B2 / C1 (4 pt Mastery)</option>
       `;
     } else if (track === "Engleză (B1–B2)") {
       els.catalogLevelFilter.innerHTML = `
-        <option value="ALL">📊 Toate Nivelele (B1 → B2)</option>
-        <option value="1.">🟢 Nivel B1 (1 pt Mastery)</option>
-        <option value="2.">🔵 Nivel B2 (2 pt Mastery)</option>
+        <option value="ALL">Toate Nivelurile (B1 → B2)</option>
+        <option value="1.">Nivel B1 (1 pt Mastery)</option>
+        <option value="2.">Nivel B2 (2 pt Mastery)</option>
       `;
     } else if (track === "Engleză (C1–C2)") {
       els.catalogLevelFilter.innerHTML = `
-        <option value="ALL">📊 Toate Nivelele (C1 → C2)</option>
-        <option value="1.">🟣 Nivel C1 (1 pt Mastery)</option>
-        <option value="2.">🟠 Nivel C1+ (2 pt Mastery)</option>
-        <option value="3.">🔴 Nivel C2 (3 pt Mastery)</option>
+        <option value="ALL">Toate Nivelurile (C1 → C2)</option>
+        <option value="1.">Nivel C1 (1 pt Mastery)</option>
+        <option value="2.">Nivel C1+ (2 pt Mastery)</option>
+        <option value="3.">Nivel C2 (3 pt Mastery)</option>
       `;
     } else {
       els.catalogLevelFilter.innerHTML = `
-        <option value="ALL">📊 Toate Nivelele (Începător → Exemplar)</option>
-        <option value="1.">🥉 1. Începător (1 pt Mastery)</option>
-        <option value="2.">🥈 2. Junior (2 pt Mastery)</option>
-        <option value="3.">🥇 3. Middle (3 pt Mastery)</option>
-        <option value="4.">💠 4. Senior (4 pt Mastery)</option>
-        <option value="5.">💎 5. Exemplar (5 pt Mastery)</option>
+        <option value="ALL">Toate Nivelurile</option>
+        <option value="1.">Nivel 1: Începător (1 pt Mastery)</option>
+        <option value="2.">Nivel 2: Junior (2 pt Mastery)</option>
+        <option value="3.">Nivel 3: Middle (3 pt Mastery)</option>
+        <option value="4.">Nivel 4: Senior (4 pt Mastery)</option>
+        <option value="5.">Nivel 5: Arhitect / Exemplar (5 pt Mastery)</option>
       `;
     }
 
@@ -740,7 +872,7 @@
       item.className = "catalog-chapter-item";
       item.innerHTML = `
         <div class="chapter-info-col">
-          <span class="chapter-level-tag">${lesson.level || "Nivel"} • ${mStatus.icon} ${mStatus.tier}</span>
+          <span class="chapter-level-tag">${lesson.level || "Nivel"} • ${mStatus.tier} (${mStatus.current}/${mStatus.max})</span>
           <span class="chapter-name">${realIndex}. ${formatRomanianTypography(lesson.title)}</span>
         </div>
         <button class="chapter-start-btn" aria-label="Studiază capitolul ${lesson.title}">
@@ -770,11 +902,11 @@
     lessonSessionAssisted = false;
 
     // Indicator temă curentă în navigația de sus
-    els.studyTrackIndicator.textContent = `${lesson.icon || "📘"} ${lesson.track}`;
+    els.studyTrackIndicator.textContent = lesson.track;
 
     const mStatus = getLessonMasteryStatus(lesson);
 
-    els.lessonCategoryBadge.textContent = `${lesson.icon || "📘"} ${lesson.track}`;
+    els.lessonCategoryBadge.textContent = lesson.track;
     els.lessonLevelBadge.textContent = lesson.level || "1. Începător";
     els.lessonStatusBadge.textContent = mStatus.label;
 
@@ -1075,9 +1207,19 @@
     const rawInput = els.userAnswerInput.value;
     const normalizedUser = normalizeInput(rawInput, lesson.caseSensitive);
 
-    const isCorrect = lesson.acceptedAnswers.some(
+    let isCorrect = lesson.acceptedAnswers.some(
       ans => normalizeInput(ans, lesson.caseSensitive) === normalizedUser
     );
+
+    if (!isCorrect && lesson.regexPattern) {
+      try {
+        const flags = lesson.caseSensitive ? "" : "i";
+        const re = new RegExp(lesson.regexPattern, flags);
+        isCorrect = re.test(rawInput.trim());
+      } catch (e) {
+        // Fallback
+      }
+    }
 
     if (isCorrect) {
       els.inputZone.classList.remove("state-error");
@@ -1239,35 +1381,35 @@
   const ACHIEVEMENTS = [
     {
       id: "first_step",
-      icon: "🚀",
+      icon: `<svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
       title: "Primul Pas",
       desc: "Finalizează cu succes prima ta sarcină enciclopedică.",
       isUnlocked: s => Object.values(s.dailyHistory).reduce((a, b) => a + b, 0) >= 1
     },
     {
       id: "streak_fire",
-      icon: "🔥",
+      icon: `<svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>`,
       title: "Flacăra Constanței",
       desc: "Menține un streak activ de minimum 3 zile de studiu consecutiv.",
       isUnlocked: s => s.streak >= 3 || s.longestStreak >= 3
     },
     {
       id: "daily_target",
-      icon: "🎯",
+      icon: `<svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>`,
       title: "Disciplină de Fier",
       desc: "Îndeplinește obiectivul zilnic complet într-o singură zi.",
       isUnlocked: s => (s.dailyHistory[getTodayKey()] || 0) >= getDailyTarget()
     },
     {
       id: "xp_seeker",
-      icon: "💎",
+      icon: `<svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 18 3 22 9 12 22 2 9"></polygon></svg>`,
       title: "Căutător de Comori",
       desc: "Acumulează cel puțin 250 XP în contul tău enciclopedic.",
       isUnlocked: s => s.xp >= 250
     },
     {
       id: "polymath_master",
-      icon: "👑",
+      icon: `<svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`,
       title: "Maestru Polimat",
       desc: "Stăpânește și finalizează cel puțin 15 capitole distincte.",
       isUnlocked: s => s.completedLessons.length >= 15
@@ -1279,7 +1421,7 @@
     const currentLeague = LEAGUES.slice().reverse().find(l => userXp >= l.minXp) || LEAGUES[0];
     const nextLeague = LEAGUES.find(l => l.minXp > userXp);
 
-    if (els.pageLeagueIcon) els.pageLeagueIcon.textContent = currentLeague.icon;
+    if (els.pageLeagueIcon) els.pageLeagueIcon.innerHTML = currentLeague.icon;
     if (els.pageLeagueTitle) els.pageLeagueTitle.textContent = currentLeague.name;
     if (els.pageLeagueDesc) els.pageLeagueDesc.textContent = currentLeague.desc;
 
@@ -1292,7 +1434,7 @@
     } else {
       if (els.pageLeagueProgressFill) els.pageLeagueProgressFill.style.width = "100%";
       if (els.pageLeagueXpStatus) els.pageLeagueXpStatus.textContent = `${userXp} XP (Rang Maxim)`;
-      if (els.pageLeagueNextStatus) els.pageLeagueNextStatus.textContent = "🏆 Măiestrie Supremă Atingă";
+      if (els.pageLeagueNextStatus) els.pageLeagueNextStatus.textContent = "Măiestrie Supremă Atingă";
     }
 
     // Lista tuturor celor 5 ligi
@@ -1308,7 +1450,7 @@
           <div class="league-info">
             <div class="league-name">
               ${league.name}
-              ${isCurrent ? '<span class="league-status-badge">👑 Rangul Tău Curent</span>' : (isPassed ? '<span class="league-status-badge" style="background:var(--border-color); color:var(--text-secondary);">✓ Rang Depășit</span>' : '')}
+              ${isCurrent ? '<span class="league-status-badge">★ Rangul Tău Curent</span>' : (isPassed ? '<span class="league-status-badge" style="background:var(--border-color); color:var(--text-secondary);">✓ Rang Depășit</span>' : '')}
             </div>
             <div class="league-req">Cerință: ${league.minXp} XP ${league.maxXp !== Infinity ? "– " + league.maxXp + " XP" : "+"}</div>
             <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.25rem;">${league.desc}</p>
@@ -1531,6 +1673,16 @@
     if (els.openPocketDrawerBtn) els.openPocketDrawerBtn.addEventListener("click", openPocketDrawer);
     if (els.closePocketDrawerBtn) els.closePocketDrawerBtn.addEventListener("click", closePocketDrawer);
     if (els.pocketDrawerBackdrop) els.pocketDrawerBackdrop.addEventListener("click", closePocketDrawer);
+
+    // Filtre Diviziuni Catalog (Informatică vs Limbi Străine)
+    document.querySelectorAll(".division-pill-btn").forEach(pill => {
+      pill.addEventListener("click", () => {
+        document.querySelectorAll(".division-pill-btn").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        currentDivisionFilter = pill.getAttribute("data-division") || "ALL";
+        renderCatalogView();
+      });
+    });
 
     // Filtre & Căutare în Catalog
     if (els.catalogLevelFilter) {
