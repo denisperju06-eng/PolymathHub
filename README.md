@@ -15,10 +15,3 @@ Platformă interactivă de învățare și practică activă pentru SQL, Java, J
 - **Teme Vizuale**: Cyber Indigo, Emerald Zen, Sunset Amber, Daylight Studio.
 - **Local First**: Salvare automată a progresului în `localStorage`.
 
-## Rulare Locală
-
-Poți rula aplicația direct în browser:
-```bash
-python3 -m http.server 8000
-```
-Apoi accesează [http://localhost:8000](http://localhost:8000).
