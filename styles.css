@@ -142,7 +142,7 @@
   --bg-reader: #ffffff;
   --bg-code: #0f172a;
   --text-primary: #0f172a;
-  --text-secondary: #475569;
+  --text-secondary: #334155;
   --accent-primary: #1d4ed8;
   --accent-hover: #1e40af;
   --accent-soft: rgba(29, 78, 216, 0.1);
@@ -521,6 +521,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   padding: 0.9rem 1.15rem;
   background-color: var(--bg-elevated);
   border: 1px solid var(--border-color);
@@ -539,6 +540,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  min-width: 0;
+  flex: 1;
 }
 
 .chapter-level-tag {
@@ -1089,6 +1092,41 @@ button {
   font-weight: 600;
 }
 
+.btn-ghost-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.05rem;
+  min-height: 36px;
+  border-radius: 8px;
+  background-color: var(--error-bg);
+  color: var(--error-red);
+  border: 1.5px solid var(--error-red);
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost-danger:hover {
+  background-color: var(--error-red);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-ghost-danger:active {
+  transform: translateY(0);
+}
+
+.calendar-modal-actions {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+}
+
 .hint-drawer,
 .solution-drawer {
   margin-top: 1rem;
@@ -1233,12 +1271,24 @@ button {
   border-color: var(--success-green);
   background-color: var(--success-bg);
   color: var(--success-green);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+  cursor: default;
 }
 
 .quiz-option-btn.wrong {
   border-color: var(--error-red);
   background-color: var(--error-bg);
   animation: shake 0.4s ease;
+}
+
+.quiz-option-btn.locked-other {
+  opacity: 0.45;
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
+.quiz-option-btn:disabled {
+  cursor: default;
 }
 
 /* ==========================================================================
@@ -1352,6 +1402,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.75rem;
   padding: 0.65rem 0.85rem;
   border-radius: 8px;
   border: 1px solid var(--border-color);
@@ -1374,10 +1425,16 @@ button {
 .lesson-mastery-pill {
   font-size: 0.72rem;
   font-weight: 700;
-  padding: 0.15rem 0.45rem;
+  padding: 0.2rem 0.55rem;
   border-radius: 999px;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  line-height: 1.2;
 }
 
 /* ==========================================================================

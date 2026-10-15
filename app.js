@@ -150,6 +150,7 @@
                 migrated.masteryPoints[id] = v1.masteryCounts[id];
               });
             }
+            window.localStorage.removeItem("polymath_edtech_state_v1");
             window.localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
             return migrated;
           } catch (_) {}
@@ -918,6 +919,10 @@
       const isCorrect = idx === qData.correctIndex;
 
       btn.addEventListener("click", () => {
+        // Dacă a fost deja selectat răspunsul corect, blochează orice alt click
+        const alreadySolved = Array.from(els.quizOptionsGrid.querySelectorAll(".quiz-option-btn")).some(b => b.classList.contains("correct"));
+        if (alreadySolved) return;
+
         if (isCorrect) {
           btn.classList.remove("wrong");
           btn.classList.add("correct");
@@ -927,6 +932,16 @@
           renderStats();
           els.lessonStatusBadge.textContent = getLessonMasteryStatus(lesson).label;
           launchConfetti();
+
+          // Blochează toate opțiunile: opțiunea corectă rămâne verde aprins, celelalte devin inactive
+          Array.from(els.quizOptionsGrid.querySelectorAll(".quiz-option-btn")).forEach(b => {
+            b.disabled = true;
+            b.style.pointerEvents = "none";
+            if (b !== btn) {
+              b.classList.remove("wrong");
+              b.classList.add("locked-other");
+            }
+          });
         } else {
           btn.classList.remove("wrong");
           void btn.offsetWidth;
@@ -1033,9 +1048,9 @@
       const li = document.createElement("li");
       li.className = `lesson-item ${isActive ? "active" : ""} ${mStatus.current > 0 ? "completed" : ""}`;
       li.innerHTML = `
-        <div style="display:flex; flex-direction:column; gap:2px;">
+        <div style="display:flex; flex-direction:column; gap:2px; min-width:0; flex:1;">
           <span style="font-size:0.68rem; color:var(--text-secondary); font-weight:700;">${lesson.level || "Nivel"}</span>
-          <span>${idx + 1}. ${formatRomanianTypography(lesson.title)}</span>
+          <span style="word-break:break-word; text-wrap:pretty;">${idx + 1}. ${formatRomanianTypography(lesson.title)}</span>
         </div>
         <span class="lesson-mastery-pill">${mStatus.icon} ${mStatus.current}/${mStatus.max}</span>
       `;
@@ -1302,12 +1317,49 @@
     // Comutator Teme
     els.themeSelector.addEventListener("change", e => applyTheme(e.target.value));
 
-    // Resetare Progres Local
+    // Resetare Progres Local de la Zero
     els.resetProgressBtn.addEventListener("click", () => {
-      if (window.confirm("Atenție: Resetezi întregul istoric și progres local?")) {
+      if (window.confirm("Atenție: Resetezi întregul istoric și progres local? Toate punctele, capitolele rezolvate și streak-ul vor fi șterse de la zero.")) {
+        // 1. Șterge toate versiunile de date stocate anterior (v2, v1, legacy)
         window.localStorage.removeItem(STORAGE_KEY);
-        state = loadState();
+        window.localStorage.removeItem("polymath_edtech_state_v1");
+        window.localStorage.removeItem("polymath_state");
+        window.localStorage.removeItem("polymath_history");
+
+        // 2. Păstrează doar tema vizuală activă a utilizatorului
+        const currentTheme = state.theme || "emerald-forest";
+
+        // 3. Resetează obiectul de stare complet de la zero
+        state = {
+          ...defaultState,
+          theme: currentTheme,
+          streak: 0,
+          longestStreak: 0,
+          lastCompletionDate: null,
+          xp: 0,
+          completedLessons: [],
+          masteryPoints: {},
+          dailyHistory: {},
+          assistedHistory: {},
+          customLessons: [],
+          activeTrack: "SQL",
+          activeLessonId: "sql-1",
+          activePracticeMode: "write",
+          activeView: "catalog"
+        };
+        saveState();
+
+        // 4. Curăță câmpurile active din interfață
+        lessonSessionAssisted = false;
+        if (els.userAnswerInput) els.userAnswerInput.value = "";
+        if (els.inputZone) els.inputZone.classList.remove("state-error", "state-success");
+        if (els.solutionDrawer) els.solutionDrawer.classList.add("hidden");
+        if (els.hintDrawer) els.hintDrawer.classList.add("hidden");
+        if (els.nextLessonBtn) els.nextLessonBtn.classList.add("hidden");
+
+        // 5. Închide modalul și reafișează interfața la starea curată de început
         closeCalendarModal();
+        switchView("catalog");
         renderAll();
       }
     });
