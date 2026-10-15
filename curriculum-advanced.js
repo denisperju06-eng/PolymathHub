@@ -1,0 +1,1313 @@
+// ============================================================================
+// CURRICULUM AVANSAT ȘI EXTINS - EXPANDARE MASIVĂ (SQL, JAVA, JS, ENGLEZĂ C1)
+// ============================================================================
+
+const ADVANCED_CURRICULUM_EXPANSION = [
+  // ==========================================================================
+  // TRACK 1: SQL (BAZE DE DATE, WINDOW FUNCTIONS, TRANZACȚII, CTE)
+  // ==========================================================================
+  {
+    id: "sql-adv-1",
+    track: "SQL",
+    icon: "🗄️",
+    level: "1. Începător",
+    xp: 25,
+    title: "Sortare și Limitare: ORDER BY și LIMIT",
+    theory: "Clauza <code>ORDER BY coloana ASC|DESC</code> ordonează rândurile după una sau mai multe coloane. Clauza <code>LIMIT n</code> restricționează numărul de înregistrări returnate la primele <code>n</code> rânduri din setul sortat.",
+    example: "-- Returnează top 3 produse cele mai scumpe:\nSELECT ProductName, Price\nFROM Products\nORDER BY Price DESC\nLIMIT 3;",
+    prompt: "Selectează toate coloanele (*) din tabelul 'Users' ordonate descrescător după 'Age', limitând rezultatul la primii 5 utilizatori.",
+    starterContext: "Tabel: Users (Id, Name, Age, Email)",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "SELECT * FROM Users ORDER BY Age DESC LIMIT 5;",
+      "SELECT * FROM Users ORDER BY Age DESC LIMIT 5"
+    ],
+    officialSolution: "SELECT * FROM Users ORDER BY Age DESC LIMIT 5;",
+    explanation: "Se specifică SELECT * FROM Users urmat de clauza ORDER BY Age DESC pentru ordonare descrescătoare și LIMIT 5 pentru a prelua doar primii 5.",
+    hint: "Folosește sintaxa: SELECT * FROM Users ORDER BY Age DESC LIMIT 5;"
+  },
+  {
+    id: "sql-adv-2",
+    track: "SQL",
+    icon: "🗄️",
+    level: "1. Începător",
+    xp: 25,
+    title: "Căutare după Șablon: Operatorul LIKE și Wildcard-ul %",
+    theory: "Operatorul <code>LIKE</code> filtrează datele pe baza unui model de text. Simbolul <code>%</code> reprezintă zero, unul sau multiple caractere arbitrare, iar <code>_</code> reprezintă exact un singur caracter.",
+    example: "-- Găsește toți utilizatorii al căror nume începe cu litera 'A':\nSELECT * FROM Users WHERE Name LIKE 'A%';",
+    prompt: "Selectează coloana 'Email' din tabelul 'Clients' unde adresa de email se termină cu '@gmail.com'.",
+    starterContext: "Tabel: Clients (Id, FullName, Email)",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "SELECT Email FROM Clients WHERE Email LIKE '%@gmail.com';",
+      "SELECT Email FROM Clients WHERE Email LIKE '%@gmail.com'"
+    ],
+    officialSolution: "SELECT Email FROM Clients WHERE Email LIKE '%@gmail.com';",
+    explanation: "Șablonul '%@gmail.com' acceptă orice prefix de caractere înainte de secvența fixă '@gmail.com'.",
+    hint: "Model: SELECT Email FROM Clients WHERE Email LIKE '%@gmail.com';"
+  },
+  {
+    id: "sql-adv-3",
+    track: "SQL",
+    icon: "🗄️",
+    level: "2. Junior",
+    xp: 30,
+    title: "Agregare și Grupare: GROUP BY cu AVG()",
+    theory: "Clauza <code>GROUP BY</code> sintetizează rândurile pe baza valorilor identice dintr-o coloană. Se folosește împreună cu funcții de agregare precum <code>AVG()</code>, <code>COUNT()</code>, <code>SUM()</code>, <code>MIN()</code> sau <code>MAX()</code>.",
+    example: "-- Calculează media prețurilor pe fiecare categorie:\nSELECT Category, AVG(Price)\nFROM Products\nGROUP BY Category;",
+    prompt: "Selectează 'Department' și salariul mediu 'AVG(Salary)' din tabelul 'Employees', grupând datele după 'Department'.",
+    starterContext: "Tabel: Employees (Id, Name, Department, Salary)",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "SELECT Department, AVG(Salary) FROM Employees GROUP BY Department;",
+      "SELECT Department, AVG(Salary) FROM Employees GROUP BY Department"
+    ],
+    officialSolution: "SELECT Department, AVG(Salary) FROM Employees GROUP BY Department;",
+    explanation: "Interogarea grupează înregistrările după fiecare departament distinct și calculează media salariilor din acel grup.",
+    hint: "Sintaxă: SELECT Department, AVG(Salary) FROM Employees GROUP BY Department;"
+  },
+  {
+    id: "sql-adv-4",
+    track: "SQL",
+    icon: "🗄️",
+    level: "2. Junior",
+    xp: 30,
+    title: "Filtrarea Grupurilor Agregate: Clauza HAVING",
+    theory: "Clauza <code>HAVING</code> este echivalentul lui <code>WHERE</code> aplicat grupurilor rezultate din <code>GROUP BY</code>. Diferența crucială: <code>WHERE</code> filtrează rândurile înainte de agregare, în timp ce <code>HAVING</code> filtrează rezultatele după agregare.",
+    example: "-- Păstrează doar departamentele cu mai mult de 5 angajați:\nSELECT Department, COUNT(*)\nFROM Employees\nGROUP BY Department\nHAVING COUNT(*) > 5;",
+    prompt: "Selectează 'Category' și 'COUNT(*)' din 'Products', grupate după 'Category', păstrând doar categoriile cu mai mult de 10 produse folosind HAVING.",
+    starterContext: "Tabel: Products (Id, Name, Category, Price)",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "SELECT Category, COUNT(*) FROM Products GROUP BY Category HAVING COUNT(*) > 10;",
+      "SELECT Category, COUNT(*) FROM Products GROUP BY Category HAVING COUNT(*) > 10"
+    ],
+    officialSolution: "SELECT Category, COUNT(*) FROM Products GROUP BY Category HAVING COUNT(*) > 10;",
+    explanation: "HAVING COUNT(*) > 10 elimină din raport grupurile de produse care nu ating pragul numeric de 10 unități.",
+    hint: "Scrie: SELECT Category, COUNT(*) FROM Products GROUP BY Category HAVING COUNT(*) > 10;"
+  },
+  {
+    id: "sql-adv-5",
+    track: "SQL",
+    icon: "🗄️",
+    level: "2. Junior",
+    xp: 30,
+    title: "Actualizare Date: UPDATE cu Condiție Strictă",
+    theory: "Comanda <code>UPDATE tabel SET col = val WHERE conditie;</code> modifică valorile existente. Fără clauza <code>WHERE</code>, instrucțiunea ar actualiza indiscriminat absolut toate rândurile din tabel!",
+    example: "UPDATE Users SET IsVerified = 1 WHERE EmailVerifiedAt IS NOT NULL;",
+    prompt: "Actualizează tabelul 'Accounts' setând coloana 'Status' la valoarea 'Active' unde 'Balance' este mai mare decât 0.",
+    starterContext: "Tabel: Accounts (AccountId, Status, Balance)",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "UPDATE Accounts SET Status = 'Active' WHERE Balance > 0;",
+      "UPDATE Accounts SET Status = 'Active' WHERE Balance > 0"
+    ],
+    officialSolution: "UPDATE Accounts SET Status = 'Active' WHERE Balance > 0;",
+    explanation: "UPDATE modifică valorile din coloana Status doar pentru conturile cu sold pozitiv (Balance > 0).",
+    hint: "Model: UPDATE Accounts SET Status = 'Active' WHERE Balance > 0;"
+  },
+  {
+    id: "sql-adv-6",
+    track: "SQL",
+    icon: "🗄️",
+    level: "2. Junior",
+    xp: 30,
+    title: "Ștergere Selectivă: DELETE FROM cu WHERE",
+    theory: "Instrucțiunea <code>DELETE FROM tabel WHERE conditie;</code> șterge doar tuplurile care satisfac predicatul logic. Atenție: dacă omiți <code>WHERE</code>, conținutul întregului tabel va fi șters ireversibil.",
+    example: "DELETE FROM Sessions WHERE ExpiredAt < CURRENT_TIMESTAMP;",
+    prompt: "Șterge toate înregistrările din tabelul 'Logs' unde coloana 'CreatedYear' este mai mică de 2020.",
+    starterContext: "Tabel: Logs (LogId, Message, CreatedYear)",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "DELETE FROM Logs WHERE CreatedYear < 2020;",
+      "DELETE FROM Logs WHERE CreatedYear < 2020"
+    ],
+    officialSolution: "DELETE FROM Logs WHERE CreatedYear < 2020;",
+    explanation: "Se folosește DELETE FROM Logs urmat de clauza WHERE CreatedYear < 2020.",
+    hint: "Scrie: DELETE FROM Logs WHERE CreatedYear < 2020;"
+  },
+  {
+    id: "sql-adv-7",
+    track: "SQL",
+    icon: "🗄️",
+    level: "3. Middle",
+    xp: 35,
+    title: "Detecția Înregistrărilor Orfane: LEFT JOIN cu IS NULL",
+    theory: "Un <code>LEFT JOIN</code> păstrează toate rândurile din tabelul stâng. Dacă un rând nu are corespondent în tabelul drept, câmpurile din dreapta vor fi populate cu <code>NULL</code>. Filtrând cu <code>WHERE dreapta.id IS NULL</code> identificăm instant elementele orfane (de exemplu clienți fără comenzi).",
+    example: "SELECT u.Name FROM Users u LEFT JOIN Profiles p ON u.Id = p.UserId WHERE p.Id IS NULL;",
+    prompt: "Selectează 'c.Name' din tabelul 'Customers c' cu LEFT JOIN pe 'Orders o' (pe c.Id = o.CustomerId) unde comanda lipsește (o.Id IS NULL).",
+    starterContext: "Tabele: Customers c, Orders o",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "SELECT c.Name FROM Customers c LEFT JOIN Orders o ON c.Id = o.CustomerId WHERE o.Id IS NULL;",
+      "SELECT c.Name FROM Customers c LEFT JOIN Orders o ON c.Id = o.CustomerId WHERE o.Id IS NULL"
+    ],
+    officialSolution: "SELECT c.Name FROM Customers c LEFT JOIN Orders o ON c.Id = o.CustomerId WHERE o.Id IS NULL;",
+    explanation: "Această tehnică este cel mai rapid mod de a găsi entități fără relații active (anti-join).",
+    hint: "Scrie: SELECT c.Name FROM Customers c LEFT JOIN Orders o ON c.Id = o.CustomerId WHERE o.Id IS NULL;"
+  },
+  {
+    id: "sql-adv-8",
+    track: "SQL",
+    icon: "🗄️",
+    level: "3. Middle",
+    xp: 35,
+    title: "Condiționale în SQL: Expresia CASE WHEN",
+    theory: "Expresia <code>CASE WHEN cond THEN val1 ELSE val2 END</code> permite adăugarea de logică condițională tip 'if-else' direct în clauza <code>SELECT</code> sau în clauze de ordonare.",
+    example: "SELECT Name, CASE WHEN Score >= 50 THEN 'Pass' ELSE 'Fail' END AS Result FROM Students;",
+    prompt: "Scrie o interogare care selectează 'Title' și expresia CASE WHEN Stock > 0 THEN 'In Stock' ELSE 'Out of Stock' END din tabelul 'Products'.",
+    starterContext: "Tabel: Products (Id, Title, Stock)",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "SELECT Title, CASE WHEN Stock > 0 THEN 'In Stock' ELSE 'Out of Stock' END FROM Products;",
+      "SELECT Title, CASE WHEN Stock > 0 THEN 'In Stock' ELSE 'Out of Stock' END FROM Products"
+    ],
+    officialSolution: "SELECT Title, CASE WHEN Stock > 0 THEN 'In Stock' ELSE 'Out of Stock' END FROM Products;",
+    explanation: "CASE evaluează coloana Stock pentru fiecare rând și întoarce eticheta adecvată.",
+    hint: "Folosește: SELECT Title, CASE WHEN Stock > 0 THEN 'In Stock' ELSE 'Out of Stock' END FROM Products;"
+  },
+  {
+    id: "sql-adv-9",
+    track: "SQL",
+    icon: "🗄️",
+    level: "3. Middle",
+    xp: 35,
+    title: "Reuniunea Seturilor: UNION ALL",
+    theory: "<code>UNION ALL</code> unește rezultatele a două sau mai multe interogări cu aceeași structură de coloane, păstrând toate duplicatele. Este mult mai rapid decât <code>UNION</code> simplu deoarece nu execută o sortare suplimentară pentru deduplicare.",
+    example: "SELECT City FROM Customers UNION ALL SELECT City FROM Suppliers;",
+    prompt: "Combină 'City' din tabelul 'Customers' cu 'City' din tabelul 'Suppliers' folosind UNION ALL.",
+    starterContext: "Tabele: Customers (City), Suppliers (City)",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "SELECT City FROM Customers UNION ALL SELECT City FROM Suppliers;",
+      "SELECT City FROM Customers UNION ALL SELECT City FROM Suppliers"
+    ],
+    officialSolution: "SELECT City FROM Customers UNION ALL SELECT City FROM Suppliers;",
+    explanation: "UNION ALL concatenează listele celor două tabele păstrând duplicatele fără operații costisitoare de sortare.",
+    hint: "Model: SELECT City FROM Customers UNION ALL SELECT City FROM Suppliers;"
+  },
+  {
+    id: "sql-adv-10",
+    track: "SQL",
+    icon: "🗄️",
+    level: "3. Middle",
+    xp: 35,
+    title: "Substituirea Valorilor Nule: Funcția COALESCE",
+    theory: "Funcția standard <code>COALESCE(val1, val2, ... valN)</code> evaluează argumentele în ordine și returnează prima valoare care nu este <code>NULL</code>. Este soluția ideală pentru furnizarea de valori implicite.",
+    example: "SELECT Name, COALESCE(Nickname, Name, 'Guest') FROM Users;",
+    prompt: "Selectează 'Name' și COALESCE(Phone, 'Fără telefon') din tabelul 'Employees'.",
+    starterContext: "Tabel: Employees (Id, Name, Phone)",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "SELECT Name, COALESCE(Phone, 'Fără telefon') FROM Employees;",
+      "SELECT Name, COALESCE(Phone, 'Fără telefon') FROM Employees"
+    ],
+    officialSolution: "SELECT Name, COALESCE(Phone, 'Fără telefon') FROM Employees;",
+    explanation: "Dacă Phone este NULL, COALESCE va returna șirul descriptiv 'Fără telefon'.",
+    hint: "Scrie: SELECT Name, COALESCE(Phone, 'Fără telefon') FROM Employees;"
+  },
+  {
+    id: "sql-adv-11",
+    track: "SQL",
+    icon: "🗄️",
+    level: "4. Senior",
+    xp: 40,
+    title: "Optimizare Subinterogări: Operatorul EXISTS",
+    theory: "Operatorul <code>WHERE EXISTS (SELECT 1 FROM ...)</code> verifică existența a cel puțin unui rând valid. Motorul de baze de date efectuează short-circuiting (se oprește la prima potrivire găsită), fiind adesea mult mai rapid decât <code>IN</code> cu subinterogări.",
+    example: "SELECT * FROM Authors a WHERE EXISTS (SELECT 1 FROM Books b WHERE b.AuthorId = a.Id);",
+    prompt: "Selectează toate coloanele (*) din 'Suppliers s' unde EXISTS (SELECT 1 FROM Products p WHERE p.SupplierId = s.Id).",
+    starterContext: "Tabele: Suppliers s, Products p",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "SELECT * FROM Suppliers s WHERE EXISTS (SELECT 1 FROM Products p WHERE p.SupplierId = s.Id);",
+      "SELECT * FROM Suppliers s WHERE EXISTS (SELECT 1 FROM Products p WHERE p.SupplierId = s.Id)"
+    ],
+    officialSolution: "SELECT * FROM Suppliers s WHERE EXISTS (SELECT 1 FROM Products p WHERE p.SupplierId = s.Id);",
+    explanation: "Subinterogarea returnează adevărat de îndată ce este depistat un produs ce aparține furnizorului s.",
+    hint: "Scrie: SELECT * FROM Suppliers s WHERE EXISTS (SELECT 1 FROM Products p WHERE p.SupplierId = s.Id);"
+  },
+  {
+    id: "sql-adv-12",
+    track: "SQL",
+    icon: "🗄️",
+    level: "4. Senior",
+    xp: 40,
+    title: "Window Functions: ROW_NUMBER() OVER",
+    theory: "Funcțiile analitice (Window Functions) operează pe un set de rânduri denumit partiție, dar nu colapsează datele într-un singur rând precum GROUP BY. <code>ROW_NUMBER() OVER (PARTITION BY dep ORDER BY sal DESC)</code> generează indexul rândului per grup.",
+    example: "SELECT Name, Department, ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS RankNum FROM Employees;",
+    prompt: "Selectează Name, Department, ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS RankNum FROM Employees;",
+    starterContext: "Tabel: Employees (Id, Name, Department, Salary)",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "SELECT Name, Department, ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS RankNum FROM Employees;",
+      "SELECT Name, Department, ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS RankNum FROM Employees"
+    ],
+    officialSolution: "SELECT Name, Department, ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS RankNum FROM Employees;",
+    explanation: "Fiecare angajat primește un număr de ordine unic în cadrul departamentului său, ordonat după mărimea salariului.",
+    hint: "Copiază cu atenție sintaxa: SELECT Name, Department, ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS RankNum FROM Employees;"
+  },
+  {
+    id: "sql-adv-13",
+    track: "SQL",
+    icon: "🗄️",
+    level: "4. Senior",
+    xp: 40,
+    title: "Common Table Expressions: Clauza WITH (CTE)",
+    theory: "Un CTE (Common Table Expression) este un set de rezultate temporar pe care îl poți referenția în cadrul aceleiași instrucțiuni SELECT, INSERT sau UPDATE. Îmbunătățește masiv modularitatea și lizibilitatea interogărilor complexe.",
+    example: "WITH RegionalSales AS (\n  SELECT Region, SUM(Amount) AS TotalSales FROM Orders GROUP BY Region\n)\nSELECT Region, TotalSales FROM RegionalSales WHERE TotalSales > 50000;",
+    prompt: "Scrie un CTE: WITH HighEarners AS (SELECT * FROM Employees WHERE Salary > 10000) SELECT * FROM HighEarners;",
+    starterContext: "Tabel: Employees",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "WITH HighEarners AS (SELECT * FROM Employees WHERE Salary > 10000) SELECT * FROM HighEarners;",
+      "WITH HighEarners AS (SELECT * FROM Employees WHERE Salary > 10000) SELECT * FROM HighEarners"
+    ],
+    officialSolution: "WITH HighEarners AS (SELECT * FROM Employees WHERE Salary > 10000) SELECT * FROM HighEarners;",
+    explanation: "Construcția WITH definește blocul 'HighEarners', care este apoi consumat imediat în instrucțiunea SELECT următoare.",
+    hint: "Scrie: WITH HighEarners AS (SELECT * FROM Employees WHERE Salary > 10000) SELECT * FROM HighEarners;"
+  },
+  {
+    id: "sql-adv-14",
+    track: "SQL",
+    icon: "🗄️",
+    level: "5. Exemplar",
+    xp: 50,
+    title: "Serii Temporale: Funcția Analitică LAG()",
+    theory: "Funcția <code>LAG(val, offset) OVER (ORDER BY col)</code> returnează valoarea unei coloane din rândul anterior fără a recurge la un auto-join lent. Este esențială în analize financiare (creșteri MoM/YoY).",
+    example: "SELECT Month, Revenue, LAG(Revenue, 1) OVER (ORDER BY Month) AS PreviousMonthRevenue FROM Sales;",
+    prompt: "Selectează DayDate, Revenue, LAG(Revenue, 1) OVER (ORDER BY DayDate) AS PrevRevenue FROM DailySales;",
+    starterContext: "Tabel: DailySales (DayDate, Revenue)",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "SELECT DayDate, Revenue, LAG(Revenue, 1) OVER (ORDER BY DayDate) AS PrevRevenue FROM DailySales;",
+      "SELECT DayDate, Revenue, LAG(Revenue, 1) OVER (ORDER BY DayDate) AS PrevRevenue FROM DailySales"
+    ],
+    officialSolution: "SELECT DayDate, Revenue, LAG(Revenue, 1) OVER (ORDER BY DayDate) AS PrevRevenue FROM DailySales;",
+    explanation: "LAG accesează venitul zilei precedente conform ordonării calendaristice a coloanei DayDate.",
+    hint: "Model: SELECT DayDate, Revenue, LAG(Revenue, 1) OVER (ORDER BY DayDate) AS PrevRevenue FROM DailySales;"
+  },
+  {
+    id: "sql-adv-15",
+    track: "SQL",
+    icon: "🗄️",
+    level: "5. Exemplar",
+    xp: 50,
+    title: "Garanția ACID: Comanda COMMIT",
+    theory: "În sistemele RDBMS relaționale, modificările efectuate într-o tranzacție sunt izolate și temporare până când sunt scrise permanent pe disc prin comanda <code>COMMIT;</code> sau anulate prin <code>ROLLBACK;</code>.",
+    example: "BEGIN TRANSACTION;\nUPDATE Accounts SET Balance = Balance - 100 WHERE Id = 1;\nUPDATE Accounts SET Balance = Balance + 100 WHERE Id = 2;\nCOMMIT;",
+    prompt: "Scrie comanda SQL simplă și obligatorie pentru a confirma definitiv toate modificările tranzacției curente pe disc.",
+    starterContext: "// Finalizează tranzacția:",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "COMMIT;",
+      "COMMIT"
+    ],
+    officialSolution: "COMMIT;",
+    explanation: "Comanda COMMIT; persistă modificările tranzacției și eliberează blocajele de nivel de rând (locks).",
+    hint: "Scrie simplu: COMMIT;"
+  },
+
+  // ==========================================================================
+  // TRACK 2: JAVA (COLECȚII, STREAMS, CONCURENȚĂ, STRUCTURI MODERNE)
+  // ==========================================================================
+  {
+    id: "java-adv-1",
+    track: "Java",
+    icon: "☕",
+    level: "1. Începător",
+    xp: 20,
+    title: "Controlul Fluxului: Bucla for Clasică",
+    theory: "Bucla <code>for (inițializare; condiție; pas)</code> iterează un bloc de cod un număr determinat de ori. Este fundamentul parcurgerii secvențiale în Java.",
+    example: "for (int i = 0; i < 5; i++) {\n  System.out.println(\"Index: \" + i);\n}",
+    prompt: "Scrie antetul unei bucle for care inițializează 'int i = 0', iterează cât timp 'i < 10' și incrementează 'i++' (scrie doar linia antetului).",
+    starterContext: "// Antet buclă for:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "for (int i = 0; i < 10; i++)",
+      "for(int i = 0; i < 10; i++)",
+      "for (int i=0; i<10; i++)"
+    ],
+    officialSolution: "for (int i = 0; i < 10; i++)",
+    explanation: "Antetul for necesită cele 3 clauze separate prin punct și virgulă: inițializare, condiție de oprire și pas de incrementare.",
+    hint: "Scrie exact: for (int i = 0; i < 10; i++)"
+  },
+  {
+    id: "java-adv-2",
+    track: "Java",
+    icon: "☕",
+    level: "1. Începător",
+    xp: 20,
+    title: "Tablouri Primitive (Arrays): Alocare cu new",
+    theory: "În Java, un tablou este un obiect cu dimensiune fixă alocat pe heap. Dimensiunea este specificată la instanțiere prin operatorul <code>new tip[dimensiune]</code>.",
+    example: "int[] numbers = new int[10];\nString[] words = new String[3];",
+    prompt: "Declară și inițializează un tablou de numere întregi numit 'scores' cu o capacitate de 5 elemente (folosind new int[5];).",
+    starterContext: "// Declară tabloul scores:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "int[] scores = new int[5];",
+      "int [] scores = new int[5];"
+    ],
+    officialSolution: "int[] scores = new int[5];",
+    explanation: "Sintaxa int[] scores = new int[5]; creează un tablou cu 5 poziții inițializate implicit cu valoarea 0.",
+    hint: "Model: int[] scores = new int[5];"
+  },
+  {
+    id: "java-adv-3",
+    track: "Java",
+    icon: "☕",
+    level: "1. Începător",
+    xp: 20,
+    title: "Parcurgere Modernă: Bucla Enhanced For (for-each)",
+    theory: "Bucla <code>for (Tip element : colectie)</code> elimină necesitatea indexării manuale și a erorilor de tip <code>ArrayIndexOutOfBoundsException</code>.",
+    example: "for (String item : items) {\n  System.out.println(item);\n}",
+    prompt: "Scrie antetul for-each care parcurge tabloul 'names', declarând fiecare element curent ca 'String name' (scrie doar linia antetului).",
+    starterContext: "String[] names = {\"Alice\", \"Bob\"};\n// Scrie antetul:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "for (String name : names)",
+      "for(String name : names)",
+      "for (String name: names)"
+    ],
+    officialSolution: "for (String name : names)",
+    explanation: "Sintaxa 'for (String name : names)' extrage automat fiecare referință din colecție la fiecare iterație.",
+    hint: "Scrie exact: for (String name : names)"
+  },
+  {
+    id: "java-adv-4",
+    track: "Java",
+    icon: "☕",
+    level: "2. Junior",
+    xp: 25,
+    title: "Liste Dinamice: ArrayList și Interfața List",
+    theory: "În Java profesional, programăm către interfețe: declarăm tipul referinței ca <code>List&lt;T&gt;</code> și instanțiem cu implementarea concretă <code>ArrayList&lt;&gt;()</code>.",
+    example: "List<String> cities = new ArrayList<>();\ncities.add(\"Bucharest\");",
+    prompt: "Instanțiază o listă dinamică de șiruri numită 'items' folosind tipul 'List<String>' și implementarea 'new ArrayList<>()'.",
+    starterContext: "// Importurile java.util.List și java.util.ArrayList sunt prezente:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "List<String> items = new ArrayList<>();",
+      "List<String> items = new ArrayList<String>();"
+    ],
+    officialSolution: "List<String> items = new ArrayList<>();",
+    explanation: "Utilizarea operatorului diamond <> evită repetarea tipului generic în partea dreaptă a atribuirii.",
+    hint: "Scrie: List<String> items = new ArrayList<>();"
+  },
+  {
+    id: "java-adv-5",
+    track: "Java",
+    icon: "☕",
+    level: "2. Junior",
+    xp: 25,
+    title: "Eficiență în Concatenare: Clasa StringBuilder",
+    theory: "Obiectele <code>String</code> sunt imutabile în Java, fiecare concatenare cu '+' creând un nou obiect în memorie. <code>StringBuilder</code> este mutabil și mult mai rapid în bucle.",
+    example: "StringBuilder sb = new StringBuilder();\nsb.append(\"Total: \").append(100);",
+    prompt: "Instanțiază un StringBuilder numit 'sb' și adaugă textul \"OK\" prin metoda înlănțuită .append(\"OK\"); (pe o singură linie).",
+    starterContext: "// Scrie linia de cod:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "StringBuilder sb = new StringBuilder().append(\"OK\");",
+      "StringBuilder sb = new StringBuilder(); sb.append(\"OK\");"
+    ],
+    officialSolution: "StringBuilder sb = new StringBuilder().append(\"OK\");",
+    explanation: "Metoda append() returnează propria instanță (this), permițând apeluri fluide înlănțuite (method chaining).",
+    hint: "Scrie: StringBuilder sb = new StringBuilder().append(\"OK\");"
+  },
+  {
+    id: "java-adv-6",
+    track: "Java",
+    icon: "☕",
+    level: "2. Junior",
+    xp: 25,
+    title: "Switch Expresie Modern (Săgeată ->)",
+    theory: "De la Java 14, <code>switch</code> poate fi folosit ca expresie cu ramuri de tip săgeată <code>case VAL -> rezultat;</code> fără a mai risca scăparea execuției prin căderea dintr-un caz în altul (elimină necesitatea break-ului).",
+    example: "int code = switch (role) {\n  case \"ADMIN\" -> 1;\n  case \"USER\" -> 2;\n  default -> 0;\n};",
+    prompt: "Scrie ramura case din switch care pentru valoarea \"ADMIN\" returnează 1 folosind sintaxa cu săgeată (case \"ADMIN\" -> 1;).",
+    starterContext: "// Scrie doar ramura case:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "case \"ADMIN\" -> 1;",
+      "case \"ADMIN\" -> 1"
+    ],
+    officialSolution: "case \"ADMIN\" -> 1;",
+    explanation: "Săgeata '->' execută doar expresia din dreapta și oprește automat evaluarea celorlalte ramuri.",
+    hint: "Model: case \"ADMIN\" -> 1;"
+  },
+  {
+    id: "java-adv-7",
+    track: "Java",
+    icon: "☕",
+    level: "3. Middle",
+    xp: 30,
+    title: "Asocieri Cheie-Valoare: Map și HashMap",
+    theory: "Interfața <code>Map&lt;K, V&gt;</code> stochează perechi cheie-valoare unice. <code>HashMap</code> oferă acces și căutare în timp mediu de <code>O(1)</code> pe baza codului hash al cheilor.",
+    example: "Map<String, Integer> inventory = new HashMap<>();\ninventory.put(\"Laptop\", 15);",
+    prompt: "Declară o referință 'Map<String, Integer> inventory' și instanțiaz-o cu 'new HashMap<>()'.",
+    starterContext: "// Declară harta inventory:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "Map<String, Integer> inventory = new HashMap<>();",
+      "Map<String, Integer> inventory = new HashMap<String, Integer>();"
+    ],
+    officialSolution: "Map<String, Integer> inventory = new HashMap<>();",
+    explanation: "Folosim tipurile ambalaj (Wrapper classes) String și Integer ca parametri generici pentru HashMap.",
+    hint: "Scrie: Map<String, Integer> inventory = new HashMap<>();"
+  },
+  {
+    id: "java-adv-8",
+    track: "Java",
+    icon: "☕",
+    level: "3. Middle",
+    xp: 30,
+    title: "Căutare Sigură în Map: Metoda getOrDefault()",
+    theory: "Metoda <code>map.getOrDefault(cheie, valoareImplicita)</code> previne primirea valorilor <code>null</code> dacă cheia căutată nu este prezentă în dicționar.",
+    example: "int count = wordCounts.getOrDefault(\"java\", 0);",
+    prompt: "Folosind harta 'inventory', extrage valoarea cheii \"apple\", sau 0 dacă aceasta lipsește, apelând metoda .getOrDefault().",
+    starterContext: "Map<String, Integer> inventory = new HashMap<>();\n// Apelează getOrDefault:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "inventory.getOrDefault(\"apple\", 0);",
+      "inventory.getOrDefault(\"apple\", 0)"
+    ],
+    officialSolution: "inventory.getOrDefault(\"apple\", 0);",
+    explanation: "Dacă \"apple\" nu se află în inventory, metoda returnează fallback-ul specificat: 0.",
+    hint: "Scrie: inventory.getOrDefault(\"apple\", 0);"
+  },
+  {
+    id: "java-adv-9",
+    track: "Java",
+    icon: "☕",
+    level: "3. Middle",
+    xp: 30,
+    title: "Unicitate Garantată: Colecția Set și HashSet",
+    theory: "Un <code>Set</code> este o colecție care nu permite elemente duplicate. La adăugarea unui element duplicat, metoda <code>add()</code> returnează <code>false</code> și nu modifică structura.",
+    example: "Set<String> uniqueTags = new HashSet<>();\nuniqueTags.add(\"sql\");\nuniqueTags.add(\"sql\"); // duplicatul este ignorat",
+    prompt: "Instanțiază o mulțime Set<String> numită 'uniqueTags' folosind HashSet (Set<String> uniqueTags = new HashSet<>();).",
+    starterContext: "// Declară mulțimea:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "Set<String> uniqueTags = new HashSet<>();",
+      "Set<String> uniqueTags = new HashSet<String>();"
+    ],
+    officialSolution: "Set<String> uniqueTags = new HashSet<>();",
+    explanation: "HashSet garantează unicitatea prin metodele hashCode() și equals() ale elementelor stocate.",
+    hint: "Scrie: Set<String> uniqueTags = new HashSet<>();"
+  },
+  {
+    id: "java-adv-10",
+    track: "Java",
+    icon: "☕",
+    level: "3. Middle",
+    xp: 30,
+    title: "Gestiune Automată a Resurselor: try-with-resources",
+    theory: "Instrucțiunea <code>try (Resursa r = new Resursa())</code> închide automat orice resursă care implementează <code>AutoCloseable</code> la finalul blocului, eliminând riscul scurgerilor de memorie (leak-uri).",
+    example: "try (Scanner sc = new Scanner(System.in)) {\n  String text = sc.nextLine();\n}",
+    prompt: "Scrie antetul unui try-with-resources care declară și deschide 'Scanner scanner = new Scanner(System.in)'.",
+    starterContext: "// Scrie doar antetul try (...):",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "try (Scanner scanner = new Scanner(System.in))",
+      "try(Scanner scanner = new Scanner(System.in))"
+    ],
+    officialSolution: "try (Scanner scanner = new Scanner(System.in))",
+    explanation: "Variabila scanner este închisă automat (scanner.close()) la ieșirea din blocul try, chiar dacă se aruncă o excepție.",
+    hint: "Scrie: try (Scanner scanner = new Scanner(System.in))"
+  },
+  {
+    id: "java-adv-11",
+    track: "Java",
+    icon: "☕",
+    level: "4. Senior",
+    xp: 40,
+    title: "Procesare Declarativă: Java Streams și toList()",
+    theory: "API-ul <code>Stream</code> permite procesarea funcțională a datelor. Metoda <code>.filter(predicat)</code> selectează elemente, iar <code>.toList()</code> (disponibil nativ din Java 16) creează o listă imutabilă cu rezultatele.",
+    example: "List<User> adults = users.stream()\n  .filter(u -> u.getAge() >= 18)\n  .toList();",
+    prompt: "Filtrează lista 'users' păstrând doar utilizatorii cu 'u -> u.getAge() >= 18' și colectează-i cu .toList(); (începând cu users.stream()...).",
+    starterContext: "List<User> users;\n// Filtrează și colectează:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "users.stream().filter(u -> u.getAge() >= 18).toList();",
+      "users.stream().filter(u -> u.getAge() >= 18).toList()",
+      "users.stream().filter(u -> u.getAge() >= 18).collect(Collectors.toList());"
+    ],
+    officialSolution: "users.stream().filter(u -> u.getAge() >= 18).toList();",
+    explanation: "Pipeline-ul de streaming evaluează predicatul lambda și acumulează direct rezultatele într-o listă nouă.",
+    hint: "Scrie: users.stream().filter(u -> u.getAge() >= 18).toList();"
+  },
+  {
+    id: "java-adv-12",
+    track: "Java",
+    icon: "☕",
+    level: "4. Senior",
+    xp: 40,
+    title: "Eliminarea NullPointerException: Clasa Optional",
+    theory: "<code>Optional&lt;T&gt;</code> este un container monadă care poate sau nu să conțină o valoare non-null. Metoda <code>.orElse(valoare)</code> oferă o valoare sigură de rezervă fără branching complex.",
+    example: "String username = findUser(id).orElse(\"Guest\");",
+    prompt: "Extrage valoarea din 'Optional<String> optName' sau returnează șirul \"Anonymous\" dacă este absentă (folosind .orElse(\"Anonymous\");).",
+    starterContext: "Optional<String> optName;\n// Extrage valoarea sigură:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "optName.orElse(\"Anonymous\");",
+      "optName.orElse(\"Anonymous\")"
+    ],
+    officialSolution: "optName.orElse(\"Anonymous\");",
+    explanation: "orElse returnează conținutul dacă este prezent sau parametrul de fallback dacă Optional-ul este gol.",
+    hint: "Model: optName.orElse(\"Anonymous\");"
+  },
+  {
+    id: "java-adv-13",
+    track: "Java",
+    icon: "☕",
+    level: "4. Senior",
+    xp: 40,
+    title: "DTO-uri Imutabile Concise: Tipul Record",
+    theory: "Introdus în Java 14/16, un <code>record</code> este o clasă imutabilă specială care generează automat constructorul, getterii (fără prefixul 'get'), metodele <code>equals()</code>, <code>hashCode()</code> și <code>toString()</code>.",
+    example: "public record UserDto(Long id, String email) {}",
+    prompt: "Declară un record public numit 'Point' care conține două câmpuri întregi: 'int x, int y' (public record Point(int x, int y) {}).",
+    starterContext: "// Declară record-ul Point:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "public record Point(int x, int y) {}",
+      "public record Point(int x, int y){}"
+    ],
+    officialSolution: "public record Point(int x, int y) {}",
+    explanation: "Record-ul reduce boilerplate-ul de sute de linii de cod din clasele clasice de date (POJO).",
+    hint: "Scrie: public record Point(int x, int y) {}"
+  },
+  {
+    id: "java-adv-14",
+    track: "Java",
+    icon: "☕",
+    level: "5. Exemplar",
+    xp: 50,
+    title: "Calcul Asincron Non-blocant: CompletableFuture",
+    theory: "<code>CompletableFuture.supplyAsync(Supplier)</code> rulează o sarcină pe un pool separat de thread-uri (ForkJoinPool) și returnează un future ce poate fi compus reactiv cu <code>thenApply</code> sau <code>thenCombine</code>.",
+    example: "CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> \"Processed\");",
+    prompt: "Rulează asincron o sarcină folosind metoda: CompletableFuture.supplyAsync(() -> \"Done\");",
+    starterContext: "// Apelează supplyAsync:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "CompletableFuture.supplyAsync(() -> \"Done\");",
+      "CompletableFuture.supplyAsync(() -> \"Done\")"
+    ],
+    officialSolution: "CompletableFuture.supplyAsync(() -> \"Done\");",
+    explanation: "supplyAsync primește o expresie lambda de tip Supplier și returnează un CompletableFuture asociat execuției asincrone.",
+    hint: "Scrie: CompletableFuture.supplyAsync(() -> \"Done\");"
+  },
+  {
+    id: "java-adv-15",
+    track: "Java",
+    icon: "☕",
+    level: "5. Exemplar",
+    xp: 50,
+    title: "Operații Atomice Thread-Safe: AtomicInteger",
+    theory: "Pachetul <code>java.util.concurrent.atomic</code> oferă clase fără mecanisme greoaie de sincronizare (lock-free), bazate pe instrucțiuni CPU de tip Compare-And-Swap (CAS).",
+    example: "AtomicInteger counter = new AtomicInteger(0);\nint next = counter.incrementAndGet();",
+    prompt: "Având instanța 'AtomicInteger counter = new AtomicInteger(0);', incrementează atomic valoarea apelând metoda counter.incrementAndGet();",
+    starterContext: "AtomicInteger counter;\n// Incrementează atomic:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "counter.incrementAndGet();",
+      "counter.incrementAndGet()"
+    ],
+    officialSolution: "counter.incrementAndGet();",
+    explanation: "incrementAndGet() garantează incrementarea atomică sigură pe mai multe fire de execuție concurente.",
+    hint: "Scrie: counter.incrementAndGet();"
+  },
+
+  // ==========================================================================
+  // TRACK 3: JAVASCRIPT (ES6+, ASYNC/AWAIT, OPERATORI MODERNI, DOM)
+  // ==========================================================================
+  {
+    id: "js-adv-1",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "1. Începător",
+    xp: 20,
+    title: "Interpolare Text: Template Literals",
+    theory: "Template literals permit interpolarea directă a expresiilor JavaScript în șiruri de caractere folosind caracterele backtick (<code>` `</code>) și sintaxa <code>${expresie}</code>.",
+    example: "const name = 'Alex';\nconst message = `Bun venit, ${name}!`;",
+    prompt: "Creează o variabilă 'const greeting' folosind backticks care afișează 'Hello, ' urmat de expresia interpolată '${user}' și semnul '!'.",
+    starterContext: "const user = 'Maria';\n// Scrie declarația variabilei:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "const greeting = `Hello, ${user}!`;",
+      "const greeting = `Hello, ${user}!`;"
+    ],
+    officialSolution: "const greeting = `Hello, ${user}!`;",
+    explanation: "Template literals elimină concatenările complicate prin operatorul '+' și permit șiruri pe mai multe linii.",
+    hint: "Scrie: const greeting = `Hello, ${user}!`;"
+  },
+  {
+    id: "js-adv-2",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "1. Începător",
+    xp: 20,
+    title: "Operații pe Tablouri: Metoda push()",
+    theory: "Metoda <code>Array.prototype.push()</code> adaugă unul sau mai multe elemente la sfârșitul unui tablou și returnează noua lungime a acestuia.",
+    example: "const items = ['a', 'b'];\nitems.push('c'); // items devine ['a', 'b', 'c']",
+    prompt: "Având tabloul 'const list = [1, 2];', adaugă numărul 3 la sfârșitul vectorului apelând metoda .push(3);",
+    starterContext: "const list = [1, 2];\n// Adaugă cifra 3:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "list.push(3);",
+      "list.push(3)"
+    ],
+    officialSolution: "list.push(3);",
+    explanation: "Metoda mută tabloul inițial adăugând elementul specificat ca ultim index.",
+    hint: "Scrie: list.push(3);"
+  },
+  {
+    id: "js-adv-3",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "1. Începător",
+    xp: 20,
+    title: "Verificare Existență: Metoda Array.includes()",
+    theory: "Metoda <code>includes(valoare)</code> determină dacă un tablou conține o anumită valoare printre elementele sale, returnând un boolean (<code>true</code> sau <code>false</code>).",
+    example: "const fruits = ['mere', 'pere'];\nif (fruits.includes('pere')) { ... }",
+    prompt: "Verifică dacă tabloul 'tags' conține elementul 'js' apelând metoda tags.includes('js');",
+    starterContext: "const tags = ['html', 'css', 'js'];\n// Apelează includes:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "tags.includes('js');",
+      "tags.includes('js')",
+      "tags.includes(\"js\");",
+      "tags.includes(\"js\")"
+    ],
+    officialSolution: "tags.includes('js');",
+    explanation: "includes utilizează algoritmul SameValueZero pentru a verifica prezența valorii în tablou.",
+    hint: "Scrie: tags.includes('js');"
+  },
+  {
+    id: "js-adv-4",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "2. Junior",
+    xp: 25,
+    title: "Funcții Săgeată Concise: Arrow Functions",
+    theory: "Funcțiile arrow oferă o sintaxă scurtă. Când au o singură instrucțiune, acoladele și cuvântul <code>return</code> pot fi omise (return implicit).",
+    example: "const square = n => n * n;",
+    prompt: "Scrie o funcție arrow asignată unei constante 'const double' care primește parametrul 'x' și returnează 'x * 2' cu return implicit (fără acolade).",
+    starterContext: "// Declară funcția double:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "const double = x => x * 2;",
+      "const double = (x) => x * 2;",
+      "const double = x => x * 2"
+    ],
+    officialSolution: "const double = x => x * 2;",
+    explanation: "Sintaxa x => x * 2 creează o funcție anonimă concisă cu return automat al expresiei evaluate.",
+    hint: "Model: const double = x => x * 2;"
+  },
+  {
+    id: "js-adv-5",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "2. Junior",
+    xp: 25,
+    title: "Extragere de Proprietăți: Object Destructuring",
+    theory: "Destructurarea obiectelor permite extragerea proprietăților în variabile individuale concise pe baza numelui cheii.",
+    example: "const user = { id: 10, name: 'Dan' };\nconst { id, name } = user;",
+    prompt: "Extrage proprietățile 'id' și 'role' dintr-un obiect 'user' folosind sintaxa de destructurare: const { id, role } = user;",
+    starterContext: "const user = { id: 1, role: 'admin', age: 30 };\n// Scrie linia de destructurare:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "const { id, role } = user;",
+      "const { id, role } = user",
+      "const { role, id } = user;"
+    ],
+    officialSolution: "const { id, role } = user;",
+    explanation: "Variabilele id și role sunt create direct cu valorile corespunzătoare din obiectul user.",
+    hint: "Scrie: const { id, role } = user;"
+  },
+  {
+    id: "js-adv-6",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "2. Junior",
+    xp: 25,
+    title: "Îmbinarea Tablourilor: Operatorul Spread (...)",
+    theory: "Operatorul spread (<code>...</code>) despachetează elementele unui iterabil într-un nou tablou, permițând concatenarea rapidă și imutabilă a vectorilor.",
+    example: "const combined = [...listA, ...listB];",
+    prompt: "Creează un tablou 'const combined' care îmbină elementele din 'arr1' și 'arr2' folosind operatorul spread ([...arr1, ...arr2]).",
+    starterContext: "const arr1 = [1, 2];\nconst arr2 = [3, 4];\n// Scrie declarația:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "const combined = [...arr1, ...arr2];",
+      "const combined = [...arr1, ...arr2]"
+    ],
+    officialSolution: "const combined = [...arr1, ...arr2];",
+    explanation: "Spread copiază elementele ambelor liste într-un tablou nou fără a le modifica pe cele inițiale.",
+    hint: "Scrie: const combined = [...arr1, ...arr2];"
+  },
+  {
+    id: "js-adv-7",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "2. Junior",
+    xp: 25,
+    title: "Transformarea Colecțiilor: Metoda Array.map()",
+    theory: "Metoda <code>map()</code> creează un nou tablou populat cu rezultatele apelării unei funcții pe fiecare element al tabloului apelant.",
+    example: "const lengths = words.map(w => w.length);",
+    prompt: "Folosind tabloul 'nums', obține un nou vector cu pătratele fiecărui număr apelând: nums.map(n => n * n);",
+    starterContext: "const nums = [1, 2, 3, 4];\n// Transformă elementele:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "nums.map(n => n * n);",
+      "nums.map(n => n * n)",
+      "nums.map((n) => n * n);"
+    ],
+    officialSolution: "nums.map(n => n * n);",
+    explanation: "map() iterează prin fiecare număr n și returnează n * n într-un nou tablou de aceeași dimensiune.",
+    hint: "Scrie: nums.map(n => n * n);"
+  },
+  {
+    id: "js-adv-8",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "3. Middle",
+    xp: 30,
+    title: "Filtrare Selectivă: Metoda Array.filter()",
+    theory: "Metoda <code>filter()</code> returnează o copie superficială (shallow copy) a porțiunii din tablou care trece de testul implementat de funcția furnizată.",
+    example: "const activeUsers = users.filter(u => u.isActive);",
+    prompt: "Filtrează vectorul 'products' păstrând doar obiectele cu prețul sub 50 apelând: products.filter(p => p.price < 50);",
+    starterContext: "const products = [{ name: 'A', price: 30 }, { name: 'B', price: 80 }];\n// Filtrează produsele:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "products.filter(p => p.price < 50);",
+      "products.filter(p => p.price < 50)",
+      "products.filter((p) => p.price < 50);"
+    ],
+    officialSolution: "products.filter(p => p.price < 50);",
+    explanation: "Funcția predicat returnează true doar dacă p.price este mai mic decât 50.",
+    hint: "Scrie: products.filter(p => p.price < 50);"
+  },
+  {
+    id: "js-adv-9",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "3. Middle",
+    xp: 30,
+    title: "Agregare de Date: Metoda Array.reduce()",
+    theory: "Metoda <code>reduce((acumulator, curent) => nouAcumulator, valoareInitiala)</code> reduce elementele unui tablou la o singură valoare finală (sumă, obiect agregat, etc.).",
+    example: "const total = prices.reduce((acc, curr) => acc + curr, 0);",
+    prompt: "Calculează suma numerelor din vectorul 'numbers' apelând: numbers.reduce((acc, curr) => acc + curr, 0);",
+    starterContext: "const numbers = [10, 20, 30];\n// Redu la suma totală:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "numbers.reduce((acc, curr) => acc + curr, 0);",
+      "numbers.reduce((acc, curr) => acc + curr, 0)"
+    ],
+    officialSolution: "numbers.reduce((acc, curr) => acc + curr, 0);",
+    explanation: "reduce începe de la 0 și adaugă succesiv fiecare element curr în acumulatorul acc.",
+    hint: "Scrie: numbers.reduce((acc, curr) => acc + curr, 0);"
+  },
+  {
+    id: "js-adv-10",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "3. Middle",
+    xp: 30,
+    title: "Navigare Sigură în Structuri: Optional Chaining (?.)",
+    theory: "Operatorul <code>?.</code> permite citirea proprietăților aflate adânc într-un lanț de obiecte fără a valida manual existența fiecărei referințe. Dacă referința este <code>null</code> sau <code>undefined</code>, expresia returnează direct <code>undefined</code> în loc să arunce o eroare.",
+    example: "const zip = user?.address?.zipCode;",
+    prompt: "Accesează în siguranță proprietatea 'city' din adresa utilizatorului: user?.address?.city",
+    starterContext: "const user = { name: 'Elena' };\n// Citește orașul în siguranță:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "user?.address?.city;",
+      "user?.address?.city"
+    ],
+    officialSolution: "user?.address?.city",
+    explanation: "Dacă user.address este nedefinit, expresia se oprește fără a genera TypeError.",
+    hint: "Scrie: user?.address?.city"
+  },
+  {
+    id: "js-adv-11",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "3. Middle",
+    xp: 30,
+    title: "Valori Implicite: Nullish Coalescing (??)",
+    theory: "Operatorul <code>??</code> returnează operandul din dreapta doar dacă cel din stânga este strict <code>null</code> sau <code>undefined</code>. Spre deosebire de <code>||</code>, valorile <code>0</code> sau <code>\"\"</code> (falsey) sunt păstrate corect.",
+    example: "const timeout = customTimeout ?? 5000;",
+    prompt: "Atribuie constantei 'port' valoarea din 'process.env.PORT ?? 3000;' folosind operatorul nullish coalescing.",
+    starterContext: "// Scrie linia de cod:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "const port = process.env.PORT ?? 3000;",
+      "const port = process.env.PORT ?? 3000"
+    ],
+    officialSolution: "const port = process.env.PORT ?? 3000;",
+    explanation: "Dacă PORT este nedefinit, port va primi valoarea de rezervă 3000.",
+    hint: "Scrie: const port = process.env.PORT ?? 3000;"
+  },
+  {
+    id: "js-adv-12",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "4. Senior",
+    xp: 40,
+    title: "Asincronism Elegant: async / await cu Fetch",
+    theory: "Cuvântul-cheie <code>await</code> suspendă execuția funcției asincrone până când promisiunea este rezolvată, făcând codul asincron să arate și să se comporte similar celui sincron.",
+    example: "const response = await fetch('/api/users');\nconst data = await response.json();",
+    prompt: "Așteaptă răspunsul unui apel fetch('/api/data') și atribuie-l constantei 'res': const res = await fetch('/api/data');",
+    starterContext: "async function loadData() {\n  // Scrie linia de await fetch:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "const res = await fetch('/api/data');",
+      "const res = await fetch('/api/data')",
+      "const res = await fetch(\"/api/data\");"
+    ],
+    officialSolution: "const res = await fetch('/api/data');",
+    explanation: "await fetch('/api/data') blochează execuția doar în interiorul funcției async până când serverul trimite headerele de răspuns.",
+    hint: "Scrie: const res = await fetch('/api/data');"
+  },
+  {
+    id: "js-adv-13",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "4. Senior",
+    xp: 40,
+    title: "Execuție Paralelă: Metoda Promise.all()",
+    theory: "<code>Promise.all([p1, p2, ...])</code> rulează multiple sarcini asincrone în mod concurent și așteaptă ca toate să se finalizeze cu succes, reducând timpul total de execuție la durata celei mai lente sarcini.",
+    example: "const [users, posts] = await Promise.all([fetchUsers(), fetchPosts()]);",
+    prompt: "Așteaptă finalizarea simultană a promisiunilor 'p1' și 'p2' apelând: await Promise.all([p1, p2]);",
+    starterContext: "async function syncTasks(p1, p2) {\n  // Așteaptă ambele sarcini:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "await Promise.all([p1, p2]);",
+      "await Promise.all([p1, p2])"
+    ],
+    officialSolution: "await Promise.all([p1, p2]);",
+    explanation: "Promise.all rulează sarcinile în paralel. Dacă oricare promisiune este respinsă, întregul Promise.all va arunca o eroare.",
+    hint: "Scrie: await Promise.all([p1, p2]);"
+  },
+  {
+    id: "js-adv-14",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "4. Senior",
+    xp: 40,
+    title: "Atribute HTML Personalizate: Obiectul dataset",
+    theory: "În HTML5, atributele prefixate cu <code>data-*</code> (ex: <code>data-role=\"admin\"</code>) sunt accesate în JavaScript ca proprietăți camelCase prin obiectul <code>element.dataset</code>.",
+    example: "const role = button.dataset.role;",
+    prompt: "Citește atributul data-role al unui buton DOM numit 'btn' apelând: btn.dataset.role;",
+    starterContext: "const btn = document.querySelector('button');\n// Citește rolul:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "btn.dataset.role;",
+      "btn.dataset.role"
+    ],
+    officialSolution: "btn.dataset.role;",
+    explanation: "Proprietatea .dataset.role oferă acces nativ de tip read/write la atributul 'data-role' al elementului.",
+    hint: "Scrie: btn.dataset.role;"
+  },
+  {
+    id: "js-adv-15",
+    track: "JavaScript",
+    icon: "🟨",
+    level: "5. Exemplar",
+    xp: 50,
+    title: "Încapsulare Lexicală: Concepte de Closure",
+    theory: "Un closure (închidere lexicală) este combinația dintre o funcție și mediul lexical în care aceasta a fost declarată. Permite unei funcții interne să păstreze accesul la variabilele din scopul funcției părinte chiar și după terminarea execuției acesteia.",
+    example: "function makeAdder(x) {\n  return y => x + y;\n}",
+    prompt: "Creează o funcție 'createCounter' care declară 'let c = 0;' și returnează o funcție arrow '() => ++c;' (pe o singură linie).",
+    starterContext: "// Declară funcția cu closure:",
+    caseSensitive: true,
+    acceptedAnswers: [
+      "function createCounter() { let c = 0; return () => ++c; }",
+      "const createCounter = () => { let c = 0; return () => ++c; };"
+    ],
+    officialSolution: "function createCounter() { let c = 0; return () => ++c; }",
+    explanation: "Variabila 'c' rămâne privată în interiorul closure-ului și poate fi modificată doar prin funcția returnată.",
+    hint: "Scrie: function createCounter() { let c = 0; return () => ++c; }"
+  },
+
+  // ==========================================================================
+  // TRACK 4: ENGLEZĂ C1/C2 (EXPRESII FORMALE, INVERSIUNI, VOCABULAR MASTER)
+  // ==========================================================================
+  {
+    id: "eng-adv-1",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "1. Începător",
+    xp: 20,
+    title: "Modale de Deducție: Must be at home",
+    theory: "Verbul modal <code>must</code> exprimă o deducție logică fermă bazată pe dovezi clare în prezent, în contrast cu <code>can't</code> care exprimă o imposibilitate logică.",
+    example: "She has been working for 12 hours; she must be exhausted.",
+    prompt: "Tradu în engleză: „El trebuie să fie acasă; luminile sunt aprinse.” folosind 'must be at home'.",
+    starterContext: "Cuvinte cheie: must be at home; the lights are on.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "He must be at home; the lights are on.",
+      "He must be at home, the lights are on.",
+      "He must be at home; the lights are on",
+      "He must be at home."
+    ],
+    officialSolution: "He must be at home; the lights are on.",
+    explanation: "'Must be' exprimă certitudinea dedusă logic din faptul că luminile sunt aprinse.",
+    hint: "Model: He must be at home; the lights are on."
+  },
+  {
+    id: "eng-adv-2",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "2. Junior",
+    xp: 25,
+    title: "Idiom Profesional: 'Hit the ground running'",
+    theory: "Expresia idiomatică <code>to hit the ground running</code> înseamnă a începe o activitate nouă imediat, cu mare energie, entuziasm și fără perioadă de ezitare.",
+    example: "With her extensive background in software engineering, she hit the ground running on day one.",
+    prompt: "Completează propoziția: „The new manager was ready to hit the ground running.” (scrie întreaga propoziție în engleză).",
+    starterContext: "Idiom: hit the ground running",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "The new manager was ready to hit the ground running.",
+      "The new manager was ready to hit the ground running"
+    ],
+    officialSolution: "The new manager was ready to hit the ground running.",
+    explanation: "Expresia este omniprezentă în interviurile tehnice și descrierile de performanță.",
+    hint: "Scrie: The new manager was ready to hit the ground running."
+  },
+  {
+    id: "eng-adv-3",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "2. Junior",
+    xp: 25,
+    title: "Idiom de Calitate: 'Cut corners'",
+    theory: "Expresia <code>to cut corners</code> înseamnă a face ceva în modul cel mai ușor, ieftin sau rapid, sacrificând calitatea, rigoarea sau regulile de siguranță.",
+    example: "Never cut corners when writing database migration scripts.",
+    prompt: "Tradu în engleză: „Nu putem face rabat de la calitate când vine vorba de securitate.” folosind expresia 'cut corners'.",
+    starterContext: "We cannot cut corners when it comes to security.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "We cannot cut corners when it comes to security.",
+      "We can't cut corners when it comes to security.",
+      "We cannot cut corners when it comes to security",
+      "We can't cut corners when it comes to security"
+    ],
+    officialSolution: "We cannot cut corners when it comes to security.",
+    explanation: "'Cut corners' surprinde perfect nuanța de compromis periculos asupra standardelor.",
+    hint: "Scrie: We cannot cut corners when it comes to security."
+  },
+  {
+    id: "eng-adv-4",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "3. Middle",
+    xp: 30,
+    title: "Subjonctivul Mandativ Formal: 'that he be'",
+    theory: "În engleza academică și profesională formală, după adjective precum <em>imperative, essential, crucial</em> sau verbe ca <em>demand, insist</em>, verbul din clauza subordonată rămâne la forma de bază neinflectată (bare subjunctive), indiferent de persoană.",
+    example: "It is crucial that each member remain calm during an outage.",
+    prompt: "Scrie propoziția de registru formal C1: „It is imperative that he be present.”",
+    starterContext: "Subjunctive: 'that he be present'",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "It is imperative that he be present.",
+      "It is imperative that he be present"
+    ],
+    officialSolution: "It is imperative that he be present.",
+    explanation: "În registrul formal C1, se folosește 'that he be', nu 'that he is'.",
+    hint: "Scrie: It is imperative that he be present."
+  },
+  {
+    id: "eng-adv-5",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "3. Middle",
+    xp: 30,
+    title: "Inversiune Emfatică: 'Little did they know'",
+    theory: "Inversiunile cu adverbe restrictive plasează verbul auxiliar înaintea subiectului pentru un efect dramatic sau narativ puternic: <code>Little did + subiect + verb de bază</code>.",
+    example: "Little did we realize how quickly the system would scale.",
+    prompt: "Scrie propoziția: „Little did they know that the system had already been compromised.”",
+    starterContext: "Inversion: Little did they know...",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "Little did they know that the system had already been compromised.",
+      "Little did they know that the system had already been compromised"
+    ],
+    officialSolution: "Little did they know that the system had already been compromised.",
+    explanation: "'Little did they know' inversează ordinea subiect-auxiliar pentru a accentua neștiința totală a protagoniștilor.",
+    hint: "Scrie: Little did they know that the system had already been compromised."
+  },
+  {
+    id: "eng-adv-6",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "3. Middle",
+    xp: 30,
+    title: "Vocabular Tehnic C1: 'Paradigm shift'",
+    theory: "Termenul <code>paradigm shift</code> desemnează o schimbare fundamentală în conceptele de bază și practicile experimentale ale unei discipline tehnologice sau științifice.",
+    example: "Cloud computing represented a massive paradigm shift for enterprise infrastructure.",
+    prompt: "Tradu: „Această tehnologie reprezintă o schimbare de paradigmă.” folosind 'a paradigm shift'.",
+    starterContext: "This technology represents a paradigm shift.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "This technology represents a paradigm shift.",
+      "This technology represents a paradigm shift"
+    ],
+    officialSolution: "This technology represents a paradigm shift.",
+    explanation: "Termenul este utilizat pe scară largă în arhitectura software și managementul inovației.",
+    hint: "Scrie: This technology represents a paradigm shift."
+  },
+  {
+    id: "eng-adv-7",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "3. Middle",
+    xp: 30,
+    title: "Vocabular de Audit C1: 'Discrepancy'",
+    theory: "Substantivul <code>discrepancy</code> indică o diferență ilogică, neașteptată sau inacceptabilă între două fapte, sume sau înregistrări care ar trebui să coincidă.",
+    example: "Financial auditors detected a severe discrepancy in the quarterly balance sheet.",
+    prompt: "Tradu: „Am observat o discrepanță majoră între rapoarte.” folosind 'a major discrepancy'.",
+    starterContext: "I noticed a major discrepancy between the reports.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I noticed a major discrepancy between the reports.",
+      "I noticed a major discrepancy between the reports",
+      "We noticed a major discrepancy between the reports.",
+      "We noticed a major discrepancy between the reports"
+    ],
+    officialSolution: "I noticed a major discrepancy between the reports.",
+    explanation: "'Discrepancy' denotă o discrepanță sau nepotrivire tehnică specifică registrelor formale.",
+    hint: "Scrie: I noticed a major discrepancy between the reports."
+  },
+  {
+    id: "eng-adv-8",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "3. Middle",
+    xp: 30,
+    title: "Conector Academic C1: 'Notwithstanding'",
+    theory: "Prepoziția și conectorul formal <code>notwithstanding</code> este sinonimul elevat al lui 'in spite of' sau 'despite', fiind foarte des întâlnit în contracte și publicații tehnice.",
+    example: "Notwithstanding these minor bugs, the release was approved for production.",
+    prompt: "Completează cu conectorul academic: „Notwithstanding the challenges, the project was delivered on schedule.”",
+    starterContext: "Notwithstanding the challenges, the project was delivered on schedule.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "Notwithstanding the challenges, the project was delivered on schedule.",
+      "Notwithstanding the challenges, the project was delivered on schedule"
+    ],
+    officialSolution: "Notwithstanding the challenges, the project was delivered on schedule.",
+    explanation: "Notwithstanding adaugă o solemnitate și o eleganță stilistică specifică nivelului avansat C1.",
+    hint: "Scrie: Notwithstanding the challenges, the project was delivered on schedule."
+  },
+  {
+    id: "eng-adv-9",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "4. Senior",
+    xp: 40,
+    title: "Condițional Mixt: Past Action -> Present Consequence",
+    theory: "Condiționalele mixte combină o ipoteză nereală din trecut (Past Perfect) cu un rezultat ipotetic în prezent (would + verb de bază).",
+    example: "If she had taken that job offer last year, she would be leading the team today.",
+    prompt: "Scrie fraza condițională mixtă: „If they had invested earlier, they would be profitable now.”",
+    starterContext: "Mixed Conditional: If they had invested earlier...",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "If they had invested earlier, they would be profitable now.",
+      "If they had invested earlier, they would be profitable now"
+    ],
+    officialSolution: "If they had invested earlier, they would be profitable now.",
+    explanation: "Construcția leagă o decizie din trecut ('had invested') de starea actuală din prezent ('would be profitable').",
+    hint: "Scrie: If they had invested earlier, they would be profitable now."
+  },
+  {
+    id: "eng-adv-10",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "4. Senior",
+    xp: 40,
+    title: "Inversiune Condițională Eleganta: 'Had I known...'",
+    theory: "În engleza de elită, 'if' poate fi omis în frazele condiționale de tip 3 prin inversarea subiectului cu auxiliarul: <code>Had + subiect + past participle</code>.",
+    example: "Had the engineers inspected the logs sooner, the outage could have been avoided.",
+    prompt: "Transformă 'If I had known earlier' în forma inversată formală: „Had I known earlier, I would have warned you.”",
+    starterContext: "Had I known earlier, I would have warned you.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "Had I known earlier, I would have warned you.",
+      "Had I known earlier, I would have warned you"
+    ],
+    officialSolution: "Had I known earlier, I would have warned you.",
+    explanation: "Această inversiune demonstrează o stăpânire nativă a structurilor stilistice avansate.",
+    hint: "Scrie: Had I known earlier, I would have warned you."
+  },
+  {
+    id: "eng-adv-11",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "4. Senior",
+    xp: 40,
+    title: "Vocabular C1: 'Ubiquitous' (Omniprezent)",
+    theory: "Adjectivul <code>ubiquitous</code> descrie ceva care este prezent, întâlnit sau pare să existe peste tot în același timp.",
+    example: "Internet connectivity has become virtually ubiquitous in urban centers.",
+    prompt: "Tradu: „Smartphone-urile au devenit omniprezente în societatea modernă.” folosind cuvântul 'ubiquitous'.",
+    starterContext: "Smartphones have become ubiquitous in modern society.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "Smartphones have become ubiquitous in modern society.",
+      "Smartphones have become ubiquitous in modern society"
+    ],
+    officialSolution: "Smartphones have become ubiquitous in modern society.",
+    explanation: "Termenul 'ubiquitous' este preferat în mediul tehnic în locul comunului 'omnipresent' sau 'everywhere'.",
+    hint: "Scrie: Smartphones have become ubiquitous in modern society."
+  },
+  {
+    id: "eng-adv-12",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "4. Senior",
+    xp: 40,
+    title: "Vocabular C1: 'A pragmatic approach'",
+    theory: "Adjectivul <code>pragmatic</code> caracterizează o gândire orientată pe rezultate concrete, eficiență și realism practic, evitând teoriile pure sau dogmele.",
+    example: "Engineers often adopt a pragmatic approach when balancing performance and deadlines.",
+    prompt: "Tradu: „Avem nevoie de o abordare pragmatică pentru rezolvarea acestei probleme.” folosind 'a pragmatic approach'.",
+    starterContext: "We need a pragmatic approach to solve this problem.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "We need a pragmatic approach to solve this problem.",
+      "We need a pragmatic approach to solve this problem",
+      "We need a pragmatic approach to solving this problem.",
+      "We need a pragmatic approach to solving this problem"
+    ],
+    officialSolution: "We need a pragmatic approach to solve this problem.",
+    explanation: "'Pragmatic approach' este una dintre cele mai apreciate colocații în interviurile de Senior Engineer.",
+    hint: "Scrie: We need a pragmatic approach to solve this problem."
+  },
+  {
+    id: "eng-adv-13",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "4. Senior",
+    xp: 40,
+    title: "Verbe de Inspecție C1: 'Scrutinize'",
+    theory: "Verbul <code>to scrutinize</code> înseamnă a examina ceva extrem de minuțios, critic și cu o atenție desăvârșită la fiecare detaliu ascuns.",
+    example: "Security experts carefully scrutinize open-source dependencies before deployment.",
+    prompt: "Tradu: „Comisia va analiza cu atenție fiecare linie de cod.” folosind verbul 'scrutinize'.",
+    starterContext: "The committee will scrutinize every line of code.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "The committee will scrutinize every line of code.",
+      "The committee will scrutinize every line of code",
+      "The team will scrutinize every line of code."
+    ],
+    officialSolution: "The committee will scrutinize every line of code.",
+    explanation: "'Scrutinize' depășește simplitatea verbelor 'check' sau 'examine', implicând rigoare meticuloasă.",
+    hint: "Scrie: The committee will scrutinize every line of code."
+  },
+  {
+    id: "eng-adv-14",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "5. Exemplar",
+    xp: 50,
+    title: "Inversiune Negativă C2: 'Seldom have we...'",
+    theory: "Adverbul restrictiv <code>seldom</code> (rar) declanșează inversiunea topică a propoziției (auxiliarul plasat înaintea subiectului), creând un ton retoric magistral de nivel C2 Mastery.",
+    example: "Seldom had a software framework transformed the web as profoundly as React.",
+    prompt: "Scrie inversiunea retorică C2: „Seldom have we witnessed such remarkable resilience.”",
+    starterContext: "Seldom have we witnessed...",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "Seldom have we witnessed such remarkable resilience.",
+      "Seldom have we witnessed such remarkable resilience"
+    ],
+    officialSolution: "Seldom have we witnessed such remarkable resilience.",
+    explanation: "'Seldom have we witnessed' reprezintă vârful construcțiilor inversate în registrul C2.",
+    hint: "Scrie: Seldom have we witnessed such remarkable resilience."
+  },
+  {
+    id: "eng-adv-15",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "5. Exemplar",
+    xp: 50,
+    title: "Verbe Strategice C2: 'Mitigate'",
+    theory: "Verbul <code>to mitigate</code> înseamnă a reduce gravitatea, nocivitatea sau severitatea unei probleme sau a unui risc. Opusul său direct este <code>to exacerbate</code>.",
+    example: "Redundant power supplies mitigate the impact of electrical grid failures.",
+    prompt: "Tradu: „Am implementat noi protocoale pentru a atenua riscurile potențiale.” folosind 'to mitigate potential risks'.",
+    starterContext: "We implemented new protocols to mitigate potential risks.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "We implemented new protocols to mitigate potential risks.",
+      "We implemented new protocols to mitigate potential risks",
+      "We have implemented new protocols to mitigate potential risks.",
+      "We have implemented new protocols to mitigate potential risks"
+    ],
+    officialSolution: "We implemented new protocols to mitigate potential risks.",
+    explanation: "'Mitigate' este termenul etalon utilizat în gestionarea incidentelor și a riscurilor cibernetice.",
+    hint: "Scrie: We implemented new protocols to mitigate potential risks."
+  },
+  {
+    id: "eng-adv-16",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "5. Exemplar",
+    xp: 50,
+    title: "Argumentare Critică C2: 'Play devil's advocate'",
+    theory: "Expresia <code>to play devil's advocate</code> înseamnă a susține în mod deliberat o opinie contrară celei comune pentru a testa temeinicia unui argument și a descoperi vulnerabilități logice.",
+    example: "During code reviews, it is healthy to play devil's advocate to stress-test architecture.",
+    prompt: "Tradu: „Permite-mi să joc rolul avocatului diavolului pentru o clipă.” folosind 'to play devil's advocate'.",
+    starterContext: "Let me play devil's advocate for a moment.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "Let me play devil's advocate for a moment.",
+      "Let me play devil's advocate for a moment",
+      "Allow me to play devil's advocate for a moment.",
+      "Allow me to play devil's advocate for a moment"
+    ],
+    officialSolution: "Let me play devil's advocate for a moment.",
+    explanation: "Un idiom de referință în dezbaterile intelectuale de nivel înalt.",
+    hint: "Scrie: Let me play devil's advocate for a moment."
+  },
+  {
+    id: "eng-adv-17",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "5. Exemplar",
+    xp: 50,
+    title: "Colocație Academică C2: 'Mounting evidence'",
+    theory: "Colocația <code>mounting evidence</code> descrie un volum de dovezi sau date concrete care continuă să crească și devine tot mai greu de combătut.",
+    example: "There is mounting evidence that microservice sprawl increases operational latency.",
+    prompt: "Tradu: „Există dovezi din ce în ce mai copleșitoare care susțin această ipoteză.” folosind 'mounting evidence'.",
+    starterContext: "There is mounting evidence supporting this hypothesis.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "There is mounting evidence supporting this hypothesis.",
+      "There is mounting evidence supporting this hypothesis",
+      "There is mounting evidence to support this hypothesis.",
+      "There is mounting evidence to support this hypothesis"
+    ],
+    officialSolution: "There is mounting evidence supporting this hypothesis.",
+    explanation: "'Mounting evidence' exprimă eleganță stilistică academică fără egal.",
+    hint: "Scrie: There is mounting evidence supporting this hypothesis."
+  },
+  {
+    id: "eng-adv-18",
+    track: "Engleză C1",
+    icon: "🇬🇧",
+    level: "5. Exemplar",
+    xp: 50,
+    title: "Adjective de Impact C2: 'Unprecedented'",
+    theory: "Adjectivul <code>unprecedented</code> desemnează un fenomen sau o stare de fapt care nu a mai fost niciodată întâlnită, experimentată sau înregistrată în istorie.",
+    example: "The platform endured an unprecedented surge in concurrent traffic.",
+    prompt: "Tradu: „Compania se confruntă cu o creștere fără precedent.” folosind 'unprecedented growth'.",
+    starterContext: "The company is facing unprecedented growth.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "The company is facing unprecedented growth.",
+      "The company is facing unprecedented growth",
+      "The company is experiencing unprecedented growth.",
+      "The company is experiencing unprecedented growth"
+    ],
+    officialSolution: "The company is facing unprecedented growth.",
+    explanation: "'Unprecedented' este adjectivul cheie pentru evenimente istorice sau salturi scalare remarcabile.",
+    hint: "Scrie: The company is facing unprecedented growth."
+  }
+];
+
+// Fuziune sigură cu curriculumul global existent fără a atinge sau modifica lecțiile existente
+if (typeof DEFAULT_CURRICULUM !== "undefined" && Array.isArray(DEFAULT_CURRICULUM)) {
+  DEFAULT_CURRICULUM.push(...ADVANCED_CURRICULUM_EXPANSION);
+}
