@@ -50,7 +50,8 @@
     ...(typeof EXTENDED_CURRICULUM !== "undefined" && typeof EXTENDED_MODULES === "undefined" ? EXTENDED_CURRICULUM : []),
     ...(typeof ADVANCED_CURRICULUM_EXPANSION !== "undefined" ? ADVANCED_CURRICULUM_EXPANSION : []),
     ...(typeof ADVANCED_CURRICULUM !== "undefined" && typeof ADVANCED_CURRICULUM_EXPANSION === "undefined" ? ADVANCED_CURRICULUM : []),
-    ...(typeof NEW_EXPANDED_CURRICULUM !== "undefined" ? NEW_EXPANDED_CURRICULUM : [])
+    ...(typeof NEW_EXPANDED_CURRICULUM !== "undefined" ? NEW_EXPANDED_CURRICULUM : []),
+    ...(typeof CPP_EXPANDED_CURRICULUM !== "undefined" ? CPP_EXPANDED_CURRICULUM : [])
   ];
 
   // Deduplicare inteligentă pe baza ID-ului
@@ -79,6 +80,9 @@
     } else if (l.track && l.track.includes("C & C++")) {
       l.track = "C & C++";
       l.division = "Informatică și Programare";
+      if (l.level && l.level.includes("Mid-Level")) l.level = "3. Middle";
+      else if (l.level && l.level.includes("Senior Architect")) l.level = "5. Arhitect / Exemplar";
+      else if (l.level && l.level.includes("Senior /")) l.level = "4. Senior";
     } else if (l.track && l.track.includes("C#")) {
       l.track = "C#";
       l.division = "Informatică și Programare";
@@ -575,7 +579,7 @@
     "Java": "POO, clase, polimorfism, colecții avansate și Spring Boot REST API.",
     "JavaScript": "Dezvoltare web modernă, funcții ES6+, asincronism async/await și manipulare DOM Tree.",
     "TypeScript & React": "Sintaxă strictă statică, interfețe, hooks React (useState, useEffect) și componente modulare.",
-    "C & C++": "Inginerie de sistem, pointeri, gestiune RAII, concurrency std::jthread și move semantics.",
+    "C & C++": "Curriculum enciclopedic extins: de la sintaxă C/C++, pointeri și memorie RAII, până la STL, POO, C++20 și POSIX systems.",
     "C#": "Arhitectură .NET Core, LINQ, programare orientată pe obiecte, delegates și evenimente.",
     "Python": "Sintaxă expresivă, structuri de date native, list comprehensions și algoritmi.",
     "DevOps & Sisteme Linux": "Comenzi terminal Bash, pipes, Docker multi-stage, Git internals și protocoale de rețea.",
