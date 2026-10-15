@@ -16,7 +16,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Clauza <code>ORDER BY coloana ASC|DESC</code> ordonează rândurile după una sau mai multe coloane. Clauza <code>LIMIT n</code> restricționează numărul de înregistrări returnate la primele <code>n</code> rânduri din setul sortat.",
     example: "-- Returnează top 3 produse cele mai scumpe:\nSELECT ProductName, Price\nFROM Products\nORDER BY Price DESC\nLIMIT 3;",
     prompt: "Selectează toate coloanele (*) din tabelul 'Users' ordonate descrescător după 'Age', limitând rezultatul la primii 5 utilizatori.",
-    starterContext: "Tabel: Users (Id, Name, Age, Email)",
     caseSensitive: false,
     acceptedAnswers: [
       "SELECT * FROM Users ORDER BY Age DESC LIMIT 5;",
@@ -36,7 +35,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Operatorul <code>LIKE</code> filtrează datele pe baza unui model de text. Simbolul <code>%</code> reprezintă zero, unul sau multiple caractere arbitrare, iar <code>_</code> reprezintă exact un singur caracter.",
     example: "-- Găsește toți utilizatorii al căror nume începe cu litera 'A':\nSELECT * FROM Users WHERE Name LIKE 'A%';",
     prompt: "Selectează coloana 'Email' din tabelul 'Clients' unde adresa de email se termină cu '@gmail.com'.",
-    starterContext: "Tabel: Clients (Id, FullName, Email)",
     caseSensitive: false,
     acceptedAnswers: [
       "SELECT Email FROM Clients WHERE Email LIKE '%@gmail.com';",
@@ -56,7 +54,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Clauza <code>GROUP BY</code> sintetizează rândurile pe baza valorilor identice dintr-o coloană. Se folosește împreună cu funcții de agregare precum <code>AVG()</code>, <code>COUNT()</code>, <code>SUM()</code>, <code>MIN()</code> sau <code>MAX()</code>.",
     example: "-- Calculează media prețurilor pe fiecare categorie:\nSELECT Category, AVG(Price)\nFROM Products\nGROUP BY Category;",
     prompt: "Selectează 'Department' și salariul mediu 'AVG(Salary)' din tabelul 'Employees', grupând datele după 'Department'.",
-    starterContext: "Tabel: Employees (Id, Name, Department, Salary)",
     caseSensitive: false,
     acceptedAnswers: [
       "SELECT Department, AVG(Salary) FROM Employees GROUP BY Department;",
@@ -76,7 +73,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Clauza <code>HAVING</code> este echivalentul lui <code>WHERE</code> aplicat grupurilor rezultate din <code>GROUP BY</code>. Diferența crucială: <code>WHERE</code> filtrează rândurile înainte de agregare, în timp ce <code>HAVING</code> filtrează rezultatele după agregare.",
     example: "-- Păstrează doar departamentele cu mai mult de 5 angajați:\nSELECT Department, COUNT(*)\nFROM Employees\nGROUP BY Department\nHAVING COUNT(*) > 5;",
     prompt: "Selectează 'Category' și 'COUNT(*)' din 'Products', grupate după 'Category', păstrând doar categoriile cu mai mult de 10 produse folosind HAVING.",
-    starterContext: "Tabel: Products (Id, Name, Category, Price)",
     caseSensitive: false,
     acceptedAnswers: [
       "SELECT Category, COUNT(*) FROM Products GROUP BY Category HAVING COUNT(*) > 10;",
@@ -96,7 +92,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Comanda <code>UPDATE tabel SET col = val WHERE conditie;</code> modifică valorile existente. Fără clauza <code>WHERE</code>, instrucțiunea ar actualiza indiscriminat absolut toate rândurile din tabel!",
     example: "UPDATE Users SET IsVerified = 1 WHERE EmailVerifiedAt IS NOT NULL;",
     prompt: "Actualizează tabelul 'Accounts' setând coloana 'Status' la valoarea 'Active' unde 'Balance' este mai mare decât 0.",
-    starterContext: "Tabel: Accounts (AccountId, Status, Balance)",
     caseSensitive: false,
     acceptedAnswers: [
       "UPDATE Accounts SET Status = 'Active' WHERE Balance > 0;",
@@ -116,7 +111,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Instrucțiunea <code>DELETE FROM tabel WHERE conditie;</code> șterge doar tuplurile care satisfac predicatul logic. Atenție: dacă omiți <code>WHERE</code>, conținutul întregului tabel va fi șters ireversibil.",
     example: "DELETE FROM Sessions WHERE ExpiredAt < CURRENT_TIMESTAMP;",
     prompt: "Șterge toate înregistrările din tabelul 'Logs' unde coloana 'CreatedYear' este mai mică de 2020.",
-    starterContext: "Tabel: Logs (LogId, Message, CreatedYear)",
     caseSensitive: false,
     acceptedAnswers: [
       "DELETE FROM Logs WHERE CreatedYear < 2020;",
@@ -136,7 +130,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Un <code>LEFT JOIN</code> păstrează toate rândurile din tabelul stâng. Dacă un rând nu are corespondent în tabelul drept, câmpurile din dreapta vor fi populate cu <code>NULL</code>. Filtrând cu <code>WHERE dreapta.id IS NULL</code> identificăm instant elementele orfane (de exemplu clienți fără comenzi).",
     example: "SELECT u.Name FROM Users u LEFT JOIN Profiles p ON u.Id = p.UserId WHERE p.Id IS NULL;",
     prompt: "Selectează 'c.Name' din tabelul 'Customers c' cu LEFT JOIN pe 'Orders o' (pe c.Id = o.CustomerId) unde comanda lipsește (o.Id IS NULL).",
-    starterContext: "Tabele: Customers c, Orders o",
     caseSensitive: false,
     acceptedAnswers: [
       "SELECT c.Name FROM Customers c LEFT JOIN Orders o ON c.Id = o.CustomerId WHERE o.Id IS NULL;",
@@ -156,7 +149,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Expresia <code>CASE WHEN cond THEN val1 ELSE val2 END</code> permite adăugarea de logică condițională tip 'if-else' direct în clauza <code>SELECT</code> sau în clauze de ordonare.",
     example: "SELECT Name, CASE WHEN Score >= 50 THEN 'Pass' ELSE 'Fail' END AS Result FROM Students;",
     prompt: "Scrie o interogare care selectează 'Title' și expresia CASE WHEN Stock > 0 THEN 'In Stock' ELSE 'Out of Stock' END din tabelul 'Products'.",
-    starterContext: "Tabel: Products (Id, Title, Stock)",
     caseSensitive: false,
     acceptedAnswers: [
       "SELECT Title, CASE WHEN Stock > 0 THEN 'In Stock' ELSE 'Out of Stock' END FROM Products;",
@@ -176,7 +168,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "<code>UNION ALL</code> unește rezultatele a două sau mai multe interogări cu aceeași structură de coloane, păstrând toate duplicatele. Este mult mai rapid decât <code>UNION</code> simplu deoarece nu execută o sortare suplimentară pentru deduplicare.",
     example: "SELECT City FROM Customers UNION ALL SELECT City FROM Suppliers;",
     prompt: "Combină 'City' din tabelul 'Customers' cu 'City' din tabelul 'Suppliers' folosind UNION ALL.",
-    starterContext: "Tabele: Customers (City), Suppliers (City)",
     caseSensitive: false,
     acceptedAnswers: [
       "SELECT City FROM Customers UNION ALL SELECT City FROM Suppliers;",
@@ -196,7 +187,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Funcția standard <code>COALESCE(val1, val2, ... valN)</code> evaluează argumentele în ordine și returnează prima valoare care nu este <code>NULL</code>. Este soluția ideală pentru furnizarea de valori implicite.",
     example: "SELECT Name, COALESCE(Nickname, Name, 'Guest') FROM Users;",
     prompt: "Selectează 'Name' și COALESCE(Phone, 'Fără telefon') din tabelul 'Employees'.",
-    starterContext: "Tabel: Employees (Id, Name, Phone)",
     caseSensitive: false,
     acceptedAnswers: [
       "SELECT Name, COALESCE(Phone, 'Fără telefon') FROM Employees;",
@@ -216,7 +206,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Operatorul <code>WHERE EXISTS (SELECT 1 FROM ...)</code> verifică existența a cel puțin unui rând valid. Motorul de baze de date efectuează short-circuiting (se oprește la prima potrivire găsită), fiind adesea mult mai rapid decât <code>IN</code> cu subinterogări.",
     example: "SELECT * FROM Authors a WHERE EXISTS (SELECT 1 FROM Books b WHERE b.AuthorId = a.Id);",
     prompt: "Selectează toate coloanele (*) din 'Suppliers s' unde EXISTS (SELECT 1 FROM Products p WHERE p.SupplierId = s.Id).",
-    starterContext: "Tabele: Suppliers s, Products p",
     caseSensitive: false,
     acceptedAnswers: [
       "SELECT * FROM Suppliers s WHERE EXISTS (SELECT 1 FROM Products p WHERE p.SupplierId = s.Id);",
@@ -236,7 +225,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Funcțiile analitice (Window Functions) operează pe un set de rânduri denumit partiție, dar nu colapsează datele într-un singur rând precum GROUP BY. <code>ROW_NUMBER() OVER (PARTITION BY dep ORDER BY sal DESC)</code> generează indexul rândului per grup.",
     example: "SELECT Name, Department, ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS RankNum FROM Employees;",
     prompt: "Selectează Name, Department, ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS RankNum FROM Employees;",
-    starterContext: "Tabel: Employees (Id, Name, Department, Salary)",
     caseSensitive: false,
     acceptedAnswers: [
       "SELECT Name, Department, ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS RankNum FROM Employees;",
@@ -256,7 +244,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Un CTE (Common Table Expression) este un set de rezultate temporar pe care îl poți referenția în cadrul aceleiași instrucțiuni SELECT, INSERT sau UPDATE. Îmbunătățește masiv modularitatea și lizibilitatea interogărilor complexe.",
     example: "WITH RegionalSales AS (\n  SELECT Region, SUM(Amount) AS TotalSales FROM Orders GROUP BY Region\n)\nSELECT Region, TotalSales FROM RegionalSales WHERE TotalSales > 50000;",
     prompt: "Scrie un CTE: WITH HighEarners AS (SELECT * FROM Employees WHERE Salary > 10000) SELECT * FROM HighEarners;",
-    starterContext: "Tabel: Employees",
     caseSensitive: false,
     acceptedAnswers: [
       "WITH HighEarners AS (SELECT * FROM Employees WHERE Salary > 10000) SELECT * FROM HighEarners;",
@@ -276,7 +263,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Funcția <code>LAG(val, offset) OVER (ORDER BY col)</code> returnează valoarea unei coloane din rândul anterior fără a recurge la un auto-join lent. Este esențială în analize financiare (creșteri MoM/YoY).",
     example: "SELECT Month, Revenue, LAG(Revenue, 1) OVER (ORDER BY Month) AS PreviousMonthRevenue FROM Sales;",
     prompt: "Selectează DayDate, Revenue, LAG(Revenue, 1) OVER (ORDER BY DayDate) AS PrevRevenue FROM DailySales;",
-    starterContext: "Tabel: DailySales (DayDate, Revenue)",
     caseSensitive: false,
     acceptedAnswers: [
       "SELECT DayDate, Revenue, LAG(Revenue, 1) OVER (ORDER BY DayDate) AS PrevRevenue FROM DailySales;",
@@ -296,7 +282,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "În sistemele RDBMS relaționale, modificările efectuate într-o tranzacție sunt izolate și temporare până când sunt scrise permanent pe disc prin comanda <code>COMMIT;</code> sau anulate prin <code>ROLLBACK;</code>.",
     example: "BEGIN TRANSACTION;\nUPDATE Accounts SET Balance = Balance - 100 WHERE Id = 1;\nUPDATE Accounts SET Balance = Balance + 100 WHERE Id = 2;\nCOMMIT;",
     prompt: "Scrie comanda SQL simplă și obligatorie pentru a confirma definitiv toate modificările tranzacției curente pe disc.",
-    starterContext: "// Finalizează tranzacția:",
     caseSensitive: false,
     acceptedAnswers: [
       "COMMIT;",
@@ -320,7 +305,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Bucla <code>for (inițializare; condiție; pas)</code> iterează un bloc de cod un număr determinat de ori. Este fundamentul parcurgerii secvențiale în Java.",
     example: "for (int i = 0; i < 5; i++) {\n  System.out.println(\"Index: \" + i);\n}",
     prompt: "Scrie antetul unei bucle for care inițializează 'int i = 0', iterează cât timp 'i < 10' și incrementează 'i++' (scrie doar linia antetului).",
-    starterContext: "// Antet buclă for:",
     caseSensitive: true,
     acceptedAnswers: [
       "for (int i = 0; i < 10; i++)",
@@ -341,7 +325,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "În Java, un tablou este un obiect cu dimensiune fixă alocat pe heap. Dimensiunea este specificată la instanțiere prin operatorul <code>new tip[dimensiune]</code>.",
     example: "int[] numbers = new int[10];\nString[] words = new String[3];",
     prompt: "Declară și inițializează un tablou de numere întregi numit 'scores' cu o capacitate de 5 elemente (folosind new int[5];).",
-    starterContext: "// Declară tabloul scores:",
     caseSensitive: true,
     acceptedAnswers: [
       "int[] scores = new int[5];",
@@ -361,7 +344,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Bucla <code>for (Tip element : colectie)</code> elimină necesitatea indexării manuale și a erorilor de tip <code>ArrayIndexOutOfBoundsException</code>.",
     example: "for (String item : items) {\n  System.out.println(item);\n}",
     prompt: "Scrie antetul for-each care parcurge tabloul 'names', declarând fiecare element curent ca 'String name' (scrie doar linia antetului).",
-    starterContext: "String[] names = {\"Alice\", \"Bob\"};\n// Scrie antetul:",
     caseSensitive: true,
     acceptedAnswers: [
       "for (String name : names)",
@@ -382,7 +364,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "În Java profesional, programăm către interfețe: declarăm tipul referinței ca <code>List&lt;T&gt;</code> și instanțiem cu implementarea concretă <code>ArrayList&lt;&gt;()</code>.",
     example: "List<String> cities = new ArrayList<>();\ncities.add(\"Bucharest\");",
     prompt: "Instanțiază o listă dinamică de șiruri numită 'items' folosind tipul 'List<String>' și implementarea 'new ArrayList<>()'.",
-    starterContext: "// Importurile java.util.List și java.util.ArrayList sunt prezente:",
     caseSensitive: true,
     acceptedAnswers: [
       "List<String> items = new ArrayList<>();",
@@ -402,7 +383,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Obiectele <code>String</code> sunt imutabile în Java, fiecare concatenare cu '+' creând un nou obiect în memorie. <code>StringBuilder</code> este mutabil și mult mai rapid în bucle.",
     example: "StringBuilder sb = new StringBuilder();\nsb.append(\"Total: \").append(100);",
     prompt: "Instanțiază un StringBuilder numit 'sb' și adaugă textul \"OK\" prin metoda înlănțuită .append(\"OK\"); (pe o singură linie).",
-    starterContext: "// Scrie linia de cod:",
     caseSensitive: true,
     acceptedAnswers: [
       "StringBuilder sb = new StringBuilder().append(\"OK\");",
@@ -422,7 +402,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "De la Java 14, <code>switch</code> poate fi folosit ca expresie cu ramuri de tip săgeată <code>case VAL -> rezultat;</code> fără a mai risca scăparea execuției prin căderea dintr-un caz în altul (elimină necesitatea break-ului).",
     example: "int code = switch (role) {\n  case \"ADMIN\" -> 1;\n  case \"USER\" -> 2;\n  default -> 0;\n};",
     prompt: "Scrie ramura case din switch care pentru valoarea \"ADMIN\" returnează 1 folosind sintaxa cu săgeată (case \"ADMIN\" -> 1;).",
-    starterContext: "// Scrie doar ramura case:",
     caseSensitive: true,
     acceptedAnswers: [
       "case \"ADMIN\" -> 1;",
@@ -442,7 +421,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Interfața <code>Map&lt;K, V&gt;</code> stochează perechi cheie-valoare unice. <code>HashMap</code> oferă acces și căutare în timp mediu de <code>O(1)</code> pe baza codului hash al cheilor.",
     example: "Map<String, Integer> inventory = new HashMap<>();\ninventory.put(\"Laptop\", 15);",
     prompt: "Declară o referință 'Map<String, Integer> inventory' și instanțiaz-o cu 'new HashMap<>()'.",
-    starterContext: "// Declară harta inventory:",
     caseSensitive: true,
     acceptedAnswers: [
       "Map<String, Integer> inventory = new HashMap<>();",
@@ -462,7 +440,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Metoda <code>map.getOrDefault(cheie, valoareImplicita)</code> previne primirea valorilor <code>null</code> dacă cheia căutată nu este prezentă în dicționar.",
     example: "int count = wordCounts.getOrDefault(\"java\", 0);",
     prompt: "Folosind harta 'inventory', extrage valoarea cheii \"apple\", sau 0 dacă aceasta lipsește, apelând metoda .getOrDefault().",
-    starterContext: "Map<String, Integer> inventory = new HashMap<>();\n// Apelează getOrDefault:",
     caseSensitive: true,
     acceptedAnswers: [
       "inventory.getOrDefault(\"apple\", 0);",
@@ -482,7 +459,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Un <code>Set</code> este o colecție care nu permite elemente duplicate. La adăugarea unui element duplicat, metoda <code>add()</code> returnează <code>false</code> și nu modifică structura.",
     example: "Set<String> uniqueTags = new HashSet<>();\nuniqueTags.add(\"sql\");\nuniqueTags.add(\"sql\"); // duplicatul este ignorat",
     prompt: "Instanțiază o mulțime Set<String> numită 'uniqueTags' folosind HashSet (Set<String> uniqueTags = new HashSet<>();).",
-    starterContext: "// Declară mulțimea:",
     caseSensitive: true,
     acceptedAnswers: [
       "Set<String> uniqueTags = new HashSet<>();",
@@ -502,7 +478,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Instrucțiunea <code>try (Resursa r = new Resursa())</code> închide automat orice resursă care implementează <code>AutoCloseable</code> la finalul blocului, eliminând riscul scurgerilor de memorie (leak-uri).",
     example: "try (Scanner sc = new Scanner(System.in)) {\n  String text = sc.nextLine();\n}",
     prompt: "Scrie antetul unui try-with-resources care declară și deschide 'Scanner scanner = new Scanner(System.in)'.",
-    starterContext: "// Scrie doar antetul try (...):",
     caseSensitive: true,
     acceptedAnswers: [
       "try (Scanner scanner = new Scanner(System.in))",
@@ -522,7 +497,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "API-ul <code>Stream</code> permite procesarea funcțională a datelor. Metoda <code>.filter(predicat)</code> selectează elemente, iar <code>.toList()</code> (disponibil nativ din Java 16) creează o listă imutabilă cu rezultatele.",
     example: "List<User> adults = users.stream()\n  .filter(u -> u.getAge() >= 18)\n  .toList();",
     prompt: "Filtrează lista 'users' păstrând doar utilizatorii cu 'u -> u.getAge() >= 18' și colectează-i cu .toList(); (începând cu users.stream()...).",
-    starterContext: "List<User> users;\n// Filtrează și colectează:",
     caseSensitive: true,
     acceptedAnswers: [
       "users.stream().filter(u -> u.getAge() >= 18).toList();",
@@ -543,7 +517,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "<code>Optional&lt;T&gt;</code> este un container monadă care poate sau nu să conțină o valoare non-null. Metoda <code>.orElse(valoare)</code> oferă o valoare sigură de rezervă fără branching complex.",
     example: "String username = findUser(id).orElse(\"Guest\");",
     prompt: "Extrage valoarea din 'Optional<String> optName' sau returnează șirul \"Anonymous\" dacă este absentă (folosind .orElse(\"Anonymous\");).",
-    starterContext: "Optional<String> optName;\n// Extrage valoarea sigură:",
     caseSensitive: true,
     acceptedAnswers: [
       "optName.orElse(\"Anonymous\");",
@@ -563,7 +536,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Introdus în Java 14/16, un <code>record</code> este o clasă imutabilă specială care generează automat constructorul, getterii (fără prefixul 'get'), metodele <code>equals()</code>, <code>hashCode()</code> și <code>toString()</code>.",
     example: "public record UserDto(Long id, String email) {}",
     prompt: "Declară un record public numit 'Point' care conține două câmpuri întregi: 'int x, int y' (public record Point(int x, int y) {}).",
-    starterContext: "// Declară record-ul Point:",
     caseSensitive: true,
     acceptedAnswers: [
       "public record Point(int x, int y) {}",
@@ -583,7 +555,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "<code>CompletableFuture.supplyAsync(Supplier)</code> rulează o sarcină pe un pool separat de thread-uri (ForkJoinPool) și returnează un future ce poate fi compus reactiv cu <code>thenApply</code> sau <code>thenCombine</code>.",
     example: "CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> \"Processed\");",
     prompt: "Rulează asincron o sarcină folosind metoda: CompletableFuture.supplyAsync(() -> \"Done\");",
-    starterContext: "// Apelează supplyAsync:",
     caseSensitive: true,
     acceptedAnswers: [
       "CompletableFuture.supplyAsync(() -> \"Done\");",
@@ -603,7 +574,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Pachetul <code>java.util.concurrent.atomic</code> oferă clase fără mecanisme greoaie de sincronizare (lock-free), bazate pe instrucțiuni CPU de tip Compare-And-Swap (CAS).",
     example: "AtomicInteger counter = new AtomicInteger(0);\nint next = counter.incrementAndGet();",
     prompt: "Având instanța 'AtomicInteger counter = new AtomicInteger(0);', incrementează atomic valoarea apelând metoda counter.incrementAndGet();",
-    starterContext: "AtomicInteger counter;\n// Incrementează atomic:",
     caseSensitive: true,
     acceptedAnswers: [
       "counter.incrementAndGet();",
@@ -627,7 +597,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Template literals permit interpolarea directă a expresiilor JavaScript în șiruri de caractere folosind caracterele backtick (<code>` `</code>) și sintaxa <code>${expresie}</code>.",
     example: "const name = 'Alex';\nconst message = `Bun venit, ${name}!`;",
     prompt: "Creează o variabilă 'const greeting' folosind backticks care afișează 'Hello, ' urmat de expresia interpolată '${user}' și semnul '!'.",
-    starterContext: "const user = 'Maria';\n// Scrie declarația variabilei:",
     caseSensitive: true,
     acceptedAnswers: [
       "const greeting = `Hello, ${user}!`;",
@@ -647,7 +616,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Metoda <code>Array.prototype.push()</code> adaugă unul sau mai multe elemente la sfârșitul unui tablou și returnează noua lungime a acestuia.",
     example: "const items = ['a', 'b'];\nitems.push('c'); // items devine ['a', 'b', 'c']",
     prompt: "Având tabloul 'const list = [1, 2];', adaugă numărul 3 la sfârșitul vectorului apelând metoda .push(3);",
-    starterContext: "const list = [1, 2];\n// Adaugă cifra 3:",
     caseSensitive: true,
     acceptedAnswers: [
       "list.push(3);",
@@ -667,7 +635,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Metoda <code>includes(valoare)</code> determină dacă un tablou conține o anumită valoare printre elementele sale, returnând un boolean (<code>true</code> sau <code>false</code>).",
     example: "const fruits = ['mere', 'pere'];\nif (fruits.includes('pere')) { ... }",
     prompt: "Verifică dacă tabloul 'tags' conține elementul 'js' apelând metoda tags.includes('js');",
-    starterContext: "const tags = ['html', 'css', 'js'];\n// Apelează includes:",
     caseSensitive: true,
     acceptedAnswers: [
       "tags.includes('js');",
@@ -689,7 +656,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Funcțiile arrow oferă o sintaxă scurtă. Când au o singură instrucțiune, acoladele și cuvântul <code>return</code> pot fi omise (return implicit).",
     example: "const square = n => n * n;",
     prompt: "Scrie o funcție arrow asignată unei constante 'const double' care primește parametrul 'x' și returnează 'x * 2' cu return implicit (fără acolade).",
-    starterContext: "// Declară funcția double:",
     caseSensitive: true,
     acceptedAnswers: [
       "const double = x => x * 2;",
@@ -710,7 +676,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Destructurarea obiectelor permite extragerea proprietăților în variabile individuale concise pe baza numelui cheii.",
     example: "const user = { id: 10, name: 'Dan' };\nconst { id, name } = user;",
     prompt: "Extrage proprietățile 'id' și 'role' dintr-un obiect 'user' folosind sintaxa de destructurare: const { id, role } = user;",
-    starterContext: "const user = { id: 1, role: 'admin', age: 30 };\n// Scrie linia de destructurare:",
     caseSensitive: true,
     acceptedAnswers: [
       "const { id, role } = user;",
@@ -731,7 +696,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Operatorul spread (<code>...</code>) despachetează elementele unui iterabil într-un nou tablou, permițând concatenarea rapidă și imutabilă a vectorilor.",
     example: "const combined = [...listA, ...listB];",
     prompt: "Creează un tablou 'const combined' care îmbină elementele din 'arr1' și 'arr2' folosind operatorul spread ([...arr1, ...arr2]).",
-    starterContext: "const arr1 = [1, 2];\nconst arr2 = [3, 4];\n// Scrie declarația:",
     caseSensitive: true,
     acceptedAnswers: [
       "const combined = [...arr1, ...arr2];",
@@ -751,7 +715,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Metoda <code>map()</code> creează un nou tablou populat cu rezultatele apelării unei funcții pe fiecare element al tabloului apelant.",
     example: "const lengths = words.map(w => w.length);",
     prompt: "Folosind tabloul 'nums', obține un nou vector cu pătratele fiecărui număr apelând: nums.map(n => n * n);",
-    starterContext: "const nums = [1, 2, 3, 4];\n// Transformă elementele:",
     caseSensitive: true,
     acceptedAnswers: [
       "nums.map(n => n * n);",
@@ -772,7 +735,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Metoda <code>filter()</code> returnează o copie superficială (shallow copy) a porțiunii din tablou care trece de testul implementat de funcția furnizată.",
     example: "const activeUsers = users.filter(u => u.isActive);",
     prompt: "Filtrează vectorul 'products' păstrând doar obiectele cu prețul sub 50 apelând: products.filter(p => p.price < 50);",
-    starterContext: "const products = [{ name: 'A', price: 30 }, { name: 'B', price: 80 }];\n// Filtrează produsele:",
     caseSensitive: true,
     acceptedAnswers: [
       "products.filter(p => p.price < 50);",
@@ -793,7 +755,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Metoda <code>reduce((acumulator, curent) => nouAcumulator, valoareInitiala)</code> reduce elementele unui tablou la o singură valoare finală (sumă, obiect agregat, etc.).",
     example: "const total = prices.reduce((acc, curr) => acc + curr, 0);",
     prompt: "Calculează suma numerelor din vectorul 'numbers' apelând: numbers.reduce((acc, curr) => acc + curr, 0);",
-    starterContext: "const numbers = [10, 20, 30];\n// Redu la suma totală:",
     caseSensitive: true,
     acceptedAnswers: [
       "numbers.reduce((acc, curr) => acc + curr, 0);",
@@ -813,7 +774,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Operatorul <code>?.</code> permite citirea proprietăților aflate adânc într-un lanț de obiecte fără a valida manual existența fiecărei referințe. Dacă referința este <code>null</code> sau <code>undefined</code>, expresia returnează direct <code>undefined</code> în loc să arunce o eroare.",
     example: "const zip = user?.address?.zipCode;",
     prompt: "Accesează în siguranță proprietatea 'city' din adresa utilizatorului: user?.address?.city",
-    starterContext: "const user = { name: 'Elena' };\n// Citește orașul în siguranță:",
     caseSensitive: true,
     acceptedAnswers: [
       "user?.address?.city;",
@@ -833,7 +793,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Operatorul <code>??</code> returnează operandul din dreapta doar dacă cel din stânga este strict <code>null</code> sau <code>undefined</code>. Spre deosebire de <code>||</code>, valorile <code>0</code> sau <code>\"\"</code> (falsey) sunt păstrate corect.",
     example: "const timeout = customTimeout ?? 5000;",
     prompt: "Atribuie constantei 'port' valoarea din 'process.env.PORT ?? 3000;' folosind operatorul nullish coalescing.",
-    starterContext: "// Scrie linia de cod:",
     caseSensitive: true,
     acceptedAnswers: [
       "const port = process.env.PORT ?? 3000;",
@@ -853,7 +812,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Cuvântul-cheie <code>await</code> suspendă execuția funcției asincrone până când promisiunea este rezolvată, făcând codul asincron să arate și să se comporte similar celui sincron.",
     example: "const response = await fetch('/api/users');\nconst data = await response.json();",
     prompt: "Așteaptă răspunsul unui apel fetch('/api/data') și atribuie-l constantei 'res': const res = await fetch('/api/data');",
-    starterContext: "async function loadData() {\n  // Scrie linia de await fetch:",
     caseSensitive: true,
     acceptedAnswers: [
       "const res = await fetch('/api/data');",
@@ -874,7 +832,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "<code>Promise.all([p1, p2, ...])</code> rulează multiple sarcini asincrone în mod concurent și așteaptă ca toate să se finalizeze cu succes, reducând timpul total de execuție la durata celei mai lente sarcini.",
     example: "const [users, posts] = await Promise.all([fetchUsers(), fetchPosts()]);",
     prompt: "Așteaptă finalizarea simultană a promisiunilor 'p1' și 'p2' apelând: await Promise.all([p1, p2]);",
-    starterContext: "async function syncTasks(p1, p2) {\n  // Așteaptă ambele sarcini:",
     caseSensitive: true,
     acceptedAnswers: [
       "await Promise.all([p1, p2]);",
@@ -894,7 +851,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "În HTML5, atributele prefixate cu <code>data-*</code> (ex: <code>data-role=\"admin\"</code>) sunt accesate în JavaScript ca proprietăți camelCase prin obiectul <code>element.dataset</code>.",
     example: "const role = button.dataset.role;",
     prompt: "Citește atributul data-role al unui buton DOM numit 'btn' apelând: btn.dataset.role;",
-    starterContext: "const btn = document.querySelector('button');\n// Citește rolul:",
     caseSensitive: true,
     acceptedAnswers: [
       "btn.dataset.role;",
@@ -914,7 +870,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Un closure (închidere lexicală) este combinația dintre o funcție și mediul lexical în care aceasta a fost declarată. Permite unei funcții interne să păstreze accesul la variabilele din scopul funcției părinte chiar și după terminarea execuției acesteia.",
     example: "function makeAdder(x) {\n  return y => x + y;\n}",
     prompt: "Creează o funcție 'createCounter' care declară 'let c = 0;' și returnează o funcție arrow '() => ++c;' (pe o singură linie).",
-    starterContext: "// Declară funcția cu closure:",
     caseSensitive: true,
     acceptedAnswers: [
       "function createCounter() { let c = 0; return () => ++c; }",
@@ -939,7 +894,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Verbul <code>to be</code> (a fi) are trei forme la Present Simple: <code>am</code> (pentru I), <code>is</code> (pentru he, she, it) și <code>are</code> (pentru you, we, they).",
     example: "I am a programmer.\nShe is in the office.\nThey are ready.",
     prompt: "Completează cu forma corectă a verbului to be: „I ___ a software developer.” (scrie întreaga propoziție).",
-    starterContext: "I am a software developer.",
     caseSensitive: false,
     acceptedAnswers: [
       "I am a software developer.",
@@ -961,7 +915,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Folosim <code>a</code> înaintea cuvintelor care încep cu un sunet consonantic (<em>a developer, a computer</em>) și <code>an</code> înaintea celor cu sunet vocalic (<em>an engineer, an application</em>).",
     example: "He is a designer, but she is an engineer.",
     prompt: "Completează propoziția cu articolul corect (a sau an): „She is an engineer.” (scrie întreaga propoziție).",
-    starterContext: "She is an engineer.",
     caseSensitive: false,
     acceptedAnswers: [
       "She is an engineer.",
@@ -980,8 +933,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Adjectivele Posesive: my, your, his, her",
     theory: "Adjectivele posesive determină un substantiv: <code>my</code> (meu), <code>your</code> (tău), <code>his</code> (lui), <code>her</code> (ei), <code>our</code> (nostru), <code>their</code> (lor).",
     example: "This is my keyboard and that is his monitor.",
-    prompt: "Tradu în engleză: „Acesta este laptopul meu.” folosind 'This is my laptop.'",
-    starterContext: "This is my laptop.",
+    prompt: "Tradu în engleză propoziția: „Acesta este laptopul meu.”",
     caseSensitive: false,
     acceptedAnswers: [
       "This is my laptop.",
@@ -1000,8 +952,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Present Simple: Rutine Zilnice",
     theory: "Present Simple descrie activități recurente. La persoana a III-a singular (he, she, it), adăugăm sufixul <code>-s</code> sau <code>-es</code> la verb.",
     example: "I work from 9 to 5.\nHe works from home.",
-    prompt: "Tradu: „El lucrează de acasă.” folosind 'He works from home.'",
-    starterContext: "He works from home.",
+    prompt: "Tradu în engleză la prezent simplu: „El lucrează de acasă.”",
     caseSensitive: false,
     acceptedAnswers: [
       "He works from home.",
@@ -1020,8 +971,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Negația la Prezent: don't vs doesn't",
     theory: "Negația la Present Simple se formează cu auxiliarul <code>do not (don't)</code> pentru I/you/we/they și <code>does not (doesn't)</code> pentru he/she/it.",
     example: "I don't drink coffee.\nShe doesn't write code.",
-    prompt: "Tradu: „Eu nu beau cafea.” folosind 'I don't drink coffee.'",
-    starterContext: "I don't drink coffee.",
+    prompt: "Tradu în engleză propoziția negativă: „Eu nu beau cafea.”",
     caseSensitive: false,
     acceptedAnswers: [
       "I don't drink coffee.",
@@ -1042,8 +992,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Verbul Modal 'Can': Abilități",
     theory: "Verbul modal <code>can</code> exprimă capacitatea fizică sau intelectuală și se folosește direct cu infinitivul scurt al verbului următor.",
     example: "I can write code.\nCan you help me?",
-    prompt: "Tradu: „Pot să vorbesc engleză.” folosind 'I can speak English.'",
-    starterContext: "I can speak English.",
+    prompt: "Tradu folosind verbul modal 'can': „Pot să vorbesc engleză.”",
     caseSensitive: false,
     acceptedAnswers: [
       "I can speak English.",
@@ -1062,8 +1011,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Cuvinte Interogative: Where, What, Who",
     theory: "Întrebările de informare încep cu un cuvânt interogativ: <code>Where</code> (unde), <code>What</code> (ce), <code>When</code> (când), <code>Who</code> (cine).",
     example: "Where is the office?\nWhat is your name?",
-    prompt: "Tradu: „Unde este biroul?” folosind 'Where is the office?'",
-    starterContext: "Where is the office?",
+    prompt: "Tradu în engleză întrebarea: „Unde este biroul?”",
     caseSensitive: false,
     acceptedAnswers: [
       "Where is the office?",
@@ -1085,7 +1033,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Majoritatea substantivelor primesc <code>-s</code> la plural (<em>screens, books</em>), iar cele terminate în sunete sibilante primesc <code>-es</code> (<em>boxes</em>).",
     example: "one screen -> two screens\none box -> two boxes",
     prompt: "Completează propoziția: „I have two screens on my desk.” (scrie întreaga propoziție).",
-    starterContext: "I have two screens on my desk.",
     caseSensitive: false,
     acceptedAnswers: [
       "I have two screens on my desk.",
@@ -1106,8 +1053,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Past Simple cu 'to be': was și were",
     theory: "Formele de trecut ale verbului to be sunt: <code>was</code> (pentru I, he, she, it) și <code>were</code> (pentru you, we, they).",
     example: "I was at home yesterday.\nThey were at the conference.",
-    prompt: "Tradu: „Eram la birou ieri.” folosind 'I was at the office yesterday.'",
-    starterContext: "I was at the office yesterday.",
+    prompt: "Tradu la timpul trecut simplu: „Eram la birou ieri.”",
     caseSensitive: false,
     acceptedAnswers: [
       "I was at the office yesterday.",
@@ -1126,8 +1072,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Past Simple: Verbe Regulate cu -ed",
     theory: "Verbele regulate formează Past Simple prin adăugarea terminației <code>-ed</code> la forma de bază: <em>work -> worked, finish -> finished</em>.",
     example: "I finished my work at 6 PM.",
-    prompt: "Tradu: „Am terminat proiectul aseară.” folosind 'I finished the project last night.'",
-    starterContext: "I finished the project last night.",
+    prompt: "Tradu la Past Simple: „Am terminat proiectul aseară.”",
     caseSensitive: false,
     acceptedAnswers: [
       "I finished the project last night.",
@@ -1147,7 +1092,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Verbele neregulate au forme proprii de trecut: <em>send -> sent, go -> went, make -> made, see -> saw</em>.",
     example: "She sent an email to the client.",
     prompt: "Tradu: „Am trimis un email în această dimineață.” folosind verbul neregulat 'sent': 'I sent an email this morning.'",
-    starterContext: "I sent an email this morning.",
     caseSensitive: false,
     acceptedAnswers: [
       "I sent an email this morning.",
@@ -1166,8 +1110,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Viitorul Intenționat: be going to",
     theory: "Folosim <code>am/is/are + going to + verb</code> pentru planuri și decizii luate înainte de momentul vorbirii.",
     example: "I am going to study tonight.\nWe are going to deploy the app.",
-    prompt: "Tradu: „Urmează să învăț JavaScript.” folosind 'I am going to learn JavaScript.'",
-    starterContext: "I am going to learn JavaScript.",
+    prompt: "Tradu folosind structura de intenție viitoare 'going to': „Urmează să învăț JavaScript.”",
     caseSensitive: false,
     acceptedAnswers: [
       "I am going to learn JavaScript.",
@@ -1189,7 +1132,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Regulă practică: <code>at</code> pentru ore exacte (<em>at 9 AM</em>), <code>on</code> pentru zile ale săptămânii (<em>on Monday</em>), <code>in</code> pentru luni sau ani.",
     example: "The meeting is at 10 AM on Tuesday.",
     prompt: "Completează propoziția: „The meeting starts at 9 AM on Monday.”",
-    starterContext: "The meeting starts at 9 AM on Monday.",
     caseSensitive: false,
     acceptedAnswers: [
       "The meeting starts at 9 AM on Monday.",
@@ -1208,8 +1150,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Modul Imperativ: Instrucțiuni Directe",
     theory: "Imperativul utilizează forma de bază a verbului fără subiect la începutul propoziției pentru comenzi și instrucțiuni de utilizare.",
     example: "Click the link below.\nPress Enter to submit.",
-    prompt: "Tradu: „Apasă butonul pentru a continua.” folosind 'Press the button to continue.'",
-    starterContext: "Press the button to continue.",
+    prompt: "Tradu propoziția imperativă: „Apasă butonul pentru a continua.”",
     caseSensitive: false,
     acceptedAnswers: [
       "Press the button to continue.",
@@ -1228,8 +1169,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Comparativul Adjectivelor Scurte: -er + than",
     theory: "Adjectivele monosilabice primesc sufixul <code>-er</code> la gradul comparativ: <em>fast -> faster, old -> older, new -> newer</em>.",
     example: "This computer is faster than my old laptop.",
-    prompt: "Tradu: „Acest calculator este mai rapid.” folosind 'This computer is faster.'",
-    starterContext: "This computer is faster.",
+    prompt: "Tradu folosind comparativul de superioritate pentru 'fast': „Acest calculator este mai rapid.”",
     caseSensitive: false,
     acceptedAnswers: [
       "This computer is faster.",
@@ -1248,8 +1188,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Oferirea de Asistență: 'Can I help you?'",
     theory: "Formula politicoasă standard pentru a oferi sprijin colegilor este <code>Can I help you with + problemă?</code>.",
     example: "Can I help you with your task?",
-    prompt: "Tradu formula politicoasă: „Pot să te ajut cu această problemă?” folosind 'Can I help you with this problem?'",
-    starterContext: "Can I help you with this problem?",
+    prompt: "Tradu formula politicoasă: „Pot să te ajut cu această problemă?”",
     caseSensitive: false,
     acceptedAnswers: [
       "Can I help you with this problem?",
@@ -1274,7 +1213,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Folosim <code>Present Perfect (have/has + V3)</code> pentru acțiuni începute în trecut care continuă în prezent (cu <em>for/since</em>) sau experiențe de viață, spre deosebire de <code>Past Simple</code> care descrie momente încheiate.",
     example: "I have worked here for three years. (Încă lucrez aici)\nI worked there in 2020. (Nu mai lucrez acolo)",
     prompt: "Tradu în engleză: „Am lucrat aici timp de trei ani.” folosind Present Perfect (I have worked here for three years).",
-    starterContext: "Present Perfect: I have worked here for three years.",
     caseSensitive: false,
     acceptedAnswers: [
       "I have worked here for three years.",
@@ -1295,8 +1233,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Comparatives: 'More efficient than'",
     theory: "Pentru adjective lungi (două sau mai multe silabe, precum <em>efficient</em>), comparativul de superioritate se construiește cu <code>more + adjectiv + than</code>.",
     example: "This new database is more efficient than the legacy system.",
-    prompt: "Completează traducerea: „Această soluție este mai eficientă decât cealaltă.” folosind 'more efficient than the other one'.",
-    starterContext: "This solution is more efficient than the other one.",
+    prompt: "Tradu în engleză propoziția comparativă: „Această soluție este mai eficientă decât cealaltă.”",
     caseSensitive: false,
     acceptedAnswers: [
       "This solution is more efficient than the other one.",
@@ -1318,7 +1255,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Condiționalul de tip 1 exprimă o condiție reală în viitor: <code>If + Present Simple, will + verb de bază</code>. În clauza introdusă de 'if' nu se folosește niciodată 'will'!",
     example: "If the server goes down, we will restart the service.",
     prompt: "Scrie fraza condițională de tip 1: „If it rains tomorrow, we will stay at home.”",
-    starterContext: "If it rains tomorrow, we will stay at home.",
     caseSensitive: false,
     acceptedAnswers: [
       "If it rains tomorrow, we will stay at home.",
@@ -1339,8 +1275,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Second Conditional: Situații Ipotetice",
     theory: "Condiționalul de tip 2 descrie o situație nereală sau ipotetică în prezent: <code>If + Past Simple, would + verb de bază</code>.",
     example: "If I knew the password, I would share it with you.",
-    prompt: "Tradu: „Dacă aș avea mai mult timp, aș învăța o limbă nouă.” folosind 'If I had more time, I would learn a new language.'",
-    starterContext: "If I had more time, I would learn a new language.",
+    prompt: "Tradu folosind Conditionalul II: „Dacă aș avea mai mult timp, aș învăța o limbă nouă.”",
     caseSensitive: false,
     acceptedAnswers: [
       "If I had more time, I would learn a new language.",
@@ -1361,8 +1296,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Sfat Profesional: Verbul Modal 'Should'",
     theory: "Verbul modal <code>should</code> se folosește pentru a oferi sfaturi, recomandări profesionale și bune practici în echipă.",
     example: "You should review the pull request before approving it.",
-    prompt: "Tradu: „Ar trebui să testezi codul înainte de a trimite modificările.” folosind 'You should test the code before submitting the changes.'",
-    starterContext: "You should test the code before submitting the changes.",
+    prompt: "Tradu folosind verbul modal de recomandare 'should': „Ar trebui să testezi codul înainte de a trimite modificările.”",
     caseSensitive: false,
     acceptedAnswers: [
       "You should test the code before submitting the changes.",
@@ -1384,7 +1318,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Verbul frazal <code>to set up</code> înseamnă a instala, a configura sau a inițializa un sistem, un cont sau o aplicație.",
     example: "It takes ten minutes to set up the development environment.",
     prompt: "Tradu: „Trebuie să configurez noul cont.” folosind verbul frazal 'to set up the new account'.",
-    starterContext: "I need to set up the new account.",
     caseSensitive: false,
     acceptedAnswers: [
       "I need to set up the new account.",
@@ -1405,8 +1338,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Programarea Ședințelor: 'Schedule a meeting'",
     theory: "În comunicarea de business la nivelul B1, propunerea unei discuții se formulează natural cu <code>schedule a meeting for + moment</code>.",
     example: "Let's schedule a meeting for Friday afternoon.",
-    prompt: "Tradu: „Hai să programăm o întâlnire pentru mâine dimineață.” folosind 'Let's schedule a meeting for tomorrow morning.'",
-    starterContext: "Let's schedule a meeting for tomorrow morning.",
+    prompt: "Tradu propunerea: „Hai să programăm o întâlnire pentru mâine dimineață.”",
     caseSensitive: false,
     acceptedAnswers: [
       "Let's schedule a meeting for tomorrow morning.",
@@ -1428,7 +1360,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Pentru a cere confirmarea unei afirmații, adăugăm un question tag negativ la final: <code>You speak English, don't you?</code>.",
     example: "You are the project manager, aren't you?",
     prompt: "Completează propoziția cu tag-ul de confirmare corect: „You speak English, don't you?”",
-    starterContext: "You speak English, don't you?",
     caseSensitive: false,
     acceptedAnswers: [
       "You speak English, don't you?",
@@ -1447,8 +1378,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Obiceiuri Trecute: 'Used to'",
     theory: "Structura <code>used to + infinitiv</code> exprimă o stare sau un obicei din trecut care nu mai există în prezent.",
     example: "I used to write Java code, but now I work with TypeScript.",
-    prompt: "Tradu: „Locuiam la Londra, dar acum locuiesc la Berlin.” folosind 'I used to live in London, but now I live in Berlin.'",
-    starterContext: "I used to live in London, but now I live in Berlin.",
+    prompt: "Tradu folosind structura de obicei trecut 'used to': „Locuiam la Londra, dar acum locuiesc la Berlin.”",
     caseSensitive: false,
     acceptedAnswers: [
       "I used to live in London, but now I live in Berlin.",
@@ -1467,8 +1397,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Exprimarea Opiniei: 'In my opinion'",
     theory: "Expresia introductivă <code>In my opinion, ...</code> deschide o perspectivă personală într-o conversație tehnică sau de afaceri.",
     example: "In my opinion, automated testing saves hundreds of hours.",
-    prompt: "Tradu: „În opinia mea, aceasta este cea mai bună abordare.” folosind 'In my opinion, this is the best approach.'",
-    starterContext: "In my opinion, this is the best approach.",
+    prompt: "Tradu exprimarea opiniei: „În opinia mea, aceasta este cea mai bună abordare.”",
     caseSensitive: false,
     acceptedAnswers: [
       "In my opinion, this is the best approach.",
@@ -1487,8 +1416,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Modale de Deducție: Must be at home",
     theory: "Verbul modal <code>must</code> exprimă o deducție logică fermă bazată pe dovezi clare în prezent, în contrast cu <code>can't</code> care exprimă o imposibilitate logică.",
     example: "She has been working for 12 hours; she must be exhausted.",
-    prompt: "Tradu în engleză: „El trebuie să fie acasă; luminile sunt aprinse.” folosind 'must be at home'.",
-    starterContext: "Cuvinte cheie: must be at home; the lights are on.",
+    prompt: "Tradu deducția logică la prezent: „El trebuie să fie acasă; luminile sunt aprinse.”",
     caseSensitive: false,
     acceptedAnswers: [
       "He must be at home; the lights are on.",
@@ -1511,8 +1439,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Diateza Pasivă în Rapoarte Tehnice",
     theory: "În engleza profesională B2, diateza pasivă (<code>to be + Past Participle</code>) mută atenția pe acțiunea realizată și obiectul afectat.",
     example: "The vulnerabilities were patched within three hours.",
-    prompt: "Tradu: „Baza de date a fost actualizată aseară de către echipă.” folosind 'The database was updated last night by the team.'",
-    starterContext: "The database was updated last night by the team.",
+    prompt: "Tradu la diateza pasivă (Past Simple): „Baza de date a fost actualizată aseară de către echipă.”",
     caseSensitive: false,
     acceptedAnswers: [
       "The database was updated last night by the team.",
@@ -1531,8 +1458,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Third Conditional: Regrete și Cauze Trecute",
     theory: "Condiționalul de tip 3 analizează situații imposibil de schimbat din trecut: <code>If + had + V3, would have + V3</code>.",
     example: "If we had run the load test, the server would not have crashed.",
-    prompt: "Tradu: „Dacă am fi testat mai devreme, eroarea nu s-ar fi produs.” folosind 'If we had tested earlier, the error would not have occurred.'",
-    starterContext: "If we had tested earlier, the error would not have occurred.",
+    prompt: "Tradu folosind Conditionalul III: „Dacă am fi testat mai devreme, eroarea nu s-ar fi produs.”",
     caseSensitive: false,
     acceptedAnswers: [
       "If we had tested earlier, the error would not have occurred.",
@@ -1554,7 +1480,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "După un verb introductiv la trecut (<em>said</em>), timpurile verbale fac un pas în trecut (backshift): Present devine Past.",
     example: "\"I am debugging the app\" -> He said that he was debugging the app.",
     prompt: "Transformă 'I am writing the documentation' în vorbire indirectă la trecut: „She said that she was writing the documentation.”",
-    starterContext: "She said that she was writing the documentation.",
     caseSensitive: false,
     acceptedAnswers: [
       "She said that she was writing the documentation.",
@@ -1575,8 +1500,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Phrasal Verbs de Afaceri: 'Call off'",
     theory: "Verbul frazal <code>to call off</code> este sinonimul uzual profesional al verbului <em>to cancel</em> (a anula o întâlnire sau lansare).",
     example: "The stakeholders decided to call off the product launch.",
-    prompt: "Tradu: „Au anulat întâlnirea din cauza vremii rele.” folosind 'They called off the meeting due to bad weather.'",
-    starterContext: "They called off the meeting due to bad weather.",
+    prompt: "Tradu folosind phrasal verb-ul 'call off': „Au anulat întâlnirea din cauza vremii rele.”",
     caseSensitive: false,
     acceptedAnswers: [
       "They called off the meeting due to bad weather.",
@@ -1598,7 +1522,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Construcția <code>should have + Past Participle</code> exprimă o acțiune recomandabilă care ar fi trebuit să se întâmple în trecut, dar nu a avut loc.",
     example: "You should have notified the team before pushing to master.",
     prompt: "Tradu: „Ar fi trebuit să mă anunți mai devreme.” folosind structura 'You should have told me earlier.'",
-    starterContext: "You should have told me earlier.",
     caseSensitive: false,
     acceptedAnswers: [
       "You should have told me earlier.",
@@ -1617,8 +1540,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Conectori de Contrast: 'On the other hand'",
     theory: "Perechea <code>On the one hand..., on the other hand...</code> balansează avantaje și dezavantaje la nivelul B2.",
     example: "On the one hand microservices offer scalability, but on the other hand they increase complexity.",
-    prompt: "Tradu: „Pe de o parte e rapid, dar pe de altă parte e scump.” folosind 'On the one hand it is fast, but on the other hand it is expensive.'",
-    starterContext: "On the one hand it is fast, but on the other hand it is expensive.",
+    prompt: "Tradu folosind conectorii contrastivi 'on the one hand ... on the other hand': „Pe de o parte e rapid, dar pe de altă parte e scump.”",
     caseSensitive: false,
     acceptedAnswers: [
       "On the one hand it is fast, but on the other hand it is expensive.",
@@ -1640,7 +1562,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "În corespondența profesională, fraza standard de încheiere este <code>I look forward to hearing from you soon</code> (urmată obligatoriu de gerunziu -ing).",
     example: "Thank you for the prompt reply. I look forward to hearing from you soon.",
     prompt: "Scrie formula profesională de încheiere: „I look forward to hearing from you soon.”",
-    starterContext: "I look forward to hearing from you soon.",
     caseSensitive: false,
     acceptedAnswers: [
       "I look forward to hearing from you soon.",
@@ -1661,8 +1582,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Prepoziții Dependente: 'Familiar with'",
     theory: "Adjectivul <code>familiar</code> se construiește cu prepoziția <code>with</code> pentru a exprima familiaritatea cu o tehnologie.",
     example: "Are you familiar with the microfrontend architecture?",
-    prompt: "Tradu: „Suntem familiarizați cu această tehnologie.” folosind 'We are familiar with this technology.'",
-    starterContext: "We are familiar with this technology.",
+    prompt: "Tradu folosind adjectivul 'familiar' cu prepoziția potrivită: „Suntem familiarizați cu această tehnologie.”",
     caseSensitive: false,
     acceptedAnswers: [
       "We are familiar with this technology.",
@@ -1683,8 +1603,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Probabilitate și Predicție: 'Likely to'",
     theory: "Construcția <code>is likely to + verb</code> exprimă o probabilitate ridicată într-un stil formal de business.",
     example: "The market adoption is likely to accelerate next quarter.",
-    prompt: "Tradu: „Este foarte probabil ca proiectul să aibă succes.” folosind 'The project is very likely to succeed.'",
-    starterContext: "The project is very likely to succeed.",
+    prompt: "Tradu folosind adjectivul de probabilitate 'likely': „Este foarte probabil ca proiectul să aibă succes.”",
     caseSensitive: false,
     acceptedAnswers: [
       "The project is very likely to succeed.",
@@ -1705,8 +1624,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Idiom de Aliniere: 'On the same page'",
     theory: "Expresia idiomatică <code>to be on the same page</code> înseamnă a avea aceeași înțelegere și aceeași viziune comună cu echipa.",
     example: "Before we sprint, let's make sure we are all on the same page.",
-    prompt: "Tradu: „Trebuie să ne asigurăm că toți suntem pe aceeași lungime de undă.” folosind 'We need to make sure we are all on the same page.'",
-    starterContext: "We need to make sure we are all on the same page.",
+    prompt: "Tradu folosind expresia idiomatică pentru acord: „Trebuie să ne asigurăm că toți suntem pe aceeași lungime de undă.”",
     caseSensitive: false,
     acceptedAnswers: [
       "We need to make sure we are all on the same page.",
@@ -1728,7 +1646,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Expresia idiomatică <code>to hit the ground running</code> înseamnă a începe o activitate nouă imediat, cu mare energie, entuziasm și fără perioadă de ezitare.",
     example: "With her extensive background in software engineering, she hit the ground running on day one.",
     prompt: "Completează propoziția: „The new manager was ready to hit the ground running.” (scrie întreaga propoziție în engleză).",
-    starterContext: "Idiom: hit the ground running",
     caseSensitive: false,
     acceptedAnswers: [
       "The new manager was ready to hit the ground running.",
@@ -1748,7 +1665,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Expresia <code>to cut corners</code> înseamnă a face ceva în modul cel mai ușor, ieftin sau rapid, sacrificând calitatea, rigoarea sau regulile de siguranță.",
     example: "Never cut corners when writing database migration scripts.",
     prompt: "Tradu în engleză: „Nu putem face rabat de la calitate când vine vorba de securitate.” folosind expresia 'cut corners'.",
-    starterContext: "We cannot cut corners when it comes to security.",
     caseSensitive: false,
     acceptedAnswers: [
       "We cannot cut corners when it comes to security.",
@@ -1775,7 +1691,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "În engleza academică și profesională formală, după adjective precum <em>imperative, essential, crucial</em> sau verbe ca <em>demand, insist</em>, verbul din clauza subordonată rămâne la forma de bază neinflectată (bare subjunctive), indiferent de persoană.",
     example: "It is crucial that each member remain calm during an outage.",
     prompt: "Scrie propoziția de registru formal C1: „It is imperative that he be present.”",
-    starterContext: "Subjunctive: 'that he be present'",
     caseSensitive: false,
     acceptedAnswers: [
       "It is imperative that he be present.",
@@ -1795,7 +1710,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Inversiunile cu adverbe restrictive plasează verbul auxiliar înaintea subiectului pentru un efect dramatic sau narativ puternic: <code>Little did + subiect + verb de bază</code>.",
     example: "Little did we realize how quickly the system would scale.",
     prompt: "Scrie propoziția: „Little did they know that the system had already been compromised.”",
-    starterContext: "Inversion: Little did they know...",
     caseSensitive: false,
     acceptedAnswers: [
       "Little did they know that the system had already been compromised.",
@@ -1814,8 +1728,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Vocabular Tehnic C1: 'Paradigm shift'",
     theory: "Termenul <code>paradigm shift</code> desemnează o schimbare fundamentală în conceptele de bază și practicile experimentale ale unei discipline tehnologice sau științifice.",
     example: "Cloud computing represented a massive paradigm shift for enterprise infrastructure.",
-    prompt: "Tradu: „Această tehnologie reprezintă o schimbare de paradigmă.” folosind 'a paradigm shift'.",
-    starterContext: "This technology represents a paradigm shift.",
+    prompt: "Tradu expresia academică C1: „Această tehnologie reprezintă o schimbare de paradigmă.”",
     caseSensitive: false,
     acceptedAnswers: [
       "This technology represents a paradigm shift.",
@@ -1834,8 +1747,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Vocabular de Audit C1: 'Discrepancy'",
     theory: "Substantivul <code>discrepancy</code> indică o diferență ilogică, neașteptată sau inacceptabilă între două fapte, sume sau înregistrări care ar trebui să coincidă.",
     example: "Financial auditors detected a severe discrepancy in the quarterly balance sheet.",
-    prompt: "Tradu: „Am observat o discrepanță majoră între rapoarte.” folosind 'a major discrepancy'.",
-    starterContext: "I noticed a major discrepancy between the reports.",
+    prompt: "Tradu la nivel C1: „Am observat o discrepanță majoră între rapoarte.”",
     caseSensitive: false,
     acceptedAnswers: [
       "I noticed a major discrepancy between the reports.",
@@ -1857,7 +1769,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Prepoziția și conectorul formal <code>notwithstanding</code> este sinonimul elevat al lui 'in spite of' sau 'despite', fiind foarte des întâlnit în contracte și publicații tehnice.",
     example: "Notwithstanding these minor bugs, the release was approved for production.",
     prompt: "Completează cu conectorul academic: „Notwithstanding the challenges, the project was delivered on schedule.”",
-    starterContext: "Notwithstanding the challenges, the project was delivered on schedule.",
     caseSensitive: false,
     acceptedAnswers: [
       "Notwithstanding the challenges, the project was delivered on schedule.",
@@ -1879,7 +1790,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Condiționalele mixte combină o ipoteză nereală din trecut (Past Perfect) cu un rezultat ipotetic în prezent (would + verb de bază).",
     example: "If she had taken that job offer last year, she would be leading the team today.",
     prompt: "Scrie fraza condițională mixtă: „If they had invested earlier, they would be profitable now.”",
-    starterContext: "Mixed Conditional: If they had invested earlier...",
     caseSensitive: false,
     acceptedAnswers: [
       "If they had invested earlier, they would be profitable now.",
@@ -1899,7 +1809,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "În engleza de elită, 'if' poate fi omis în frazele condiționale de tip 3 prin inversarea subiectului cu auxiliarul: <code>Had + subiect + past participle</code>.",
     example: "Had the engineers inspected the logs sooner, the outage could have been avoided.",
     prompt: "Transformă 'If I had known earlier' în forma inversată formală: „Had I known earlier, I would have warned you.”",
-    starterContext: "Had I known earlier, I would have warned you.",
     caseSensitive: false,
     acceptedAnswers: [
       "Had I known earlier, I would have warned you.",
@@ -1919,7 +1828,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Adjectivul <code>ubiquitous</code> descrie ceva care este prezent, întâlnit sau pare să existe peste tot în același timp.",
     example: "Internet connectivity has become virtually ubiquitous in urban centers.",
     prompt: "Tradu: „Smartphone-urile au devenit omniprezente în societatea modernă.” folosind cuvântul 'ubiquitous'.",
-    starterContext: "Smartphones have become ubiquitous in modern society.",
     caseSensitive: false,
     acceptedAnswers: [
       "Smartphones have become ubiquitous in modern society.",
@@ -1938,8 +1846,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Vocabular C1: 'A pragmatic approach'",
     theory: "Adjectivul <code>pragmatic</code> caracterizează o gândire orientată pe rezultate concrete, eficiență și realism practic, evitând teoriile pure sau dogmele.",
     example: "Engineers often adopt a pragmatic approach when balancing performance and deadlines.",
-    prompt: "Tradu: „Avem nevoie de o abordare pragmatică pentru rezolvarea acestei probleme.” folosind 'a pragmatic approach'.",
-    starterContext: "We need a pragmatic approach to solve this problem.",
+    prompt: "Tradu la nivel C1: „Avem nevoie de o abordare pragmatică pentru rezolvarea acestei probleme.”",
     caseSensitive: false,
     acceptedAnswers: [
       "We need a pragmatic approach to solve this problem.",
@@ -1961,7 +1868,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Verbul <code>to scrutinize</code> înseamnă a examina ceva extrem de minuțios, critic și cu o atenție desăvârșită la fiecare detaliu ascuns.",
     example: "Security experts carefully scrutinize open-source dependencies before deployment.",
     prompt: "Tradu: „Comisia va analiza cu atenție fiecare linie de cod.” folosind verbul 'scrutinize'.",
-    starterContext: "The committee will scrutinize every line of code.",
     caseSensitive: false,
     acceptedAnswers: [
       "The committee will scrutinize every line of code.",
@@ -1984,7 +1890,6 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     theory: "Adverbul restrictiv <code>seldom</code> (rar) declanșează inversiunea topică a propoziției (auxiliarul plasat înaintea subiectului), creând un ton retoric magistral de nivel C2 Mastery.",
     example: "Seldom had a software framework transformed the web as profoundly as React.",
     prompt: "Scrie inversiunea retorică C2: „Seldom have we witnessed such remarkable resilience.”",
-    starterContext: "Seldom have we witnessed...",
     caseSensitive: false,
     acceptedAnswers: [
       "Seldom have we witnessed such remarkable resilience.",
@@ -2003,8 +1908,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Verbe Strategice C2: 'Mitigate'",
     theory: "Verbul <code>to mitigate</code> înseamnă a reduce gravitatea, nocivitatea sau severitatea unei probleme sau a unui risc. Opusul său direct este <code>to exacerbate</code>.",
     example: "Redundant power supplies mitigate the impact of electrical grid failures.",
-    prompt: "Tradu: „Am implementat noi protocoale pentru a atenua riscurile potențiale.” folosind 'to mitigate potential risks'.",
-    starterContext: "We implemented new protocols to mitigate potential risks.",
+    prompt: "Tradu la nivel C1: „Am implementat noi protocoale pentru a atenua riscurile potențiale.”",
     caseSensitive: false,
     acceptedAnswers: [
       "We implemented new protocols to mitigate potential risks.",
@@ -2025,8 +1929,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Argumentare Critică C2: 'Play devil's advocate'",
     theory: "Expresia <code>to play devil's advocate</code> înseamnă a susține în mod deliberat o opinie contrară celei comune pentru a testa temeinicia unui argument și a descoperi vulnerabilități logice.",
     example: "During code reviews, it is healthy to play devil's advocate to stress-test architecture.",
-    prompt: "Tradu: „Permite-mi să joc rolul avocatului diavolului pentru o clipă.” folosind 'to play devil's advocate'.",
-    starterContext: "Let me play devil's advocate for a moment.",
+    prompt: "Tradu expresia retorică C1: „Permite-mi să joc rolul avocatului diavolului pentru o clipă.”",
     caseSensitive: false,
     acceptedAnswers: [
       "Let me play devil's advocate for a moment.",
@@ -2047,8 +1950,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Colocație Academică C2: 'Mounting evidence'",
     theory: "Colocația <code>mounting evidence</code> descrie un volum de dovezi sau date concrete care continuă să crească și devine tot mai greu de combătut.",
     example: "There is mounting evidence that microservice sprawl increases operational latency.",
-    prompt: "Tradu: „Există dovezi din ce în ce mai copleșitoare care susțin această ipoteză.” folosind 'mounting evidence'.",
-    starterContext: "There is mounting evidence supporting this hypothesis.",
+    prompt: "Tradu expresia academică C1: „Există dovezi din ce în ce mai copleșitoare care susțin această ipoteză.”",
     caseSensitive: false,
     acceptedAnswers: [
       "There is mounting evidence supporting this hypothesis.",
@@ -2069,8 +1971,7 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     title: "Adjective de Impact C2: 'Unprecedented'",
     theory: "Adjectivul <code>unprecedented</code> desemnează un fenomen sau o stare de fapt care nu a mai fost niciodată întâlnită, experimentată sau înregistrată în istorie.",
     example: "The platform endured an unprecedented surge in concurrent traffic.",
-    prompt: "Tradu: „Compania se confruntă cu o creștere fără precedent.” folosind 'unprecedented growth'.",
-    starterContext: "The company is facing unprecedented growth.",
+    prompt: "Tradu adjectivul avansat C1: „Compania se confruntă cu o creștere fără precedent.”",
     caseSensitive: false,
     acceptedAnswers: [
       "The company is facing unprecedented growth.",

@@ -1,78 +1,82 @@
 :root,
 [data-theme="cyber-dark"] {
-  --bg-primary: #0b0f19;
+  --bg-primary: #0b0f17;
   --bg-secondary: #111827;
-  --bg-elevated: #1f2937;
-  --bg-code: #090d16;
-  --text-primary: #f9fafb;
-  --text-secondary: #9ca3af;
+  --bg-elevated: #1e293b;
+  --bg-reader: #131c2e;
+  --bg-code: #070a10;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
   --accent-primary: #6366f1;
   --accent-hover: #4f46e5;
-  --accent-soft: rgba(99, 102, 241, 0.15);
-  --border-color: #374151;
+  --accent-soft: rgba(99, 102, 241, 0.14);
+  --border-color: #2e3c51;
   --error-red: #ef4444;
-  --error-bg: rgba(239, 68, 68, 0.14);
+  --error-bg: rgba(239, 68, 68, 0.15);
   --success-green: #10b981;
-  --success-bg: rgba(16, 185, 129, 0.14);
+  --success-bg: rgba(16, 185, 129, 0.15);
   --warning-amber: #f59e0b;
-  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="sepia-book"] {
+  --bg-primary: #f4ecd8;
+  --bg-secondary: #fbf6e9;
+  --bg-elevated: #efe4c8;
+  --bg-reader: #fffdf7;
+  --bg-code: #2b251d;
+  --text-primary: #2c2216;
+  --text-secondary: #6e5a44;
+  --accent-primary: #9c4221;
+  --accent-hover: #7b341e;
+  --accent-soft: rgba(156, 66, 33, 0.12);
+  --border-color: #dccaa6;
+  --error-red: #c53030;
+  --error-bg: #fff5f5;
+  --success-green: #2f855a;
+  --success-bg: #f0fff4;
+  --warning-amber: #b7791f;
+  --shadow-card: 0 4px 16px rgba(74, 55, 33, 0.08);
 }
 
 [data-theme="emerald-forest"] {
-  --bg-primary: #061411;
-  --bg-secondary: #0d2621;
-  --bg-elevated: #143830;
-  --bg-code: #040d0b;
+  --bg-primary: #071411;
+  --bg-secondary: #0e241f;
+  --bg-elevated: #16362e;
+  --bg-reader: #112b24;
+  --bg-code: #040b09;
   --text-primary: #ecfdf5;
   --text-secondary: #a7f3d0;
   --accent-primary: #10b981;
   --accent-hover: #059669;
-  --accent-soft: rgba(16, 185, 129, 0.18);
-  --border-color: #1f5146;
+  --accent-soft: rgba(16, 185, 129, 0.16);
+  --border-color: #214d42;
   --error-red: #f87171;
   --error-bg: rgba(248, 113, 113, 0.16);
   --success-green: #34d399;
   --success-bg: rgba(52, 211, 153, 0.16);
   --warning-amber: #fbbf24;
-  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
-}
-
-[data-theme="sunset-warm"] {
-  --bg-primary: #181016;
-  --bg-secondary: #271a24;
-  --bg-elevated: #382534;
-  --bg-code: #110b10;
-  --text-primary: #fdf2f8;
-  --text-secondary: #fbcfe8;
-  --accent-primary: #f97316;
-  --accent-hover: #ea580c;
-  --accent-soft: rgba(249, 115, 22, 0.18);
-  --border-color: #52364c;
-  --error-red: #ef4444;
-  --error-bg: rgba(239, 68, 68, 0.18);
-  --success-green: #22c55e;
-  --success-bg: rgba(34, 197, 94, 0.16);
-  --warning-amber: #facc15;
-  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.55);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
 [data-theme="daylight-clean"] {
-  --bg-primary: #f3f4f6;
+  --bg-primary: #f1f5f9;
   --bg-secondary: #ffffff;
-  --bg-elevated: #f9fafb;
-  --bg-code: #111827;
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
+  --bg-elevated: #f8fafc;
+  --bg-reader: #ffffff;
+  --bg-code: #0f172a;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
   --accent-primary: #2563eb;
   --accent-hover: #1d4ed8;
   --accent-soft: rgba(37, 99, 235, 0.1);
-  --border-color: #e5e7eb;
+  --border-color: #e2e8f0;
   --error-red: #dc2626;
   --error-bg: #fef2f2;
   --success-green: #059669;
   --success-bg: #ecfdf5;
   --warning-amber: #d97706;
-  --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 4px 14px rgba(15, 23, 42, 0.05);
 }
 
 * {
@@ -85,37 +89,27 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.65;
   min-height: 100vh;
-  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 #confetti-canvas {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
   z-index: 999;
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-}
-
-/* Bara Superioară (Header) */
+/* Header Minimalist */
 .top-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 0.9rem 1.5rem;
+  gap: 0.75rem;
+  padding: 0.65rem 1.25rem;
   background-color: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
@@ -126,25 +120,24 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .brand-logo {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   background: var(--accent-soft);
   border: 1px solid var(--accent-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.35rem;
+  font-size: 1.15rem;
 }
 
 .brand-title {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
 }
 
 .brand-title span {
@@ -152,45 +145,39 @@ body {
 }
 
 .brand-subtitle {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--text-secondary);
 }
 
 .stats-cluster {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .stat-pill {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   background-color: var(--bg-elevated);
   border: 1px solid var(--border-color);
-  padding: 0.4rem 0.85rem;
+  padding: 0.3rem 0.7rem;
   border-radius: 999px;
 }
 
-.streak-pill.active-today {
-  border-color: var(--warning-amber);
-  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
-}
-
 .stat-icon {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .stat-content {
   display: flex;
-  flex-direction: column;
-  line-height: 1.15;
+  align-items: baseline;
+  gap: 0.3rem;
 }
 
 .stat-value {
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
 }
 
 .stat-label {
@@ -201,128 +188,163 @@ body {
 .controls-cluster {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
-.theme-select {
+.theme-select,
+.search-input {
   background-color: var(--bg-elevated);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  padding: 0.5rem 0.75rem;
+  padding: 0.42rem 0.65rem;
   border-radius: 8px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-family: inherit;
-  cursor: pointer;
 }
 
-/* Layout Principal (Grid Responsiv) */
+/* Layout Principal: Sidebar Minimalist + Workspace Larg */
 .app-layout {
-  max-width: 1380px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 1.25rem;
   display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 1.5rem;
+  grid-template-columns: 310px 1fr;
+  gap: 1.25rem;
   align-items: start;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.85rem;
 }
 
 .panel,
 .card {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 14px;
-  padding: 1.25rem;
+  border-radius: 12px;
+  padding: 1rem;
   box-shadow: var(--shadow-card);
 }
 
-.panel-heading {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-secondary);
-  margin-bottom: 0.85rem;
-  font-weight: 700;
+.card {
+  padding: 1.5rem;
 }
 
 .panel-header-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.55rem;
 }
 
-.panel-header-row .panel-heading {
-  margin-bottom: 0;
+.panel-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
 }
 
-/* Butoanele de selecție a disciplinei */
+.panel-heading {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+.muted-count {
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* Butonul Minimalist + / - */
+.btn-icon-toggle {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 6px;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btn-icon-toggle:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-soft);
+  color: var(--accent-primary);
+}
+
+/* Discipline */
 .track-tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
 .track-tab-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.65rem 0.75rem;
-  border-radius: 10px;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
   border: 1px solid var(--border-color);
   background-color: var(--bg-elevated);
   color: var(--text-primary);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   cursor: pointer;
-  transition: all 0.2s ease;
   text-align: left;
-}
-
-.track-tab-btn:hover {
-  border-color: var(--accent-primary);
 }
 
 .track-tab-btn.active {
   background-color: var(--accent-soft);
   border-color: var(--accent-primary);
-  color: var(--text-primary);
 }
 
-/* Bara de progres și lista de lecții */
+/* Lecții & Filtre */
 .completion-badge {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--accent-primary);
 }
 
 .progress-bar-track {
   width: 100%;
-  height: 8px;
+  height: 5px;
   background-color: var(--bg-elevated);
   border-radius: 999px;
   overflow: hidden;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .progress-bar-fill {
   height: 100%;
   background-color: var(--accent-primary);
   width: 0%;
-  transition: width 0.35s ease;
+  transition: width 0.3s ease;
+}
+
+.filter-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
 }
 
 .lesson-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
-  max-height: 340px;
+  gap: 0.4rem;
+  max-height: 380px;
   overflow-y: auto;
 }
 
@@ -330,17 +352,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.65rem 0.8rem;
-  border-radius: 9px;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
   background-color: var(--bg-elevated);
   border: 1px solid transparent;
   cursor: pointer;
-  font-size: 0.86rem;
-  transition: all 0.15s ease;
-}
-
-.lesson-item:hover {
-  border-color: var(--border-color);
+  font-size: 0.83rem;
 }
 
 .lesson-item.active {
@@ -349,33 +367,38 @@ body {
   font-weight: 600;
 }
 
-.lesson-item.completed .lesson-check {
+.lesson-mastery-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.lesson-item.completed .lesson-mastery-pill {
+  border-color: var(--success-green);
   color: var(--success-green);
-  font-weight: 800;
 }
 
-/* Heatmap 28 de zile */
-.longest-streak-label {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-}
-
+/* Heatmap */
 .heatmap-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  margin: 0.75rem 0;
+  gap: 5px;
+  margin: 0.65rem 0;
 }
 
 .heatmap-cell {
   aspect-ratio: 1;
-  border-radius: 6px;
+  border-radius: 5px;
   background-color: var(--bg-elevated);
   border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   color: var(--text-secondary);
 }
 
@@ -383,20 +406,9 @@ body {
   background-color: var(--success-green);
   color: #052e16;
   font-weight: 700;
-  border-color: var(--success-green);
 }
 
-.heatmap-cell.today-cell {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 1px;
-}
-
-.heatmap-actions {
-  margin-top: 0.5rem;
-  text-align: right;
-}
-
-/* Zona de Lucru (Workspace) */
+/* Workspace & Stil de Carte / Enciclopedie */
 .workspace {
   display: flex;
   flex-direction: column;
@@ -406,14 +418,14 @@ body {
 .lesson-meta-bar {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
   margin-bottom: 0.75rem;
 }
 
 .badge-category,
 .badge-level,
-.badge-status {
+.badge-mastery {
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.25rem 0.65rem;
@@ -431,30 +443,55 @@ body {
   color: var(--text-secondary);
 }
 
-.badge-status {
+.badge-mastery {
   margin-left: auto;
   background-color: var(--bg-elevated);
-}
-
-.badge-status.solved {
-  background-color: var(--success-bg);
-  color: var(--success-green);
-  border: 1px solid var(--success-green);
+  border: 1px solid var(--border-color);
 }
 
 .lesson-title {
-  font-size: 1.45rem;
+  font-size: 1.55rem;
   font-weight: 800;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
 }
 
-.theory-content {
-  font-size: 0.96rem;
-  color: var(--text-primary);
-  margin-bottom: 1.15rem;
+/* Cititorul Enciclopedic (Mai mult text, lizibilitate de carte) */
+.book-reader {
+  background-color: var(--bg-reader);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-primary);
+  border-radius: 10px;
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.98rem;
+  line-height: 1.8;
 }
 
-.theory-content code {
+.book-reader p {
+  margin-bottom: 0.9rem;
+}
+
+.book-reader p:last-child {
+  margin-bottom: 0;
+}
+
+.book-reader h4 {
+  font-size: 1.02rem;
+  color: var(--accent-primary);
+  margin: 1rem 0 0.4rem 0;
+  font-weight: 700;
+}
+
+.book-reader ul {
+  margin: 0.5rem 0 0.9rem 1.25rem;
+}
+
+.book-reader li {
+  margin-bottom: 0.35rem;
+}
+
+.book-reader code {
   font-family: 'JetBrains Mono', monospace;
   background-color: var(--bg-elevated);
   padding: 0.15rem 0.4rem;
@@ -463,6 +500,53 @@ body {
   color: var(--accent-primary);
 }
 
+/* Dicționarul / Enciclopedia de Termeni */
+.dictionary-box {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.dictionary-header {
+  padding: 0.6rem 1rem;
+  background-color: var(--accent-soft);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+.dictionary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.65rem;
+  padding: 1rem;
+}
+
+.dict-entry {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+}
+
+.dict-term {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent-primary);
+  font-family: 'JetBrains Mono', monospace;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.dict-def {
+  font-size: 0.83rem;
+  color: var(--text-primary);
+}
+
+/* Exemplu Asemănător */
 .example-box {
   background-color: var(--bg-code);
   border: 1px solid var(--border-color);
@@ -475,97 +559,91 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0.9rem;
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid var(--border-color);
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  font-size: 0.78rem;
+  color: #cbd5e1;
 }
 
 .code-display,
-.context-code,
 .solution-code {
   padding: 1rem;
   overflow-x: auto;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.88rem;
-  color: #e5e7eb;
-  line-height: 1.55;
+  color: #f1f5f9;
+  line-height: 1.6;
   white-space: pre-wrap;
 }
 
-/* Cardul de Practică și Stările Roșu / Verde */
-.practice-header {
+/* Comutator Moduri de Practică */
+.mode-switcher {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.85rem;
 }
 
-.practice-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-}
-
-.practice-subtitle {
-  font-size: 0.84rem;
-  color: var(--text-secondary);
-}
-
-.xp-reward-tag {
-  background-color: var(--accent-soft);
-  color: var(--accent-primary);
-  border: 1px solid var(--accent-primary);
-  font-weight: 700;
-  font-size: 0.8rem;
-  padding: 0.3rem 0.65rem;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
-.prompt-box {
+.mode-tab {
   background-color: var(--bg-elevated);
-  border-left: 4px solid var(--accent-primary);
-  padding: 0.9rem 1rem;
-  border-radius: 0 8px 8px 0;
-  font-size: 0.95rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-
-.context-snippet-wrapper {
-  margin-bottom: 1rem;
-}
-
-.context-label {
-  display: block;
-  font-size: 0.78rem;
   color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.55rem 0.95rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.83rem;
+  cursor: pointer;
+}
+
+.mode-tab.active {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  border-color: var(--accent-primary);
+}
+
+/* Caseta Evidențiată a Întrebării (Claritate Maximă, Fără Context Spoiler!) */
+.question-highlight-box {
+  background-color: var(--accent-soft);
+  border: 2px solid var(--accent-primary);
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.question-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-primary);
   margin-bottom: 0.35rem;
 }
 
-.context-code {
-  background-color: var(--bg-code);
-  border: 1px dashed var(--border-color);
-  border-radius: 8px;
-  padding: 0.75rem;
+.question-text {
+  font-size: 1.04rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: pre-line;
 }
 
-/* Zona de Input cu tranziții spre Roșu (Greșit) sau Verde (Corect) */
+/* Input și Stările Roșu / Verde */
 .input-zone {
   padding: 1rem;
-  border-radius: 12px;
+  border-radius: 10px;
   border: 2px solid var(--border-color);
   background-color: var(--bg-elevated);
-  transition: all 0.2s ease;
   margin-bottom: 1rem;
+  transition: all 0.2s ease;
 }
 
 .input-label {
   display: block;
   font-size: 0.82rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.45rem;
 }
 
 .answer-textarea {
@@ -579,53 +657,130 @@ body {
   font-size: 0.95rem;
   resize: vertical;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.answer-textarea:focus {
-  border-color: var(--accent-primary);
 }
 
 .validation-feedback {
-  margin-top: 0.6rem;
+  margin-top: 0.55rem;
   font-size: 0.86rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
 
-/* STARE ROȘIE PERSISTENTĂ PENTRU RĂSPUNS GREȘIT */
 .input-zone.state-error {
   border-color: var(--error-red);
   background-color: var(--error-bg);
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.22);
   animation: shakeError 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
-.input-zone.state-error .answer-textarea {
+.input-zone.state-error .answer-textarea,
+.input-zone.state-error .validation-feedback {
   border-color: var(--error-red);
   color: var(--error-red);
   font-weight: 600;
 }
 
-.input-zone.state-error .validation-feedback {
-  color: var(--error-red);
-}
-
-/* STARE VERDE PENTRU RĂSPUNS CORECT */
 .input-zone.state-success {
   border-color: var(--success-green);
   background-color: var(--success-bg);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
 }
 
-.input-zone.state-success .answer-textarea {
+.input-zone.state-success .answer-textarea,
+.input-zone.state-success .validation-feedback {
   border-color: var(--success-green);
   color: var(--success-green);
   font-weight: 600;
 }
 
-.input-zone.state-success .validation-feedback {
+/* Jocul de Potrivire între 2 Coloane (Matching) */
+.matching-columns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.matching-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.match-card {
+  padding: 0.75rem 0.9rem;
+  border-radius: 9px;
+  background-color: var(--bg-elevated);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.match-card:hover:not(:disabled) {
+  border-color: var(--accent-primary);
+}
+
+.match-card.selected {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-soft);
+}
+
+.match-card.matched {
+  border-color: var(--success-green);
+  background-color: var(--success-bg);
   color: var(--success-green);
+  cursor: default;
+  opacity: 0.85;
+}
+
+.match-card.wrong {
+  border-color: var(--error-red);
+  background-color: var(--error-bg);
+  color: var(--error-red);
+  animation: shakeError 0.35s both;
+}
+
+.matching-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Modul 3: Quiz Opțiuni */
+.quiz-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.quiz-option-btn {
+  padding: 0.85rem 1rem;
+  border-radius: 9px;
+  background-color: var(--bg-elevated);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.quiz-option-btn.correct {
+  border-color: var(--success-green);
+  background-color: var(--success-bg);
+  color: var(--success-green);
+}
+
+.quiz-option-btn.wrong {
+  border-color: var(--error-red);
+  background-color: var(--error-bg);
+  color: var(--error-red);
+  animation: shakeError 0.35s both;
 }
 
 @keyframes shakeError {
@@ -635,32 +790,32 @@ body {
   40%, 60% { transform: translate3d(6px, 0, 0); }
 }
 
-/* Butoane de Acțiune */
+/* Butoane generale */
 .action-buttons-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
+  gap: 0.6rem;
   align-items: center;
 }
 
 button {
   font-family: inherit;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  padding: 0.65rem 1.1rem;
-  border-radius: 9px;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.18s ease;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.78rem;
 }
 
 .btn-primary {
   background-color: var(--accent-primary);
   color: #ffffff;
-}
-
-.btn-primary:hover {
-  background-color: var(--accent-hover);
 }
 
 .btn-secondary {
@@ -669,18 +824,10 @@ button {
   border-color: var(--border-color);
 }
 
-.btn-secondary:hover {
-  border-color: var(--accent-primary);
-}
-
 .btn-give-up {
   background-color: transparent;
   color: var(--warning-amber);
   border-color: var(--warning-amber);
-}
-
-.btn-give-up:hover {
-  background-color: rgba(245, 158, 11, 0.12);
 }
 
 .btn-success {
@@ -692,8 +839,8 @@ button {
 
 .btn-copy,
 .btn-apply-solution {
-  padding: 0.3rem 0.65rem;
-  font-size: 0.76rem;
+  padding: 0.28rem 0.6rem;
+  font-size: 0.75rem;
   border-radius: 6px;
   background-color: var(--accent-primary);
   color: #ffffff;
@@ -703,29 +850,24 @@ button {
   background: transparent;
   color: var(--text-secondary);
   font-size: 0.74rem;
-  padding: 0.25rem 0.5rem;
-}
-
-.btn-ghost-danger:hover {
-  color: var(--error-red);
+  padding: 0.25rem;
 }
 
 .hidden {
   display: none !important;
 }
 
-/* Sertare pentru Indiciu și Soluția Ascunsă */
 .hint-drawer {
-  margin-top: 1rem;
-  padding: 0.85rem 1rem;
-  border-radius: 9px;
+  margin-top: 0.9rem;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
   background-color: var(--bg-elevated);
   border-left: 4px solid var(--warning-amber);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
 }
 
 .solution-drawer {
-  margin-top: 1rem;
+  margin-top: 0.9rem;
   border-radius: 10px;
   border: 1px solid var(--warning-amber);
   background-color: var(--bg-code);
@@ -736,21 +878,21 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.6rem 1rem;
+  padding: 0.55rem 0.95rem;
   background-color: rgba(245, 158, 11, 0.15);
   color: var(--warning-amber);
   font-weight: 700;
-  font-size: 0.84rem;
+  font-size: 0.82rem;
 }
 
 .solution-explanation {
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 0.95rem;
   border-top: 1px solid var(--border-color);
-  font-size: 0.85rem;
-  color: #d1d5db;
+  font-size: 0.84rem;
+  color: #cbd5e1;
 }
 
-/* Modal Adăugare Lecție */
+/* Modal */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -765,10 +907,10 @@ button {
 .modal-card {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 14px;
+  border-radius: 12px;
   width: 100%;
   max-width: 560px;
-  padding: 1.5rem;
+  padding: 1.35rem;
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -777,91 +919,46 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-}
-
-.btn-close {
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 1.5rem;
-  padding: 0.2rem 0.5rem;
+  margin-bottom: 0.85rem;
 }
 
 .modal-form {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.75rem;
 }
 
 .form-row label {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.25rem;
 }
 
 .form-row input,
 .form-row textarea {
   width: 100%;
-  padding: 0.6rem 0.75rem;
-  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  border-radius: 7px;
   border: 1px solid var(--border-color);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: inherit;
-  font-size: 0.88rem;
 }
 
 .modal-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 0.6rem;
-  margin-top: 0.5rem;
+  gap: 0.5rem;
 }
 
-/* Optimizare Responsivă pentru Tablete și Telefoane Mobile */
 @media (max-width: 960px) {
   .app-layout {
     grid-template-columns: 1fr;
-    padding: 1rem;
+    padding: 0.85rem;
   }
-
-  .lesson-list {
-    max-height: 220px;
-  }
-}
-
-@media (max-width: 600px) {
-  .top-bar {
-    padding: 0.75rem 1rem;
-  }
-
-  .stats-cluster {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .stat-pill {
-    flex: 1;
-    justify-content: center;
-    padding: 0.35rem 0.5rem;
-  }
-
-  .controls-cluster {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .theme-select {
-    flex: 1;
-  }
-
-  .action-buttons-row button {
-    width: 100%;
-    text-align: center;
-  }
-
-  .lesson-title {
-    font-size: 1.2rem;
+  .quiz-options-grid,
+  .matching-columns-grid {
+    grid-template-columns: 1fr;
   }
 }
