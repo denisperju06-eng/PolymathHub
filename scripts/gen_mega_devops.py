@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Generator for DevOps & Sisteme Linux mega curriculum expansion (16 lessons).
-Covers Beginner to Architect levels.
+Generator for DevOps & Sisteme Linux mega curriculum expansion (11 comprehensive lessons).
+Covers Linux FHS, Shell Streams & Pipes, chmod/chown, Process Management, Systemd,
+Docker Fundamentals, Volumes, Docker Compose, Multi-Stage Builds, Nginx Reverse Proxy, and CI/CD.
+Each lesson features rich <pre><code>...</code></pre> code blocks, runnable examples, and precise tasks.
 """
 
 def get_devops_lessons():
@@ -16,15 +18,29 @@ def get_devops_lessons():
             "title": "Capitolul 1: Ierarhia Sistemului de Fișiere Linux & Comenzi Bash",
             "theory": """
 <p>În sistemele Unix/Linux, totul este reprezentat ca un fișier (<em>Everything is a file</em>). Structura directoarelor pornește de la rădăcina unică <code>/</code> conform standardului FHS (Filesystem Hierarchy Standard).</p>
+
 <h4>1. Directoare Esențiale</h4>
 <ul>
-  <li><code>/etc</code> — Fișiere de configurare la nivel de sistem.</li>
+  <li><code>/etc</code> — Fișiere de configurare la nivel de sistem (ex: nginx.conf, sshd_config).</li>
   <li><code>/var/log</code> — Jurnale și loguri generate de servicii.</li>
   <li><code>/home/user</code> — Spațiul personal al utilizatorului obișnuit.</li>
   <li><code>/bin</code> și <code>/usr/bin</code> — Binare executabile esențiale.</li>
 </ul>
-<h4>2. Comenzi de Bază</h4>
-<p>Comanda <code>ls -la</code> listează toate fișierele (inclusiv cele ascunse care încep cu punct) alături de permisiuni, proprietar și dimensiune în format detaliat.</p>
+
+<h4>2. Exemple Practice de Navigare și Inspecție</h4>
+<pre><code># 1. Verifică calea absolută a directorului curent:
+pwd
+# /home/developer
+
+# 2. Listare completă și detaliată (inclusiv fișiere ascunse .bashrc):
+ls -la
+# drwxr-xr-x  5 developer developer  4096 Oct 15 12:00 .
+# -rw-r--r--  1 developer developer   220 Oct 15 10:00 .bashrc
+# -rwxr-xr-x  1 developer developer  1024 Oct 15 11:30 deploy.sh
+
+# 3. Creare structură de directoare în cascadă:
+mkdir -p /var/log/polymath/archives
+</code></pre>
 """,
             "glossary": [
                 {"term": "FHS (Filesystem Standard)", "def": "Standard ce definește structura și scopul fiecărui director într-un sistem Linux."},
@@ -49,10 +65,14 @@ def get_devops_lessons():
                 "correctIndex": 0,
                 "explanation": "/etc este directorul standard dedicat fișierelor de configurare pentru toate pachetele și serviciile instalate la nivel de sistem."
             },
+            "prompt": "Scrie comanda Bash care listează toate fișierele (inclusiv cele ascunse) în format lung detaliat: 'ls -la'.",
             "task": "Scrie comanda Bash care listează toate fișierele (inclusiv cele ascunse) în format lung detaliat: 'ls -la'.",
-            "starterCode": "# Listează fișierele detaliat\n",
+            "example": "ls -la",
+            "starterCode": "ls -la",
+            "officialSolution": "ls -la",
             "expectedOutputPattern": "ls\\s+-la|ls\\s+-al|ls\\s+-l\\s+-a|ls\\s+-a\\s+-l",
-            "hint": "Scrie ls -la."
+            "regexPattern": "ls\\s+-la|ls\\s+-al|ls\\s+-l\\s+-a|ls\\s+-a\\s+-l",
+            "hint": "Scrie ls -la"
         },
         {
             "id": "devops-new-2",
@@ -63,16 +83,23 @@ def get_devops_lessons():
             "xp": 35,
             "title": "Capitolul 2: Redirecționări de Stream-uri I/O & Mecanismul Pipes ('|')",
             "theory": """
-<p>În Linux, fiecare proces deschide implicit 3 descriptori standard de fișiere:</p>
-<ol>
-  <li><code>0 (stdin)</code>: Fluxul standard de intrare (tastatură).</li>
-  <li><code>1 (stdout)</code>: Fluxul standard de ieșire (consolă).</li>
-  <li><code>2 (stderr)</code>: Fluxul standard pentru erori (consolă).</li>
-</ol>
+<p>În Linux, fiecare proces deschide implicit 3 descriptori standard de fișiere: <code>0 (stdin)</code>, <code>1 (stdout)</code> și <code>2 (stderr)</code>.</p>
+
 <h4>1. Redirecționări</h4>
 <p>Operatorul <code>></code> suprascrie fișierul destinație, iar <code>>></code> adaugă la final (append). Sintaxa <code>2>&1</code> redirecționează erorile (stderr) pe același canal cu stdout.</p>
-<h4>2. Mecanismul Pipes ('|')</h4>
-<p>Operatorul pipe leagă <code>stdout</code> al primei comenzi direct în <code>stdin</code> al celei de-a doua fără a salva date intermediare pe disc: <code>cat access.log | grep \"404\" | wc -l</code>.</p>
+
+<h4>2. Exemple Practice de Stream-uri și Pipes</h4>
+<pre><code># 1. Redirecționare simplă și append:
+echo "Deployment started" > deploy.log
+echo "Timestamp: $(date)" >> deploy.log
+
+# 2. Filtrare în lanț cu Pipes (|):
+cat app.log | grep ERROR | wc -l
+# Numără câte linii de eroare există în app.log
+
+# 3. Suprimarea erorilor (redirecționare către /dev/null):
+find / -name "*.conf" 2>/dev/null
+</code></pre>
 """,
             "glossary": [
                 {"term": "stdout (Descriptor 1)", "def": "Canalul de ieșire standard pentru mesajele obișnuite generate de un proces."},
@@ -97,9 +124,13 @@ def get_devops_lessons():
                 "correctIndex": 0,
                 "explanation": "Descriptorul 2 (stderr) este redirecționat către /dev/null (gaura neagră a sistemului Unix), suprimând toate erorile din afișajul consolei."
             },
+            "prompt": "Filtrează ieșirea comenzii 'cat app.log' căutând liniile ce conțin 'ERROR' folosind pipe și grep: 'cat app.log | grep ERROR'.",
             "task": "Filtrează ieșirea comenzii 'cat app.log' căutând liniile ce conțin 'ERROR' folosind pipe și grep: 'cat app.log | grep ERROR'.",
-            "starterCode": "# Folosește pipe și grep\n",
+            "example": "cat app.log | grep ERROR",
+            "starterCode": "cat app.log | grep ERROR",
+            "officialSolution": "cat app.log | grep ERROR",
             "expectedOutputPattern": "cat\\s+app\\.log\\s*\\|\\s*grep\\s+(?:[\"']ERROR[\"']|ERROR)",
+            "regexPattern": "cat\\s+app\\.log\\s*\\|\\s*grep\\s+(?:[\"']ERROR[\"']|ERROR)",
             "hint": "Scrie cat app.log | grep ERROR"
         },
         {
@@ -117,10 +148,22 @@ def get_devops_lessons():
   <li><code>w (write)</code> = 2</li>
   <li><code>x (execute)</code> = 1</li>
 </ul>
+
 <h4>1. Calculul Octal</h4>
 <p>Suma valorilor binare dă cifra octală. De exemplu, <code>chmod 755 script.sh</code> conferă: User = 4+2+1 = <strong>7</strong> (rwx), Group = 4+0+1 = <strong>5</strong> (r-x), Others = 4+0+1 = <strong>5</strong> (r-x).</p>
-<h4>2. Schimbarea Proprietarului cu 'chown'</h4>
-<p>Comanda <code>sudo chown -R www-data:www-data /var/www/html</code> modifică recursiv atât utilizatorul proprietar, cât și grupul asociat directorului.</p>
+
+<h4>2. Exemple Practice de Permisiuni</h4>
+<pre><code># Fă un script executabil pentru toți, dar modificabil doar de owner:
+chmod 755 deploy.sh
+# -rwxr-xr-x 1 developer developer 1024 deploy.sh
+
+# Securizează cheia SSH privată (doar owner-ul o poate citi și scrie):
+chmod 600 ~/.ssh/id_rsa
+# -rw------- 1 developer developer 2602 id_rsa
+
+# Schimbă recursiv utilizatorul și grupul proprietar:
+sudo chown -R www-data:www-data /var/www/html
+</code></pre>
 """,
             "glossary": [
                 {"term": "chmod", "def": "Comandă pentru modificarea biților de permisiune (Change Mode) ai unui fișier."},
@@ -145,9 +188,13 @@ def get_devops_lessons():
                 "correctIndex": 0,
                 "explanation": "6 = 4+2 (read + write pentru owner), 4 = read pentru group, 4 = read pentru others. Este permisiunea standard pentru fișiere de date."
             },
+            "prompt": "Fă scriptul 'deploy.sh' executabil pentru proprietar și cu drepturi de citire/execuție pentru restul rulând 'chmod 755 deploy.sh'.",
             "task": "Fă scriptul 'deploy.sh' executabil pentru proprietar și cu drepturi de citire/execuție pentru restul rulând 'chmod 755 deploy.sh'.",
-            "starterCode": "# Setează permisiunile 755 pe deploy.sh\n",
+            "example": "chmod 755 deploy.sh",
+            "starterCode": "chmod 755 deploy.sh",
+            "officialSolution": "chmod 755 deploy.sh",
             "expectedOutputPattern": "chmod\\s+755\\s+deploy\\.sh",
+            "regexPattern": "chmod\\s+755\\s+deploy\\.sh",
             "hint": "Scrie chmod 755 deploy.sh"
         },
         {
@@ -160,13 +207,28 @@ def get_devops_lessons():
             "title": "Capitolul 4: Managementul Proceselor & Semnale POSIX ('kill')",
             "theory": """
 <p>Fiecare proces din Linux primește un identificator unic numeric (<strong>PID</strong>). Comanda <code>ps aux</code> sau <code>htop</code> permite monitorizarea consumului de memorie și procesor.</p>
+
 <h4>1. Semnale POSIX Fundamentale</h4>
-<p>Procesele comunică prin semnale trimise cu utilitarul <code>kill</code>:</p>
 <ul>
-  <li><code>SIGTERM (15)</code>: Semnalul politicos de oprire. Procesul primește șansa de a elibera conexiunile, de a salva datele și de a se închide curat.</li>
-  <li><code>SIGKILL (9)</code>: Oprire forțată și imediată executată direct de nucleul Linux (Kernel); procesul nu poate intercepta sau ignora acest semnal.</li>
-  <li><code>SIGHUP (1)</code>: Trimis pentru a forța reîncărcarea fișierului de configurare fără repornirea procesului.</li>
+  <li><code>SIGTERM (15)</code>: Semnalul politicos de oprire (Graceful Shutdown). Permite salvarea stării și eliberarea conexiunilor.</li>
+  <li><code>SIGKILL (9)</code>: Oprire forțată și imediată executată direct de nucleul Linux (Kernel); nu poate fi ignorată.</li>
+  <li><code>SIGHUP (1)</code>: Forțează reîncărcarea fișierului de configurare fără oprirea procesului.</li>
 </ul>
+
+<h4>2. Exemple Practice de Inspecție și Semnalizare</h4>
+<pre><code># 1. Localizează PID-ul aplicației:
+ps aux | grep node
+# developer 4520  0.5  2.1 123456 45678 ? S 12:00 node server.js
+
+# 2. Trimite semnal politicos de oprire (SIGTERM 15):
+kill -15 4520
+
+# 3. Forțează oprirea doar dacă procesul este complet blocat:
+kill -9 4520
+
+# 4. Reîncarcă configurația serverului fără downtime:
+kill -HUP $(pidof nginx)
+</code></pre>
 """,
             "glossary": [
                 {"term": "PID (Process ID)", "def": "Număr întreg pozitiv unic atribuit fiecărui proces activ de către nucleul Linux."},
@@ -191,9 +253,13 @@ def get_devops_lessons():
                 "correctIndex": 0,
                 "explanation": "SIGTERM inițiază un 'graceful shutdown', oferind procesului oportunitatea de a-și salva starea și elibera resursele. SIGKILL îl distruge instantaneu, riscând coruperea datelor."
             },
+            "prompt": "Trimite semnalul SIGTERM (15) către procesul cu PID-ul 4520 rulând 'kill -15 4520'.",
             "task": "Trimite semnalul SIGTERM (15) către procesul cu PID-ul 4520 rulând 'kill -15 4520'.",
-            "starterCode": "# Trimite SIGTERM la PID 4520\n",
+            "example": "kill -15 4520",
+            "starterCode": "kill -15 4520",
+            "officialSolution": "kill -15 4520",
             "expectedOutputPattern": "kill\\s+-15\\s+4520|kill\\s+-s\\s+TERM\\s+4520|kill\\s+-SIGTERM\\s+4520",
+            "regexPattern": "kill\\s+-15\\s+4520|kill\\s+-s\\s+TERM\\s+4520|kill\\s+-SIGTERM\\s+4520",
             "hint": "Scrie kill -15 4520"
         },
         {
@@ -205,17 +271,29 @@ def get_devops_lessons():
             "xp": 45,
             "title": "Capitolul 5: Gestiunea Serviciilor cu Systemd ('systemctl' & 'journalctl')",
             "theory": """
-<p><strong>Systemd</strong> este sistemul de inițializare și managerul de servicii standard în majoritatea distribuțiilor Linux moderne (Ubuntu, Debian, RedHat, CentOS), având PID-ul 1.</p>
-<h4>1. Comanda 'systemctl'</h4>
-<p>Comenzile frecvente includ:</p>
+<p><strong>Systemd</strong> este sistemul de inițializare și managerul de servicii standard în distribuțiile Linux moderne (Ubuntu, Debian, RedHat), având PID-ul 1.</p>
+
+<h4>1. Comenzi Esențiale 'systemctl'</h4>
 <ul>
   <li><code>sudo systemctl start nginx</code> — Pornește serviciul.</li>
-  <li><code>sudo systemctl enable nginx</code> — Configurează serviciul să pornească automat la boot-ul mașinii.</li>
-  <li><code>sudo systemctl status nginx</code> — Afișează starea curentă și ultimele linii de jurnal.</li>
-  <li><code>sudo systemctl reload nginx</code> — Reîncarcă configurația fără a întrerupe conexiunile clienților.</li>
+  <li><code>sudo systemctl enable nginx</code> — Activează pornirea automată la boot-ul serverului.</li>
+  <li><code>sudo systemctl status nginx</code> — Afișează starea curentă și logurile recente.</li>
+  <li><code>sudo systemctl reload nginx</code> — Reîncarcă configurația fără restart.</li>
 </ul>
-<h4>2. Inspectarea Jurnalelor cu 'journalctl'</h4>
-<p>Utilitarul centralizat <code>journalctl -u nginx -f</code> urmărește logurile serviciului în timp real (urmărire de tip 'follow').</p>
+
+<h4>2. Exemple Practice cu Systemd și Journalctl</h4>
+<pre><code># 1. Verifică starea detaliată a serviciului Nginx:
+sudo systemctl status nginx
+
+# 2. Pornește și activează un serviciu dintr-un singur pas:
+sudo systemctl enable --now docker
+
+# 3. Urmărește logurile generate în timp real (-f = follow):
+sudo journalctl -u nginx -f
+
+# 4. Afișează ultimele 50 de linii de erori:
+sudo journalctl -u api-backend -p err -n 50
+</code></pre>
 """,
             "glossary": [
                 {"term": "systemd", "def": "Sistemul modern de inițializare PID 1 responsabil cu pornirea și supervizarea tuturor serviciilor Linux."},
@@ -240,9 +318,13 @@ def get_devops_lessons():
                 "correctIndex": 0,
                 "explanation": "Flag-ul '-u' filtrează după numele unității de serviciu, iar '-f' (follow) menține conexiunea deschisă afișând noile intrări în timp real."
             },
+            "prompt": "Pornește și verifică starea serviciului 'nginx' rulând comanda 'sudo systemctl status nginx'.",
             "task": "Pornește și verifică starea serviciului 'nginx' rulând comanda 'sudo systemctl status nginx'.",
-            "starterCode": "# Verifică statusul Nginx\n",
+            "example": "sudo systemctl status nginx",
+            "starterCode": "sudo systemctl status nginx",
+            "officialSolution": "sudo systemctl status nginx",
             "expectedOutputPattern": "(?:sudo\\s+)?systemctl\\s+status\\s+nginx",
+            "regexPattern": "(?:sudo\\s+)?systemctl\\s+status\\s+nginx",
             "hint": "Scrie sudo systemctl status nginx (sau fără sudo)."
         },
         {
@@ -254,17 +336,36 @@ def get_devops_lessons():
             "xp": 50,
             "title": "Capitolul 6: Docker Fundamente — Imagini, Containere & Dockerfile",
             "theory": """
-<p><strong>Docker</strong> împachetează aplicațiile și toate dependențele lor într-o unitate izolată numită <em>container</em>, partajând kernelul sistemului de operare gazdă (fără overhead-ul greoi al unei mașini virtuale cu hypervisor).</p>
-<h4>1. Instrucțiuni Esențiale în Dockerfile</h4>
-<ul>
-  <li><code>FROM node:20-alpine</code> — Imaginea de bază minimalistă.</li>
-  <li><code>WORKDIR /app</code> — Directorul de lucru din interiorul containerului.</li>
-  <li><code>COPY package*.json ./</code> — Copiază mai întâi fișierele de dependențe pentru a valorifica cache-ul de layere Docker.</li>
-  <li><code>RUN npm install</code> — Execută comenzi în timpul etapei de build.</li>
-  <li><code>COPY . .</code> — Copiază codul sursă.</li>
-  <li><code>EXPOSE 3000</code> — Documentează portul de rețea ascultat.</li>
-  <li><code>CMD [\"node\", \"server.js\"]</code> — Comanda implicită la pornirea containerului.</li>
-</ul>
+<p><strong>Docker</strong> împachetează aplicațiile și dependențele lor într-o unitate izolată numită <em>container</em>, partajând nucleul sistemului gazdă fără overhead-ul unei mașini virtuale.</p>
+
+<h4>1. Exemplu de Dockerfile Optimizat</h4>
+<pre><code># Imagine minimalistă Node.js:
+FROM node:20-alpine
+
+# Setează directorul de lucru:
+WORKDIR /app
+
+# Copiază fișierele de dependențe pentru layer caching:
+COPY package*.json ./
+RUN npm install
+
+# Copiază codul sursă al aplicației:
+COPY . .
+
+EXPOSE 8080
+CMD ["node", "server.js"]
+</code></pre>
+
+<h4>2. Comenzi de Rulare și Monitorizare</h4>
+<pre><code># Construiește imaginea:
+docker build -t my-web:latest .
+
+# Rulează containerul în fundal (-d) cu mapare de port (80 host -> 80 container):
+docker run -d -p 80:80 my-web:latest
+
+# Verifică containerele active:
+docker ps
+</code></pre>
 """,
             "glossary": [
                 {"term": "Docker Image", "def": "Șablon imutabil compus din layere read-only din care se instanțiază containerele."},
@@ -289,9 +390,13 @@ def get_devops_lessons():
                 "correctIndex": 0,
                 "explanation": "Docker cache-uiește fiecare linie. Dacă codul sursă se schimbă frecvent dar dependențele rămân aceleași, Docker va sări peste pasul lent de 'npm install', folosind cache-ul."
             },
+            "prompt": "Rulează containerul din imaginea 'my-web:latest' în fundal (-d) mapând portul '80:80': 'docker run -d -p 80:80 my-web:latest'.",
             "task": "Rulează containerul din imaginea 'my-web:latest' în fundal (-d) mapând portul '80:80': 'docker run -d -p 80:80 my-web:latest'.",
-            "starterCode": "# Rulează containerul\n",
+            "example": "docker run -d -p 80:80 my-web:latest",
+            "starterCode": "docker run -d -p 80:80 my-web:latest",
+            "officialSolution": "docker run -d -p 80:80 my-web:latest",
             "expectedOutputPattern": "docker\\s+run\\s+-d\\s+-p\\s+80:80\\s+my-web:latest",
+            "regexPattern": "docker\\s+run\\s+-d\\s+-p\\s+80:80\\s+my-web:latest",
             "hint": "Scrie docker run -d -p 80:80 my-web:latest"
         },
         {
@@ -304,10 +409,24 @@ def get_devops_lessons():
             "title": "Capitolul 7: Persistența Datelor: Docker Volumes & Bind Mounts",
             "theory": """
 <p>Sistemul de fișiere al unui container Docker este efemer: când containerul este șters, toate fișierele create în interior se pierd irevocabil. Persistența necesită mecanisme dedicate.</p>
-<h4>1. Named Volumes (Recomandat pentru Baze de Date)</h4>
-<p>Volumele numite sunt complet gestionate de Docker (stocate în <code>/var/lib/docker/volumes/</code>). Sunt izolate de sistemul de fișiere al gazdei și optimizate pentru I/O performant: <code>-v pgdata:/var/lib/postgresql/data</code>.</p>
-<h4>2. Bind Mounts (Recomandat pentru Dezvoltare Locală)</h4>
-<p>Leagă un director concret de pe mașina gazdă direct în interiorul containerului: <code>-v $(pwd):/app</code>, reflectând instant modificările de cod fără a reconstrui imaginea.</p>
+
+<h4>1. Named Volumes vs Bind Mounts</h4>
+<p>Volumele numite sunt complet gestionate de Docker (în <code>/var/lib/docker/volumes/</code>) și sunt recomandate pentru baze de date. Bind mounts leagă direct un director de pe host (ex: <code>-v $(pwd):/app</code>) pentru hot-reload în development.</p>
+
+<h4>2. Exemple Practice cu Docker Volumes</h4>
+<pre><code># 1. Creează un volum dedicat persistent:
+docker volume create app_storage
+
+# 2. Rulează PostgreSQL atașat la volumul creat:
+docker run -d \\
+  --name postgres-db \\
+  -e POSTGRES_PASSWORD=secret \\
+  -v app_storage:/var/lib/postgresql/data \\
+  postgres:16-alpine
+
+# 3. Listează volumele active:
+docker volume ls
+</code></pre>
 """,
             "glossary": [
                 {"term": "Docker Volume", "def": "Mecanism dedicat administrat de Docker pentru stocarea persistentă a datelor dincolo de viața containerului."},
@@ -332,9 +451,13 @@ def get_devops_lessons():
                 "correctIndex": 0,
                 "explanation": "Volumele gestionate de Docker au ciclu de viață complet independent de containere; distrugerea containerului lasă volumul și datele intacte."
             },
+            "prompt": "Creează un volum Docker numit 'app_storage' rulând comanda 'docker volume create app_storage'.",
             "task": "Creează un volum Docker numit 'app_storage' rulând comanda 'docker volume create app_storage'.",
-            "starterCode": "# Creează volumul Docker\n",
+            "example": "docker volume create app_storage",
+            "starterCode": "docker volume create app_storage",
+            "officialSolution": "docker volume create app_storage",
             "expectedOutputPattern": "docker\\s+volume\\s+create\\s+app_storage",
+            "regexPattern": "docker\\s+volume\\s+create\\s+app_storage",
             "hint": "Scrie docker volume create app_storage"
         },
         {
@@ -346,9 +469,9 @@ def get_devops_lessons():
             "xp": 55,
             "title": "Capitolul 8: Orchestare cu Docker Compose ('docker-compose.yml')",
             "theory": """
-<p><strong>Docker Compose</strong> este utilitarul standard pentru definirea și rularea aplicațiilor multi-container (ex: backend Node.js + frontend React + bază de date PostgreSQL + Redis cache) printr-un singur fișier declarativ YAML.</p>
-<h4>1. Structura 'docker-compose.yml'</h4>
-<p>Definim servicii, rețele și volume:</p>
+<p><strong>Docker Compose</strong> este utilitarul standard pentru definirea și rularea aplicațiilor multi-container (ex: backend Node.js + bază de date PostgreSQL + Redis cache) printr-un singur fișier declarativ YAML.</p>
+
+<h4>1. Exemplu Complet de Fișier 'docker-compose.yml'</h4>
 <pre><code>services:
   web:
     build: .
@@ -362,11 +485,17 @@ def get_devops_lessons():
     image: postgres:16-alpine
     volumes:
       - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=pass
+
 volumes:
   pgdata:
 </code></pre>
-<h4>2. DNS Intern Automat</h4>
-<p>Docker Compose creează automat o rețea comună (bridge) unde containerele pot comunica între ele folosind direct numele serviciului ca hostname (ex: conexiunea la baza de date se face la adresa <code>db:5432</code>).</p>
+
+<h4>2. Comandă de Lansare</h4>
+<pre><code># Pornește întreaga stivă în fundal (-d):
+docker compose up -d
+</code></pre>
 """,
             "glossary": [
                 {"term": "docker-compose.yml", "def": "Fișier de configurare declarativ YAML ce descrie arhitectura multi-container a aplicației."},
@@ -391,9 +520,13 @@ volumes:
                 "correctIndex": 0,
                 "explanation": "Docker Compose creează o rețea privată comună și un DNS intern integrat, astfel încât 'database' este un hostname perfect valid și accesibil din oricare alt container din acea rețea."
             },
+            "prompt": "Pornește toate serviciile din docker-compose.yml în fundal rulând 'docker compose up -d'.",
             "task": "Pornește toate serviciile din docker-compose.yml în fundal rulând 'docker compose up -d'.",
-            "starterCode": "# Pornește stiva cu docker compose\n",
+            "example": "docker compose up -d",
+            "starterCode": "docker compose up -d",
+            "officialSolution": "docker compose up -d",
             "expectedOutputPattern": "docker\\s+compose\\s+up\\s+-d|docker-compose\\s+up\\s+-d",
+            "regexPattern": "docker\\s+compose\\s+up\\s+-d|docker-compose\\s+up\\s+-d",
             "hint": "Scrie docker compose up -d"
         },
         {
@@ -406,13 +539,26 @@ volumes:
             "title": "Capitolul 9: Optimizare Extremă Docker: Multi-Stage Builds",
             "theory": """
 <p>Imaginile de producție nu trebuie să conțină compilatoare, SDK-uri greoaie sau fișiere sursă necompilate. <strong>Multi-Stage Builds</strong> permite utilizarea mai multor instrucțiuni <code>FROM</code> într-un singur Dockerfile.</p>
-<h4>1. Stagiul de Build vs Stagiul de Producție</h4>
-<p>În prima etapă (<code>FROM golang:1.22 AS builder</code>) compilăm aplicația în binar nativ. În a doua etapă (<code>FROM alpine:latest</code> sau <code>FROM scratch</code>) copiem doar binarul final:</p>
-<pre><code>COPY --from=builder /app/server /server
-CMD ["/server"]
+
+<h4>1. Exemplu Complet de Multi-Stage Dockerfile</h4>
+<pre><code># Stagiul 1: Compilare (Build Stage)
+FROM golang:1.22 AS builder
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o myapp .
+
+# Stagiul 2: Imaginea finală curată de producție (sub 20 MB)
+FROM alpine:3.19
+WORKDIR /app
+COPY --from=builder /app/myapp /app/myapp
+EXPOSE 8080
+CMD ["/app/myapp"]
 </code></pre>
-<h4>2. Beneficii de Securitate și Viteză</h4>
-<p>Dimensiunea imaginii scade adesea de la 1.2 GB la sub 25 MB, eliminând uneltele de build care ar putea fi exploatate de atacatori în caz de compromitere a containerului.</p>
+
+<h4>2. Copierea Artefactelor Între Stagii</h4>
+<p>Directiva <code>COPY --from=build /app/dist /public</code> extrage doar fișierele compilate, lăsând dependențele grele în primul stadiu.</p>
 """,
             "glossary": [
                 {"term": "Multi-Stage Build", "def": "Tehnică Docker ce folosește stadii intermediare pentru compilare, păstrând în imaginea finală doar binarul minim."},
@@ -437,9 +583,13 @@ CMD ["/server"]
                 "correctIndex": 0,
                 "explanation": "Separarea fazei de compilare de imaginea de rulare lasă în urmă compilatoarele și fișierele temporare, rezultând imagini compacte, rapide la descărcare și lipsite de unelte inutile care ar putea fi exploatate de hackeri."
             },
+            "prompt": "Copiază din stagiul 'build' fișierul '/app/dist' în directorul curent '/public': 'COPY --from=build /app/dist /public'.",
             "task": "Copiază din stagiul 'build' fișierul '/app/dist' în directorul curent '/public': 'COPY --from=build /app/dist /public'.",
-            "starterCode": "# Instrucțiune COPY multi-stage\n",
+            "example": "COPY --from=build /app/dist /public",
+            "starterCode": "COPY --from=build /app/dist /public",
+            "officialSolution": "COPY --from=build /app/dist /public",
             "expectedOutputPattern": "COPY\\s+--from=build\\s+/app/dist\\s+/public",
+            "regexPattern": "COPY\\s+--from=build\\s+/app/dist\\s+/public",
             "hint": "Scrie COPY --from=build /app/dist /public"
         },
         {
@@ -451,18 +601,30 @@ CMD ["/server"]
             "xp": 60,
             "title": "Capitolul 10: Server Web & Reverse Proxy cu Nginx",
             "theory": """
-<p><strong>Nginx</strong> este un server web de mare viteză bazat pe o arhitectură asincronă event-driven, utilizat frecvent ca <strong>Reverse Proxy</strong>, Load Balancer și punct de terminare SSL/TLS în fața serverelor de aplicații (Node.js, Python, Java).</p>
-<h4>1. Directiva 'proxy_pass'</h4>
-<p>Redirecționează traficul HTTP primit din exterior către portul intern al aplicației:</p>
-<pre><code>location /api/ {
-    proxy_pass http://127.0.0.1:3000;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+<p><strong>Nginx</strong> este un server web de mare viteză bazat pe o arhitectură asincronă event-driven, utilizat frecvent ca <strong>Reverse Proxy</strong>, Load Balancer și punct de terminare SSL/TLS în fața serverelor de aplicații.</p>
+
+<h4>1. Exemplu Complet de Configurare Reverse Proxy</h4>
+<pre><code>server {
+    listen 80;
+    server_name api.example.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
 }
 </code></pre>
-<h4>2. Headers Esențiale de Proxy</h4>
-<p>Fără <code>X-Forwarded-For</code> și <code>X-Real-IP</code>, aplicația din spate ar vedea ca IP al clientului adresa de loopback <code>127.0.0.1</code> a proxy-ului Nginx, făcând imposibilă localizarea sau rate-limiting-ul pe clienți reali.</p>
+
+<h4>2. Testarea Sintaxei Fără Întreruperea Serviciului</h4>
+<pre><code># Testează sintaxa fișierelor de configurare:
+sudo nginx -t
+
+# Reîncarcă configurația cu zero downtime:
+sudo nginx -s reload
+</code></pre>
 """,
             "glossary": [
                 {"term": "Reverse Proxy", "def": "Server intermediar ce recepționează cererile clienților și le transmite către backend-urile private."},
@@ -487,9 +649,13 @@ CMD ["/server"]
                 "correctIndex": 0,
                 "explanation": "Un reverse proxy maschează IP-ul clientului. Header-ul 'X-Forwarded-For' adaugă adresa IP inițială a utilizatorului pentru ca backend-ul să o poată loga sau utiliza în securitate."
             },
+            "prompt": "Testează corectitudinea sintaxei fișierului de configurare Nginx fără a opri serverul rulând 'sudo nginx -t'.",
             "task": "Testează corectitudinea sintaxei fișierului de configurare Nginx fără a opri serverul rulând 'sudo nginx -t'.",
-            "starterCode": "# Testează configurația Nginx\n",
+            "example": "sudo nginx -t",
+            "starterCode": "sudo nginx -t",
+            "officialSolution": "sudo nginx -t",
             "expectedOutputPattern": "(?:sudo\\s+)?nginx\\s+-t",
+            "regexPattern": "(?:sudo\\s+)?nginx\\s+-t",
             "hint": "Scrie sudo nginx -t (sau nginx -t)."
         },
         {
@@ -502,26 +668,32 @@ CMD ["/server"]
             "title": "Capitolul 11: CI/CD Automatizat cu GitHub Actions",
             "theory": """
 <p><strong>CI/CD</strong> (Continuous Integration & Continuous Deployment) automatizează testarea, compilarea și livrarea sigură a codului la fiecare <code>git push</code> sau <code>Pull Request</code>.</p>
-<h4>1. Structura unui Workflow GitHub Actions</h4>
-<p>Configurațiile sunt plasate în <code>.github/workflows/*.yml</code>:</p>
-<pre><code>name: Deploy Pipeline
+
+<h4>1. Structura unui Pipeline Complet GitHub Actions</h4>
+<pre><code>name: CI/CD Pipeline
 on:
   push:
     branches: [ "main" ]
+
 jobs:
-  test-and-build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
-      - run: npm test
+          cache: 'npm'
+
+      - name: Install Clean Dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm test
 </code></pre>
-<h4>2. Gestiunea Secretelor</h4>
-<p>Cheile API, parolele și cheile private SSH nu se pun NICIODATĂ în cod; se accesează securizat din setările repository-ului prin sintaxa <code>${{ secrets.PROD_API_KEY }}</code>.</p>
 """,
             "glossary": [
                 {"term": "GitHub Actions", "def": "Platformă CI/CD integrată nativ în GitHub pentru automatizarea fluxurilor de lucru software."},
@@ -546,9 +718,13 @@ jobs:
                 "correctIndex": 0,
                 "explanation": "npm ci (Clean Install) este strict determinist: cere ca package-lock.json să fie sincronizat cu package.json și refuză să modifice versiunile, garantând reproducibilitate 100% în pipeline."
             },
+            "prompt": "Scrie comanda dintr-un pas de workflow GitHub Actions care instalează dependențele curat: 'npm ci'.",
             "task": "Scrie comanda dintr-un pas de workflow GitHub Actions care instalează dependențele curat: 'npm ci'.",
-            "starterCode": "      - run: ",
+            "example": "npm ci",
+            "starterCode": "npm ci",
+            "officialSolution": "npm ci",
             "expectedOutputPattern": "(?:-\\s*run:\\s*)?npm\\s+ci",
+            "regexPattern": "(?:-\\s*run:\\s*)?npm\\s+ci",
             "hint": "Scrie npm ci"
         }
     ]

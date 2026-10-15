@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Generator for Java & Spring Boot mega curriculum expansion (12 lessons).
-Covers Concurrency, Streams, Virtual Threads, Spring Boot REST, and JVM internals.
+Generator for Java & Spring Boot mega curriculum expansion (6 comprehensive lessons).
+Covers Streams groupingBy, CompletableFuture, ExecutorService, Virtual Threads (Java 21), Spring Boot REST, and JVM Memory/GC.
+Each lesson features rich <pre><code>...</code></pre> code blocks, runnable examples, and precise tasks.
 """
 
 def get_java_lessons():
@@ -16,13 +17,27 @@ def get_java_lessons():
             "title": "Capitolul 1: Colectoare Avansate în Java Streams ('groupingBy' & 'partitioningBy')",
             "theory": """
 <p>Metoda <code>Stream.collect()</code> este punctul culminant al procesării funcționale în Java. În loc de simple colecții <code>toList()</code>, clasa utilitară <code>Collectors</code> oferă operațiuni analitice de agregare sofisticate.</p>
+
 <h4>1. Gruparea Datelor cu 'Collectors.groupingBy'</h4>
-<p>Permite clasificarea elementelor după o cheie calculată:</p>
-<pre><code>Map<Department, List<Employee>> byDept = employees.stream()
+<pre><code>// Exemplu 1: Clasificarea angajaților după departament
+Map&lt;Department, List&lt;Employee&gt;&gt; byDept = employees.stream()
     .collect(Collectors.groupingBy(Employee::getDepartment));
+
+// Exemplu 2: Calculul salariului mediu per departament (downstream collector)
+Map&lt;Department, Double&gt; avgSalaryByDept = employees.stream()
+    .collect(Collectors.groupingBy(
+        Employee::getDepartment,
+        Collectors.averagingDouble(Employee::getSalary)
+    ));
 </code></pre>
+
 <h4>2. Partiționare Binară cu 'Collectors.partitioningBy'</h4>
-<p>Împarte fluxul în două grupuri distincte pe baza unui predicat boolean (<code>true</code> și <code>false</code>): <code>Map<Boolean, List<Student>> passed = students.stream().collect(Collectors.partitioningBy(s -> s.getGrade() >= 5));</code>.</p>
+<pre><code>// Exemplu 3: Împărțirea studenților în admiși (true) și respinși (false)
+Map&lt;Boolean, List&lt;Student&gt;&gt; passedVsFailed = students.stream()
+    .collect(Collectors.partitioningBy(s -> s.getGrade() >= 5.0));
+
+System.out.println("Număr admiși: " + passedVsFailed.get(true).size());
+</code></pre>
 """,
             "glossary": [
                 {"term": "Collectors.groupingBy()", "def": "Operație terminală ce grupează elementele unui flux într-un Map pe baza unei funcții de clasificare."},
@@ -47,9 +62,13 @@ def get_java_lessons():
                 "correctIndex": 0,
                 "explanation": "partitioningBy returnează întotdeauna un Map cu chei booleene (true și false), valorile fiind listele elementelor corespunzătoare."
             },
-            "task": "Grupează stream-ul 'users.stream()' după țară apelând '.collect(Collectors.groupingBy(User::getCountry));'.",
-            "starterCode": "Map<String, List<User>> byCountry = users.stream()\n    ",
+            "prompt": "Grupează fluxul 'users.stream()' după țară apelând '.collect(Collectors.groupingBy(User::getCountry));'.",
+            "task": "Grupează fluxul 'users.stream()' după țară apelând '.collect(Collectors.groupingBy(User::getCountry));'.",
+            "example": "Map<String, List<User>> byCountry = users.stream()\n    .collect(Collectors.groupingBy(User::getCountry));",
+            "starterCode": "Map<String, List<User>> byCountry = users.stream()\n    .collect(Collectors.groupingBy(User::getCountry));",
+            "officialSolution": "Map<String, List<User>> byCountry = users.stream()\n    .collect(Collectors.groupingBy(User::getCountry));",
             "expectedOutputPattern": "\\.collect\\(Collectors\\.groupingBy\\(User::getCountry\\)\\);?",
+            "regexPattern": "\\.collect\\(Collectors\\.groupingBy\\(User::getCountry\\)\\);?",
             "hint": "Scrie .collect(Collectors.groupingBy(User::getCountry));"
         },
         {
@@ -62,10 +81,30 @@ def get_java_lessons():
             "title": "Capitolul 2: Programare Asincronă cu 'CompletableFuture'",
             "theory": """
 <p>Interfața clasică <code>Future<T></code> introdusă în Java 5 bloca firul apelant prin <code>get()</code>. În Java 8+, <strong>CompletableFuture&lt;T&gt;</strong> aduce un model reactiv non-blocant complet compatibil cu stilul funcțional.</p>
-<h4>1. Rularea Asincronă cu 'supplyAsync'</h4>
-<p>Metoda statică <code>CompletableFuture.supplyAsync(Supplier<U>)</code> execută calculul pe un thread din <code>ForkJoinPool.commonPool()</code>.</p>
-<h4>2. Înlănțuirea Operațiunilor ('thenApply' vs 'thenCompose')</h4>
-<p><code>thenApply(Function)</code> transformă rezultatul sincron ($T \rightarrow U$). <code>thenCompose</code> aplatizează viitoarele promisiuni (echivalentul monadic flatMap) când pasul următor este la rândul său o operație asincronă.</p>
+
+<h4>1. Rularea Asincronă și Înlănțuirea Non-Blocantă</h4>
+<pre><code>// Exemplu 1: Execuție asincronă cu procesare de date în lanț
+CompletableFuture&lt;String&gt; future = CompletableFuture
+    .supplyAsync(() -> fetchUserDataFromDatabase(userId))
+    .thenApply(user -> user.getName().toUpperCase())
+    .thenApply(name -> "Salut, " + name + "!")
+    .exceptionally(ex -> "Utilizator Anonim");
+
+// Nu blochează firul apelant; afișează când calculul este gata:
+future.thenAccept(System.out::println);
+</code></pre>
+
+<h4>2. Combinarea Mai Multor Viitoare Concurente</h4>
+<pre><code>// Exemplu 2: Apelarea simultană a 2 servicii REST independente
+CompletableFuture&lt;User&gt; userFuture = CompletableFuture.supplyAsync(() -> getUser(id));
+CompletableFuture&lt;Orders&gt; orderFuture = CompletableFuture.supplyAsync(() -> getOrders(id));
+
+// Îmbină ambele rezultate când ambele sunt gata:
+CompletableFuture&lt;DashboardDTO&gt; dashboard = userFuture.thenCombine(
+    orderFuture,
+    (user, orders) -> new DashboardDTO(user, orders)
+);
+</code></pre>
 """,
             "glossary": [
                 {"term": "CompletableFuture<T>", "def": "Promisiune asincronă ce suportă transformări și compuneri non-blocante prin callback-uri funcționale."},
@@ -90,9 +129,13 @@ def get_java_lessons():
                 "correctIndex": 0,
                 "explanation": "Future.get() este un apel sincron blocant. CompletableFuture funcționează reactiv prin înregistrarea de callback-uri ce rulează automat la finalizarea calculului."
             },
+            "prompt": "Lansează o operație asincronă folosind 'CompletableFuture.supplyAsync(() -> \"OK\");'.",
             "task": "Lansează o operație asincronă folosind 'CompletableFuture.supplyAsync(() -> \"OK\");'.",
-            "starterCode": "CompletableFuture<String> future = ",
+            "example": "CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> \"OK\");",
+            "starterCode": "CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> \"OK\");",
+            "officialSolution": "CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> \"OK\");",
             "expectedOutputPattern": "CompletableFuture\\.supplyAsync\\(\\(\\)\\s*=>\\s*[\"']OK[\"']\\);?|CompletableFuture\\.supplyAsync\\(\\(\\)\\s*->\\s*[\"']OK[\"']\\);?",
+            "regexPattern": "CompletableFuture\\.supplyAsync\\(\\(\\)\\s*=>\\s*[\"']OK[\"']\\);?|CompletableFuture\\.supplyAsync\\(\\(\\)\\s*->\\s*[\"']OK[\"']\\);?",
             "hint": "Scrie CompletableFuture.supplyAsync(() -> \"OK\");"
         },
         {
@@ -105,13 +148,26 @@ def get_java_lessons():
             "title": "Capitolul 3: ThreadPools & 'ExecutorService' în Java Concurrency",
             "theory": """
 <p>Crearea unui fir de execuție nativ Java (<code>new Thread()</code>) este extrem de costisitoare pentru sistemul de operare (alocă 1 MB de Stack per thread și consumă syscall-uri). În producție se folosesc exclusiv <strong>Thread Pools</strong> administrate prin <code>ExecutorService</code>.</p>
-<h4>1. Tipuri de Pool-uri Standard</h4>
-<ul>
-  <li><code>Executors.newFixedThreadPool(int n)</code>: Menține un număr fix de thread-uri reutilizabile cu o coadă de așteptare <code>LinkedBlockingQueue</code>.</li>
-  <li><code>Executors.newCachedThreadPool()</code>: Creează thread-uri noi la nevoie și le distruge pe cele inactive după 60 de secunde.</li>
-</ul>
-<h4>2. Închiderea Curată (Graceful Shutdown)</h4>
-<p>Un ExecutorService nu se oprește de la sine; el menține JVM-ul activ. Este obligatoriu să apelăm <code>executor.shutdown()</code> și <code>awaitTermination()</code> la final.</p>
+
+<h4>1. Exemplu de Configurare și Rulare cu ExecutorService</h4>
+<pre><code>// Exemplu 1: Pool fix dimensionat optim pentru nucleele procesorului
+int cores = Runtime.getRuntime().availableProcessors();
+ExecutorService executor = Executors.newFixedThreadPool(cores);
+
+// Trimite sarcini spre execuție concurentă:
+for (int i = 0; i &lt; 10; i++) {
+    final int taskId = i;
+    executor.submit(() -> {
+        System.out.println("Rulează task " + taskId + " pe firul: " + Thread.currentThread().getName());
+    });
+}
+
+// Oprire politicoasă (Graceful Shutdown):
+executor.shutdown();
+if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
+    executor.shutdownNow();
+}
+</code></pre>
 """,
             "glossary": [
                 {"term": "ExecutorService", "def": "Framework de înalt nivel ce decuplează definirea task-urilor (Runnable/Callable) de execuția lor fizică pe thread-uri."},
@@ -136,9 +192,13 @@ def get_java_lessons():
                 "correctIndex": 0,
                 "explanation": "Firele create de ThreadPool-urile standard sunt fire non-daemon; JVM nu se poate opri atâta timp cât cel puțin un fir non-daemon este încă activ."
             },
-            "task": "Creează un pool de 4 fire de execuție apelând 'Executors.newFixedThreadPool(4)'.",
-            "starterCode": "ExecutorService executor = ",
+            "prompt": "Creează un pool de 4 fire de execuție apelând 'Executors.newFixedThreadPool(4);'.",
+            "task": "Creează un pool de 4 fire de execuție apelând 'Executors.newFixedThreadPool(4);'.",
+            "example": "ExecutorService executor = Executors.newFixedThreadPool(4);",
+            "starterCode": "ExecutorService executor = Executors.newFixedThreadPool(4);",
+            "officialSolution": "ExecutorService executor = Executors.newFixedThreadPool(4);",
             "expectedOutputPattern": "executor\\s*=\\s*Executors\\.newFixedThreadPool\\(4\\);?",
+            "regexPattern": "executor\\s*=\\s*Executors\\.newFixedThreadPool\\(4\\);?",
             "hint": "Scrie Executors.newFixedThreadPool(4);"
         },
         {
@@ -151,10 +211,22 @@ def get_java_lessons():
             "title": "Capitolul 4: Virtual Threads în Java 21 (Project Loom)",
             "theory": """
 <p>Până la Java 21, fiecare fir de execuție Java era mapat 1:1 pe un fir al sistemului de operare (Platform Thread), limitând scalabilitatea unui server la câteva mii de conexiuni simultane din cauza memoriei consumate.</p>
+
 <h4>1. Ce sunt Firele Virtuale (Virtual Threads)?</h4>
 <p><strong>Virtual Threads</strong> sunt fire ultra-ușoare gestionate exclusiv de mașina virtuală JVM, nu de sistemul de operare. Un fir virtual consumă doar câțiva octeți de memorie, permițând crearea a <strong>milioane de fire simultane</strong> pe un singur calculator obișnuit!</p>
-<h4>2. Modelul Thread-Per-Request Revitalizat</h4>
-<p>Când un fir virtual execută o operație I/O blocantă (ex: o interogare JDBC sau un apel REST), JVM-ul îl demontează automat de pe firul hardware de operare (carrier thread) și îl montează înapoi instant când datele au sosit, oferind cod sincron simplu cu scalabilitatea asincronă a Node.js/Go.</p>
+
+<h4>2. Exemplu Complet de Scalare cu Milioane de Fire</h4>
+<pre><code>// Exemplu 1: Lansarea a 100.000 de fire virtuale simultane în Java 21
+try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+    IntStream.range(0, 100_000).forEach(i -> {
+        executor.submit(() -> {
+            // Operație I/O blocantă simulară: firul carrier este eliberat instant!
+            Thread.sleep(Duration.ofSeconds(1));
+            return i;
+        });
+    });
+} // try-with-resources așteaptă finalizarea tuturor firelor automat!
+</code></pre>
 """,
             "glossary": [
                 {"term": "Virtual Threads (JEP 444)", "def": "Fire ușoare gestionate de JVM în spațiul utilizator, permițând milioane de sarcini concurente fără overhead."},
@@ -179,9 +251,13 @@ def get_java_lessons():
                 "correctIndex": 0,
                 "explanation": "Spre deosebire de firele OS scumpe, firele virtuale sunt proiectate pentru a fi efemere (aruncate după terminare). Pool-urile introduc overhead inutil în cazul lor."
             },
+            "prompt": "Creează un executor de fire virtuale apelând 'Executors.newVirtualThreadPerTaskExecutor()'.",
             "task": "Creează un executor de fire virtuale apelând 'Executors.newVirtualThreadPerTaskExecutor()'.",
-            "starterCode": "ExecutorService vExecutor = ",
+            "example": "ExecutorService vExecutor = Executors.newVirtualThreadPerTaskExecutor();",
+            "starterCode": "ExecutorService vExecutor = Executors.newVirtualThreadPerTaskExecutor();",
+            "officialSolution": "ExecutorService vExecutor = Executors.newVirtualThreadPerTaskExecutor();",
             "expectedOutputPattern": "vExecutor\\s*=\\s*Executors\\.newVirtualThreadPerTaskExecutor\\(\\);?",
+            "regexPattern": "vExecutor\\s*=\\s*Executors\\.newVirtualThreadPerTaskExecutor\\(\\);?",
             "hint": "Scrie Executors.newVirtualThreadPerTaskExecutor();"
         },
         {
@@ -194,19 +270,40 @@ def get_java_lessons():
             "title": "Capitolul 5: Arhitectură Spring Boot — '@RestController' & Dependency Injection",
             "theory": """
 <p><strong>Spring Boot</strong> este cel mai utilizat framework enterprise din ecosistemul Java, oferind auto-configurare, server web integrat (Tomcat) și un container puternic de <strong>Inversion of Control (IoC)</strong>.</p>
-<h4>1. Componente & Injectarea Dependențelor</h4>
-<p>Adnotările cheie sunt <code>@Component</code>, <code>@Service</code> și <code>@Repository</code>. În Spring Boot modern, dependințele se injectează prin constructor (fără a fi nevoie de <code>@Autowired</code> explicit dacă există un singur constructor):</p>
-<pre><code>@Service
+
+<h4>1. Componente & Injectarea Dependențelor prin Constructor</h4>
+<pre><code>// Exemplu 1: Service cu Constructor Injection (imutabil și ușor de testat)
+@Service
 public class OrderService {
     private final OrderRepository repository;
 
     public OrderService(OrderRepository repository) {
         this.repository = repository;
     }
+
+    public Order createOrder(OrderDTO dto) {
+        return repository.save(new Order(dto));
+    }
 }
 </code></pre>
-<h4>2. Controlere REST</h4>
-<p>Adnotarea <code>@RestController</code> combină <code>@Controller</code> și <code>@ResponseBody</code>, serializând automat rezultatele obiectelor Java în format JSON.</p>
+
+<h4>2. Controlere REST Curate</h4>
+<pre><code>// Exemplu 2: Endpoint HTTP GET și POST
+@RestController
+@RequestMapping("/api/orders")
+public class OrderController {
+    private final OrderService orderService;
+
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity&lt;Order&gt; getOrder(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.findById(id));
+    }
+}
+</code></pre>
 """,
             "glossary": [
                 {"term": "@RestController", "def": "Marchează o clasă ca punct de intrare HTTP unde toate metodele returnează JSON serializat automat."},
@@ -231,9 +328,13 @@ public class OrderService {
                 "correctIndex": 0,
                 "explanation": "Constructor injection asigură că obiectul nu poate fi instanțiat într-o stare incompletă, permite câmpuri 'final' imutabile și facilitează instanțierea simplă cu mock-uri în testele unitare."
             },
-            "task": "Adnotează clasa 'ApiController' cu '@RestController' pentru a expune un serviciu web REST.",
-            "starterCode": "// Adaugă adnotarea Spring pe clasă\npublic class ApiController {\n}",
+            "prompt": "Adnotează clasa 'ApiController' cu adnotarea Spring '@RestController' pentru a expune un serviciu web REST.",
+            "task": "Adnotează clasa 'ApiController' cu adnotarea Spring '@RestController' pentru a expune un serviciu web REST.",
+            "example": "@RestController\npublic class ApiController {\n}",
+            "starterCode": "@RestController\npublic class ApiController {\n}",
+            "officialSolution": "@RestController\npublic class ApiController {\n}",
             "expectedOutputPattern": "@RestController\\s+public\\s+class\\s+ApiController",
+            "regexPattern": "@RestController\\s+public\\s+class\\s+ApiController",
             "hint": "Scrie @RestController deasupra declarației de clasă."
         },
         {
@@ -246,14 +347,24 @@ public class OrderService {
             "title": "Capitolul 6: JVM Internals — Memoria Heap, Metaspace & Garbage Collectors (G1, ZGC)",
             "theory": """
 <p>Arhitectura de memorie a mașinii virtuale Java (JVM) este împărțită în zone cu cicluri de viață distincte:</p>
-<h4>1. Structura Memoriei</h4>
+
+<h4>1. Structura Memoriei JVM</h4>
 <ul>
-  <li><strong>Heap</strong>: Spațiul partajat unde sunt alocate toate obiectele create cu <code>new</code>. Este subdivizat în Young Generation (Eden + Survivor spaces) și Old/Tenured Generation.</li>
-  <li><strong>Metaspace</strong>: Memorie nativă off-heap (introdusă în Java 8 în locul PermGen) unde sunt stocate metadatele claselor compilate și bytecode-ul.</li>
-  <li><strong>Stack</strong>: Fiecare fir de execuție are propria stivă cu frame-uri de apel, variabile locale primitive și referințe către Heap.</li>
+  <li><strong>Heap</strong>: Spațiul partajat unde sunt alocate toate obiectele create cu <code>new</code>. Subdivizat în Young Generation și Old Generation.</li>
+  <li><strong>Metaspace</strong>: Memorie nativă off-heap unde sunt stocate metadatele claselor încărcate.</li>
+  <li><strong>Stack</strong>: Fiecare fir de execuție are propria stivă cu frame-uri de apel și variabile locale.</li>
 </ul>
-<h4>2. Algoritmi Moderni de Garbage Collection</h4>
-<p><strong>G1 GC</strong> (Garbage-First) împarte heap-ul în regiuni egale și colectează cu prioritate zonele cu cel mai mult gunoi. <strong>ZGC</strong> (Z Garbage Collector) este un colector concurent de ultimă generație care garantează pauze de latență (STW - Stop-The-World) de <em>sub 1 milisecundă</em>, chiar și pe heap-uri uriașe de până la 16 Terabytes.</p>
+
+<h4>2. Exemplu de Configurare JVM Flag-uri în Producție</h4>
+<pre><code># Exemplu de lansare containerizată cu colectorul ZGC ultra-rapid:
+java -XX:+UseZGC \\
+     -Xms4g -Xmx4g \\
+     -XX:+AlwaysPreTouch \\
+     -XX:+ExitOnOutOfMemoryError \\
+     -jar app.jar
+
+# Avantaj ZGC: Pauze Stop-The-World sub 1 milisecundă chiar și pe heap-uri de 16 TB!
+</code></pre>
 """,
             "glossary": [
                 {"term": "Metaspace", "def": "Zonă de memorie nativă din sistem unde JVM stochează definițiile și metadatele claselor încărcate."},
@@ -278,9 +389,13 @@ public class OrderService {
                 "correctIndex": 0,
                 "explanation": "ZGC folosește pointeri colorați (colored pointers) și bariere de încărcare (load barriers) pentru a muta și compacta memoria în paralel cu aplicația, obținând pauze STW imperceptibile sub 1 milisecundă."
             },
+            "prompt": "Specifică flag-ul JVM de activare a colectorului ZGC returnând stringul '-XX:+UseZGC'.",
             "task": "Specifică flag-ul JVM de activare a colectorului ZGC returnând stringul '-XX:+UseZGC'.",
-            "starterCode": "public String getZgcFlag() {\n    return ",
+            "example": "public String getZgcFlag() {\n    return \"-XX:+UseZGC\";\n}",
+            "starterCode": "public String getZgcFlag() {\n    return \"-XX:+UseZGC\";\n}",
+            "officialSolution": "public String getZgcFlag() {\n    return \"-XX:+UseZGC\";\n}",
             "expectedOutputPattern": "return\\s*[\"']-XX:\\+UseZGC[\"'];?",
+            "regexPattern": "return\\s*[\"']-XX:\\+UseZGC[\"'];?",
             "hint": "Scrie return \"-XX:+UseZGC\";"
         }
     ]

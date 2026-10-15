@@ -214,9 +214,22 @@
     return html;
   }
 
-  function formatTheoryContent(theory) {
-    if (!theory) return "";
-    return formatRomanianTypography(parseMarkdownToHtml(theory));
+  function formatTheoryContent(theory, lesson) {
+    if (!theory && !lesson) return "";
+    let html = parseMarkdownToHtml(theory || "");
+
+    // Asigură că fiecare capitol de studiu conține un bloc vizual de cod practic ilustrativ
+    if (lesson && !html.includes("<pre>") && (lesson.example || lesson.starterCode)) {
+      const code = (lesson.example || lesson.starterCode || "").trim();
+      if (code) {
+        const isLang = lesson.track && (lesson.track.includes("Franceză") || lesson.track.includes("Spaniolă") || lesson.track.includes("Engleză"));
+        const titleLabel = isLang ? "Exemple Practice de Dialog & Expresii:" : "Exemplu Practic de Cod:";
+        const escaped = code.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        html += `\n<h4>${titleLabel}</h4>\n<pre><code>${escaped}</code></pre>`;
+      }
+    }
+
+    return formatRomanianTypography(html);
   }
 
   function toLocalDateKey(dateObj) {
@@ -1003,7 +1016,7 @@
     els.lessonStatusBadge.textContent = mStatus.label;
 
     els.lessonTitle.textContent = formatRomanianTypography(lesson.title);
-    els.lessonTheory.innerHTML = formatTheoryContent(lesson.theory);
+    els.lessonTheory.innerHTML = formatTheoryContent(lesson.theory, lesson);
 
     // Dicționar & Tabel de Concepte / Vocabular
     const glossaryItems = lesson.glossary || getMatchingPairsForLesson(lesson).map(p => ({ term: p.left, def: p.right }));

@@ -36,15 +36,19 @@ def get_languages_lessons():
             "title": "Capitolul 1: Ghid de Călătorie & Întrebarea Direcției (Asking for Directions)",
             "theory": """
 <p>Când călătorești într-o țară vorbitoare de engleză, orientarea în oraș necesită structuri de politețe și expresii de direcție clare.</p>
+
 <h4>1. Întrebări de Politețe</h4>
 <p><em>Excuse me, could you tell me how to get to the train station?</em> sau <em>Where is the nearest pharmacy?</em>.</p>
-<h4>2. Expresii de Direcție</h4>
-<ul>
-  <li><code>Turn left / Turn right</code> — Fă la stânga / la dreapta.</li>
-  <li><code>Go straight ahead</code> — Mergi drept înainte.</li>
-  <li><code>Across from / Opposite</code> — Vizavi de.</li>
-  <li><code>Next to</code> — Lângă.</li>
-</ul>
+
+<h4>2. Expresii de Direcție și Model de Dialog</h4>
+<pre><code>-- Model de Dialog: Asking for Directions
+Tourist: "Excuse me, where is the nearest hospital?"
+Local:   "Go straight ahead for two blocks, then turn left at the traffic light."
+Tourist: "Is it far from here?"
+Local:   "No, it is right next to the central park, across from the pharmacy."
+Tourist: "Thank you so much for your help!"
+Local:   "You're welcome. Have a safe day!"
+</code></pre>
 """,
             "glossary": [
                 {"term": "Go straight ahead", "def": "Mergi drept înainte fără să virezi."},
@@ -69,9 +73,13 @@ def get_languages_lessons():
                 "correctIndex": 0,
                 "explanation": "'Go straight ahead' este expresia standard în limba engleză pentru mersul drept înainte fără viraje."
             },
+            "prompt": "Întreabă politicos unde se află cel mai apropiat spital: 'Excuse me, where is the nearest hospital?'.",
             "task": "Întreabă politicos unde se află cel mai apropiat spital: 'Excuse me, where is the nearest hospital?'.",
-            "starterCode": "// Scrie întrebarea de direcție\n",
+            "example": "Excuse me, where is the nearest hospital?",
+            "starterCode": "Excuse me, where is the nearest hospital?",
+            "officialSolution": "Excuse me, where is the nearest hospital?",
             "expectedOutputPattern": "Excuse\\s+me,\\s*where\\s+is\\s+the\\s+nearest\\s+hospital\\??",
+            "regexPattern": "Excuse\\s+me,\\s*where\\s+is\\s+the\\s+nearest\\s+hospital\\??",
             "hint": "Scrie Excuse me, where is the nearest hospital?"
         },
         {
@@ -83,14 +91,24 @@ def get_languages_lessons():
             "xp": 30,
             "title": "Capitolul 2: Substantive Numărabile vs Nenumărabile (Countable vs Uncountable)",
             "theory": """
-<p>În engleză, substantivele <strong>numărabile (Countable)</strong> pot avea formă de plural și pot fi numărate individual (<em>books</em>, <em>apples</em>), pe când cele <strong>nenumărabile (Uncountable)</strong> reprezintă mase, lichide sau concepte abstracte (<em>water</em>, <em>information</em>, <em>advice</em>, <em>money</em>) și au <strong>doar formă de singular</strong>.</p>
+<p>În engleză, substantivele <strong>numărabile (Countable)</strong> pot avea plural (<em>books</em>, <em>apples</em>), pe când cele <strong>nenumărabile (Uncountable)</strong> reprezintă mase, lichide sau concepte abstracte (<em>water</em>, <em>information</em>, <em>advice</em>, <em>money</em>) și au <strong>doar formă de singular</strong>.</p>
+
 <h4>1. Many vs Much</h4>
 <ul>
-  <li><code>Many</code> se folosește cu substantive numărabile la plural: <em>How <strong>many</strong> apples do you have?</em></li>
-  <li><code>Much</code> se folosește cu substantive nenumărabile (în special în întrebări și negații): <em>How <strong>much</strong> water is left?</em>, <em>I don't have <strong>much</strong> time</em>.</li>
+  <li><code>Many</code> se folosește cu numărabile la plural: <em>How many apples?</em></li>
+  <li><code>Much</code> se folosește cu nenumărabile: <em>How much water?</em>, <em>How much does this cost?</em></li>
 </ul>
-<h4>2. A lot of</h4>
-<p>Se poate folosi atât cu cele numărabile, cât și cu cele nenumărabile în propoziții afirmative: <em>a lot of money</em>, <em>a lot of friends</em>.</p>
+
+<h4>2. Exemple Practice de Utilizare</h4>
+<pre><code>-- Countable (numărabile cu plural):
+There are many cars in the parking lot.
+We need three apples and two lemons.
+
+-- Uncountable (fără plural):
+How much water do you drink daily?
+He gave me some useful advice (NU: many advices).
+How much does this jacket cost? It costs $50.
+</code></pre>
 """,
             "glossary": [
                 {"term": "Countable Nouns", "def": "Substantive ce pot fi numărate cu cifre și au formă de plural (car -> cars)."},
@@ -115,9 +133,13 @@ def get_languages_lessons():
                 "correctIndex": 0,
                 "explanation": "În limba engleză, 'advice' și 'information' sunt strict nenumărabile (nu au plural și nu se numără direct; spunem 'pieces of advice' sau 'some advice')."
             },
+            "prompt": "Întreabă cât costă folosind 'How much does this cost?'.",
             "task": "Întreabă cât costă folosind 'How much does this cost?'.",
-            "starterCode": "// Întreabă prețul\n",
+            "example": "How much does this cost?",
+            "starterCode": "How much does this cost?",
+            "officialSolution": "How much does this cost?",
             "expectedOutputPattern": "How\\s+much\\s+does\\s+this\\s+cost\\??",
+            "regexPattern": "How\\s+much\\s+does\\s+this\\s+cost\\??",
             "hint": "Scrie How much does this cost?"
         }
     ]
@@ -133,13 +155,22 @@ def get_languages_lessons():
             "title": "Capitolul 1: Phrasal Verbs Esențiale în Context Profesional",
             "theory": """
 <p>Un <strong>Phrasal Verb</strong> combină un verb cu o particulă prepozițională sau adverbială, creând un sens complet nou și adesea imprevizibil față de verbul de bază.</p>
+
 <h4>1. Verbe Comune la Birou</h4>
 <ul>
   <li><code>Bring up</code> — a aduce în discuție un subiect: <em>She brought up the budget during the meeting</em>.</li>
-  <li><code>Call off</code> — a anula definitiv un eveniment: <em>They called off the conference due to bad weather</em>.</li>
-  <li><code>Put off</code> — a amâna pentru o dată ulterioară: <em>Let's put off the decision until next Monday</em>.</li>
+  <li><code>Call off</code> — a anula definitiv un eveniment: <em>They called off the conference</em>.</li>
+  <li><code>Put off</code> — a amâna: <em>Let's put off the decision until next Monday</em>.</li>
   <li><code>Carry out</code> — a executa, a duce la bun sfârșit: <em>We carried out a full security audit</em>.</li>
 </ul>
+
+<h4>2. Exemple Practice în Propoziții</h4>
+<pre><code>-- Exemple profesionale:
+1. "The manager decided to call off Friday's meeting due to the holiday."
+2. "Don't put off until tomorrow what you can do today."
+3. "We must carry out a thorough investigation before reaching a conclusion."
+4. "He brought up an important security vulnerability in the standup."
+</code></pre>
 """,
             "glossary": [
                 {"term": "Phrasal Verb", "def": "Combinație verb + prepoziție ce generează o semnificație idiomatică nouă."},
@@ -164,9 +195,13 @@ def get_languages_lessons():
                 "correctIndex": 0,
                 "explanation": "'Put off' înseamnă a amâna (postpone) pentru o dată ulterioară, spre deosebire de 'call off' care înseamnă a anula definitiv."
             },
+            "prompt": "Completează fraza profesională 'We must carry out a thorough investigation.'.",
             "task": "Completează fraza profesională 'We must carry out a thorough investigation.'.",
-            "starterCode": "We must ",
+            "example": "We must carry out a thorough investigation.",
+            "starterCode": "We must carry out a thorough investigation.",
+            "officialSolution": "We must carry out a thorough investigation.",
             "expectedOutputPattern": "We\\s+must\\s+carry\\s+out\\s+a\\s+thorough\\s+investigation\\.?",
+            "regexPattern": "We\\s+must\\s+carry\\s+out\\s+a\\s+thorough\\s+investigation\\.?",
             "hint": "Scrie We must carry out a thorough investigation."
         },
         {
@@ -179,12 +214,24 @@ def get_languages_lessons():
             "title": "Capitolul 2: Modale de Deducție în Trecut (Must have, Can't have, Might have)",
             "theory": """
 <p>Pentru a face deducții logice despre un eveniment care s-a petrecut în trecut pe baza dovezilor prezente, folosim verbe modale urmate de <strong>have + Past Participle</strong>.</p>
-<h4>1. Certitudine Pozitivă: MUST HAVE</h4>
-<p>Când ești aproape 100% convins că ceva s-a întâmplat: <em>The streets are wet; it <strong>must have rained</strong> last night</em>.</p>
-<h4>2. Imposibilitate Logică: CAN'T HAVE (sau Couldn't have)</h4>
-<p>Când ești convins că ceva a fost imposibil: <em>He <strong>can't have stolen</strong> the car; he was with me all night</em>.</p>
-<h4>3. Posibilitate Incertă: MIGHT / MAY HAVE</h4>
-<p>Când ceva este posibil, dar nesigur: <em>She hasn't arrived; she <strong>might have missed</strong> the bus</em>.</p>
+
+<h4>1. Cele Trei Nivele de Certitudine</h4>
+<ul>
+  <li><code>Must have + V3</code> — Certitudine pozitivă: <em>The streets are wet; it must have rained last night</em>.</li>
+  <li><code>Can't have + V3</code> — Imposibilitate logică: <em>He can't have stolen the laptop; he wasn't at the office</em>.</li>
+  <li><code>Might have + V3</code> — Posibilitate incertă: <em>She might have missed the bus</em>.</li>
+</ul>
+
+<h4>2. Exemple Practice de Deducție</h4>
+<pre><code>-- Deducții în context:
+Situation: Sarah's phone is switched off and she hasn't replied.
+Deduction 1: "Her battery must have died." (Certitudine ridicată)
+Deduction 2: "She might have boarded her flight." (Posibilitate)
+Deduction 3: "She can't have forgotten our anniversary!" (Imposibil)
+
+Example Sentence:
+"She must have received my email because she already completed the task."
+</code></pre>
 """,
             "glossary": [
                 {"term": "Modal of deduction", "def": "Verb modal utilizat pentru a estima probabilitatea sau certitudinea unui eveniment."},
@@ -209,9 +256,13 @@ def get_languages_lessons():
                 "correctIndex": 0,
                 "explanation": "'Must have + past participle' exprimă concluzia logică fermă că o acțiune s-a produs în trecut pe baza indiciilor evidente din prezent."
             },
+            "prompt": "Scrie propoziția de deducție 'She must have received my email.' (Cu siguranță a primit e-mailul meu).",
             "task": "Scrie propoziția de deducție 'She must have received my email.' (Cu siguranță a primit e-mailul meu).",
-            "starterCode": "// Scrie deducția\n",
+            "example": "She must have received my email.",
+            "starterCode": "She must have received my email.",
+            "officialSolution": "She must have received my email.",
             "expectedOutputPattern": "She\\s+must\\s+have\\s+received\\s+my\\s+email\\.?",
+            "regexPattern": "She\\s+must\\s+have\\s+received\\s+my\\s+email\\.?",
             "hint": "Scrie She must have received my email."
         }
     ]
@@ -226,13 +277,24 @@ def get_languages_lessons():
             "xp": 55,
             "title": "Capitolul 1: Propoziții Scindate (Cleft Sentences) pentru Accentuare",
             "theory": """
-<p><strong>Cleft Sentences</strong> sunt structuri gramaticale complexe utilizate pentru a pune accentul pe un element precis al propoziției (subiectul, cauza, momentul sau acțiunea), transformând o propoziție simplă într-una cu două clauze.</p>
-<h4>1. It-Clefts</h4>
-<p>Formula: <code>It is / was + elementul accentuat + that / who</code>.</p>
-<p><em>Dan wrote the code</em> $\rightarrow$ <em><strong>It was Dan who</strong> wrote the code</em> (Dan a fost cel care a scris codul, nu altcineva!).</p>
-<h4>2. Wh-Clefts (Pseudo-Clefts)</h4>
-<p>Formula: <code>What + clauză + is / was + elementul de impact</code>.</p>
-<p><em>I need a quiet place</em> $\rightarrow$ <em><strong>What I really need is</strong> a quiet place</em>.</p>
+<p><strong>Cleft Sentences</strong> sunt structuri gramaticale complexe utilizate pentru a pune accentul pe un element precis al propoziției (subiectul, cauza, momentul sau acțiunea).</p>
+
+<h4>1. Structuri Principale</h4>
+<ul>
+  <li><code>It-cleft</code>: <em>It was Dan who fixed the critical production bug.</em></li>
+  <li><code>Wh-cleft</code>: <em>What we really need is more time.</em></li>
+</ul>
+
+<h4>2. Exemple Comparative (Standard vs Cleft)</h4>
+<pre><code>-- Standard sentence:
+"We need comprehensive user feedback to make a sound decision."
+
+-- Wh-Cleft (Emphatic):
+"What we really need is comprehensive user feedback."
+
+-- It-Cleft (Focus on responsible entity):
+"It was the design team that spearheaded the entire rebranding effort."
+</code></pre>
 """,
             "glossary": [
                 {"term": "Cleft Sentence", "def": "Propoziție despicată sintactic pentru a focaliza atenția cititorului asupra unui detaliu crucial."},
@@ -257,9 +319,13 @@ def get_languages_lessons():
                 "correctIndex": 0,
                 "explanation": "'What increased our sales was the marketing campaign' folosește corect clauza 'What...' pentru a accentua campania de marketing ca factor determinant."
             },
+            "prompt": "Scrie propoziția de accentuare 'What we really need is more time.' folosind un Wh-cleft.",
             "task": "Scrie propoziția de accentuare 'What we really need is more time.' folosind un Wh-cleft.",
-            "starterCode": "What we really ",
+            "example": "What we really need is more time.",
+            "starterCode": "What we really need is more time.",
+            "officialSolution": "What we really need is more time.",
             "expectedOutputPattern": "What\\s+we\\s+really\\s+need\\s+is\\s+more\\s+time\\.?",
+            "regexPattern": "What\\s+we\\s+really\\s+need\\s+is\\s+more\\s+time\\.?",
             "hint": "Scrie What we really need is more time."
         },
         {
@@ -272,14 +338,21 @@ def get_languages_lessons():
             "title": "Capitolul 2: Tehnici Avansate de Argumentare Diplomatică (Hedging & Nuance)",
             "theory": """
 <p>În comunicarea executivă de nivel C2, dezacordul direct (<em>You are wrong</em>) este considerat neprofesionist. Vorbitorii nativi folosesc tehnica <strong>Hedging</strong> — atenuarea afirmațiilor categorice prin nuanțe subtile și formulări ipotetice.</p>
-<h4>1. Verbe și Adverbe de Atenuare</h4>
-<p>În loc de <em>This approach will fail</em>, se folosește: <em>This approach <strong>would seem to</strong> have significant drawbacks</em> sau <em>It is <strong>arguably</strong> not the most viable solution</em>.</p>
-<h4>2. Dezacordul Diplomatic</h4>
+
+<h4>1. Formule Cheie de Hedging</h4>
 <ul>
-  <li><em>With all due respect, I am not entirely convinced that...</em></li>
-  <li><em>I see your point, however, have we considered the potential repercussions?</em></li>
-  <li><em>To a certain extent, that may be true, but...</em></li>
+  <li><em>With all due respect, I must disagree with this assessment.</em></li>
+  <li><em>This approach would seem to have significant drawbacks.</em></li>
+  <li><em>It is arguably not the most viable long-term solution.</em></li>
 </ul>
+
+<h4>2. Exemple Practice de Dezacord Diplomatic</h4>
+<pre><code>-- Blunt statement (Unprofessional):
+"Your proposal makes no sense and will lose us money."
+
+-- Diplomatic Hedging (Executive C2):
+"With all due respect, I must disagree with this assessment. While I appreciate the creative direction, the financial projections would appear somewhat optimistic under current market conditions."
+</code></pre>
 """,
             "glossary": [
                 {"term": "Hedging", "def": "Strategie discursivă de reducere a caracterului absolut al afirmațiilor pentru diplomație și rigoare academică."},
@@ -304,9 +377,13 @@ def get_languages_lessons():
                 "correctIndex": 0,
                 "explanation": "Formularea folosește modale prudente (might be) și vocabular academic nuanțat (preliminary, definitive conclusions), reprezentând etalonul de stil diplomatic C2."
             },
+            "prompt": "Scrie formula diplomatică de dezacord 'With all due respect, I must disagree with this assessment.'.",
             "task": "Scrie formula diplomatică de dezacord 'With all due respect, I must disagree with this assessment.'.",
-            "starterCode": "// Scrie fraza diplomatică\n",
+            "example": "With all due respect, I must disagree with this assessment.",
+            "starterCode": "With all due respect, I must disagree with this assessment.",
+            "officialSolution": "With all due respect, I must disagree with this assessment.",
             "expectedOutputPattern": "With\\s+all\\s+due\\s+respect,\\s*I\\s+must\\s+disagree\\s+with\\s+this\\s+assessment\\.?",
+            "regexPattern": "With\\s+all\\s+due\\s+respect,\\s*I\\s+must\\s+disagree\\s+with\\s+this\\s+assessment\\.?",
             "hint": "Scrie With all due respect, I must disagree with this assessment."
         }
     ]
@@ -321,16 +398,18 @@ def get_languages_lessons():
             "xp": 30,
             "title": "Capitolul 1: Arborele Genealogic & Relațiile de Familie (Family & Relatives)",
             "theory": """
-<p>Descrierea familiei este unul dintre primele subiecte de conversație. În limba engleză distingem clar între <strong>Immediate Family</strong> (familia restrânsă: părinți, copii, frați) și <strong>Extended Family</strong> (rudele extinse: veri, unchi, mătuși, bunici).</p>
-<h4>1. Rudele prin Alianță (In-laws)</h4>
-<p>Toate rudele dobândite prin căsătorie primesc sufixul <code>-in-law</code>:</p>
-<ul>
-  <li><code>Mother-in-law / Father-in-law</code> — Soacra / Socrul.</li>
-  <li><code>Brother-in-law / Sister-in-law</code> — Cumnatul / Cumnata.</li>
-  <li><code>Son-in-law / Daughter-in-law</code> — Ginerele / Nora.</li>
-</ul>
-<h4>2. Frați și Surori</h4>
-<p>Substantivul colectiv neutru pentru frați și surori este <strong>siblings</strong> (<em>I have two siblings: one brother and one sister</em>).</p>
+<p>Descrierea familiei este unul dintre primele subiecte de conversație. În limba engleză distingem clar între <strong>Immediate Family</strong> (familia restrânsă) și <strong>Extended Family</strong> (rudele extinse).</p>
+
+<h4>1. Rudele prin Alianță (In-laws) și Frați (Siblings)</h4>
+<p>Toate rudele prin căsătorie primesc <code>-in-law</code>: <em>mother-in-law</em> (soacra), <em>brother-in-law</em> (cumnatul). Termenul neutru pentru frați și surori este <strong>siblings</strong>.</p>
+
+<h4>2. Exemple de Propoziții Despre Familie</h4>
+<pre><code>-- Exemple practice:
+1. "I have three siblings and a large extended family."
+2. "My brother-in-law lives in Toronto with his two children."
+3. "Are you an only child, or do you have any siblings?"
+4. "We visit our grandparents every Sunday afternoon."
+</code></pre>
 """,
             "glossary": [
                 {"term": "Immediate Family", "def": "Familia de bază compusă din părinți, soț/soție și copii."},
@@ -355,9 +434,13 @@ def get_languages_lessons():
                 "correctIndex": 0,
                 "explanation": "Rudele dobândite prin căsătorie primesc terminația '-in-law'. Fratele partenerului este 'brother-in-law'."
             },
+            "prompt": "Scrie propoziția 'I have three siblings and a large extended family.'.",
             "task": "Scrie propoziția 'I have three siblings and a large extended family.'.",
-            "starterCode": "I have three ",
+            "example": "I have three siblings and a large extended family.",
+            "starterCode": "I have three siblings and a large extended family.",
+            "officialSolution": "I have three siblings and a large extended family.",
             "expectedOutputPattern": "I\\s+have\\s+three\\s+siblings\\s+and\\s+a\\s+large\\s+extended\\s+family\\.?",
+            "regexPattern": "I\\s+have\\s+three\\s+siblings\\s+and\\s+a\\s+large\\s+extended\\s+family\\.?",
             "hint": "Scrie I have three siblings and a large extended family."
         },
         {
@@ -369,18 +452,15 @@ def get_languages_lessons():
             "xp": 35,
             "title": "Capitolul 2: Arta Culinară, Bucătărie & Gastronomie (Cooking & Recipes)",
             "theory": """
-<p>Gătitul implică verbe specifice de preparare termică și mecanică ce diferențiază clar tehnicile culinare:</p>
-<h4>1. Verbe de Bază în Bucătărie</h4>
-<ul>
-  <li><code>Chop</code> — a toca mărunt (legume, ierburi).</li>
-  <li><code>Slice</code> — a tăia în felii (pâine, roșii).</li>
-  <li><code>Grate</code> — a da pe răzătoare (brânză, morcovi).</li>
-  <li><code>Stir</code> — a amesteca continuu cu o lingură într-un lichid.</li>
-  <li><code>Boil</code> — a fierbe în clocot (apă la 100°C).</li>
-  <li><code>Simmer</code> — a fierbe la foc mic, domol.</li>
-  <li><code>Bake</code> — a coace la cuptor (pâine, prăjituri).</li>
-  <li><code>Roast</code> — a rumeni la cuptor la temperatură înaltă (carne, cartofi).</li>
-</ul>
+<p>Gătitul implică verbe specifice de preparare termică și mecanică: <code>Chop</code> (a toca mărunt), <code>Slice</code> (a felia), <code>Grate</code> (a da pe răzătoare), <code>Boil</code> (a fierbe în clocot) și <code>Simmer</code> (a fierbe domol la foc mic).</p>
+
+<h4>1. Exemplu de Rețetă și Instrucțiuni Culinare</h4>
+<pre><code>-- Cooking Steps:
+1. "Chop the vegetables and simmer the soup for 15 minutes."
+2. "Slice the bread and toast it lightly."
+3. "Grate some fresh parmesan cheese over the pasta."
+4. "Bake the cake in the preheated oven at 180 degrees Celsius."
+</code></pre>
 """,
             "glossary": [
                 {"term": "Chop", "def": "A tăia ingredientele în bucăți mici cu un cuțit."},
@@ -405,9 +485,13 @@ def get_languages_lessons():
                 "correctIndex": 0,
                 "explanation": "'Bake' este verbul specific pentru coacerea produselor de panificație și a dulciurilor în cuptor."
             },
+            "prompt": "Scrie instrucțiunea culinară 'Chop the vegetables and simmer the soup for 15 minutes.'.",
             "task": "Scrie instrucțiunea culinară 'Chop the vegetables and simmer the soup for 15 minutes.'.",
-            "starterCode": "// Scrie instrucțiunea\n",
+            "example": "Chop the vegetables and simmer the soup for 15 minutes.",
+            "starterCode": "Chop the vegetables and simmer the soup for 15 minutes.",
+            "officialSolution": "Chop the vegetables and simmer the soup for 15 minutes.",
             "expectedOutputPattern": "Chop\\s+the\\s+vegetables\\s+and\\s+simmer\\s+the\\s+soup\\s+for\\s+15\\s+minutes\\.?",
+            "regexPattern": "Chop\\s+the\\s+vegetables\\s+and\\s+simmer\\s+the\\s+soup\\s+for\\s+15\\s+minutes\\.?",
             "hint": "Scrie Chop the vegetables and simmer the soup for 15 minutes."
         },
         {
@@ -419,15 +503,15 @@ def get_languages_lessons():
             "xp": 40,
             "title": "Capitolul 3: Cinematografie & Recenzii de Filme (Cinema & Movie Reviews)",
             "theory": """
-<p>Discuțiile despre filme depășesc simplul „It was good”. Engleza intermediară oferă un vocabular precis pentru a analiza scenariul, jocul actoricesc și regia.</p>
-<h4>1. Vocabular Cinematografic</h4>
-<ul>
-  <li><code>Plot twist</code> — o întorsătură neașteptată de situație în poveste.</li>
-  <li><code>Blockbuster</code> — film comercial cu buget uriaș și succes masiv de casă.</li>
-  <li><code>Soundtrack (OST)</code> — coloana sonoră originală compusă pentru film.</li>
-  <li><code>Binge-watch</code> — a viziona mai multe episoade sau un sezon întreg dintr-un serial fără oprire.</li>
-  <li><code>Lead actor / actress</code> — actorul / actrița în rolul principal.</li>
-</ul>
+<p>Discuțiile despre cinematografie folosesc termeni consacrați: <code>Plot twist</code> (răsturnare de situație), <code>Blockbuster</code> (film de succes masiv), <code>Soundtrack</code> (coloana sonoră) și <code>Binge-watch</code> (vizionare maraton de episoade consecutive).</p>
+
+<h4>1. Exemple Practice de Recenzii</h4>
+<pre><code>-- Movie Review Examples:
+1. "The movie had an amazing plot twist at the end."
+2. "I binge-watched the entire miniseries in a single weekend."
+3. "The lead actress delivered an Oscar-worthy performance."
+4. "The soundtrack composed by Hans Zimmer elevated every emotional scene."
+</code></pre>
 """,
             "glossary": [
                 {"term": "Plot twist", "def": "Schimbare bruscă și surprinzătoare în evoluția intrigii narative."},
@@ -452,9 +536,13 @@ def get_languages_lessons():
                 "correctIndex": 0,
                 "explanation": "'Binge-watch' descrie vizionarea maraton a mai multor episoade dintr-un serial într-o perioadă scurtă de timp."
             },
+            "prompt": "Scrie recenzia scurtă 'The movie had an amazing plot twist at the end.'.",
             "task": "Scrie recenzia scurtă 'The movie had an amazing plot twist at the end.'.",
-            "starterCode": "The movie had an ",
+            "example": "The movie had an amazing plot twist at the end.",
+            "starterCode": "The movie had an amazing plot twist at the end.",
+            "officialSolution": "The movie had an amazing plot twist at the end.",
             "expectedOutputPattern": "The\\s+movie\\s+had\\s+an\\s+amazing\\s+plot\\s+twist\\s+at\\s+the\\s+end\\.?",
+            "regexPattern": "The\\s+movie\\s+had\\s+an\\s+amazing\\s+plot\\s+twist\\s+at\\s+the\\s+end\\.?",
             "hint": "Scrie The movie had an amazing plot twist at the end."
         },
         {
@@ -466,14 +554,15 @@ def get_languages_lessons():
             "xp": 50,
             "title": "Capitolul 4: Călătorii de Aventură & Imersiune Culturală (Travel & Adventure)",
             "theory": """
-<p>Călătoriile moderne pun accent pe <strong>turismul sustenabil</strong> și pe explorarea locurilor autentice, dincolo de traseele turistice aglomerate.</p>
-<h4>1. Colocații Idiomatice de Călătorie</h4>
-<ul>
-  <li><code>Off the beaten track</code> — departe de traseele turistice convenționale, într-o zonă izolată și autentică.</li>
-  <li><code>Travel on a shoestring</code> — a călători cu un buget extrem de redus (economic).</li>
-  <li><code>Wanderlust</code> — dorința puternică și irezistibilă de a călători și de a explora lumea.</li>
-  <li><code>Cultural immersion</code> — integrarea completă în tradițiile, mâncarea și viața comunității locale.</li>
-</ul>
+<p>Călătoriile moderne pun accent pe <strong>turismul autentic</strong>: <code>Off the beaten track</code> (dincolo de traseele turistice clasice), <code>Wanderlust</code> (pasiunea puternică pentru explorare) și <code>Cultural immersion</code> (imersiune în viața locală).</p>
+
+<h4>1. Exemple Practice de Conversație despre Călătorii</h4>
+<pre><code>-- Travel Expressions in Context:
+1. "We prefer traveling off the beaten track to experience authentic culture."
+2. "Her wanderlust led her to backpack across Southeast Asia for six months."
+3. "Traveling on a shoestring taught him how to budget and appreciate local hospitality."
+4. "Living with a host family offered deep cultural immersion."
+</code></pre>
 """,
             "glossary": [
                 {"term": "Off the beaten track", "def": "Locații neatinse de turismul de masă; destinații autentice și liniștite."},
@@ -498,9 +587,13 @@ def get_languages_lessons():
                 "correctIndex": 0,
                 "explanation": "'Off the beaten track' se referă la destinații izolate, puțin circulate de turiștii obișnuiți, care oferă experiențe locale autentice."
             },
+            "prompt": "Scrie propoziția de călătorie 'We prefer traveling off the beaten track to experience authentic culture.'.",
             "task": "Scrie propoziția de călătorie 'We prefer traveling off the beaten track to experience authentic culture.'.",
-            "starterCode": "We prefer traveling ",
+            "example": "We prefer traveling off the beaten track to experience authentic culture.",
+            "starterCode": "We prefer traveling off the beaten track to experience authentic culture.",
+            "officialSolution": "We prefer traveling off the beaten track to experience authentic culture.",
             "expectedOutputPattern": "We\\s+prefer\\s+traveling\\s+off\\s+the\\s+beaten\\s+track\\s+to\\s+experience\\s+authentic\\s+culture\\.?",
+            "regexPattern": "We\\s+prefer\\s+traveling\\s+off\\s+the\\s+beaten\\s+track\\s+to\\s+experience\\s+authentic\\s+culture\\.?",
             "hint": "Scrie We prefer traveling off the beaten track to experience authentic culture."
         }
     ]

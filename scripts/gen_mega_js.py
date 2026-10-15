@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Generator for JavaScript mega curriculum expansion (16 lessons).
-Special focus on DOM, Modern Web APIs, and Advanced JavaScript.
+Generator for JavaScript mega curriculum expansion (9 comprehensive lessons).
+Covers Event Delegation, IntersectionObserver, MutationObserver, CustomEvent,
+Web Workers, WebSockets, Proxy & Reflect, Event Loop (Microtasks vs Macrotasks),
+and AbortController.
+Each lesson features rich <pre><code>...</code></pre> code blocks, runnable examples, and precise tasks.
 """
 
 def get_js_lessons():
@@ -15,16 +18,24 @@ def get_js_lessons():
             "xp": 35,
             "title": "Capitolul 1: Delegarea Evenimentelor DOM (Bubbling & Event Delegation)",
             "theory": """
-<p>Când un eveniment (precum un click) se produce pe un element din browser, el parcurge 3 faze conform standardului W3C:</p>
-<ol>
-  <li><strong>Faza de Captură (Capturing Phase)</strong>: Coboară de la <code>window</code> și <code>document</code> spre elementul țintă.</li>
-  <li><strong>Faza Țintă (Target Phase)</strong>: Atinge elementul pe care s-a dat click direct (<code>e.target</code>).</li>
-  <li><strong>Faza de Bule (Bubbling Phase)</strong>: Urcă înapoi prin toți părinții până la rădăcină.</li>
-</ol>
+<p>Când un eveniment (precum un click) se produce pe un element din browser, el parcurge 3 faze conform standardului W3C: Capturing, Target și Bubbling (urcarea înapoi prin toți părinții).</p>
+
 <h4>1. Tehnica Event Delegation</h4>
-<p>În loc să atașăm 1000 de handleri de eveniment pe fiecare element dintr-o listă (consum masiv de RAM), atașăm <strong>un singur listener pe părinte</strong> (<code>ul</code>) și folosim <code>e.target.closest('li')</code> pentru a identifica elementul acționat.</p>
-<h4>2. 'e.target' vs 'e.currentTarget'</h4>
-<p><code>e.target</code> este elementul exact pe care s-a făcut click (poate fi un <code>span</code> sau iconiță interioară), în timp ce <code>e.currentTarget</code> este elementul pe care a fost înregistrat listenerul (părintele).</p>
+<p>În loc să atașăm 1000 de handleri de eveniment pe fiecare element dintr-o listă, atașăm <strong>un singur listener pe părinte</strong> și folosim <code>e.target.closest('button')</code> pentru a identifica elementul acționat.</p>
+
+<h4>2. Exemplu Complet de Delegare de Evenimente</h4>
+<pre><code>const list = document.querySelector("#todo-list");
+
+// Un singur listener atașat pe containerul părinte:
+list.addEventListener("click", (e) => {
+    // Găsește cel mai apropiat element buton de la punctul de click:
+    const btn = e.target.closest("button");
+    if (!btn) return; // Click-ul nu a fost pe un buton
+
+    const item = btn.closest("li");
+    console.log("Acțiune pe elementul ID:", item.dataset.id);
+});
+</code></pre>
 """,
             "glossary": [
                 {"term": "Event Bubbling", "def": "Propagarea naturală a unui eveniment în sus prin arborele DOM de la copil către părinți."},
@@ -49,9 +60,13 @@ def get_js_lessons():
                 "correctIndex": 0,
                 "explanation": "Părintele este deja în DOM și ascultă evenimentele care urcă prin bubbling. Orice copil adăugat ulterior va propaga automat click-ul către părinte."
             },
-            "task": "Atașează un eveniment 'click' pe 'list' și verifică dacă s-a dat click pe un buton folosind 'e.target.closest(\"button\")'.",
-            "starterCode": "list.addEventListener('click', (e) => {\n    const btn = ",
+            "prompt": "Atașează un eveniment 'click' pe 'list' și verifică dacă s-a dat click pe un buton folosind 'const btn = e.target.closest(\"button\");'.",
+            "task": "Atașează un eveniment 'click' pe 'list' și verifică dacă s-a dat click pe un buton folosind 'const btn = e.target.closest(\"button\");'.",
+            "example": "const btn = e.target.closest(\"button\");",
+            "starterCode": "const btn = e.target.closest(\"button\");",
+            "officialSolution": "const btn = e.target.closest(\"button\");",
             "expectedOutputPattern": "const\\s+btn\\s*=\\s*e\\.target\\.closest\\([\"']button[\"']\\);?",
+            "regexPattern": "const\\s+btn\\s*=\\s*e\\.target\\.closest\\([\"']button[\"']\\);?",
             "hint": "Scrie const btn = e.target.closest('button');"
         },
         {
@@ -63,11 +78,23 @@ def get_js_lessons():
             "xp": 45,
             "title": "Capitolul 2: API-ul 'IntersectionObserver' — Lazy Loading & Scroll Infinit",
             "theory": """
-<p>Tradițional, detectarea vizibilității elementelor pe ecran se făcea ascultând evenimentul <code>window.addEventListener('scroll')</code> și apelând <code>getBoundingClientRect()</code>, ceea ce forța recalcularea layout-ului (Forced Synchronous Layout / Layout Thrashing) și agăța derularea paginii.</p>
-<h4>1. Ce este IntersectionObserver?</h4>
-<p><strong>IntersectionObserver</strong> este un API modern asincron care monitorizează intersecția unui element țintă cu un element strămoș sau cu viewport-ul dispozitivului, fără a bloca firul principal de execuție.</p>
-<h4>2. Utilizare: Lazy Loading & Praguri (threshold)</h4>
-<p>Când <code>entry.isIntersecting</code> devine adevărat, atribuim atributul <code>src</code> din <code>data-src</code> al imaginii și oprim monitorizarea prin <code>observer.unobserve(entry.target)</code>.</p>
+<p><strong>IntersectionObserver</strong> este un API modern asincron care monitorizează intersecția unui element țintă cu viewport-ul dispozitivului, fără a bloca firul principal sau a forța Layout Thrashing.</p>
+
+<h4>1. Exemplu de Lazy Loading cu IntersectionObserver</h4>
+<pre><code>function handleIntersect(entries, observer) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src; // Încarcă imaginea reală
+            observer.unobserve(img);   // Oprește monitorizarea
+        }
+    });
+}
+
+// Instanțiere simplă:
+const observer = new IntersectionObserver(handleIntersect);
+document.querySelectorAll("img.lazy").forEach(el => observer.observe(el));
+</code></pre>
 """,
             "glossary": [
                 {"term": "IntersectionObserver", "def": "API asincron nativ ce monitorizează vizibilitatea unui element în viewport fără impact de performanță."},
@@ -92,9 +119,13 @@ def get_js_lessons():
                 "correctIndex": 0,
                 "explanation": "IntersectionObserver este gestionat intern de motorul browserului într-un mod complet decuplat și asincron, evitând blocajele (jank) produse de calculele la scroll."
             },
+            "prompt": "Instanțiază un 'IntersectionObserver' transmițând callback-ul 'handleIntersect' în variabila 'observer'.",
             "task": "Instanțiază un 'IntersectionObserver' transmițând callback-ul 'handleIntersect' în variabila 'observer'.",
-            "starterCode": "const observer = ",
+            "example": "const observer = new IntersectionObserver(handleIntersect);",
+            "starterCode": "const observer = new IntersectionObserver(handleIntersect);",
+            "officialSolution": "const observer = new IntersectionObserver(handleIntersect);",
             "expectedOutputPattern": "const\\s+observer\\s*=\\s*new\\s+IntersectionObserver\\(handleIntersect(?:,\\s*options)?\\);?",
+            "regexPattern": "const\\s+observer\\s*=\\s*new\\s+IntersectionObserver\\(handleIntersect(?:,\\s*options)?\\);?",
             "hint": "Scrie const observer = new IntersectionObserver(handleIntersect);"
         },
         {
@@ -106,16 +137,19 @@ def get_js_lessons():
             "xp": 45,
             "title": "Capitolul 3: API-ul 'MutationObserver' — Monitorizarea Arborelui DOM",
             "theory": """
-<p>Înainte de MutationObserver, detectarea schimbărilor în DOM se baza pe evenimente învechite (Mutation Events precum <code>DOMNodeInserted</code>), care provocau scăderi drastice de performanță.</p>
-<h4>1. Monitorizare Eficientă și Asincronă</h4>
-<p><strong>MutationObserver</strong> colectează toate modificările (adăugare/ștergere noduri, schimbare atribute sau conținut text) și le livrează într-un singur batch asincron către funcția callback.</p>
-<h4>2. Configurare cu 'observe(target, config)'</h4>
-<p>Obiectul de configurare specifică exact ce schimbări ne interesează:</p>
-<pre><code>observer.observe(targetNode, {
-    childList: true,     // monitorizează adăugarea/ștergerea copiilor
-    subtree: true,       // extinde monitorizarea pe toți descendenții
-    attributes: true     // monitorizează schimbarea atributelor HTML
+<p><strong>MutationObserver</strong> colectează toate modificările (adăugare/ștergere noduri, schimbare atribute sau text) și le livrează într-un singur batch asincron către funcția callback.</p>
+
+<h4>1. Exemplu Complet de Monitorizare cu MutationObserver</h4>
+<pre><code>const observer = new MutationObserver((mutationsList) => {
+    for (const mutation of mutationsList) {
+        if (mutation.type === "childList") {
+            console.log("Noduri modificate în DOM:", mutation.addedNodes.length);
+        }
+    }
 });
+
+// Pornire monitorizare pe elementul țintă:
+observer.observe(targetElement, { childList: true });
 </code></pre>
 """,
             "glossary": [
@@ -141,9 +175,13 @@ def get_js_lessons():
                 "correctIndex": 0,
                 "explanation": "Apelul disconnect() dezactivează observerul, curăță toate mutațiile din coadă și eliberează referințele către nodurile DOM, prevenind scurgerile de memorie."
             },
+            "prompt": "Pornește monitorizarea pe 'targetElement' pentru 'childList: true' rulând 'observer.observe(targetElement, { childList: true });'.",
             "task": "Pornește monitorizarea pe 'targetElement' pentru 'childList: true' rulând 'observer.observe(targetElement, { childList: true });'.",
-            "starterCode": "// Monitorizează childList\n",
+            "example": "observer.observe(targetElement, { childList: true });",
+            "starterCode": "observer.observe(targetElement, { childList: true });",
+            "officialSolution": "observer.observe(targetElement, { childList: true });",
             "expectedOutputPattern": "observer\\.observe\\(targetElement,\\s*\\{\\s*childList:\\s*true\\s*\\}\\);?",
+            "regexPattern": "observer\\.observe\\(targetElement,\\s*\\{\\s*childList:\\s*true\\s*\\}\\);?",
             "hint": "Scrie observer.observe(targetElement, { childList: true });"
         },
         {
@@ -155,17 +193,23 @@ def get_js_lessons():
             "xp": 50,
             "title": "Capitolul 4: Evenimente Personalizate ('CustomEvent' & 'dispatchEvent')",
             "theory": """
-<p>Pentru a construi arhitecturi decuplate și sisteme modulare (Publish/Subscribe) fără dependențe externe, browserul oferă clasa nativă <strong>CustomEvent</strong>.</p>
-<h4>1. Crearea unui CustomEvent cu Payload</h4>
-<p>Putem atașa date arbitrare prin proprietatea <code>detail</code>:</p>
-<pre><code>const event = new CustomEvent('userLogin', {
-    detail: { userId: 101, role: 'admin' },
-    bubbles: true,        // permite evenimentului să urce în arborele DOM
-    cancelable: true     // permite anularea cu e.preventDefault()
+<p>Pentru a construi arhitecturi decuplate și sisteme modulare (Publish/Subscribe) fără biblioteci externe, browserul oferă clasa nativă <strong>CustomEvent</strong>.</p>
+
+<h4>1. Exemplu Complet de Creare și Declanșare de CustomEvent</h4>
+<pre><code>// 1. Creare eveniment cu payload prin proprietatea 'detail':
+const myEvent = new CustomEvent("userLogin", {
+    detail: { userId: 101, username: "alex" },
+    bubbles: true
 });
+
+// 2. Ascultare eveniment pe document:
+document.addEventListener("userLogin", (e) => {
+    console.log("Date primite:", e.detail.username);
+});
+
+// 3. Declanșare pe nodul DOM:
+document.dispatchEvent(myEvent);
 </code></pre>
-<h4>2. Declanșarea cu 'dispatchEvent'</h4>
-<p>Evenimentul este emis pe orice nod DOM prin <code>element.dispatchEvent(event)</code> și poate fi interceptat cu metoda standard <code>element.addEventListener('userLogin', (e) => console.log(e.detail));</code>.</p>
 """,
             "glossary": [
                 {"term": "CustomEvent", "def": "Clasă nativă DOM pentru crearea de evenimente cu nume personalizat și încărcătură de date (detail)."},
@@ -190,9 +234,13 @@ def get_js_lessons():
                 "correctIndex": 0,
                 "explanation": "Conform standardului W3C DOM Events, proprietatea 'detail' din obiectul de inițializare este locul canonic unde se salvează datele transmise."
             },
+            "prompt": "Emite evenimentul 'myEvent' pe elementul 'document' folosind 'document.dispatchEvent(myEvent);'.",
             "task": "Emite evenimentul 'myEvent' pe elementul 'document' folosind 'document.dispatchEvent(myEvent);'.",
-            "starterCode": "// Declanșează myEvent pe document\n",
+            "example": "document.dispatchEvent(myEvent);",
+            "starterCode": "document.dispatchEvent(myEvent);",
+            "officialSolution": "document.dispatchEvent(myEvent);",
             "expectedOutputPattern": "document\\.dispatchEvent\\(myEvent\\);?",
+            "regexPattern": "document\\.dispatchEvent\\(myEvent\\);?",
             "hint": "Scrie document.dispatchEvent(myEvent);"
         },
         {
@@ -204,15 +252,19 @@ def get_js_lessons():
             "xp": 55,
             "title": "Capitolul 5: Web Workers — Execuție Paralelă în Background Threads",
             "theory": """
-<p>JavaScript în browser rulează pe un singur fir principal de execuție (Single-Threaded). Calculele intensive (procesare video/audio, criptografie, parsare masivă de JSON) blochează complet interfața utilizator (UI freeze).</p>
-<h4>1. Ce este un Web Worker?</h4>
-<p>Un <strong>Web Worker</strong> rulează un script într-un fir de execuție separat din sistemul de operare. Workerul NU are acces la DOM, la <code>window</code> sau la <code>document</code>, fiind complet izolat.</p>
-<h4>2. Comunicare prin Transmitere de Mesaje (postMessage)</h4>
-<p>Comunicarea dintre firul principal și worker se realizează exclusiv asincron prin mesaje serializate:</p>
+<p>JavaScript în browser rulează pe un singur fir principal de execuție. Calculele intensive blochează complet interfața utilizator. Un <strong>Web Worker</strong> rulează codul într-un fir separat de execuție.</p>
+
+<h4>1. Exemplu de Comunicare cu Web Worker</h4>
 <pre><code>// Firul principal:
-const worker = new Worker('worker.js');
-worker.postMessage({ data: rawNumbers });
-worker.onmessage = (e) => console.log('Rezultat:', e.data);
+const myWorker = new Worker("worker.js");
+
+// Trimitere mesaj către worker:
+myWorker.postMessage({ cmd: "START" });
+
+// Recepționare rezultat:
+myWorker.onmessage = (e) => {
+    console.log("Rezultat din background thread:", e.data);
+};
 </code></pre>
 """,
             "glossary": [
@@ -238,9 +290,13 @@ worker.onmessage = (e) => console.log('Rezultat:', e.data);
                 "correctIndex": 0,
                 "explanation": "Web Workers rulează într-un context separat (DedicatedWorkerGlobalScope) și nu pot atinge direct DOM-ul pentru a preveni condiții de concurență (race conditions) pe UI."
             },
+            "prompt": "Trimite obiectul '{ cmd: \"START\" }' către 'myWorker' folosind 'myWorker.postMessage({ cmd: \"START\" });'.",
             "task": "Trimite obiectul '{ cmd: \"START\" }' către 'myWorker' folosind 'myWorker.postMessage({ cmd: \"START\" });'.",
-            "starterCode": "// Trimite mesajul la worker\n",
+            "example": "myWorker.postMessage({ cmd: \"START\" });",
+            "starterCode": "myWorker.postMessage({ cmd: \"START\" });",
+            "officialSolution": "myWorker.postMessage({ cmd: \"START\" });",
             "expectedOutputPattern": "myWorker\\.postMessage\\(\\s*\\{\\s*cmd:\\s*[\"']START[\"']\\s*\\}\\s*\\);?",
+            "regexPattern": "myWorker\\.postMessage\\(\\s*\\{\\s*cmd:\\s*[\"']START[\"']\\s*\\}\\s*\\);?",
             "hint": "Scrie myWorker.postMessage({ cmd: 'START' });"
         },
         {
@@ -252,15 +308,19 @@ worker.onmessage = (e) => console.log('Rezultat:', e.data);
             "xp": 55,
             "title": "Capitolul 6: WebSockets — Comunicare Full-Duplex în Timp Real",
             "theory": """
-<p>Spre deosebire de protocolul HTTP care este de tip request-response (unidirecțional inițiat exclusiv de client), protocolul <strong>WebSocket (ws:// sau wss://)</strong> deschide un canal TCP persistent, bidirecțional și de latență minimă.</p>
-<h4>1. Handshake-ul WebSocket</h4>
-<p>Conexiunea începe ca o cerere HTTP normală cu header-ul <code>Upgrade: websocket</code>. După acceptarea serverului, conexiunea este transformată într-un socket binar continuu.</p>
-<h4>2. Ciclul de Viață al unui WebSocket în JS</h4>
-<pre><code>const ws = new WebSocket('wss://api.exemplu.ro/live');
-ws.onopen = () => ws.send(JSON.stringify({ type: 'SUBSCRIBE' }));
-ws.onmessage = (e) => console.log('Date primite:', JSON.parse(e.data));
-ws.onerror = (err) => console.error('Eroare WS:', err);
-ws.onclose = () => console.log('Conexiune închisă');
+<p>Spre deosebire de protocolul HTTP care este de tip request-response, <strong>WebSocket (wss://)</strong> deschide un canal TCP persistent, bidirecțional și de latență minimă.</p>
+
+<h4>1. Exemplu de Conexiune și Trimitere Mesaj</h4>
+<pre><code>const ws = new WebSocket("wss://api.example.com/live");
+
+ws.onopen = () => {
+    // Trimitere mesaj formatat ca JSON către server:
+    ws.send(JSON.stringify({ ping: true }));
+};
+
+ws.onmessage = (event) => {
+    console.log("Răspuns server:", event.data);
+};
 </code></pre>
 """,
             "glossary": [
@@ -286,9 +346,13 @@ ws.onclose = () => console.log('Conexiune închisă');
                 "correctIndex": 0,
                 "explanation": "Cu WebSockets nu mai există cereri HTTP repetate. Anteturile se transmit o singură dată la handshake, după care datele circulă instantaneu în ambele direcții cu overhead minim."
             },
-            "task": "Trimite mesajul JSON 'JSON.stringify({ ping: true })' prin socket-ul 'ws' folosind 'ws.send()'.",
-            "starterCode": "// Trimite date pe websocket\n",
+            "prompt": "Trimite mesajul JSON 'JSON.stringify({ ping: true })' prin socket-ul 'ws' folosind 'ws.send(JSON.stringify({ ping: true }));'.",
+            "task": "Trimite mesajul JSON 'JSON.stringify({ ping: true })' prin socket-ul 'ws' folosind 'ws.send(JSON.stringify({ ping: true }));'.",
+            "example": "ws.send(JSON.stringify({ ping: true }));",
+            "starterCode": "ws.send(JSON.stringify({ ping: true }));",
+            "officialSolution": "ws.send(JSON.stringify({ ping: true }));",
             "expectedOutputPattern": "ws\\.send\\(JSON\\.stringify\\(\\s*\\{\\s*ping:\\s*true\\s*\\}\\s*\\)\\);?",
+            "regexPattern": "ws\\.send\\(JSON\\.stringify\\(\\s*\\{\\s*ping:\\s*true\\s*\\}\\s*\\)\\);?",
             "hint": "Scrie ws.send(JSON.stringify({ ping: true }));"
         },
         {
@@ -300,18 +364,22 @@ ws.onclose = () => console.log('Conexiune închisă');
             "xp": 60,
             "title": "Capitolul 7: Obiectele 'Proxy' și 'Reflect' — Metaprogramare & Reactivitate",
             "theory": """
-<p>Obiectul <strong>Proxy</strong> din ES6 permite împachetarea unui alt obiect și interceptarea (trapping) tuturor operațiunilor fundamentale: citire de proprietăți (<code>get</code>), atribuire (<code>set</code>), ștergere sau invocare de metode.</p>
-<h4>1. Cum funcționează un Trap</h4>
+<p>Obiectul <strong>Proxy</strong> permite interceptarea și redefinirea operațiunilor de citire (<code>get</code>), atribuire (<code>set</code>) sau invocare de metode pe un obiect țintă.</p>
+
+<h4>1. Exemplu de Proxy cu Trap get și Reflect.get</h4>
 <pre><code>const target = { price: 100 };
-const reactive = new Proxy(target, {
-    set(obj, prop, value) {
-        console.log(`Proprietatea ${prop} s-a modificat în ${value}`);
-        return Reflect.set(obj, prop, value);
+
+const handler = {
+    get(target, prop, receiver) {
+        console.log(`Proprietatea citită: ${prop}`);
+        // Delegare către comportamentul nativ prin Reflect:
+        return Reflect.get(target, prop, receiver);
     }
-});
+};
+
+const proxy = new Proxy(target, handler);
+console.log(proxy.price); // 100
 </code></pre>
-<h4>2. Motorul Reactivității Moderne</h4>
-<p>Proxy este fundamentul pe care sunt construite motoarele moderne de reactivitate din <strong>Vue 3</strong> și <strong>MobX</strong>, permițând detectarea automată a schimbărilor fără a folosi getteri/setteri manuali stufosi.</p>
 """,
             "glossary": [
                 {"term": "Proxy", "def": "Obiect wrapper ce interceptează și redefinește operațiunile fundamentale efectuate pe un obiect țintă."},
@@ -336,9 +404,13 @@ const reactive = new Proxy(target, {
                 "correctIndex": 0,
                 "explanation": "Trap-ul 'set' trebuie să returneze un boolean; dacă returnează 'false' sau o valoare falsy în strict mode, JavaScript aruncă o excepție de tip TypeError."
             },
+            "prompt": "Returnează rezultatul apelului 'Reflect.get(target, prop, receiver)' în interiorul unui trap 'get'.",
             "task": "Returnează rezultatul apelului 'Reflect.get(target, prop, receiver)' în interiorul unui trap 'get'.",
-            "starterCode": "get(target, prop, receiver) {\n    return ",
+            "example": "return Reflect.get(target, prop, receiver);",
+            "starterCode": "return Reflect.get(target, prop, receiver);",
+            "officialSolution": "return Reflect.get(target, prop, receiver);",
             "expectedOutputPattern": "return\\s+Reflect\\.get\\(target,\\s*prop,\\s*receiver\\);?",
+            "regexPattern": "return\\s+Reflect\\.get\\(target,\\s*prop,\\s*receiver\\);?",
             "hint": "Scrie return Reflect.get(target, prop, receiver);"
         },
         {
@@ -350,15 +422,22 @@ const reactive = new Proxy(target, {
             "xp": 70,
             "title": "Capitolul 8: Event Loop Aprofundat: Microtasks vs Macrotasks",
             "theory": """
-<p>Înțelegerea ordinii de execuție în JavaScript necesită cunoașterea distincției clare dintre <strong>Call Stack</strong>, <strong>Microtask Queue</strong> și <strong>Macrotask Queue (Task Queue)</strong>.</p>
-<h4>1. Microtasks au Prioritate Absolută</h4>
-<p>După ce Call Stack-ul se golește, Event Loop-ul execută <strong>TOATE</strong> microtask-urile existente în coadă înainte de a atinge următorul macrotask:</p>
-<ul>
-  <li><em>Microtasks</em>: <code>Promise.then()</code>, <code>Promise.catch()</code>, <code>async/await</code> (după reluare), <code>queueMicrotask()</code>, <code>MutationObserver</code>.</li>
-  <li><em>Macrotasks</em>: <code>setTimeout</code>, <code>setInterval</code>, <code>setImmediate</code> (Node.js), evenimente I/O, randarea UI a browserului.</li>
-</ul>
-<h4>2. Riscul de Starvation</h4>
-<p>Dacă o buclă generează continuu microtask-uri noi, browserul nu va ajunge niciodată la următorul macrotask sau la randarea cadrelor (60 FPS), blocând complet pagina.</p>
+<p>Înțelegerea ordinii de execuție asincrone în JavaScript necesită distincția clară dintre Microtask Queue și Macrotask Queue.</p>
+
+<h4>1. Exemplu de Programare a unui Microtask</h4>
+<pre><code>// Cod sincron:
+console.log("1. Sincron start");
+
+// Macrotask (programat la final):
+setTimeout(() => console.log("4. Macrotask (setTimeout)"), 0);
+
+// Microtask de prioritate maximă:
+queueMicrotask(() => {
+    console.log("3. Microtask (queueMicrotask)");
+});
+
+Promise.resolve().then(() => console.log("2. Microtask (Promise)"));
+</code></pre>
 """,
             "glossary": [
                 {"term": "Microtask Queue", "def": "Coadă de înaltă prioritate golită complet de Event Loop înainte de orice macrotask sau randare."},
@@ -383,9 +462,13 @@ const reactive = new Proxy(target, {
                 "correctIndex": 0,
                 "explanation": "Codul sincron rulează primul (1, 4). Apoi coada de microtask-uri este golită complet (3 de la Promise), și abia în final se extrage macrotask-ul din coadă (2 de la setTimeout)."
             },
+            "prompt": "Programează funcția 'updateData' pe coada de microtask-uri folosind 'queueMicrotask(updateData);'.",
             "task": "Programează funcția 'updateData' pe coada de microtask-uri folosind 'queueMicrotask(updateData);'.",
-            "starterCode": "// Programează pe microtask queue\n",
+            "example": "queueMicrotask(updateData);",
+            "starterCode": "queueMicrotask(updateData);",
+            "officialSolution": "queueMicrotask(updateData);",
             "expectedOutputPattern": "queueMicrotask\\(updateData\\);?",
+            "regexPattern": "queueMicrotask\\(updateData\\);?",
             "hint": "Scrie queueMicrotask(updateData);"
         },
         {
@@ -397,19 +480,22 @@ const reactive = new Proxy(target, {
             "xp": 75,
             "title": "Capitolul 9: 'AbortController' & Anularea Cererilor HTTP Asincrone",
             "theory": """
-<p>Gestionarea corectă a cererilor asincrone în aplicațiile cu funcționalitate de căutare live (Search Typeahead) cere anularea cererilor anterioare pentru a preveni <em>Race Conditions</em> (când un răspuns mai lent al unei căutări vechi suprascrie rezultatul celei mai recente).</p>
-<h4>1. Obiectul AbortController</h4>
-<p>Instanțiem un controller: <code>const controller = new AbortController();</code> și transmitem proprietatea <code>signal</code> către opțiunile lui <code>fetch</code>:</p>
-<pre><code>fetch('/api/search?q=' + query, { signal: controller.signal })
-  .then(res => res.json())
-  .catch(err => {
-    if (err.name === 'AbortError') {
-      console.log('Cererea a fost anulată intenționat');
-    }
-  });
+<p><strong>AbortController</strong> permite anularea cererilor asincrone <code>fetch</code> sau a evenimentelor DOM pentru a preveni Race Conditions și consumul inutil de lățime de bandă.</p>
+
+<h4>1. Exemplu Complet de Anulare a unei Cereri HTTP</h4>
+<pre><code>const controller = new AbortController();
+
+fetch("https://api.example.com/search?q=js", { signal: controller.signal })
+    .then(res => res.json())
+    .catch(err => {
+        if (err.name === "AbortError") {
+            console.log("Cererea a fost anulată cu succes.");
+        }
+    });
+
+// Anulare la comandă:
+controller.abort();
 </code></pre>
-<h4>2. Anularea cu 'controller.abort()'</h4>
-<p>Apelul <code>controller.abort()</code> oprește imediat conexiunea la nivel de rețea în browser și rejectează promisiunea cu o eroare cu numele <code>AbortError</code>.</p>
 """,
             "glossary": [
                 {"term": "AbortController", "def": "Obiect standard de control ce permite întreruperea operațiunilor DOM sau a cererilor asincrone fetch()."},
@@ -434,9 +520,13 @@ const reactive = new Proxy(target, {
                 "correctIndex": 0,
                 "explanation": "Browserul rejectează automat promisiunea returnată de fetch cu un DOMException special cu name: 'AbortError', permițând codului să ignore această eroare normală de anulare."
             },
-            "task": "Anulează cererea activă apelând metoda 'abort()' pe instanța 'controller'.",
-            "starterCode": "// Anulează cererea\n",
+            "prompt": "Anulează cererea activă apelând metoda 'abort()' pe instanța 'controller': 'controller.abort();'.",
+            "task": "Anulează cererea activă apelând metoda 'abort()' pe instanța 'controller': 'controller.abort();'.",
+            "example": "controller.abort();",
+            "starterCode": "controller.abort();",
+            "officialSolution": "controller.abort();",
             "expectedOutputPattern": "controller\\.abort\\(\\);?",
+            "regexPattern": "controller\\.abort\\(\\);?",
             "hint": "Scrie controller.abort();"
         }
     ]

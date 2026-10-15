@@ -59,7 +59,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Completează structura if - elif - else pentru variabila 'scor':\n- dacă scor >= 90, afișează 'Excelent' (print('Excelent'))\n- elif scor >= 50, afișează 'Admis' (print('Admis'))\n- else, afișează 'Respins' (print('Respins')).",
     "starterCode": "scor = 85\n\n# Scrie condiția if, elif și else:\nif scor >= 90:\n    print(\"Excelent\")\nelif scor >= 50:\n    print(\"Admis\")\nelse:\n    print(\"Respins\")\n",
     "expectedOutputPattern": "if\\s+scor\\s*>=\\s*90\\s*:[\\s\\S]+?elif\\s+scor\\s*>=\\s*50\\s*:[\\s\\S]+?else\\s*:",
-    "hint": "Folosește if scor >= 90:, apoi elif scor >= 50: și finalizează cu else:."
+    "hint": "Folosește if scor >= 90:, apoi elif scor >= 50: și finalizează cu else:.",
+    "prompt": "Completează structura if - elif - else pentru variabila 'scor':\n- dacă scor >= 90, afișează 'Excelent' (print('Excelent'))\n- elif scor >= 50, afișează 'Admis' (print('Admis'))\n- else, afișează 'Respins' (print('Respins')).",
+    "officialSolution": "Folosește if scor >= 90:, apoi elif scor >= 50: și finalizează cu else:.",
+    "example": "Folosește if scor >= 90:, apoi elif scor >= 50: și finalizează cu else:.",
+    "regexPattern": "if\\s+scor\\s*>=\\s*90\\s*:[\\s\\S]+?elif\\s+scor\\s*>=\\s*50\\s*:[\\s\\S]+?else\\s*:"
   },
   {
     "id": "py-new-2",
@@ -120,7 +124,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Inversează lista 'data' folosind sintaxa slicing cu step negativ și stochează rezultatul în variabila 'reversed_data'.",
     "starterCode": "data = [1, 2, 3, 4, 5]\nreversed_data = ",
     "expectedOutputPattern": "reversed_data\\s*=\\s*data\\[::-1\\]",
-    "hint": "Folosește slicing-ul data[::-1] pentru a crea o copie inversată a listei."
+    "hint": "Folosește slicing-ul data[::-1] pentru a crea o copie inversată a listei.",
+    "prompt": "Inversează lista 'data' folosind sintaxa slicing cu step negativ și stochează rezultatul în variabila 'reversed_data'.",
+    "officialSolution": "Folosește slicing-ul data[::-1] pentru a crea o copie inversată a listei.",
+    "example": "Folosește slicing-ul data[::-1] pentru a crea o copie inversată a listei.",
+    "regexPattern": "reversed_data\\s*=\\s*data\\[::-1\\]"
   },
   {
     "id": "py-new-3",
@@ -181,7 +189,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Extrage din dicționarul 'settings' cheia 'timeout' cu valoarea implicită 30 folosind metoda .get().",
     "starterCode": "settings = {\"host\": \"localhost\"}\ntimeout = ",
     "expectedOutputPattern": "timeout\\s*=\\s*settings\\.get\\([\"']timeout[\"'],\\s*30\\)",
-    "hint": "Apelează settings.get('timeout', 30)."
+    "hint": "Apelează settings.get('timeout', 30).",
+    "prompt": "Extrage din dicționarul 'settings' cheia 'timeout' cu valoarea implicită 30 folosind metoda .get().",
+    "officialSolution": "Apelează settings.get('timeout', 30).",
+    "example": "Apelează settings.get('timeout', 30).",
+    "regexPattern": "timeout\\s*=\\s*settings\\.get\\([\"']timeout[\"'],\\s*30\\)"
   },
   {
     "id": "py-new-4",
@@ -242,7 +254,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Creează o listă 'evens' conținând numerele pare din 'numbers' folosind un list comprehension cu clauza 'if x % 2 == 0'.",
     "starterCode": "numbers = [1, 2, 3, 4, 5, 6, 7, 8]\nevens = ",
     "expectedOutputPattern": "evens\\s*=\\s*\\[\\s*x\\s+for\\s+x\\s+in\\s+numbers\\s+if\\s+x\\s*%\\s*2\\s*==\\s*0\\s*\\]",
-    "hint": "Scrie: [x for x in numbers if x % 2 == 0]."
+    "hint": "Scrie: [x for x in numbers if x % 2 == 0].",
+    "prompt": "Creează o listă 'evens' conținând numerele pare din 'numbers' folosind un list comprehension cu clauza 'if x % 2 == 0'.",
+    "officialSolution": "Scrie: [x for x in numbers if x % 2 == 0].",
+    "example": "Scrie: [x for x in numbers if x % 2 == 0].",
+    "regexPattern": "evens\\s*=\\s*\\[\\s*x\\s+for\\s+x\\s+in\\s+numbers\\s+if\\s+x\\s*%\\s*2\\s*==\\s*0\\s*\\]"
   },
   {
     "id": "py-new-5",
@@ -301,9 +317,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Context managerul garantează execuția metodei __exit__() care închide fișierul indiferent dacă apare o eroare în blocul with."
     },
     "task": "Deschide fișierul 'data.txt' în modul citire ('r') cu encoding-ul 'utf-8' folosind instrucțiunea 'with open(...) as f:'.",
-    "starterCode": "# Deschide fișierul cu with\n",
+    "starterCode": "Scrie: with open('data.txt', 'r', encoding='utf-8') as f:.",
     "expectedOutputPattern": "with\\s+open\\([\"']data\\.txt[\"'],\\s*[\"']r[\"'],\\s*encoding=[\"']utf-8[\"']\\)\\s+as\\s+f\\s*:",
-    "hint": "Scrie: with open('data.txt', 'r', encoding='utf-8') as f:."
+    "hint": "Scrie: with open('data.txt', 'r', encoding='utf-8') as f:.",
+    "prompt": "Deschide fișierul 'data.txt' în modul citire ('r') cu encoding-ul 'utf-8' folosind instrucțiunea 'with open(...) as f:'.",
+    "officialSolution": "Scrie: with open('data.txt', 'r', encoding='utf-8') as f:.",
+    "example": "Scrie: with open('data.txt', 'r', encoding='utf-8') as f:.",
+    "regexPattern": "with\\s+open\\([\"']data\\.txt[\"'],\\s*[\"']r[\"'],\\s*encoding=[\"']utf-8[\"']\\)\\s+as\\s+f\\s*:"
   },
   {
     "id": "py-new-6",
@@ -364,7 +384,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie un bloc try-except care încearcă conversia 'val = int(text)' și capturează 'ValueError as e:' afișând print('Invalid').",
     "starterCode": "text = \"abc\"\n# Scrie blocul try-except\n",
     "expectedOutputPattern": "try\\s*:[\\s\\S]+?val\\s*=\\s*int\\(text\\)[\\s\\S]+?except\\s+ValueError\\s+as\\s+\\w+\\s*:[\\s\\S]+?print\\([\"']Invalid[\"']\\)",
-    "hint": "Scrie try: urmat de val = int(text) și except ValueError as e: print('Invalid')."
+    "hint": "Scrie try: urmat de val = int(text) și except ValueError as e: print('Invalid').",
+    "prompt": "Scrie un bloc try-except care încearcă conversia 'val = int(text)' și capturează 'ValueError as e:' afișând print('Invalid').",
+    "officialSolution": "try: urmat de val = int(text) și except ValueError as e: print('Invalid').",
+    "example": "try: urmat de val = int(text) și except ValueError as e: print('Invalid').",
+    "regexPattern": "try\\s*:[\\s\\S]+?val\\s*=\\s*int\\(text\\)[\\s\\S]+?except\\s+ValueError\\s+as\\s+\\w+\\s*:[\\s\\S]+?print\\([\"']Invalid[\"']\\)"
   },
   {
     "id": "py-new-7",
@@ -423,9 +447,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Parametrul self asigură accesul la atributele și metodele instanței curente pe care s-a efectuat apelul."
     },
     "task": "Definește o clasă 'Developer' al cărei constructor '__init__(self, name, role)' setează 'self.name = name' și 'self.role = role'.",
-    "starterCode": "# Definește clasa Developer\n",
+    "starterCode": "class Developer: urmat de def __init__(self, name, role): self.name = name; self.role = role.",
     "expectedOutputPattern": "class\\s+Developer\\s*:[\\s\\S]+?def\\s+__init__\\s*\\(\\s*self,\\s*name,\\s*role\\s*\\)\\s*:[\\s\\S]+?self\\.name\\s*=\\s*name[\\s\\S]+?self\\.role\\s*=\\s*role",
-    "hint": "Scrie class Developer: urmat de def __init__(self, name, role): self.name = name; self.role = role."
+    "hint": "Scrie class Developer: urmat de def __init__(self, name, role): self.name = name; self.role = role.",
+    "prompt": "Definește o clasă 'Developer' al cărei constructor '__init__(self, name, role)' setează 'self.name = name' și 'self.role = role'.",
+    "officialSolution": "class Developer: urmat de def __init__(self, name, role): self.name = name; self.role = role.",
+    "example": "class Developer: urmat de def __init__(self, name, role): self.name = name; self.role = role.",
+    "regexPattern": "class\\s+Developer\\s*:[\\s\\S]+?def\\s+__init__\\s*\\(\\s*self,\\s*name,\\s*role\\s*\\)\\s*:[\\s\\S]+?self\\.name\\s*=\\s*name[\\s\\S]+?self\\.role\\s*=\\s*role"
   },
   {
     "id": "py-new-8",
@@ -486,7 +514,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Definește un getter '@property def balance(self): return self._balance' în interiorul unei clase.",
     "starterCode": "class Account:\n    def __init__(self, amount):\n        self._balance = amount\n\n    # Adaugă @property pentru balance\n",
     "expectedOutputPattern": "@property\\s+def\\s+balance\\s*\\(\\s*self\\s*\\)\\s*:\\s*\\n\\s*return\\s+self\\._balance",
-    "hint": "Scrie @property pe o linie, urmat de def balance(self): return self._balance."
+    "hint": "Scrie @property pe o linie, urmat de def balance(self): return self._balance.",
+    "prompt": "Definește un getter '@property def balance(self): return self._balance' în interiorul unei clase.",
+    "officialSolution": "@property pe o linie, urmat de def balance(self): return self._balance.",
+    "example": "@property pe o linie, urmat de def balance(self): return self._balance.",
+    "regexPattern": "@property\\s+def\\s+balance\\s*\\(\\s*self\\s*\\)\\s*:\\s*\\n\\s*return\\s+self\\._balance"
   },
   {
     "id": "py-new-9",
@@ -545,9 +577,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "**kwargs împachetează toți parametrii transmiși sub formă de cheie=valoare într-un dicționar standard Python."
     },
     "task": "Definește o funcție 'sum_all(*args)' care returnează suma argumentelor primite folosind 'return sum(args)'.",
-    "starterCode": "# Definește funcția sum_all\n",
+    "starterCode": "Scrie: def sum_all(*args): return sum(args).",
     "expectedOutputPattern": "def\\s+sum_all\\s*\\(\\s*\\*args\\s*\\)\\s*:\\s*\\n\\s*return\\s+sum\\(args\\)",
-    "hint": "Scrie: def sum_all(*args): return sum(args)."
+    "hint": "Scrie: def sum_all(*args): return sum(args).",
+    "prompt": "Definește o funcție 'sum_all(*args)' care returnează suma argumentelor primite folosind 'return sum(args)'.",
+    "officialSolution": "Scrie: def sum_all(*args): return sum(args).",
+    "example": "Scrie: def sum_all(*args): return sum(args).",
+    "regexPattern": "def\\s+sum_all\\s*\\(\\s*\\*args\\s*\\)\\s*:\\s*\\n\\s*return\\s+sum\\(args\\)"
   },
   {
     "id": "py-new-10",
@@ -608,7 +644,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Completează decoratorul 'log_call' aplicând '@wraps(func)' deasupra funcției interne 'wrapper(*args, **kwargs)'.",
     "starterCode": "from functools import wraps\n\ndef log_call(func):\n    # Aplică decoratorul wraps\n    def wrapper(*args, **kwargs):\n        return func(*args, **kwargs)\n    return wrapper\n",
     "expectedOutputPattern": "@wraps\\(func\\)\\s*\\n\\s*def\\s+wrapper\\s*\\(\\s*\\*args,\\s*\\*\\*kwargs\\s*\\)",
-    "hint": "Pune @wraps(func) chiar deasupra liniei def wrapper(*args, **kwargs):."
+    "hint": "Pune @wraps(func) chiar deasupra liniei def wrapper(*args, **kwargs):.",
+    "prompt": "Completează decoratorul 'log_call' aplicând '@wraps(func)' deasupra funcției interne 'wrapper(*args, **kwargs)'.",
+    "officialSolution": "Pune @wraps(func) chiar deasupra liniei def wrapper(*args, **kwargs):.",
+    "example": "Pune @wraps(func) chiar deasupra liniei def wrapper(*args, **kwargs):.",
+    "regexPattern": "@wraps\\(func\\)\\s*\\n\\s*def\\s+wrapper\\s*\\(\\s*\\*args,\\s*\\*\\*kwargs\\s*\\)"
   },
   {
     "id": "py-new-11",
@@ -667,9 +707,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Generatoarele nu stochează valorile în memorie, ci memorează doar starea de execuție și algoritmul de calcul."
     },
     "task": "Scrie o funcție generator 'count_up(limit)' care generează numere de la 1 la limit folosind 'for i in range(1, limit + 1): yield i'.",
-    "starterCode": "# Definește generatorul count_up\n",
+    "starterCode": "def count_up(limit): for i in range(1, limit + 1): yield i.",
     "expectedOutputPattern": "def\\s+count_up\\s*\\(\\s*limit\\s*\\)\\s*:[\\s\\S]+?for\\s+i\\s+in\\s+range\\(1,\\s*limit\\s*\\+\\s*1\\)\\s*:[\\s\\S]+?yield\\s+i",
-    "hint": "Scrie def count_up(limit): for i in range(1, limit + 1): yield i."
+    "hint": "Scrie def count_up(limit): for i in range(1, limit + 1): yield i.",
+    "prompt": "Scrie o funcție generator 'count_up(limit)' care generează numere de la 1 la limit folosind 'for i in range(1, limit + 1): yield i'.",
+    "officialSolution": "def count_up(limit): for i in range(1, limit + 1): yield i.",
+    "example": "def count_up(limit): for i in range(1, limit + 1): yield i.",
+    "regexPattern": "def\\s+count_up\\s*\\(\\s*limit\\s*\\)\\s*:[\\s\\S]+?for\\s+i\\s+in\\s+range\\(1,\\s*limit\\s*\\+\\s*1\\)\\s*:[\\s\\S]+?yield\\s+i"
   },
   {
     "id": "py-new-12",
@@ -730,7 +774,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Inițializează un 'defaultdict' cu fabrică de tip 'list' în variabila 'user_roles = defaultdict(list)'.",
     "starterCode": "from collections import defaultdict\nuser_roles = ",
     "expectedOutputPattern": "user_roles\\s*=\\s*defaultdict\\(list\\)",
-    "hint": "Scrie user_roles = defaultdict(list)."
+    "hint": "Scrie user_roles = defaultdict(list).",
+    "prompt": "Inițializează un 'defaultdict' cu fabrică de tip 'list' în variabila 'user_roles = defaultdict(list)'.",
+    "officialSolution": "user_roles = defaultdict(list).",
+    "example": "user_roles = defaultdict(list).",
+    "regexPattern": "user_roles\\s*=\\s*defaultdict\\(list\\)"
   },
   {
     "id": "py-new-13",
@@ -789,9 +837,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Optional[T] este un shorthand formal pentru Union[T, None], indicând explicit posibilitatea absenței valorii."
     },
     "task": "Adaugă type hinting complet pentru o funcție 'def get_length(text: str) -> int:' care returnează len(text).",
-    "starterCode": "# Scrie funcția cu type hints complete\n",
+    "starterCode": "Scrie: def get_length(text: str) -> int: return len(text).",
     "expectedOutputPattern": "def\\s+get_length\\s*\\(\\s*text\\s*:\\s*str\\s*\\)\\s*->\\s*int\\s*:[\\s\\S]+?return\\s+len\\(text\\)",
-    "hint": "Scrie: def get_length(text: str) -> int: return len(text)."
+    "hint": "Scrie: def get_length(text: str) -> int: return len(text).",
+    "prompt": "Adaugă type hinting complet pentru o funcție 'def get_length(text: str) -> int:' care returnează len(text).",
+    "officialSolution": "Scrie: def get_length(text: str) -> int: return len(text).",
+    "example": "Scrie: def get_length(text: str) -> int: return len(text).",
+    "regexPattern": "def\\s+get_length\\s*\\(\\s*text\\s*:\\s*str\\s*\\)\\s*->\\s*int\\s*:[\\s\\S]+?return\\s+len\\(text\\)"
   },
   {
     "id": "py-new-14",
@@ -852,7 +904,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Creează o clasă '@dataclass' numită 'Server' cu atributele 'host: str' și 'port: int = 8080'.",
     "starterCode": "from dataclasses import dataclass\n\n# Definește @dataclass Server\n",
     "expectedOutputPattern": "@dataclass\\s*\\n\\s*class\\s+Server\\s*:[\\s\\S]+?host\\s*:\\s*str[\\s\\S]+?port\\s*:\\s*int\\s*=\\s*8080",
-    "hint": "Scrie @dataclass pe prima linie, urmat de class Server: host: str; port: int = 8080."
+    "hint": "Scrie @dataclass pe prima linie, urmat de class Server: host: str; port: int = 8080.",
+    "prompt": "Creează o clasă '@dataclass' numită 'Server' cu atributele 'host: str' și 'port: int = 8080'.",
+    "officialSolution": "@dataclass pe prima linie, urmat de class Server: host: str; port: int = 8080.",
+    "example": "@dataclass pe prima linie, urmat de class Server: host: str; port: int = 8080.",
+    "regexPattern": "@dataclass\\s*\\n\\s*class\\s+Server\\s*:[\\s\\S]+?host\\s*:\\s*str[\\s\\S]+?port\\s*:\\s*int\\s*=\\s*8080"
   },
   {
     "id": "py-new-15",
@@ -913,7 +969,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie o coroutină 'async def fetch_status(): await asyncio.sleep(0.1); return 200'.",
     "starterCode": "import asyncio\n\n# Definește coroutina fetch_status\n",
     "expectedOutputPattern": "async\\s+def\\s+fetch_status\\s*\\(\\s*\\)\\s*:[\\s\\S]+?await\\s+asyncio\\.sleep\\(0\\.1\\)[\\s\\S]+?return\\s+200",
-    "hint": "Scrie: async def fetch_status(): await asyncio.sleep(0.1); return 200."
+    "hint": "Scrie: async def fetch_status(): await asyncio.sleep(0.1); return 200.",
+    "prompt": "Scrie o coroutină 'async def fetch_status(): await asyncio.sleep(0.1); return 200'.",
+    "officialSolution": "Scrie: async def fetch_status(): await asyncio.sleep(0.1); return 200.",
+    "example": "Scrie: async def fetch_status(): await asyncio.sleep(0.1); return 200.",
+    "regexPattern": "async\\s+def\\s+fetch_status\\s*\\(\\s*\\)\\s*:[\\s\\S]+?await\\s+asyncio\\.sleep\\(0\\.1\\)[\\s\\S]+?return\\s+200"
   },
   {
     "id": "py-new-16",
@@ -972,9 +1032,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Pentru CPU-bound, thread-urile se blochează reciproc la GIL. Doar procesele distincte rulează în paralel pe nuclee diferite."
     },
     "task": "Importă 'Pool' din 'multiprocessing' și inițializează un context manager 'with Pool() as pool:'.",
-    "starterCode": "# Scrie importul și contextul Pool\n",
+    "starterCode": "from multiprocessing import Pool pe prima linie și with Pool() as pool: dedesubt.",
     "expectedOutputPattern": "from\\s+multiprocessing\\s+import\\s+Pool[\\s\\S]+?with\\s+Pool\\(\\)\\s+as\\s+pool\\s*:",
-    "hint": "Scrie from multiprocessing import Pool pe prima linie și with Pool() as pool: dedesubt."
+    "hint": "Scrie from multiprocessing import Pool pe prima linie și with Pool() as pool: dedesubt.",
+    "prompt": "Importă 'Pool' din 'multiprocessing' și inițializează un context manager 'with Pool() as pool:'.",
+    "officialSolution": "from multiprocessing import Pool pe prima linie și with Pool() as pool: dedesubt.",
+    "example": "from multiprocessing import Pool pe prima linie și with Pool() as pool: dedesubt.",
+    "regexPattern": "from\\s+multiprocessing\\s+import\\s+Pool[\\s\\S]+?with\\s+Pool\\(\\)\\s+as\\s+pool\\s*:"
   },
   {
     "id": "py-new-17",
@@ -1035,7 +1099,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Definește metoda '__init_subclass__(cls, **kwargs):' care apelează 'super().__init_subclass__(**kwargs)'.",
     "starterCode": "class Base:\n    # Adaugă __init_subclass__\n",
     "expectedOutputPattern": "def\\s+__init_subclass__\\s*\\(\\s*cls,\\s*\\*\\*kwargs\\s*\\)\\s*:[\\s\\S]+?super\\(\\)\\.__init_subclass__\\(\\*\\*kwargs\\)",
-    "hint": "Scrie def __init_subclass__(cls, **kwargs): super().__init_subclass__(**kwargs)."
+    "hint": "Scrie def __init_subclass__(cls, **kwargs): super().__init_subclass__(**kwargs).",
+    "prompt": "Definește metoda '__init_subclass__(cls, **kwargs):' care apelează 'super().__init_subclass__(**kwargs)'.",
+    "officialSolution": "def __init_subclass__(cls, **kwargs): super().__init_subclass__(**kwargs).",
+    "example": "def __init_subclass__(cls, **kwargs): super().__init_subclass__(**kwargs).",
+    "regexPattern": "def\\s+__init_subclass__\\s*\\(\\s*cls,\\s*\\*\\*kwargs\\s*\\)\\s*:[\\s\\S]+?super\\(\\)\\.__init_subclass__\\(\\*\\*kwargs\\)"
   },
   {
     "id": "py-new-18",
@@ -1096,7 +1164,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Definește un model Pydantic 'class Item(BaseModel):' cu câmpurile 'name: str' și 'price: float'.",
     "starterCode": "from pydantic import BaseModel\n\n# Definește schema Item\n",
     "expectedOutputPattern": "class\\s+Item\\s*\\(\\s*BaseModel\\s*\\)\\s*:[\\s\\S]+?name\\s*:\\s*str[\\s\\S]+?price\\s*:\\s*float",
-    "hint": "Scrie class Item(BaseModel): name: str; price: float pe linii separate indentate."
+    "hint": "Scrie class Item(BaseModel): name: str; price: float pe linii separate indentate.",
+    "prompt": "Definește un model Pydantic 'class Item(BaseModel):' cu câmpurile 'name: str' și 'price: float'.",
+    "officialSolution": "class Item(BaseModel): name: str; price: float pe linii separate indentate.",
+    "example": "class Item(BaseModel): name: str; price: float pe linii separate indentate.",
+    "regexPattern": "class\\s+Item\\s*\\(\\s*BaseModel\\s*\\)\\s*:[\\s\\S]+?name\\s*:\\s*str[\\s\\S]+?price\\s*:\\s*float"
   },
   {
     "id": "cs-new-1",
@@ -1106,7 +1178,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător",
     "xp": 30,
     "title": "Capitolul 1: Sintaxă C# 12 & Top-Level Statements",
-    "theory": "\n<p>C# este un limbaj orientat pe obiecte, cu tipizare statică puternică, compilat în CIL (Common Intermediate Language) și rulat de mașina virtuală CLR (Common Language Runtime).</p>\n<h4>1. Top-Level Statements</h4>\n<p>În versiunile moderne de C#, programele simple nu mai necesită clase <code>Program</code> sau metode <code>static void Main</code> explicite; instrucțiunile pot fi scrise direct la nivelul superior al fișierului.</p>\n<h4>2. Tipuri de Valoare vs Tipuri de Referință</h4>\n<p>Tipurile de valoare (<code>int</code>, <code>double</code>, <code>bool</code>, <code>struct</code>) sunt stocate pe <em>Stack</em>. Tipurile de referință (<code>string</code>, <code>class</code>, <code>object</code>) sunt alocate pe <em>Heap</em>, iar pe Stack se reține doar pointerul către adresa din memorie.</p>\n",
+    "theory": "\n<p>C# este un limbaj orientat pe obiecte, cu tipizare statică puternică, compilat în CIL (Common Intermediate Language) și rulat de mașina virtuală CLR (Common Language Runtime).</p>\n\n<h4>1. Top-Level Statements în C# 12</h4>\n<p>Programele moderne nu mai necesită clase <code>Program</code> sau metode <code>static void Main</code> explicite; instrucțiunile se scriu direct la nivelul superior al fișierului.</p>\n\n<pre><code>// Exemplu 1: Top-Level Statements și afișare interpolată în C# 12\nstring aplicatie = \"PolymathHub\";\nint versiune = 12;\nbool esteActiva = true;\n\nif (esteActiva) {\n    Console.WriteLine($\"Aplicația {aplicatie} v{versiune} este gata de rulare!\");\n} else {\n    Console.WriteLine(\"Serviciu inactiv.\");\n}\n// Output: Aplicația PolymathHub v12 este gata de rulare!\n</code></pre>\n\n<h4>2. Tipuri de Valoare (Stack) vs Tipuri de Referință (Heap)</h4>\n<p>Tipurile de valoare (<code>int</code>, <code>double</code>, <code>bool</code>, <code>struct</code>) sunt alocate pe <em>Stack</em>. Tipurile de referință (<code>string</code>, <code>class</code>, <code>record</code>) sunt alocate pe <em>Heap</em>, iar pe Stack se reține doar referința.</p>\n",
     "glossary": [
       {
         "term": "CLR (Common Language Runtime)",
@@ -1154,9 +1226,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Variabilele locale de tip valoare (primitive precum int, double, struct) sunt alocate pe Stack și sunt eliberate automat la ieșirea din metodă."
     },
-    "task": "Afișează stringul 'Hello, Polymath!' în consolă folosind 'Console.WriteLine'.",
-    "starterCode": "// Folosește Console.WriteLine\n",
+    "prompt": "Afișează stringul 'Hello, Polymath!' în consolă folosind metoda 'Console.WriteLine'.",
+    "task": "Afișează stringul 'Hello, Polymath!' în consolă folosind metoda 'Console.WriteLine'.",
+    "example": "Console.WriteLine(\"Hello, Polymath!\");",
+    "starterCode": "Console.WriteLine(\"Hello, Polymath!\");",
+    "officialSolution": "Console.WriteLine(\"Hello, Polymath!\");",
     "expectedOutputPattern": "Console\\.WriteLine\\([\"']Hello,\\s*Polymath![\"']\\);",
+    "regexPattern": "Console\\.WriteLine\\([\"']Hello,\\s*Polymath![\"']\\);",
     "hint": "Scrie Console.WriteLine(\"Hello, Polymath!\");"
   },
   {
@@ -1167,7 +1243,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător",
     "xp": 35,
     "title": "Capitolul 2: Parametri 'ref', 'out' și 'in' în Metode C#",
-    "theory": "\n<p>În mod implicit, tipurile de valoare sunt transmise prin copiere (by value). C# oferă modificatori expliciți pentru a transmite referința directă a locației din memorie.</p>\n<h4>1. Modificatorul 'ref' vs 'out'</h4>\n<p><code>ref</code> impune ca variabila să fie inițializată ÎNAINTE de a fi transmisă metodei. În contrast, <code>out</code> permite transmiterea unei variabile neinițializate, garantând că metoda o va inițializa înainte de returnare (util pentru pattern-uri de tip <code>int.TryParse</code>).</p>\n<h4>2. Modificatorul 'in' (Read-Only By Reference)</h4>\n<p><code>in</code> transmite structuri mari prin referință pentru a evita costul copierii pe Stack, interzicând totodată metodei apelate să modifice valoarea.</p>\n",
+    "theory": "\n<p>În mod implicit, tipurile de valoare sunt transmise prin copiere (by value). C# oferă modificatori expliciți pentru a transmite referința directă a locației din memorie.</p>\n\n<h4>1. Modificatorul 'ref' vs 'out'</h4>\n<pre><code>// Exemplu 1: Modificatorul 'out' pentru parsare sigură\nstring text = \"42\";\nif (int.TryParse(text, out int rezultat)) {\n    Console.WriteLine($\"Număr parsat: {rezultat}\");\n}\n\n// Exemplu 2: Modificatorul 'ref' (necesită inițializare înainte de apel)\nvoid Dubleaza(ref int val) {\n    val *= 2;\n}\nint scor = 50;\nDubleaza(ref scor); // scor devine 100\n</code></pre>\n",
     "glossary": [
       {
         "term": "ref",
@@ -1215,9 +1291,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "La 'ref', variabila trebuie să aibă o valoare înainte de apel. La 'out', compilatorul garantează că metoda îi va atribui o valoare înainte de finalizare."
     },
+    "prompt": "Apelează metoda 'int.TryParse' pe stringul 'input' salvând rezultatul în 'out int result'.",
     "task": "Apelează metoda 'int.TryParse' pe stringul 'input' salvând rezultatul în 'out int result'.",
-    "starterCode": "string input = \"42\";\nbool success = ",
+    "example": "string input = \"42\";\nbool success = int.TryParse(input, out int result);",
+    "starterCode": "string input = \"42\";\nbool success = int.TryParse(input, out int result);",
+    "officialSolution": "string input = \"42\";\nbool success = int.TryParse(input, out int result);",
     "expectedOutputPattern": "success\\s*=\\s*int\\.TryParse\\(input,\\s*out\\s+int\\s+result\\);",
+    "regexPattern": "success\\s*=\\s*int\\.TryParse\\(input,\\s*out\\s+int\\s+result\\);",
     "hint": "Scrie success = int.TryParse(input, out int result);"
   },
   {
@@ -1228,58 +1308,62 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 40,
     "title": "Capitolul 3: POO: Moștenire, 'virtual', 'override' și 'sealed'",
-    "theory": "\n<p>În C#, polimorfismul este explicit: o metodă din clasa părinte NU este polimorfică decât dacă este marcată cu <code>virtual</code> sau <code>abstract</code>.</p>\n<h4>1. Suprascrierea cu 'override'</h4>\n<p>O subclasă trebuie să folosească explicit cuvântul <code>override</code> pentru a înlocui implementarea unei metode virtuale.</p>\n<h4>2. Cuvântul Cheie 'sealed'</h4>\n<p>Aplicat pe o clasă (<code>sealed class FinalService</code>), previne moștenirea acesteia. Aplicat pe o metodă <code>override</code>, interzice subclaselor ulterioare să o mai suprascrie, permițând optimizări agresive de devirtualizare în JIT.</p>\n",
+    "theory": "\n<p>În C#, metodele nu sunt polimorfice (virtuale) în mod implicit. Pentru a permite suprascrierea, metoda din clasa de bază trebuie marcată explicit cu <code>virtual</code>, iar metoda din clasa copil cu <code>override</code>.</p>\n\n<pre><code>// Exemplu 1: Moștenire polimorfică în C#\npublic class Animal {\n    public virtual string EmiteSunet() => \"Sunet generic\";\n}\n\npublic class Caine : Animal {\n    public override string EmiteSunet() => \"Ham! Ham!\";\n}\n\npublic sealed class CainePolitist : Caine {\n    // sealed blochează moștenirea ulterioară\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "virtual",
-        "def": "Specifică că o metodă poate fi suprascrisă într-o clasă derivată printr-o tabelă vtable."
+        "def": "Permite unei metode să fie suprascrisă într-o clasă derivată."
       },
       {
         "term": "override",
-        "def": "Furnizează o implementare concretă nouă pentru o metodă virtuală sau abstractă."
+        "def": "Furnizează o implementare nouă pentru o metodă virtuală sau abstractă moștenită."
       },
       {
         "term": "sealed",
-        "def": "Interzice moștenirea unei clase sau suprascrierea suplimentară a unei metode."
+        "def": "Blochează extinderea ulterioară a unei clase sau suprascrierea unei metode specifice."
       },
       {
-        "term": "Devirtualizare JIT",
-        "def": "Optimizare a runtime-ului .NET prin care apelurile virtuale sigilate sunt transformate în apeluri directe rapide."
+        "term": "base",
+        "def": "Cuvânt cheie folosit pentru apelarea constructorului sau a metodelor din clasa părinte."
       }
     ],
     "matchingPairs": [
       {
-        "left": "public virtual void Draw()",
+        "left": "public virtual void Run()",
         "right": "Metodă deschisă pentru polimorfism"
       },
       {
-        "left": "public override void Draw()",
-        "right": "Suprascriere a metodei din clasa părinte"
+        "left": "public override void Run()",
+        "right": "Suprascrie comportamentul din baza"
       },
       {
-        "left": "public sealed class CoreEngine",
-        "right": "Clasă din care este interzisă moștenirea"
+        "left": "public sealed class Admin",
+        "right": "Clasă din care nu se mai poate moșteni"
       },
       {
-        "left": "base.Execute()",
-        "right": "Invocă implementarea din clasa părinte"
+        "left": "base.Run()",
+        "right": "Apelează implementarea originală a părintelui"
       }
     ],
     "quiz": {
-      "question": "Ce se întâmplă dacă o clasă copil definește o metodă cu același nume ca o metodă din părinte, dar omite cuvântul cheie 'override'?",
+      "question": "Ce cuvânt cheie este obligatoriu în clasa derivată atunci când suprascrii o metodă 'virtual' din clasa părinte în C#?",
       "options": [
-        "Metoda ascunde metoda părintelui (hiding / warning de tip 'new'), rupând comportamentul polimorfic.",
-        "Compilatorul C# blochează compilarea cu o eroare fatală.",
-        "Metoda este ștearsă automat din memorie de către CLR.",
-        "Clasa copil moștenește ambele metode și le execută simultan."
+        "override",
+        "new",
+        "virtual",
+        "implements"
       ],
       "correctIndex": 0,
-      "explanation": "Fără 'override', metoda doar ascunde (shadows) metoda părintelui, iar apelurile prin referința părintelui vor executa în continuare codul din clasa de bază."
+      "explanation": "În C#, polimorfismul este explicit: metoda copil trebuie marcată obligatoriu cu 'override'."
     },
-    "task": "Declară o metodă publică 'override void Speak()' care apelează 'Console.WriteLine(\"Bark\");'.",
-    "starterCode": "public class Dog : Animal {\n    // Suprascrie Speak\n",
-    "expectedOutputPattern": "public\\s+override\\s+void\\s+Speak\\(\\)\\s*\\{\\s*Console\\.WriteLine\\([\"']Bark[\"']\\);\\s*\\}",
-    "hint": "Scrie public override void Speak() { Console.WriteLine(\"Bark\"); }"
+    "prompt": "Suprascrie metoda 'EmiteSunet' în clasa Dog returnând 'Ham!'.",
+    "task": "Suprascrie metoda 'EmiteSunet' în clasa Dog returnând 'Ham!'.",
+    "example": "public class Dog : Animal {\n    public override string EmiteSunet() => \"Ham!\";\n}",
+    "starterCode": "public class Dog : Animal {\n    public override string EmiteSunet() => \"Ham!\";\n}",
+    "officialSolution": "public class Dog : Animal {\n    public override string EmiteSunet() => \"Ham!\";\n}",
+    "expectedOutputPattern": "public\\s+override\\s+string\\s+EmiteSunet\\(\\)\\s*=>\\s*[\"']Ham![\"'];",
+    "regexPattern": "public\\s+override\\s+string\\s+EmiteSunet\\(\\)\\s*=>\\s*[\"']Ham![\"'];",
+    "hint": "Scrie public override string EmiteSunet() => \"Ham!\";"
   },
   {
     "id": "cs-new-4",
@@ -1288,59 +1372,63 @@ const MEGA_EXPANDED_CURRICULUM = [
     "icon": "🔷",
     "level": "2. Junior",
     "xp": 40,
-    "title": "Capitolul 4: Nullable Reference Types & Operatori de Siguranță",
-    "theory": "\n<p>Pentru a eradica celebra eroare <em>NullReferenceException</em> (inventată de Tony Hoare drept 'The Billion Dollar Mistake'), C# 8+ introduce <strong>Nullable Reference Types (NRT)</strong> activate prin <code>#nullable enable</code>.</p>\n<h4>1. Sintaxa 'Type?'</h4>\n<p>O referință <code>string s</code> nu poate fi niciodată null; dacă dorim să permitem valoarea null, trebuie să o declarăm explicit ca <code>string? maybeNull</code>.</p>\n<h4>2. Operatori: '??', '??=' și '?.'</h4>\n<p>Operatorul null-conditional (<code>user?.Address?.City</code>) scurtcircuitează dacă o verigă este null. Operatorul null-coalescing (<code>val ?? defaultVal</code>) furnizează o alternativă, iar <code>val ??= initVal</code> atribuie valoarea doar dacă variabila este null.</p>\n",
+    "title": "Capitolul 4: Proprietăți C#: Auto-Properties, 'init' & Computed",
+    "theory": "\n<p>Proprietățile în C# oferă o modalitate elegantă de încapsulare fără metode manuale de tip getter/setter.</p>\n\n<pre><code>// Exemplu 1: Proprietăți moderne cu init și computed\npublic class Produs {\n    public int Id { get; init; } // Poate fi setat doar la inițializare\n    public string Nume { get; set; } = string.Empty;\n    public decimal Pret { get; set; }\n    \n    // Computed property (Expression-bodied):\n    public decimal PretCuTva => Pret * 1.19m;\n}\n\n// Instanțiere cu Object Initializer:\nvar p = new Produs { Id = 1, Nume = \"Laptop\", Pret = 3000m };\n</code></pre>\n",
     "glossary": [
       {
-        "term": "Nullable Reference Types",
-        "def": "Sistem de verificare statică la compilare ce previne asignarea valorii null pe referințe nespecificate."
+        "term": "init",
+        "def": "Accessor ce permite asignarea valorii exclusiv la crearea obiectului (imutable after creation)."
       },
       {
-        "term": "Null-Conditional (?.)",
-        "def": "Operator ce returnează null în loc să arunce NullReferenceException dacă ținta este null."
+        "term": "Computed Property",
+        "def": "Proprietate calculată la cerere pe baza altor câmpuri, fără variabilă internă de stocare."
       },
       {
-        "term": "Null-Coalescing (??)",
-        "def": "Operator binar ce returnează operandul stâng dacă nu este null, altfel pe cel drept."
+        "term": "Auto-Property",
+        "def": "Sintaxă compactă get; set; unde compilatorul generează automat câmpul privat din spate."
       },
       {
-        "term": "Null-Forgiving (!)",
-        "def": "Operator postfixat ce indică compilatorului că o expresie nu este null (asumpție asumată de dezvoltator)."
+        "term": "Expression-bodied (=>)",
+        "def": "Sintaxă compactă cu săgeată pentru metode și proprietăți dintr-o singură linie."
       }
     ],
     "matchingPairs": [
       {
-        "left": "user?.Profile?.Bio",
-        "right": "Acces înlănțuit protejat împotriva NullReference"
+        "left": "public int Id { get; init; }",
+        "right": "Imutabil după finalizarea inițializării"
       },
       {
-        "left": "name ?? \"Necunoscut\"",
-        "right": "Valoare fallback dacă name este null"
+        "left": "public decimal Total => Price * Qty;",
+        "right": "Proprietate calculată dinamic la fiecare accesare"
       },
       {
-        "left": "cache ??= new Dictionary()",
-        "right": "Inițializare leneșă doar dacă variabila este null"
+        "left": "public string Name { get; private set; }",
+        "right": "Citire publică, modificare doar din interior"
       },
       {
-        "left": "string? email",
-        "right": "Variabilă declarată explicit ca putând fi null"
+        "left": "new User { Age = 25 }",
+        "right": "Sintaxă Object Initializer"
       }
     ],
     "quiz": {
-      "question": "Ce face expresia 'var name = user?.Name ?? \"Anonim\";'?",
+      "question": "Ce se întâmplă dacă încerci să modifici o proprietate definită cu 'get; init;' după ce obiectul a fost instanțiat?",
       "options": [
-        "Dacă user sau user.Name este null, variabila 'name' primește valoarea 'Anonim'.",
-        "Aruncă o excepție dacă utilizatorul nu este autentificat în baza de date.",
-        "Setează user.Name la valoarea 'Anonim' pe serverul de producție.",
-        "Șterge obiectul user din memoria RAM."
+        "Compilatorul C# aruncă eroare de compilare deoarece valoarea este read-only.",
+        "Obiectul este șters automat din memorie.",
+        "Valoarea se modifică fără avertismente.",
+        "Programul se blochează la runtime cu NullReferenceException."
       ],
       "correctIndex": 0,
-      "explanation": "Operatorul ?. previne aruncarea erorii dacă user este null, iar ?? atribuie valoarea de rezervă 'Anonim' dacă rezultatul din stânga este null."
+      "explanation": "Accessorul 'init' garantează imutabilitatea: proprietatea poate fi asignată doar în constructor sau în blocul de Object Initializer."
     },
-    "task": "Atribuie variabilei 'displayName' valoarea 'user?.Name' sau fallback-ul '\"Guest\"' folosind operatorul '??'.",
-    "starterCode": "string displayName = ",
-    "expectedOutputPattern": "displayName\\s*=\\s*user\\?\\.Name\\s*\\?\\?\\s*[\"']Guest[\"'];",
-    "hint": "Scrie displayName = user?.Name ?? \"Guest\";"
+    "prompt": "Definește o proprietate auto-implementată 'Id' de tip 'int' cu accessorii 'get' și 'init'.",
+    "task": "Definește o proprietate auto-implementată 'Id' de tip 'int' cu accessorii 'get' și 'init'.",
+    "example": "public int Id { get; init; }",
+    "starterCode": "public int Id { get; init; }",
+    "officialSolution": "public int Id { get; init; }",
+    "expectedOutputPattern": "public\\s+int\\s+Id\\s*\\{\\s*get;\\s*init;\\s*\\}",
+    "regexPattern": "public\\s+int\\s+Id\\s*\\{\\s*get;\\s*init;\\s*\\}",
+    "hint": "Scrie public int Id { get; init; }"
   },
   {
     "id": "cs-new-5",
@@ -1349,59 +1437,63 @@ const MEGA_EXPANDED_CURRICULUM = [
     "icon": "🔷",
     "level": "3. Middle",
     "xp": 45,
-    "title": "Capitolul 5: Proprietăți Moderne: '{ get; init; }' și 'record'",
-    "theory": "\n<p>Imutabilitatea este cheia scrierii de sisteme concurente sigure. C# 9+ a introdus <strong>init-only setters</strong> și tipul <strong>record</strong>.</p>\n<h4>1. Proprietăți 'init'</h4>\n<p>Sintaxa <code>public string Id { get; init; }</code> permite setarea valorii DOAR la construirea obiectului (în constructor sau object initializer), devenind complet read-only după aceea.</p>\n<h4>2. Tipul 'record' & Non-Destructive Mutation</h4>\n<p>Un record (<code>public record Person(string Name, int Age);</code>) oferă automat egalitate pe bază de valori (Value Equality), reprezentare textuală formatată și mutație non-distructivă prin expresia <code>with</code>: <code>var adult = child with { Age = 18 };</code>.</p>\n",
+    "title": "Capitolul 5: Pattern Matching Modern (switch expressions & patterns)",
+    "theory": "\n<p>Pattern Matching-ul din C# transformă instrucțiunile <code>switch</code> prolixe în expresii concise, tipizate și sigure.</p>\n\n<pre><code>// Exemplu 1: Switch Expression cu Relational Patterns\nstring EvalueazaScor(int puncte) => puncte switch {\n    >= 90 => \"Excelent\",\n    >= 70 => \"Bine\",\n    >= 50 => \"Suficient\",\n    _ => \"Respins\"\n};\n\n// Exemplu 2: Type Pattern Matching\nstring Descrie(object obj) => obj switch {\n    string s => $\"Text cu lungimea: {s.Length}\",\n    int n => $\"Număr întreg: {n}\",\n    null => \"Nul\",\n    _ => \"Necunoscut\"\n};\n</code></pre>\n",
     "glossary": [
       {
-        "term": "init-only setter",
-        "def": "Proprietate ce poate fi modificată doar în timpul instanțierii obiectului."
+        "term": "Switch Expression",
+        "def": "Expresie modernă compactă ce returnează direct o valoare pe baza tiparului potrivit."
       },
       {
-        "term": "record",
-        "def": "Tip de referință cu egalitate structurală bazată pe valori și generare automată de metode boilerplate."
+        "term": "Discard Pattern (_)",
+        "def": "Echivalentul clauzei 'default' ce prinde orice caz nepotrivit anterior."
       },
       {
-        "term": "with expression",
-        "def": "Sintaxă de clonare a unui record cu modificarea selectivă a anumitor proprietăți."
+        "term": "Relational Pattern",
+        "def": "Verificarea valorilor prin operatori de comparație (<, <=, >, >=) direct în switch."
       },
       {
-        "term": "Value Equality",
-        "def": "Două obiecte diferite în Heap sunt considerate egale dacă toate proprietățile lor au aceleași valori."
+        "term": "Type Pattern",
+        "def": "Verifică tipul obiectului și îl distribuie direct într-o variabilă tipizată."
       }
     ],
     "matchingPairs": [
       {
-        "left": "public record User(int Id)",
-        "right": "Creează un record imutabil cu proprietăți automate"
+        "left": "val switch { >= 18 => true, _ => false }",
+        "right": "Switch expression cu verificare relațională"
       },
       {
-        "left": "public int Age { get; init; }",
-        "right": "Proprietate mutabilă doar la instanțiere"
+        "left": "_ => defaultValue",
+        "right": "Ramura de fallback (discard pattern)"
       },
       {
-        "left": "var updated = p with { Age = 20 }",
-        "right": "Clonare superficială cu modificare non-distructivă"
+        "left": "is not null",
+        "right": "Negated null check pattern"
       },
       {
-        "left": "record struct Point(int X, int Y)",
-        "right": "Record stocat pe Stack ca tip de valoare"
+        "left": "case string s when s.Length > 5:",
+        "right": "Pattern matching cu clauză de gardă (when)"
       }
     ],
     "quiz": {
-      "question": "Ce se întâmplă dacă compari două instanțe separate de tip 'record' care au exact aceleași valori în câmpuri folosind operatorul '=='?",
+      "question": "Ce simbol ține locul clauzei 'default' într-o expresie C# switch modernă?",
       "options": [
-        "Operatorul returnează 'true' deoarece record-urile implementează egalitate structurală bazată pe valori.",
-        "Returnează 'false' deoarece sunt alocate la adrese diferite în memoria Heap.",
-        "Compilatorul C# refuză compilarea cerând implementarea manuală a metodei Equals.",
-        "Se produce o excepție de tip InvalidOperationException."
+        "Simbolul underscore (_), cunoscut ca Discard Pattern.",
+        "Cuvântul cheie 'else'.",
+        "Simbolul asterisc (*).",
+        "Cuvântul cheie 'default:' obligatoriu."
       ],
       "correctIndex": 0,
-      "explanation": "Spre deosebire de clasele normale care compară adresele de memorie (referințele), record-urile compară automat valorile proprietăților lor."
+      "explanation": "În switch expressions, 'default' este înlocuit cu discard pattern-ul '_ => valoare'."
     },
-    "task": "Declară un record de o singură linie numit 'Customer' cu proprietățile 'string Name' și 'string Email'.",
-    "starterCode": "// Declară record Customer\n",
-    "expectedOutputPattern": "public\\s+record\\s+Customer\\(string\\s+Name,\\s*string\\s+Email\\);",
-    "hint": "Scrie: public record Customer(string Name, string Email);"
+    "prompt": "Completează expresia switch pentru a returna 'Admis' dacă 'score >= 50' și 'Respins' pentru '_'.",
+    "task": "Completează expresia switch pentru a returna 'Admis' dacă 'score >= 50' și 'Respins' pentru '_'.",
+    "example": "string res = score switch {\n    >= 50 => \"Admis\",\n    _ => \"Respins\"\n};",
+    "starterCode": "string res = score switch {\n    >= 50 => \"Admis\",\n    _ => \"Respins\"\n};",
+    "officialSolution": "string res = score switch {\n    >= 50 => \"Admis\",\n    _ => \"Respins\"\n};",
+    "expectedOutputPattern": ">= 50\\s*=>\\s*[\"']Admis[\"'],\\s*_\\s*=>\\s*[\"']Respins[\"']",
+    "regexPattern": ">= 50\\s*=>\\s*[\"']Admis[\"'],\\s*_\\s*=>\\s*[\"']Respins[\"']",
+    "hint": "Scrie >= 50 => \"Admis\", _ => \"Respins\""
   },
   {
     "id": "cs-new-6",
@@ -1410,59 +1502,63 @@ const MEGA_EXPANDED_CURRICULUM = [
     "icon": "🔷",
     "level": "3. Middle",
     "xp": 45,
-    "title": "Capitolul 6: Delegați, 'Func<T>', 'Action<T>' & Expresii Lambda",
-    "theory": "\n<p>Un delegat (<code>delegate</code>) este un pointer de funcție sigur din punct de vedere al tipurilor (type-safe), capabil să rețină referințe către metode statice sau de instanță.</p>\n<h4>1. Func și Action</h4>\n<p>În loc să definim delegați personalizați, .NET oferă tipurile generice standard: <code>Action<T1, T2></code> pentru metode care returnează <code>void</code>, și <code>Func<T1, TResult></code> unde ultimul parametru generic este întotdeauna tipul returnat.</p>\n<h4>2. Expresii Lambda</h4>\n<p>Sintaxa cu săgeată <code>(x, y) => x + y</code> construiește funcții anonime concise care pot captura variabile din scope-ul părinte (closures).</p>\n",
+    "title": "Capitolul 6: Tipuri Record & Imutabilitate ('with' expressions)",
+    "theory": "\n<p>Tipurile <strong>Record</strong> (<code>record class</code> sau <code>record struct</code>) oferă egalitate bazată pe valori (Value-based Equality) și imutabilitate nativă, fiind ideale pentru DTO-uri și arhitecturi bazate pe mesaje.</p>\n\n<pre><code>// Exemplu 1: Positional Record și Non-Destructive Mutation cu 'with'\npublic record UserRecord(int Id, string Nume, string Rol);\n\nvar user1 = new UserRecord(1, \"Denis\", \"Admin\");\n\n// Clauza 'with' creează o copie modificată păstrând originalul intact:\nvar user2 = user1 with { Nume = \"Alex\" };\n\n// Egalitate pe valori (nu pe adrese de memorie!):\nvar userCopy = new UserRecord(1, \"Denis\", \"Admin\");\nConsole.WriteLine(user1 == userCopy); // True!\n</code></pre>\n",
     "glossary": [
       {
-        "term": "Action<T>",
-        "def": "Delegat generic standard care execută o operație fără a returna vreo valoare (void)."
+        "term": "Record",
+        "def": "Tip de date orientat pe stocarea imutabilă a valorilor cu egalitate bazată pe conținut."
       },
       {
-        "term": "Func<T, TResult>",
-        "def": "Delegat generic standard care acceptă parametri și returnează obligatoriu o valoare de tipul TResult."
+        "term": "with expression",
+        "def": "Mecanism de clonare parțială ce creează un obiect nou cu anumiți membri modificați."
       },
       {
-        "term": "Lambda Expression",
-        "def": "Sintaxă compactă (params) => body pentru declararea funcțiilor anonime inline."
+        "term": "Value-based Equality",
+        "def": "Două instanțe sunt egale dacă toate proprietățile lor au aceleași valori."
       },
       {
-        "term": "Predicate<T>",
-        "def": "Delegat echivalent cu Func<T, bool>, utilizat frecvent în operațiuni de filtrare."
+        "term": "Positional Record",
+        "def": "Sintaxă ultra-scurtă: record Point(int X, int Y);"
       }
     ],
     "matchingPairs": [
       {
-        "left": "Func<int, int, int>",
-        "right": "Primește doi întregi și returnează un întreg"
+        "left": "public record Point(int X, int Y);",
+        "right": "Positional record imutabil cu proprietăți auto-generate"
       },
       {
-        "left": "Action<string>",
-        "right": "Primește un string și returnează void"
+        "left": "var p2 = p1 with { X = 10 };",
+        "right": "Clonare cu mutație non-destructivă"
       },
       {
-        "left": "Predicate<int>",
-        "right": "Primește un întreg și returnează bool"
+        "left": "record1 == record2",
+        "right": "Compară valorile câmpurilor, nu referințele de memorie"
       },
       {
-        "left": "(a, b) => a * b",
-        "right": "Expresie lambda ce multiplică două valori"
+        "left": "record struct",
+        "right": "Variantă record alocată pe Stack ca Value Type"
       }
     ],
     "quiz": {
-      "question": "Care este semnătura delegatului 'Func<string, int>'?",
+      "question": "Ce rezultat va afișa 'r1 == r2' dacă r1 și r2 sunt două instanțe distincte de record cu aceleași valori ale câmpurilor?",
       "options": [
-        "O metodă care primește un argument de tip string și returnează un int.",
-        "O metodă care primește un argument de tip int și returnează un string.",
-        "O metodă care primește doi parametri: un string și un int, returnând void.",
-        "O funcție care nu primește niciun argument și returnează un string."
+        "True (deoarece tipurile record implementează egalitate bazată pe valorile câmpurilor).",
+        "False (deoarece sunt adrese diferite în memoria Heap).",
+        "Aruncă o excepție de compilare.",
+        "Returnează null."
       ],
       "correctIndex": 0,
-      "explanation": "În convenția .NET pentru Func<...>, ultimul tip generic specificat este întotdeauna valoarea de retur; tipurile anterioare sunt parametrii de intrare."
+      "explanation": "Spre deosebire de clasele clasice unde '==' verifică referința, la records compilatorul suprascrie automat Equals() pentru a compara valorile interne ale fiecărui câmp."
     },
-    "task": "Declară un delegat 'Func<int, int, int>' numit 'multiplier' care multiplică cei doi parametri folosind o expresie lambda '(a, b) => a * b'.",
-    "starterCode": "Func<int, int, int> multiplier = ",
-    "expectedOutputPattern": "Func<int,\\s*int,\\s*int>\\s+multiplier\\s*=\\s*\\(a,\\s*b\\)\\s*=>\\s*a\\s*\\*\\s*b;",
-    "hint": "Scrie: (a, b) => a * b;"
+    "prompt": "Clonează 'original' modificând proprietatea 'Role' în 'Admin' folosind expresia 'original with { Role = \"Admin\" }'.",
+    "task": "Clonează 'original' modificând proprietatea 'Role' în 'Admin' folosind expresia 'original with { Role = \"Admin\" }'.",
+    "example": "var updated = original with { Role = \"Admin\" };",
+    "starterCode": "var updated = original with { Role = \"Admin\" };",
+    "officialSolution": "var updated = original with { Role = \"Admin\" };",
+    "expectedOutputPattern": "updated\\s*=\\s*original\\s+with\\s*\\{\\s*Role\\s*=\\s*[\"']Admin[\"']\\s*\\};?",
+    "regexPattern": "updated\\s*=\\s*original\\s+with\\s*\\{\\s*Role\\s*=\\s*[\"']Admin[\"']\\s*\\};?",
+    "hint": "Scrie updated = original with { Role = \"Admin\" };"
   },
   {
     "id": "cs-new-7",
@@ -1471,59 +1567,63 @@ const MEGA_EXPANDED_CURRICULUM = [
     "icon": "🔷",
     "level": "3. Middle",
     "xp": 50,
-    "title": "Capitolul 7: LINQ — Language Integrated Query & Evaluare Leneșă",
-    "theory": "\n<p><strong>LINQ</strong> integrează capabilități de interogare direct în limbajul C#. Metodele de extensie din <code>System.Linq</code> operează pe colecții <code>IEnumerable<T></code>.</p>\n<h4>1. Evaluare Leneșă (Deferred Execution)</h4>\n<p>Metode precum <code>Where</code> și <code>Select</code> NU execută filtrarea în momentul apelării. Interogarea este evaluată doar când colecția este iterată efectiv (într-o buclă <code>foreach</code> sau prin apelul <code>ToList()</code> / <code>ToArray()</code>).</p>\n<h4>2. Agregare & Căutare</h4>\n<p>Metodele <code>Any()</code> și <code>All()</code> verifică condiții booleene scurtcircuitând evaluarea. <code>FirstOrDefault(predicate)</code> returnează primul element ce satisface condiția sau valoarea implicită (<code>null</code> pentru clase).</p>\n",
+    "title": "Capitolul 7: LINQ Avansat: 'Where', 'Select', 'GroupBy' & Deferred Execution",
+    "theory": "\n<p><strong>LINQ</strong> (Language Integrated Query) unifică interogarea colecțiilor în memorie (<code>IEnumerable&lt;T&gt;</code>) și a bazelor de date prin EF Core (<code>IQueryable&lt;T&gt;</code>).</p>\n\n<h4>1. Execuție Amânată (Deferred Execution)</h4>\n<p>Interogările LINQ nu se execută la definire, ci la enumerare (<code>foreach</code>, <code>.ToList()</code>, <code>.Count()</code>).</p>\n\n<pre><code>// Exemplu 1: Pipeline LINQ complet cu filtrare, ordonare și selecție\nvar angajati = new List&lt;Angajat&gt; {\n    new(\"Ion\", 5000, \"IT\"),\n    new(\"Maria\", 7500, \"IT\"),\n    new(\"Elena\", 4200, \"HR\")\n};\n\nList&lt;string&gt; topIt = angajati\n    .Where(a => a.Departament == \"IT\")\n    .OrderByDescending(a => a.Salariu)\n    .Select(a => a.Nume)\n    .ToList();\n\n// Output: [\"Maria\", \"Ion\"]\n</code></pre>\n",
     "glossary": [
       {
-        "term": "LINQ",
-        "def": "'Language Integrated Query' - set de unelte pentru interogarea uniformă a colecțiilor și bazelor de date."
-      },
-      {
         "term": "Deferred Execution",
-        "def": "Amânarea execuției interogării până când rezultatele sunt iterate efectiv."
+        "def": "Executarea interogării doar în momentul în care datele sunt efectiv iterate sau materializate."
       },
       {
-        "term": "ToList()",
-        "def": "Forțează executarea imediată a interogării LINQ și materializează rezultatele într-o List<T>."
+        "term": "IEnumerable<T>",
+        "def": "Interfață pentru colecții în memorie ce evaluează elementele pas cu pas."
       },
       {
-        "term": "SelectMany()",
-        "def": "Aplatizează o secvență de colecții într-o singură secvență continuă."
+        "term": "IQueryable<T>",
+        "def": "Interfață ce traduce interogarea C# în SQL nativ rulat pe serverul de baze de date."
+      },
+      {
+        "term": "Select() vs Where()",
+        "def": "Where filtrează colecția (reducând rândurile), Select transformă/proiectează elementele."
       }
     ],
     "matchingPairs": [
       {
-        "left": "numbers.Where(x => x > 10)",
-        "right": "Filtrează elementele fără a le materializa imediat"
+        "left": "numbers.Where(x => x > 0)",
+        "right": "Filtrează elementele după predicat"
       },
       {
         "left": "users.Select(u => u.Email)",
-        "right": "Proiectează doar proprietatea Email"
+        "right": "Proiectează într-o colecție de adrese email"
       },
       {
-        "left": "items.OrderByDescending(x => x.Price)",
-        "right": "Sortează elementele descrescător"
+        "left": "items.ToList()",
+        "right": "Materializează imediat interogarea în memorie"
       },
       {
-        "left": "list.FirstOrDefault(x => x.Id == 5)",
-        "right": "Găsește elementul sau returnează null"
+        "left": "orders.GroupBy(o => o.Status)",
+        "right": "Grupează elementele după o cheie comună"
       }
     ],
     "quiz": {
-      "question": "Ce înseamnă că o interogare 'var query = users.Where(u => u.IsActive);' are execuție amânată (deferred execution)?",
+      "question": "Ce înseamnă 'Deferred Execution' (execuție amânată) în LINQ?",
       "options": [
-        "Codul de filtrare nu rulează la atribuirea variabilei, ci abia când 'query' este iterat cu foreach sau ToList().",
-        "Interogarea este trimisă pe un server extern din cloud cu o întârziere de 5 secunde.",
-        "LINQ rulează interogarea doar dacă procesorul are mai puțin de 50% încărcare.",
-        "Filtrarea este anulată automat dacă lista are mai mult de 100 de elemente."
+        "Interogarea nu filtrează datele când este scrisă, ci abia atunci când colecția este iterată cu foreach sau materializată cu .ToList().",
+        "Interogarea rulează doar când computerul este repornit.",
+        "LINQ amână execuția dacă procesorul este prea fierbinte.",
+        "Datele sunt descărcate doar după miezul nopții."
       ],
       "correctIndex": 0,
-      "explanation": "LINQ construiește doar un arbore de iterație; evaluarea efectivă are loc abia când se solicită primul element prin iterație sau materializare explicită."
+      "explanation": "LINQ construiește arborele de expresie sau iteratorul; calculul efectiv se declanșează doar la cererea primului element (lazy)."
     },
-    "task": "Filtrează colecția 'users' selectând doar utilizatorii cu 'u.Age >= 18' și materializează rezultatul cu '.ToList()'.",
-    "starterCode": "var adults = users.",
-    "expectedOutputPattern": "adults\\s*=\\s*users\\.Where\\(u\\s*=>\\s*u\\.Age\\s*>=\\s*18\\)\\.ToList\\(\\);",
-    "hint": "Apelează .Where(u => u.Age >= 18).ToList();"
+    "prompt": "Filtrează lista 'numbers' selectând doar numerele pare folosind '.Where(n => n % 2 == 0).ToList();'.",
+    "task": "Filtrează lista 'numbers' selectând doar numerele pare folosind '.Where(n => n % 2 == 0).ToList();'.",
+    "example": "var even = numbers.Where(n => n % 2 == 0).ToList();",
+    "starterCode": "var even = numbers.Where(n => n % 2 == 0).ToList();",
+    "officialSolution": "var even = numbers.Where(n => n % 2 == 0).ToList();",
+    "expectedOutputPattern": "\\.Where\\(n\\s*=>\\s*n\\s*%\\s*2\\s*==\\s*0\\)\\.ToList\\(\\);?",
+    "regexPattern": "\\.Where\\(n\\s*=>\\s*n\\s*%\\s*2\\s*==\\s*0\\)\\.ToList\\(\\);?",
+    "hint": "Scrie .Where(n => n % 2 == 0).ToList();"
   },
   {
     "id": "cs-new-8",
@@ -1531,60 +1631,64 @@ const MEGA_EXPANDED_CURRICULUM = [
     "division": "Informatică și Programare",
     "icon": "🔷",
     "level": "4. Senior",
-    "xp": 55,
-    "title": "Capitolul 8: Programare Asincronă: 'async', 'await' & 'Task'",
-    "theory": "\n<p>Modelul <strong>TAP</strong> (Task-based Asynchronous Pattern) din .NET folosește <code>async</code> și <code>await</code> pentru a elibera thread-urile din ThreadPool în timpul operațiunilor de I/O blocante (rețea, disc, apeluri SQL).</p>\n<h4>1. Cum Funcționează State Machine-ul C#</h4>\n<p>La compilare, o metodă <code>async</code> este transformată de compilatorul Roslyn într-o mașină de stări (State Machine). Când se ajunge la <code>await task</code>, execuția metodei este suspendată, iar firul de execuție curent se întoarce în ThreadPool pentru a servi alte cereri HTTP.</p>\n<h4>2. 'ValueTask<T>' pentru Evitarea Alocărilor</h4>\n<p>În timp ce <code>Task<T></code> este o clasă alocată pe Heap, <code>ValueTask<T></code> este o structură alocată pe Stack, ideală pentru metode asincrone care returnează frecvent rezultate din cache sincron fără alocare de memorie.</p>\n",
+    "xp": 60,
+    "title": "Capitolul 8: Programare Asincronă cu 'async' / 'await' & 'Task.WhenAll'",
+    "theory": "\n<p>Modelul asincron din C# (Task-based Asynchronous Pattern — TAP) folosește o mașină de stări generată de compilator pentru a elibera firul curent în timp ce așteaptă I/O.</p>\n\n<pre><code>// Exemplu 1: Metode asincrone și Task.WhenAll\npublic async Task&lt;int&gt; DescarcaTotAsync(List&lt;string&gt; urls) {\n    using var client = new HttpClient();\n    \n    // Declanșează descărcările în paralel:\n    var tasks = urls.Select(url => client.GetStringAsync(url));\n    \n    // Așteaptă finalizarea tuturor cererilor:\n    string[] pagini = await Task.WhenAll(tasks);\n    \n    return pagini.Length;\n}\n</code></pre>\n",
     "glossary": [
       {
+        "term": "async / await",
+        "def": "Cuvinte cheie ce transformă o metodă într-o mașină de stări asincronă non-blocantă."
+      },
+      {
         "term": "Task<T>",
-        "def": "Promisiune asincronă reprezentând o operație în derulare ce va produce un rezultat T."
+        "def": "Reprezentarea unei operațiuni asincrone ce va produce un rezultat în viitor."
       },
       {
-        "term": "ThreadPool",
-        "def": "Set administrat de fire de execuție reutilizabile din sistemul de operare gestionate de CLR."
-      },
-      {
-        "term": "ValueTask<T>",
-        "def": "Structură de tip valoare ce evită alocarea pe Heap când rezultatul asincron este deja disponibil."
+        "term": "Task.WhenAll()",
+        "def": "Combină multiple task-uri într-un singur task ce se finalizează când toate au terminat."
       },
       {
         "term": "ConfigureAwait(false)",
-        "def": "Instrucțiune ce specifică că continuarea metodei nu necesită sincronizarea cu contextul original."
+        "def": "Optimizare de bibliotecă ce evită capturarea contextului de sincronizare inițial."
       }
     ],
     "matchingPairs": [
       {
-        "left": "await httpClient.GetStringAsync()",
-        "right": "Eliberează thread-ul pe durata descărcării rețelei"
+        "left": "await Task.WhenAll(t1, t2)",
+        "right": "Așteaptă ambele sarcini rulate în paralel"
       },
       {
-        "left": "Task.WhenAll(t1, t2)",
-        "right": "Așteaptă finalizarea tuturor task-urilor asincrone"
+        "left": "async Task<int> Calculate()",
+        "right": "Metodă asincronă ce returnează un întreg"
       },
       {
-        "left": "async Task<int>",
-        "right": "Metodă asincronă ce va returna o valoare întreagă"
+        "left": "Task.Delay(1000)",
+        "right": "Pauză asincronă non-blocantă (fără Thread.Sleep)"
       },
       {
-        "left": "ValueTask<T>",
-        "right": "Optimizare zero-allocation pentru rezultate sincronizate din cache"
+        "left": "CancellationToken",
+        "right": "Permite anularea cooperativă a operațiunilor asincrone"
       }
     ],
     "quiz": {
-      "question": "De ce este considerată o practică periculoasă utilizarea apelului sincron '.Result' sau '.Wait()' pe un Task în loc de 'await'?",
+      "question": "De ce este interzis să folosești 'task.Result' sau 'task.Wait()' pe o operație asincronă în C#?",
       "options": [
-        "Blochează thread-ul apelant și poate conduce la fenomenul de Deadlock sau ThreadPool Starvation.",
-        "Șterge automat variabilele din baza de date a serverului.",
-        "Provoacă o eroare de sintaxă la compilare în C# 12.",
-        "Dezactivează conexiunea la internet a serverului."
+        "Blochează sincron firul curent și poate cauza Deadlock pe SynchronizationContext.",
+        "Șterge rezultatul din memorie.",
+        "Aruncă întotdeauna NullReferenceException.",
+        "Dezactivează compilatorul Roslyn."
       ],
       "correctIndex": 0,
-      "explanation": "Apelul .Result blochează synchron firul de execuție curent. Dacă firul așteaptă un context de sincronizare ocupat, aplicația intră în Deadlock sau epuizează firele din ThreadPool."
+      "explanation": "Apelul '.Result' sau '.Wait()' blochează sincron firul curent, creând risc major de deadlock în interfețe grafice (WPF/MAUI) și ASP.NET clasic."
     },
-    "task": "Scrie antetul unei metode asincrone publice 'async Task<string> FetchDataAsync()' care returnează 'await client.GetStringAsync(url);'.",
-    "starterCode": "// Completează metoda asincronă\n",
-    "expectedOutputPattern": "public\\s+async\\s+Task<string>\\s+FetchDataAsync\\(\\)\\s*\\{\\s*return\\s+await\\s+client\\.GetStringAsync\\(url\\);\\s*\\}",
-    "hint": "Scrie public async Task<string> FetchDataAsync() { return await client.GetStringAsync(url); }"
+    "prompt": "Așteaptă rularea concurentă a două sarcini 'task1' și 'task2' apelând 'await Task.WhenAll(task1, task2);'.",
+    "task": "Așteaptă rularea concurentă a două sarcini 'task1' și 'task2' apelând 'await Task.WhenAll(task1, task2);'.",
+    "example": "await Task.WhenAll(task1, task2);",
+    "starterCode": "await Task.WhenAll(task1, task2);",
+    "officialSolution": "await Task.WhenAll(task1, task2);",
+    "expectedOutputPattern": "await\\s+Task\\.WhenAll\\(task1,\\s*task2\\);?",
+    "regexPattern": "await\\s+Task\\.WhenAll\\(task1,\\s*task2\\);?",
+    "hint": "Scrie await Task.WhenAll(task1, task2);"
   },
   {
     "id": "cs-new-9",
@@ -1593,59 +1697,63 @@ const MEGA_EXPANDED_CURRICULUM = [
     "icon": "🔷",
     "level": "4. Senior",
     "xp": 60,
-    "title": "Capitolul 9: Dependency Injection (DI) & Cicluri de Viață în .NET",
-    "theory": "\n<p>Containerul IoC (Inversion of Control) integrat în .NET Core gestionează instanțierea și rezolvarea automată a dependențelor prin constructor injection.</p>\n<h4>1. Cele Trei Cicluri de Viață (Service Lifetimes)</h4>\n<ul>\n  <li><code>AddTransient</code>: Se creează o instanță nouă la FIECARE solicitare a serviciului.</li>\n  <li><code>AddScoped</code>: Se creează o singură instanță per ciclu de viață de cerere HTTP (per Web Request); ideal pentru DbContext.</li>\n  <li><code>AddSingleton</code>: Se creează o singură instanță unică pe întreaga durată de viață a aplicației.</li>\n</ul>\n<h4>2. Anti-pattern: Captive Dependency</h4>\n<p>Injectarea unui serviciu <em>Scoped</em> într-un <em>Singleton</em> transformă acel serviciu scoped într-un fals singleton, cauzând scurgeri de memorie sau stări concurente corupte în DbContext.</p>\n",
+    "title": "Capitolul 9: Generice C# & Constrângeri ('where T : class, new()')",
+    "theory": "\n<p>Genericele permit scrierea de clase și algoritmi independenți de tipul de date, cu verificări la compilare și fără penalizările de boxing/unboxing.</p>\n\n<pre><code>// Exemplu 1: Clasă generică cu constrângeri multiple\npublic class Repository&lt;T&gt; where T : class, new() {\n    private readonly List&lt;T&gt; _stoc = new();\n\n    public void Salveaza(T entitate) {\n        _stoc.Add(entitate);\n    }\n\n    public T CreeazaInstantaNoua() {\n        return new T(); // Posibil doar datorită constrângerii new()!\n    }\n}\n</code></pre>\n",
     "glossary": [
       {
-        "term": "IoC Container",
-        "def": "Sistem arhitectural ce gestionează ciclul de viață și injectarea automată a componentelor software."
+        "term": "Generics (<T>)",
+        "def": "Șabloane tipizate ce asigură reutilizarea codului și siguranță statică la compilare."
       },
       {
-        "term": "Transient Lifetime",
-        "def": "Instanțiere nouă la fiecare injectare; componente ușoare și complet stateless."
+        "term": "where T : class",
+        "def": "Constrângere ce limitează parametrul generic exclusiv la tipuri de referință."
       },
       {
-        "term": "Scoped Lifetime",
-        "def": "O singură instanță partajată pe durata întregului request HTTP curent."
+        "term": "where T : new()",
+        "def": "Constrângere ce impune ca tipul să aibă un constructor public fără parametri."
       },
       {
-        "term": "Captive Dependency",
-        "def": "Eroare arhitecturală în care un serviciu cu viață scurtă este ținut în viață de un Singleton."
+        "term": "Boxing / Unboxing",
+        "def": "Conversia costisitoare între tipuri de valoare și obiecte pe Heap, evitată prin generice."
       }
     ],
     "matchingPairs": [
       {
-        "left": "builder.Services.AddScoped<IOrderService, OrderService>()",
-        "right": "O instanță unică per cerere HTTP"
+        "left": "where T : class",
+        "right": "T trebuie să fie un tip de referință"
       },
       {
-        "left": "builder.Services.AddSingleton<ICache, MemoryCache>()",
-        "right": "O singură instanță globală pe tot serverul"
+        "left": "where T : struct",
+        "right": "T trebuie să fie un tip de valoare non-nullable"
       },
       {
-        "left": "builder.Services.AddTransient<IEmailSender, EmailSender>()",
-        "right": "Instanță nouă la fiecare rezolvare"
+        "left": "where T : new()",
+        "right": "T trebuie să aibă constructor public fără parametri"
       },
       {
-        "left": "Constructor Injection",
-        "right": "Declararea dependențelor ca parametri în constructor"
+        "left": "where T : IComparable<T>",
+        "right": "T trebuie să suporte operații de comparare"
       }
     ],
     "quiz": {
-      "question": "Ce ciclu de viață (lifetime) este recomandat pentru contextul bazei de date (DbContext) în aplicațiile web ASP.NET Core?",
+      "question": "Ce permite constrângerea generică 'where T : new()' în corpul unei clase generice C#?",
       "options": [
-        "Scoped, deoarece trebuie partajat pe durata unui singur request HTTP și distrus la finalul acestuia.",
-        "Singleton, pentru a refolosi aceeași conexiune la infinit între toți utilizatorii simultan.",
-        "Transient, recreând contextul la fiecare interogare individuală.",
-        "Static, stocând entitățile direct în fișiere text."
+        "Permite instanțierea directă a tipului generic folosind operatorul 'new T()'.",
+        "Interzice crearea oricărui obiect.",
+        "Obligă clasa să fie redenumită la fiecare compilare.",
+        "Șterge Garbage Collector-ul."
       ],
       "correctIndex": 0,
-      "explanation": "DbContext nu este thread-safe și reține starea modificărilor de entități pentru tranzacția curentă. De aceea, AddScoped este ciclul de viață standard și corect."
+      "explanation": "În lipsa constrângerii 'new()', compilatorul refuză apelul 'new T()' deoarece nu poate garanta existența unui constructor fără parametri."
     },
-    "task": "Înregistrează serviciul 'IUserRepository' cu implementarea 'UserRepository' ca serviciu 'Scoped' pe colecția 'services'.",
-    "starterCode": "// Înregistrează serviciul Scoped\nservices.",
-    "expectedOutputPattern": "services\\.AddScoped<IUserRepository,\\s*UserRepository>\\(\\);",
-    "hint": "Apelează services.AddScoped<IUserRepository, UserRepository>();"
+    "prompt": "Adaugă constrângerea ca parametrul generic 'T' să fie tip de referință și să aibă constructor fără parametri: 'where T : class, new()'.",
+    "task": "Adaugă constrângerea ca parametrul generic 'T' să fie tip de referință și să aibă constructor fără parametri: 'where T : class, new()'.",
+    "example": "public class Storage<T> where T : class, new() {\n}",
+    "starterCode": "public class Storage<T> where T : class, new() {\n}",
+    "officialSolution": "public class Storage<T> where T : class, new() {\n}",
+    "expectedOutputPattern": "where\\s+T\\s*:\\s*class,\\s*new\\(\\)",
+    "regexPattern": "where\\s+T\\s*:\\s*class,\\s*new\\(\\)",
+    "hint": "Scrie where T : class, new()"
   },
   {
     "id": "cs-new-10",
@@ -1653,60 +1761,64 @@ const MEGA_EXPANDED_CURRICULUM = [
     "division": "Informatică și Programare",
     "icon": "🔷",
     "level": "4. Senior",
-    "xp": 60,
-    "title": "Capitolul 10: ASP.NET Core Minimal APIs & Routing de Înaltă Performanță",
-    "theory": "\n<p><strong>Minimal APIs</strong> este arhitectura modernă din ASP.NET Core ce permite construirea de microservicii HTTP cu alocări minime de memorie și overhead redus, eliminând controlerele greoaie.</p>\n<h4>1. Rutare Declarativă cu MapGet & MapPost</h4>\n<p>Endpoint-urile sunt mapate direct pe instanța <code>WebApplication</code>: <code>app.MapGet(\"/api/items\", (IRepository repo) => Results.Ok(repo.GetAll()));</code>. Parametrii sunt injectați automat fie din URL, query string, request body sau containerul DI.</p>\n<h4>2. Tipul 'IResult' & Răspunsuri Tipizate</h4>\n<p>Clasa statică <code>Results</code> oferă metode factory standardizate pentru coduri HTTP: <code>Results.Ok()</code> (200), <code>Results.Created()</code> (201), <code>Results.NotFound()</code> (404), <code>Results.ValidationProblem()</code> (400 conform RFC 7807).</p>\n",
+    "xp": 65,
+    "title": "Capitolul 10: Inversion of Control & Dependency Injection în .NET Core",
+    "theory": "\n<p>.NET Core include un container nativ de Inversion of Control (IoC) configurabil în <code>Program.cs</code> prin 3 durate de viață (Lifetimes):</p>\n\n<pre><code>// Exemplu 1: Înregistrarea serviciilor în containerul IoC din Program.cs\nvar builder = WebApplication.CreateBuilder(args);\n\n// 1. Transient: Instanță proaspătă la fiecare cerere\nbuilder.Services.AddTransient&lt;ITokenGenerator, JwtTokenGenerator&gt;();\n\n// 2. Scoped: O singură instanță per cerere HTTP (recomandat DbContext)\nbuilder.Services.AddScoped&lt;IUserRepository, SqlUserRepository&gt;();\n\n// 3. Singleton: O singură instanță pe toată durata de viață a aplicației\nbuilder.Services.AddSingleton&lt;IMemoryCache, MemoryCache&gt;();\n</code></pre>\n",
     "glossary": [
       {
-        "term": "Minimal APIs",
-        "def": "Abordare ultra-rapidă pentru crearea de servicii REST fără clase Controller stufoase."
+        "term": "AddTransient",
+        "def": "Creează o nouă instanță de fiecare dată când serviciul este solicitat prin DI."
       },
       {
-        "term": "Results.Ok(data)",
-        "def": "Factory helper ce generează un răspuns HTTP 200 cu corp JSON serializat automat."
+        "term": "AddScoped",
+        "def": "Creează o singură instanță per request HTTP (ideal pentru baze de date și repository-uri)."
       },
       {
-        "term": "Route Parameter",
-        "def": "Segment dinamic din calea URL (ex: /users/{id}) mapat automat pe argumentul funcției lambda."
+        "term": "AddSingleton",
+        "def": "Instanță unică partajată de toate cererile pe toată durata procesului aplicației."
       },
       {
-        "term": "Model Binding",
-        "def": "Mecanism intern ce extrage datele din cererea HTTP și le convertește în obiecte C#."
+        "term": "Service Lifetime",
+        "def": "Regula care guvernează când este creată și când este distrusă o dependență."
       }
     ],
     "matchingPairs": [
       {
-        "left": "app.MapGet(\"/items/{id}\", (int id) => ...)",
-        "right": "Rutează cererile GET extrăgând ID-ul numeric"
+        "left": "AddTransient<IService, Impl>()",
+        "right": "Instanță nouă la fiecare cerere"
       },
       {
-        "left": "app.MapPost(\"/items\", (Item item) => ...)",
-        "right": "Deserializare automată a corpului JSON din POST"
+        "left": "AddScoped<IDbContext, AppDb>()",
+        "right": "O instanță unică per request HTTP"
       },
       {
-        "left": "Results.NotFound()",
-        "right": "Returnează codul de stare HTTP 404"
+        "left": "AddSingleton<ICache, Cache>()",
+        "right": "O singură instanță globală pe tot ciclul de viață"
       },
       {
-        "left": "Results.Created($\"/items/{id}\", item)",
-        "right": "Returnează codul HTTP 201 cu header Location"
+        "left": "Constructor Injection",
+        "right": "Furnizarea automată a serviciilor prin constructor"
       }
     ],
     "quiz": {
-      "question": "De unde injectează Minimal APIs argumentele specificate în funcția lambda a unui endpoint precum 'app.MapGet(\"/users\", (IUserService service) => ...)'?",
+      "question": "Ce durată de viață (Lifetime) este recomandată pentru 'DbContext' în aplicațiile web ASP.NET Core?",
       "options": [
-        "Automat din containerul nativ de Dependency Injection al aplicației.",
-        "Numai dacă utilizatorul trimite un header HTTP cu numele serviciului.",
-        "Dintr-un fișier local XML situat în rădăcina proiectului.",
-        "Minimal APIs nu suportă injectarea dependențelor."
+        "Scoped (pentru a izola tranzacțiile și starea entităților la nivelul unui singur request HTTP).",
+        "Singleton (deoarece o singură conexiune este suficientă pentru 10.000 de utilizatori concurenți).",
+        "Transient (pentru a crea câte o conexiune la fiecare metodă din controller).",
+        "Static fără nicio înregistrare în DI."
       ],
       "correctIndex": 0,
-      "explanation": "Motorul de model binding din Minimal APIs recunoaște automat tipurile înregistrate în containerul de DI și le injectează fără adnotări manuale."
+      "explanation": "DbContext nu este thread-safe! Înregistrarea ca Scoped garantează că fiecare cerere HTTP primește propriul său context, prevenind coruperea concurentă a stării."
     },
-    "task": "Definește un endpoint Minimal API pe ruta '/api/ping' folosind 'app.MapGet' care returnează 'Results.Ok(\"pong\")'.",
-    "starterCode": "// Înregistrează ruta GET /api/ping\napp.",
-    "expectedOutputPattern": "app\\.MapGet\\([\"']/api/ping[\"'],\\s*\\(\\)\\s*=>\\s*Results\\.Ok\\([\"']pong[\"']\\)\\);",
-    "hint": "Scrie app.MapGet(\"/api/ping\", () => Results.Ok(\"pong\"));"
+    "prompt": "Înregistrează serviciul 'IOrderService' cu implementarea 'OrderService' ca durată Scoped: 'builder.Services.AddScoped<IOrderService, OrderService>();'.",
+    "task": "Înregistrează serviciul 'IOrderService' cu implementarea 'OrderService' ca durată Scoped: 'builder.Services.AddScoped<IOrderService, OrderService>();'.",
+    "example": "builder.Services.AddScoped<IOrderService, OrderService>();",
+    "starterCode": "builder.Services.AddScoped<IOrderService, OrderService>();",
+    "officialSolution": "builder.Services.AddScoped<IOrderService, OrderService>();",
+    "expectedOutputPattern": "builder\\.Services\\.AddScoped<IOrderService,\\s*OrderService>\\(\\);?",
+    "regexPattern": "builder\\.Services\\.AddScoped<IOrderService,\\s*OrderService>\\(\\);?",
+    "hint": "Scrie builder.Services.AddScoped<IOrderService, OrderService>();"
   },
   {
     "id": "cs-new-11",
@@ -1715,59 +1827,63 @@ const MEGA_EXPANDED_CURRICULUM = [
     "icon": "🔷",
     "level": "5. Arhitect / Exemplar",
     "xp": 70,
-    "title": "Capitolul 11: Eficiență Extremă de Memorie: 'Span<T>' și 'ReadOnlySpan<T>'",
-    "theory": "\n<p>Tradițional, operațiuni de manipulare a șirurilor precum <code>string.Substring()</code> creează noi obiecte pe Heap, încărcând agresiv colectorul de gunoi (GC). <strong>Span&lt;T&gt;</strong> și <strong>ReadOnlySpan&lt;T&gt;</strong> rezolvă această problemă oferind o fereastră de memorie contiguă cu <em>zero alocări</em>.</p>\n<h4>1. Ce este un 'ref struct'?</h4>\n<p><code>Span&lt;T&gt;</code> este un <code>ref struct</code> alocat exclusiv pe Stack. Nu poate fi salvat pe Heap sau în câmpuri de clase obișnuite, garantând performanță la nivelul pointerilor din C fără riscul de dangling pointers.</p>\n<h4>2. Slicing Zero-Copy</h4>\n<p>Apelul <code>span.Slice(start, length)</code> costă $O(1)$ și nu alocă niciun octet în RAM; doar ajustează pointerul și lungimea ferestrei de vizualizare peste memoria existentă.</p>\n",
+    "title": "Capitolul 11: Entity Framework Core — Migrări, DbSet & AsNoTracking",
+    "theory": "\n<p><strong>Entity Framework Core</strong> este ORM-ul de producție din .NET. Pentru interogări de tip read-only unde entitățile nu vor fi modificate, folosim <code>AsNoTracking()</code> pentru a decupla Change Tracker-ul și a reduce consumul de memorie cu până la 50%.</p>\n\n<pre><code>// Exemplu 1: Interogare de înaltă performanță cu AsNoTracking()\nusing var db = new AppDbContext();\n\nList&lt;UserDTO&gt; users = await db.Users\n    .AsNoTracking() // Elimină overhead-ul monitorizării modificărilor\n    .Where(u => u.IsActive)\n    .Select(u => new UserDTO(u.Id, u.Email))\n    .ToListAsync();\n</code></pre>\n",
     "glossary": [
       {
-        "term": "Span<T>",
-        "def": "Fereastră de memorie de tip ref-struct ce unifică accesul la tablouri, memorie nativă sau Stack fără alocări pe Heap."
+        "term": "AsNoTracking()",
+        "def": "Dezactivează monitorizarea modificărilor pentru interogări de citire rapidă și consum redus de RAM."
       },
       {
-        "term": "ref struct",
-        "def": "Tip special C# restricționat la stiva de apel (Stack) pentru a preveni colectarea GC."
+        "term": "DbSet<T>",
+        "def": "Colecție ce mapează o tabelă din baza de date și expune capabilități LINQ to SQL."
       },
       {
-        "term": "Zero-Allocation",
-        "def": "Tehnică de programare de înaltă performanță ce evită alocările de memorie pe Heap."
+        "term": "Change Tracker",
+        "def": "Mecanism intern din EF Core ce detectează proprietățile modificate pentru a genera comenzi UPDATE."
       },
       {
-        "term": "ReadOnlySpan<char>",
-        "def": "Înlocuitor de înaltă performanță pentru string în operațiuni de parsare și slicing."
+        "term": "Include()",
+        "def": "Realizează Eager Loading (LEFT JOIN) pentru a încărca relațiile conexe într-o singură interogare."
       }
     ],
     "matchingPairs": [
       {
-        "left": "ReadOnlySpan<char> span = text.AsSpan()",
-        "right": "Creează o vizualizare peste string fără copiere"
+        "left": "db.Users.AsNoTracking()",
+        "right": "Interogare optimizată fără monitorizare de memorie"
       },
       {
-        "left": "span.Slice(0, 5)",
-        "right": "Slicing în timp O(1) cu zero alocare pe Heap"
+        "left": "db.Orders.Include(o => o.Items)",
+        "right": "Eager Loading pentru relația cu articolele comenzii"
       },
       {
-        "left": "stackalloc byte[256]",
-        "right": "Alocare ultra-rapidă direct pe Stack-ul metodei"
+        "left": "await db.SaveChangesAsync()",
+        "right": "Execută tranzacțional toate modificările în baza de date"
       },
       {
-        "left": "ref struct",
-        "right": "Structură restricționată strict la memoria Stack"
+        "left": "dotnet ef migrations add Initial",
+        "right": "Generează scriptul C# de sincronizare a tabelelor"
       }
     ],
     "quiz": {
-      "question": "De ce este interzis ca un obiect de tip Span<T> să fie stocat ca atribut într-o clasă obișnuită (class)?",
+      "question": "De ce este recomandat să folosești '.AsNoTracking()' în interogările EF Core care doar afișează date (read-only)?",
       "options": [
-        "Deoarece este un 'ref struct' care trăiește exclusVal pe Stack; plasarea lui pe Heap ar crea referințe invalide după ieșirea din metodă.",
-        "Span<T> este incompatibil cu procesoarele pe 64 de biți.",
-        "Compilatorul C# limitează clasele la maxim 4 câmpuri de memorie.",
-        "Span<T> poate fi folosit doar în limbajul F#."
+        "Dezactivează Change Tracker-ul intern, reducând consumul de RAM și sporind viteza de execuție.",
+        "Șterge baza de date pentru a elibera spațiul pe disc.",
+        "AsNoTracking face interogarea să ruleze doar pe dischete floppy.",
+        "Este obligatoriu doar dacă tabela are peste 10 coloane."
       ],
       "correctIndex": 0,
-      "explanation": "Span<T> este un ref struct conceput exclusiv pentru Stack. Dacă ar ajunge pe Heap în interiorul unei clase, adresa către datele de pe Stack ar deveni invalidă la întoarcerea din metodă."
+      "explanation": "Monitorizarea entităților consumă memorie și cicluri CPU. Dacă doar returnezi date într-un API GET, AsNoTracking oferă un boost considerabil de performanță."
     },
-    "task": "Convertește stringul 'rawText' într-un 'ReadOnlySpan<char>' folosind metoda de extensie '.AsSpan()'.",
-    "starterCode": "string rawText = \"2026-10-15\";\nReadOnlySpan<char> span = ",
-    "expectedOutputPattern": "span\\s*=\\s*rawText\\.AsSpan\\(\\);",
-    "hint": "Scrie span = rawText.AsSpan();"
+    "prompt": "Aplică optimizarea 'AsNoTracking()' pe tabela 'db.Users' apelând 'db.Users.AsNoTracking().ToListAsync();'.",
+    "task": "Aplică optimizarea 'AsNoTracking()' pe tabela 'db.Users' apelând 'db.Users.AsNoTracking().ToListAsync();'.",
+    "example": "var list = await db.Users.AsNoTracking().ToListAsync();",
+    "starterCode": "var list = await db.Users.AsNoTracking().ToListAsync();",
+    "officialSolution": "var list = await db.Users.AsNoTracking().ToListAsync();",
+    "expectedOutputPattern": "db\\.Users\\.AsNoTracking\\(\\)\\.ToListAsync\\(\\);?",
+    "regexPattern": "db\\.Users\\.AsNoTracking\\(\\)\\.ToListAsync\\(\\);?",
+    "hint": "Scrie db.Users.AsNoTracking().ToListAsync();"
   },
   {
     "id": "cs-new-12",
@@ -1776,59 +1892,63 @@ const MEGA_EXPANDED_CURRICULUM = [
     "icon": "🔷",
     "level": "5. Arhitect / Exemplar",
     "xp": 75,
-    "title": "Capitolul 12: Pattern Matching C# Modern & Switch Expressions",
-    "theory": "\n<p>Pattern Matching-ul din C# modern transformă structurile decizionale complexe în expresii declarative concise, sigure la compilare și verificate pentru exhaustivitate.</p>\n<h4>1. Switch Expressions</h4>\n<p>Sintaxa <code>val switch { pattern1 => res1, _ => defaultRes }</code> elimină cuvintele cheie <code>case</code> și <code>break</code>, fiind o expresie care returnează direct o valoare calculată.</p>\n<h4>2. Patterns: Property, Relational & Positional</h4>\n<p>Putem inspecta simultan tipul și proprietățile interne ale unui obiect: <code>Order { Status: \"Paid\", Total: > 1000 } => applyDiscount()</code>, combinând filtre logice cu <code>and</code>, <code>or</code> și <code>not</code>.</p>\n",
+    "title": "Capitolul 12: High-Performance C#: 'Span<T>', 'Memory<T>' & Zero Alocări",
+    "theory": "\n<p><code>Span&lt;T&gt;</code> și <code>ReadOnlySpan&lt;T&gt;</code> reprezintă revoluția de performanță din C# modern: oferă ferestre continue sigure peste memorie (Stack, Heap sau native memory) fără alocări secundare ($O(1)$ memory overhead).</p>\n\n<pre><code>// Exemplu 1: Parsarea unui șir de caractere cu Zero Alocări Heap\nstring dataStr = \"2025-10-15\";\nReadOnlySpan&lt;char&gt; span = dataStr.AsSpan();\n\n// Extragere felii (slices) de memorie fără a crea noi obiecte string:\nReadOnlySpan&lt;char&gt; anSpan = span.Slice(0, 4);\nReadOnlySpan&lt;char&gt; lunaSpan = span.Slice(5, 2);\nReadOnlySpan&lt;char&gt; ziSpan = span.Slice(8, 2);\n\nint anul = int.Parse(anSpan);\nint luna = int.Parse(lunaSpan);\nConsole.WriteLine($\"Data decodată: {ziSpan.ToString()}/{luna}/{anul}\");\n// Memorie alocată pe Heap: ZERO octeți!\n</code></pre>\n",
     "glossary": [
       {
-        "term": "Switch Expression",
-        "def": "Expresie compactă ce evaluează un pattern și returnează direct o valoare fără case/break."
+        "term": "Span<T>",
+        "def": "Structură 'ref struct' alocată exclusiv pe Stack ce reprezintă o fereastră contiguă de memorie mutabilă."
       },
       {
-        "term": "Discard Pattern (_)",
-        "def": "Simbol ce prinde orice valoare neacoperită anterior, echivalentul ramurii 'default'."
+        "term": "ReadOnlySpan<T>",
+        "def": "Versiunea imutabilă a lui Span, utilizată pentru felierea (slicing) eficientă a șirurilor string."
       },
       {
-        "term": "Property Pattern",
-        "def": "Verifică dacă proprietățile unui obiect satisfac anumite valori sau condiții relaționale."
+        "term": "Memory<T>",
+        "def": "Echivalentul lui Span ce poate fi stocat pe Heap și folosit în operațiuni asincrone (async/await)."
       },
       {
-        "term": "Exhaustive Check",
-        "def": "Verificare statică a compilatorului ce semnalează dacă au rămas cazuri neacoperite în switch."
+        "term": "Zero-Allocation",
+        "def": "Cod de înaltă performanță ce execută operațiuni I/O sau parsare fără a declanșa Garbage Collector-ul."
       }
     ],
     "matchingPairs": [
       {
-        "left": "val switch { ... }",
-        "right": "Sintaxa expresiei switch moderne"
+        "left": "text.AsSpan()",
+        "right": "Creează un ReadOnlySpan fără alocare pe Heap"
       },
       {
-        "left": "int n when n > 0",
-        "right": "Type pattern cu gardă condițională 'when'"
+        "left": "span.Slice(start, length)",
+        "right": "Extrage o secțiune de memorie în O(1)"
       },
       {
-        "left": "{ IsAdmin: true } => ...",
-        "right": "Property pattern verificat direct"
+        "left": "ref struct Span<T>",
+        "right": "Garantează alocarea exclusivă pe Stack"
       },
       {
-        "left": "_ => \"Necunoscut\"",
-        "right": "Discard pattern pentru cazul fallback implicit"
+        "left": "Memory<T>",
+        "right": "Versiune de Span compatibilă cu async/await"
       }
     ],
     "quiz": {
-      "question": "Ce rol joacă simbolul '_' (underscore) într-o expresie switch în C# modern?",
+      "question": "De ce este 'Span<T>' declarat ca 'ref struct' în limbajul C#?",
       "options": [
-        "Este discard pattern-ul care acționează ca un caz 'default' pentru orice valoare neprinsă de ramurile anterioare.",
-        "Forțează aruncarea unei excepții dacă expresia este nulă.",
-        "Repornește execuția de la prima ramură a switch-ului.",
-        "Indică compilatorului să ignore linia respectivă de cod."
+        "Pentru a garanta că este alocat exclusiv pe Stack și nu poate scăpa în memoria Heap, asigurând zero alocări de gunoi (GC).",
+        "Pentru a forța compilatorul să-l salveze pe disc.",
+        "Pentru a funcționa doar cu tipul boolean.",
+        "Pentru a permite moștenirea multiplă."
       ],
       "correctIndex": 0,
-      "explanation": "Simbolul '_' se numește discard pattern și prinde orice valoare, având exact rolul clauzei 'default' din instrucțiunile switch clasice."
+      "explanation": "Ca 'ref struct', Span<T> nu poate fi boxat, nu poate fi câmp într-o clasă obișnuită și nu poate fi folosit în metode asincrone, garantând siguranță absolută a memoriei pe Stack."
     },
-    "task": "Scrie o expresie switch care evaluează 'statusCode' returnând '\"OK\"' pentru 200 și '\"Error\"' pentru orice altceva (_).",
-    "starterCode": "int statusCode = 200;\nstring message = statusCode switch {\n    // Completează ramurile\n};",
-    "expectedOutputPattern": "200\\s*=>\\s*[\"']OK[\"'],\\s*_\\s*=>\\s*[\"']Error[\"']",
-    "hint": "Scrie 200 => \"OK\", _ => \"Error\" în interiorul blocului switch."
+    "prompt": "Convertește stringul 'rawText' într-un 'ReadOnlySpan<char>' apelând 'rawText.AsSpan();'.",
+    "task": "Convertește stringul 'rawText' într-un 'ReadOnlySpan<char>' apelând 'rawText.AsSpan();'.",
+    "example": "ReadOnlySpan<char> span = rawText.AsSpan();",
+    "starterCode": "ReadOnlySpan<char> span = rawText.AsSpan();",
+    "officialSolution": "ReadOnlySpan<char> span = rawText.AsSpan();",
+    "expectedOutputPattern": "span\\s*=\\s*rawText\\.AsSpan\\(\\);?",
+    "regexPattern": "span\\s*=\\s*rawText\\.AsSpan\\(\\);?",
+    "hint": "Scrie ReadOnlySpan<char> span = rawText.AsSpan();"
   },
   {
     "id": "ts-new-1",
@@ -1838,7 +1958,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător",
     "xp": 30,
     "title": "Capitolul 1: Fundamente TypeScript — Adnotări Primitive & 'unknown' vs 'any'",
-    "theory": "\n<p>TypeScript adaugă un sistem static de verificare a tipurilor peste JavaScript la momentul compilării (Type Erasure), prevenind erorile înainte ca aplicația să ajungă în producție.</p>\n<h4>1. Tipuri Primitive & 'any'</h4>\n<p>Tipurile de bază sunt <code>number</code>, <code>string</code>, <code>boolean</code>, <code>null</code> și <code>undefined</code>. Folosirea tipului <code>any</code> dezactivează complet verificatorul de tipuri, fiind un anti-pattern.</p>\n<h4>2. Tipul Sigur 'unknown'</h4>\n<p>În contrast cu <code>any</code>, tipul <code>unknown</code> obligă dezvoltatorul să efectueze o verificare de tip (type narrowing) prin <code>typeof</code> sau <code>instanceof</code> înainte de a putea apela orice metodă sau proprietate pe acea valoare.</p>\n",
+    "theory": "\n<p>TypeScript adaugă un sistem static de verificare a tipurilor peste JavaScript la momentul compilării (Type Erasure), prevenind erorile înainte ca aplicația să ajungă în producție.</p>\n\n<h4>1. Tipuri Primitive & 'any'</h4>\n<p>Tipurile de bază sunt <code>number</code>, <code>string</code>, <code>boolean</code>, <code>null</code> și <code>undefined</code>. Folosirea tipului <code>any</code> dezactivează complet verificatorul de tipuri, fiind un anti-pattern.</p>\n\n<h4>2. Exemplu Practic: unknown vs any și Type Narrowing</h4>\n<pre><code>// 1. Primitive de bază:\nconst age: number = 28;\nconst username: string = \"alex\";\nconst isActive: boolean = true;\n\n// 2. any este periculos - permite orice metodă invalidă:\nlet anyVal: any = \"salut\";\n// anyVal.nuExista(); // Compilatorul nu avertizează -> Crash la rulare!\n\n// 3. unknown este type-safe - impune verificare (type narrowing):\nlet input: unknown = \"hello\";\n\nif (typeof input === \"string\") {\n    // În interiorul acestui bloc, TypeScript știe garantat că input este string:\n    console.log(input.toUpperCase()); // HELLO\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "Type Erasure",
@@ -1886,9 +2006,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "'unknown' este type-safe: spre deosebire de 'any', nu poți apela metode pe el sau să-l transmiți altor funcții fără o verificare prealabilă (type narrowing)."
     },
-    "task": "Declară o variabilă 'input' de tip 'unknown' și inițializeaz-o cu stringul '\"hello\"'.",
-    "starterCode": "// Declară variabila input tipizată cu unknown\n",
+    "prompt": "Declară o variabilă 'input' de tip 'unknown' și inițializeaz-o cu stringul '\"hello\"': 'const input: unknown = \"hello\";'.",
+    "task": "Declară o variabilă 'input' de tip 'unknown' și inițializeaz-o cu stringul '\"hello\"': 'const input: unknown = \"hello\";'.",
+    "example": "const input: unknown = \"hello\";",
+    "starterCode": "const input: unknown = \"hello\";",
+    "officialSolution": "const input: unknown = \"hello\";",
     "expectedOutputPattern": "let\\s+input:\\s*unknown\\s*=\\s*[\"']hello[\"'];|const\\s+input:\\s*unknown\\s*=\\s*[\"']hello[\"'];",
+    "regexPattern": "let\\s+input:\\s*unknown\\s*=\\s*[\"']hello[\"'];|const\\s+input:\\s*unknown\\s*=\\s*[\"']hello[\"'];",
     "hint": "Scrie const input: unknown = \"hello\"; (sau let)."
   },
   {
@@ -1899,7 +2023,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător",
     "xp": 35,
     "title": "Capitolul 2: Interfețe ('interface') vs Type Aliases ('type')",
-    "theory": "\n<p>În TypeScript, definirea formei unui obiect (object shape) se poate realiza prin <code>interface</code> sau <code>type</code>.</p>\n<h4>1. Când folosim 'interface'?</h4>\n<p>Interfețele sunt extensibile prin moștenire (<code>interface Admin extends User</code>) și suportă <em>declaration merging</em> (redeschiderea aceleiași interfețe pentru adăugarea de noi câmpuri de către plugin-uri).</p>\n<h4>2. Când folosim 'type'?</h4>\n<p>Type aliases sunt ideale pentru uniuni de tipuri (<code>type Status = 'loading' | 'success' | 'error'</code>), tuple-uri sau primitive compuse, fiind mai flexibile pentru manipulări complexe.</p>\n",
+    "theory": "\n<p>În TypeScript, definirea formei unui obiect (object shape) se poate realiza prin <code>interface</code> sau <code>type</code>.</p>\n\n<h4>1. Când folosim 'interface' și când folosim 'type'?</h4>\n<p>Interfețele sunt extensibile prin moștenire (<code>interface Admin extends User</code>) și suportă <em>declaration merging</em>. Type aliases sunt ideale pentru uniuni literale de tipuri, primitive compuse sau tupluri.</p>\n\n<h4>2. Exemplu Complet de Interfețe și Tipuri</h4>\n<pre><code>// 1. Interfață extensibilă pentru obiecte:\ninterface UserProfile {\n    id: number;\n    username: string;\n}\n\ninterface AdminProfile extends UserProfile {\n    permissions: string[];\n}\n\n// 2. Type Alias pentru uniuni și tupluri:\ntype Status = \"idle\" | \"loading\" | \"success\" | \"error\";\ntype Coordinates = [latitude: number, longitude: number];\n\nconst user: UserProfile = { id: 101, username: \"maria\" };\nconst currentStatus: Status = \"success\";\n</code></pre>\n",
     "glossary": [
       {
         "term": "interface",
@@ -1947,9 +2071,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Dacă declari de două ori o interfață cu același nume în același scope, TypeScript îmbină automat câmpurile lor (declaration merging). 'type' va arunca eroare de identificator duplicat."
     },
+    "prompt": "Definește o interfață 'UserProfile' cu proprietățile obligatorii 'id: number' și 'username: string'.",
     "task": "Definește o interfață 'UserProfile' cu proprietățile obligatorii 'id: number' și 'username: string'.",
-    "starterCode": "// Completează interfața UserProfile\n",
+    "example": "interface UserProfile {\n    id: number;\n    username: string;\n}",
+    "starterCode": "interface UserProfile {\n    id: number;\n    username: string;\n}",
+    "officialSolution": "interface UserProfile {\n    id: number;\n    username: string;\n}",
     "expectedOutputPattern": "interface\\s+UserProfile\\s*\\{\\s*id:\\s*number;?\\s*username:\\s*string;?\\s*\\}",
+    "regexPattern": "interface\\s+UserProfile\\s*\\{\\s*id:\\s*number;?\\s*username:\\s*string;?\\s*\\}",
     "hint": "Scrie interface UserProfile { id: number; username: string; }"
   },
   {
@@ -1960,7 +2088,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 40,
     "title": "Capitolul 3: Generice Fundamentale în TypeScript ('<T>')",
-    "theory": "\n<p>Genericele permit crearea de componente software reutilizabile care funcționează cu o varietate de tipuri fără a sacrifica verificarea statică.</p>\n<h4>1. Funcții Generice</h4>\n<p>Sintaxa <code>function getFirst<T>(items: T[]): T</code> introduce un parametru de tip <code>T</code> care capturează automat tipul de date al argumentului furnizat.</p>\n<h4>2. Constrângeri pe Generice ('extends')</h4>\n<p>Prin sintaxa <code><T extends { id: string }></code>, impunem ca tipul generic să respecte o structură minimă garantată, permițând accesul sigur la proprietatea <code>.id</code> în interiorul funcției.</p>\n",
+    "theory": "\n<p>Genericele permit crearea de componente software reutilizabile care funcționează cu o varietate de tipuri fără a sacrifica verificarea statică.</p>\n\n<h4>1. Funcții Generice și Constrângeri</h4>\n<p>Sintaxa <code>function wrap<T>(value: T): { data: T }</code> introduce parametrul de tip <code>T</code> care capturează automat tipul exact de date.</p>\n\n<h4>2. Exemplu Complet de Funcții și Interfețe Generice</h4>\n<pre><code>// 1. Funcție generică simplă:\nfunction wrap<T>(value: T): { data: T } {\n    return { data: value };\n}\n\nconst numBox = wrap(42);         // Tip dedus automat: { data: number }\nconst strBox = wrap(\"react\");    // Tip dedus automat: { data: string }\n\n// 2. Interfață generică pentru răspunsuri de rețea:\ninterface ApiResponse<T> {\n    success: boolean;\n    payload: T;\n}\n\nconst userRes: ApiResponse<{ name: string }> = {\n    success: true,\n    payload: { name: \"Elena\" }\n};\n</code></pre>\n",
     "glossary": [
       {
         "term": "Generic (<T>)",
@@ -2008,9 +2136,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Cu varianta generică <T>, dacă transmiți un 'string', tipul de retur este garantat 'string'. Cu 'any', tipul rezultat se pierde complet."
     },
+    "prompt": "Scrie antetul unei funcții generice 'function wrap<T>(value: T): { data: T }' care returnează obiectul '{ data: value }'.",
     "task": "Scrie antetul unei funcții generice 'function wrap<T>(value: T): { data: T }' care returnează obiectul '{ data: value }'.",
-    "starterCode": "// Completează funcția generică wrap\n",
+    "example": "function wrap<T>(value: T): { data: T } {\n    return { data: value };\n}",
+    "starterCode": "function wrap<T>(value: T): { data: T } {\n    return { data: value };\n}",
+    "officialSolution": "function wrap<T>(value: T): { data: T } {\n    return { data: value };\n}",
     "expectedOutputPattern": "function\\s+wrap<T>\\(value:\\s*T\\):\\s*\\{\\s*data:\\s*T\\s*\\}\\s*\\{\\s*return\\s*\\{\\s*data:\\s*value\\s*\\};?\\s*\\}",
+    "regexPattern": "function\\s+wrap<T>\\(value:\\s*T\\):\\s*\\{\\s*data:\\s*T\\s*\\}\\s*\\{\\s*return\\s*\\{\\s*data:\\s*value\\s*\\};?\\s*\\}",
     "hint": "Scrie function wrap<T>(value: T): { data: T } { return { data: value }; }"
   },
   {
@@ -2021,7 +2153,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 40,
     "title": "Capitolul 4: Componente Funcționale React & Tipizarea Props",
-    "theory": "\n<p>În React cu TypeScript, componentele moderne sunt funcții pure care primesc proprietăți tipizate (Props) și returnează un element JSX (<code>JSX.Element</code> sau <code>React.ReactNode</code>).</p>\n<h4>1. Tipizarea Props prin Interfețe</h4>\n<p>Se declară o interfață cu proprietățile acceptate: <code>interface ButtonProps { label: string; onClick: () => void; disabled?: boolean; }</code>. Semnul întrebării (<code>?</code>) marchează proprietățile opționale.</p>\n<h4>2. Destructurarea cu Valori Implicite</h4>\n<p>Valorile implicite pentru proprietăți opționale se atribuie idiomatic în semnătura funcției: <code>export function Button({ label, disabled = false }: ButtonProps)</code>.</p>\n",
+    "theory": "\n<p>În React cu TypeScript, componentele moderne sunt funcții pure care primesc proprietăți tipizate (Props) și returnează un element JSX (<code>JSX.Element</code> sau <code>React.ReactNode</code>).</p>\n\n<h4>1. Exemplu de Componentă cu Props Tipizate</h4>\n<pre><code>interface GreetingProps {\n    name: string;\n    badge?: string; // Proprietate opțională\n}\n\nexport function Greeting({ name }: { name: string }) {\n    return <h1>{name}</h1>;\n}\n\n// Utilizare în JSX cu verificare statică:\n<Greeting name=\"Andrei\" />\n</code></pre>\n\n<h4>2. React.ReactNode pentru Children</h4>\n<p>Pentru containere care înglobează elemente copii, folosim tipul <code>React.ReactNode</code>: <code>interface CardProps { children: React.ReactNode; }</code>.</p>\n",
     "glossary": [
       {
         "term": "Props Interface",
@@ -2069,9 +2201,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "React.ReactNode este tipul standard și complet pentru proprietatea 'children', acoperind toate elementele pe care React le poate afișa în ecran."
     },
+    "prompt": "Definește o componentă funcțională 'Greeting' ce primește '({ name }: { name: string })' și returnează '<h1>{name}</h1>'.",
     "task": "Definește o componentă funcțională 'Greeting' ce primește '({ name }: { name: string })' și returnează '<h1>{name}</h1>'.",
-    "starterCode": "// Definește funcția Greeting\n",
+    "example": "function Greeting({ name }: { name: string }) {\n    return <h1>{name}</h1>;\n}",
+    "starterCode": "function Greeting({ name }: { name: string }) {\n    return <h1>{name}</h1>;\n}",
+    "officialSolution": "function Greeting({ name }: { name: string }) {\n    return <h1>{name}</h1>;\n}",
     "expectedOutputPattern": "function\\s+Greeting\\(\\s*\\{\\s*name\\s*\\}:\\s*\\{\\s*name:\\s*string\\s*\\}\\s*\\)\\s*\\{\\s*return\\s+<h1>\\{name\\}</h1>;?\\s*\\}",
+    "regexPattern": "function\\s+Greeting\\(\\s*\\{\\s*name\\s*\\}:\\s*\\{\\s*name:\\s*string\\s*\\}\\s*\\)\\s*\\{\\s*return\\s+<h1>\\{name\\}</h1>;?\\s*\\}",
     "hint": "Scrie function Greeting({ name }: { name: string }) { return <h1>{name}</h1>; }"
   },
   {
@@ -2082,7 +2218,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 45,
     "title": "Capitolul 5: Hook-ul 'useState' Tipizat & Actualizări Funcționale",
-    "theory": "\n<p>Hook-ul <code>useState</code> gestionează starea internă a unei componente. Pentru stări primitive simple, TypeScript deduce automat tipul (ex: <code>useState(0)</code> deduce <code>number</code>).</p>\n<h4>1. Generice Explicite pentru Tipuri Complexe</h4>\n<p>Când starea inițială este <code>null</code> sau un obiect complex, trebuie să specificăm tipul generic: <code>const [user, setUser] = useState<User | null>(null);</code>.</p>\n<h4>2. Actualizări Funcționale</h4>\n<p>Când noua stare depinde de starea anterioară, transmitem o funcție pură către updater: <code>setCount(prev => prev + 1)</code>, prevenind race conditions cauzate de batching-ul asincron din React.</p>\n",
+    "theory": "\n<p>Hook-ul <code>useState</code> gestionează starea internă a unei componente. Pentru stări primitive simple, TypeScript deduce automat tipul (ex: <code>useState(0)</code> deduce <code>number</code>).</p>\n\n<h4>1. Generice Explicite și Actualizări Funcționale</h4>\n<pre><code>import { useState } from \"react\";\n\nexport function SearchFilter() {\n    // Declarare explicită a stării tipizate generic cu string:\n    const [query, setQuery] = useState<string>(\"\");\n\n    // Actualizare funcțională pentru a evita stale closures:\n    const [count, setCount] = useState<number>(0);\n    const increment = () => setCount(prev => prev + 1);\n\n    return (\n        <div>\n            <input value={query} onChange={e => setQuery(e.target.value)} />\n            <button onClick={increment}>Contor: {count}</button>\n        </div>\n    );\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "useState<T>",
@@ -2130,10 +2266,14 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Forma funcțională garantează că primești valoarea exactă calculată de actualizările anterioare din coadă, prevenind 'stale closures'."
     },
+    "prompt": "Inițializează o stare numită 'query' cu valoarea inițială '\"\"' specificând tipul generic '<string>' pe 'useState'.",
     "task": "Inițializează o stare numită 'query' cu valoarea inițială '\"\"' specificând tipul generic '<string>' pe 'useState'.",
-    "starterCode": "const [query, setQuery] = ",
+    "example": "const [query, setQuery] = useState<string>(\"\");",
+    "starterCode": "const [query, setQuery] = useState<string>(\"\");",
+    "officialSolution": "const [query, setQuery] = useState<string>(\"\");",
     "expectedOutputPattern": "const\\s*\\[query,\\s*setQuery\\]\\s*=\\s*useState<string>\\([\"'][\"']\\);",
-    "hint": "Scrie useState<string>(\"\");"
+    "regexPattern": "const\\s*\\[query,\\s*setQuery\\]\\s*=\\s*useState<string>\\([\"'][\"']\\);",
+    "hint": "Scrie const [query, setQuery] = useState<string>(\"\");"
   },
   {
     "id": "ts-new-6",
@@ -2143,7 +2283,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 45,
     "title": "Capitolul 6: Hook-ul 'useEffect' & Managementul Efectelor Laterale",
-    "theory": "\n<p>Hook-ul <code>useEffect</code> gestionează efecte secundare (side effects): sincronizări cu serverul, abonamente la WebSockets sau manipulări directe de timere.</p>\n<h4>1. Tabloul de Dependințe</h4>\n<p>Un tablou gol (<code>[]</code>) execută efectul o singură dată la montare (mount). Includerea variabilelor (<code>[userId]</code>) re-execută efectul doar dacă valorile s-au modificat.</p>\n<h4>2. Funcția de Cleanup (Curățare)</h4>\n<p>Dacă efectul returnează o funcție, React o execută înainte de demontarea componentei sau înainte de următoarea re-rulare a efectului, prevenind scurgerile de memorie (ex: <code>clearInterval</code> sau <code>abort()</code> pe un controller de rețea).</p>\n",
+    "theory": "\n<p>Hook-ul <code>useEffect</code> gestionează efecte secundare (side effects): sincronizări cu serverul, abonamente la WebSockets sau manipulări directe de timere.</p>\n\n<h4>1. Exemplu Complet de useEffect cu Cleanup</h4>\n<pre><code>import { useState, useEffect } from \"react\";\n\nexport function DataFetcher() {\n    const [data, setData] = useState(null);\n\n    useEffect(() => {\n        // Tabloul gol [] asigură rularea exclusiv la montare:\n        fetchData();\n\n        // Funcția de curățare returnată la demontare:\n        return () => {\n            console.log(\"Component unmounted - cleanup resources\");\n        };\n    }, []);\n\n    return <div>{JSON.stringify(data)}</div>;\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "useEffect",
@@ -2191,9 +2331,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Funcția de curățare este executată de React pentru a anula starea efectului precedent înainte de o nouă execuție și la distrugerea componentei din DOM."
     },
+    "prompt": "Scrie un useEffect cu array de dependențe gol '[]' care apelează 'fetchData();'.",
     "task": "Scrie un useEffect cu array de dependențe gol '[]' care apelează 'fetchData();'.",
-    "starterCode": "// Completează useEffect-ul\n",
+    "example": "useEffect(() => {\n    fetchData();\n}, []);",
+    "starterCode": "useEffect(() => {\n    fetchData();\n}, []);",
+    "officialSolution": "useEffect(() => {\n    fetchData();\n}, []);",
     "expectedOutputPattern": "useEffect\\(\\(\\)\\s*=>\\s*\\{\\s*fetchData\\(\\);?\\s*\\},\\s*\\[\\]\\);",
+    "regexPattern": "useEffect\\(\\(\\)\\s*=>\\s*\\{\\s*fetchData\\(\\);?\\s*\\},\\s*\\[\\]\\);",
     "hint": "Scrie useEffect(() => { fetchData(); }, []);"
   },
   {
@@ -2204,7 +2348,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 50,
     "title": "Capitolul 7: Hook-ul 'useRef' — Referințe DOM & Valori Mutabile Fără Re-randare",
-    "theory": "\n<p>Hook-ul <code>useRef</code> returnează un obiect mutabil <code>{ current: initialValue }</code> a cărui proprietate persistă pe întreaga durată de viață a componentei.</p>\n<h4>1. Acces Direct la Elemente DOM</h4>\n<p>Pentru a focaliza un input sau a măsura un element, tipizăm referința cu elementul HTML corespunzător: <code>const inputRef = useRef<HTMLInputElement>(null);</code>. În JSX, legăm elementul prin <code><input ref={inputRef} /></code>.</p>\n<h4>2. Păstrarea Datelor Fără Re-randare</h4>\n<p>Modificarea lui <code>ref.current = newValue</code> NU declanșează o nouă randare React, fiind ideal pentru stocarea ID-urilor de timere sau flag-uri interne.</p>\n",
+    "theory": "\n<p>Hook-ul <code>useRef</code> returnează un obiect mutabil <code>{ current: initialValue }</code> a cărui proprietate persistă pe întreaga durată de viață a componentei fără a declanșa re-randare la modificare.</p>\n\n<h4>1. Exemplu de Focalizare DOM cu useRef</h4>\n<pre><code>import { useRef } from \"react\";\n\nexport function AutoFocusInput() {\n    // Declarare referință tipizată pentru nodul DOM:\n    const inputRef = useRef<HTMLInputElement>(null);\n\n    const handleFocus = () => {\n        // Acces sigur cu optional chaining:\n        inputRef.current?.focus();\n    };\n\n    return (\n        <div>\n            <input ref={inputRef} type=\"text\" placeholder=\"Scrie aici...\" />\n            <button onClick={handleFocus}>Focalizează Input</button>\n        </div>\n    );\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "useRef<T>",
@@ -2252,9 +2396,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Spre deosebire de modificarea stării prin useState care declanșează un nou ciclu de randare, asignarea unei valori pe ref.current este silențioasă pentru motorul de randare."
     },
+    "prompt": "Declară o referință 'inputRef' tipizată pentru 'HTMLInputElement' inițializată cu 'null' folosind 'useRef'.",
     "task": "Declară o referință 'inputRef' tipizată pentru 'HTMLInputElement' inițializată cu 'null' folosind 'useRef'.",
-    "starterCode": "const inputRef = ",
+    "example": "const inputRef = useRef<HTMLInputElement>(null);",
+    "starterCode": "const inputRef = useRef<HTMLInputElement>(null);",
+    "officialSolution": "const inputRef = useRef<HTMLInputElement>(null);",
     "expectedOutputPattern": "const\\s+inputRef\\s*=\\s*useRef<HTMLInputElement>\\(null\\);",
+    "regexPattern": "const\\s+inputRef\\s*=\\s*useRef<HTMLInputElement>\\(null\\);",
     "hint": "Scrie const inputRef = useRef<HTMLInputElement>(null);"
   },
   {
@@ -2265,7 +2413,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 50,
     "title": "Capitolul 8: Tipizarea Evenimentelor React ('SyntheticEvent')",
-    "theory": "\n<p>React folosește un sistem de evenimente sintetice (<code>SyntheticEvent</code>) care normalizează comportamentul evenimentelor native de browser între diferite platforme.</p>\n<h4>1. Tipuri de Evenimente Comune</h4>\n<ul>\n  <li><code>React.MouseEvent<HTMLButtonElement></code> pentru evenimente de click pe butoane.</li>\n  <li><code>React.ChangeEvent<HTMLInputElement></code> pentru modificarea textului din input-uri.</li>\n  <li><code>React.FormEvent<HTMLFormElement></code> pentru trimiterea formularelor cu <code>e.preventDefault()</code>.</li>\n</ul>\n<h4>2. Accesul Type-Safe la 'e.target.value'</h4>\n<p>Prin specificarea elementului generic <code>ChangeEvent<HTMLInputElement></code>, TypeScript știe garantat că <code>e.target.value</code> este de tip <code>string</code>, oferind autocompletare și eliminând erorile.</p>\n",
+    "theory": "\n<p>React folosește un sistem de evenimente sintetice (<code>SyntheticEvent</code>) care normalizează comportamentul evenimentelor native de browser între diferite platforme.</p>\n\n<h4>1. Exemplu de Handler Tipizat cu React.ChangeEvent</h4>\n<pre><code>import { useState } from \"react\";\n\nexport function ControlledInput() {\n    const [value, setValue] = useState(\"\");\n\n    // Eveniment tipizat exact pentru câmpul de text:\n    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {\n        setValue(e.target.value);\n    };\n\n    return <input value={value} onChange={handleChange} />;\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "SyntheticEvent",
@@ -2313,10 +2461,14 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Tipul specific React pentru onChange pe un input este React.ChangeEvent<HTMLInputElement>, asigurând acces valid la e.target.value."
     },
+    "prompt": "Definește o funcție 'handleChange' ce primește parametrul 'e: React.ChangeEvent<HTMLInputElement>' și apelează 'setValue(e.target.value);'.",
     "task": "Definește o funcție 'handleChange' ce primește parametrul 'e: React.ChangeEvent<HTMLInputElement>' și apelează 'setValue(e.target.value);'.",
-    "starterCode": "const handleChange = ",
+    "example": "const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {\n    setValue(e.target.value);\n};",
+    "starterCode": "const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {\n    setValue(e.target.value);\n};",
+    "officialSolution": "const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {\n    setValue(e.target.value);\n};",
     "expectedOutputPattern": "const\\s+handleChange\\s*=\\s*\\(e:\\s*React\\.ChangeEvent<HTMLInputElement>\\)\\s*=>\\s*\\{\\s*setValue\\(e\\.target\\.value\\);?\\s*\\};?",
-    "hint": "Scrie (e: React.ChangeEvent<HTMLInputElement>) => { setValue(e.target.value); };"
+    "regexPattern": "const\\s+handleChange\\s*=\\s*\\(e:\\s*React\\.ChangeEvent<HTMLInputElement>\\)\\s*=>\\s*\\{\\s*setValue\\(e\\.target\\.value\\);?\\s*\\};?",
+    "hint": "Scrie const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => { setValue(e.target.value); };"
   },
   {
     "id": "ts-new-9",
@@ -2326,7 +2478,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 55,
     "title": "Capitolul 9: Optimizare Performanță: 'useMemo' & 'useCallback'",
-    "theory": "\n<p>În React, fiecare re-randare a unei componente recreează toate funcțiile și recalculază toate valorile declarate în corpul său. Când aceste funcții sunt transmise ca props către componente optimizate, ele provoacă re-randări inutile.</p>\n<h4>1. 'useCallback' pentru Funcții Stabile</h4>\n<p><code>const handleClick = useCallback(() => doSomething(id), [id]);</code> reține aceeași referință de funcție între randări atâta timp cât dependențele nu se modifică.</p>\n<h4>2. 'useMemo' pentru Calcule Costisitoare</h4>\n<p><code>const sortedList = useMemo(() => expensiveSort(items), [items]);</code> memorează rezultatul unui calcul greu $O(n \\log n)$, re-evaluându-l doar la modificarea listei <code>items</code>.</p>\n",
+    "theory": "\n<p>În React, fiecare re-randare recreează funcțiile și recalculează valorile locale. Hook-urile <code>useMemo</code> și <code>useCallback</code> stabilizează referințele pentru a evita munca redundantă.</p>\n\n<h4>1. Exemplu de Stabilizare a Funcțiilor cu useCallback</h4>\n<pre><code>import { useCallback } from \"react\";\n\nexport function SaveButton({ data }: { data: string }) {\n    // Reține aceeași adresă de memorie pentru funcție atâta timp cât 'data' este identic:\n    const handleSave = useCallback(() => {\n        save(data);\n    }, [data]);\n\n    return <button onClick={handleSave}>Salvează</button>;\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "useCallback",
@@ -2374,10 +2526,14 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "O nouă funcție are o adresă nouă de memorie. React.memo compară props prin egalitate superficială (===) și detectează o modificare, re-randând componenta."
     },
+    "prompt": "Memorează o funcție 'handleSave' folosind 'useCallback' care apelează 'save(data);' cu dependența '[data]'.",
     "task": "Memorează o funcție 'handleSave' folosind 'useCallback' care apelează 'save(data);' cu dependența '[data]'.",
-    "starterCode": "const handleSave = ",
+    "example": "const handleSave = useCallback(() => {\n    save(data);\n}, [data]);",
+    "starterCode": "const handleSave = useCallback(() => {\n    save(data);\n}, [data]);",
+    "officialSolution": "const handleSave = useCallback(() => {\n    save(data);\n}, [data]);",
     "expectedOutputPattern": "const\\s+handleSave\\s*=\\s*useCallback\\(\\(\\)\\s*=>\\s*\\{\\s*save\\(data\\);?\\s*\\},\\s*\\[data\\]\\);",
-    "hint": "Scrie useCallback(() => { save(data); }, [data]);"
+    "regexPattern": "const\\s+handleSave\\s*=\\s*useCallback\\(\\(\\)\\s*=>\\s*\\{\\s*save\\(data\\);?\\s*\\},\\s*\\[data\\]\\);",
+    "hint": "Scrie const handleSave = useCallback(() => { save(data); }, [data]);"
   },
   {
     "id": "ts-new-10",
@@ -2387,7 +2543,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 60,
     "title": "Capitolul 10: TypeScript Utility Types: 'Partial', 'Pick', 'Omit' & 'Record'",
-    "theory": "\n<p>TypeScript include un set puternic de tipuri utilitare globale (Utility Types) care permit transformarea și derivarea dinamică a tipurilor existente.</p>\n<h4>1. Partial&lt;T&gt; și Required&lt;T&gt;</h4>\n<p><code>Partial<T></code> transformă toate proprietățile lui T în opționale (ideal pentru operații HTTP PATCH), iar <code>Required<T></code> face toate câmpurile obligatorii.</p>\n<h4>2. Pick&lt;T, K&gt; și Omit&lt;T, K&gt;</h4>\n<p><code>Pick<User, 'id' | 'email'></code> selectează doar proprietățile specificate. <code>Omit<User, 'passwordHash'></code> construiește un tip nou eliminând câmpul sensibil.</p>\n<h4>3. Record&lt;K, V&gt;</h4>\n<p><code>Record<string, number></code> definește un dicționar cu chei de un anumit tip și valori de alt tip.</p>\n",
+    "theory": "\n<p>TypeScript include un set puternic de tipuri utilitare globale (Utility Types) care permit transformarea și derivarea dinamică a tipurilor existente.</p>\n\n<h4>1. Exemplu de Pick, Omit și Partial</h4>\n<pre><code>interface User {\n    id: string;\n    username: string;\n    email: string;\n    passwordHash: string;\n}\n\n// Selectează strict proprietățile 'id' și 'username':\ntype UserPreview = Pick<User, \"id\" | \"username\">;\n\n// Elimină cheia privată:\ntype SafeUser = Omit<User, \"passwordHash\">;\n\n// Face toate câmpurile opționale pentru actualizări parțiale (PATCH):\ntype UpdateUserDto = Partial<User>;\n</code></pre>\n",
     "glossary": [
       {
         "term": "Partial<T>",
@@ -2435,9 +2591,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Partial<User> face toate câmpurile din User opționale, permițând transmiterea doar a câmpurilor care trebuie efectiv modificate."
     },
+    "prompt": "Definește un tip 'UserPreview' folosind 'Pick' pentru a extrage doar proprietățile 'id' și 'username' din 'User'.",
     "task": "Definește un tip 'UserPreview' folosind 'Pick' pentru a extrage doar proprietățile 'id' și 'username' din 'User'.",
-    "starterCode": "type UserPreview = ",
+    "example": "type UserPreview = Pick<User, \"id\" | \"username\">;",
+    "starterCode": "type UserPreview = Pick<User, \"id\" | \"username\">;",
+    "officialSolution": "type UserPreview = Pick<User, \"id\" | \"username\">;",
     "expectedOutputPattern": "type\\s+UserPreview\\s*=\\s*Pick<User,\\s*[\"']id[\"']\\s*\\|\\s*[\"']username[\"']>;",
+    "regexPattern": "type\\s+UserPreview\\s*=\\s*Pick<User,\\s*[\"']id[\"']\\s*\\|\\s*[\"']username[\"']>;",
     "hint": "Scrie type UserPreview = Pick<User, 'id' | 'username'>;"
   },
   {
@@ -2448,7 +2608,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 60,
     "title": "Capitolul 11: Type Narrowing & Custom Type Guards ('is')",
-    "theory": "\n<p>TypeScript realizează analiza fluxului de control (Control Flow Analysis) pentru a restrânge tipul unei variabile în interiorul blocurilor condiționale.</p>\n<h4>1. Predicate de Tip Personalizate ('arg is Type')</h4>\n<p>Când verificările cu <code>typeof</code> sau <code>in</code> nu sunt suficiente pentru obiecte complexe, scriem o funcție <strong>Custom Type Guard</strong> a cărei valoare de retur este de forma <code>pet is Fish</code>.</p>\n<h4>2. Cum Funcționează</h4>\n<p>Dacă funcția returnează <code>true</code>, compilatorul tratează automat variabila ca fiind de tipul <code>Fish</code> pe acea ramură de cod, deblocând accesul la metodele specifice fără type casting periculos.</p>\n",
+    "theory": "\n<p>TypeScript realizează analiza fluxului de control (Control Flow Analysis) pentru a restrânge tipul unei variabile în interiorul blocurilor condiționale.</p>\n\n<h4>1. Exemplu de Type Guard Personalizat ('val is string')</h4>\n<pre><code>// Funcție de gardă de tip ce garantează compilatorului tipul verificat:\nfunction isString(val: unknown): val is string {\n    return typeof val === \"string\";\n}\n\nfunction processInput(input: unknown) {\n    if (isString(input)) {\n        // În acest bloc, input este garantat tratat ca string:\n        console.log(\"Lungime:\", input.length);\n    } else {\n        console.log(\"Nu este string\");\n    }\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "Type Guard",
@@ -2496,9 +2656,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Semnătura 'res is SuccessResponse' este un type predicate care garantează compilatorului că pe ramura de 'true' tipul obiectului a fost restrâns la SuccessResponse."
     },
+    "prompt": "Scrie antetul unei funcții type guard 'function isString(val: unknown): val is string' care returnează 'typeof val === \"string\"'.",
     "task": "Scrie antetul unei funcții type guard 'function isString(val: unknown): val is string' care returnează 'typeof val === \"string\"'.",
-    "starterCode": "// Completează funcția type guard\n",
+    "example": "function isString(val: unknown): val is string {\n    return typeof val === \"string\";\n}",
+    "starterCode": "function isString(val: unknown): val is string {\n    return typeof val === \"string\";\n}",
+    "officialSolution": "function isString(val: unknown): val is string {\n    return typeof val === \"string\";\n}",
     "expectedOutputPattern": "function\\s+isString\\(val:\\s*unknown\\):\\s*val\\s+is\\s+string\\s*\\{\\s*return\\s+typeof\\s+val\\s*===\\s*[\"']string[\"'];?\\s*\\}",
+    "regexPattern": "function\\s+isString\\(val:\\s*unknown\\):\\s*val\\s+is\\s+string\\s*\\{\\s*return\\s+typeof\\s+val\\s*===\\s*[\"']string[\"'];?\\s*\\}",
     "hint": "Scrie function isString(val: unknown): val is string { return typeof val === \"string\"; }"
   },
   {
@@ -2509,7 +2673,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 70,
     "title": "Capitolul 12: Discriminated Unions & State Machines în React",
-    "theory": "\n<p>Reprezentarea stării cu multiple flag-uri booleene independente (ex: <code>{ isLoading: true, isError: true, data: null }</code>) conduce la stări imposibile (Impossible States). <strong>Discriminated Unions</strong> rezolvă definitiv această problemă.</p>\n<h4>1. Proprietatea Discriminantă</h4>\n<p>Fiecare stare posibilă este un tip distinct ce partajează o proprietate literală comună (de regulă <code>status</code> sau <code>type</code>):</p>\n<pre><code>type State =\n  | { status: 'idle' }\n  | { status: 'loading' }\n  | { status: 'success'; data: User }\n  | { status: 'error'; error: Error };\n</code></pre>\n<h4>2. Exhaustive Checking cu 'never'</h4>\n<p>Într-un <code>switch (state.status)</code>, TypeScript garantează că ai acces la proprietatea <code>.data</code> DOAR în ramura <code>'success'</code>. O ramură <code>default: const _exhaustiveCheck: never = state;</code> asigură erori la compilare dacă uiți să tratezi un caz.</p>\n",
+    "theory": "\n<p>Reprezentarea stării cu multiple flag-uri booleene independente conduce la stări imposibile (Impossible States). <strong>Discriminated Unions</strong> rezolvă definitiv această problemă.</p>\n\n<h4>1. Exemplu de Discriminated Union și Reducer</h4>\n<pre><code>type Action = \n  | { type: \"ADD\"; amount: number }\n  | { type: \"RESET\" };\n\nfunction counterReducer(state: number, action: Action): number {\n    switch (action.type) {\n        case \"ADD\":\n            return state + action.amount;\n        case \"RESET\":\n            return 0;\n        default:\n            const _exhaustive: never = action;\n            return state;\n    }\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "Discriminated Union",
@@ -2557,9 +2721,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Cu flag-uri separate poți ajunge în stări invalide (ex: și încărcare și eroare simultan). Discriminated union forțează starea să fie exact într-un singur stadiu bine definit."
     },
+    "prompt": "Definește o uniune discriminată 'Action' cu variantele '{ type: \"ADD\"; amount: number }' și '{ type: \"RESET\" }'.",
     "task": "Definește o uniune discriminată 'Action' cu variantele '{ type: \"ADD\"; amount: number }' și '{ type: \"RESET\" }'.",
-    "starterCode": "type Action = \n",
+    "example": "type Action = { type: \"ADD\"; amount: number } | { type: \"RESET\" };",
+    "starterCode": "type Action = { type: \"ADD\"; amount: number } | { type: \"RESET\" };",
+    "officialSolution": "type Action = { type: \"ADD\"; amount: number } | { type: \"RESET\" };",
     "expectedOutputPattern": "type\\s+Action\\s*=\\s*\\{\\s*type:\\s*[\"']ADD[\"'];?\\s*amount:\\s*number;?\\s*\\}\\s*\\|\\s*\\{\\s*type:\\s*[\"']RESET[\"'];?\\s*\\};?",
+    "regexPattern": "type\\s+Action\\s*=\\s*\\{\\s*type:\\s*[\"']ADD[\"'];?\\s*amount:\\s*number;?\\s*\\}\\s*\\|\\s*\\{\\s*type:\\s*[\"']RESET[\"'];?\\s*\\};?",
     "hint": "Scrie type Action = { type: 'ADD'; amount: number } | { type: 'RESET' };"
   },
   {
@@ -2570,7 +2738,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 75,
     "title": "Capitolul 13: State Management Modern & Tipizat cu Zustand",
-    "theory": "\n<p><strong>Zustand</strong> este biblioteca preferată în ecosistemul modern React pentru gestionarea stării globale, eliminând boilerplate-ul Redux și problemele de performanță cauzate de re-randările Context API-ului.</p>\n<h4>1. Crearea unui Store cu 'create'</h4>\n<p>Un store este o funcție hook generată prin <code>create<StoreState>()((set) => ({ ... }))</code>. Starea și acțiunile sunt definite în același loc.</p>\n<h4>2. Selectoare de Performanță</h4>\n<p>Componentele se abonează la felii atomice din stare: <code>const count = useStore(state => state.count);</code>. Componenta se va re-randa EXCLUSIV dacă valoarea selectată s-a modificat prin egalitate strictă, ignorând modificările din restul store-ului.</p>\n",
+    "theory": "\n<p><strong>Zustand</strong> este biblioteca preferată în ecosistemul modern React pentru gestionarea stării globale, eliminând boilerplate-ul Redux și problemele de performanță cauzate de re-randările Context API-ului.</p>\n\n<h4>1. Exemplu Complet de Store Zustand cu TypeScript</h4>\n<pre><code>import { create } from \"zustand\";\n\ninterface AppState {\n    user: string | null;\n    count: number;\n    setUser: (name: string) => void;\n    increment: () => void;\n}\n\nexport const useAppStore = create<AppState>()((set) => ({\n    user: null,\n    count: 0,\n    setUser: (name) => set({ user: name }),\n    increment: () => set((state) => ({ count: state.count + 1 })),\n}));\n\n// Consumare în componentă cu selector atomic (performanță maximă):\nexport function UserProfile() {\n    const user = useAppStore(state => state.user);\n    return <div>Utilizator: {user || \"Anonim\"}</div>;\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "Zustand",
@@ -2618,9 +2786,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Fără selector, componenta se abonează la întregul obiect de stare și se va re-randa la absolut orice modificare a oricărui câmp din store."
     },
+    "prompt": "Apelează hook-ul 'useAppStore' cu un selector atomic care extrage doar 'state.user'.",
     "task": "Apelează hook-ul 'useAppStore' cu un selector atomic care extrage doar 'state.user'.",
-    "starterCode": "const user = ",
+    "example": "const user = useAppStore(state => state.user);",
+    "starterCode": "const user = useAppStore(state => state.user);",
+    "officialSolution": "const user = useAppStore(state => state.user);",
     "expectedOutputPattern": "const\\s+user\\s*=\\s*useAppStore\\(state\\s*=>\\s*state\\.user\\);",
+    "regexPattern": "const\\s+user\\s*=\\s*useAppStore\\(state\\s*=>\\s*state\\.user\\);",
     "hint": "Scrie const user = useAppStore(state => state.user);"
   },
   {
@@ -2631,7 +2803,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător",
     "xp": 30,
     "title": "Capitolul 1: Analiza Complexității Asimptotice & Notația Big O",
-    "theory": "\n<p>Notația <strong>Big O</strong> măsoară eficiența teoretică a unui algoritm în cel mai defavorabil scenariu (worst-case scenario), exprimând cum crește consumul de timp sau memorie odată cu mărimea setului de date de intrare ($n$).</p>\n<h4>1. Ierarhia uzuală a ordinelor de complexitate</h4>\n<ul>\n  <li>$O(1)$ — Timp constant (acces la un element de tablou prin index).</li>\n  <li>$O(\\log n)$ — Timp logaritmic (căutarea binară ce înjumătățește spațiul la fiecare pas).</li>\n  <li>$O(n)$ — Timp liniar (parcurgerea simplă a unei liste neordonate).</li>\n  <li>$O(n \\log n)$ — Timp cvasi-liniar (cei mai buni algoritmi de sortare prin comparație: MergeSort).</li>\n  <li>$O(n^2)$ — Timp pătratic (bucle imbricate precum BubbleSort sau selecția naivă).</li>\n</ul>\n<h4>2. Reguli de Simplificare</h4>\n<p>În analiza asimptotică se ignoră constantele multiplicative (ex: $2n \rightarrow O(n)$) și se păstrează doar termenul dominant ($n^2 + 5n + 100 \rightarrow O(n^2)$).</p>\n",
+    "theory": "\n<p>Notația <strong>Big O</strong> măsoară eficiența teoretică a unui algoritm în cel mai defavorabil scenariu (worst-case scenario), exprimând cum crește consumul de timp sau memorie odată cu mărimea setului de date de intrare ($n$).</p>\n\n<h4>1. Ierarhia uzuală a ordinelor de complexitate</h4>\n<ul>\n  <li>$O(1)$ — Timp constant (acces la un element de tablou prin index).</li>\n  <li>$O(\\log n)$ — Timp logaritmic (căutarea binară ce înjumătățește spațiul la fiecare pas).</li>\n  <li>$O(n)$ — Timp liniar (parcurgerea simplă a unei liste neordonate).</li>\n  <li>$O(n \\log n)$ — Timp cvasi-liniar (cei mai buni algoritmi de sortare prin comparație: MergeSort).</li>\n  <li>$O(n^2)$ — Timp pătratic (bucle imbricate precum BubbleSort sau selecția naivă).</li>\n</ul>\n\n<h4>2. Exemple Practice de Complexitate în Cod</h4>\n<pre><code>// 1. O(1) - Timp Constant\nfunction getFirstElement(arr) {\n    return arr[0]; // Operație directă, independentă de lungimea lui arr\n}\n\n// 2. O(n) - Timp Liniar\nfunction findMax(arr) {\n    let max = arr[0];\n    for (let i = 1; i < arr.length; i++) {\n        if (arr[i] > max) max = arr[i];\n    }\n    return max; // Execută arr.length comparații\n}\n\n// 3. O(n^2) - Timp Pătratic\nfunction hasDuplicate(arr) {\n    for (let i = 0; i < arr.length; i++) {\n        for (let j = i + 1; j < arr.length; j++) {\n            if (arr[i] === arr[j]) return true; // Bucle imbricate\n        }\n    }\n    return false;\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "Big O Notation",
@@ -2679,9 +2851,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Se păstrează exclusiv termenul cu gradul cel mai înalt (n^3) și se elimină coeficienții constanți, rezultând O(n^3)."
     },
+    "prompt": "Returnează stringul 'O(log n)' reprezentând complexitatea temporală a căutării binare pe un tablou sortat.",
     "task": "Returnează stringul 'O(log n)' reprezentând complexitatea temporală a căutării binare pe un tablou sortat.",
-    "starterCode": "function getBinarySearchComplexity() {\n    return ",
+    "example": "function getBinarySearchComplexity() {\n    return 'O(log n)';\n}",
+    "starterCode": "function getBinarySearchComplexity() {\n    return 'O(log n)';\n}",
+    "officialSolution": "function getBinarySearchComplexity() {\n    return 'O(log n)';\n}",
     "expectedOutputPattern": "return\\s*[\"']O\\(log\\s+n\\)[\"'];?",
+    "regexPattern": "return\\s*[\"']O\\(log\\s+n\\)[\"'];?",
     "hint": "Scrie return 'O(log n)';"
   },
   {
@@ -2692,7 +2868,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător",
     "xp": 35,
     "title": "Capitolul 2: Căutarea Binară ($O(\\log n)$) pe Tablouri Sortate",
-    "theory": "\n<p>Dacă un tablou este sortat, căutarea unui element nu necesită inspectarea fiecărei poziții ($O(n)$). <strong>Căutarea binară</strong> compară elementul căutat cu valoarea de la mijlocul intervalului curent.</p>\n<h4>1. Algoritmul</h4>\n<p>Menținem doi pointeri: <code>left = 0</code> și <code>right = n - 1</code>. Calculăm mijlocul protejat împotriva overflow-ului: <code>mid = left + Math.floor((right - left) / 2)</code>.</p>\n<h4>2. Ajustarea Marginilor</h4>\n<p>Dacă valoarea de la mijloc este mai mică decât ținta, căutăm în jumătatea dreaptă (<code>left = mid + 1</code>). Dacă este mai mare, căutăm în stânga (<code>right = mid - 1</code>). Dacă valorile coincid, am găsit indexul.</p>\n",
+    "theory": "\n<p>Dacă un tablou este sortat, căutarea unui element nu necesită inspectarea fiecărei poziții ($O(n)$). <strong>Căutarea binară</strong> compară elementul căutat cu valoarea de la mijlocul intervalului curent.</p>\n\n<h4>1. Algoritmul și Prevenirea Overflow-ului</h4>\n<p>Menținem doi pointeri: <code>left = 0</code> și <code>right = n - 1</code>. Calculăm mijlocul protejat împotriva overflow-ului: <code>mid = left + Math.floor((right - left) / 2)</code>.</p>\n\n<h4>2. Exemplu Complet de Căutare Binară</h4>\n<pre><code>function binarySearch(arr, target) {\n    let left = 0;\n    let right = arr.length - 1;\n\n    while (left <= right) {\n        // Calcul sigur al mijlocului:\n        const mid = left + Math.floor((right - left) / 2);\n\n        if (arr[mid] === target) {\n            return mid; // Elementul a fost găsit\n        } else if (arr[mid] < target) {\n            left = mid + 1; // Caută în jumătatea dreaptă\n        } else {\n            right = mid - 1; // Caută în jumătatea stângă\n        }\n    }\n    return -1; // Elementul nu există în tablou\n}\n\n// Testare:\nconst numbers = [10, 23, 35, 42, 59, 71, 88, 94];\nconsole.log(binarySearch(numbers, 42)); // Returnează indexul 3\n</code></pre>\n",
     "glossary": [
       {
         "term": "Binary Search",
@@ -2740,10 +2916,14 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "log2(1.000.000) este aproximativ 19.93, ceea ce înseamnă că în cel mult 20 de pași intervalul este redus la un singur element."
     },
-    "task": "Scrie calculul variabilei 'mid' folosind formula 'left + Math.floor((right - left) / 2)'.",
-    "starterCode": "const mid = ",
+    "prompt": "Scrie calculul variabilei 'mid' folosind formula 'left + Math.floor((right - left) / 2);'.",
+    "task": "Scrie calculul variabilei 'mid' folosind formula 'left + Math.floor((right - left) / 2);'.",
+    "example": "const mid = left + Math.floor((right - left) / 2);",
+    "starterCode": "const mid = left + Math.floor((right - left) / 2);",
+    "officialSolution": "const mid = left + Math.floor((right - left) / 2);",
     "expectedOutputPattern": "mid\\s*=\\s*left\\s*\\+\\s*Math\\.floor\\(\\s*\\(right\\s*-\\s*left\\)\\s*/\\s*2\\s*\\);?",
-    "hint": "Scrie left + Math.floor((right - left) / 2);"
+    "regexPattern": "mid\\s*=\\s*left\\s*\\+\\s*Math\\.floor\\(\\s*\\(right\\s*-\\s*left\\)\\s*/\\s*2\\s*\\);?",
+    "hint": "Scrie const mid = left + Math.floor((right - left) / 2);"
   },
   {
     "id": "algo-new-3",
@@ -2753,7 +2933,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 40,
     "title": "Capitolul 3: Liste Simplu Înlanțuite (Singly Linked Lists)",
-    "theory": "\n<p>O <strong>listă simplu înlănțuită</strong> este o structură de date liniară în care elementele (nodurile) nu sunt stocate contiguu în memorie, ci fiecare nod conține datele proprii și un pointer către nodul următor (<code>next</code>).</p>\n<h4>1. Inserare $O(1)$ la Început</h4>\n<p>Inserarea unui nod nou la capătul listei (Head) necesită doar setarea <code>newNode.next = head</code> și actualizarea <code>head = newNode</code>, fără a muta celelalte elemente din memorie (spre deosebire de tablouri unde costă $O(n)$).</p>\n<h4>2. Acces Secvențial $O(n)$</h4>\n<p>Deoarece memoria este fragmentată, nu există acces direct prin index (nu putem face <code>list[5]</code>). Găsirea unui element necesită parcurgerea pas cu pas de la <code>head</code>.</p>\n",
+    "theory": "\n<p>O <strong>listă simplu înlănțuită</strong> este o structură de date liniară în care elementele (nodurile) nu sunt stocate contiguu în memorie, ci fiecare nod conține datele proprii și un pointer către nodul următor (<code>next</code>).</p>\n\n<h4>1. Structura Nodului și Inserarea la Început ($O(1)$)</h4>\n<p>Inserarea unui nod nou la capătul listei (Head) necesită doar setarea <code>newNode.next = head</code> și actualizarea <code>head = newNode</code>, fără a muta celelalte elemente din memorie (spre deosebire de tablouri unde costă $O(n)$).</p>\n\n<h4>2. Exemplu de Implementare și Parcurgere</h4>\n<pre><code>class ListNode {\n    constructor(val, next = null) {\n        this.val = val;\n        this.next = next;\n    }\n}\n\n// Inserare la Head în O(1):\nfunction insertAtHead(head, val) {\n    const newNode = new ListNode(val);\n    newNode.next = head;\n    return newNode; // Noul head al listei\n}\n\n// Parcurgere liniară în O(n):\nfunction traverseList(head) {\n    let current = head;\n    while (current !== null) {\n        console.log(\"Valoare nod:\", current.val);\n        current = current.next; // Avansare către următorul nod\n    }\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "Linked List Node",
@@ -2801,9 +2981,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Inserarea la Head se face în O(1) prin schimbarea a doi pointeri. La un array, toate elementele trebuie mutate la dreapta cu o poziție (O(n))."
     },
-    "task": "Scrie o buclă 'while (current !== null)' care parcurge lista avansând cu 'current = current.next;'.",
-    "starterCode": "let current = head;\n// Scrie bucla while de parcurgere\n",
+    "prompt": "Scrie o buclă 'while (current !== null) { current = current.next; }' ce parcurge nodurile listei înlănțuite.",
+    "task": "Scrie o buclă 'while (current !== null) { current = current.next; }' ce parcurge nodurile listei înlănțuite.",
+    "example": "let current = head;\nwhile (current !== null) {\n    current = current.next;\n}",
+    "starterCode": "let current = head;\nwhile (current !== null) {\n    current = current.next;\n}",
+    "officialSolution": "let current = head;\nwhile (current !== null) {\n    current = current.next;\n}",
     "expectedOutputPattern": "while\\s*\\(current\\s*!==\\s*null\\)\\s*\\{\\s*current\\s*=\\s*current\\.next;?\\s*\\}",
+    "regexPattern": "while\\s*\\(current\\s*!==\\s*null\\)\\s*\\{\\s*current\\s*=\\s*current\\.next;?\\s*\\}",
     "hint": "Scrie while (current !== null) { current = current.next; }"
   },
   {
@@ -2814,7 +2998,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 40,
     "title": "Capitolul 4: Stiva (Stack — LIFO) & Validarea Parantezelor",
-    "theory": "\n<p>O <strong>stivă (Stack)</strong> funcționează pe principiul <strong>LIFO</strong> (Last-In, First-Out): ultimul element introdus este primul eliminat. Operațiunile de bază sunt <code>push</code> (adăugare) și <code>pop</code> (eliminare), ambele garantate în $O(1)$.</p>\n<h4>1. Aplicația Clasică: Validarea Parantezelor</h4>\n<p>Verificarea dacă un șir de paranteze (<code>()[]{}</code>) este valid se rezolvă optim cu o stivă: când întâlnim o paranteză deschisă o punem pe stivă (<code>push</code>). Când întâlnim una închisă, extragem vârful stivei (<code>pop</code>) și verificăm dacă perechea se potrivește.</p>\n<h4>2. Verificarea Finală</h4>\n<p>Dacă la finalul parcurgerii stiva este complet goală, șirul este perfect echilibrat.</p>\n",
+    "theory": "\n<p>O <strong>stivă (Stack)</strong> funcționează pe principiul <strong>LIFO</strong> (Last-In, First-Out): ultimul element introdus este primul eliminat. Operațiunile de bază sunt <code>push</code> (adăugare) și <code>pop</code> (eliminare), ambele garantate în $O(1)$.</p>\n\n<h4>1. Aplicația Clasică: Validarea Parantezelor</h4>\n<p>Verificarea dacă un șir de paranteze (<code>()[]{}</code>) este valid se rezolvă optim cu o stivă: când întâlnim o paranteză deschisă o punem pe stivă (<code>push</code>). Când întâlnim una închisă, extragem vârful stivei (<code>pop</code>) și verificăm dacă perechea se potrivește.</p>\n\n<h4>2. Exemplu Complet de Validare cu Stivă</h4>\n<pre><code>function isValidParentheses(s) {\n    const stack = [];\n    const pairs = { ')': '(', ']': '[', '}': '{' };\n\n    for (let char of s) {\n        if (char === '(' || char === '[' || char === '{') {\n            stack.push(char);\n        } else if (char === ')' || char === ']' || char === '}') {\n            const top = stack.pop();\n            if (top !== pairs[char]) {\n                return false; // Paranteză nepotrivită sau stivă goală\n            }\n        }\n    }\n    // Dacă stiva este complet goală la final, parantezarea este validă\n    return stack.length === 0;\n}\n\nconsole.log(isValidParentheses(\"({[]})\")); // true\nconsole.log(isValidParentheses(\"([)]\"));   // false\n</code></pre>\n",
     "glossary": [
       {
         "term": "Stack (LIFO)",
@@ -2862,9 +3046,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Validitatea impune ca fiecare pereche să se închidă în ordinea inversă deschiderii, iar la final nicio paranteză să nu fi rămas deschisă (stivă goală)."
     },
+    "prompt": "Verifică dacă un array 'stack' folosit ca stivă este gol returnând 'stack.length === 0'.",
     "task": "Verifică dacă un array 'stack' folosit ca stivă este gol returnând 'stack.length === 0'.",
-    "starterCode": "function isStackEmpty(stack) {\n    return ",
+    "example": "function isStackEmpty(stack) {\n    return stack.length === 0;\n}",
+    "starterCode": "function isStackEmpty(stack) {\n    return stack.length === 0;\n}",
+    "officialSolution": "function isStackEmpty(stack) {\n    return stack.length === 0;\n}",
     "expectedOutputPattern": "return\\s+stack\\.length\\s*===\\s*0;?",
+    "regexPattern": "return\\s+stack\\.length\\s*===\\s*0;?",
     "hint": "Scrie return stack.length === 0;"
   },
   {
@@ -2875,7 +3063,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 45,
     "title": "Capitolul 5: Tehnica 'Two Pointers' & 'Sliding Window'",
-    "theory": "\n<p>Tehnicile <strong>Two Pointers</strong> și <strong>Sliding Window</strong> sunt două dintre cele mai importante metode de optimizare, reducând adesea complexitatea algoritmilor de la $O(n^2)$ la $O(n)$ prin evitarea calculelor redundante.</p>\n<h4>1. Tehnica Two Pointers (Convergență)</h4>\n<p>Pe un tablou sortat, plasăm un pointer la început (<code>left = 0</code>) și unul la sfârșit (<code>right = n - 1</code>). Pentru a găsi două numere cu suma $S$ (Two Sum II), dacă suma curentă este prea mică incrementăm <code>left</code>, dacă este prea mare decrementăm <code>right</code>.</p>\n<h4>2. Tehnica Sliding Window (Fereastră Glisantă)</h4>\n<p>Pentru a găsi suma maximă a unui subșir de lungime fixă $k$, calculăm suma primelor $k$ elemente. La fiecare pas următor, adăugăm noul element intrat în fereastră și îl scădem pe cel care a părăsit fereastra, menținând un cost $O(1)$ per pas.</p>\n",
+    "theory": "\n<p>Tehnicile <strong>Two Pointers</strong> și <strong>Sliding Window</strong> sunt două dintre cele mai importante metode de optimizare, reducând adesea complexitatea algoritmilor de la $O(n^2)$ la $O(n)$ prin evitarea calculelor redundante.</p>\n\n<h4>1. Two Pointers Convergenți</h4>\n<p>Pe un tablou sortat, plasăm un pointer la început (<code>left = 0</code>) și unul la sfârșit (<code>right = n - 1</code>). Dacă suma celor două numere este prea mică incrementăm <code>left</code>, dacă este prea mare decrementăm <code>right</code>.</p>\n\n<h4>2. Exemplu Sliding Window: Suma Maximă a unei Subferestre</h4>\n<pre><code>// Calculul sumei maxime a unui subtablou contiguu de lungime k în O(n)\nfunction maxSubarraySum(arr, k) {\n    if (arr.length < k) return null;\n\n    // Calculăm suma primei ferestre de dimensiune k:\n    let windowSum = 0;\n    for (let i = 0; i < k; i++) {\n        windowSum += arr[i];\n    }\n    let maxSum = windowSum;\n\n    // Glisăm fereastra: adăugăm noul element și îl scădem pe cel ieșit\n    for (let i = k; i < arr.length; i++) {\n        windowSum = windowSum + arr[i] - arr[i - k]; // Actualizare O(1)\n        maxSum = Math.max(maxSum, windowSum);\n    }\n    return maxSum;\n}\n\nconst scores = [2, 1, 5, 1, 3, 2];\nconsole.log(maxSubarraySum(scores, 3)); // 5 + 1 + 3 = 9\n</code></pre>\n",
     "glossary": [
       {
         "term": "Two Pointers",
@@ -2923,9 +3111,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Abordarea naivă necesită k operațiuni la fiecare pas (O(n * k)). Sliding Window actualizează suma printr-o adunare și o scădere în O(1), totalizând O(n)."
     },
+    "prompt": "Actualizează 'windowSum' glisând fereastra: adaugă 'arr[i]' și scade 'arr[i - k]'.",
     "task": "Actualizează 'windowSum' glisând fereastra: adaugă 'arr[i]' și scade 'arr[i - k]'.",
-    "starterCode": "windowSum = ",
+    "example": "windowSum = windowSum + arr[i] - arr[i - k];",
+    "starterCode": "windowSum = windowSum + arr[i] - arr[i - k];",
+    "officialSolution": "windowSum = windowSum + arr[i] - arr[i - k];",
     "expectedOutputPattern": "windowSum\\s*=\\s*windowSum\\s*\\+\\s*arr\\[i\\]\\s*-\\s*arr\\[i\\s*-\\s*k\\];?|windowSum\\s*\\+=\\s*arr\\[i\\]\\s*-\\s*arr\\[i\\s*-\\s*k\\];?",
+    "regexPattern": "windowSum\\s*=\\s*windowSum\\s*\\+\\s*arr\\[i\\]\\s*-\\s*arr\\[i\\s*-\\s*k\\];?|windowSum\\s*\\+=\\s*arr\\[i\\]\\s*-\\s*arr\\[i\\s*-\\s*k\\];?",
     "hint": "Scrie windowSum = windowSum + arr[i] - arr[i - k];"
   },
   {
@@ -2936,7 +3128,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 50,
     "title": "Capitolul 6: Tabele Hash (Hash Maps) & Rezolvarea Coliziunilor",
-    "theory": "\n<p>O <strong>tabelă hash (Hash Map)</strong> asociază chei cu valori folosind o funcție hash care transformă cheia într-un index numeric într-un tablou intern (bucket array), oferind căutare, inserare și ștergere în timp mediu $O(1)$.</p>\n<h4>1. Coliziuni Hash</h4>\n<p>Deoarece mulțimea cheilor posibile este infinită, două chei diferite pot produce același index hash (coliziune).</p>\n<h4>2. Strategii de Rezolvare a Coliziunilor</h4>\n<ul>\n  <li><strong>Separate Chaining</strong>: Fiecare bucket este o listă înlănțuită (sau arbore roșu-negru dacă lungimea depășește un prag).</li>\n  <li><strong>Open Addressing</strong> (Linear Probing): Când un bucket este ocupat, algoritmul caută secvențial următorul slot liber din tablou.</li>\n</ul>\n",
+    "theory": "\n<p>O <strong>tabelă hash (Hash Map)</strong> asociază chei cu valori folosind o funcție hash care transformă cheia într-un index numeric într-un tablou intern (bucket array), oferind căutare, inserare și ștergere în timp mediu $O(1)$.</p>\n\n<h4>1. Coliziuni Hash și Separate Chaining</h4>\n<p>Deoarece mulțimea cheilor posibile este infinită, două chei diferite pot produce același index hash (coliziune). În <em>Separate Chaining</em>, fiecare bucket este o listă înlănțuită ce conține nodurile cu același index hash.</p>\n\n<h4>2. Exemplu Complet de Hash Map cu Separate Chaining</h4>\n<pre><code>class SimpleHashMap {\n    constructor(capacity = 16) {\n        this.capacity = capacity;\n        this.buckets = new Array(capacity).fill(null).map(() => []);\n    }\n\n    // Funcție simplă de dispersie (hash code):\n    hash(key) {\n        let h = 0;\n        for (let i = 0; i < key.length; i++) {\n            h = (h * 31 + key.charCodeAt(i)) % this.capacity;\n        }\n        return h;\n    }\n\n    set(key, value) {\n        const index = this.hash(key) % this.capacity;\n        const bucket = this.buckets[index];\n        const existing = bucket.find(item => item.key === key);\n        if (existing) {\n            existing.value = value;\n        } else {\n            bucket.push({ key, value });\n        }\n    }\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "Hash Function",
@@ -2984,9 +3176,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Dacă toate intrările ajung în același bucket, tabela hash devine o listă înlănțuită, iar căutarea necesită parcurgerea fiecărui element (O(n))."
     },
-    "task": "Calculează indexul hash stocându-l în 'index' folosind formula 'hash(key) % capacity'.",
-    "starterCode": "const index = ",
+    "prompt": "Calculează indexul hash stocându-l în 'index' folosind formula 'const index = hash(key) % capacity;'.",
+    "task": "Calculează indexul hash stocându-l în 'index' folosind formula 'const index = hash(key) % capacity;'.",
+    "example": "const index = hash(key) % capacity;",
+    "starterCode": "const index = hash(key) % capacity;",
+    "officialSolution": "const index = hash(key) % capacity;",
     "expectedOutputPattern": "const\\s+index\\s*=\\s*hash\\(key\\)\\s*%\\s*capacity;?",
+    "regexPattern": "const\\s+index\\s*=\\s*hash\\(key\\)\\s*%\\s*capacity;?",
     "hint": "Scrie const index = hash(key) % capacity;"
   },
   {
@@ -2997,7 +3193,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 50,
     "title": "Capitolul 7: Algoritmul MergeSort ($O(n \\log n)$ Divide et Impera)",
-    "theory": "\n<p><strong>MergeSort</strong> este un algoritm clasic de sortare bazat pe paradigma <strong>Divide et Impera</strong>, oferind performanță garantată $O(n \\log n)$ în cel mai bun, mediu și cel mai defavorabil scenariu.</p>\n<h4>1. Divide, Impera, Combină</h4>\n<ol>\n  <li><strong>Divide</strong>: Împarte tabloul recursiv în două jumătăți egale până când ajunge la tablouri de 1 element (deja sortate).</li>\n  <li><strong>Impera</strong>: Sortează recursiv fiecare jumătate.</li>\n  <li><strong>Combină (Merge)</strong>: Interclasează cele două jumătăți sortate într-un tablou auxiliar comparând elementele cap la cap în timp $O(n)$.</li>\n</ol>\n<h4>2. Stabilitate & Spațiu Auxiliar</h4>\n<p>MergeSort este o sortare <em>stabilă</em> (păstrează ordinea relativă a elementelor egale), dar necesită spațiu de memorie auxiliar $O(n)$ pentru operațiunea de interclasare.</p>\n",
+    "theory": "\n<p><strong>MergeSort</strong> este un algoritm clasic de sortare bazat pe paradigma <strong>Divide et Impera</strong>, oferind performanță garantată $O(n \\log n)$ în cel mai bun, mediu și cel mai defavorabil scenariu.</p>\n\n<h4>1. Divide, Impera, Combină</h4>\n<ol>\n  <li><strong>Divide</strong>: Împarte tabloul recursiv în două jumătăți egale până când ajunge la tablouri de 1 element (deja sortate).</li>\n  <li><strong>Impera</strong>: Sortează recursiv fiecare jumătate.</li>\n  <li><strong>Combină (Merge)</strong>: Interclasează cele două jumătăți sortate într-un tablou auxiliar comparând elementele cap la cap în timp $O(n)$.</li>\n</ol>\n\n<h4>2. Exemplu Complet de Implementare MergeSort</h4>\n<pre><code>function mergeSort(arr) {\n    // Cazul de bază: un tablou de 0 sau 1 element este deja sortat\n    if (arr.length <= 1) return arr;\n\n    const mid = Math.floor(arr.length / 2);\n    const left = mergeSort(arr.slice(0, mid));\n    const right = mergeSort(arr.slice(mid));\n\n    return merge(left, right);\n}\n\nfunction merge(left, right) {\n    const result = [];\n    let i = 0, j = 0;\n\n    while (i < left.length && j < right.length) {\n        if (left[i] <= right[j]) {\n            result.push(left[i++]);\n        } else {\n            result.push(right[j++]);\n        }\n    }\n    return result.concat(left.slice(i)).concat(right.slice(j));\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "Divide et Impera",
@@ -3045,9 +3241,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "QuickSort sortează pe loc (in-place) cu memorie suplimentară O(log n) doar pentru stivă, pe când MergeSort clasic cere un buffer separat de dimensiune O(n)."
     },
+    "prompt": "Verifică cazul de bază din MergeSort returnând 'arr' dacă 'arr.length <= 1'.",
     "task": "Verifică cazul de bază din MergeSort returnând 'arr' dacă 'arr.length <= 1'.",
+    "example": "function mergeSort(arr) {\n    if (arr.length <= 1) return arr;\n    // restul algoritmului\n}",
     "starterCode": "function mergeSort(arr) {\n    if (arr.length <= 1) return arr;\n    // restul algoritmului\n}",
+    "officialSolution": "function mergeSort(arr) {\n    if (arr.length <= 1) return arr;\n    // restul algoritmului\n}",
     "expectedOutputPattern": "if\\s*\\(arr\\.length\\s*<=\\s*1\\)\\s*return\\s+arr;?",
+    "regexPattern": "if\\s*\\(arr\\.length\\s*<=\\s*1\\)\\s*return\\s+arr;?",
     "hint": "Cazul de bază este: if (arr.length <= 1) return arr;"
   },
   {
@@ -3058,7 +3258,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 55,
     "title": "Capitolul 8: Arbori Binari de Căutare (BST — Binary Search Tree)",
-    "theory": "\n<p>Un <strong>Arbore Binar de Căutare (BST)</strong> este o structură ierarhică unde fiecare nod conține cel mult doi copii, respectând invariantul BST:</p>\n<p>Toate valorile din subarborele stâng sunt strict mai mici decât valoarea nodului (<code>left < root</code>), iar toate valorile din subarborele drept sunt strict mai mari (<code>right > root</code>).</p>\n<h4>1. Traversarea Inorder Produce Date Sortate</h4>\n<p>Traversarea <strong>Inorder</strong> (Stânga $\rightarrow$ Rădăcină $\rightarrow$ Dreapta) parcurge elementele unui BST în ordine strict crescătoare în timp $O(n)$.</p>\n<h4>2. Echilibrarea Arborilor</h4>\n<p>Într-un arbore echilibrat (ex: AVL sau Red-Black), înălțimea este $O(\\log n)$, oferind căutare în $O(\\log n)$. Dacă inserăm date deja sortate într-un BST naiv, el degenerează într-o listă simplă de înălțime $O(n)$.</p>\n",
+    "theory": "\n<p>Un <strong>Arbore Binar de Căutare (BST)</strong> este o structură ierarhică unde fiecare nod conține cel mult doi copii, respectând invariantul BST:</p>\n<p>Toate valorile din subarborele stâng sunt strict mai mici decât valoarea nodului (<code>left < root</code>), iar toate valorile din subarborele drept sunt strict mai mari (<code>right > root</code>).</p>\n\n<h4>1. Traversarea Inorder Produce Date Sortate</h4>\n<p>Traversarea <strong>Inorder</strong> (Stânga $\\rightarrow$ Rădăcină $\\rightarrow$ Dreapta) parcurge elementele unui BST în ordine strict crescătoare în timp $O(n)$.</p>\n\n<h4>2. Exemplu Complet de Nod BST și Căutare Recursivă</h4>\n<pre><code>class TreeNode {\n    constructor(val, left = null, right = null) {\n        this.val = val;\n        this.left = left;\n        this.right = right;\n    }\n}\n\nfunction searchBST(node, val) {\n    if (!node || node.val === val) return node;\n\n    // Căutare binară în arbore:\n    if (val < node.val) {\n        return searchBST(node.left, val);  // Explorează ramura stângă\n    } else {\n        return searchBST(node.right, val); // Explorează ramura dreaptă\n    }\n}\n\n// Inorder Traversal ce generează un tablou sortat:\nfunction inorder(root, res = []) {\n    if (!root) return res;\n    inorder(root.left, res);\n    res.push(root.val);\n    inorder(root.right, res);\n    return res;\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "BST Invariant",
@@ -3106,9 +3306,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Datorită invariantului BST (stânga < rădăcină < dreapta), explorarea recursivă Inorder vizitează întotdeauna mai întâi elementele mai mici, apoi nodul curent, apoi cele mai mari."
     },
+    "prompt": "Scrie condiția de căutare recursivă într-un BST: dacă 'val < node.val', caută în 'node.left'.",
     "task": "Scrie condiția de căutare recursivă într-un BST: dacă 'val < node.val', caută în 'node.left'.",
+    "example": "if (val < node.val) {\n    return searchBST(node.left, val);\n}",
     "starterCode": "if (val < node.val) {\n    return searchBST(node.left, val);\n}",
+    "officialSolution": "if (val < node.val) {\n    return searchBST(node.left, val);\n}",
     "expectedOutputPattern": "if\\s*\\(val\\s*<\\s*node\\.val\\)\\s*\\{\\s*return\\s+searchBST\\(node\\.left,\\s*val\\);?\\s*\\}",
+    "regexPattern": "if\\s*\\(val\\s*<\\s*node\\.val\\)\\s*\\{\\s*return\\s+searchBST\\(node\\.left,\\s*val\\);?\\s*\\}",
     "hint": "Scrie if (val < node.val) { return searchBST(node.left, val); }"
   },
   {
@@ -3119,7 +3323,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 60,
     "title": "Capitolul 9: Parcurgerea Grafurilor: Breadth-First Search (BFS)",
-    "theory": "\n<p>Un graf este o colecție de noduri (vârfuri) legate prin muchii. <strong>Breadth-First Search (BFS)</strong> parcurge graful nivel cu nivel, explorând toți vecinii imediați ai nodului de pornire înainte de a trece la nodurile de la distanța 2.</p>\n<h4>1. Utilizarea Cozii (Queue — FIFO)</h4>\n<p>BFS folosește obligatoriu o <strong>coadă (Queue)</strong> pentru a gestiona ordinea de explorare a nodurilor.</p>\n<h4>2. Garanția Celui Mai Scurt Drum</h4>\n<p>Într-un graf <em>neponderat</em> (unde toate muchiile au cost egal), BFS garantează că primul moment în care atinge nodul destinație reprezintă cel mai scurt drum (minim de muchii).</p>\n<h4>3. Setul de Vizitare</h4>\n<p>Pentru a preveni buclele infinite în grafuri cu cicluri, ținem evidența nodurilor explorate într-un set <code>visited</code>.</p>\n",
+    "theory": "\n<p>Un graf este o colecție de noduri (vârfuri) legate prin muchii. <strong>Breadth-First Search (BFS)</strong> parcurge graful nivel cu nivel, explorând toți vecinii imediați ai nodului de pornire înainte de a trece la nodurile de la distanța 2.</p>\n\n<h4>1. Utilizarea Cozii (Queue — FIFO) și Drumul Minim</h4>\n<p>BFS folosește obligatoriu o <strong>coadă (Queue)</strong> pentru a gestiona ordinea de explorare. Într-un graf <em>neponderat</em>, BFS garantează că primul moment în care atinge nodul destinație reprezintă cel mai scurt drum (număr minim de muchii).</p>\n\n<h4>2. Exemplu Complet de Implementare BFS</h4>\n<pre><code>function bfs(graph, startNode) {\n    const visited = new Set([startNode]);\n    const queue = [startNode];\n    const traversalOrder = [];\n\n    while (queue.length > 0) {\n        // Extrage primul nod din coadă în O(1)\n        const node = queue.shift();\n        traversalOrder.push(node);\n\n        for (const neighbor of graph[node] || []) {\n            if (!visited.has(neighbor)) {\n                visited.add(neighbor); // Marchează ca vizitat\n                queue.push(neighbor);  // Adaugă la coadă\n            }\n        }\n    }\n    return traversalOrder;\n}\n\n// Exemplu listă de adiacență:\nconst graph = {\n    'A': ['B', 'C'],\n    'B': ['A', 'D', 'E'],\n    'C': ['A', 'F'],\n    'D': ['B'], 'E': ['B'], 'F': ['C']\n};\nconsole.log(bfs(graph, 'A')); // ['A', 'B', 'C', 'D', 'E', 'F']\n</code></pre>\n",
     "glossary": [
       {
         "term": "BFS (Breadth-First Search)",
@@ -3167,9 +3371,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "BFS necesită o Coadă (FIFO) pentru a asigura explorarea nodurilor în ordinea exactă a distanței lor față de sursă (nivel cu nivel)."
     },
+    "prompt": "Extrage primul nod dintr-o coadă 'queue' stocându-l în 'node' folosind 'queue.shift()'.",
     "task": "Extrage primul nod dintr-o coadă 'queue' stocându-l în 'node' folosind 'queue.shift()'.",
-    "starterCode": "const node = ",
+    "example": "const node = queue.shift();",
+    "starterCode": "const node = queue.shift();",
+    "officialSolution": "const node = queue.shift();",
     "expectedOutputPattern": "const\\s+node\\s*=\\s*queue\\.shift\\(\\);?",
+    "regexPattern": "const\\s+node\\s*=\\s*queue\\.shift\\(\\);?",
     "hint": "Scrie const node = queue.shift();"
   },
   {
@@ -3180,7 +3388,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 60,
     "title": "Capitolul 10: Parcurgerea Grafurilor: Depth-First Search (DFS) & Detectarea Ciclurilor",
-    "theory": "\n<p><strong>Depth-First Search (DFS)</strong> explorează graful mergând cât mai adânc posibil de-a lungul fiecărei ramuri înainte de a face întoarcere (backtracking).</p>\n<h4>1. Implementare Recursivă (Call Stack)</h4>\n<p>Spre deosebire de BFS care cere o coadă, DFS se implementează natural recursiv folosind stiva de apel a sistemului (sau o stivă explicită).</p>\n<h4>2. Detectarea Ciclurilor în Grafuri Orientate</h4>\n<p>Pentru a detecta cicluri într-un graf orientat, clasificăm starea nodurilor în 3 culori:</p>\n<ul>\n  <li><em>Alb (0)</em>: Nevizitat încă.</li>\n  <li><em>Gri (1)</em>: În curs de vizitare (pe Call Stack-ul curent).</li>\n  <li><em>Negru (2)</em>: Vizitat complet și finalizat.</li>\n</ul>\n<p>Dacă în timpul explorării întâlnim un vecin aflat în starea <em>Gri</em>, am găsit o muchie de întoarcere (Back Edge) ce confirmă existența unui ciclu.</p>\n",
+    "theory": "\n<p><strong>Depth-First Search (DFS)</strong> explorează graful mergând cât mai adânc posibil de-a lungul fiecărei ramuri înainte de a face întoarcere (backtracking).</p>\n\n<h4>1. Detectarea Ciclurilor în Grafuri Orientate (3 Culori)</h4>\n<p>Pentru a detecta cicluri într-un graf orientat, clasificăm starea nodurilor în 3 stări:</p>\n<ul>\n  <li><em>0 (Alb)</em>: Nevizitat încă.</li>\n  <li><em>1 (Gri)</em>: În curs de vizitare (pe Call Stack-ul recursiv curent).</li>\n  <li><em>2 (Negru)</em>: Complet procesat și închis.</li>\n</ul>\n\n<h4>2. Exemplu Complet de Detectare a Ciclului prin DFS</h4>\n<pre><code>function hasCycle(graph, numNodes) {\n    const state = new Array(numNodes).fill(0); // 0 = unvisited, 1 = visiting, 2 = visited\n\n    function dfs(u) {\n        state[u] = 1; // Marchează nodul ca 'gri' (activ pe stivă)\n\n        for (const v of graph[u] || []) {\n            if (state[v] === 1) {\n                return true; // S-a găsit o muchie de întoarcere (Back Edge) -> CICLU\n            }\n            if (state[v] === 0 && dfs(v)) {\n                return true;\n            }\n        }\n\n        state[u] = 2; // Marchează nodul ca 'negru' (finalizat)\n        return false;\n    }\n\n    for (let i = 0; i < numNodes; i++) {\n        if (state[i] === 0 && dfs(i)) return true;\n    }\n    return false;\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "DFS (Depth-First Search)",
@@ -3228,9 +3436,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Întâlnirea unui nod aflat deja pe stivă înseamnă că există o cale care se întoarce la el însuși, demonstrând existența unui ciclu."
     },
+    "prompt": "Marchează nodul curent 'u' ca fiind în curs de vizitare setând 'visited[u] = 1;'.",
     "task": "Marchează nodul curent 'u' ca fiind în curs de vizitare setând 'visited[u] = 1;'.",
-    "starterCode": "// Marchează nodul u ca gri (1)\n",
+    "example": "visited[u] = 1;",
+    "starterCode": "visited[u] = 1;",
+    "officialSolution": "visited[u] = 1;",
     "expectedOutputPattern": "visited\\[u\\]\\s*=\\s*1;?",
+    "regexPattern": "visited\\[u\\]\\s*=\\s*1;?",
     "hint": "Scrie visited[u] = 1;"
   },
   {
@@ -3241,7 +3453,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 65,
     "title": "Capitolul 11: Algoritmul lui Dijkstra ($O((V + E) \\log V)$)",
-    "theory": "\n<p><strong>Algoritmul lui Dijkstra</strong> rezolvă problema celui mai scurt drum de la o sursă unică către toate celelalte noduri într-un graf ponderat cu costuri <em>strict non-negative</em>.</p>\n<h4>1. Coada cu Priorități (Min-Heap)</h4>\n<p>Algoritmul menține un tablou <code>dist</code> inițializat cu infinit ($\\infty$) și o <strong>coadă cu priorități (Min-Heap)</strong> ce extrage întotdeauna nodul nefinalizat cu distanța minimă curentă în $O(\\log V)$.</p>\n<h4>2. Tehnica Relaxării Muchiilor</h4>\n<p>Pentru fiecare vecin <code>v</code> al nodului curent <code>u</code>, dacă drumul prin <code>u</code> oferă un cost mai mic: <code>if (dist[u] + weight < dist[v])</code>, actualizăm <code>dist[v]</code> și introducem noua pereche în Min-Heap.</p>\n",
+    "theory": "\n<p><strong>Algoritmul lui Dijkstra</strong> rezolvă problema celui mai scurt drum de la o sursă unică către toate celelalte noduri într-un graf ponderat cu costuri <em>strict non-negative</em>.</p>\n\n<h4>1. Coada cu Priorități și Relaxarea Muchiilor</h4>\n<p>Algoritmul menține un tablou <code>dist</code> inițializat cu infinit ($\\infty$) și o <strong>coadă cu priorități (Min-Heap)</strong> ce extrage întotdeauna nodul nefinalizat cu distanța minimă curentă în $O(\\log V)$. Pentru fiecare vecin, dacă <code>dist[u] + weight < dist[v]</code>, distanța este actualizată (relaxare).</p>\n\n<h4>2. Exemplu Complet de Dijkstra</h4>\n<pre><code>function dijkstra(graph, startNode, numNodes) {\n    const dist = new Array(numNodes).fill(Infinity);\n    dist[startNode] = 0;\n\n    // Coadă de priorități simulată cu perechi [node, distance]:\n    const pq = [[startNode, 0]];\n\n    while (pq.length > 0) {\n        pq.sort((a, b) => a[1] - b[1]); // Extrage nodul cu distanța minimă\n        const [u, currentDist] = pq.shift();\n\n        if (currentDist > dist[u]) continue;\n\n        for (const [v, weight] of graph[u] || []) {\n            // Condiția de relaxare a muchiei:\n            if (dist[u] + weight < dist[v]) {\n                dist[v] = dist[u] + weight;\n                pq.push([v, dist[v]]);\n            }\n        }\n    }\n    return dist;\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "Dijkstra Algorithm",
@@ -3289,9 +3501,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Dijkstra 'finalizează' un nod la extragerea din heap. O muchie negativă ulterioară ar putea reduce distanța unui nod deja finalizat, invalidând ipoteza greedy."
     },
+    "prompt": "Scrie condiția de relaxare: dacă 'dist[u] + weight < dist[v]', actualizează 'dist[v] = dist[u] + weight;'.",
     "task": "Scrie condiția de relaxare: dacă 'dist[u] + weight < dist[v]', actualizează 'dist[v] = dist[u] + weight;'.",
-    "starterCode": "// Completează relaxarea\nif (dist[u] + weight < dist[v]) {\n    \n}",
+    "example": "if (dist[u] + weight < dist[v]) {\n    dist[v] = dist[u] + weight;\n}",
+    "starterCode": "if (dist[u] + weight < dist[v]) {\n    dist[v] = dist[u] + weight;\n}",
+    "officialSolution": "if (dist[u] + weight < dist[v]) {\n    dist[v] = dist[u] + weight;\n}",
     "expectedOutputPattern": "dist\\[v\\]\\s*=\\s*dist\\[u\\]\\s*\\+\\s*weight;?",
+    "regexPattern": "dist\\[v\\]\\s*=\\s*dist\\[u\\]\\s*\\+\\s*weight;?",
     "hint": "Scrie dist[v] = dist[u] + weight;"
   },
   {
@@ -3302,7 +3518,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 75,
     "title": "Capitolul 12: Programare Dinamică (DP) — Memoization vs Tabulation",
-    "theory": "\n<p><strong>Programarea Dinamică (Dynamic Programming — DP)</strong> este o tehnică algoritmică utilizată când o problemă de optimizare prezintă două proprietăți cheie:</p>\n<ol>\n  <li><strong>Substructură Optimă</strong>: Soluția optimă a problemei conține soluțiile optime ale subproblemelor sale.</li>\n  <li><strong>Subprobleme care se Suprapun (Overlapping Subproblems)</strong>: Aceleași subprobleme sunt calculate în mod repetat de nenumărate ori într-o abordare recursivă naivă (ex: arborele exponențial $O(2^n)$ al lui Fibonacci).</li>\n</ol>\n<h4>1. Top-Down cu Memoization</h4>\n<p>Păstrăm structura recursivă naturală a algoritmului, dar salvăm rezultatul fiecărui apel într-un cache (dicționar sau tablou <code>memo</code>). Complexitatea scade de la $O(2^n)$ la $O(n)$.</p>\n<h4>2. Bottom-Up cu Tabulation</h4>\n<p>Eliminăm complet recursivitatea și apelurile pe stivă: construim iterativ soluția într-un tablou <code>dp[]</code> de la cazurile de bază spre soluția finală, obținând viteză superioară și consum optim de memorie.</p>\n",
+    "theory": "\n<p><strong>Programarea Dinamică (Dynamic Programming — DP)</strong> este o tehnică algoritmică utilizată când o problemă de optimizare prezintă două proprietăți cheie: <strong>Substructură Optimă</strong> și <strong>Subprobleme care se Suprapun</strong>.</p>\n\n<h4>1. Top-Down (Memoization) vs Bottom-Up (Tabulation)</h4>\n<p>În <em>Memoization</em> stocăm rezultatele apelurilor recursive într-un dicționar sau array pentru a preveni recalcularea. În <em>Tabulation</em> eliminăm recursivitatea, completând iterativ un tablou <code>dp[]</code> de la cazurile de bază până la $n$.</p>\n\n<h4>2. Exemplu Complet: Fibonacci cu Tabulation O(n)</h4>\n<pre><code>function fibonacci(n) {\n    if (n <= 1) return n;\n\n    // Tabloul DP pentru stocarea rezultatelor parțiale\n    const dp = new Array(n + 1);\n    dp[0] = 0;\n    dp[1] = 1;\n\n    // Relația de recurență Bottom-Up:\n    for (let i = 2; i <= n; i++) {\n        dp[i] = dp[i - 1] + dp[i - 2];\n    }\n\n    return dp[n];\n}\n\nconsole.log(fibonacci(10)); // 55 calculat instantaneu în O(n)\n</code></pre>\n",
     "glossary": [
       {
         "term": "Overlapping Subproblems",
@@ -3350,9 +3566,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Doar când problema se descompune în subprobleme recurente identice (overlapping) a căror compunere dă soluția globală optimă (substructură optimă) este aplicabilă Programarea Dinamică."
     },
+    "prompt": "Scrie relația iterativă de recurență pentru calculul Fibonacci în tabloul 'dp': 'dp[i] = dp[i - 1] + dp[i - 2];'.",
     "task": "Scrie relația iterativă de recurență pentru calculul Fibonacci în tabloul 'dp': 'dp[i] = dp[i - 1] + dp[i - 2];'.",
-    "starterCode": "for (let i = 2; i <= n; i++) {\n    // Completează recurența\n}",
+    "example": "for (let i = 2; i <= n; i++) {\n    dp[i] = dp[i - 1] + dp[i - 2];\n}",
+    "starterCode": "for (let i = 2; i <= n; i++) {\n    dp[i] = dp[i - 1] + dp[i - 2];\n}",
+    "officialSolution": "for (let i = 2; i <= n; i++) {\n    dp[i] = dp[i - 1] + dp[i - 2];\n}",
     "expectedOutputPattern": "dp\\[i\\]\\s*=\\s*dp\\[i\\s*-\\s*1\\]\\s*\\+\\s*dp\\[i\\s*-\\s*2\\];?",
+    "regexPattern": "dp\\[i\\]\\s*=\\s*dp\\[i\\s*-\\s*1\\]\\s*\\+\\s*dp\\[i\\s*-\\s*2\\];?",
     "hint": "Scrie dp[i] = dp[i - 1] + dp[i - 2];"
   },
   {
@@ -3363,7 +3583,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător",
     "xp": 30,
     "title": "Capitolul 1: Ierarhia Sistemului de Fișiere Linux & Comenzi Bash",
-    "theory": "\n<p>În sistemele Unix/Linux, totul este reprezentat ca un fișier (<em>Everything is a file</em>). Structura directoarelor pornește de la rădăcina unică <code>/</code> conform standardului FHS (Filesystem Hierarchy Standard).</p>\n<h4>1. Directoare Esențiale</h4>\n<ul>\n  <li><code>/etc</code> — Fișiere de configurare la nivel de sistem.</li>\n  <li><code>/var/log</code> — Jurnale și loguri generate de servicii.</li>\n  <li><code>/home/user</code> — Spațiul personal al utilizatorului obișnuit.</li>\n  <li><code>/bin</code> și <code>/usr/bin</code> — Binare executabile esențiale.</li>\n</ul>\n<h4>2. Comenzi de Bază</h4>\n<p>Comanda <code>ls -la</code> listează toate fișierele (inclusiv cele ascunse care încep cu punct) alături de permisiuni, proprietar și dimensiune în format detaliat.</p>\n",
+    "theory": "\n<p>În sistemele Unix/Linux, totul este reprezentat ca un fișier (<em>Everything is a file</em>). Structura directoarelor pornește de la rădăcina unică <code>/</code> conform standardului FHS (Filesystem Hierarchy Standard).</p>\n\n<h4>1. Directoare Esențiale</h4>\n<ul>\n  <li><code>/etc</code> — Fișiere de configurare la nivel de sistem (ex: nginx.conf, sshd_config).</li>\n  <li><code>/var/log</code> — Jurnale și loguri generate de servicii.</li>\n  <li><code>/home/user</code> — Spațiul personal al utilizatorului obișnuit.</li>\n  <li><code>/bin</code> și <code>/usr/bin</code> — Binare executabile esențiale.</li>\n</ul>\n\n<h4>2. Exemple Practice de Navigare și Inspecție</h4>\n<pre><code># 1. Verifică calea absolută a directorului curent:\npwd\n# /home/developer\n\n# 2. Listare completă și detaliată (inclusiv fișiere ascunse .bashrc):\nls -la\n# drwxr-xr-x  5 developer developer  4096 Oct 15 12:00 .\n# -rw-r--r--  1 developer developer   220 Oct 15 10:00 .bashrc\n# -rwxr-xr-x  1 developer developer  1024 Oct 15 11:30 deploy.sh\n\n# 3. Creare structură de directoare în cascadă:\nmkdir -p /var/log/polymath/archives\n</code></pre>\n",
     "glossary": [
       {
         "term": "FHS (Filesystem Standard)",
@@ -3411,10 +3631,14 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "/etc este directorul standard dedicat fișierelor de configurare pentru toate pachetele și serviciile instalate la nivel de sistem."
     },
+    "prompt": "Scrie comanda Bash care listează toate fișierele (inclusiv cele ascunse) în format lung detaliat: 'ls -la'.",
     "task": "Scrie comanda Bash care listează toate fișierele (inclusiv cele ascunse) în format lung detaliat: 'ls -la'.",
-    "starterCode": "# Listează fișierele detaliat\n",
+    "example": "ls -la",
+    "starterCode": "ls -la",
+    "officialSolution": "ls -la",
     "expectedOutputPattern": "ls\\s+-la|ls\\s+-al|ls\\s+-l\\s+-a|ls\\s+-a\\s+-l",
-    "hint": "Scrie ls -la."
+    "regexPattern": "ls\\s+-la|ls\\s+-al|ls\\s+-l\\s+-a|ls\\s+-a\\s+-l",
+    "hint": "Scrie ls -la"
   },
   {
     "id": "devops-new-2",
@@ -3424,7 +3648,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător",
     "xp": 35,
     "title": "Capitolul 2: Redirecționări de Stream-uri I/O & Mecanismul Pipes ('|')",
-    "theory": "\n<p>În Linux, fiecare proces deschide implicit 3 descriptori standard de fișiere:</p>\n<ol>\n  <li><code>0 (stdin)</code>: Fluxul standard de intrare (tastatură).</li>\n  <li><code>1 (stdout)</code>: Fluxul standard de ieșire (consolă).</li>\n  <li><code>2 (stderr)</code>: Fluxul standard pentru erori (consolă).</li>\n</ol>\n<h4>1. Redirecționări</h4>\n<p>Operatorul <code>></code> suprascrie fișierul destinație, iar <code>>></code> adaugă la final (append). Sintaxa <code>2>&1</code> redirecționează erorile (stderr) pe același canal cu stdout.</p>\n<h4>2. Mecanismul Pipes ('|')</h4>\n<p>Operatorul pipe leagă <code>stdout</code> al primei comenzi direct în <code>stdin</code> al celei de-a doua fără a salva date intermediare pe disc: <code>cat access.log | grep \"404\" | wc -l</code>.</p>\n",
+    "theory": "\n<p>În Linux, fiecare proces deschide implicit 3 descriptori standard de fișiere: <code>0 (stdin)</code>, <code>1 (stdout)</code> și <code>2 (stderr)</code>.</p>\n\n<h4>1. Redirecționări</h4>\n<p>Operatorul <code>></code> suprascrie fișierul destinație, iar <code>>></code> adaugă la final (append). Sintaxa <code>2>&1</code> redirecționează erorile (stderr) pe același canal cu stdout.</p>\n\n<h4>2. Exemple Practice de Stream-uri și Pipes</h4>\n<pre><code># 1. Redirecționare simplă și append:\necho \"Deployment started\" > deploy.log\necho \"Timestamp: $(date)\" >> deploy.log\n\n# 2. Filtrare în lanț cu Pipes (|):\ncat app.log | grep ERROR | wc -l\n# Numără câte linii de eroare există în app.log\n\n# 3. Suprimarea erorilor (redirecționare către /dev/null):\nfind / -name \"*.conf\" 2>/dev/null\n</code></pre>\n",
     "glossary": [
       {
         "term": "stdout (Descriptor 1)",
@@ -3472,9 +3696,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Descriptorul 2 (stderr) este redirecționat către /dev/null (gaura neagră a sistemului Unix), suprimând toate erorile din afișajul consolei."
     },
+    "prompt": "Filtrează ieșirea comenzii 'cat app.log' căutând liniile ce conțin 'ERROR' folosind pipe și grep: 'cat app.log | grep ERROR'.",
     "task": "Filtrează ieșirea comenzii 'cat app.log' căutând liniile ce conțin 'ERROR' folosind pipe și grep: 'cat app.log | grep ERROR'.",
-    "starterCode": "# Folosește pipe și grep\n",
+    "example": "cat app.log | grep ERROR",
+    "starterCode": "cat app.log | grep ERROR",
+    "officialSolution": "cat app.log | grep ERROR",
     "expectedOutputPattern": "cat\\s+app\\.log\\s*\\|\\s*grep\\s+(?:[\"']ERROR[\"']|ERROR)",
+    "regexPattern": "cat\\s+app\\.log\\s*\\|\\s*grep\\s+(?:[\"']ERROR[\"']|ERROR)",
     "hint": "Scrie cat app.log | grep ERROR"
   },
   {
@@ -3485,7 +3713,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător",
     "xp": 35,
     "title": "Capitolul 3: Permisiuni Linux & Notarea Octală ('chmod', 'chown')",
-    "theory": "\n<p>Securitatea fișierelor în Linux este guvernată de o matrice de 3 categorii de utilizatori: <strong>User (u)</strong>, <strong>Group (g)</strong> și <strong>Others (o)</strong>, fiecare având 3 drepturi posibile:</p>\n<ul>\n  <li><code>r (read)</code> = 4</li>\n  <li><code>w (write)</code> = 2</li>\n  <li><code>x (execute)</code> = 1</li>\n</ul>\n<h4>1. Calculul Octal</h4>\n<p>Suma valorilor binare dă cifra octală. De exemplu, <code>chmod 755 script.sh</code> conferă: User = 4+2+1 = <strong>7</strong> (rwx), Group = 4+0+1 = <strong>5</strong> (r-x), Others = 4+0+1 = <strong>5</strong> (r-x).</p>\n<h4>2. Schimbarea Proprietarului cu 'chown'</h4>\n<p>Comanda <code>sudo chown -R www-data:www-data /var/www/html</code> modifică recursiv atât utilizatorul proprietar, cât și grupul asociat directorului.</p>\n",
+    "theory": "\n<p>Securitatea fișierelor în Linux este guvernată de o matrice de 3 categorii de utilizatori: <strong>User (u)</strong>, <strong>Group (g)</strong> și <strong>Others (o)</strong>, fiecare având 3 drepturi posibile:</p>\n<ul>\n  <li><code>r (read)</code> = 4</li>\n  <li><code>w (write)</code> = 2</li>\n  <li><code>x (execute)</code> = 1</li>\n</ul>\n\n<h4>1. Calculul Octal</h4>\n<p>Suma valorilor binare dă cifra octală. De exemplu, <code>chmod 755 script.sh</code> conferă: User = 4+2+1 = <strong>7</strong> (rwx), Group = 4+0+1 = <strong>5</strong> (r-x), Others = 4+0+1 = <strong>5</strong> (r-x).</p>\n\n<h4>2. Exemple Practice de Permisiuni</h4>\n<pre><code># Fă un script executabil pentru toți, dar modificabil doar de owner:\nchmod 755 deploy.sh\n# -rwxr-xr-x 1 developer developer 1024 deploy.sh\n\n# Securizează cheia SSH privată (doar owner-ul o poate citi și scrie):\nchmod 600 ~/.ssh/id_rsa\n# -rw------- 1 developer developer 2602 id_rsa\n\n# Schimbă recursiv utilizatorul și grupul proprietar:\nsudo chown -R www-data:www-data /var/www/html\n</code></pre>\n",
     "glossary": [
       {
         "term": "chmod",
@@ -3533,9 +3761,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "6 = 4+2 (read + write pentru owner), 4 = read pentru group, 4 = read pentru others. Este permisiunea standard pentru fișiere de date."
     },
+    "prompt": "Fă scriptul 'deploy.sh' executabil pentru proprietar și cu drepturi de citire/execuție pentru restul rulând 'chmod 755 deploy.sh'.",
     "task": "Fă scriptul 'deploy.sh' executabil pentru proprietar și cu drepturi de citire/execuție pentru restul rulând 'chmod 755 deploy.sh'.",
-    "starterCode": "# Setează permisiunile 755 pe deploy.sh\n",
+    "example": "chmod 755 deploy.sh",
+    "starterCode": "chmod 755 deploy.sh",
+    "officialSolution": "chmod 755 deploy.sh",
     "expectedOutputPattern": "chmod\\s+755\\s+deploy\\.sh",
+    "regexPattern": "chmod\\s+755\\s+deploy\\.sh",
     "hint": "Scrie chmod 755 deploy.sh"
   },
   {
@@ -3546,7 +3778,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 40,
     "title": "Capitolul 4: Managementul Proceselor & Semnale POSIX ('kill')",
-    "theory": "\n<p>Fiecare proces din Linux primește un identificator unic numeric (<strong>PID</strong>). Comanda <code>ps aux</code> sau <code>htop</code> permite monitorizarea consumului de memorie și procesor.</p>\n<h4>1. Semnale POSIX Fundamentale</h4>\n<p>Procesele comunică prin semnale trimise cu utilitarul <code>kill</code>:</p>\n<ul>\n  <li><code>SIGTERM (15)</code>: Semnalul politicos de oprire. Procesul primește șansa de a elibera conexiunile, de a salva datele și de a se închide curat.</li>\n  <li><code>SIGKILL (9)</code>: Oprire forțată și imediată executată direct de nucleul Linux (Kernel); procesul nu poate intercepta sau ignora acest semnal.</li>\n  <li><code>SIGHUP (1)</code>: Trimis pentru a forța reîncărcarea fișierului de configurare fără repornirea procesului.</li>\n</ul>\n",
+    "theory": "\n<p>Fiecare proces din Linux primește un identificator unic numeric (<strong>PID</strong>). Comanda <code>ps aux</code> sau <code>htop</code> permite monitorizarea consumului de memorie și procesor.</p>\n\n<h4>1. Semnale POSIX Fundamentale</h4>\n<ul>\n  <li><code>SIGTERM (15)</code>: Semnalul politicos de oprire (Graceful Shutdown). Permite salvarea stării și eliberarea conexiunilor.</li>\n  <li><code>SIGKILL (9)</code>: Oprire forțată și imediată executată direct de nucleul Linux (Kernel); nu poate fi ignorată.</li>\n  <li><code>SIGHUP (1)</code>: Forțează reîncărcarea fișierului de configurare fără oprirea procesului.</li>\n</ul>\n\n<h4>2. Exemple Practice de Inspecție și Semnalizare</h4>\n<pre><code># 1. Localizează PID-ul aplicației:\nps aux | grep node\n# developer 4520  0.5  2.1 123456 45678 ? S 12:00 node server.js\n\n# 2. Trimite semnal politicos de oprire (SIGTERM 15):\nkill -15 4520\n\n# 3. Forțează oprirea doar dacă procesul este complet blocat:\nkill -9 4520\n\n# 4. Reîncarcă configurația serverului fără downtime:\nkill -HUP $(pidof nginx)\n</code></pre>\n",
     "glossary": [
       {
         "term": "PID (Process ID)",
@@ -3594,9 +3826,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "SIGTERM inițiază un 'graceful shutdown', oferind procesului oportunitatea de a-și salva starea și elibera resursele. SIGKILL îl distruge instantaneu, riscând coruperea datelor."
     },
+    "prompt": "Trimite semnalul SIGTERM (15) către procesul cu PID-ul 4520 rulând 'kill -15 4520'.",
     "task": "Trimite semnalul SIGTERM (15) către procesul cu PID-ul 4520 rulând 'kill -15 4520'.",
-    "starterCode": "# Trimite SIGTERM la PID 4520\n",
+    "example": "kill -15 4520",
+    "starterCode": "kill -15 4520",
+    "officialSolution": "kill -15 4520",
     "expectedOutputPattern": "kill\\s+-15\\s+4520|kill\\s+-s\\s+TERM\\s+4520|kill\\s+-SIGTERM\\s+4520",
+    "regexPattern": "kill\\s+-15\\s+4520|kill\\s+-s\\s+TERM\\s+4520|kill\\s+-SIGTERM\\s+4520",
     "hint": "Scrie kill -15 4520"
   },
   {
@@ -3607,7 +3843,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 45,
     "title": "Capitolul 5: Gestiunea Serviciilor cu Systemd ('systemctl' & 'journalctl')",
-    "theory": "\n<p><strong>Systemd</strong> este sistemul de inițializare și managerul de servicii standard în majoritatea distribuțiilor Linux moderne (Ubuntu, Debian, RedHat, CentOS), având PID-ul 1.</p>\n<h4>1. Comanda 'systemctl'</h4>\n<p>Comenzile frecvente includ:</p>\n<ul>\n  <li><code>sudo systemctl start nginx</code> — Pornește serviciul.</li>\n  <li><code>sudo systemctl enable nginx</code> — Configurează serviciul să pornească automat la boot-ul mașinii.</li>\n  <li><code>sudo systemctl status nginx</code> — Afișează starea curentă și ultimele linii de jurnal.</li>\n  <li><code>sudo systemctl reload nginx</code> — Reîncarcă configurația fără a întrerupe conexiunile clienților.</li>\n</ul>\n<h4>2. Inspectarea Jurnalelor cu 'journalctl'</h4>\n<p>Utilitarul centralizat <code>journalctl -u nginx -f</code> urmărește logurile serviciului în timp real (urmărire de tip 'follow').</p>\n",
+    "theory": "\n<p><strong>Systemd</strong> este sistemul de inițializare și managerul de servicii standard în distribuțiile Linux moderne (Ubuntu, Debian, RedHat), având PID-ul 1.</p>\n\n<h4>1. Comenzi Esențiale 'systemctl'</h4>\n<ul>\n  <li><code>sudo systemctl start nginx</code> — Pornește serviciul.</li>\n  <li><code>sudo systemctl enable nginx</code> — Activează pornirea automată la boot-ul serverului.</li>\n  <li><code>sudo systemctl status nginx</code> — Afișează starea curentă și logurile recente.</li>\n  <li><code>sudo systemctl reload nginx</code> — Reîncarcă configurația fără restart.</li>\n</ul>\n\n<h4>2. Exemple Practice cu Systemd și Journalctl</h4>\n<pre><code># 1. Verifică starea detaliată a serviciului Nginx:\nsudo systemctl status nginx\n\n# 2. Pornește și activează un serviciu dintr-un singur pas:\nsudo systemctl enable --now docker\n\n# 3. Urmărește logurile generate în timp real (-f = follow):\nsudo journalctl -u nginx -f\n\n# 4. Afișează ultimele 50 de linii de erori:\nsudo journalctl -u api-backend -p err -n 50\n</code></pre>\n",
     "glossary": [
       {
         "term": "systemd",
@@ -3655,9 +3891,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Flag-ul '-u' filtrează după numele unității de serviciu, iar '-f' (follow) menține conexiunea deschisă afișând noile intrări în timp real."
     },
+    "prompt": "Pornește și verifică starea serviciului 'nginx' rulând comanda 'sudo systemctl status nginx'.",
     "task": "Pornește și verifică starea serviciului 'nginx' rulând comanda 'sudo systemctl status nginx'.",
-    "starterCode": "# Verifică statusul Nginx\n",
+    "example": "sudo systemctl status nginx",
+    "starterCode": "sudo systemctl status nginx",
+    "officialSolution": "sudo systemctl status nginx",
     "expectedOutputPattern": "(?:sudo\\s+)?systemctl\\s+status\\s+nginx",
+    "regexPattern": "(?:sudo\\s+)?systemctl\\s+status\\s+nginx",
     "hint": "Scrie sudo systemctl status nginx (sau fără sudo)."
   },
   {
@@ -3668,7 +3908,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 50,
     "title": "Capitolul 6: Docker Fundamente — Imagini, Containere & Dockerfile",
-    "theory": "\n<p><strong>Docker</strong> împachetează aplicațiile și toate dependențele lor într-o unitate izolată numită <em>container</em>, partajând kernelul sistemului de operare gazdă (fără overhead-ul greoi al unei mașini virtuale cu hypervisor).</p>\n<h4>1. Instrucțiuni Esențiale în Dockerfile</h4>\n<ul>\n  <li><code>FROM node:20-alpine</code> — Imaginea de bază minimalistă.</li>\n  <li><code>WORKDIR /app</code> — Directorul de lucru din interiorul containerului.</li>\n  <li><code>COPY package*.json ./</code> — Copiază mai întâi fișierele de dependențe pentru a valorifica cache-ul de layere Docker.</li>\n  <li><code>RUN npm install</code> — Execută comenzi în timpul etapei de build.</li>\n  <li><code>COPY . .</code> — Copiază codul sursă.</li>\n  <li><code>EXPOSE 3000</code> — Documentează portul de rețea ascultat.</li>\n  <li><code>CMD [\"node\", \"server.js\"]</code> — Comanda implicită la pornirea containerului.</li>\n</ul>\n",
+    "theory": "\n<p><strong>Docker</strong> împachetează aplicațiile și dependențele lor într-o unitate izolată numită <em>container</em>, partajând nucleul sistemului gazdă fără overhead-ul unei mașini virtuale.</p>\n\n<h4>1. Exemplu de Dockerfile Optimizat</h4>\n<pre><code># Imagine minimalistă Node.js:\nFROM node:20-alpine\n\n# Setează directorul de lucru:\nWORKDIR /app\n\n# Copiază fișierele de dependențe pentru layer caching:\nCOPY package*.json ./\nRUN npm install\n\n# Copiază codul sursă al aplicației:\nCOPY . .\n\nEXPOSE 8080\nCMD [\"node\", \"server.js\"]\n</code></pre>\n\n<h4>2. Comenzi de Rulare și Monitorizare</h4>\n<pre><code># Construiește imaginea:\ndocker build -t my-web:latest .\n\n# Rulează containerul în fundal (-d) cu mapare de port (80 host -> 80 container):\ndocker run -d -p 80:80 my-web:latest\n\n# Verifică containerele active:\ndocker ps\n</code></pre>\n",
     "glossary": [
       {
         "term": "Docker Image",
@@ -3716,9 +3956,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Docker cache-uiește fiecare linie. Dacă codul sursă se schimbă frecvent dar dependențele rămân aceleași, Docker va sări peste pasul lent de 'npm install', folosind cache-ul."
     },
+    "prompt": "Rulează containerul din imaginea 'my-web:latest' în fundal (-d) mapând portul '80:80': 'docker run -d -p 80:80 my-web:latest'.",
     "task": "Rulează containerul din imaginea 'my-web:latest' în fundal (-d) mapând portul '80:80': 'docker run -d -p 80:80 my-web:latest'.",
-    "starterCode": "# Rulează containerul\n",
+    "example": "docker run -d -p 80:80 my-web:latest",
+    "starterCode": "docker run -d -p 80:80 my-web:latest",
+    "officialSolution": "docker run -d -p 80:80 my-web:latest",
     "expectedOutputPattern": "docker\\s+run\\s+-d\\s+-p\\s+80:80\\s+my-web:latest",
+    "regexPattern": "docker\\s+run\\s+-d\\s+-p\\s+80:80\\s+my-web:latest",
     "hint": "Scrie docker run -d -p 80:80 my-web:latest"
   },
   {
@@ -3729,7 +3973,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 50,
     "title": "Capitolul 7: Persistența Datelor: Docker Volumes & Bind Mounts",
-    "theory": "\n<p>Sistemul de fișiere al unui container Docker este efemer: când containerul este șters, toate fișierele create în interior se pierd irevocabil. Persistența necesită mecanisme dedicate.</p>\n<h4>1. Named Volumes (Recomandat pentru Baze de Date)</h4>\n<p>Volumele numite sunt complet gestionate de Docker (stocate în <code>/var/lib/docker/volumes/</code>). Sunt izolate de sistemul de fișiere al gazdei și optimizate pentru I/O performant: <code>-v pgdata:/var/lib/postgresql/data</code>.</p>\n<h4>2. Bind Mounts (Recomandat pentru Dezvoltare Locală)</h4>\n<p>Leagă un director concret de pe mașina gazdă direct în interiorul containerului: <code>-v $(pwd):/app</code>, reflectând instant modificările de cod fără a reconstrui imaginea.</p>\n",
+    "theory": "\n<p>Sistemul de fișiere al unui container Docker este efemer: când containerul este șters, toate fișierele create în interior se pierd irevocabil. Persistența necesită mecanisme dedicate.</p>\n\n<h4>1. Named Volumes vs Bind Mounts</h4>\n<p>Volumele numite sunt complet gestionate de Docker (în <code>/var/lib/docker/volumes/</code>) și sunt recomandate pentru baze de date. Bind mounts leagă direct un director de pe host (ex: <code>-v $(pwd):/app</code>) pentru hot-reload în development.</p>\n\n<h4>2. Exemple Practice cu Docker Volumes</h4>\n<pre><code># 1. Creează un volum dedicat persistent:\ndocker volume create app_storage\n\n# 2. Rulează PostgreSQL atașat la volumul creat:\ndocker run -d \\\n  --name postgres-db \\\n  -e POSTGRES_PASSWORD=secret \\\n  -v app_storage:/var/lib/postgresql/data \\\n  postgres:16-alpine\n\n# 3. Listează volumele active:\ndocker volume ls\n</code></pre>\n",
     "glossary": [
       {
         "term": "Docker Volume",
@@ -3777,9 +4021,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Volumele gestionate de Docker au ciclu de viață complet independent de containere; distrugerea containerului lasă volumul și datele intacte."
     },
+    "prompt": "Creează un volum Docker numit 'app_storage' rulând comanda 'docker volume create app_storage'.",
     "task": "Creează un volum Docker numit 'app_storage' rulând comanda 'docker volume create app_storage'.",
-    "starterCode": "# Creează volumul Docker\n",
+    "example": "docker volume create app_storage",
+    "starterCode": "docker volume create app_storage",
+    "officialSolution": "docker volume create app_storage",
     "expectedOutputPattern": "docker\\s+volume\\s+create\\s+app_storage",
+    "regexPattern": "docker\\s+volume\\s+create\\s+app_storage",
     "hint": "Scrie docker volume create app_storage"
   },
   {
@@ -3790,7 +4038,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 55,
     "title": "Capitolul 8: Orchestare cu Docker Compose ('docker-compose.yml')",
-    "theory": "\n<p><strong>Docker Compose</strong> este utilitarul standard pentru definirea și rularea aplicațiilor multi-container (ex: backend Node.js + frontend React + bază de date PostgreSQL + Redis cache) printr-un singur fișier declarativ YAML.</p>\n<h4>1. Structura 'docker-compose.yml'</h4>\n<p>Definim servicii, rețele și volume:</p>\n<pre><code>services:\n  web:\n    build: .\n    ports:\n      - \"3000:3000\"\n    depends_on:\n      - db\n    environment:\n      - DATABASE_URL=postgres://user:pass@db:5432/app\n  db:\n    image: postgres:16-alpine\n    volumes:\n      - pgdata:/var/lib/postgresql/data\nvolumes:\n  pgdata:\n</code></pre>\n<h4>2. DNS Intern Automat</h4>\n<p>Docker Compose creează automat o rețea comună (bridge) unde containerele pot comunica între ele folosind direct numele serviciului ca hostname (ex: conexiunea la baza de date se face la adresa <code>db:5432</code>).</p>\n",
+    "theory": "\n<p><strong>Docker Compose</strong> este utilitarul standard pentru definirea și rularea aplicațiilor multi-container (ex: backend Node.js + bază de date PostgreSQL + Redis cache) printr-un singur fișier declarativ YAML.</p>\n\n<h4>1. Exemplu Complet de Fișier 'docker-compose.yml'</h4>\n<pre><code>services:\n  web:\n    build: .\n    ports:\n      - \"3000:3000\"\n    depends_on:\n      - db\n    environment:\n      - DATABASE_URL=postgres://user:pass@db:5432/app\n  db:\n    image: postgres:16-alpine\n    volumes:\n      - pgdata:/var/lib/postgresql/data\n    environment:\n      - POSTGRES_PASSWORD=pass\n\nvolumes:\n  pgdata:\n</code></pre>\n\n<h4>2. Comandă de Lansare</h4>\n<pre><code># Pornește întreaga stivă în fundal (-d):\ndocker compose up -d\n</code></pre>\n",
     "glossary": [
       {
         "term": "docker-compose.yml",
@@ -3838,9 +4086,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Docker Compose creează o rețea privată comună și un DNS intern integrat, astfel încât 'database' este un hostname perfect valid și accesibil din oricare alt container din acea rețea."
     },
+    "prompt": "Pornește toate serviciile din docker-compose.yml în fundal rulând 'docker compose up -d'.",
     "task": "Pornește toate serviciile din docker-compose.yml în fundal rulând 'docker compose up -d'.",
-    "starterCode": "# Pornește stiva cu docker compose\n",
+    "example": "docker compose up -d",
+    "starterCode": "docker compose up -d",
+    "officialSolution": "docker compose up -d",
     "expectedOutputPattern": "docker\\s+compose\\s+up\\s+-d|docker-compose\\s+up\\s+-d",
+    "regexPattern": "docker\\s+compose\\s+up\\s+-d|docker-compose\\s+up\\s+-d",
     "hint": "Scrie docker compose up -d"
   },
   {
@@ -3851,7 +4103,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 60,
     "title": "Capitolul 9: Optimizare Extremă Docker: Multi-Stage Builds",
-    "theory": "\n<p>Imaginile de producție nu trebuie să conțină compilatoare, SDK-uri greoaie sau fișiere sursă necompilate. <strong>Multi-Stage Builds</strong> permite utilizarea mai multor instrucțiuni <code>FROM</code> într-un singur Dockerfile.</p>\n<h4>1. Stagiul de Build vs Stagiul de Producție</h4>\n<p>În prima etapă (<code>FROM golang:1.22 AS builder</code>) compilăm aplicația în binar nativ. În a doua etapă (<code>FROM alpine:latest</code> sau <code>FROM scratch</code>) copiem doar binarul final:</p>\n<pre><code>COPY --from=builder /app/server /server\nCMD [\"/server\"]\n</code></pre>\n<h4>2. Beneficii de Securitate și Viteză</h4>\n<p>Dimensiunea imaginii scade adesea de la 1.2 GB la sub 25 MB, eliminând uneltele de build care ar putea fi exploatate de atacatori în caz de compromitere a containerului.</p>\n",
+    "theory": "\n<p>Imaginile de producție nu trebuie să conțină compilatoare, SDK-uri greoaie sau fișiere sursă necompilate. <strong>Multi-Stage Builds</strong> permite utilizarea mai multor instrucțiuni <code>FROM</code> într-un singur Dockerfile.</p>\n\n<h4>1. Exemplu Complet de Multi-Stage Dockerfile</h4>\n<pre><code># Stagiul 1: Compilare (Build Stage)\nFROM golang:1.22 AS builder\nWORKDIR /app\nCOPY go.mod go.sum ./\nRUN go mod download\nCOPY . .\nRUN CGO_ENABLED=0 GOOS=linux go build -o myapp .\n\n# Stagiul 2: Imaginea finală curată de producție (sub 20 MB)\nFROM alpine:3.19\nWORKDIR /app\nCOPY --from=builder /app/myapp /app/myapp\nEXPOSE 8080\nCMD [\"/app/myapp\"]\n</code></pre>\n\n<h4>2. Copierea Artefactelor Între Stagii</h4>\n<p>Directiva <code>COPY --from=build /app/dist /public</code> extrage doar fișierele compilate, lăsând dependențele grele în primul stadiu.</p>\n",
     "glossary": [
       {
         "term": "Multi-Stage Build",
@@ -3899,9 +4151,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Separarea fazei de compilare de imaginea de rulare lasă în urmă compilatoarele și fișierele temporare, rezultând imagini compacte, rapide la descărcare și lipsite de unelte inutile care ar putea fi exploatate de hackeri."
     },
+    "prompt": "Copiază din stagiul 'build' fișierul '/app/dist' în directorul curent '/public': 'COPY --from=build /app/dist /public'.",
     "task": "Copiază din stagiul 'build' fișierul '/app/dist' în directorul curent '/public': 'COPY --from=build /app/dist /public'.",
-    "starterCode": "# Instrucțiune COPY multi-stage\n",
+    "example": "COPY --from=build /app/dist /public",
+    "starterCode": "COPY --from=build /app/dist /public",
+    "officialSolution": "COPY --from=build /app/dist /public",
     "expectedOutputPattern": "COPY\\s+--from=build\\s+/app/dist\\s+/public",
+    "regexPattern": "COPY\\s+--from=build\\s+/app/dist\\s+/public",
     "hint": "Scrie COPY --from=build /app/dist /public"
   },
   {
@@ -3912,7 +4168,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 60,
     "title": "Capitolul 10: Server Web & Reverse Proxy cu Nginx",
-    "theory": "\n<p><strong>Nginx</strong> este un server web de mare viteză bazat pe o arhitectură asincronă event-driven, utilizat frecvent ca <strong>Reverse Proxy</strong>, Load Balancer și punct de terminare SSL/TLS în fața serverelor de aplicații (Node.js, Python, Java).</p>\n<h4>1. Directiva 'proxy_pass'</h4>\n<p>Redirecționează traficul HTTP primit din exterior către portul intern al aplicației:</p>\n<pre><code>location /api/ {\n    proxy_pass http://127.0.0.1:3000;\n    proxy_set_header Host $host;\n    proxy_set_header X-Real-IP $remote_addr;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n}\n</code></pre>\n<h4>2. Headers Esențiale de Proxy</h4>\n<p>Fără <code>X-Forwarded-For</code> și <code>X-Real-IP</code>, aplicația din spate ar vedea ca IP al clientului adresa de loopback <code>127.0.0.1</code> a proxy-ului Nginx, făcând imposibilă localizarea sau rate-limiting-ul pe clienți reali.</p>\n",
+    "theory": "\n<p><strong>Nginx</strong> este un server web de mare viteză bazat pe o arhitectură asincronă event-driven, utilizat frecvent ca <strong>Reverse Proxy</strong>, Load Balancer și punct de terminare SSL/TLS în fața serverelor de aplicații.</p>\n\n<h4>1. Exemplu Complet de Configurare Reverse Proxy</h4>\n<pre><code>server {\n    listen 80;\n    server_name api.example.com;\n\n    location / {\n        proxy_pass http://127.0.0.1:3000;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n}\n</code></pre>\n\n<h4>2. Testarea Sintaxei Fără Întreruperea Serviciului</h4>\n<pre><code># Testează sintaxa fișierelor de configurare:\nsudo nginx -t\n\n# Reîncarcă configurația cu zero downtime:\nsudo nginx -s reload\n</code></pre>\n",
     "glossary": [
       {
         "term": "Reverse Proxy",
@@ -3960,9 +4216,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Un reverse proxy maschează IP-ul clientului. Header-ul 'X-Forwarded-For' adaugă adresa IP inițială a utilizatorului pentru ca backend-ul să o poată loga sau utiliza în securitate."
     },
+    "prompt": "Testează corectitudinea sintaxei fișierului de configurare Nginx fără a opri serverul rulând 'sudo nginx -t'.",
     "task": "Testează corectitudinea sintaxei fișierului de configurare Nginx fără a opri serverul rulând 'sudo nginx -t'.",
-    "starterCode": "# Testează configurația Nginx\n",
+    "example": "sudo nginx -t",
+    "starterCode": "sudo nginx -t",
+    "officialSolution": "sudo nginx -t",
     "expectedOutputPattern": "(?:sudo\\s+)?nginx\\s+-t",
+    "regexPattern": "(?:sudo\\s+)?nginx\\s+-t",
     "hint": "Scrie sudo nginx -t (sau nginx -t)."
   },
   {
@@ -3973,7 +4233,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 75,
     "title": "Capitolul 11: CI/CD Automatizat cu GitHub Actions",
-    "theory": "\n<p><strong>CI/CD</strong> (Continuous Integration & Continuous Deployment) automatizează testarea, compilarea și livrarea sigură a codului la fiecare <code>git push</code> sau <code>Pull Request</code>.</p>\n<h4>1. Structura unui Workflow GitHub Actions</h4>\n<p>Configurațiile sunt plasate în <code>.github/workflows/*.yml</code>:</p>\n<pre><code>name: Deploy Pipeline\non:\n  push:\n    branches: [ \"main\" ]\njobs:\n  test-and-build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Setup Node\n        uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm ci\n      - run: npm test\n</code></pre>\n<h4>2. Gestiunea Secretelor</h4>\n<p>Cheile API, parolele și cheile private SSH nu se pun NICIODATĂ în cod; se accesează securizat din setările repository-ului prin sintaxa <code>${{ secrets.PROD_API_KEY }}</code>.</p>\n",
+    "theory": "\n<p><strong>CI/CD</strong> (Continuous Integration & Continuous Deployment) automatizează testarea, compilarea și livrarea sigură a codului la fiecare <code>git push</code> sau <code>Pull Request</code>.</p>\n\n<h4>1. Structura unui Pipeline Complet GitHub Actions</h4>\n<pre><code>name: CI/CD Pipeline\non:\n  push:\n    branches: [ \"main\" ]\n\njobs:\n  build-and-test:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout Repository\n        uses: actions/checkout@v4\n\n      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: 'npm'\n\n      - name: Install Clean Dependencies\n        run: npm ci\n\n      - name: Run Tests\n        run: npm test\n</code></pre>\n",
     "glossary": [
       {
         "term": "GitHub Actions",
@@ -4021,9 +4281,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "npm ci (Clean Install) este strict determinist: cere ca package-lock.json să fie sincronizat cu package.json și refuză să modifice versiunile, garantând reproducibilitate 100% în pipeline."
     },
+    "prompt": "Scrie comanda dintr-un pas de workflow GitHub Actions care instalează dependențele curat: 'npm ci'.",
     "task": "Scrie comanda dintr-un pas de workflow GitHub Actions care instalează dependențele curat: 'npm ci'.",
-    "starterCode": "      - run: ",
+    "example": "npm ci",
+    "starterCode": "npm ci",
+    "officialSolution": "npm ci",
     "expectedOutputPattern": "(?:-\\s*run:\\s*)?npm\\s+ci",
+    "regexPattern": "(?:-\\s*run:\\s*)?npm\\s+ci",
     "hint": "Scrie npm ci"
   },
   {
@@ -4034,7 +4298,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Junior",
     "xp": 35,
     "title": "Capitolul 1: Delegarea Evenimentelor DOM (Bubbling & Event Delegation)",
-    "theory": "\n<p>Când un eveniment (precum un click) se produce pe un element din browser, el parcurge 3 faze conform standardului W3C:</p>\n<ol>\n  <li><strong>Faza de Captură (Capturing Phase)</strong>: Coboară de la <code>window</code> și <code>document</code> spre elementul țintă.</li>\n  <li><strong>Faza Țintă (Target Phase)</strong>: Atinge elementul pe care s-a dat click direct (<code>e.target</code>).</li>\n  <li><strong>Faza de Bule (Bubbling Phase)</strong>: Urcă înapoi prin toți părinții până la rădăcină.</li>\n</ol>\n<h4>1. Tehnica Event Delegation</h4>\n<p>În loc să atașăm 1000 de handleri de eveniment pe fiecare element dintr-o listă (consum masiv de RAM), atașăm <strong>un singur listener pe părinte</strong> (<code>ul</code>) și folosim <code>e.target.closest('li')</code> pentru a identifica elementul acționat.</p>\n<h4>2. 'e.target' vs 'e.currentTarget'</h4>\n<p><code>e.target</code> este elementul exact pe care s-a făcut click (poate fi un <code>span</code> sau iconiță interioară), în timp ce <code>e.currentTarget</code> este elementul pe care a fost înregistrat listenerul (părintele).</p>\n",
+    "theory": "\n<p>Când un eveniment (precum un click) se produce pe un element din browser, el parcurge 3 faze conform standardului W3C: Capturing, Target și Bubbling (urcarea înapoi prin toți părinții).</p>\n\n<h4>1. Tehnica Event Delegation</h4>\n<p>În loc să atașăm 1000 de handleri de eveniment pe fiecare element dintr-o listă, atașăm <strong>un singur listener pe părinte</strong> și folosim <code>e.target.closest('button')</code> pentru a identifica elementul acționat.</p>\n\n<h4>2. Exemplu Complet de Delegare de Evenimente</h4>\n<pre><code>const list = document.querySelector(\"#todo-list\");\n\n// Un singur listener atașat pe containerul părinte:\nlist.addEventListener(\"click\", (e) => {\n    // Găsește cel mai apropiat element buton de la punctul de click:\n    const btn = e.target.closest(\"button\");\n    if (!btn) return; // Click-ul nu a fost pe un buton\n\n    const item = btn.closest(\"li\");\n    console.log(\"Acțiune pe elementul ID:\", item.dataset.id);\n});\n</code></pre>\n",
     "glossary": [
       {
         "term": "Event Bubbling",
@@ -4082,9 +4346,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Părintele este deja în DOM și ascultă evenimentele care urcă prin bubbling. Orice copil adăugat ulterior va propaga automat click-ul către părinte."
     },
-    "task": "Atașează un eveniment 'click' pe 'list' și verifică dacă s-a dat click pe un buton folosind 'e.target.closest(\"button\")'.",
-    "starterCode": "list.addEventListener('click', (e) => {\n    const btn = ",
+    "prompt": "Atașează un eveniment 'click' pe 'list' și verifică dacă s-a dat click pe un buton folosind 'const btn = e.target.closest(\"button\");'.",
+    "task": "Atașează un eveniment 'click' pe 'list' și verifică dacă s-a dat click pe un buton folosind 'const btn = e.target.closest(\"button\");'.",
+    "example": "const btn = e.target.closest(\"button\");",
+    "starterCode": "const btn = e.target.closest(\"button\");",
+    "officialSolution": "const btn = e.target.closest(\"button\");",
     "expectedOutputPattern": "const\\s+btn\\s*=\\s*e\\.target\\.closest\\([\"']button[\"']\\);?",
+    "regexPattern": "const\\s+btn\\s*=\\s*e\\.target\\.closest\\([\"']button[\"']\\);?",
     "hint": "Scrie const btn = e.target.closest('button');"
   },
   {
@@ -4095,7 +4363,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 45,
     "title": "Capitolul 2: API-ul 'IntersectionObserver' — Lazy Loading & Scroll Infinit",
-    "theory": "\n<p>Tradițional, detectarea vizibilității elementelor pe ecran se făcea ascultând evenimentul <code>window.addEventListener('scroll')</code> și apelând <code>getBoundingClientRect()</code>, ceea ce forța recalcularea layout-ului (Forced Synchronous Layout / Layout Thrashing) și agăța derularea paginii.</p>\n<h4>1. Ce este IntersectionObserver?</h4>\n<p><strong>IntersectionObserver</strong> este un API modern asincron care monitorizează intersecția unui element țintă cu un element strămoș sau cu viewport-ul dispozitivului, fără a bloca firul principal de execuție.</p>\n<h4>2. Utilizare: Lazy Loading & Praguri (threshold)</h4>\n<p>Când <code>entry.isIntersecting</code> devine adevărat, atribuim atributul <code>src</code> din <code>data-src</code> al imaginii și oprim monitorizarea prin <code>observer.unobserve(entry.target)</code>.</p>\n",
+    "theory": "\n<p><strong>IntersectionObserver</strong> este un API modern asincron care monitorizează intersecția unui element țintă cu viewport-ul dispozitivului, fără a bloca firul principal sau a forța Layout Thrashing.</p>\n\n<h4>1. Exemplu de Lazy Loading cu IntersectionObserver</h4>\n<pre><code>function handleIntersect(entries, observer) {\n    entries.forEach(entry => {\n        if (entry.isIntersecting) {\n            const img = entry.target;\n            img.src = img.dataset.src; // Încarcă imaginea reală\n            observer.unobserve(img);   // Oprește monitorizarea\n        }\n    });\n}\n\n// Instanțiere simplă:\nconst observer = new IntersectionObserver(handleIntersect);\ndocument.querySelectorAll(\"img.lazy\").forEach(el => observer.observe(el));\n</code></pre>\n",
     "glossary": [
       {
         "term": "IntersectionObserver",
@@ -4143,9 +4411,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "IntersectionObserver este gestionat intern de motorul browserului într-un mod complet decuplat și asincron, evitând blocajele (jank) produse de calculele la scroll."
     },
+    "prompt": "Instanțiază un 'IntersectionObserver' transmițând callback-ul 'handleIntersect' în variabila 'observer'.",
     "task": "Instanțiază un 'IntersectionObserver' transmițând callback-ul 'handleIntersect' în variabila 'observer'.",
-    "starterCode": "const observer = ",
+    "example": "const observer = new IntersectionObserver(handleIntersect);",
+    "starterCode": "const observer = new IntersectionObserver(handleIntersect);",
+    "officialSolution": "const observer = new IntersectionObserver(handleIntersect);",
     "expectedOutputPattern": "const\\s+observer\\s*=\\s*new\\s+IntersectionObserver\\(handleIntersect(?:,\\s*options)?\\);?",
+    "regexPattern": "const\\s+observer\\s*=\\s*new\\s+IntersectionObserver\\(handleIntersect(?:,\\s*options)?\\);?",
     "hint": "Scrie const observer = new IntersectionObserver(handleIntersect);"
   },
   {
@@ -4156,7 +4428,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 45,
     "title": "Capitolul 3: API-ul 'MutationObserver' — Monitorizarea Arborelui DOM",
-    "theory": "\n<p>Înainte de MutationObserver, detectarea schimbărilor în DOM se baza pe evenimente învechite (Mutation Events precum <code>DOMNodeInserted</code>), care provocau scăderi drastice de performanță.</p>\n<h4>1. Monitorizare Eficientă și Asincronă</h4>\n<p><strong>MutationObserver</strong> colectează toate modificările (adăugare/ștergere noduri, schimbare atribute sau conținut text) și le livrează într-un singur batch asincron către funcția callback.</p>\n<h4>2. Configurare cu 'observe(target, config)'</h4>\n<p>Obiectul de configurare specifică exact ce schimbări ne interesează:</p>\n<pre><code>observer.observe(targetNode, {\n    childList: true,     // monitorizează adăugarea/ștergerea copiilor\n    subtree: true,       // extinde monitorizarea pe toți descendenții\n    attributes: true     // monitorizează schimbarea atributelor HTML\n});\n</code></pre>\n",
+    "theory": "\n<p><strong>MutationObserver</strong> colectează toate modificările (adăugare/ștergere noduri, schimbare atribute sau text) și le livrează într-un singur batch asincron către funcția callback.</p>\n\n<h4>1. Exemplu Complet de Monitorizare cu MutationObserver</h4>\n<pre><code>const observer = new MutationObserver((mutationsList) => {\n    for (const mutation of mutationsList) {\n        if (mutation.type === \"childList\") {\n            console.log(\"Noduri modificate în DOM:\", mutation.addedNodes.length);\n        }\n    }\n});\n\n// Pornire monitorizare pe elementul țintă:\nobserver.observe(targetElement, { childList: true });\n</code></pre>\n",
     "glossary": [
       {
         "term": "MutationObserver",
@@ -4204,9 +4476,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Apelul disconnect() dezactivează observerul, curăță toate mutațiile din coadă și eliberează referințele către nodurile DOM, prevenind scurgerile de memorie."
     },
+    "prompt": "Pornește monitorizarea pe 'targetElement' pentru 'childList: true' rulând 'observer.observe(targetElement, { childList: true });'.",
     "task": "Pornește monitorizarea pe 'targetElement' pentru 'childList: true' rulând 'observer.observe(targetElement, { childList: true });'.",
-    "starterCode": "// Monitorizează childList\n",
+    "example": "observer.observe(targetElement, { childList: true });",
+    "starterCode": "observer.observe(targetElement, { childList: true });",
+    "officialSolution": "observer.observe(targetElement, { childList: true });",
     "expectedOutputPattern": "observer\\.observe\\(targetElement,\\s*\\{\\s*childList:\\s*true\\s*\\}\\);?",
+    "regexPattern": "observer\\.observe\\(targetElement,\\s*\\{\\s*childList:\\s*true\\s*\\}\\);?",
     "hint": "Scrie observer.observe(targetElement, { childList: true });"
   },
   {
@@ -4217,7 +4493,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 50,
     "title": "Capitolul 4: Evenimente Personalizate ('CustomEvent' & 'dispatchEvent')",
-    "theory": "\n<p>Pentru a construi arhitecturi decuplate și sisteme modulare (Publish/Subscribe) fără dependențe externe, browserul oferă clasa nativă <strong>CustomEvent</strong>.</p>\n<h4>1. Crearea unui CustomEvent cu Payload</h4>\n<p>Putem atașa date arbitrare prin proprietatea <code>detail</code>:</p>\n<pre><code>const event = new CustomEvent('userLogin', {\n    detail: { userId: 101, role: 'admin' },\n    bubbles: true,        // permite evenimentului să urce în arborele DOM\n    cancelable: true     // permite anularea cu e.preventDefault()\n});\n</code></pre>\n<h4>2. Declanșarea cu 'dispatchEvent'</h4>\n<p>Evenimentul este emis pe orice nod DOM prin <code>element.dispatchEvent(event)</code> și poate fi interceptat cu metoda standard <code>element.addEventListener('userLogin', (e) => console.log(e.detail));</code>.</p>\n",
+    "theory": "\n<p>Pentru a construi arhitecturi decuplate și sisteme modulare (Publish/Subscribe) fără biblioteci externe, browserul oferă clasa nativă <strong>CustomEvent</strong>.</p>\n\n<h4>1. Exemplu Complet de Creare și Declanșare de CustomEvent</h4>\n<pre><code>// 1. Creare eveniment cu payload prin proprietatea 'detail':\nconst myEvent = new CustomEvent(\"userLogin\", {\n    detail: { userId: 101, username: \"alex\" },\n    bubbles: true\n});\n\n// 2. Ascultare eveniment pe document:\ndocument.addEventListener(\"userLogin\", (e) => {\n    console.log(\"Date primite:\", e.detail.username);\n});\n\n// 3. Declanșare pe nodul DOM:\ndocument.dispatchEvent(myEvent);\n</code></pre>\n",
     "glossary": [
       {
         "term": "CustomEvent",
@@ -4265,9 +4541,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Conform standardului W3C DOM Events, proprietatea 'detail' din obiectul de inițializare este locul canonic unde se salvează datele transmise."
     },
+    "prompt": "Emite evenimentul 'myEvent' pe elementul 'document' folosind 'document.dispatchEvent(myEvent);'.",
     "task": "Emite evenimentul 'myEvent' pe elementul 'document' folosind 'document.dispatchEvent(myEvent);'.",
-    "starterCode": "// Declanșează myEvent pe document\n",
+    "example": "document.dispatchEvent(myEvent);",
+    "starterCode": "document.dispatchEvent(myEvent);",
+    "officialSolution": "document.dispatchEvent(myEvent);",
     "expectedOutputPattern": "document\\.dispatchEvent\\(myEvent\\);?",
+    "regexPattern": "document\\.dispatchEvent\\(myEvent\\);?",
     "hint": "Scrie document.dispatchEvent(myEvent);"
   },
   {
@@ -4278,7 +4558,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 55,
     "title": "Capitolul 5: Web Workers — Execuție Paralelă în Background Threads",
-    "theory": "\n<p>JavaScript în browser rulează pe un singur fir principal de execuție (Single-Threaded). Calculele intensive (procesare video/audio, criptografie, parsare masivă de JSON) blochează complet interfața utilizator (UI freeze).</p>\n<h4>1. Ce este un Web Worker?</h4>\n<p>Un <strong>Web Worker</strong> rulează un script într-un fir de execuție separat din sistemul de operare. Workerul NU are acces la DOM, la <code>window</code> sau la <code>document</code>, fiind complet izolat.</p>\n<h4>2. Comunicare prin Transmitere de Mesaje (postMessage)</h4>\n<p>Comunicarea dintre firul principal și worker se realizează exclusiv asincron prin mesaje serializate:</p>\n<pre><code>// Firul principal:\nconst worker = new Worker('worker.js');\nworker.postMessage({ data: rawNumbers });\nworker.onmessage = (e) => console.log('Rezultat:', e.data);\n</code></pre>\n",
+    "theory": "\n<p>JavaScript în browser rulează pe un singur fir principal de execuție. Calculele intensive blochează complet interfața utilizator. Un <strong>Web Worker</strong> rulează codul într-un fir separat de execuție.</p>\n\n<h4>1. Exemplu de Comunicare cu Web Worker</h4>\n<pre><code>// Firul principal:\nconst myWorker = new Worker(\"worker.js\");\n\n// Trimitere mesaj către worker:\nmyWorker.postMessage({ cmd: \"START\" });\n\n// Recepționare rezultat:\nmyWorker.onmessage = (e) => {\n    console.log(\"Rezultat din background thread:\", e.data);\n};\n</code></pre>\n",
     "glossary": [
       {
         "term": "Web Worker",
@@ -4326,9 +4606,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Web Workers rulează într-un context separat (DedicatedWorkerGlobalScope) și nu pot atinge direct DOM-ul pentru a preveni condiții de concurență (race conditions) pe UI."
     },
+    "prompt": "Trimite obiectul '{ cmd: \"START\" }' către 'myWorker' folosind 'myWorker.postMessage({ cmd: \"START\" });'.",
     "task": "Trimite obiectul '{ cmd: \"START\" }' către 'myWorker' folosind 'myWorker.postMessage({ cmd: \"START\" });'.",
-    "starterCode": "// Trimite mesajul la worker\n",
+    "example": "myWorker.postMessage({ cmd: \"START\" });",
+    "starterCode": "myWorker.postMessage({ cmd: \"START\" });",
+    "officialSolution": "myWorker.postMessage({ cmd: \"START\" });",
     "expectedOutputPattern": "myWorker\\.postMessage\\(\\s*\\{\\s*cmd:\\s*[\"']START[\"']\\s*\\}\\s*\\);?",
+    "regexPattern": "myWorker\\.postMessage\\(\\s*\\{\\s*cmd:\\s*[\"']START[\"']\\s*\\}\\s*\\);?",
     "hint": "Scrie myWorker.postMessage({ cmd: 'START' });"
   },
   {
@@ -4339,7 +4623,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 55,
     "title": "Capitolul 6: WebSockets — Comunicare Full-Duplex în Timp Real",
-    "theory": "\n<p>Spre deosebire de protocolul HTTP care este de tip request-response (unidirecțional inițiat exclusiv de client), protocolul <strong>WebSocket (ws:// sau wss://)</strong> deschide un canal TCP persistent, bidirecțional și de latență minimă.</p>\n<h4>1. Handshake-ul WebSocket</h4>\n<p>Conexiunea începe ca o cerere HTTP normală cu header-ul <code>Upgrade: websocket</code>. După acceptarea serverului, conexiunea este transformată într-un socket binar continuu.</p>\n<h4>2. Ciclul de Viață al unui WebSocket în JS</h4>\n<pre><code>const ws = new WebSocket('wss://api.exemplu.ro/live');\nws.onopen = () => ws.send(JSON.stringify({ type: 'SUBSCRIBE' }));\nws.onmessage = (e) => console.log('Date primite:', JSON.parse(e.data));\nws.onerror = (err) => console.error('Eroare WS:', err);\nws.onclose = () => console.log('Conexiune închisă');\n</code></pre>\n",
+    "theory": "\n<p>Spre deosebire de protocolul HTTP care este de tip request-response, <strong>WebSocket (wss://)</strong> deschide un canal TCP persistent, bidirecțional și de latență minimă.</p>\n\n<h4>1. Exemplu de Conexiune și Trimitere Mesaj</h4>\n<pre><code>const ws = new WebSocket(\"wss://api.example.com/live\");\n\nws.onopen = () => {\n    // Trimitere mesaj formatat ca JSON către server:\n    ws.send(JSON.stringify({ ping: true }));\n};\n\nws.onmessage = (event) => {\n    console.log(\"Răspuns server:\", event.data);\n};\n</code></pre>\n",
     "glossary": [
       {
         "term": "WebSocket",
@@ -4387,9 +4671,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Cu WebSockets nu mai există cereri HTTP repetate. Anteturile se transmit o singură dată la handshake, după care datele circulă instantaneu în ambele direcții cu overhead minim."
     },
-    "task": "Trimite mesajul JSON 'JSON.stringify({ ping: true })' prin socket-ul 'ws' folosind 'ws.send()'.",
-    "starterCode": "// Trimite date pe websocket\n",
+    "prompt": "Trimite mesajul JSON 'JSON.stringify({ ping: true })' prin socket-ul 'ws' folosind 'ws.send(JSON.stringify({ ping: true }));'.",
+    "task": "Trimite mesajul JSON 'JSON.stringify({ ping: true })' prin socket-ul 'ws' folosind 'ws.send(JSON.stringify({ ping: true }));'.",
+    "example": "ws.send(JSON.stringify({ ping: true }));",
+    "starterCode": "ws.send(JSON.stringify({ ping: true }));",
+    "officialSolution": "ws.send(JSON.stringify({ ping: true }));",
     "expectedOutputPattern": "ws\\.send\\(JSON\\.stringify\\(\\s*\\{\\s*ping:\\s*true\\s*\\}\\s*\\)\\);?",
+    "regexPattern": "ws\\.send\\(JSON\\.stringify\\(\\s*\\{\\s*ping:\\s*true\\s*\\}\\s*\\)\\);?",
     "hint": "Scrie ws.send(JSON.stringify({ ping: true }));"
   },
   {
@@ -4400,7 +4688,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 60,
     "title": "Capitolul 7: Obiectele 'Proxy' și 'Reflect' — Metaprogramare & Reactivitate",
-    "theory": "\n<p>Obiectul <strong>Proxy</strong> din ES6 permite împachetarea unui alt obiect și interceptarea (trapping) tuturor operațiunilor fundamentale: citire de proprietăți (<code>get</code>), atribuire (<code>set</code>), ștergere sau invocare de metode.</p>\n<h4>1. Cum funcționează un Trap</h4>\n<pre><code>const target = { price: 100 };\nconst reactive = new Proxy(target, {\n    set(obj, prop, value) {\n        console.log(`Proprietatea ${prop} s-a modificat în ${value}`);\n        return Reflect.set(obj, prop, value);\n    }\n});\n</code></pre>\n<h4>2. Motorul Reactivității Moderne</h4>\n<p>Proxy este fundamentul pe care sunt construite motoarele moderne de reactivitate din <strong>Vue 3</strong> și <strong>MobX</strong>, permițând detectarea automată a schimbărilor fără a folosi getteri/setteri manuali stufosi.</p>\n",
+    "theory": "\n<p>Obiectul <strong>Proxy</strong> permite interceptarea și redefinirea operațiunilor de citire (<code>get</code>), atribuire (<code>set</code>) sau invocare de metode pe un obiect țintă.</p>\n\n<h4>1. Exemplu de Proxy cu Trap get și Reflect.get</h4>\n<pre><code>const target = { price: 100 };\n\nconst handler = {\n    get(target, prop, receiver) {\n        console.log(`Proprietatea citită: ${prop}`);\n        // Delegare către comportamentul nativ prin Reflect:\n        return Reflect.get(target, prop, receiver);\n    }\n};\n\nconst proxy = new Proxy(target, handler);\nconsole.log(proxy.price); // 100\n</code></pre>\n",
     "glossary": [
       {
         "term": "Proxy",
@@ -4448,9 +4736,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Trap-ul 'set' trebuie să returneze un boolean; dacă returnează 'false' sau o valoare falsy în strict mode, JavaScript aruncă o excepție de tip TypeError."
     },
+    "prompt": "Returnează rezultatul apelului 'Reflect.get(target, prop, receiver)' în interiorul unui trap 'get'.",
     "task": "Returnează rezultatul apelului 'Reflect.get(target, prop, receiver)' în interiorul unui trap 'get'.",
-    "starterCode": "get(target, prop, receiver) {\n    return ",
+    "example": "return Reflect.get(target, prop, receiver);",
+    "starterCode": "return Reflect.get(target, prop, receiver);",
+    "officialSolution": "return Reflect.get(target, prop, receiver);",
     "expectedOutputPattern": "return\\s+Reflect\\.get\\(target,\\s*prop,\\s*receiver\\);?",
+    "regexPattern": "return\\s+Reflect\\.get\\(target,\\s*prop,\\s*receiver\\);?",
     "hint": "Scrie return Reflect.get(target, prop, receiver);"
   },
   {
@@ -4461,7 +4753,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 70,
     "title": "Capitolul 8: Event Loop Aprofundat: Microtasks vs Macrotasks",
-    "theory": "\n<p>Înțelegerea ordinii de execuție în JavaScript necesită cunoașterea distincției clare dintre <strong>Call Stack</strong>, <strong>Microtask Queue</strong> și <strong>Macrotask Queue (Task Queue)</strong>.</p>\n<h4>1. Microtasks au Prioritate Absolută</h4>\n<p>După ce Call Stack-ul se golește, Event Loop-ul execută <strong>TOATE</strong> microtask-urile existente în coadă înainte de a atinge următorul macrotask:</p>\n<ul>\n  <li><em>Microtasks</em>: <code>Promise.then()</code>, <code>Promise.catch()</code>, <code>async/await</code> (după reluare), <code>queueMicrotask()</code>, <code>MutationObserver</code>.</li>\n  <li><em>Macrotasks</em>: <code>setTimeout</code>, <code>setInterval</code>, <code>setImmediate</code> (Node.js), evenimente I/O, randarea UI a browserului.</li>\n</ul>\n<h4>2. Riscul de Starvation</h4>\n<p>Dacă o buclă generează continuu microtask-uri noi, browserul nu va ajunge niciodată la următorul macrotask sau la randarea cadrelor (60 FPS), blocând complet pagina.</p>\n",
+    "theory": "\n<p>Înțelegerea ordinii de execuție asincrone în JavaScript necesită distincția clară dintre Microtask Queue și Macrotask Queue.</p>\n\n<h4>1. Exemplu de Programare a unui Microtask</h4>\n<pre><code>// Cod sincron:\nconsole.log(\"1. Sincron start\");\n\n// Macrotask (programat la final):\nsetTimeout(() => console.log(\"4. Macrotask (setTimeout)\"), 0);\n\n// Microtask de prioritate maximă:\nqueueMicrotask(() => {\n    console.log(\"3. Microtask (queueMicrotask)\");\n});\n\nPromise.resolve().then(() => console.log(\"2. Microtask (Promise)\"));\n</code></pre>\n",
     "glossary": [
       {
         "term": "Microtask Queue",
@@ -4509,9 +4801,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Codul sincron rulează primul (1, 4). Apoi coada de microtask-uri este golită complet (3 de la Promise), și abia în final se extrage macrotask-ul din coadă (2 de la setTimeout)."
     },
+    "prompt": "Programează funcția 'updateData' pe coada de microtask-uri folosind 'queueMicrotask(updateData);'.",
     "task": "Programează funcția 'updateData' pe coada de microtask-uri folosind 'queueMicrotask(updateData);'.",
-    "starterCode": "// Programează pe microtask queue\n",
+    "example": "queueMicrotask(updateData);",
+    "starterCode": "queueMicrotask(updateData);",
+    "officialSolution": "queueMicrotask(updateData);",
     "expectedOutputPattern": "queueMicrotask\\(updateData\\);?",
+    "regexPattern": "queueMicrotask\\(updateData\\);?",
     "hint": "Scrie queueMicrotask(updateData);"
   },
   {
@@ -4522,7 +4818,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 75,
     "title": "Capitolul 9: 'AbortController' & Anularea Cererilor HTTP Asincrone",
-    "theory": "\n<p>Gestionarea corectă a cererilor asincrone în aplicațiile cu funcționalitate de căutare live (Search Typeahead) cere anularea cererilor anterioare pentru a preveni <em>Race Conditions</em> (când un răspuns mai lent al unei căutări vechi suprascrie rezultatul celei mai recente).</p>\n<h4>1. Obiectul AbortController</h4>\n<p>Instanțiem un controller: <code>const controller = new AbortController();</code> și transmitem proprietatea <code>signal</code> către opțiunile lui <code>fetch</code>:</p>\n<pre><code>fetch('/api/search?q=' + query, { signal: controller.signal })\n  .then(res => res.json())\n  .catch(err => {\n    if (err.name === 'AbortError') {\n      console.log('Cererea a fost anulată intenționat');\n    }\n  });\n</code></pre>\n<h4>2. Anularea cu 'controller.abort()'</h4>\n<p>Apelul <code>controller.abort()</code> oprește imediat conexiunea la nivel de rețea în browser și rejectează promisiunea cu o eroare cu numele <code>AbortError</code>.</p>\n",
+    "theory": "\n<p><strong>AbortController</strong> permite anularea cererilor asincrone <code>fetch</code> sau a evenimentelor DOM pentru a preveni Race Conditions și consumul inutil de lățime de bandă.</p>\n\n<h4>1. Exemplu Complet de Anulare a unei Cereri HTTP</h4>\n<pre><code>const controller = new AbortController();\n\nfetch(\"https://api.example.com/search?q=js\", { signal: controller.signal })\n    .then(res => res.json())\n    .catch(err => {\n        if (err.name === \"AbortError\") {\n            console.log(\"Cererea a fost anulată cu succes.\");\n        }\n    });\n\n// Anulare la comandă:\ncontroller.abort();\n</code></pre>\n",
     "glossary": [
       {
         "term": "AbortController",
@@ -4570,9 +4866,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Browserul rejectează automat promisiunea returnată de fetch cu un DOMException special cu name: 'AbortError', permițând codului să ignore această eroare normală de anulare."
     },
-    "task": "Anulează cererea activă apelând metoda 'abort()' pe instanța 'controller'.",
-    "starterCode": "// Anulează cererea\n",
+    "prompt": "Anulează cererea activă apelând metoda 'abort()' pe instanța 'controller': 'controller.abort();'.",
+    "task": "Anulează cererea activă apelând metoda 'abort()' pe instanța 'controller': 'controller.abort();'.",
+    "example": "controller.abort();",
+    "starterCode": "controller.abort();",
+    "officialSolution": "controller.abort();",
     "expectedOutputPattern": "controller\\.abort\\(\\);?",
+    "regexPattern": "controller\\.abort\\(\\);?",
     "hint": "Scrie controller.abort();"
   },
   {
@@ -4583,7 +4883,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Middle",
     "xp": 45,
     "title": "Capitolul 1: Colectoare Avansate în Java Streams ('groupingBy' & 'partitioningBy')",
-    "theory": "\n<p>Metoda <code>Stream.collect()</code> este punctul culminant al procesării funcționale în Java. În loc de simple colecții <code>toList()</code>, clasa utilitară <code>Collectors</code> oferă operațiuni analitice de agregare sofisticate.</p>\n<h4>1. Gruparea Datelor cu 'Collectors.groupingBy'</h4>\n<p>Permite clasificarea elementelor după o cheie calculată:</p>\n<pre><code>Map<Department, List<Employee>> byDept = employees.stream()\n    .collect(Collectors.groupingBy(Employee::getDepartment));\n</code></pre>\n<h4>2. Partiționare Binară cu 'Collectors.partitioningBy'</h4>\n<p>Împarte fluxul în două grupuri distincte pe baza unui predicat boolean (<code>true</code> și <code>false</code>): <code>Map<Boolean, List<Student>> passed = students.stream().collect(Collectors.partitioningBy(s -> s.getGrade() >= 5));</code>.</p>\n",
+    "theory": "\n<p>Metoda <code>Stream.collect()</code> este punctul culminant al procesării funcționale în Java. În loc de simple colecții <code>toList()</code>, clasa utilitară <code>Collectors</code> oferă operațiuni analitice de agregare sofisticate.</p>\n\n<h4>1. Gruparea Datelor cu 'Collectors.groupingBy'</h4>\n<pre><code>// Exemplu 1: Clasificarea angajaților după departament\nMap&lt;Department, List&lt;Employee&gt;&gt; byDept = employees.stream()\n    .collect(Collectors.groupingBy(Employee::getDepartment));\n\n// Exemplu 2: Calculul salariului mediu per departament (downstream collector)\nMap&lt;Department, Double&gt; avgSalaryByDept = employees.stream()\n    .collect(Collectors.groupingBy(\n        Employee::getDepartment,\n        Collectors.averagingDouble(Employee::getSalary)\n    ));\n</code></pre>\n\n<h4>2. Partiționare Binară cu 'Collectors.partitioningBy'</h4>\n<pre><code>// Exemplu 3: Împărțirea studenților în admiși (true) și respinși (false)\nMap&lt;Boolean, List&lt;Student&gt;&gt; passedVsFailed = students.stream()\n    .collect(Collectors.partitioningBy(s -> s.getGrade() >= 5.0));\n\nSystem.out.println(\"Număr admiși: \" + passedVsFailed.get(true).size());\n</code></pre>\n",
     "glossary": [
       {
         "term": "Collectors.groupingBy()",
@@ -4631,9 +4931,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "partitioningBy returnează întotdeauna un Map cu chei booleene (true și false), valorile fiind listele elementelor corespunzătoare."
     },
-    "task": "Grupează stream-ul 'users.stream()' după țară apelând '.collect(Collectors.groupingBy(User::getCountry));'.",
-    "starterCode": "Map<String, List<User>> byCountry = users.stream()\n    ",
+    "prompt": "Grupează fluxul 'users.stream()' după țară apelând '.collect(Collectors.groupingBy(User::getCountry));'.",
+    "task": "Grupează fluxul 'users.stream()' după țară apelând '.collect(Collectors.groupingBy(User::getCountry));'.",
+    "example": "Map<String, List<User>> byCountry = users.stream()\n    .collect(Collectors.groupingBy(User::getCountry));",
+    "starterCode": "Map<String, List<User>> byCountry = users.stream()\n    .collect(Collectors.groupingBy(User::getCountry));",
+    "officialSolution": "Map<String, List<User>> byCountry = users.stream()\n    .collect(Collectors.groupingBy(User::getCountry));",
     "expectedOutputPattern": "\\.collect\\(Collectors\\.groupingBy\\(User::getCountry\\)\\);?",
+    "regexPattern": "\\.collect\\(Collectors\\.groupingBy\\(User::getCountry\\)\\);?",
     "hint": "Scrie .collect(Collectors.groupingBy(User::getCountry));"
   },
   {
@@ -4644,7 +4948,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 55,
     "title": "Capitolul 2: Programare Asincronă cu 'CompletableFuture'",
-    "theory": "\n<p>Interfața clasică <code>Future<T></code> introdusă în Java 5 bloca firul apelant prin <code>get()</code>. În Java 8+, <strong>CompletableFuture&lt;T&gt;</strong> aduce un model reactiv non-blocant complet compatibil cu stilul funcțional.</p>\n<h4>1. Rularea Asincronă cu 'supplyAsync'</h4>\n<p>Metoda statică <code>CompletableFuture.supplyAsync(Supplier<U>)</code> execută calculul pe un thread din <code>ForkJoinPool.commonPool()</code>.</p>\n<h4>2. Înlănțuirea Operațiunilor ('thenApply' vs 'thenCompose')</h4>\n<p><code>thenApply(Function)</code> transformă rezultatul sincron ($T \rightarrow U$). <code>thenCompose</code> aplatizează viitoarele promisiuni (echivalentul monadic flatMap) când pasul următor este la rândul său o operație asincronă.</p>\n",
+    "theory": "\n<p>Interfața clasică <code>Future<T></code> introdusă în Java 5 bloca firul apelant prin <code>get()</code>. În Java 8+, <strong>CompletableFuture&lt;T&gt;</strong> aduce un model reactiv non-blocant complet compatibil cu stilul funcțional.</p>\n\n<h4>1. Rularea Asincronă și Înlănțuirea Non-Blocantă</h4>\n<pre><code>// Exemplu 1: Execuție asincronă cu procesare de date în lanț\nCompletableFuture&lt;String&gt; future = CompletableFuture\n    .supplyAsync(() -> fetchUserDataFromDatabase(userId))\n    .thenApply(user -> user.getName().toUpperCase())\n    .thenApply(name -> \"Salut, \" + name + \"!\")\n    .exceptionally(ex -> \"Utilizator Anonim\");\n\n// Nu blochează firul apelant; afișează când calculul este gata:\nfuture.thenAccept(System.out::println);\n</code></pre>\n\n<h4>2. Combinarea Mai Multor Viitoare Concurente</h4>\n<pre><code>// Exemplu 2: Apelarea simultană a 2 servicii REST independente\nCompletableFuture&lt;User&gt; userFuture = CompletableFuture.supplyAsync(() -> getUser(id));\nCompletableFuture&lt;Orders&gt; orderFuture = CompletableFuture.supplyAsync(() -> getOrders(id));\n\n// Îmbină ambele rezultate când ambele sunt gata:\nCompletableFuture&lt;DashboardDTO&gt; dashboard = userFuture.thenCombine(\n    orderFuture,\n    (user, orders) -> new DashboardDTO(user, orders)\n);\n</code></pre>\n",
     "glossary": [
       {
         "term": "CompletableFuture<T>",
@@ -4692,9 +4996,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Future.get() este un apel sincron blocant. CompletableFuture funcționează reactiv prin înregistrarea de callback-uri ce rulează automat la finalizarea calculului."
     },
+    "prompt": "Lansează o operație asincronă folosind 'CompletableFuture.supplyAsync(() -> \"OK\");'.",
     "task": "Lansează o operație asincronă folosind 'CompletableFuture.supplyAsync(() -> \"OK\");'.",
-    "starterCode": "CompletableFuture<String> future = ",
+    "example": "CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> \"OK\");",
+    "starterCode": "CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> \"OK\");",
+    "officialSolution": "CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> \"OK\");",
     "expectedOutputPattern": "CompletableFuture\\.supplyAsync\\(\\(\\)\\s*=>\\s*[\"']OK[\"']\\);?|CompletableFuture\\.supplyAsync\\(\\(\\)\\s*->\\s*[\"']OK[\"']\\);?",
+    "regexPattern": "CompletableFuture\\.supplyAsync\\(\\(\\)\\s*=>\\s*[\"']OK[\"']\\);?|CompletableFuture\\.supplyAsync\\(\\(\\)\\s*->\\s*[\"']OK[\"']\\);?",
     "hint": "Scrie CompletableFuture.supplyAsync(() -> \"OK\");"
   },
   {
@@ -4705,7 +5013,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 60,
     "title": "Capitolul 3: ThreadPools & 'ExecutorService' în Java Concurrency",
-    "theory": "\n<p>Crearea unui fir de execuție nativ Java (<code>new Thread()</code>) este extrem de costisitoare pentru sistemul de operare (alocă 1 MB de Stack per thread și consumă syscall-uri). În producție se folosesc exclusiv <strong>Thread Pools</strong> administrate prin <code>ExecutorService</code>.</p>\n<h4>1. Tipuri de Pool-uri Standard</h4>\n<ul>\n  <li><code>Executors.newFixedThreadPool(int n)</code>: Menține un număr fix de thread-uri reutilizabile cu o coadă de așteptare <code>LinkedBlockingQueue</code>.</li>\n  <li><code>Executors.newCachedThreadPool()</code>: Creează thread-uri noi la nevoie și le distruge pe cele inactive după 60 de secunde.</li>\n</ul>\n<h4>2. Închiderea Curată (Graceful Shutdown)</h4>\n<p>Un ExecutorService nu se oprește de la sine; el menține JVM-ul activ. Este obligatoriu să apelăm <code>executor.shutdown()</code> și <code>awaitTermination()</code> la final.</p>\n",
+    "theory": "\n<p>Crearea unui fir de execuție nativ Java (<code>new Thread()</code>) este extrem de costisitoare pentru sistemul de operare (alocă 1 MB de Stack per thread și consumă syscall-uri). În producție se folosesc exclusiv <strong>Thread Pools</strong> administrate prin <code>ExecutorService</code>.</p>\n\n<h4>1. Exemplu de Configurare și Rulare cu ExecutorService</h4>\n<pre><code>// Exemplu 1: Pool fix dimensionat optim pentru nucleele procesorului\nint cores = Runtime.getRuntime().availableProcessors();\nExecutorService executor = Executors.newFixedThreadPool(cores);\n\n// Trimite sarcini spre execuție concurentă:\nfor (int i = 0; i &lt; 10; i++) {\n    final int taskId = i;\n    executor.submit(() -> {\n        System.out.println(\"Rulează task \" + taskId + \" pe firul: \" + Thread.currentThread().getName());\n    });\n}\n\n// Oprire politicoasă (Graceful Shutdown):\nexecutor.shutdown();\nif (!executor.awaitTermination(5, TimeUnit.SECONDS)) {\n    executor.shutdownNow();\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "ExecutorService",
@@ -4753,9 +5061,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Firele create de ThreadPool-urile standard sunt fire non-daemon; JVM nu se poate opri atâta timp cât cel puțin un fir non-daemon este încă activ."
     },
-    "task": "Creează un pool de 4 fire de execuție apelând 'Executors.newFixedThreadPool(4)'.",
-    "starterCode": "ExecutorService executor = ",
+    "prompt": "Creează un pool de 4 fire de execuție apelând 'Executors.newFixedThreadPool(4);'.",
+    "task": "Creează un pool de 4 fire de execuție apelând 'Executors.newFixedThreadPool(4);'.",
+    "example": "ExecutorService executor = Executors.newFixedThreadPool(4);",
+    "starterCode": "ExecutorService executor = Executors.newFixedThreadPool(4);",
+    "officialSolution": "ExecutorService executor = Executors.newFixedThreadPool(4);",
     "expectedOutputPattern": "executor\\s*=\\s*Executors\\.newFixedThreadPool\\(4\\);?",
+    "regexPattern": "executor\\s*=\\s*Executors\\.newFixedThreadPool\\(4\\);?",
     "hint": "Scrie Executors.newFixedThreadPool(4);"
   },
   {
@@ -4766,7 +5078,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 65,
     "title": "Capitolul 4: Virtual Threads în Java 21 (Project Loom)",
-    "theory": "\n<p>Până la Java 21, fiecare fir de execuție Java era mapat 1:1 pe un fir al sistemului de operare (Platform Thread), limitând scalabilitatea unui server la câteva mii de conexiuni simultane din cauza memoriei consumate.</p>\n<h4>1. Ce sunt Firele Virtuale (Virtual Threads)?</h4>\n<p><strong>Virtual Threads</strong> sunt fire ultra-ușoare gestionate exclusiv de mașina virtuală JVM, nu de sistemul de operare. Un fir virtual consumă doar câțiva octeți de memorie, permițând crearea a <strong>milioane de fire simultane</strong> pe un singur calculator obișnuit!</p>\n<h4>2. Modelul Thread-Per-Request Revitalizat</h4>\n<p>Când un fir virtual execută o operație I/O blocantă (ex: o interogare JDBC sau un apel REST), JVM-ul îl demontează automat de pe firul hardware de operare (carrier thread) și îl montează înapoi instant când datele au sosit, oferind cod sincron simplu cu scalabilitatea asincronă a Node.js/Go.</p>\n",
+    "theory": "\n<p>Până la Java 21, fiecare fir de execuție Java era mapat 1:1 pe un fir al sistemului de operare (Platform Thread), limitând scalabilitatea unui server la câteva mii de conexiuni simultane din cauza memoriei consumate.</p>\n\n<h4>1. Ce sunt Firele Virtuale (Virtual Threads)?</h4>\n<p><strong>Virtual Threads</strong> sunt fire ultra-ușoare gestionate exclusiv de mașina virtuală JVM, nu de sistemul de operare. Un fir virtual consumă doar câțiva octeți de memorie, permițând crearea a <strong>milioane de fire simultane</strong> pe un singur calculator obișnuit!</p>\n\n<h4>2. Exemplu Complet de Scalare cu Milioane de Fire</h4>\n<pre><code>// Exemplu 1: Lansarea a 100.000 de fire virtuale simultane în Java 21\ntry (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n    IntStream.range(0, 100_000).forEach(i -> {\n        executor.submit(() -> {\n            // Operație I/O blocantă simulară: firul carrier este eliberat instant!\n            Thread.sleep(Duration.ofSeconds(1));\n            return i;\n        });\n    });\n} // try-with-resources așteaptă finalizarea tuturor firelor automat!\n</code></pre>\n",
     "glossary": [
       {
         "term": "Virtual Threads (JEP 444)",
@@ -4814,9 +5126,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Spre deosebire de firele OS scumpe, firele virtuale sunt proiectate pentru a fi efemere (aruncate după terminare). Pool-urile introduc overhead inutil în cazul lor."
     },
+    "prompt": "Creează un executor de fire virtuale apelând 'Executors.newVirtualThreadPerTaskExecutor()'.",
     "task": "Creează un executor de fire virtuale apelând 'Executors.newVirtualThreadPerTaskExecutor()'.",
-    "starterCode": "ExecutorService vExecutor = ",
+    "example": "ExecutorService vExecutor = Executors.newVirtualThreadPerTaskExecutor();",
+    "starterCode": "ExecutorService vExecutor = Executors.newVirtualThreadPerTaskExecutor();",
+    "officialSolution": "ExecutorService vExecutor = Executors.newVirtualThreadPerTaskExecutor();",
     "expectedOutputPattern": "vExecutor\\s*=\\s*Executors\\.newVirtualThreadPerTaskExecutor\\(\\);?",
+    "regexPattern": "vExecutor\\s*=\\s*Executors\\.newVirtualThreadPerTaskExecutor\\(\\);?",
     "hint": "Scrie Executors.newVirtualThreadPerTaskExecutor();"
   },
   {
@@ -4827,7 +5143,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 65,
     "title": "Capitolul 5: Arhitectură Spring Boot — '@RestController' & Dependency Injection",
-    "theory": "\n<p><strong>Spring Boot</strong> este cel mai utilizat framework enterprise din ecosistemul Java, oferind auto-configurare, server web integrat (Tomcat) și un container puternic de <strong>Inversion of Control (IoC)</strong>.</p>\n<h4>1. Componente & Injectarea Dependențelor</h4>\n<p>Adnotările cheie sunt <code>@Component</code>, <code>@Service</code> și <code>@Repository</code>. În Spring Boot modern, dependințele se injectează prin constructor (fără a fi nevoie de <code>@Autowired</code> explicit dacă există un singur constructor):</p>\n<pre><code>@Service\npublic class OrderService {\n    private final OrderRepository repository;\n\n    public OrderService(OrderRepository repository) {\n        this.repository = repository;\n    }\n}\n</code></pre>\n<h4>2. Controlere REST</h4>\n<p>Adnotarea <code>@RestController</code> combină <code>@Controller</code> și <code>@ResponseBody</code>, serializând automat rezultatele obiectelor Java în format JSON.</p>\n",
+    "theory": "\n<p><strong>Spring Boot</strong> este cel mai utilizat framework enterprise din ecosistemul Java, oferind auto-configurare, server web integrat (Tomcat) și un container puternic de <strong>Inversion of Control (IoC)</strong>.</p>\n\n<h4>1. Componente & Injectarea Dependențelor prin Constructor</h4>\n<pre><code>// Exemplu 1: Service cu Constructor Injection (imutabil și ușor de testat)\n@Service\npublic class OrderService {\n    private final OrderRepository repository;\n\n    public OrderService(OrderRepository repository) {\n        this.repository = repository;\n    }\n\n    public Order createOrder(OrderDTO dto) {\n        return repository.save(new Order(dto));\n    }\n}\n</code></pre>\n\n<h4>2. Controlere REST Curate</h4>\n<pre><code>// Exemplu 2: Endpoint HTTP GET și POST\n@RestController\n@RequestMapping(\"/api/orders\")\npublic class OrderController {\n    private final OrderService orderService;\n\n    public OrderController(OrderService orderService) {\n        this.orderService = orderService;\n    }\n\n    @GetMapping(\"/{id}\")\n    public ResponseEntity&lt;Order&gt; getOrder(@PathVariable Long id) {\n        return ResponseEntity.ok(orderService.findById(id));\n    }\n}\n</code></pre>\n",
     "glossary": [
       {
         "term": "@RestController",
@@ -4875,9 +5191,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Constructor injection asigură că obiectul nu poate fi instanțiat într-o stare incompletă, permite câmpuri 'final' imutabile și facilitează instanțierea simplă cu mock-uri în testele unitare."
     },
-    "task": "Adnotează clasa 'ApiController' cu '@RestController' pentru a expune un serviciu web REST.",
-    "starterCode": "// Adaugă adnotarea Spring pe clasă\npublic class ApiController {\n}",
+    "prompt": "Adnotează clasa 'ApiController' cu adnotarea Spring '@RestController' pentru a expune un serviciu web REST.",
+    "task": "Adnotează clasa 'ApiController' cu adnotarea Spring '@RestController' pentru a expune un serviciu web REST.",
+    "example": "@RestController\npublic class ApiController {\n}",
+    "starterCode": "@RestController\npublic class ApiController {\n}",
+    "officialSolution": "@RestController\npublic class ApiController {\n}",
     "expectedOutputPattern": "@RestController\\s+public\\s+class\\s+ApiController",
+    "regexPattern": "@RestController\\s+public\\s+class\\s+ApiController",
     "hint": "Scrie @RestController deasupra declarației de clasă."
   },
   {
@@ -4888,7 +5208,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 75,
     "title": "Capitolul 6: JVM Internals — Memoria Heap, Metaspace & Garbage Collectors (G1, ZGC)",
-    "theory": "\n<p>Arhitectura de memorie a mașinii virtuale Java (JVM) este împărțită în zone cu cicluri de viață distincte:</p>\n<h4>1. Structura Memoriei</h4>\n<ul>\n  <li><strong>Heap</strong>: Spațiul partajat unde sunt alocate toate obiectele create cu <code>new</code>. Este subdivizat în Young Generation (Eden + Survivor spaces) și Old/Tenured Generation.</li>\n  <li><strong>Metaspace</strong>: Memorie nativă off-heap (introdusă în Java 8 în locul PermGen) unde sunt stocate metadatele claselor compilate și bytecode-ul.</li>\n  <li><strong>Stack</strong>: Fiecare fir de execuție are propria stivă cu frame-uri de apel, variabile locale primitive și referințe către Heap.</li>\n</ul>\n<h4>2. Algoritmi Moderni de Garbage Collection</h4>\n<p><strong>G1 GC</strong> (Garbage-First) împarte heap-ul în regiuni egale și colectează cu prioritate zonele cu cel mai mult gunoi. <strong>ZGC</strong> (Z Garbage Collector) este un colector concurent de ultimă generație care garantează pauze de latență (STW - Stop-The-World) de <em>sub 1 milisecundă</em>, chiar și pe heap-uri uriașe de până la 16 Terabytes.</p>\n",
+    "theory": "\n<p>Arhitectura de memorie a mașinii virtuale Java (JVM) este împărțită în zone cu cicluri de viață distincte:</p>\n\n<h4>1. Structura Memoriei JVM</h4>\n<ul>\n  <li><strong>Heap</strong>: Spațiul partajat unde sunt alocate toate obiectele create cu <code>new</code>. Subdivizat în Young Generation și Old Generation.</li>\n  <li><strong>Metaspace</strong>: Memorie nativă off-heap unde sunt stocate metadatele claselor încărcate.</li>\n  <li><strong>Stack</strong>: Fiecare fir de execuție are propria stivă cu frame-uri de apel și variabile locale.</li>\n</ul>\n\n<h4>2. Exemplu de Configurare JVM Flag-uri în Producție</h4>\n<pre><code># Exemplu de lansare containerizată cu colectorul ZGC ultra-rapid:\njava -XX:+UseZGC \\\n     -Xms4g -Xmx4g \\\n     -XX:+AlwaysPreTouch \\\n     -XX:+ExitOnOutOfMemoryError \\\n     -jar app.jar\n\n# Avantaj ZGC: Pauze Stop-The-World sub 1 milisecundă chiar și pe heap-uri de 16 TB!\n</code></pre>\n",
     "glossary": [
       {
         "term": "Metaspace",
@@ -4936,9 +5256,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "ZGC folosește pointeri colorați (colored pointers) și bariere de încărcare (load barriers) pentru a muta și compacta memoria în paralel cu aplicația, obținând pauze STW imperceptibile sub 1 milisecundă."
     },
+    "prompt": "Specifică flag-ul JVM de activare a colectorului ZGC returnând stringul '-XX:+UseZGC'.",
     "task": "Specifică flag-ul JVM de activare a colectorului ZGC returnând stringul '-XX:+UseZGC'.",
-    "starterCode": "public String getZgcFlag() {\n    return ",
+    "example": "public String getZgcFlag() {\n    return \"-XX:+UseZGC\";\n}",
+    "starterCode": "public String getZgcFlag() {\n    return \"-XX:+UseZGC\";\n}",
+    "officialSolution": "public String getZgcFlag() {\n    return \"-XX:+UseZGC\";\n}",
     "expectedOutputPattern": "return\\s*[\"']-XX:\\+UseZGC[\"'];?",
+    "regexPattern": "return\\s*[\"']-XX:\\+UseZGC[\"'];?",
     "hint": "Scrie return \"-XX:+UseZGC\";"
   },
   {
@@ -4949,7 +5273,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 55,
     "title": "Capitolul 1: Funcții Window de Clasament: 'ROW_NUMBER()', 'RANK()' și 'DENSE_RANK()'",
-    "theory": "\n<p>Spre deosebire de <code>GROUP BY</code> care comprimă mai multe rânduri într-un singur rând agregat, <strong>Funcțiile Window</strong> calculează valori peste un set de rânduri (window frame), păstrând totodată identitatea fiecărui rând individual din rezultat.</p>\n<h4>1. Diferența dintre ROW_NUMBER, RANK și DENSE_RANK</h4>\n<p>Dacă avem două rânduri cu același salariu de pe poziția a doua:</p>\n<ul>\n  <li><code>ROW_NUMBER()</code>: Asignează valori strict unice fără duplicare (1, 2, 3, 4...).</li>\n  <li><code>RANK()</code>: Asignează același rang egalităților, dar <em>sare peste poziții</em> (1, 2, 2, 4...).</li>\n  <li><code>DENSE_RANK()</code>: Asignează același rang egalităților și <em>nu sare nicio poziție</em> (1, 2, 2, 3...).</li>\n</ul>\n<h4>2. Clauza 'PARTITION BY'</h4>\n<p>Sintaxa <code>OVER (PARTITION BY department_id ORDER BY salary DESC)</code> resetează numerotarea independent pentru fiecare departament în parte.</p>\n",
+    "theory": "\n<p>Spre deosebire de <code>GROUP BY</code> care comprimă mai multe rânduri într-un singur rând agregat, <strong>Funcțiile Window</strong> calculează valori peste un set de rânduri (window frame), păstrând totodată identitatea fiecărui rând individual din rezultat.</p>\n\n<h4>1. Diferența dintre ROW_NUMBER, RANK și DENSE_RANK</h4>\n<p>Dacă avem două rânduri cu același salariu de pe poziția a doua:</p>\n<ul>\n  <li><code>ROW_NUMBER()</code>: Asignează valori strict unice fără duplicare (1, 2, 3, 4...).</li>\n  <li><code>RANK()</code>: Asignează același rang egalităților, dar <em>sare peste poziții</em> (1, 2, 2, 4...).</li>\n  <li><code>DENSE_RANK()</code>: Asignează același rang egalităților și <em>nu sare nicio poziție</em> (1, 2, 2, 3...).</li>\n</ul>\n\n<h4>2. Exemplu Complet de Interogare Window</h4>\n<pre><code>-- Exemplu 1: Calculul rangurilor salariale în cadrul fiecărui departament\nSELECT \n    name,\n    dept_id,\n    salary,\n    ROW_NUMBER() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS row_num,\n    RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rnk,\n    DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS dense_rnk\nFROM employees;\n\n-- Output:\n-- | name   | dept_id | salary | row_num | rnk | dense_rnk |\n-- | Alice  | 10      | 8000   | 1       | 1   | 1         |\n-- | Bob    | 10      | 7000   | 2       | 2   | 2         |\n-- | Dan    | 10      | 7000   | 3       | 2   | 2         |\n-- | Eve    | 10      | 6000   | 4       | 4   | 3         |\n</code></pre>\n",
     "glossary": [
       {
         "term": "Window Function",
@@ -4997,9 +5321,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "DENSE_RANK acordă același rang 2 celor două valori egale de 90, iar următorul scor (80) primește imediat rangul următor consecutiv, adică 3 (fără salt la 4)."
     },
-    "task": "Scrie funcția 'DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC)' as rank_pos.",
-    "starterCode": "SELECT name, salary,\n       ",
+    "prompt": "Scrie funcția 'DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC)' cu aliasul rank_pos.",
+    "task": "Scrie funcția 'DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC)' cu aliasul rank_pos.",
+    "example": "SELECT name, salary,\n       DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rank_pos\nFROM employees;",
+    "starterCode": "SELECT name, salary,\n       DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rank_pos\nFROM employees;",
+    "officialSolution": "SELECT name, salary,\n       DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rank_pos\nFROM employees;",
     "expectedOutputPattern": "DENSE_RANK\\(\\)\\s+OVER\\s*\\(\\s*PARTITION\\s+BY\\s+dept_id\\s+ORDER\\s+BY\\s+salary\\s+DESC\\s*\\)(?:\\s+AS\\s+rank_pos)?",
+    "regexPattern": "DENSE_RANK\\(\\)\\s+OVER\\s*\\(\\s*PARTITION\\s+BY\\s+dept_id\\s+ORDER\\s+BY\\s+salary\\s+DESC\\s*\\)(?:\\s+AS\\s+rank_pos)?",
     "hint": "Scrie DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rank_pos"
   },
   {
@@ -5010,7 +5338,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 55,
     "title": "Capitolul 2: Funcții Window Analitice: 'LEAD()' și 'LAG()'",
-    "theory": "\n<p>Funcțiile analitice <code>LEAD()</code> și <code>LAG()</code> permit accesarea valorilor din rândurile următoare sau anterioare direct din interogare, fără a recurge la auto-joncțiuni costisitoare (self-joins $O(n^2)$).</p>\n<h4>1. Sintaxa 'LAG(column, offset, default)'</h4>\n<p><code>LAG(amount, 1, 0) OVER (ORDER BY sale_date)</code> returnează valoarea vânzării din rândul imediat precedent. Este esențială pentru calculul creșterilor procentuale lunare (Month-over-Month growth).</p>\n<h4>2. Sintaxa 'LEAD()'</h4>\n<p>Funcționează identic, dar inspectează rândul din viitor (următorul pas temporal).</p>\n",
+    "theory": "\n<p>Funcțiile analitice <code>LEAD()</code> și <code>LAG()</code> permit accesarea valorilor din rândurile următoare sau anterioare direct din interogare, fără a recurge la auto-joncțiuni costisitoare (self-joins $O(n^2)$).</p>\n\n<h4>1. Sintaxa 'LAG(column, offset, default)'</h4>\n<p><code>LAG(amount, 1, 0) OVER (ORDER BY sale_date)</code> returnează valoarea vânzării din rândul imediat precedent. Este esențială pentru calculul creșterilor procentuale lunare (Month-over-Month growth).</p>\n\n<h4>2. Exemplu Complet de Analiză a Tendințelor</h4>\n<pre><code>-- Exemplu 1: Calculul evoluției vânzărilor lunare și a diferenței față de luna precedentă\nSELECT \n    month,\n    sales,\n    LAG(sales, 1, 0) OVER (ORDER BY month) AS prev_sales,\n    sales - LAG(sales, 1, 0) OVER (ORDER BY month) AS growth,\n    LEAD(sales, 1) OVER (ORDER BY month) AS next_month_sales\nFROM monthly_sales;\n\n-- Output:\n-- | month | sales | prev_sales | growth | next_month_sales |\n-- | Jan   | 1000  | 0          | +1000  | 1200             |\n-- | Feb   | 1200  | 1000       | +200   | 1500             |\n-- | Mar   | 1500  | 1200       | +300   | NULL             |\n</code></pre>\n",
     "glossary": [
       {
         "term": "LAG()",
@@ -5058,9 +5386,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Pentru primul rând nu există un rând anterior, motiv pentru care LAG returnează NULL (cu excepția cazului în care se furnizează o valoare implicită ca al 3-lea parametru)."
     },
-    "task": "Extrage valoarea precedentă a coloanei 'sales' folosind 'LAG(sales, 1) OVER (ORDER BY month)' as prev_sales.",
-    "starterCode": "SELECT month, sales,\n       ",
+    "prompt": "Extrage valoarea precedentă a vânzărilor 'sales' folosind 'LAG(sales, 1) OVER (ORDER BY month)' cu aliasul prev_sales.",
+    "task": "Extrage valoarea precedentă a vânzărilor 'sales' folosind 'LAG(sales, 1) OVER (ORDER BY month)' cu aliasul prev_sales.",
+    "example": "SELECT month, sales,\n       LAG(sales, 1) OVER (ORDER BY month) AS prev_sales\nFROM monthly_revenue;",
+    "starterCode": "SELECT month, sales,\n       LAG(sales, 1) OVER (ORDER BY month) AS prev_sales\nFROM monthly_revenue;",
+    "officialSolution": "SELECT month, sales,\n       LAG(sales, 1) OVER (ORDER BY month) AS prev_sales\nFROM monthly_revenue;",
     "expectedOutputPattern": "LAG\\(sales,\\s*1\\)\\s+OVER\\s*\\(\\s*ORDER\\s+BY\\s+month\\s*\\)(?:\\s+AS\\s+prev_sales)?",
+    "regexPattern": "LAG\\(sales,\\s*1\\)\\s+OVER\\s*\\(\\s*ORDER\\s+BY\\s+month\\s*\\)(?:\\s+AS\\s+prev_sales)?",
     "hint": "Scrie LAG(sales, 1) OVER (ORDER BY month) AS prev_sales"
   },
   {
@@ -5071,7 +5403,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior",
     "xp": 60,
     "title": "Capitolul 3: Interogări Ierarhice cu Recursive CTE ('WITH RECURSIVE')",
-    "theory": "\n<p>Datele ierarhice (organigrame de companie, structuri de directoare în fișiere, categorii cu subcategorii imbricate nelimitat) nu pot fi parcurse cu un număr fix de <code>JOIN</code>-uri. <strong>Recursive Common Table Expressions (WITH RECURSIVE)</strong> rezolvă această problemă în mod elegant.</p>\n<h4>1. Structura unui CTE Recursiv</h4>\n<p>Un CTE recursiv este format din două interogări unite prin <code>UNION ALL</code>:</p>\n<ol>\n  <li><strong>Termenul Ancoră (Anchor Member)</strong>: Selectează rădăcinile ierarhiei (ex: <code>WHERE manager_id IS NULL</code>).</li>\n  <li><strong>Termenul Recursiv (Recursive Member)</strong>: Face joncțiune între tabela sursă și numele propriului CTE, parcurgând nivel cu nivel până când interogarea nu mai produce rânduri noi.</li>\n</ol>\n",
+    "theory": "\n<p>Datele ierarhice (organigrame de companie, structuri de directoare în fișiere, categorii cu subcategorii imbricate nelimitat) nu pot fi parcurse cu un număr fix de <code>JOIN</code>-uri. <strong>Recursive Common Table Expressions (WITH RECURSIVE)</strong> rezolvă această problemă în mod elegant.</p>\n\n<h4>1. Structura unui CTE Recursiv</h4>\n<p>Un CTE recursiv este format din două interogări unite prin <code>UNION ALL</code>:</p>\n<ol>\n  <li><strong>Termenul Ancoră (Anchor Member)</strong>: Selectează rădăcinile ierarhiei (ex: <code>WHERE manager_id IS NULL</code>).</li>\n  <li><strong>Termenul Recursiv (Recursive Member)</strong>: Face joncțiune între tabela sursă și numele propriului CTE, parcurgând nivel cu nivel până când interogarea nu mai produce rânduri noi.</li>\n</ol>\n\n<h4>2. Exemplu Complet de Ierarhie Organizațională</h4>\n<pre><code>-- Exemplu 1: Parcurgerea ierarhiei unei companii de la CEO până la angajați\nWITH RECURSIVE OrgHierarchy AS (\n    -- 1. Ancoră: nodul rădăcină (CEO)\n    SELECT id, name, manager_id, 1 AS depth\n    FROM employees\n    WHERE manager_id IS NULL\n    \n    UNION ALL\n    \n    -- 2. Membru Recursiv: găsește subordonații direcți\n    SELECT e.id, e.name, e.manager_id, o.depth + 1\n    FROM employees e\n    INNER JOIN OrgHierarchy o ON e.manager_id = o.id\n)\nSELECT * FROM OrgHierarchy ORDER BY depth, name;\n</code></pre>\n",
     "glossary": [
       {
         "term": "WITH RECURSIVE",
@@ -5119,9 +5451,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Execuția continuă recursiv până când termenul recursiv produce un set vid (0 rânduri), moment în care algoritmul își atinge condiția naturală de oprire."
     },
-    "task": "Inițializează un CTE recursiv numit 'hierarchy' scriind sintaxa de debut 'WITH RECURSIVE hierarchy AS ('.",
-    "starterCode": "// Scrie începutul CTE-ului recursiv\n",
+    "prompt": "Inițializează un CTE recursiv numit 'hierarchy' scriind clauza de debut 'WITH RECURSIVE hierarchy AS ('.",
+    "task": "Inițializează un CTE recursiv numit 'hierarchy' scriind clauza de debut 'WITH RECURSIVE hierarchy AS ('.",
+    "example": "WITH RECURSIVE hierarchy AS (\n    SELECT id, name, 1 AS level FROM categories WHERE parent_id IS NULL\n)",
+    "starterCode": "WITH RECURSIVE hierarchy AS (\n    SELECT id, name, manager_id FROM employees WHERE manager_id IS NULL\n)",
+    "officialSolution": "WITH RECURSIVE hierarchy AS (\n    SELECT id, name, manager_id FROM employees WHERE manager_id IS NULL\n)",
     "expectedOutputPattern": "WITH\\s+RECURSIVE\\s+hierarchy\\s+AS\\s*\\(",
+    "regexPattern": "WITH\\s+RECURSIVE\\s+hierarchy\\s+AS\\s*\\(",
     "hint": "Scrie WITH RECURSIVE hierarchy AS ("
   },
   {
@@ -5132,7 +5468,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 70,
     "title": "Capitolul 4: Tranzacții, ACID & Niveluri de Izolare (Dirty, Non-Repeatable, Phantom Reads)",
-    "theory": "\n<p>O <strong>tranzacție</strong> este o unitate logică indivizibilă de lucru garantată de proprietățile <strong>ACID</strong> (Atomicity, Consistency, Isolation, Durability).</p>\n<h4>1. Anomalii de Concurență</h4>\n<ul>\n  <li><em>Dirty Read</em>: Tranzacția A citește date modificate de Tranzacția B, dar B dă <code>ROLLBACK</code>.</li>\n  <li><em>Non-Repeatable Read</em>: Tranzacția A citește același rând de două ori și găsește valori diferite deoarece Tranzacția B a făcut <code>UPDATE</code> și <code>COMMIT</code> între timp.</li>\n  <li><em>Phantom Read</em>: Tranzacția A re-execută o interogare de tip interval și găsește rânduri noi inserate de B.</li>\n</ul>\n<h4>2. Nivelurile de Izolare SQL Standard</h4>\n<ol>\n  <li><code>READ UNCOMMITTED</code>: Permite toate anomaliile (inclusiv Dirty Reads).</li>\n  <li><code>READ COMMITTED</code> (implicit în Postgres): Previne Dirty Reads.</li>\n  <li><code>REPEATABLE READ</code>: Previne Dirty Reads și Non-Repeatable Reads.</li>\n  <li><code>SERIALIZABLE</code>: Cel mai strict nivel; previne absolut toate anomaliile emulând execuția serială printr-un mecanism SSI (Serializable Snapshot Isolation).</li>\n</ol>\n",
+    "theory": "\n<p>O <strong>tranzacție</strong> este o unitate logică indivizibilă de lucru garantată de proprietățile <strong>ACID</strong> (Atomicity, Consistency, Isolation, Durability).</p>\n\n<h4>1. Nivelurile de Izolare SQL Standard</h4>\n<ol>\n  <li><code>READ UNCOMMITTED</code>: Permite toate anomaliile (inclusiv Dirty Reads).</li>\n  <li><code>READ COMMITTED</code> (implicit în Postgres): Previne Dirty Reads.</li>\n  <li><code>REPEATABLE READ</code>: Previne Dirty Reads și Non-Repeatable Reads.</li>\n  <li><code>SERIALIZABLE</code>: Cel mai strict nivel; previne absolut toate anomaliile prin execuție strict serială.</li>\n</ol>\n\n<h4>2. Exemplu de Tranzacție cu Nivel de Izolare Strict</h4>\n<pre><code>-- Exemplu 1: Tranzacție sigură de transfer bancar\nSET TRANSACTION ISOLATION LEVEL SERIALIZABLE;\nBEGIN;\n\n-- Scădere din contul sursă:\nUPDATE accounts SET balance = balance - 250 WHERE id = 101;\n\n-- Creditare în contul destinație:\nUPDATE accounts SET balance = balance + 250 WHERE id = 202;\n\n-- Confirmare definitivă a ambelor operațiuni:\nCOMMIT;\n</code></pre>\n",
     "glossary": [
       {
         "term": "ACID",
@@ -5180,9 +5516,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "În REPEATABLE READ, tranzacția vede un snapshot al bazei de date de la începutul său, astfel încât modificările de tip UPDATE/DELETE comise de alte tranzacții nu afectează valorile deja citite."
     },
-    "task": "Setează nivelul de izolare al tranzacției la 'SERIALIZABLE' scriind 'SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;'.",
-    "starterCode": "// Setează nivelul de izolare\n",
+    "prompt": "Setează nivelul de izolare al tranzacției la 'SERIALIZABLE' scriind comanda completă 'SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;'.",
+    "task": "Setează nivelul de izolare al tranzacției la 'SERIALIZABLE' scriind comanda completă 'SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;'.",
+    "example": "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;\nBEGIN;\n-- operatiuni sigure\nCOMMIT;",
+    "starterCode": "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;",
+    "officialSolution": "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;",
     "expectedOutputPattern": "SET\\s+TRANSACTION\\s+ISOLATION\\s+LEVEL\\s+SERIALIZABLE;?",
+    "regexPattern": "SET\\s+TRANSACTION\\s+ISOLATION\\s+LEVEL\\s+SERIALIZABLE;?",
     "hint": "Scrie SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;"
   },
   {
@@ -5193,7 +5533,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "5. Arhitect / Exemplar",
     "xp": 75,
     "title": "Capitolul 5: Optimizare Interogări: 'EXPLAIN ANALYZE' & Planuri de Execuție",
-    "theory": "\n<p>Pentru a înțelege de ce o interogare este lentă, folosim comanda <code>EXPLAIN ANALYZE</code>. Aceasta nu doar estimează planul, ci <strong>execută efectiv interogarea</strong> pe server și afișează timpii reali măsurați în milisecunde și numărul de pagini de memorie (buffers) citite.</p>\n<h4>1. Noduri de Scanare</h4>\n<ul>\n  <li><code>Seq Scan (Sequential Scan)</code>: Citește fiecare bloc al tabelei de la cap la coadă ($O(n)$). Acceptabil pentru tabele mici, catastrofal pentru milioane de rânduri.</li>\n  <li><code>Index Scan</code>: Caută cheile în arborele B-Tree al indexului și apoi citește paginile de pe disc ($O(\\log n)$).</li>\n  <li><code>Index Only Scan</code>: Toate coloanele cerute în <code>SELECT</code> se află deja în index (Covering Index), eliminând complet citirea din tabelă (Heap Fetch = 0).</li>\n</ul>\n<h4>2. Buffers: Shared Hit vs Read</h4>\n<p><code>shared hit</code> înseamnă că datele erau deja în memoria RAM (Buffer Pool). <code>read</code> înseamnă citire fizică lentă de pe discul I/O.</p>\n",
+    "theory": "\n<p>Pentru a înțelege de ce o interogare este lentă, folosim comanda <code>EXPLAIN ANALYZE</code>. Aceasta nu doar estimează planul, ci <strong>execută efectiv interogarea</strong> pe server și afișează timpii reali măsurați în milisecunde și numărul de pagini de memorie (buffers) citite.</p>\n\n<h4>1. Noduri de Scanare</h4>\n<ul>\n  <li><code>Seq Scan (Sequential Scan)</code>: Citește fiecare bloc al tabelei de la cap la coadă ($O(n)$). Acceptabil pentru tabele mici, catastrofal pentru milioane de rânduri.</li>\n  <li><code>Index Scan</code>: Caută cheile în arborele B-Tree al indexului și apoi citește paginile de pe disc ($O(\\log n)$).</li>\n  <li><code>Index Only Scan</code>: Toate coloanele cerute în <code>SELECT</code> se află deja în index (Covering Index), eliminând complet citirea din tabelă.</li>\n</ul>\n\n<h4>2. Exemplu Complet de Raport EXPLAIN</h4>\n<pre><code>-- Exemplu 1: Analiza planului de execuție cu timpi reali și memorie RAM\nEXPLAIN (ANALYZE, BUFFERS) \nSELECT * FROM orders \nWHERE status = 'pending' AND total > 500;\n\n-- Output raport de execuție:\n-- -> Index Scan using idx_orders_status on orders (cost=0.29..8.30 rows=5) (actual time=0.045..0.052ms)\n--    Buffers: shared hit=4\n-- Planning Time: 0.120 ms\n-- Execution Time: 0.080 ms\n</code></pre>\n",
     "glossary": [
       {
         "term": "EXPLAIN ANALYZE",
@@ -5241,9 +5581,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Un Index Only Scan este scenariul ideal de înaltă performanță: indexul conține toate coloanele solicitate în interogare, eliminând complet operațiunile I/O către paginile de date ale tabelei."
     },
-    "task": "Rulează analiza de execuție cu măsurare de timpi și buffere pe interogare scriind 'EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM orders;'.",
-    "starterCode": "// Completează comanda EXPLAIN\n",
+    "prompt": "Rulează analiza de execuție cu măsurare de timpi și buffere pe tabela 'orders' scriind 'EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM orders;'.",
+    "task": "Rulează analiza de execuție cu măsurare de timpi și buffere pe tabela 'orders' scriind 'EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM orders;'.",
+    "example": "EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM orders;",
+    "starterCode": "EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM orders;",
+    "officialSolution": "EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM orders;",
     "expectedOutputPattern": "EXPLAIN\\s+\\(ANALYZE,\\s*BUFFERS\\)\\s+SELECT\\s+\\*\\s+FROM\\s+orders;?",
+    "regexPattern": "EXPLAIN\\s+\\(ANALYZE,\\s*BUFFERS\\)\\s+SELECT\\s+\\*\\s+FROM\\s+orders;?",
     "hint": "Scrie EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM orders;"
   },
   {
@@ -5254,7 +5598,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 25,
     "title": "Capitolul 1: Pronumele Personale Subiect (Je, Tu, Il, Elle, On, Nous, Vous, Ils, Elles)",
-    "theory": "\n<p>Bine ai venit la limba franceză! Primul pas de la zero absolut este învățarea pronumelor personale subiect (persoanele: eu, tu, el, ea...).</p>\n<h4>1. Cele 8 Pronume Personale</h4>\n<ul>\n  <li><code>Je</code> [jœ] = Eu (devine <code>J'</code> în fața unei vocale: <em>J'habite</em>).</li>\n  <li><code>Tu</code> [ty] = Tu (folosit doar cu prietenii, familia, copiii).</li>\n  <li><code>Il</code> [il] = El.</li>\n  <li><code>Elle</code> [el] = Ea.</li>\n  <li><code>On</code> [õ] = Noi (în franceza vorbită de zi cu zi) sau „se” impersonal.</li>\n  <li><code>Nous</code> [nu] = Noi (în registrul formal/scris).</li>\n  <li><code>Vous</code> [vu] = Voi (plural) SAU Dumneavoastră (politețe singular și plural).</li>\n  <li><code>Ils</code> [il] = Ei (masculin sau grup mixt).</li>\n  <li><code>Elles</code> [el] = Ele (exclusiv feminin).</li>\n</ul>\n<h4>2. Regula de Aur: Subiectul este Obligatoriu</h4>\n<p>Spre deosebire de română sau spaniolă unde spunem simplu „Vorbesc”, în franceză este <strong>obligatoriu</strong> să pronunți subiectul: <em>Je parle</em>.</p>\n",
+    "theory": "\n<p>Bine ai venit la limba franceză! Primul pas de la zero absolut este învățarea pronumelor personale subiect (persoanele: eu, tu, el, ea...).</p>\n<h4>1. Cele 8 Pronume Personale</h4>\n<ul>\n  <li><code>Je</code> [jœ] = Eu (devine <code>J'</code> în fața unei vocale: <em>J'habite</em>).</li>\n  <li><code>Tu</code> [ty] = Tu (folosit doar cu prietenii, familia, copiii).</li>\n  <li><code>Il</code> [il] = El.</li>\n  <li><code>Elle</code> [el] = Ea.</li>\n  <li><code>On</code> [õ] = Noi (în franceza vorbită de zi cu zi) sau „se” impersonal.</li>\n  <li><code>Nous</code> [nu] = Noi (în registrul formal/scris).</li>\n  <li><code>Vous</code> [vu] = Voi (plural) SAU Dumneavoastră (politețe singular și plural).</li>\n  <li><code>Ils</code> [il] = Ei (masculin sau grup mixt).</li>\n  <li><code>Elles</code> [el] = Ele (exclusiv feminin).</li>\n</ul>\n<h4>2. Regula de Aur: Subiectul este Obligatoriu</h4>\n<p>Spre deosebire de română sau spaniolă unde spunem simplu „Vorbesc”, în franceză este <strong>obligatoriu</strong> să pronunți subiectul: <em>Je parle</em>.</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe, tu, il\n</code></pre>\n",
     "glossary": [
       {
         "term": "Je / J'",
@@ -5303,9 +5647,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "'Vous' este forma obligatorie de respect și politețe (vouvoiement) când vorbești cu un adult necunoscut."
     },
     "task": "Scrie cele trei pronume de singular 'Je, tu, il' (eu, tu, el) separate prin virgulă.",
-    "starterCode": "// Completează pronumele\n",
+    "starterCode": "Je, tu, il",
     "expectedOutputPattern": "Je,\\s*tu,\\s*il\\.?",
-    "hint": "Scrie Je, tu, il"
+    "hint": "Scrie Je, tu, il",
+    "prompt": "Scrie cele trei pronume de singular 'Je, tu, il' (eu, tu, el) separate prin virgulă.",
+    "officialSolution": "Je, tu, il",
+    "example": "Je, tu, il",
+    "regexPattern": "Je,\\s*tu,\\s*il\\.?"
   },
   {
     "id": "fr-a1-p2",
@@ -5315,7 +5663,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 25,
     "title": "Capitolul 2: Formule de Salut, Rămas Bun & Politețe (Bonjour, Merci, Au revoir)",
-    "theory": "\n<p>Francezii pun un accent imens pe formulele de politețe. A intra într-un magazin fără a spune <em>Bonjour</em> este considerat o impolitețe gravă.</p>\n<h4>1. Saluturi Uzuale</h4>\n<ul>\n  <li><code>Bonjour</code> [bõjur] = Bună ziua / Bună dimineața (pe tot parcursul zilei).</li>\n  <li><code>Bonsoir</code> [bõswar] = Bună seara (după ora 18:00).</li>\n  <li><code>Salut</code> [saly] = Bună / Salut (informal, doar între prieteni; litera 't' finală este mută!).</li>\n  <li><code>Bonne nuit</code> [bon nwi] = Noapte bună (doar la culcare).</li>\n</ul>\n<h4>2. Politețe & Rămas Bun</h4>\n<ul>\n  <li><code>S'il vous plaît</code> [sil vu ple] = Vă rog / Te rog (formal).</li>\n  <li><code>Merci beaucoup</code> [mɛrsi boku] = Mulțumesc mult.</li>\n  <li><code>De rien</code> [də rjɛ̃] / <code>Je vous en prie</code> = Cu plăcere / Pentru nimic.</li>\n  <li><code>Au revoir</code> [o rəvwar] = La revedere.</li>\n  <li><code>À bientôt</code> [a bjɛ̃to] = Pe curând.</li>\n</ul>\n",
+    "theory": "\n<p>Francezii pun un accent imens pe formulele de politețe. A intra într-un magazin fără a spune <em>Bonjour</em> este considerat o impolitețe gravă.</p>\n<h4>1. Saluturi Uzuale</h4>\n<ul>\n  <li><code>Bonjour</code> [bõjur] = Bună ziua / Bună dimineața (pe tot parcursul zilei).</li>\n  <li><code>Bonsoir</code> [bõswar] = Bună seara (după ora 18:00).</li>\n  <li><code>Salut</code> [saly] = Bună / Salut (informal, doar între prieteni; litera 't' finală este mută!).</li>\n  <li><code>Bonne nuit</code> [bon nwi] = Noapte bună (doar la culcare).</li>\n</ul>\n<h4>2. Politețe & Rămas Bun</h4>\n<ul>\n  <li><code>S'il vous plaît</code> [sil vu ple] = Vă rog / Te rog (formal).</li>\n  <li><code>Merci beaucoup</code> [mɛrsi boku] = Mulțumesc mult.</li>\n  <li><code>De rien</code> [də rjɛ̃] / <code>Je vous en prie</code> = Cu plăcere / Pentru nimic.</li>\n  <li><code>Au revoir</code> [o rəvwar] = La revedere.</li>\n  <li><code>À bientôt</code> [a bjɛ̃to] = Pe curând.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nBonjour, s'il vous plaît.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Bonjour",
@@ -5364,9 +5712,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "'S'il vous plaît' este expresia corectă și politicoasă pentru 'Vă rog'."
     },
     "task": "Scrie salutul de politețe complet 'Bonjour, s'il vous plaît.' (Bună ziua, vă rog).",
-    "starterCode": "// Scrie salutul\n",
+    "starterCode": "Bonjour, s'il vous plaît.",
     "expectedOutputPattern": "Bonjour,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?",
-    "hint": "Scrie Bonjour, s'il vous plaît."
+    "hint": "Scrie Bonjour, s'il vous plaît.",
+    "prompt": "Scrie salutul de politețe complet 'Bonjour, s'il vous plaît.' (Bună ziua, vă rog).",
+    "officialSolution": "Bonjour, s'il vous plaît.",
+    "example": "Bonjour, s'il vous plaît.",
+    "regexPattern": "Bonjour,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?"
   },
   {
     "id": "fr-a1-p3",
@@ -5376,7 +5728,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 3: Prezentarea Personală (Comment tu t'appelles? Je m'appelle...)",
-    "theory": "\n<p>Când faci cunoștință cu cineva, folosești verbul reflexiv <strong>s'appeler</strong> (a se numi) și expresii de prezentare simple.</p>\n<h4>1. Cum te prezinți</h4>\n<ul>\n  <li><code>Comment tu t'appelles?</code> [komã ty tapɛl] = Cum te cheamă? (informal).</li>\n  <li><code>Comment vous vous appelez?</code> = Cum vă numiți? (formal/politicos).</li>\n  <li><code>Je m'appelle Andrei.</code> = Mă numesc Andrei.</li>\n  <li><code>Enchanté(e)!</code> [ãʃãte] = Încântat / Încântată de cunoștință!</li>\n</ul>\n<h4>2. Țara și Originea</h4>\n<ul>\n  <li><code>D'où viens-tu?</code> = De unde ești / vii?</li>\n  <li><code>Je viens de Roumanie.</code> = Vin din România.</li>\n  <li><code>Je suis roumain</code> (masculin) / <code>Je suis roumaine</code> (feminin) = Sunt român / româncă.</li>\n</ul>\n",
+    "theory": "\n<p>Când faci cunoștință cu cineva, folosești verbul reflexiv <strong>s'appeler</strong> (a se numi) și expresii de prezentare simple.</p>\n<h4>1. Cum te prezinți</h4>\n<ul>\n  <li><code>Comment tu t'appelles?</code> [komã ty tapɛl] = Cum te cheamă? (informal).</li>\n  <li><code>Comment vous vous appelez?</code> = Cum vă numiți? (formal/politicos).</li>\n  <li><code>Je m'appelle Andrei.</code> = Mă numesc Andrei.</li>\n  <li><code>Enchanté(e)!</code> [ãʃãte] = Încântat / Încântată de cunoștință!</li>\n</ul>\n<h4>2. Țara și Originea</h4>\n<ul>\n  <li><code>D'où viens-tu?</code> = De unde ești / vii?</li>\n  <li><code>Je viens de Roumanie.</code> = Vin din România.</li>\n  <li><code>Je suis roumain</code> (masculin) / <code>Je suis roumaine</code> (feminin) = Sunt român / româncă.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe m'appelle Dan et je suis roumain.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Je m'appelle...",
@@ -5427,7 +5779,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie fraza completă de prezentare 'Je m'appelle Dan et je suis roumain.'.",
     "starterCode": "Je m'appelle ",
     "expectedOutputPattern": "Je\\s+m['’]appelle\\s+Dan\\s+et\\s+je\\s+suis\\s+roumain\\.?",
-    "hint": "Scrie Je m'appelle Dan et je suis roumain."
+    "hint": "Scrie Je m'appelle Dan et je suis roumain.",
+    "prompt": "Scrie fraza completă de prezentare 'Je m'appelle Dan et je suis roumain.'.",
+    "officialSolution": "Je m'appelle Dan et je suis roumain.",
+    "example": "Je m'appelle Dan et je suis roumain.",
+    "regexPattern": "Je\\s+m['’]appelle\\s+Dan\\s+et\\s+je\\s+suis\\s+roumain\\.?"
   },
   {
     "id": "fr-a1-p4",
@@ -5437,7 +5793,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 4: Verbul Auxiliar „ÊTRE” (A FI) la Prezent",
-    "theory": "\n<p>Verbul <strong>être</strong> (a fi) este cel mai important verb din limba franceză. Este complet neregulat și trebuie memorat la perfecție.</p>\n<h4>1. Conjugarea Completă la Prezent</h4>\n<ul>\n  <li><code>Je suis</code> [jə swi] = Eu sunt (<em>Je suis fatigué</em> = Sunt obosit).</li>\n  <li><code>Tu es</code> [ty ɛ] = Tu ești (<em>Tu es gentil</em> = Ești amabil).</li>\n  <li><code>Il / Elle / On est</code> [il ɛ] = El / Ea este (<em>Elle est professeure</em>).</li>\n  <li><code>Nous sommes</code> [nu sɔm] = Noi suntem (<em>Nous sommes ici</em> = Suntem aici).</li>\n  <li><code>Vous êtes</code> [vuz ɛt] = Voi sunteți / Dumneavoastră sunteți (atenție la legătura fonetică cu sunet [z]!).</li>\n  <li><code>Ils / Elles sont</code> [il sõ] = Ei / Ele sunt (<em>Ils sont contents</em>).</li>\n</ul>\n",
+    "theory": "\n<p>Verbul <strong>être</strong> (a fi) este cel mai important verb din limba franceză. Este complet neregulat și trebuie memorat la perfecție.</p>\n<h4>1. Conjugarea Completă la Prezent</h4>\n<ul>\n  <li><code>Je suis</code> [jə swi] = Eu sunt (<em>Je suis fatigué</em> = Sunt obosit).</li>\n  <li><code>Tu es</code> [ty ɛ] = Tu ești (<em>Tu es gentil</em> = Ești amabil).</li>\n  <li><code>Il / Elle / On est</code> [il ɛ] = El / Ea este (<em>Elle est professeure</em>).</li>\n  <li><code>Nous sommes</code> [nu sɔm] = Noi suntem (<em>Nous sommes ici</em> = Suntem aici).</li>\n  <li><code>Vous êtes</code> [vuz ɛt] = Voi sunteți / Dumneavoastră sunteți (atenție la legătura fonetică cu sunet [z]!).</li>\n  <li><code>Ils / Elles sont</code> [il sõ] = Ei / Ele sunt (<em>Ils sont contents</em>).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe suis prêt.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Être",
@@ -5486,9 +5842,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Conjugarea regulată a verbului être la persoana I plural este 'Nous sommes'."
     },
     "task": "Scrie propoziția 'Je suis prêt.' (Sunt gata / pregătit).",
-    "starterCode": "// Scrie propoziția cu être\n",
+    "starterCode": "Je suis prêt.",
     "expectedOutputPattern": "Je\\s+suis\\s+pr[êe]t\\.?",
-    "hint": "Scrie Je suis prêt."
+    "hint": "Scrie Je suis prêt.",
+    "prompt": "Scrie propoziția 'Je suis prêt.' (Sunt gata / pregătit).",
+    "officialSolution": "Je suis prêt.",
+    "example": "Je suis prêt.",
+    "regexPattern": "Je\\s+suis\\s+pr[êe]t\\.?"
   },
   {
     "id": "fr-a1-p5",
@@ -5498,7 +5858,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 5: Verbul Auxiliar „AVOIR” (A AVEA) la Prezent",
-    "theory": "\n<p>Al doilea verb fundamental este <strong>avoir</strong> (a avea). Pe lângă posesie, în franceză se folosește pentru <strong>vârstă</strong> și pentru multe senzații fizice unde în română folosim „a fi”.</p>\n<h4>1. Conjugarea la Prezent</h4>\n<ul>\n  <li><code>J'ai</code> [je] = Eu am (<em>J'ai un ami</em> = Am un prieten).</li>\n  <li><code>Tu as</code> [ty a] = Tu ai.</li>\n  <li><code>Il / Elle / On a</code> [il a] = El / Ea are.</li>\n  <li><code>Nous avons</code> [nuz avõ] = Noi avem (cu liaison [z]).</li>\n  <li><code>Vous avez</code> [vuz ave] = Voi aveți / Dumneavoastră aveți.</li>\n  <li><code>Ils / Elles ont</code> [ilz õ] = Ei / Ele au (atenție: sunet [z] la legătură!).</li>\n</ul>\n<h4>2. Expresii Idiomatice cu Avoir</h4>\n<ul>\n  <li><em>J'ai 20 ans</em> = Am 20 de ani (NU spunem 'Je suis 20 ans').</li>\n  <li><em>J'ai faim</em> [fɛ̃] = Mi-e foame.</li>\n  <li><em>J'ai soif</em> [swaf] = Mi-e sete.</li>\n  <li><em>J'ai chaud / J'ai froid</em> = Mi-e cald / Mi-e frig.</li>\n</ul>\n",
+    "theory": "\n<p>Al doilea verb fundamental este <strong>avoir</strong> (a avea). Pe lângă posesie, în franceză se folosește pentru <strong>vârstă</strong> și pentru multe senzații fizice unde în română folosim „a fi”.</p>\n<h4>1. Conjugarea la Prezent</h4>\n<ul>\n  <li><code>J'ai</code> [je] = Eu am (<em>J'ai un ami</em> = Am un prieten).</li>\n  <li><code>Tu as</code> [ty a] = Tu ai.</li>\n  <li><code>Il / Elle / On a</code> [il a] = El / Ea are.</li>\n  <li><code>Nous avons</code> [nuz avõ] = Noi avem (cu liaison [z]).</li>\n  <li><code>Vous avez</code> [vuz ave] = Voi aveți / Dumneavoastră aveți.</li>\n  <li><code>Ils / Elles ont</code> [ilz õ] = Ei / Ele au (atenție: sunet [z] la legătură!).</li>\n</ul>\n<h4>2. Expresii Idiomatice cu Avoir</h4>\n<ul>\n  <li><em>J'ai 20 ans</em> = Am 20 de ani (NU spunem 'Je suis 20 ans').</li>\n  <li><em>J'ai faim</em> [fɛ̃] = Mi-e foame.</li>\n  <li><em>J'ai soif</em> [swaf] = Mi-e sete.</li>\n  <li><em>J'ai chaud / J'ai froid</em> = Mi-e cald / Mi-e frig.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJ'ai un livre et j'ai faim.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Avoir",
@@ -5549,7 +5909,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'J'ai un livre et j'ai faim.' (Am o carte și mi-e foame).",
     "starterCode": "J'ai un ",
     "expectedOutputPattern": "J['’]ai\\s+un\\s+livre\\s+et\\s+j['’]ai\\s+faim\\.?",
-    "hint": "Scrie J'ai un livre et j'ai faim."
+    "hint": "Scrie J'ai un livre et j'ai faim.",
+    "prompt": "Scrie propoziția 'J'ai un livre et j'ai faim.' (Am o carte și mi-e foame).",
+    "officialSolution": "J'ai un livre et j'ai faim.",
+    "example": "J'ai un livre et j'ai faim.",
+    "regexPattern": "J['’]ai\\s+un\\s+livre\\s+et\\s+j['’]ai\\s+faim\\.?"
   },
   {
     "id": "fr-a1-p6",
@@ -5559,7 +5923,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 6: Numerele de la 0 la 20 (Les Nombres de 0 à 20)",
-    "theory": "\n<p>Numărarea în franceză este esențială pentru ore, prețuri și numere de telefon. Iată primele 20 de numere:</p>\n<h4>1. De la 0 la 10</h4>\n<p><code>0: zéro</code>, <code>1: un</code>, <code>2: deux</code>, <code>3: trois</code>, <code>4: quatre</code>, <code>5: cinq</code>, <code>6: six</code>, <code>7: sept</code> (se pronunță [sɛt], p este mut!), <code>8: huit</code> [ɥit], <code>9: neuf</code>, <code>10: dix</code> [dis].</p>\n<h4>2. De la 11 la 20</h4>\n<p><code>11: onze</code>, <code>12: douze</code>, <code>13: treize</code>, <code>14: quatorze</code>, <code>15: quinze</code>, <code>16: seize</code>, <code>17: dix-sept</code>, <code>18: dix-huit</code>, <code>19: dix-neuf</code>, <code>20: vingt</code> [vɛ̃] (literele g și t sunt complet mute!).</p>\n",
+    "theory": "\n<p>Numărarea în franceză este esențială pentru ore, prețuri și numere de telefon. Iată primele 20 de numere:</p>\n<h4>1. De la 0 la 10</h4>\n<p><code>0: zéro</code>, <code>1: un</code>, <code>2: deux</code>, <code>3: trois</code>, <code>4: quatre</code>, <code>5: cinq</code>, <code>6: six</code>, <code>7: sept</code> (se pronunță [sɛt], p este mut!), <code>8: huit</code> [ɥit], <code>9: neuf</code>, <code>10: dix</code> [dis].</p>\n<h4>2. De la 11 la 20</h4>\n<p><code>11: onze</code>, <code>12: douze</code>, <code>13: treize</code>, <code>14: quatorze</code>, <code>15: quinze</code>, <code>16: seize</code>, <code>17: dix-sept</code>, <code>18: dix-huit</code>, <code>19: dix-neuf</code>, <code>20: vingt</code> [vɛ̃] (literele g și t sunt complet mute!).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nun, deux, trois\n</code></pre>\n",
     "glossary": [
       {
         "term": "un, deux, trois",
@@ -5608,9 +5972,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Numărul 15 se scrie 'quinze' [kɛ̃z]."
     },
     "task": "Scrie numerele 'un, deux, trois' separate prin virgulă și spațiu.",
-    "starterCode": "// Scrie 1, 2, 3 în franceză\n",
+    "starterCode": "un, deux, trois",
     "expectedOutputPattern": "un,\\s*deux,\\s*trois",
-    "hint": "Scrie un, deux, trois"
+    "hint": "Scrie un, deux, trois",
+    "prompt": "Scrie numerele 'un, deux, trois' separate prin virgulă și spațiu.",
+    "officialSolution": "un, deux, trois",
+    "example": "un, deux, trois",
+    "regexPattern": "un,\\s*deux,\\s*trois"
   },
   {
     "id": "fr-a1-p7",
@@ -5620,7 +5988,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 7: Numerele de la 20 la 100 & Sistemul Vigesimal Francez",
-    "theory": "\n<p>Numerele mari în franceză conțin o particularitate istorică fascinantă: sistemul de numărare în baze de 20 (sistem vigesimal de la celți).</p>\n<h4>1. Zecile Regulate</h4>\n<p><code>20: vingt</code>, <code>30: trente</code>, <code>40: quarante</code>, <code>50: cinquante</code>, <code>60: soixante</code>.</p>\n<p>Pentru 21, 31, 41, 51, 61 se adaugă 'et un': <em>vingt et un</em>, <em>trente et un</em>.</p>\n<h4>2. Zecile Speciale (70, 80, 90)</h4>\n<ul>\n  <li><code>70: soixante-dix</code> (literalmente: 60 + 10). 71 este <em>soixante et onze</em> (60 + 11).</li>\n  <li><code>80: quatre-vingts</code> (literalmente: 4 de 20, adică 4 × 20).</li>\n  <li><code>90: quatre-vingt-dix</code> (literalmente: 4 × 20 + 10). 95 este <em>quatre-vingt-quinze</em> (4 × 20 + 15).</li>\n  <li><code>100: cent</code> [sã].</li>\n</ul>\n",
+    "theory": "\n<p>Numerele mari în franceză conțin o particularitate istorică fascinantă: sistemul de numărare în baze de 20 (sistem vigesimal de la celți).</p>\n<h4>1. Zecile Regulate</h4>\n<p><code>20: vingt</code>, <code>30: trente</code>, <code>40: quarante</code>, <code>50: cinquante</code>, <code>60: soixante</code>.</p>\n<p>Pentru 21, 31, 41, 51, 61 se adaugă 'et un': <em>vingt et un</em>, <em>trente et un</em>.</p>\n<h4>2. Zecile Speciale (70, 80, 90)</h4>\n<ul>\n  <li><code>70: soixante-dix</code> (literalmente: 60 + 10). 71 este <em>soixante et onze</em> (60 + 11).</li>\n  <li><code>80: quatre-vingts</code> (literalmente: 4 de 20, adică 4 × 20).</li>\n  <li><code>90: quatre-vingt-dix</code> (literalmente: 4 × 20 + 10). 95 este <em>quatre-vingt-quinze</em> (4 × 20 + 15).</li>\n  <li><code>100: cent</code> [sã].</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\ncent\n</code></pre>\n",
     "glossary": [
       {
         "term": "soixante-dix (70)",
@@ -5669,9 +6037,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "În franceza din Franța, 80 se calculează ca 4 × 20: 'quatre-vingts'."
     },
     "task": "Scrie numărul 100 în limba franceză: 'cent'.",
-    "starterCode": "// Scrie 100\n",
+    "starterCode": "cent",
     "expectedOutputPattern": "cent",
-    "hint": "Scrie cent"
+    "hint": "Scrie cent",
+    "prompt": "Scrie numărul 100 în limba franceză: 'cent'.",
+    "officialSolution": "cent",
+    "example": "cent",
+    "regexPattern": "cent"
   },
   {
     "id": "fr-a1-p8",
@@ -5681,7 +6053,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 8: Zilele Săptămânii, Lunile Anului & Anotimpurile",
-    "theory": "\n<p>Toate zilele săptămânii și toate anotimpurile sunt de genul <strong>masculin</strong> în limba franceză și se scriu cu <strong>literă mică</strong>.</p>\n<h4>1. Zilele Săptămânii (Les Jours de la Semaine)</h4>\n<p><code>lundi</code> (luni), <code>mardi</code> (marți), <code>mercredi</code> (miercuri), <code>jeudi</code> (joi), <code>vendredi</code> (vineri), <code>samedi</code> (sâmbătă), <code>dimanche</code> (duminică).</p>\n<h4>2. Lunile Anului (Les Mois)</h4>\n<p><em>janvier, février, mars, avril, mai, juin, juillet, août [ut], septembre, octobre, novembre, décembre</em>.</p>\n<h4>3. Anotimpurile (Les Saisons)</h4>\n<p><code>le printemps</code> (primăvara), <code>l'été</code> (vara), <code>l'automne</code> (toamna), <code>l'hiver</code> (iarna).</p>\n<p>Spunem: <em>au printemps</em> (primăvara), dar <em>en été, en automne, en hiver</em> (în fața vocalelor).</p>\n",
+    "theory": "\n<p>Toate zilele săptămânii și toate anotimpurile sunt de genul <strong>masculin</strong> în limba franceză și se scriu cu <strong>literă mică</strong>.</p>\n<h4>1. Zilele Săptămânii (Les Jours de la Semaine)</h4>\n<p><code>lundi</code> (luni), <code>mardi</code> (marți), <code>mercredi</code> (miercuri), <code>jeudi</code> (joi), <code>vendredi</code> (vineri), <code>samedi</code> (sâmbătă), <code>dimanche</code> (duminică).</p>\n<h4>2. Lunile Anului (Les Mois)</h4>\n<p><em>janvier, février, mars, avril, mai, juin, juillet, août [ut], septembre, octobre, novembre, décembre</em>.</p>\n<h4>3. Anotimpurile (Les Saisons)</h4>\n<p><code>le printemps</code> (primăvara), <code>l'été</code> (vara), <code>l'automne</code> (toamna), <code>l'hiver</code> (iarna).</p>\n<p>Spunem: <em>au printemps</em> (primăvara), dar <em>en été, en automne, en hiver</em> (în fața vocalelor).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nAujourd'hui c'est lundi.\n</code></pre>\n",
     "glossary": [
       {
         "term": "lundi, mardi...",
@@ -5732,7 +6104,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Aujourd'hui c'est lundi.' (Astăzi este luni).",
     "starterCode": "Aujourd'hui c'est ",
     "expectedOutputPattern": "Aujourd['’]hui\\s+c['’]est\\s+lundi\\.?",
-    "hint": "Scrie Aujourd'hui c'est lundi."
+    "hint": "Scrie Aujourd'hui c'est lundi.",
+    "prompt": "Scrie propoziția 'Aujourd'hui c'est lundi.' (Astăzi este luni).",
+    "officialSolution": "Aujourd'hui c'est lundi.",
+    "example": "Aujourd'hui c'est lundi.",
+    "regexPattern": "Aujourd['’]hui\\s+c['’]est\\s+lundi\\.?"
   },
   {
     "id": "fr-a1-p9",
@@ -5742,7 +6118,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 9: Cât este ceasul? Exprimarea Timpului (L'Heure)",
-    "theory": "\n<p>Pentru a întreba cât este ceasul, spunem: <strong>« Quelle heure est-il? »</strong>. Răspunsul începe întotdeauna cu structura impersonală <strong>« Il est... »</strong>.</p>\n<h4>1. Ore Fixe</h4>\n<ul>\n  <li><em>Il est une heure</em> = Este ora 1.</li>\n  <li><em>Il est deux heures</em> = Este ora 2 (adăugăm 's' la heures).</li>\n  <li><em>Il est midi</em> = Este ora 12:00 la prânz.</li>\n  <li><em>Il est minuit</em> = Este ora 12:00 noaptea (miezul nopții).</li>\n</ul>\n<h4>2. Minute, Jumătăți și Sferturi</h4>\n<ul>\n  <li><em>et quart</em> = și un sfert (ex: <em>Il est trois heures et quart</em> = 3:15).</li>\n  <li><em>et demie</em> = și jumătate (ex: <em>Il est quatre heures et demie</em> = 4:30).</li>\n  <li><em>moins le quart</em> = fără un sfert (ex: <em>Il est cinq heures moins le quart</em> = 4:45).</li>\n  <li><em>moins dix</em> = fără 10 minute (ex: <em>cinq heures moins dix</em> = 4:50).</li>\n</ul>\n",
+    "theory": "\n<p>Pentru a întreba cât este ceasul, spunem: <strong>« Quelle heure est-il? »</strong>. Răspunsul începe întotdeauna cu structura impersonală <strong>« Il est... »</strong>.</p>\n<h4>1. Ore Fixe</h4>\n<ul>\n  <li><em>Il est une heure</em> = Este ora 1.</li>\n  <li><em>Il est deux heures</em> = Este ora 2 (adăugăm 's' la heures).</li>\n  <li><em>Il est midi</em> = Este ora 12:00 la prânz.</li>\n  <li><em>Il est minuit</em> = Este ora 12:00 noaptea (miezul nopții).</li>\n</ul>\n<h4>2. Minute, Jumătăți și Sferturi</h4>\n<ul>\n  <li><em>et quart</em> = și un sfert (ex: <em>Il est trois heures et quart</em> = 3:15).</li>\n  <li><em>et demie</em> = și jumătate (ex: <em>Il est quatre heures et demie</em> = 4:30).</li>\n  <li><em>moins le quart</em> = fără un sfert (ex: <em>Il est cinq heures moins le quart</em> = 4:45).</li>\n  <li><em>moins dix</em> = fără 10 minute (ex: <em>cinq heures moins dix</em> = 4:50).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nIl est midi et quart.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Quelle heure est-il?",
@@ -5793,7 +6169,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Il est midi et quart.' (Este ora 12 și un sfert).",
     "starterCode": "Il est ",
     "expectedOutputPattern": "Il\\s+est\\s+midi\\s+et\\s+quart\\.?",
-    "hint": "Scrie Il est midi et quart."
+    "hint": "Scrie Il est midi et quart.",
+    "prompt": "Scrie propoziția 'Il est midi et quart.' (Este ora 12 și un sfert).",
+    "officialSolution": "Il est midi et quart.",
+    "example": "Il est midi et quart.",
+    "regexPattern": "Il\\s+est\\s+midi\\s+et\\s+quart\\.?"
   },
   {
     "id": "fr-a1-p10",
@@ -5803,7 +6183,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 10: Articolele Hotărâte & Nehotărâte (Le, La, L', Les / Un, Une, Des)",
-    "theory": "\n<p>În franceză, fiecare substantiv are un gen (masculin sau feminin) și este însoțit aproape întotdeauna de un articol.</p>\n<h4>1. Articole Nehotărâte (Un, O, Niște)</h4>\n<ul>\n  <li><code>un</code> = masculin singular (<em>un livre</em> = o carte, <em>un garçon</em> = un băiat).</li>\n  <li><code>une</code> = feminin singular (<em>une table</em> = o masă, <em>une fille</em> = o fată).</li>\n  <li><code>des</code> = plural nedeterminat (<em>des livres</em> = niște cărți).</li>\n</ul>\n<h4>2. Articole Hotărâte (Cel, Cea, -ul, -a)</h4>\n<ul>\n  <li><code>le</code> = masculin singular (<em>le café</em> = cafeaua).</li>\n  <li><code>la</code> = feminin singular (<em>la maison</em> = casa).</li>\n  <li><code>l'</code> = masculin sau feminin înainte de vocală sau h mut (<em>l'ami</em>, <em>l'hôtel</em>).</li>\n  <li><code>les</code> = plural pentru ambele genuri (<em>les amis</em> = prietenii).</li>\n</ul>\n",
+    "theory": "\n<p>În franceză, fiecare substantiv are un gen (masculin sau feminin) și este însoțit aproape întotdeauna de un articol.</p>\n<h4>1. Articole Nehotărâte (Un, O, Niște)</h4>\n<ul>\n  <li><code>un</code> = masculin singular (<em>un livre</em> = o carte, <em>un garçon</em> = un băiat).</li>\n  <li><code>une</code> = feminin singular (<em>une table</em> = o masă, <em>une fille</em> = o fată).</li>\n  <li><code>des</code> = plural nedeterminat (<em>des livres</em> = niște cărți).</li>\n</ul>\n<h4>2. Articole Hotărâte (Cel, Cea, -ul, -a)</h4>\n<ul>\n  <li><code>le</code> = masculin singular (<em>le café</em> = cafeaua).</li>\n  <li><code>la</code> = feminin singular (<em>la maison</em> = casa).</li>\n  <li><code>l'</code> = masculin sau feminin înainte de vocală sau h mut (<em>l'ami</em>, <em>l'hôtel</em>).</li>\n  <li><code>les</code> = plural pentru ambele genuri (<em>les amis</em> = prietenii).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nle garçon et la fille\n</code></pre>\n",
     "glossary": [
       {
         "term": "un / une / des",
@@ -5852,9 +6232,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Când un cuvânt feminin începe cu o vocală, 'la' devine 'l'' prin eliziune: 'l'école'."
     },
     "task": "Scrie perechea articol hotărât + substantiv: 'le garçon et la fille' (băiatul și fata).",
-    "starterCode": "// Scrie băiatul și fata\n",
+    "starterCode": "le garçon et la fille",
     "expectedOutputPattern": "le\\s+gar[çc]on\\s+et\\s+la\\s+fille\\.?",
-    "hint": "Scrie le garçon et la fille"
+    "hint": "Scrie le garçon et la fille",
+    "prompt": "Scrie perechea articol hotărât + substantiv: 'le garçon et la fille' (băiatul și fata).",
+    "officialSolution": "le garçon et la fille",
+    "example": "le garçon et la fille",
+    "regexPattern": "le\\s+gar[çc]on\\s+et\\s+la\\s+fille\\.?"
   },
   {
     "id": "fr-a1-p11",
@@ -5864,7 +6248,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 11: Cum Spunem „NU”: Negația (Ne ... Pas)",
-    "theory": "\n<p>În limba franceză, negația standard este formată din <strong>două părți</strong> care îmbrățișează verbul ca un sandviș: <strong>NE + verb + PAS</strong>.</p>\n<h4>1. Structura de Bază</h4>\n<ul>\n  <li><em>Je parle</em> (Vorbesc) $\rightarrow$ <em>Je <strong>ne</strong> parle <strong>pas</strong></em> (Nu vorbesc).</li>\n  <li><em>Il comprend</em> (El înțelege) $\rightarrow$ <em>Il <strong>ne</strong> comprend <strong>pas</strong></em> (El nu înțelege).</li>\n</ul>\n<h4>2. Eliziunea 'N'' în fața Vocalelor</h4>\n<p>Dacă verbul începe cu o vocală sau un 'h' mut, <code>ne</code> devine obligatoriu <code>n'</code>:</p>\n<ul>\n  <li><em>J'aime</em> $\rightarrow$ <em>Je <strong>n'</strong>aime <strong>pas</strong></em>.</li>\n  <li><em>Il est prêt</em> $\rightarrow$ <em>Il <strong>n'</strong>est <strong>pas</strong> prêt</em>.</li>\n  <li><em>J'ai faim</em> $\rightarrow$ <em>Je <strong>n'</strong>ai <strong>pas</strong> faim</em>.</li>\n</ul>\n",
+    "theory": "\n<p>În limba franceză, negația standard este formată din <strong>două părți</strong> care îmbrățișează verbul ca un sandviș: <strong>NE + verb + PAS</strong>.</p>\n<h4>1. Structura de Bază</h4>\n<ul>\n  <li><em>Je parle</em> (Vorbesc) $\rightarrow$ <em>Je <strong>ne</strong> parle <strong>pas</strong></em> (Nu vorbesc).</li>\n  <li><em>Il comprend</em> (El înțelege) $\rightarrow$ <em>Il <strong>ne</strong> comprend <strong>pas</strong></em> (El nu înțelege).</li>\n</ul>\n<h4>2. Eliziunea 'N'' în fața Vocalelor</h4>\n<p>Dacă verbul începe cu o vocală sau un 'h' mut, <code>ne</code> devine obligatoriu <code>n'</code>:</p>\n<ul>\n  <li><em>J'aime</em> $\rightarrow$ <em>Je <strong>n'</strong>aime <strong>pas</strong></em>.</li>\n  <li><em>Il est prêt</em> $\rightarrow$ <em>Il <strong>n'</strong>est <strong>pas</strong> prêt</em>.</li>\n  <li><em>J'ai faim</em> $\rightarrow$ <em>Je <strong>n'</strong>ai <strong>pas</strong> faim</em>.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe ne parle pas français.\n</code></pre>\n",
     "glossary": [
       {
         "term": "ne ... pas",
@@ -5915,7 +6299,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția negativă 'Je ne parle pas français.' (Nu vorbesc franceză).",
     "starterCode": "Je ne ",
     "expectedOutputPattern": "Je\\s+ne\\s+parle\\s+pas\\s+fran[çc]ais\\.?",
-    "hint": "Scrie Je ne parle pas français."
+    "hint": "Scrie Je ne parle pas français.",
+    "prompt": "Scrie propoziția negativă 'Je ne parle pas français.' (Nu vorbesc franceză).",
+    "officialSolution": "Je ne parle pas français.",
+    "example": "Je ne parle pas français.",
+    "regexPattern": "Je\\s+ne\\s+parle\\s+pas\\s+fran[çc]ais\\.?"
   },
   {
     "id": "fr-a1-p12",
@@ -5925,7 +6313,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 12: Cuvinte Interogative (Qui, Que, Où, Quand, Comment, Pourquoi)",
-    "theory": "\n<p>Pentru a pune întrebări de la zero, ai nevoie de cele 7 cuvinte interogative esențiale:</p>\n<h4>1. Pronumele și Adverbele de Întrebare</h4>\n<ul>\n  <li><code>Qui?</code> [ki] = Cine? (<em>Qui est là?</em> = Cine este acolo?).</li>\n  <li><code>Que / Qu'est-ce que?</code> = Ce? (<em>Qu'est-ce que tu fais?</em> = Ce faci?).</li>\n  <li><code>Où?</code> [u] = Unde? (<em>Où habitez-vous?</em> = Unde locuiți?).</li>\n  <li><code>Quand?</code> [kã] = Când? (<em>Quand part le train?</em> = Când pleacă trenul?).</li>\n  <li><code>Comment?</code> [kɔmã] = Cum? (<em>Comment ça va?</em> = Cum merge / Ce mai faci?).</li>\n  <li><code>Combien?</code> [kõbjɛ̃] = Cât / Câți? (<em>Combien ça coûte?</em> = Cât costă asta?).</li>\n  <li><code>Pourquoi?</code> [purkwa] = De ce? Răspunsul începe cu <code>Parce que</code> (Pentru că).</li>\n</ul>\n",
+    "theory": "\n<p>Pentru a pune întrebări de la zero, ai nevoie de cele 7 cuvinte interogative esențiale:</p>\n<h4>1. Pronumele și Adverbele de Întrebare</h4>\n<ul>\n  <li><code>Qui?</code> [ki] = Cine? (<em>Qui est là?</em> = Cine este acolo?).</li>\n  <li><code>Que / Qu'est-ce que?</code> = Ce? (<em>Qu'est-ce que tu fais?</em> = Ce faci?).</li>\n  <li><code>Où?</code> [u] = Unde? (<em>Où habitez-vous?</em> = Unde locuiți?).</li>\n  <li><code>Quand?</code> [kã] = Când? (<em>Quand part le train?</em> = Când pleacă trenul?).</li>\n  <li><code>Comment?</code> [kɔmã] = Cum? (<em>Comment ça va?</em> = Cum merge / Ce mai faci?).</li>\n  <li><code>Combien?</code> [kõbjɛ̃] = Cât / Câți? (<em>Combien ça coûte?</em> = Cât costă asta?).</li>\n  <li><code>Pourquoi?</code> [purkwa] = De ce? Răspunsul începe cu <code>Parce que</code> (Pentru că).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nOù sont les toilettes, s'il vous plaît?\n</code></pre>\n",
     "glossary": [
       {
         "term": "Où",
@@ -5976,7 +6364,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Întreabă unde este toaleta: 'Où sont les toilettes, s'il vous plaît?'.",
     "starterCode": "Où sont ",
     "expectedOutputPattern": "O[ùu]\\s+sont\\s+les\\s+toilettes,\\s*s['’]il\\s+vous\\s+pla[iî]t\\??",
-    "hint": "Scrie Où sont les toilettes, s'il vous plaît?"
+    "hint": "Scrie Où sont les toilettes, s'il vous plaît?",
+    "prompt": "Întreabă unde este toaleta: 'Où sont les toilettes, s'il vous plaît?'.",
+    "officialSolution": "Où sont les toilettes, s'il vous plaît?",
+    "example": "Où sont les toilettes, s'il vous plaît?",
+    "regexPattern": "O[ùu]\\s+sont\\s+les\\s+toilettes,\\s*s['’]il\\s+vous\\s+pla[iî]t\\??"
   },
   {
     "id": "fr-a1-p13",
@@ -5986,7 +6378,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 13: Culori, Adjective & Acordul de Gen și Număr",
-    "theory": "\n<p>În franceză, adjectivele <strong>se acordă în gen (masculin/feminin) și număr (singular/plural)</strong> cu substantivul pe care îl descriu.</p>\n<h4>1. Regula Generală</h4>\n<ul>\n  <li>Pentru feminin: adaugă un <code>-e</code> la forma de masculin (<em>petit $\rightarrow$ petite</em>, <em>grand $\rightarrow$ grande</em>).</li>\n  <li>Pentru plural: adaugă un <code>-s</code> la ambele genuri (<em>petits / petites</em>).</li>\n</ul>\n<h4>2. Culorile de Bază</h4>\n<ul>\n  <li><em>blanc / blanche</em> (alb / albă), <em>noir / noire</em> (negru / neagră).</li>\n  <li><em>bleu / bleue</em> (albastru / albastră), <em>vert / verte</em> (verde).</li>\n  <li><em>rouge</em> (roșu - deja se termină în -e, rămâne la fel la feminin!).</li>\n  <li><em>jaune</em> (galben), <em>orange</em> și <em>marron</em> (sunt invariabile!).</li>\n</ul>\n<h4>3. Poziția Adjectivului</h4>\n<p>Majoritatea adjectivelor stau <strong>după substantiv</strong> (<em>un livre rouge</em>), cu excepția celor scurte de frumusețe, vârstă, bunătate și mărime (BAGS: <em>un beau garçon</em>, <em>une grande maison</em>).</p>\n",
+    "theory": "\n<p>În franceză, adjectivele <strong>se acordă în gen (masculin/feminin) și număr (singular/plural)</strong> cu substantivul pe care îl descriu.</p>\n<h4>1. Regula Generală</h4>\n<ul>\n  <li>Pentru feminin: adaugă un <code>-e</code> la forma de masculin (<em>petit $\rightarrow$ petite</em>, <em>grand $\rightarrow$ grande</em>).</li>\n  <li>Pentru plural: adaugă un <code>-s</code> la ambele genuri (<em>petits / petites</em>).</li>\n</ul>\n<h4>2. Culorile de Bază</h4>\n<ul>\n  <li><em>blanc / blanche</em> (alb / albă), <em>noir / noire</em> (negru / neagră).</li>\n  <li><em>bleu / bleue</em> (albastru / albastră), <em>vert / verte</em> (verde).</li>\n  <li><em>rouge</em> (roșu - deja se termină în -e, rămâne la fel la feminin!).</li>\n  <li><em>jaune</em> (galben), <em>orange</em> și <em>marron</em> (sunt invariabile!).</li>\n</ul>\n<h4>3. Poziția Adjectivului</h4>\n<p>Majoritatea adjectivelor stau <strong>după substantiv</strong> (<em>un livre rouge</em>), cu excepția celor scurte de frumusețe, vârstă, bunătate și mărime (BAGS: <em>un beau garçon</em>, <em>une grande maison</em>).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nune maison blanche et une grande porte\n</code></pre>\n",
     "glossary": [
       {
         "term": "Accord des adjectifs",
@@ -6037,7 +6429,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie sintagma 'une maison blanche et une grande porte' (o casă albă și o ușă mare).",
     "starterCode": "une maison ",
     "expectedOutputPattern": "une\\s+maison\\s+blanche\\s+et\\s+une\\s+grande\\s+porte\\.?",
-    "hint": "Scrie une maison blanche et une grande porte"
+    "hint": "Scrie une maison blanche et une grande porte",
+    "prompt": "Scrie sintagma 'une maison blanche et une grande porte' (o casă albă și o ușă mare).",
+    "officialSolution": "une maison blanche et une grande porte",
+    "example": "une maison blanche et une grande porte",
+    "regexPattern": "une\\s+maison\\s+blanche\\s+et\\s+une\\s+grande\\s+porte\\.?"
   },
   {
     "id": "fr-a1-p14",
@@ -6047,7 +6443,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 14: Familia & Arborele Genealogic (La Famille)",
-    "theory": "\n<p>Să învățăm membrii familiei în limba franceză alături de articolele corespunzătoare:</p>\n<h4>1. Familia Directă</h4>\n<ul>\n  <li><code>le père</code> [pɛr] = tatăl / <code>papa</code> = tati.</li>\n  <li><code>la mère</code> [mɛr] = mama / <code>maman</code> = mami.</li>\n  <li><code>les parents</code> [parã] = părinții (atenție: nu înseamnă 'rude', ci strict 'părinți'!).</li>\n  <li><code>le fils</code> [fis] = fiul (litera l este mută, s se pronunță!).</li>\n  <li><code>la fille</code> [fij] = fiica (sau fata).</li>\n  <li><code>le frère</code> [frɛr] = fratele.</li>\n  <li><code>la sœur</code> [sœr] = sora.</li>\n</ul>\n<h4>2. Rude Extinse</h4>\n<p><code>les grands-parents</code> (bunicii), <code>le grand-père</code> (bunicul), <code>la grand-mère</code> (bunica), <code>l'oncle</code> (unchiul), <code>la tante</code> (mătușa), <code>le cousin / la cousine</code> (vărul / verișoara).</p>\n",
+    "theory": "\n<p>Să învățăm membrii familiei în limba franceză alături de articolele corespunzătoare:</p>\n<h4>1. Familia Directă</h4>\n<ul>\n  <li><code>le père</code> [pɛr] = tatăl / <code>papa</code> = tati.</li>\n  <li><code>la mère</code> [mɛr] = mama / <code>maman</code> = mami.</li>\n  <li><code>les parents</code> [parã] = părinții (atenție: nu înseamnă 'rude', ci strict 'părinți'!).</li>\n  <li><code>le fils</code> [fis] = fiul (litera l este mută, s se pronunță!).</li>\n  <li><code>la fille</code> [fij] = fiica (sau fata).</li>\n  <li><code>le frère</code> [frɛr] = fratele.</li>\n  <li><code>la sœur</code> [sœr] = sora.</li>\n</ul>\n<h4>2. Rude Extinse</h4>\n<p><code>les grands-parents</code> (bunicii), <code>le grand-père</code> (bunicul), <code>la grand-mère</code> (bunica), <code>l'oncle</code> (unchiul), <code>la tante</code> (mătușa), <code>le cousin / la cousine</code> (vărul / verișoara).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nMon père, ma mère et mon frère.\n</code></pre>\n",
     "glossary": [
       {
         "term": "les parents",
@@ -6098,7 +6494,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Mon père, ma mère et mon frère.' (Tatăl meu, mama mea și fratele meu).",
     "starterCode": "Mon père, ",
     "expectedOutputPattern": "Mon\\s+p[èe]re,\\s*ma\\s+m[èe]re\\s+et\\s+mon\\s+fr[èe]re\\.?",
-    "hint": "Scrie Mon père, ma mère et mon frère."
+    "hint": "Scrie Mon père, ma mère et mon frère.",
+    "prompt": "Scrie propoziția 'Mon père, ma mère et mon frère.' (Tatăl meu, mama mea și fratele meu).",
+    "officialSolution": "Mon père, ma mère et mon frère.",
+    "example": "Mon père, ma mère et mon frère.",
+    "regexPattern": "Mon\\s+p[èe]re,\\s*ma\\s+m[èe]re\\s+et\\s+mon\\s+fr[èe]re\\.?"
   },
   {
     "id": "fr-a1-p15",
@@ -6108,7 +6508,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 15: Adjectivele Posesive (Mon, Ma, Mes / Ton, Ta, Tes / Son, Sa, Ses)",
-    "theory": "\n<p>În franceză, adjectivul posesiv <strong>se acordă cu obiectul posedat</strong> (cu ce ai), NU cu persoana care îl deține!</p>\n<h4>1. Tabelul Posesivelor</h4>\n<table>\n  <tr><th>Posesor</th><th>Masc. Sg.</th><th>Fem. Sg.</th><th>Plural (Masc & Fem)</th></tr>\n  <tr><td>Eu (Je)</td><td><code>mon</code></td><td><code>ma</code></td><td><code>mes</code></td></tr>\n  <tr><td>Tu (Tu)</td><td><code>ton</code></td><td><code>ta</code></td><td><code>tes</code></td></tr>\n  <tr><td>El/Ea (Il/Elle)</td><td><code>son</code></td><td><code>sa</code></td><td><code>ses</code></td></tr>\n  <tr><td>Noi (Nous)</td><td><code>notre</code></td><td><code>notre</code></td><td><code>nos</code></td></tr>\n  <tr><td>Voi/Dvs (Vous)</td><td><code>votre</code></td><td><code>votre</code></td><td><code>vos</code></td></tr>\n  <tr><td>Ei/Ele (Ils/Elles)</td><td><code>leur</code></td><td><code>leur</code></td><td><code>leurs</code></td></tr>\n</table>\n<h4>2. Regula Secretă: 'Mon' în loc de 'Ma'</h4>\n<p>Dacă un cuvânt feminin începe cu o vocală, se folosește <code>mon</code> în loc de <code>ma</code> pentru a evita ciocnirea a două vocale: <em><strong>mon</strong> amie</em> (prietena mea), NU <em>ma amie</em>!</p>\n",
+    "theory": "\n<p>În franceză, adjectivul posesiv <strong>se acordă cu obiectul posedat</strong> (cu ce ai), NU cu persoana care îl deține!</p>\n<h4>1. Tabelul Posesivelor</h4>\n<table>\n  <tr><th>Posesor</th><th>Masc. Sg.</th><th>Fem. Sg.</th><th>Plural (Masc & Fem)</th></tr>\n  <tr><td>Eu (Je)</td><td><code>mon</code></td><td><code>ma</code></td><td><code>mes</code></td></tr>\n  <tr><td>Tu (Tu)</td><td><code>ton</code></td><td><code>ta</code></td><td><code>tes</code></td></tr>\n  <tr><td>El/Ea (Il/Elle)</td><td><code>son</code></td><td><code>sa</code></td><td><code>ses</code></td></tr>\n  <tr><td>Noi (Nous)</td><td><code>notre</code></td><td><code>notre</code></td><td><code>nos</code></td></tr>\n  <tr><td>Voi/Dvs (Vous)</td><td><code>votre</code></td><td><code>votre</code></td><td><code>vos</code></td></tr>\n  <tr><td>Ei/Ele (Ils/Elles)</td><td><code>leur</code></td><td><code>leur</code></td><td><code>leurs</code></td></tr>\n</table>\n<h4>2. Regula Secretă: 'Mon' în loc de 'Ma'</h4>\n<p>Dacă un cuvânt feminin începe cu o vocală, se folosește <code>mon</code> în loc de <code>ma</code> pentru a evita ciocnirea a două vocale: <em><strong>mon</strong> amie</em> (prietena mea), NU <em>ma amie</em>!</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nmon passeport et mes bagages\n</code></pre>\n",
     "glossary": [
       {
         "term": "mon, ton, son",
@@ -6157,9 +6557,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "În fața oricărui substantiv feminin care începe cu vocală sau h mut, ma/ta/sa devin obligatoriu mon/ton/son pentru fluiditate fonetică."
     },
     "task": "Scrie sintagma 'mon passeport et mes bagages' (pașaportul meu și bagajele mele).",
-    "starterCode": "// Scrie sintagma\n",
+    "starterCode": "mon passeport et mes bagages",
     "expectedOutputPattern": "mon\\s+passeport\\s+et\\s+mes\\s+bagages\\.?",
-    "hint": "Scrie mon passeport et mes bagages"
+    "hint": "Scrie mon passeport et mes bagages",
+    "prompt": "Scrie sintagma 'mon passeport et mes bagages' (pașaportul meu și bagajele mele).",
+    "officialSolution": "mon passeport et mes bagages",
+    "example": "mon passeport et mes bagages",
+    "regexPattern": "mon\\s+passeport\\s+et\\s+mes\\s+bagages\\.?"
   },
   {
     "id": "fr-a1-p16",
@@ -6169,7 +6573,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 16: Corpul Uman & Cum Exprimăm Durerea (J'ai mal à...)",
-    "theory": "\n<p>Când mergi la medic sau la farmacie în Franța, trebuie să știi să indici unde te doare.</p>\n<h4>1. Părțile Corpului (Le Corps Humain)</h4>\n<ul>\n  <li><code>la tête</code> (capul), <code>le ventre</code> (burta/stomacul), <code>le dos</code> (spatele).</li>\n  <li><code>la gorge</code> (gâtul), <code>les yeux</code> (ochii), <code>les dents</code> (dinții).</li>\n  <li><code>le bras</code> (brațul), <code>la jambe</code> (piciorul).</li>\n</ul>\n<h4>2. Structura: AVOIR MAL À...</h4>\n<p>Prepoziția <code>à</code> se contractă cu articolul hotărât:</p>\n<ul>\n  <li>à + le = <strong>au</strong>: <em>J'ai mal <strong>au</strong> ventre / au dos</em> (Mă doare burta / spatele).</li>\n  <li>à + la = <strong>à la</strong>: <em>J'ai mal <strong>à la</strong> tête / à la gorge</em> (Mă doare capul / gâtul).</li>\n  <li>à + l' = <strong>à l'</strong>: <em>J'ai mal <strong>à l'</strong>oreille</em> (Mă doare urechea).</li>\n  <li>à + les = <strong>aux</strong>: <em>J'ai mal <strong>aux</strong> dents / aux yeux</em> (Mă dor dinții / ochii).</li>\n</ul>\n",
+    "theory": "\n<p>Când mergi la medic sau la farmacie în Franța, trebuie să știi să indici unde te doare.</p>\n<h4>1. Părțile Corpului (Le Corps Humain)</h4>\n<ul>\n  <li><code>la tête</code> (capul), <code>le ventre</code> (burta/stomacul), <code>le dos</code> (spatele).</li>\n  <li><code>la gorge</code> (gâtul), <code>les yeux</code> (ochii), <code>les dents</code> (dinții).</li>\n  <li><code>le bras</code> (brațul), <code>la jambe</code> (piciorul).</li>\n</ul>\n<h4>2. Structura: AVOIR MAL À...</h4>\n<p>Prepoziția <code>à</code> se contractă cu articolul hotărât:</p>\n<ul>\n  <li>à + le = <strong>au</strong>: <em>J'ai mal <strong>au</strong> ventre / au dos</em> (Mă doare burta / spatele).</li>\n  <li>à + la = <strong>à la</strong>: <em>J'ai mal <strong>à la</strong> tête / à la gorge</em> (Mă doare capul / gâtul).</li>\n  <li>à + l' = <strong>à l'</strong>: <em>J'ai mal <strong>à l'</strong>oreille</em> (Mă doare urechea).</li>\n  <li>à + les = <strong>aux</strong>: <em>J'ai mal <strong>aux</strong> dents / aux yeux</em> (Mă dor dinții / ochii).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJ'ai mal à la tête et j'ai de la fièvre.\n</code></pre>\n",
     "glossary": [
       {
         "term": "J'ai mal à la tête",
@@ -6220,7 +6624,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie fraza medicală 'J'ai mal à la tête et j'ai de la fièvre.' (Mă doare capul și am febră).",
     "starterCode": "J'ai mal à ",
     "expectedOutputPattern": "J['’]ai\\s+mal\\s+[àa]\\s+la\\s+t[êe]te\\s+et\\s+j['’]ai\\s+de\\s+la\\s+fi[èe]vre\\.?",
-    "hint": "Scrie J'ai mal à la tête et j'ai de la fièvre."
+    "hint": "Scrie J'ai mal à la tête et j'ai de la fièvre.",
+    "prompt": "Scrie fraza medicală 'J'ai mal à la tête et j'ai de la fièvre.' (Mă doare capul și am febră).",
+    "officialSolution": "J'ai mal à la tête et j'ai de la fièvre.",
+    "example": "J'ai mal à la tête et j'ai de la fièvre.",
+    "regexPattern": "J['’]ai\\s+mal\\s+[àa]\\s+la\\s+t[êe]te\\s+et\\s+j['’]ai\\s+de\\s+la\\s+fi[èe]vre\\.?"
   },
   {
     "id": "fr-a1-p17",
@@ -6230,7 +6638,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 17: Mâncarea, Băuturile & La Restaurant (Comanda & Nota)",
-    "theory": "\n<p>Mâncarea este o artă în cultura franceză. Iată cum comanzi ca un localnic într-o braserie pariziană:</p>\n<h4>1. Mesele Zilei & Alimente Esențiale</h4>\n<ul>\n  <li><code>le petit-déjeuner</code> = micul dejun.</li>\n  <li><code>le déjeuner</code> = prânzul.</li>\n  <li><code>le dîner</code> = cina.</li>\n  <li><em>le poulet</em> (puiul), <em>la viande</em> (carnea), <em>le poisson</em> (peștele), <em>les légumes</em> (legumele), <em>le fromage</em> (brânza).</li>\n</ul>\n<h4>2. Cum Comanzi Politicos</h4>\n<p>Nu spune niciodată « Je veux » (Vreau - sună agresiv!). Folosește condiționalul de politețe:</p>\n<ul>\n  <li><code>Je voudrais...</code> [jə vudrɛ] = Aș dori... (<em>Je voudrais un café, s'il vous plaît</em>).</li>\n  <li><code>Pour moi, ce sera...</code> = Pentru mine va fi...</li>\n  <li><code>L'addition, s'il vous plaît!</code> [ladisjõ] = Nota de plată, vă rog!</li>\n</ul>\n",
+    "theory": "\n<p>Mâncarea este o artă în cultura franceză. Iată cum comanzi ca un localnic într-o braserie pariziană:</p>\n<h4>1. Mesele Zilei & Alimente Esențiale</h4>\n<ul>\n  <li><code>le petit-déjeuner</code> = micul dejun.</li>\n  <li><code>le déjeuner</code> = prânzul.</li>\n  <li><code>le dîner</code> = cina.</li>\n  <li><em>le poulet</em> (puiul), <em>la viande</em> (carnea), <em>le poisson</em> (peștele), <em>les légumes</em> (legumele), <em>le fromage</em> (brânza).</li>\n</ul>\n<h4>2. Cum Comanzi Politicos</h4>\n<p>Nu spune niciodată « Je veux » (Vreau - sună agresiv!). Folosește condiționalul de politețe:</p>\n<ul>\n  <li><code>Je voudrais...</code> [jə vudrɛ] = Aș dori... (<em>Je voudrais un café, s'il vous plaît</em>).</li>\n  <li><code>Pour moi, ce sera...</code> = Pentru mine va fi...</li>\n  <li><code>L'addition, s'il vous plaît!</code> [ladisjõ] = Nota de plată, vă rog!</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe voudrais l'addition, s'il vous plaît.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Je voudrais...",
@@ -6281,7 +6689,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Comandă politicos: 'Je voudrais l'addition, s'il vous plaît.'.",
     "starterCode": "Je voudrais ",
     "expectedOutputPattern": "Je\\s+voudrais\\s+l['’]addition,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?",
-    "hint": "Scrie Je voudrais l'addition, s'il vous plaît."
+    "hint": "Scrie Je voudrais l'addition, s'il vous plaît.",
+    "prompt": "Comandă politicos: 'Je voudrais l'addition, s'il vous plaît.'.",
+    "officialSolution": "Je voudrais l'addition, s'il vous plaît.",
+    "example": "Je voudrais l'addition, s'il vous plaît.",
+    "regexPattern": "Je\\s+voudrais\\s+l['’]addition,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?"
   },
   {
     "id": "fr-a1-p18",
@@ -6291,7 +6703,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 18: Locuința, Camerele & Mobilierul (La Maison)",
-    "theory": "\n<p>Să descriem o locuință (apartament sau casă) și încăperile sale:</p>\n<h4>1. Încăperile Casei</h4>\n<ul>\n  <li><code>la maison</code> = casa / <code>l'appartement</code> (masc.) = apartamentul.</li>\n  <li><code>le salon</code> / <code>le séjour</code> = sufrageria / camera de zi.</li>\n  <li><code>la cuisine</code> = bucătăria.</li>\n  <li><code>la chambre</code> = dormitorul.</li>\n  <li><code>la salle de bains</code> = baia.</li>\n  <li><code>les toilettes</code> (feminin plural) = toaleta (în Franța toaleta este adesea o cameră separată de baie!).</li>\n</ul>\n<h4>2. Mobilier & Obiecte</h4>\n<p><code>la table</code> (masa), <code>la chaise</code> (scaunul), <code>le lit</code> (patul), <code>l'armoire</code> (dulapul), <code>le canapé</code> (canapeaua).</p>\n",
+    "theory": "\n<p>Să descriem o locuință (apartament sau casă) și încăperile sale:</p>\n<h4>1. Încăperile Casei</h4>\n<ul>\n  <li><code>la maison</code> = casa / <code>l'appartement</code> (masc.) = apartamentul.</li>\n  <li><code>le salon</code> / <code>le séjour</code> = sufrageria / camera de zi.</li>\n  <li><code>la cuisine</code> = bucătăria.</li>\n  <li><code>la chambre</code> = dormitorul.</li>\n  <li><code>la salle de bains</code> = baia.</li>\n  <li><code>les toilettes</code> (feminin plural) = toaleta (în Franța toaleta este adesea o cameră separată de baie!).</li>\n</ul>\n<h4>2. Mobilier & Obiecte</h4>\n<p><code>la table</code> (masa), <code>la chaise</code> (scaunul), <code>le lit</code> (patul), <code>l'armoire</code> (dulapul), <code>le canapé</code> (canapeaua).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nIl y a une table et quatre chaises dans la cuisine.\n</code></pre>\n",
     "glossary": [
       {
         "term": "la chambre",
@@ -6342,7 +6754,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Il y a une table et quatre chaises dans la cuisine.'.",
     "starterCode": "Il y a une ",
     "expectedOutputPattern": "Il\\s+y\\s+a\\s+une\\s+table\\s+et\\s+quatre\\s+chaises\\s+dans\\s+la\\s+cuisine\\.?",
-    "hint": "Scrie Il y a une table et quatre chaises dans la cuisine."
+    "hint": "Scrie Il y a une table et quatre chaises dans la cuisine.",
+    "prompt": "Scrie propoziția 'Il y a une table et quatre chaises dans la cuisine.'.",
+    "officialSolution": "Il y a une table et quatre chaises dans la cuisine.",
+    "example": "Il y a une table et quatre chaises dans la cuisine.",
+    "regexPattern": "Il\\s+y\\s+a\\s+une\\s+table\\s+et\\s+quatre\\s+chaises\\s+dans\\s+la\\s+cuisine\\.?"
   },
   {
     "id": "fr-a1-p19",
@@ -6352,7 +6768,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 19: Orașul & Întrebarea Direcției (La Ville et les Directions)",
-    "theory": "\n<p>Când vizitezi Parisul sau alt oraș francofon, trebuie să știi să te orientezi pe stradă:</p>\n<h4>1. Locuri Publice</h4>\n<p><code>la rue</code> (strada), <code>la place</code> (piața), <code>la gare</code> (gara), <code>l'hôtel</code> (hotelul), <code>la pharmacie</code> (farmacia), <code>le supermarché</code> (supermarketul), <code>le pont</code> (podul).</p>\n<h4>2. Indicații de Direcție</h4>\n<ul>\n  <li><code>Allez tout droit</code> [ale tu drwa] = Mergeți drept înainte.</li>\n  <li><code>Tournez à gauche</code> = Virați la stânga.</li>\n  <li><code>Tournez à droite</code> = Virați la dreapta.</li>\n  <li><code>Prenez la première rue à droite</code> = Luați prima stradă la dreapta.</li>\n  <li><code>C'est près d'ici / C'est loin</code> = E aproape de aici / E departe.</li>\n</ul>\n",
+    "theory": "\n<p>Când vizitezi Parisul sau alt oraș francofon, trebuie să știi să te orientezi pe stradă:</p>\n<h4>1. Locuri Publice</h4>\n<p><code>la rue</code> (strada), <code>la place</code> (piața), <code>la gare</code> (gara), <code>l'hôtel</code> (hotelul), <code>la pharmacie</code> (farmacia), <code>le supermarché</code> (supermarketul), <code>le pont</code> (podul).</p>\n<h4>2. Indicații de Direcție</h4>\n<ul>\n  <li><code>Allez tout droit</code> [ale tu drwa] = Mergeți drept înainte.</li>\n  <li><code>Tournez à gauche</code> = Virați la stânga.</li>\n  <li><code>Tournez à droite</code> = Virați la dreapta.</li>\n  <li><code>Prenez la première rue à droite</code> = Luați prima stradă la dreapta.</li>\n  <li><code>C'est près d'ici / C'est loin</code> = E aproape de aici / E departe.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nAllez tout droit et tournez à gauche.\n</code></pre>\n",
     "glossary": [
       {
         "term": "tout droit",
@@ -6403,7 +6819,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie îndrumarea 'Allez tout droit et tournez à gauche.' (Mergeți drept înainte și virați la stânga).",
     "starterCode": "Allez tout ",
     "expectedOutputPattern": "Allez\\s+tout\\s+droit\\s+et\\s+tournez\\s+[àa]\\s+gauche\\.?",
-    "hint": "Scrie Allez tout droit et tournez à gauche."
+    "hint": "Scrie Allez tout droit et tournez à gauche.",
+    "prompt": "Scrie îndrumarea 'Allez tout droit et tournez à gauche.' (Mergeți drept înainte și virați la stânga).",
+    "officialSolution": "Allez tout droit et tournez à gauche.",
+    "example": "Allez tout droit et tournez à gauche.",
+    "regexPattern": "Allez\\s+tout\\s+droit\\s+et\\s+tournez\\s+[àa]\\s+gauche\\.?"
   },
   {
     "id": "fr-a1-p20",
@@ -6413,7 +6833,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 20: Vremea & Starea Meteo (Quel temps fait-il?)",
-    "theory": "\n<p>Pentru a întreba despre vreme, se folosește întrebarea: <strong>« Quel temps fait-il? »</strong>. Răspunsul folosește aproape mereu construcția impersonală <strong>« Il fait... »</strong> (de la verbul faire):</p>\n<h4>1. Expresii Climatice</h4>\n<ul>\n  <li><code>Il fait beau</code> = E vreme frumoasă.</li>\n  <li><code>Il fait mauvais</code> = E vreme urâtă.</li>\n  <li><code>Il fait chaud</code> = E cald.</li>\n  <li><code>Il fait froid</code> = E frig.</li>\n  <li><code>Il y a du soleil</code> = E soare.</li>\n  <li><code>Il y a du vent</code> = E vânt.</li>\n</ul>\n<h4>2. Verbe Meteorologice Speciale</h4>\n<ul>\n  <li><code>Il pleut</code> (de la verbul <em>pleuvoir</em>) = Plouă.</li>\n  <li><code>Il neige</code> (de la verbul <em>neiger</em>) = Ninge.</li>\n</ul>\n",
+    "theory": "\n<p>Pentru a întreba despre vreme, se folosește întrebarea: <strong>« Quel temps fait-il? »</strong>. Răspunsul folosește aproape mereu construcția impersonală <strong>« Il fait... »</strong> (de la verbul faire):</p>\n<h4>1. Expresii Climatice</h4>\n<ul>\n  <li><code>Il fait beau</code> = E vreme frumoasă.</li>\n  <li><code>Il fait mauvais</code> = E vreme urâtă.</li>\n  <li><code>Il fait chaud</code> = E cald.</li>\n  <li><code>Il fait froid</code> = E frig.</li>\n  <li><code>Il y a du soleil</code> = E soare.</li>\n  <li><code>Il y a du vent</code> = E vânt.</li>\n</ul>\n<h4>2. Verbe Meteorologice Speciale</h4>\n<ul>\n  <li><code>Il pleut</code> (de la verbul <em>pleuvoir</em>) = Plouă.</li>\n  <li><code>Il neige</code> (de la verbul <em>neiger</em>) = Ninge.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nAujourd'hui il fait beau et il y a du soleil.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Quel temps fait-il?",
@@ -6464,7 +6884,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția meteo 'Aujourd'hui il fait beau et il y a du soleil.'.",
     "starterCode": "Aujourd'hui il ",
     "expectedOutputPattern": "Aujourd['’]hui\\s+il\\s+fait\\s+beau\\s+et\\s+il\\s+y\\s+a\\s+du\\s+soleil\\.?",
-    "hint": "Scrie Aujourd'hui il fait beau et il y a du soleil."
+    "hint": "Scrie Aujourd'hui il fait beau et il y a du soleil.",
+    "prompt": "Scrie propoziția meteo 'Aujourd'hui il fait beau et il y a du soleil.'.",
+    "officialSolution": "Aujourd'hui il fait beau et il y a du soleil.",
+    "example": "Aujourd'hui il fait beau et il y a du soleil.",
+    "regexPattern": "Aujourd['’]hui\\s+il\\s+fait\\s+beau\\s+et\\s+il\\s+y\\s+a\\s+du\\s+soleil\\.?"
   },
   {
     "id": "fr-a1-p21",
@@ -6474,7 +6898,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 40,
     "title": "Capitolul 21: Verbul „ALLER” (A MERGE) & Le Futur Proche (Viitorul Imediat)",
-    "theory": "\n<p>Verbul <strong>aller</strong> (a merge) este al treilea cel mai utilizat verb din franceză și servește drept motor pentru construirea <strong>viitorului imediat (Le Futur Proche)</strong>.</p>\n<h4>1. Conjugarea Verbului ALLER</h4>\n<ul>\n  <li><code>Je vais</code> [jə vɛ] = Eu merg / mă duc.</li>\n  <li><code>Tu vas</code> [ty va] = Tu mergi.</li>\n  <li><code>Il / Elle va</code> = El / Ea merge.</li>\n  <li><code>Nous allons</code> [nuz alõ] = Noi mergem.</li>\n  <li><code>Vous allez</code> [vuz ale] = Voi mergeți.</li>\n  <li><code>Ils / Elles vont</code> [il võ] = Ei / Ele merg.</li>\n</ul>\n<h4>2. Le Futur Proche (ALLER + Infinitiv)</h4>\n<p>Pentru a exprima ceva ce vei face imediat sau în viitorul apropiat, folosești formula: <strong>ALLER conjugat + Infinitivul verbului</strong>:</p>\n<ul>\n  <li><em>Je <strong>vais manger</strong></em> = Voi mânca / Urmează să mănânc.</li>\n  <li><em>Nous <strong>allons partir</strong></em> = Vom pleca.</li>\n  <li><em>Qu'est-ce que tu <strong>vas faire</strong>?</em> = Ce ai de gând să faci?</li>\n</ul>\n",
+    "theory": "\n<p>Verbul <strong>aller</strong> (a merge) este al treilea cel mai utilizat verb din franceză și servește drept motor pentru construirea <strong>viitorului imediat (Le Futur Proche)</strong>.</p>\n<h4>1. Conjugarea Verbului ALLER</h4>\n<ul>\n  <li><code>Je vais</code> [jə vɛ] = Eu merg / mă duc.</li>\n  <li><code>Tu vas</code> [ty va] = Tu mergi.</li>\n  <li><code>Il / Elle va</code> = El / Ea merge.</li>\n  <li><code>Nous allons</code> [nuz alõ] = Noi mergem.</li>\n  <li><code>Vous allez</code> [vuz ale] = Voi mergeți.</li>\n  <li><code>Ils / Elles vont</code> [il võ] = Ei / Ele merg.</li>\n</ul>\n<h4>2. Le Futur Proche (ALLER + Infinitiv)</h4>\n<p>Pentru a exprima ceva ce vei face imediat sau în viitorul apropiat, folosești formula: <strong>ALLER conjugat + Infinitivul verbului</strong>:</p>\n<ul>\n  <li><em>Je <strong>vais manger</strong></em> = Voi mânca / Urmează să mănânc.</li>\n  <li><em>Nous <strong>allons partir</strong></em> = Vom pleca.</li>\n  <li><em>Qu'est-ce que tu <strong>vas faire</strong>?</em> = Ce ai de gând să faci?</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe vais étudier le français ce soir.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Aller",
@@ -6525,7 +6949,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția la Futur Proche 'Je vais étudier le français ce soir.' (Voi studia franceza diseară).",
     "starterCode": "Je vais ",
     "expectedOutputPattern": "Je\\s+vais\\s+[ée]tudier\\s+le\\s+fran[çc]ais\\s+ce\\s+soir\\.?",
-    "hint": "Scrie Je vais étudier le français ce soir."
+    "hint": "Scrie Je vais étudier le français ce soir.",
+    "prompt": "Scrie propoziția la Futur Proche 'Je vais étudier le français ce soir.' (Voi studia franceza diseară).",
+    "officialSolution": "Je vais étudier le français ce soir.",
+    "example": "Je vais étudier le français ce soir.",
+    "regexPattern": "Je\\s+vais\\s+[ée]tudier\\s+le\\s+fran[çc]ais\\s+ce\\s+soir\\.?"
   },
   {
     "id": "fr-a1-p22",
@@ -6535,7 +6963,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 40,
     "title": "Capitolul 22: Verbele Reflexive & Rutina Zilnică (Se lever, Se doucher)",
-    "theory": "\n<p>Verbele care descriu acțiunile pe care le facem asupra propriului corp (rutina zilnică) sunt <strong>verbe pronominale (reflexive)</strong> și folosesc pronumele reflexive: <code>me, te, se, nous, vous, se</code>.</p>\n<h4>1. Conjugarea unui Verb Reflexiv (Exemplu: Se lever = A se trezi/scula)</h4>\n<ul>\n  <li><code>Je me lève</code> = Eu mă scol.</li>\n  <li><code>Tu te lèves</code> = Tu te scoli.</li>\n  <li><code>Il / Elle se lève</code> = El / Ea se scoală.</li>\n  <li><code>Nous nous levons</code> = Noi ne sculăm.</li>\n  <li><code>Vous vous levez</code> = Voi vă sculați.</li>\n  <li><code>Ils / Elles se lèvent</code> = Ei / Ele se scoală.</li>\n</ul>\n<h4>2. Alte Verbe de Rutină</h4>\n<p><code>se réveiller</code> (a se trezi), <code>se doucher</code> (a face duș), <code>s'habiller</code> (a se îmbrăca), <code>se coucher</code> (a se culca).</p>\n",
+    "theory": "\n<p>Verbele care descriu acțiunile pe care le facem asupra propriului corp (rutina zilnică) sunt <strong>verbe pronominale (reflexive)</strong> și folosesc pronumele reflexive: <code>me, te, se, nous, vous, se</code>.</p>\n<h4>1. Conjugarea unui Verb Reflexiv (Exemplu: Se lever = A se trezi/scula)</h4>\n<ul>\n  <li><code>Je me lève</code> = Eu mă scol.</li>\n  <li><code>Tu te lèves</code> = Tu te scoli.</li>\n  <li><code>Il / Elle se lève</code> = El / Ea se scoală.</li>\n  <li><code>Nous nous levons</code> = Noi ne sculăm.</li>\n  <li><code>Vous vous levez</code> = Voi vă sculați.</li>\n  <li><code>Ils / Elles se lèvent</code> = Ei / Ele se scoală.</li>\n</ul>\n<h4>2. Alte Verbe de Rutină</h4>\n<p><code>se réveiller</code> (a se trezi), <code>se doucher</code> (a face duș), <code>s'habiller</code> (a se îmbrăca), <code>se coucher</code> (a se culca).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe me lève à sept heures tous les jours.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Verbes pronominaux",
@@ -6586,7 +7014,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția de rutină 'Je me lève à sept heures tous les jours.' (Mă scol la ora 7 în fiecare zi).",
     "starterCode": "Je me ",
     "expectedOutputPattern": "Je\\s+me\\s+l[èe]ve\\s+[àa]\\s+sept\\s+heures\\s+tous\\s+les\\s+jours\\.?",
-    "hint": "Scrie Je me lève à sept heures tous les jours."
+    "hint": "Scrie Je me lève à sept heures tous les jours.",
+    "prompt": "Scrie propoziția de rutină 'Je me lève à sept heures tous les jours.' (Mă scol la ora 7 în fiecare zi).",
+    "officialSolution": "Je me lève à sept heures tous les jours.",
+    "example": "Je me lève à sept heures tous les jours.",
+    "regexPattern": "Je\\s+me\\s+l[èe]ve\\s+[àa]\\s+sept\\s+heures\\s+tous\\s+les\\s+jours\\.?"
   },
   {
     "id": "fr-a1-p23",
@@ -6596,7 +7028,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 40,
     "title": "Capitolul 23: Verbele Modale: Pouvoir (A putea), Vouloir (A vrea), Devoir (A trebui)",
-    "theory": "\n<p>Verbele modale sunt urmate direct de un alt verb la <strong>infinitiv</strong> (fără nicio prepoziție între ele).</p>\n<h4>1. POUVOIR (A Putea)</h4>\n<p><em>Je peux, tu peux, il peut, nous pouvons, vous pouvez, ils peuvent</em>.<br>\nExemplu: <em>Je peux vous aider?</em> = Pot să vă ajut?</p>\n<h4>2. VOULOIR (A Vrea)</h4>\n<p><em>Je veux, tu veux, il veut, nous voulons, vous voulez, ils veulent</em>.<br>\nExemplu: <em>Tu veux venir avec moi?</em> = Vrei să vii cu mine?</p>\n<h4>3. DEVOIR (A Trebui / Obligație)</h4>\n<p><em>Je dois, tu dois, il doit, nous devons, vous devez, ils doivent</em>.<br>\nExemplu: <em>Je dois partir maintenant</em> = Trebuie să plec acum.</p>\n",
+    "theory": "\n<p>Verbele modale sunt urmate direct de un alt verb la <strong>infinitiv</strong> (fără nicio prepoziție între ele).</p>\n<h4>1. POUVOIR (A Putea)</h4>\n<p><em>Je peux, tu peux, il peut, nous pouvons, vous pouvez, ils peuvent</em>.<br>\nExemplu: <em>Je peux vous aider?</em> = Pot să vă ajut?</p>\n<h4>2. VOULOIR (A Vrea)</h4>\n<p><em>Je veux, tu veux, il veut, nous voulons, vous voulez, ils veulent</em>.<br>\nExemplu: <em>Tu veux venir avec moi?</em> = Vrei să vii cu mine?</p>\n<h4>3. DEVOIR (A Trebui / Obligație)</h4>\n<p><em>Je dois, tu dois, il doit, nous devons, vous devez, ils doivent</em>.<br>\nExemplu: <em>Je dois partir maintenant</em> = Trebuie să plec acum.</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe veux apprendre le français et je peux réussir.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Pouvoir",
@@ -6647,7 +7079,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Je veux apprendre le français et je peux réussir.'.",
     "starterCode": "Je veux ",
     "expectedOutputPattern": "Je\\s+veux\\s+apprendre\\s+le\\s+fran[çc]ais\\s+et\\s+je\\s+peux\\s+r[ée]ussir\\.?",
-    "hint": "Scrie Je veux apprendre le français et je peux réussir."
+    "hint": "Scrie Je veux apprendre le français et je peux réussir.",
+    "prompt": "Scrie propoziția 'Je veux apprendre le français et je peux réussir.'.",
+    "officialSolution": "Je veux apprendre le français et je peux réussir.",
+    "example": "Je veux apprendre le français et je peux réussir.",
+    "regexPattern": "Je\\s+veux\\s+apprendre\\s+le\\s+fran[çc]ais\\s+et\\s+je\\s+peux\\s+r[ée]ussir\\.?"
   },
   {
     "id": "fr-a1-p24",
@@ -6657,7 +7093,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 40,
     "title": "Capitolul 24: Verbele Neregulate Majore: FAIRE (A face) & PRENDRE (A lua)",
-    "theory": "\n<p>Verbele <strong>faire</strong> și <strong>prendre</strong> apar în sute de expresii uzuale franceze:</p>\n<h4>1. FAIRE (A face)</h4>\n<p><code>Je fais, tu fais, il fait, nous faisons [fəzõ], vous faites, ils font</code>.<br>\nUtilizări: <em>faire du sport</em> (a face sport), <em>faire la cuisine</em> (a găti), <em>faire les courses</em> (a face cumpărături), <em>faire attention</em> (a fi atent).</p>\n<h4>2. PRENDRE (A lua)</h4>\n<p><code>Je prends, tu prends, il prend, nous prenons, vous prenez, ils prennent</code>.<br>\nUtilizări: <em>prendre le bus/métro</em> (a lua autobuzul), <em>prendre un café</em> (a bea o cafea), <em>prendre une douche</em> (a face un duș).</p>\n",
+    "theory": "\n<p>Verbele <strong>faire</strong> și <strong>prendre</strong> apar în sute de expresii uzuale franceze:</p>\n<h4>1. FAIRE (A face)</h4>\n<p><code>Je fais, tu fais, il fait, nous faisons [fəzõ], vous faites, ils font</code>.<br>\nUtilizări: <em>faire du sport</em> (a face sport), <em>faire la cuisine</em> (a găti), <em>faire les courses</em> (a face cumpărături), <em>faire attention</em> (a fi atent).</p>\n<h4>2. PRENDRE (A lua)</h4>\n<p><code>Je prends, tu prends, il prend, nous prenons, vous prenez, ils prennent</code>.<br>\nUtilizări: <em>prendre le bus/métro</em> (a lua autobuzul), <em>prendre un café</em> (a bea o cafea), <em>prendre une douche</em> (a face un duș).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe prends un café et je fais mes devoirs.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Faire",
@@ -6708,7 +7144,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Je prends un café et je fais mes devoirs.' (Beau o cafea și îmi fac temele).",
     "starterCode": "Je prends ",
     "expectedOutputPattern": "Je\\s+prends\\s+un\\s+caf[ée]\\s+et\\s+je\\s+fais\\s+mes\\s+devoirs\\.?",
-    "hint": "Scrie Je prends un café et je fais mes devoirs."
+    "hint": "Scrie Je prends un café et je fais mes devoirs.",
+    "prompt": "Scrie propoziția 'Je prends un café et je fais mes devoirs.' (Beau o cafea și îmi fac temele).",
+    "officialSolution": "Je prends un café et je fais mes devoirs.",
+    "example": "Je prends un café et je fais mes devoirs.",
+    "regexPattern": "Je\\s+prends\\s+un\\s+caf[ée]\\s+et\\s+je\\s+fais\\s+mes\\s+devoirs\\.?"
   },
   {
     "id": "fr-a1-p25",
@@ -6718,7 +7158,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 45,
     "title": "Capitolul 25: Sinteză Conversațională A1: Dialog Complet la Hotel & Check-in",
-    "theory": "\n<p>Felicitări! Ai finalizat Fundamentele de la Zero A1. Să unim tot ce am învățat (salutări, être, avoir, numere, politețe) într-un dialog real de check-in la un hotel francez.</p>\n<h4>1. Replicile Recepționerului</h4>\n<ul>\n  <li><em>Bonjour Monsieur/Madame, bienvenue à l'Hôtel de Paris.</em></li>\n  <li><em>Vous avez une réservation?</em> (Aveți o rezervare?)</li>\n  <li><em>C'est à quel nom?</em> (Pe ce nume este?)</li>\n</ul>\n<h4>2. Răspunsurile Clientului</h4>\n<ul>\n  <li><em>Oui, j'ai une réservation au nom de Popescu pour trois nuits.</em></li>\n  <li><em>Voici mon passeport.</em> (Iată pașaportul meu.)</li>\n  <li><em>À quelle heure est le petit-déjeuner?</em> (La ce oră este micul dejun?)</li>\n  <li><em>Le petit-déjeuner est de 7h à 10h. Voici votre clé, chambre 204.</em></li>\n</ul>\n",
+    "theory": "\n<p>Felicitări! Ai finalizat Fundamentele de la Zero A1. Să unim tot ce am învățat (salutări, être, avoir, numere, politețe) într-un dialog real de check-in la un hotel francez.</p>\n<h4>1. Replicile Recepționerului</h4>\n<ul>\n  <li><em>Bonjour Monsieur/Madame, bienvenue à l'Hôtel de Paris.</em></li>\n  <li><em>Vous avez une réservation?</em> (Aveți o rezervare?)</li>\n  <li><em>C'est à quel nom?</em> (Pe ce nume este?)</li>\n</ul>\n<h4>2. Răspunsurile Clientului</h4>\n<ul>\n  <li><em>Oui, j'ai une réservation au nom de Popescu pour trois nuits.</em></li>\n  <li><em>Voici mon passeport.</em> (Iată pașaportul meu.)</li>\n  <li><em>À quelle heure est le petit-déjeuner?</em> (La ce oră este micul dejun?)</li>\n  <li><em>Le petit-déjeuner est de 7h à 10h. Voici votre clé, chambre 204.</em></li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nBonjour, j'ai une réservation pour deux personnes, s'il vous plaît.\n</code></pre>\n",
     "glossary": [
       {
         "term": "une réservation",
@@ -6769,7 +7209,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie replica 'Bonjour, j'ai une réservation pour deux personnes, s'il vous plaît.'.",
     "starterCode": "Bonjour, j'ai ",
     "expectedOutputPattern": "Bonjour,\\s*j['’]ai\\s+une\\s+r[ée]servation\\s+pour\\s+deux\\s+personnes,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?",
-    "hint": "Scrie Bonjour, j'ai une réservation pour deux personnes, s'il vous plaît."
+    "hint": "Scrie Bonjour, j'ai une réservation pour deux personnes, s'il vous plaît.",
+    "prompt": "Scrie replica 'Bonjour, j'ai une réservation pour deux personnes, s'il vous plaît.'.",
+    "officialSolution": "Bonjour, j'ai une réservation pour deux personnes, s'il vous plaît.",
+    "example": "Bonjour, j'ai une réservation pour deux personnes, s'il vous plaît.",
+    "regexPattern": "Bonjour,\\s*j['’]ai\\s+une\\s+r[ée]servation\\s+pour\\s+deux\\s+personnes,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?"
   },
   {
     "id": "fr-b1-p26",
@@ -6779,7 +7223,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 26: Passé Composé cu Auxiliarul AVOIR & Participiul Regulat",
-    "theory": "\n<p><strong>Passé Composé</strong> este cel mai frecvent timp trecut în limba franceză pentru acțiuni încheiate, punctuale.</p>\n<h4>1. Structura cu Auxiliarul AVOIR</h4>\n<p>Se compune din: <code>Subiect + AVOIR la prezent + Participiu trecut</code>.</p>\n<ul>\n  <li>Verbe în <code>-er</code> &rarr; participiu în <code>-é</code>: <em>parler &rarr; parlé</em>, <em>manger &rarr; mangé</em>.</li>\n  <li>Verbe în <code>-ir</code> &rarr; participiu în <code>-i</code>: <em>finir &rarr; fini</em>, <em>choisir &rarr; choisi</em>.</li>\n  <li>Verbe în <code>-re</code> &rarr; participiu în <code>-u</code>: <em>vendre &rarr; vendu</em>, <em>attendre &rarr; attendu</em>.</li>\n</ul>\n<h4>2. Regula Absenței Acordului cu Subiectul</h4>\n<p>Când auxiliarul este <strong>avoir</strong>, participiul trecut <strong>NU</strong> se acordă cu subiectul: <em>Elle a mangé</em> (fără 'e' la final!), <em>Ils ont parlé</em> (fără 's'!).</p>\n",
+    "theory": "\n<p><strong>Passé Composé</strong> este cel mai frecvent timp trecut în limba franceză pentru acțiuni încheiate, punctuale.</p>\n<h4>1. Structura cu Auxiliarul AVOIR</h4>\n<p>Se compune din: <code>Subiect + AVOIR la prezent + Participiu trecut</code>.</p>\n<ul>\n  <li>Verbe în <code>-er</code> &rarr; participiu în <code>-é</code>: <em>parler &rarr; parlé</em>, <em>manger &rarr; mangé</em>.</li>\n  <li>Verbe în <code>-ir</code> &rarr; participiu în <code>-i</code>: <em>finir &rarr; fini</em>, <em>choisir &rarr; choisi</em>.</li>\n  <li>Verbe în <code>-re</code> &rarr; participiu în <code>-u</code>: <em>vendre &rarr; vendu</em>, <em>attendre &rarr; attendu</em>.</li>\n</ul>\n<h4>2. Regula Absenței Acordului cu Subiectul</h4>\n<p>Când auxiliarul este <strong>avoir</strong>, participiul trecut <strong>NU</strong> se acordă cu subiectul: <em>Elle a mangé</em> (fără 'e' la final!), <em>Ils ont parlé</em> (fără 's'!).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nHier, j'ai mangé une pomme et j'ai regardé un film.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Passé Composé",
@@ -6830,7 +7274,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Hier, j'ai mangé une pomme et j'ai regardé un film.' (Ieri am mâncat un măr și am privit un film).",
     "starterCode": "Hier, j'ai mangé ",
     "expectedOutputPattern": "Hier,\\s*j['’]ai\\s+mang[ée]\\s+une\\s+pomme\\s+et\\s+j['’]ai\\s+regard[ée]\\s+un\\s+film\\.?",
-    "hint": "Scrie Hier, j'ai mangé une pomme et j'ai regardé un film."
+    "hint": "Scrie Hier, j'ai mangé une pomme et j'ai regardé un film.",
+    "prompt": "Scrie propoziția 'Hier, j'ai mangé une pomme et j'ai regardé un film.' (Ieri am mâncat un măr și am privit un film).",
+    "officialSolution": "Hier, j'ai mangé une pomme et j'ai regardé un film.",
+    "example": "Hier, j'ai mangé une pomme et j'ai regardé un film.",
+    "regexPattern": "Hier,\\s*j['’]ai\\s+mang[ée]\\s+une\\s+pomme\\s+et\\s+j['’]ai\\s+regard[ée]\\s+un\\s+film\\.?"
   },
   {
     "id": "fr-b1-p27",
@@ -6840,7 +7288,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 27: Passé Composé cu Auxiliarul ÊTRE & Acordul Participiului",
-    "theory": "\n<p>Aproximativ 14 verbe fundamentale (de mișcare/transformare) și <strong>toate verbele reflexive</strong> formează trecutul compus cu auxiliarul <strong>ÊTRE</strong>.</p>\n<h4>1. Verbele din „Casa lui Être”</h4>\n<p><em>Aller/Venir, Arriver/Partir, Entrer/Sortir, Monter/Descendre, Naître/Mourir, Rester, Tomber, Retourner, Passer</em>.</p>\n<h4>2. Regula de Aur a Acordului</h4>\n<p>Cu auxiliarul <strong>être</strong>, participiul trecut <strong>SE ACORDĂ OBLIGATORIU</strong> în gen și număr cu subiectul frazei:</p>\n<ul>\n  <li>Masculin singular: <em>Il est allé</em></li>\n  <li>Feminin singular (+e): <em>Elle est allé<strong>e</strong></em></li>\n  <li>Masculin plural (+s): <em>Ils sont allé<strong>s</strong></em></li>\n  <li>Feminin plural (+es): <em>Elles sont allé<strong>es</strong></em></li>\n</ul>\n",
+    "theory": "\n<p>Aproximativ 14 verbe fundamentale (de mișcare/transformare) și <strong>toate verbele reflexive</strong> formează trecutul compus cu auxiliarul <strong>ÊTRE</strong>.</p>\n<h4>1. Verbele din „Casa lui Être”</h4>\n<p><em>Aller/Venir, Arriver/Partir, Entrer/Sortir, Monter/Descendre, Naître/Mourir, Rester, Tomber, Retourner, Passer</em>.</p>\n<h4>2. Regula de Aur a Acordului</h4>\n<p>Cu auxiliarul <strong>être</strong>, participiul trecut <strong>SE ACORDĂ OBLIGATORIU</strong> în gen și număr cu subiectul frazei:</p>\n<ul>\n  <li>Masculin singular: <em>Il est allé</em></li>\n  <li>Feminin singular (+e): <em>Elle est allé<strong>e</strong></em></li>\n  <li>Masculin plural (+s): <em>Ils sont allé<strong>s</strong></em></li>\n  <li>Feminin plural (+es): <em>Elles sont allé<strong>es</strong></em></li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nElle est allée à la gare et ils sont arrivés à l'heure.\n</code></pre>\n",
     "glossary": [
       {
         "term": "La maison d'être",
@@ -6891,7 +7339,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Elle est allée à la gare et ils sont arrivés à l'heure.'.",
     "starterCode": "Elle est allée ",
     "expectedOutputPattern": "Elle\\s+est\\s+all[ée]e\\s+[àa]\\s+la\\s+gare\\s+et\\s+ils\\s+sont\\s+arriv[ée]s\\s+[àa]\\s+l['’]heure\\.?",
-    "hint": "Scrie Elle est allée à la gare et ils sont arrivés à l'heure."
+    "hint": "Scrie Elle est allée à la gare et ils sont arrivés à l'heure.",
+    "prompt": "Scrie propoziția 'Elle est allée à la gare et ils sont arrivés à l'heure.'.",
+    "officialSolution": "Elle est allée à la gare et ils sont arrivés à l'heure.",
+    "example": "Elle est allée à la gare et ils sont arrivés à l'heure.",
+    "regexPattern": "Elle\\s+est\\s+all[ée]e\\s+[àa]\\s+la\\s+gare\\s+et\\s+ils\\s+sont\\s+arriv[ée]s\\s+[àa]\\s+l['’]heure\\.?"
   },
   {
     "id": "fr-b1-p28",
@@ -6901,7 +7353,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 28: L'Imparfait — Formare, Valori & Descrieri în Trecut",
-    "theory": "\n<p><strong>L'Imparfait</strong> este timpul evocării, al stărilor continue, al descrierilor și al obiceiurilor repetate din trecut („ce se întâmpla de obicei” sau „cum era”).</p>\n<h4>1. Regula Universală de Formare</h4>\n<p>Se ia rădăcina persoanei I plural (<code>nous</code>) de la prezent și se adaugă terminațiile unice:</p>\n<p><strong>-ais, -ais, -ait, -ions, -iez, -aient</strong></p>\n<p>Exemplu: <em>nous parl-ons &rarr; je parlais, tu parlais, il parlait, nous parlions, vous parliez, ils parlaient</em>.</p>\n<h4>2. Singura Excepție: Verbul ÊTRE</h4>\n<p>Rădăcina lui <em>être</em> este <code>ét-</code>: <em>j'étais, tu étais, il était, nous étions, vous étiez, ils étaient</em>.</p>\n",
+    "theory": "\n<p><strong>L'Imparfait</strong> este timpul evocării, al stărilor continue, al descrierilor și al obiceiurilor repetate din trecut („ce se întâmpla de obicei” sau „cum era”).</p>\n<h4>1. Regula Universală de Formare</h4>\n<p>Se ia rădăcina persoanei I plural (<code>nous</code>) de la prezent și se adaugă terminațiile unice:</p>\n<p><strong>-ais, -ais, -ait, -ions, -iez, -aient</strong></p>\n<p>Exemplu: <em>nous parl-ons &rarr; je parlais, tu parlais, il parlait, nous parlions, vous parliez, ils parlaient</em>.</p>\n<h4>2. Singura Excepție: Verbul ÊTRE</h4>\n<p>Rădăcina lui <em>être</em> este <code>ét-</code>: <em>j'étais, tu étais, il était, nous étions, vous étiez, ils étaient</em>.</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nQuand j'étais petit, je lisais beaucoup de livres.\n</code></pre>\n",
     "glossary": [
       {
         "term": "L'Imparfait",
@@ -6952,7 +7404,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Quand j'étais petit, je lisais beaucoup de livres.' (Când eram mic, citeam multe cărți).",
     "starterCode": "Quand j'étais petit, ",
     "expectedOutputPattern": "Quand\\s+j['’][ée]tais\\s+petit,\\s*je\\s+lisais\\s+beaucoup\\s+de\\s+livres\\.?",
-    "hint": "Scrie Quand j'étais petit, je lisais beaucoup de livres."
+    "hint": "Scrie Quand j'étais petit, je lisais beaucoup de livres.",
+    "prompt": "Scrie propoziția 'Quand j'étais petit, je lisais beaucoup de livres.' (Când eram mic, citeam multe cărți).",
+    "officialSolution": "Quand j'étais petit, je lisais beaucoup de livres.",
+    "example": "Quand j'étais petit, je lisais beaucoup de livres.",
+    "regexPattern": "Quand\\s+j['’][ée]tais\\s+petit,\\s*je\\s+lisais\\s+beaucoup\\s+de\\s+livres\\.?"
   },
   {
     "id": "fr-b1-p29",
@@ -6962,7 +7418,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 29: Imparfait vs Passé Composé — Contrastul Narativ Fundamental",
-    "theory": "\n<p>Stăpânirea contrastului dintre <strong>Imparfait</strong> și <strong>Passé Composé</strong> este piatra de temelie a nivelului B1 în limba franceză.</p>\n<h4>1. Rolul Narativ în Text</h4>\n<ul>\n  <li><strong>Imparfait (Fundalul / Decorul):</strong> Descrie starea vremii, sentimentele, acțiunea în desfășurare fără început sau sfârșit precizat.</li>\n  <li><strong>Passé Composé (Evenimentul Punctual):</strong> Acțiunea punctuală care survine brusc și întrerupe acțiunea din fundal.</li>\n</ul>\n<h4>2. Schema Clasică</h4>\n<p><em>Je dormais (imparfait - acțiune continuă) quand soudain le téléphone a sonné (passé composé - acțiune punctuală).</em></p>\n",
+    "theory": "\n<p>Stăpânirea contrastului dintre <strong>Imparfait</strong> și <strong>Passé Composé</strong> este piatra de temelie a nivelului B1 în limba franceză.</p>\n<h4>1. Rolul Narativ în Text</h4>\n<ul>\n  <li><strong>Imparfait (Fundalul / Decorul):</strong> Descrie starea vremii, sentimentele, acțiunea în desfășurare fără început sau sfârșit precizat.</li>\n  <li><strong>Passé Composé (Evenimentul Punctual):</strong> Acțiunea punctuală care survine brusc și întrerupe acțiunea din fundal.</li>\n</ul>\n<h4>2. Schema Clasică</h4>\n<p><em>Je dormais (imparfait - acțiune continuă) quand soudain le téléphone a sonné (passé composé - acțiune punctuală).</em></p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe marchais dans la rue quand j'ai vu mon ami.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Plan d'arrière (Decor)",
@@ -7013,7 +7469,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Je marchais dans la rue quand j'ai vu mon ami.' (Mergeam pe stradă când l-am văzut pe prietenul meu).",
     "starterCode": "Je marchais dans la rue ",
     "expectedOutputPattern": "Je\\s+marchais\\s+dans\\s+la\\s+rue\\s+quand\\s+j['’]ai\\s+vu\\s+mon\\s+ami\\.?",
-    "hint": "Scrie Je marchais dans la rue quand j'ai vu mon ami."
+    "hint": "Scrie Je marchais dans la rue quand j'ai vu mon ami.",
+    "prompt": "Scrie propoziția 'Je marchais dans la rue quand j'ai vu mon ami.' (Mergeam pe stradă când l-am văzut pe prietenul meu).",
+    "officialSolution": "Je marchais dans la rue quand j'ai vu mon ami.",
+    "example": "Je marchais dans la rue quand j'ai vu mon ami.",
+    "regexPattern": "Je\\s+marchais\\s+dans\\s+la\\s+rue\\s+quand\\s+j['’]ai\\s+vu\\s+mon\\s+ami\\.?"
   },
   {
     "id": "fr-b1-p30",
@@ -7023,7 +7483,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 30: Pronumele de Obiect Direct (COD: Me, Te, Le, La, Nous, Vous, Les)",
-    "theory": "\n<p><strong>Pronumele COD</strong> (Complément d'Objet Direct) înlocuiește o persoană sau un obiect determinat direct de verb (fără prepoziție), răspunzând la întrebarea <em>qui?</em> (pe cine?) sau <em>quoi?</em> (ce?).</p>\n<h4>1. Formele Pronumelor COD</h4>\n<ul>\n  <li><code>me / m'</code> = mă / pe mine</li>\n  <li><code>te / t'</code> = te / pe tine</li>\n  <li><code>le / l'</code> = îl / pe el / pe acesta</li>\n  <li><code>la / l'</code> = o / pe ea</li>\n  <li><code>nous</code> = ne / pe noi</li>\n  <li><code>vous</code> = vă / pe voi</li>\n  <li><code>les</code> = îi / le / pe ei / pe ele</li>\n</ul>\n<h4>2. Poziția în Frază</h4>\n<p>Pronumele COD stă <strong>în fața verbului conjugat</strong>: <em>Je regarde le film &rarr; Je <strong>le</strong> regarde.</em> La imperativ afirmativ stă după verb cu cratimă: <em>Regarde-le!</em>.</p>\n",
+    "theory": "\n<p><strong>Pronumele COD</strong> (Complément d'Objet Direct) înlocuiește o persoană sau un obiect determinat direct de verb (fără prepoziție), răspunzând la întrebarea <em>qui?</em> (pe cine?) sau <em>quoi?</em> (ce?).</p>\n<h4>1. Formele Pronumelor COD</h4>\n<ul>\n  <li><code>me / m'</code> = mă / pe mine</li>\n  <li><code>te / t'</code> = te / pe tine</li>\n  <li><code>le / l'</code> = îl / pe el / pe acesta</li>\n  <li><code>la / l'</code> = o / pe ea</li>\n  <li><code>nous</code> = ne / pe noi</li>\n  <li><code>vous</code> = vă / pe voi</li>\n  <li><code>les</code> = îi / le / pe ei / pe ele</li>\n</ul>\n<h4>2. Poziția în Frază</h4>\n<p>Pronumele COD stă <strong>în fața verbului conjugat</strong>: <em>Je regarde le film &rarr; Je <strong>le</strong> regarde.</em> La imperativ afirmativ stă după verb cu cratimă: <em>Regarde-le!</em>.</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nTu aimes ce livre? Oui, je le lis tous les soirs.\n</code></pre>\n",
     "glossary": [
       {
         "term": "COD (Complément Direct)",
@@ -7074,7 +7534,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie replica 'Tu aimes ce livre? Oui, je le lis tous les soirs.'.",
     "starterCode": "Tu aimes ce livre? ",
     "expectedOutputPattern": "Tu\\s+aimes\\s+ce\\s+livre\\?\\s*Oui,\\s*je\\s+le\\s+lis\\s+tous\\s+les\\s+soirs\\.?",
-    "hint": "Scrie Tu aimes ce livre? Oui, je le lis tous les soirs."
+    "hint": "Scrie Tu aimes ce livre? Oui, je le lis tous les soirs.",
+    "prompt": "Scrie replica 'Tu aimes ce livre? Oui, je le lis tous les soirs.'.",
+    "officialSolution": "Tu aimes ce livre? Oui, je le lis tous les soirs.",
+    "example": "Tu aimes ce livre? Oui, je le lis tous les soirs.",
+    "regexPattern": "Tu\\s+aimes\\s+ce\\s+livre\\?\\s*Oui,\\s*je\\s+le\\s+lis\\s+tous\\s+les\\s+soirs\\.?"
   },
   {
     "id": "fr-b1-p31",
@@ -7084,7 +7548,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 31: Pronumele de Obiect Indirect (COI: Me, Te, Lui, Nous, Vous, Leur)",
-    "theory": "\n<p><strong>Pronumele COI</strong> (Complément d'Objet Indirect) înlocuiește o persoană precedată de prepoziția <strong>à</strong> (răspunde la întrebarea <em>à qui?</em> &mdash; cui?).</p>\n<h4>1. Formele Pronumelor COI</h4>\n<ul>\n  <li><code>me / te / nous / vous</code> (identice cu cele de la COD)</li>\n  <li><code>lui</code> = lui / ei (singular, invariabil în gen! <em>à Pierre &rarr; lui; à Marie &rarr; lui</em>)</li>\n  <li><code>leur</code> = lor (plural, invariabil, fără 's'!)</li>\n</ul>\n<h4>2. Exemple Fundamentale</h4>\n<p><em>Je téléphone à mon père &rarr; Je <strong>lui</strong> téléphone.</em><br>\n<em>J'écris à mes collègues &rarr; Je <strong>leur</strong> écris.</em></p>\n",
+    "theory": "\n<p><strong>Pronumele COI</strong> (Complément d'Objet Indirect) înlocuiește o persoană precedată de prepoziția <strong>à</strong> (răspunde la întrebarea <em>à qui?</em> &mdash; cui?).</p>\n<h4>1. Formele Pronumelor COI</h4>\n<ul>\n  <li><code>me / te / nous / vous</code> (identice cu cele de la COD)</li>\n  <li><code>lui</code> = lui / ei (singular, invariabil în gen! <em>à Pierre &rarr; lui; à Marie &rarr; lui</em>)</li>\n  <li><code>leur</code> = lor (plural, invariabil, fără 's'!)</li>\n</ul>\n<h4>2. Exemple Fundamentale</h4>\n<p><em>Je téléphone à mon père &rarr; Je <strong>lui</strong> téléphone.</em><br>\n<em>J'écris à mes collègues &rarr; Je <strong>leur</strong> écris.</em></p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe téléphone à Marie pour lui donner les clés.\n</code></pre>\n",
     "glossary": [
       {
         "term": "COI (Complément Indirect)",
@@ -7135,7 +7599,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Je téléphone à Marie pour lui donner les clés.' (Îi telefonez Mariei pentru a-i da cheile).",
     "starterCode": "Je téléphone à Marie ",
     "expectedOutputPattern": "Je\\s+t[ée]l[ée]phone\\s+[àa]\\s+Marie\\s+pour\\s+lui\\s+donner\\s+les\\s+cl[ée]s\\.?",
-    "hint": "Scrie Je téléphone à Marie pour lui donner les clés."
+    "hint": "Scrie Je téléphone à Marie pour lui donner les clés.",
+    "prompt": "Scrie propoziția 'Je téléphone à Marie pour lui donner les clés.' (Îi telefonez Mariei pentru a-i da cheile).",
+    "officialSolution": "Je téléphone à Marie pour lui donner les clés.",
+    "example": "Je téléphone à Marie pour lui donner les clés.",
+    "regexPattern": "Je\\s+t[ée]l[ée]phone\\s+[àa]\\s+Marie\\s+pour\\s+lui\\s+donner\\s+les\\s+cl[ée]s\\.?"
   },
   {
     "id": "fr-b1-p32",
@@ -7145,7 +7613,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 40,
     "title": "Capitolul 32: Pronumele Adverbiale „EN” (Cantitate) & „Y” (Loc & à + Lucru)",
-    "theory": "\n<p>Pronumele adverbiale <strong>EN</strong> și <strong>Y</strong> sunt specifice limbii franceze și înlocuiesc grupuri prepoziționale esențiale.</p>\n<h4>1. Pronumele „Y” (Acolo / La asta)</h4>\n<ul>\n  <li>Înlocuiește un complement de loc introdus de <em>à, en, dans, chez, sur</em>: <em>Tu vas à Paris? &rarr; Oui, j'<strong>y</strong> vais.</em></li>\n  <li>Înlocuiește un lucru introdus de <em>à</em>: <em>Tu penses à ton avenir? &rarr; Oui, j'<strong>y</strong> pense.</em></li>\n</ul>\n<h4>2. Pronumele „EN” (De acolo / Din asta / Cantitate)</h4>\n<ul>\n  <li>Înlocuiește un substantiv precedat de <em>de / du / de la / des</em>: <em>Tu veux du thé? &rarr; Oui, j'<strong>en</strong> veux.</em></li>\n  <li>Înlocuiește un substantiv însoțit de o cantitate sau număr: <em>Tu as des frères? &rarr; Oui, j'<strong>en</strong> ai deux.</em></li>\n</ul>\n",
+    "theory": "\n<p>Pronumele adverbiale <strong>EN</strong> și <strong>Y</strong> sunt specifice limbii franceze și înlocuiesc grupuri prepoziționale esențiale.</p>\n<h4>1. Pronumele „Y” (Acolo / La asta)</h4>\n<ul>\n  <li>Înlocuiește un complement de loc introdus de <em>à, en, dans, chez, sur</em>: <em>Tu vas à Paris? &rarr; Oui, j'<strong>y</strong> vais.</em></li>\n  <li>Înlocuiește un lucru introdus de <em>à</em>: <em>Tu penses à ton avenir? &rarr; Oui, j'<strong>y</strong> pense.</em></li>\n</ul>\n<h4>2. Pronumele „EN” (De acolo / Din asta / Cantitate)</h4>\n<ul>\n  <li>Înlocuiește un substantiv precedat de <em>de / du / de la / des</em>: <em>Tu veux du thé? &rarr; Oui, j'<strong>en</strong> veux.</em></li>\n  <li>Înlocuiește un substantiv însoțit de o cantitate sau număr: <em>Tu as des frères? &rarr; Oui, j'<strong>en</strong> ai deux.</em></li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nTu vas au bureau aujourd'hui? Oui, j'y vais en métro.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Pronom Y",
@@ -7196,7 +7664,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie replica 'Tu vas au bureau aujourd'hui? Oui, j'y vais en métro.'.",
     "starterCode": "Tu vas au bureau ",
     "expectedOutputPattern": "Tu\\s+vas\\s+au\\s+bureau\\s+aujourd['’]hui\\?\\s*Oui,\\s*j['’]y\\s+vais\\s+en\\s+m[ée]tro\\.?",
-    "hint": "Scrie Tu vas au bureau aujourd'hui? Oui, j'y vais en métro."
+    "hint": "Scrie Tu vas au bureau aujourd'hui? Oui, j'y vais en métro.",
+    "prompt": "Scrie replica 'Tu vas au bureau aujourd'hui? Oui, j'y vais en métro.'.",
+    "officialSolution": "Tu vas au bureau aujourd'hui? Oui, j'y vais en métro.",
+    "example": "Tu vas au bureau aujourd'hui? Oui, j'y vais en métro.",
+    "regexPattern": "Tu\\s+vas\\s+au\\s+bureau\\s+aujourd['’]hui\\?\\s*Oui,\\s*j['’]y\\s+vais\\s+en\\s+m[ée]tro\\.?"
   },
   {
     "id": "fr-b1-p33",
@@ -7206,7 +7678,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 40,
     "title": "Capitolul 33: Le Futur Simple — Terminații, Rădăcini Neregulate & Proiecții",
-    "theory": "\n<p><strong>Futur Simple</strong> este timpul viitor formal și proiectiv (programe, previziuni, planuri pe termen mediu și lung).</p>\n<h4>1. Formare Regulată</h4>\n<p>Se ia <strong>infinitivul întreg</strong> al verbului și se adaugă terminațiile verbului <em>avoir</em>:</p>\n<p><strong>-ai, -as, -a, -ons, -ez, -ont</strong></p>\n<p>Exemplu: <em>parler &rarr; je parlerai, tu parleras, il parlera, nous parlerons, vous parlerez, ils parleront</em>.</p>\n<h4>2. Rădăcini Neregulate Majore</h4>\n<ul>\n  <li><em>être &rarr; ser-</em> (je serai)</li>\n  <li><em>avoir &rarr; aur-</em> (j'aurai)</li>\n  <li><em>aller &rarr; ir-</em> (j'irai)</li>\n  <li><em>faire &rarr; fer-</em> (je ferai)</li>\n  <li><em>pouvoir &rarr; pourr-</em> (je pourrai)</li>\n  <li><em>vouloir &rarr; voudr-</em> (je voudrai)</li>\n</ul>\n",
+    "theory": "\n<p><strong>Futur Simple</strong> este timpul viitor formal și proiectiv (programe, previziuni, planuri pe termen mediu și lung).</p>\n<h4>1. Formare Regulată</h4>\n<p>Se ia <strong>infinitivul întreg</strong> al verbului și se adaugă terminațiile verbului <em>avoir</em>:</p>\n<p><strong>-ai, -as, -a, -ons, -ez, -ont</strong></p>\n<p>Exemplu: <em>parler &rarr; je parlerai, tu parleras, il parlera, nous parlerons, vous parlerez, ils parleront</em>.</p>\n<h4>2. Rădăcini Neregulate Majore</h4>\n<ul>\n  <li><em>être &rarr; ser-</em> (je serai)</li>\n  <li><em>avoir &rarr; aur-</em> (j'aurai)</li>\n  <li><em>aller &rarr; ir-</em> (j'irai)</li>\n  <li><em>faire &rarr; fer-</em> (je ferai)</li>\n  <li><em>pouvoir &rarr; pourr-</em> (je pourrai)</li>\n  <li><em>vouloir &rarr; voudr-</em> (je voudrai)</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nDemain, nous voyagerons en France et nous visiterons Paris.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Futur Simple",
@@ -7257,7 +7729,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Demain, nous voyagerons en France et nous visiterons Paris.'.",
     "starterCode": "Demain, nous ",
     "expectedOutputPattern": "Demain,\\s*nous\\s+voyagerons\\s+en\\s+France\\s+et\\s+nous\\s+visiterons\\s+Paris\\.?",
-    "hint": "Scrie Demain, nous voyagerons en France et nous visiterons Paris."
+    "hint": "Scrie Demain, nous voyagerons en France et nous visiterons Paris.",
+    "prompt": "Scrie propoziția 'Demain, nous voyagerons en France et nous visiterons Paris.'.",
+    "officialSolution": "Demain, nous voyagerons en France et nous visiterons Paris.",
+    "example": "Demain, nous voyagerons en France et nous visiterons Paris.",
+    "regexPattern": "Demain,\\s*nous\\s+voyagerons\\s+en\\s+France\\s+et\\s+nous\\s+visiterons\\s+Paris\\.?"
   },
   {
     "id": "fr-b1-p34",
@@ -7267,7 +7743,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 40,
     "title": "Capitolul 34: Le Conditionnel Présent — Politețe, Dorințe & Sfaturi",
-    "theory": "\n<p><strong>Conditionnel Présent</strong> este modul politeții desăvârșite, al dorințelor ipotetice și al sfaturilor prietenești.</p>\n<h4>1. Rețeta Matematică de Formare</h4>\n<p><code>Rădăcina de viitor simplu + Terminațiile de Imparfait</code>:</p>\n<p><strong>-ais, -ais, -ait, -ions, -iez, -aient</strong></p>\n<p>Exemple: <em>vouloir &rarr; je voudr<strong>ais</strong></em> (aș dori); <em>pouvoir &rarr; pourr- &rarr; pourr<strong>iez</strong>-vous?</em> (ați putea?).</p>\n<h4>2. Utilizări Esențiale</h4>\n<ul>\n  <li>Politețe la restaurant/hotel: <em>Je voudrais un café</em> (în loc de agresivul 'je veux').</li>\n  <li>Sfat: <em>Tu devrais faire du sport</em> (ar trebui să faci sport).</li>\n</ul>\n",
+    "theory": "\n<p><strong>Conditionnel Présent</strong> este modul politeții desăvârșite, al dorințelor ipotetice și al sfaturilor prietenești.</p>\n<h4>1. Rețeta Matematică de Formare</h4>\n<p><code>Rădăcina de viitor simplu + Terminațiile de Imparfait</code>:</p>\n<p><strong>-ais, -ais, -ait, -ions, -iez, -aient</strong></p>\n<p>Exemple: <em>vouloir &rarr; je voudr<strong>ais</strong></em> (aș dori); <em>pouvoir &rarr; pourr- &rarr; pourr<strong>iez</strong>-vous?</em> (ați putea?).</p>\n<h4>2. Utilizări Esențiale</h4>\n<ul>\n  <li>Politețe la restaurant/hotel: <em>Je voudrais un café</em> (în loc de agresivul 'je veux').</li>\n  <li>Sfat: <em>Tu devrais faire du sport</em> (ar trebui să faci sport).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe voudrais réserver une table pour deux personnes, s'il vous plaît.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Conditionnel Présent",
@@ -7318,7 +7794,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie comanda 'Je voudrais réserver une table pour deux personnes, s'il vous plaît.'.",
     "starterCode": "Je voudrais réserver ",
     "expectedOutputPattern": "Je\\s+voudrais\\s+r[ée]server\\s+une\\s+table\\s+pour\\s+deux\\s+personnes,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?",
-    "hint": "Scrie Je voudrais réserver une table pour deux personnes, s'il vous plaît."
+    "hint": "Scrie Je voudrais réserver une table pour deux personnes, s'il vous plaît.",
+    "prompt": "Scrie comanda 'Je voudrais réserver une table pour deux personnes, s'il vous plaît.'.",
+    "officialSolution": "Je voudrais réserver une table pour deux personnes, s'il vous plaît.",
+    "example": "Je voudrais réserver une table pour deux personnes, s'il vous plaît.",
+    "regexPattern": "Je\\s+voudrais\\s+r[ée]server\\s+une\\s+table\\s+pour\\s+deux\\s+personnes,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?"
   },
   {
     "id": "fr-b1-p35",
@@ -7328,7 +7808,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 40,
     "title": "Capitolul 35: Pronumele Relative Simple: QUI, QUE, OÙ, DONT",
-    "theory": "\n<p>Pronumele relative leagă două propoziții, evitând repetiția inutilă a unui substantiv.</p>\n<h4>1. QUI vs QUE</h4>\n<ul>\n  <li><code>QUI</code> = subiectul propoziției relative (este <strong>urmat de un verb</strong>): <em>C'est l'homme <strong>qui parle</strong>.</em></li>\n  <li><code>QUE (QU')</code> = complement direct (este <strong>urmat de un subiect + verb</strong>): <em>C'est le livre <strong>que je lis</strong>.</em></li>\n</ul>\n<h4>2. OÙ & DONT</h4>\n<ul>\n  <li><code>OÙ</code> = loc sau timp: <em>La ville <strong>où j'habite</strong></em>; <em>Le jour <strong>où je suis né</strong></em>.</li>\n  <li><code>DONT</code> = înlocuiește un complement introdus de <strong>de</strong> (<em>parler de, avoir besoin de, être fier de</em>): <em>C'est le projet <strong>dont je parle</strong></em>.</li>\n</ul>\n",
+    "theory": "\n<p>Pronumele relative leagă două propoziții, evitând repetiția inutilă a unui substantiv.</p>\n<h4>1. QUI vs QUE</h4>\n<ul>\n  <li><code>QUI</code> = subiectul propoziției relative (este <strong>urmat de un verb</strong>): <em>C'est l'homme <strong>qui parle</strong>.</em></li>\n  <li><code>QUE (QU')</code> = complement direct (este <strong>urmat de un subiect + verb</strong>): <em>C'est le livre <strong>que je lis</strong>.</em></li>\n</ul>\n<h4>2. OÙ & DONT</h4>\n<ul>\n  <li><code>OÙ</code> = loc sau timp: <em>La ville <strong>où j'habite</strong></em>; <em>Le jour <strong>où je suis né</strong></em>.</li>\n  <li><code>DONT</code> = înlocuiește un complement introdus de <strong>de</strong> (<em>parler de, avoir besoin de, être fier de</em>): <em>C'est le projet <strong>dont je parle</strong></em>.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nC'est l'ami qui m'aide et le livre que je lis.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Qui (relatif)",
@@ -7379,7 +7859,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie fraza 'C'est l'ami qui m'aide et le livre que je lis.'.",
     "starterCode": "C'est l'ami ",
     "expectedOutputPattern": "C['’]est\\s+l['’]ami\\s+qui\\s+m['’]aide\\s+et\\s+le\\s+livre\\s+que\\s+je\\s+lis\\.?",
-    "hint": "Scrie C'est l'ami qui m'aide et le livre que je lis."
+    "hint": "Scrie C'est l'ami qui m'aide et le livre que je lis.",
+    "prompt": "Scrie fraza 'C'est l'ami qui m'aide et le livre que je lis.'.",
+    "officialSolution": "C'est l'ami qui m'aide et le livre que je lis.",
+    "example": "C'est l'ami qui m'aide et le livre que je lis.",
+    "regexPattern": "C['’]est\\s+l['’]ami\\s+qui\\s+m['’]aide\\s+et\\s+le\\s+livre\\s+que\\s+je\\s+lis\\.?"
   },
   {
     "id": "fr-b1-p36",
@@ -7389,7 +7873,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 45,
     "title": "Capitolul 36: Conectori Logici: Cauză, Consecință & Opoziție",
-    "theory": "\n<p>Pentru a structura un discurs coerent și nuanțat la nivelul B1/B2, este indispensabilă folosirea conectorilor logici.</p>\n<h4>1. Cauza (De ce?)</h4>\n<ul>\n  <li><code>Parce que</code> + frază: <em>Je reste chez moi parce qu'il pleut.</em></li>\n  <li><code>Puisque</code> = de vreme ce / fiindcă (cauză cunoscută de ambii interlocutori).</li>\n  <li><code>Grâce à</code> + substantiv (cauză pozitivă): <em>Grâce à son aide, j'ai réussi.</em></li>\n  <li><code>À cause de</code> + substantiv (cauză negativă): <em>À cause de la grève, le train est annulé.</em></li>\n</ul>\n<h4>2. Consecința & Opoziția</h4>\n<ul>\n  <li>Consecință: <code>Donc</code> (deci), <code>Par conséquent</code> (prin urmare).</li>\n  <li>Opoziție: <code>Mais</code> (dar), <code>Cependant / Pourtant</code> (totuși, cu toate acestea).</li>\n</ul>\n",
+    "theory": "\n<p>Pentru a structura un discurs coerent și nuanțat la nivelul B1/B2, este indispensabilă folosirea conectorilor logici.</p>\n<h4>1. Cauza (De ce?)</h4>\n<ul>\n  <li><code>Parce que</code> + frază: <em>Je reste chez moi parce qu'il pleut.</em></li>\n  <li><code>Puisque</code> = de vreme ce / fiindcă (cauză cunoscută de ambii interlocutori).</li>\n  <li><code>Grâce à</code> + substantiv (cauză pozitivă): <em>Grâce à son aide, j'ai réussi.</em></li>\n  <li><code>À cause de</code> + substantiv (cauză negativă): <em>À cause de la grève, le train est annulé.</em></li>\n</ul>\n<h4>2. Consecința & Opoziția</h4>\n<ul>\n  <li>Consecință: <code>Donc</code> (deci), <code>Par conséquent</code> (prin urmare).</li>\n  <li>Opoziție: <code>Mais</code> (dar), <code>Cependant / Pourtant</code> (totuși, cu toate acestea).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nIl fait froid, donc je mets un manteau chaud.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Grâce à (+)",
@@ -7440,7 +7924,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie fraza 'Il fait froid, donc je mets un manteau chaud.' (Este frig, deci îmi pun o haină călduroasă).",
     "starterCode": "Il fait froid, ",
     "expectedOutputPattern": "Il\\s+fait\\s+froid,\\s*donc\\s+je\\s+mets\\s+un\\s+manteau\\s+chaud\\.?",
-    "hint": "Scrie Il fait froid, donc je mets un manteau chaud."
+    "hint": "Scrie Il fait froid, donc je mets un manteau chaud.",
+    "prompt": "Scrie fraza 'Il fait froid, donc je mets un manteau chaud.' (Este frig, deci îmi pun o haină călduroasă).",
+    "officialSolution": "Il fait froid, donc je mets un manteau chaud.",
+    "example": "Il fait froid, donc je mets un manteau chaud.",
+    "regexPattern": "Il\\s+fait\\s+froid,\\s*donc\\s+je\\s+mets\\s+un\\s+manteau\\s+chaud\\.?"
   },
   {
     "id": "fr-b1-p37",
@@ -7450,7 +7938,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 45,
     "title": "Capitolul 37: Conversație Intermediară: La Medic, Farmacie & Situații Urgente",
-    "theory": "\n<p>Să consolidăm întregul Modul B1–B2 printr-un scenariu practic din viața reală: consultul medical și cumpărarea medicamentelor în Franța.</p>\n<h4>1. Replicile Pacientului</h4>\n<ul>\n  <li><em>Docteur, je ne me sens pas bien depuis hier.</em> (Nu mă simt bine de ieri.)</li>\n  <li><em>J'ai mal à la gorge, j'ai de la fièvre et je tousse.</em> (Mă doare în gât, am febră și tușesc.)</li>\n  <li><em>Est-ce que c'est grave?</em> (Este grav?)</li>\n</ul>\n<h4>2. Replicile Medicului & Farmacistului</h4>\n<ul>\n  <li><em>Ouvrez la bouche et respirez fort. C'est une angine.</em></li>\n  <li><em>Voici votre ordonnance. Prenez un comprimé trois fois par jour avant les repas.</em></li>\n</ul>\n",
+    "theory": "\n<p>Să consolidăm întregul Modul B1–B2 printr-un scenariu practic din viața reală: consultul medical și cumpărarea medicamentelor în Franța.</p>\n<h4>1. Replicile Pacientului</h4>\n<ul>\n  <li><em>Docteur, je ne me sens pas bien depuis hier.</em> (Nu mă simt bine de ieri.)</li>\n  <li><em>J'ai mal à la gorge, j'ai de la fièvre et je tousse.</em> (Mă doare în gât, am febră și tușesc.)</li>\n  <li><em>Est-ce que c'est grave?</em> (Este grav?)</li>\n</ul>\n<h4>2. Replicile Medicului & Farmacistului</h4>\n<ul>\n  <li><em>Ouvrez la bouche et respirez fort. C'est une angine.</em></li>\n  <li><em>Voici votre ordonnance. Prenez un comprimé trois fois par jour avant les repas.</em></li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJ'ai mal à la gorge et j'ai besoin d'une ordonnance médicale.\n</code></pre>\n",
     "glossary": [
       {
         "term": "une ordonnance",
@@ -7501,7 +7989,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'J'ai mal à la gorge et j'ai besoin d'une ordonnance médicale.'.",
     "starterCode": "J'ai mal à la gorge ",
     "expectedOutputPattern": "J['’]ai\\s+mal\\s+[àa]\\s+la\\s+gorge\\s+et\\s+j['’]ai\\s+besoin\\s+d['’]une\\s+ordonnance\\s+m[ée]dicale\\.?",
-    "hint": "Scrie J'ai mal à la gorge et j'ai besoin d'une ordonnance médicale."
+    "hint": "Scrie J'ai mal à la gorge et j'ai besoin d'une ordonnance médicale.",
+    "prompt": "Scrie propoziția 'J'ai mal à la gorge et j'ai besoin d'une ordonnance médicale.'.",
+    "officialSolution": "J'ai mal à la gorge et j'ai besoin d'une ordonnance médicale.",
+    "example": "J'ai mal à la gorge et j'ai besoin d'une ordonnance médicale.",
+    "regexPattern": "J['’]ai\\s+mal\\s+[àa]\\s+la\\s+gorge\\s+et\\s+j['’]ai\\s+besoin\\s+d['’]une\\s+ordonnance\\s+m[ée]dicale\\.?"
   },
   {
     "id": "fr-c1-p38",
@@ -7511,7 +8003,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 50,
     "title": "Capitolul 38: Le Subjonctif Présent — Necesitate, Voință & Declanșatori Canonici",
-    "theory": "\n<p><strong>Subjonctif</strong> nu este un timp, ci <strong>modul subiectivității</strong>, al incertitudinii, al dorinței, sentimentelor și necesității.</p>\n<h4>1. Declanșatori Canonici Obligatorii</h4>\n<ul>\n  <li>Necesitate / Obligație: <em>Il faut que...</em>, <em>Il est impératif que...</em></li>\n  <li>Voință / Dorință: <em>Je veux que...</em>, <em>J'exige que...</em></li>\n  <li>Sentiment / Temere: <em>Je suis ravi que...</em>, <em>J'ai peur que...</em></li>\n</ul>\n<h4>2. Regula Universală de Formare</h4>\n<p>Se ia rădăcina persoanei a 3-a plural de la prezent (<em>ils finiss-ent</em>) și se adaugă terminațiile:</p>\n<p><strong>-e, -es, -e, -ions, -iez, -ent</strong></p>\n<p>Excepții esențiale: <em>faire &rarr; que je fasse</em>; <em>être &rarr; que je sois</em>; <em>avoir &rarr; que j'aie</em>; <em>aller &rarr; que j'aille</em>.</p>\n",
+    "theory": "\n<p><strong>Subjonctif</strong> nu este un timp, ci <strong>modul subiectivității</strong>, al incertitudinii, al dorinței, sentimentelor și necesității.</p>\n<h4>1. Declanșatori Canonici Obligatorii</h4>\n<ul>\n  <li>Necesitate / Obligație: <em>Il faut que...</em>, <em>Il est impératif que...</em></li>\n  <li>Voință / Dorință: <em>Je veux que...</em>, <em>J'exige que...</em></li>\n  <li>Sentiment / Temere: <em>Je suis ravi que...</em>, <em>J'ai peur que...</em></li>\n</ul>\n<h4>2. Regula Universală de Formare</h4>\n<p>Se ia rădăcina persoanei a 3-a plural de la prezent (<em>ils finiss-ent</em>) și se adaugă terminațiile:</p>\n<p><strong>-e, -es, -e, -ions, -iez, -ent</strong></p>\n<p>Excepții esențiale: <em>faire &rarr; que je fasse</em>; <em>être &rarr; que je sois</em>; <em>avoir &rarr; que j'aie</em>; <em>aller &rarr; que j'aille</em>.</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nIl faut que vous fassiez attention à tous les détails.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Le Subjonctif",
@@ -7562,7 +8054,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie cerința 'Il faut que vous fassiez attention à tous les détails.' (Trebuie să fiți atent la toate detaliile).",
     "starterCode": "Il faut que vous ",
     "expectedOutputPattern": "Il\\s+faut\\s+que\\s+vous\\s+fassiez\\s+attention\\s+[àa]\\s+tous\\s+les\\s+d[ée]tails\\.?",
-    "hint": "Scrie Il faut que vous fassiez attention à tous les détails."
+    "hint": "Scrie Il faut que vous fassiez attention à tous les détails.",
+    "prompt": "Scrie cerința 'Il faut que vous fassiez attention à tous les détails.' (Trebuie să fiți atent la toate detaliile).",
+    "officialSolution": "Il faut que vous fassiez attention à tous les détails.",
+    "example": "Il faut que vous fassiez attention à tous les détails.",
+    "regexPattern": "Il\\s+faut\\s+que\\s+vous\\s+fassiez\\s+attention\\s+[àa]\\s+tous\\s+les\\s+d[ée]tails\\.?"
   },
   {
     "id": "fr-c1-p39",
@@ -7572,7 +8068,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 50,
     "title": "Capitolul 39: Subjonctif vs Indicatif — Certitudine vs Îndoială (Penser que vs Douter que)",
-    "theory": "\n<p>La nivelul C1, nuanța dintre certitudine și dubiu determină alegerea dintre indicativ și subjonctif.</p>\n<h4>1. Verbele de Opinie & Gândire</h4>\n<ul>\n  <li>Forma Afirmativă (Certitudine) &rarr; <strong>INDICATIF</strong>:<br>\n  <em>Je pense qu'il <strong>sait</strong> la vérité.</em> (Sunt sigur)</li>\n  <li>Forma Negativă sau Interogativă (Îndoială) &rarr; <strong>SUBJONCTIF</strong>:<br>\n  <em>Je ne pense pas qu'il <strong>sache</strong> la vérité.</em> (Mă îndoiesc)</li>\n</ul>\n<h4>2. Douter que vs Se douter que</h4>\n<p><em>Je doute qu'il <strong>vienne</strong></em> (mă îndoiesc &rarr; subjonctif) vs <em>Je me doute qu'il <strong>viendra</strong></em> (bănuiesc / știu &rarr; indicatif).</p>\n",
+    "theory": "\n<p>La nivelul C1, nuanța dintre certitudine și dubiu determină alegerea dintre indicativ și subjonctif.</p>\n<h4>1. Verbele de Opinie & Gândire</h4>\n<ul>\n  <li>Forma Afirmativă (Certitudine) &rarr; <strong>INDICATIF</strong>:<br>\n  <em>Je pense qu'il <strong>sait</strong> la vérité.</em> (Sunt sigur)</li>\n  <li>Forma Negativă sau Interogativă (Îndoială) &rarr; <strong>SUBJONCTIF</strong>:<br>\n  <em>Je ne pense pas qu'il <strong>sache</strong> la vérité.</em> (Mă îndoiesc)</li>\n</ul>\n<h4>2. Douter que vs Se douter que</h4>\n<p><em>Je doute qu'il <strong>vienne</strong></em> (mă îndoiesc &rarr; subjonctif) vs <em>Je me doute qu'il <strong>viendra</strong></em> (bănuiesc / știu &rarr; indicatif).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJe ne pense pas qu'il sache la réponse exacte.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Certitude & Indicatif",
@@ -7623,7 +8119,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Je ne pense pas qu'il sache la réponse exacte.' (Nu cred că el știe răspunsul exact).",
     "starterCode": "Je ne pense pas ",
     "expectedOutputPattern": "Je\\s+ne\\s+pense\\s+pas\\s+qu['’]il\\s+sache\\s+la\\s+r[ée]ponse\\s+exacte\\.?",
-    "hint": "Scrie Je ne pense pas qu'il sache la réponse exacte."
+    "hint": "Scrie Je ne pense pas qu'il sache la réponse exacte.",
+    "prompt": "Scrie propoziția 'Je ne pense pas qu'il sache la réponse exacte.' (Nu cred că el știe răspunsul exact).",
+    "officialSolution": "Je ne pense pas qu'il sache la réponse exacte.",
+    "example": "Je ne pense pas qu'il sache la réponse exacte.",
+    "regexPattern": "Je\\s+ne\\s+pense\\s+pas\\s+qu['’]il\\s+sache\\s+la\\s+r[ée]ponse\\s+exacte\\.?"
   },
   {
     "id": "fr-c1-p40",
@@ -7633,7 +8133,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 50,
     "title": "Capitolul 40: Frazele Ipotetice cu „SI” (Si + Présent, Si + Imparfait, Si + Plus-que-parfait)",
-    "theory": "\n<p>Concordanța timpurilor în frazele condiționale introduse de <strong>SI</strong> este o regulă de aur: <em>„Si” n'aime pas les „-rais”!</em> (După „si” nu se pune NICIODATĂ viitor sau condițional!).</p>\n<h4>1. Cele 3 Tipuri Fundamentale de Ipoteză</h4>\n<ol>\n  <li><strong>Ipotetic Real / Posibil:</strong><br>\n  <code>Si + Présent &rarr; Futur Simple</code><br>\n  <em>Si j'ai le temps, je viendrai te voir.</em></li>\n  <li><strong>Ipotetic Ireál în Prezent (Condiție Nerealizată Acum):</strong><br>\n  <code>Si + Imparfait &rarr; Conditionnel Présent</code><br>\n  <em>Si j'avais de l'argent, j'achèterais cette maison.</em></li>\n  <li><strong>Ipotetic Ireál în Trecut (Regret Trecut):</strong><br>\n  <code>Si + Plus-que-parfait &rarr; Conditionnel Passé</code><br>\n  <em>Si j'avais su, je serais venu.</em></li>\n</ol>\n",
+    "theory": "\n<p>Concordanța timpurilor în frazele condiționale introduse de <strong>SI</strong> este o regulă de aur: <em>„Si” n'aime pas les „-rais”!</em> (După „si” nu se pune NICIODATĂ viitor sau condițional!).</p>\n<h4>1. Cele 3 Tipuri Fundamentale de Ipoteză</h4>\n<ol>\n  <li><strong>Ipotetic Real / Posibil:</strong><br>\n  <code>Si + Présent &rarr; Futur Simple</code><br>\n  <em>Si j'ai le temps, je viendrai te voir.</em></li>\n  <li><strong>Ipotetic Ireál în Prezent (Condiție Nerealizată Acum):</strong><br>\n  <code>Si + Imparfait &rarr; Conditionnel Présent</code><br>\n  <em>Si j'avais de l'argent, j'achèterais cette maison.</em></li>\n  <li><strong>Ipotetic Ireál în Trecut (Regret Trecut):</strong><br>\n  <code>Si + Plus-que-parfait &rarr; Conditionnel Passé</code><br>\n  <em>Si j'avais su, je serais venu.</em></li>\n</ol>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nSi j'avais plus de temps, j'apprendrais le français chaque jour.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Hypothèse réalisable",
@@ -7684,7 +8184,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie fraza ipotetică 'Si j'avais plus de temps, j'apprendrais le français chaque jour.'.",
     "starterCode": "Si j'avais plus de temps, ",
     "expectedOutputPattern": "Si\\s+j['’]avais\\s+plus\\s+de\\s+temps,\\s*j['’]apprendrais\\s+le\\s+fran[çc]ais\\s+chaque\\s+jour\\.?",
-    "hint": "Scrie Si j'avais plus de temps, j'apprendrais le français chaque jour."
+    "hint": "Scrie Si j'avais plus de temps, j'apprendrais le français chaque jour.",
+    "prompt": "Scrie fraza ipotetică 'Si j'avais plus de temps, j'apprendrais le français chaque jour.'.",
+    "officialSolution": "Si j'avais plus de temps, j'apprendrais le français chaque jour.",
+    "example": "Si j'avais plus de temps, j'apprendrais le français chaque jour.",
+    "regexPattern": "Si\\s+j['’]avais\\s+plus\\s+de\\s+temps,\\s*j['’]apprendrais\\s+le\\s+fran[çc]ais\\s+chaque\\s+jour\\.?"
   },
   {
     "id": "fr-c1-p41",
@@ -7694,7 +8198,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 55,
     "title": "Capitolul 41: Vocea Pasivă & Formele Pasive Reflexive",
-    "theory": "\n<p>Vocea pasivă este folosită intens în articolele de presă, documentele administrative și stilul științific din Franța.</p>\n<h4>1. Formarea Vocii Pasive</h4>\n<p><code>Subiect pacient + ÊTRE (la orice timp) + Participiu trecut (acordat!) + PAR + Agent</code>.</p>\n<ul>\n  <li>Prezent: <em>Le pont <strong>est construit</strong> par les ingénieurs.</em></li>\n  <li>Passé Composé: <em>Le musée <strong>a été inauguré</strong> par le président.</em></li>\n  <li>Futur Simple: <em>Le rapport <strong>sera publié</strong> demain.</em></li>\n</ul>\n<h4>2. Pasiva Reflexivă Impersonală</h4>\n<p>Când autorul acțiunii este nedeterminat, franceza preferă forma pronominală pasivă: <em>Ce vin <strong>se boit</strong> frais</em> (Acest vin se bea rece).</p>\n",
+    "theory": "\n<p>Vocea pasivă este folosită intens în articolele de presă, documentele administrative și stilul științific din Franța.</p>\n<h4>1. Formarea Vocii Pasive</h4>\n<p><code>Subiect pacient + ÊTRE (la orice timp) + Participiu trecut (acordat!) + PAR + Agent</code>.</p>\n<ul>\n  <li>Prezent: <em>Le pont <strong>est construit</strong> par les ingénieurs.</em></li>\n  <li>Passé Composé: <em>Le musée <strong>a été inauguré</strong> par le président.</em></li>\n  <li>Futur Simple: <em>Le rapport <strong>sera publié</strong> demain.</em></li>\n</ul>\n<h4>2. Pasiva Reflexivă Impersonală</h4>\n<p>Când autorul acțiunii este nedeterminat, franceza preferă forma pronominală pasivă: <em>Ce vin <strong>se boit</strong> frais</em> (Acest vin se bea rece).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nCe projet a été réalisé avec succès par notre équipe.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Voix passive",
@@ -7745,7 +8249,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Ce projet a été réalisé avec succès par notre équipe.'.",
     "starterCode": "Ce projet a été réalisé ",
     "expectedOutputPattern": "Ce\\s+projet\\s+a\\s+[ée]t[ée]\\s+r[ée]alis[ée]\\s+avec\\s+succ[èe]s\\s+par\\s+notre\\s+[ée]quipe\\.?",
-    "hint": "Scrie Ce projet a été réalisé avec succès par notre équipe."
+    "hint": "Scrie Ce projet a été réalisé avec succès par notre équipe.",
+    "prompt": "Scrie propoziția 'Ce projet a été réalisé avec succès par notre équipe.'.",
+    "officialSolution": "Ce projet a été réalisé avec succès par notre équipe.",
+    "example": "Ce projet a été réalisé avec succès par notre équipe.",
+    "regexPattern": "Ce\\s+projet\\s+a\\s+[ée]t[ée]\\s+r[ée]alis[ée]\\s+avec\\s+succ[èe]s\\s+par\\s+notre\\s+[ée]quipe\\.?"
   },
   {
     "id": "fr-c1-p42",
@@ -7755,7 +8263,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 55,
     "title": "Capitolul 42: Le Gérondif & Le Participe Présent — Simultaneitate & Modalitate",
-    "theory": "\n<p><strong>Le Gérondif</strong> și <strong>Le Participe Présent</strong> conferă fluiditate și eleganță frazei franceze, sintetizând idei complexe într-o singură propoziție.</p>\n<h4>1. Le Gérondif (EN + Participiu Prezent)</h4>\n<p>Se formează din: <code>EN + Rădăcina 'nous' de la prezent + -ANT</code>.</p>\n<ul>\n  <li><strong>Simultaneitate:</strong> <em>Il écoute de la musique <strong>en travaillant</strong>.</em> (Ascultă muzică în timp ce lucrează.)</li>\n  <li><strong>Mijloc / Modalitate:</strong> <em>C'est <strong>en forgeant</strong> qu'on devient forgeron.</em> (Practicând devii meșter.)</li>\n  <li><strong>Condiție:</strong> <em><strong>En faisant</strong> des efforts, vous réussirez.</em></li>\n</ul>\n<h4>2. Regula Subiectului Identic</h4>\n<p>Gérondif-ul cere obligatoriu ca subiectul acțiunii principale să fie identic cu cel al acțiunii secundare.</p>\n",
+    "theory": "\n<p><strong>Le Gérondif</strong> și <strong>Le Participe Présent</strong> conferă fluiditate și eleganță frazei franceze, sintetizând idei complexe într-o singură propoziție.</p>\n<h4>1. Le Gérondif (EN + Participiu Prezent)</h4>\n<p>Se formează din: <code>EN + Rădăcina 'nous' de la prezent + -ANT</code>.</p>\n<ul>\n  <li><strong>Simultaneitate:</strong> <em>Il écoute de la musique <strong>en travaillant</strong>.</em> (Ascultă muzică în timp ce lucrează.)</li>\n  <li><strong>Mijloc / Modalitate:</strong> <em>C'est <strong>en forgeant</strong> qu'on devient forgeron.</em> (Practicând devii meșter.)</li>\n  <li><strong>Condiție:</strong> <em><strong>En faisant</strong> des efforts, vous réussirez.</em></li>\n</ul>\n<h4>2. Regula Subiectului Identic</h4>\n<p>Gérondif-ul cere obligatoriu ca subiectul acțiunii principale să fie identic cu cel al acțiunii secundare.</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJ'ai appris le français en écoutant des podcasts tous les jours.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Le Gérondif",
@@ -7806,7 +8314,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie mărturisirea 'J'ai appris le français en écoutant des podcasts tous les jours.'.",
     "starterCode": "J'ai appris le français ",
     "expectedOutputPattern": "J['’]ai\\s+appris\\s+le\\s+fran[çc]ais\\s+en\\s+[ée]coutant\\s+des\\s+podcasts\\s+tous\\s+les\\s+jours\\.?",
-    "hint": "Scrie J'ai appris le français en écoutant des podcasts tous les jours."
+    "hint": "Scrie J'ai appris le français en écoutant des podcasts tous les jours.",
+    "prompt": "Scrie mărturisirea 'J'ai appris le français en écoutant des podcasts tous les jours.'.",
+    "officialSolution": "J'ai appris le français en écoutant des podcasts tous les jours.",
+    "example": "J'ai appris le français en écoutant des podcasts tous les jours.",
+    "regexPattern": "J['’]ai\\s+appris\\s+le\\s+fran[çc]ais\\s+en\\s+[ée]coutant\\s+des\\s+podcasts\\s+tous\\s+les\\s+jours\\.?"
   },
   {
     "id": "fr-c1-p43",
@@ -7816,7 +8328,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 60,
     "title": "Capitolul 43: Discursul Indirect în Trecut & Concordanța Timpurilor",
-    "theory": "\n<p>Raportarea spuselor cuiva într-un context narativ trecut cere aplicarea strictă a concordanței timpurilor (<em>la concordance des temps</em>).</p>\n<h4>1. Schimbările de Timp când Verbul Introductiv este la Trecut</h4>\n<ul>\n  <li>Prezent &rarr; <strong>Imparfait</strong>:<br>\n  <em>Il a dit: « Je suis fatigué » &rarr; Il a dit qu'il <strong>était</strong> fatigué.</em></li>\n  <li>Passé Composé &rarr; <strong>Plus-que-parfait</strong>:<br>\n  <em>Il a dit: « J'ai fini » &rarr; Il a dit qu'il <strong>avait fini</strong>.</em></li>\n  <li>Futur Simple &rarr; <strong>Conditionnel Présent</strong>:<br>\n  <em>Il a dit: « Je viendrai » &rarr; Il a dit qu'il <strong>viendrait</strong>.</em></li>\n</ul>\n",
+    "theory": "\n<p>Raportarea spuselor cuiva într-un context narativ trecut cere aplicarea strictă a concordanței timpurilor (<em>la concordance des temps</em>).</p>\n<h4>1. Schimbările de Timp când Verbul Introductiv este la Trecut</h4>\n<ul>\n  <li>Prezent &rarr; <strong>Imparfait</strong>:<br>\n  <em>Il a dit: « Je suis fatigué » &rarr; Il a dit qu'il <strong>était</strong> fatigué.</em></li>\n  <li>Passé Composé &rarr; <strong>Plus-que-parfait</strong>:<br>\n  <em>Il a dit: « J'ai fini » &rarr; Il a dit qu'il <strong>avait fini</strong>.</em></li>\n  <li>Futur Simple &rarr; <strong>Conditionnel Présent</strong>:<br>\n  <em>Il a dit: « Je viendrai » &rarr; Il a dit qu'il <strong>viendrait</strong>.</em></li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nIl m'a expliqué qu'il viendrait demain matin à huit heures.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Discours indirect au passé",
@@ -7867,7 +8379,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie fraza indirectă 'Il m'a expliqué qu'il viendrait demain matin à huit heures.'.",
     "starterCode": "Il m'a expliqué qu'il ",
     "expectedOutputPattern": "Il\\s+m['’]a\\s+expliqu[ée]\\s+qu['’]il\\s+viendrait\\s+demain\\s+matin\\s+[àa]\\s+huit\\s+heures\\.?",
-    "hint": "Scrie Il m'a expliqué qu'il viendrait demain matin à huit heures."
+    "hint": "Scrie Il m'a expliqué qu'il viendrait demain matin à huit heures.",
+    "prompt": "Scrie fraza indirectă 'Il m'a expliqué qu'il viendrait demain matin à huit heures.'.",
+    "officialSolution": "Il m'a expliqué qu'il viendrait demain matin à huit heures.",
+    "example": "Il m'a expliqué qu'il viendrait demain matin à huit heures.",
+    "regexPattern": "Il\\s+m['’]a\\s+expliqu[ée]\\s+qu['’]il\\s+viendrait\\s+demain\\s+matin\\s+[àa]\\s+huit\\s+heures\\.?"
   },
   {
     "id": "fr-c1-p44",
@@ -7877,7 +8393,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 60,
     "title": "Capitolul 44: Expresii Idiomatice Majore din Hexagon & Nuanțe Argotice",
-    "theory": "\n<p>Atingerea nivelului de măiestrie lingvistică (C1/C2) presupune înțelegerea metaforelor și a expresiilor idiomatice specifice culturii franceze contemporane.</p>\n<h4>1. Metafore Clinice & Cotidiene</h4>\n<ul>\n  <li><code>Avoir le cafard</code> &mdash; a fi deprimat, trist, melancolic.</li>\n  <li><code>Poser un lapin à quelqu'un</code> &mdash; a lipsi nemotivat de la o întâlnire stabilită.</li>\n  <li><code>Coûter les yeux de la tête</code> &mdash; a fi exorbitant de scump, a costa o avere.</li>\n  <li><code>Tomber dans les pommes</code> &mdash; a leșina, a-și pierde cunoștința.</li>\n  <li><code>Casser les pieds à quelqu'un</code> &mdash; a agasa, a enerva peste măsură.</li>\n</ul>\n",
+    "theory": "\n<p>Atingerea nivelului de măiestrie lingvistică (C1/C2) presupune înțelegerea metaforelor și a expresiilor idiomatice specifice culturii franceze contemporane.</p>\n<h4>1. Metafore Clinice & Cotidiene</h4>\n<ul>\n  <li><code>Avoir le cafard</code> &mdash; a fi deprimat, trist, melancolic.</li>\n  <li><code>Poser un lapin à quelqu'un</code> &mdash; a lipsi nemotivat de la o întâlnire stabilită.</li>\n  <li><code>Coûter les yeux de la tête</code> &mdash; a fi exorbitant de scump, a costa o avere.</li>\n  <li><code>Tomber dans les pommes</code> &mdash; a leșina, a-și pierde cunoștința.</li>\n  <li><code>Casser les pieds à quelqu'un</code> &mdash; a agasa, a enerva peste măsură.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nÇa coûte les yeux de la tête mais c'est d'une qualité exceptionnelle.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Avoir le cafard",
@@ -7928,7 +8444,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Ça coûte les yeux de la tête mais c'est d'une qualité exceptionnelle.'.",
     "starterCode": "Ça coûte les yeux de la tête ",
     "expectedOutputPattern": "[ÇC]a\\s+co[uû]te\\s+les\\s+yeux\\s+de\\s+la\\s+t[êe]te\\s+mais\\s+c['’]est\\s+d['’]une\\s+qualit[ée]\\s+exceptionnelle\\.?",
-    "hint": "Scrie Ça coûte les yeux de la tête mais c'est d'une qualité exceptionnelle."
+    "hint": "Scrie Ça coûte les yeux de la tête mais c'est d'une qualité exceptionnelle.",
+    "prompt": "Scrie propoziția 'Ça coûte les yeux de la tête mais c'est d'une qualité exceptionnelle.'.",
+    "officialSolution": "Ça coûte les yeux de la tête mais c'est d'une qualité exceptionnelle.",
+    "example": "Ça coûte les yeux de la tête mais c'est d'une qualité exceptionnelle.",
+    "regexPattern": "[ÇC]a\\s+co[uû]te\\s+les\\s+yeux\\s+de\\s+la\\s+t[êe]te\\s+mais\\s+c['’]est\\s+d['’]une\\s+qualit[ée]\\s+exceptionnelle\\.?"
   },
   {
     "id": "fr-c1-p45",
@@ -7938,7 +8458,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 65,
     "title": "Capitolul 45: Corespondență Formală, CV & Franceză Diplomatică / Corporativă",
-    "theory": "\n<p>Culmea măiestriei (C2) este redactarea impecabilă a scrisorilor oficiale de cancelarie și a comunicării diplomatice corporative.</p>\n<h4>1. Formulele de Deschidere & Referință</h4>\n<p><em>« À l'attention de Monsieur le Directeur Général »</em><br>\n<em>« Suite à notre entretien téléphonique du 14 courant, j'ai l'honneur de vous soumettre ma candidature... »</em></p>\n<h4>2. Formula Supremă de Încheiere de Protocol</h4>\n<p><em>« Dans l'attente d'un retour favorable de votre part, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées. »</em></p>\n",
+    "theory": "\n<p>Culmea măiestriei (C2) este redactarea impecabilă a scrisorilor oficiale de cancelarie și a comunicării diplomatice corporative.</p>\n<h4>1. Formulele de Deschidere & Referință</h4>\n<p><em>« À l'attention de Monsieur le Directeur Général »</em><br>\n<em>« Suite à notre entretien téléphonique du 14 courant, j'ai l'honneur de vous soumettre ma candidature... »</em></p>\n<h4>2. Formula Supremă de Încheiere de Protocol</h4>\n<p><em>« Dans l'attente d'un retour favorable de votre part, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées. »</em></p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nVeuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Veuillez agréer...",
@@ -7989,7 +8509,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie formula protocolară solemnă 'Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.'.",
     "starterCode": "Veuillez agréer, ",
     "expectedOutputPattern": "Veuillez\\s+agr[ée]er,\\s*Madame,\\s*Monsieur,\\s*l['’]expression\\s+de\\s+mes\\s+salutations\\s+distingu[ée]es\\.?",
-    "hint": "Scrie Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées."
+    "hint": "Scrie Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.",
+    "prompt": "Scrie formula protocolară solemnă 'Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.'.",
+    "officialSolution": "Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.",
+    "example": "Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.",
+    "regexPattern": "Veuillez\\s+agr[ée]er,\\s*Madame,\\s*Monsieur,\\s*l['’]expression\\s+de\\s+mes\\s+salutations\\s+distingu[ée]es\\.?"
   },
   {
     "id": "es-a1-p1",
@@ -7999,7 +8523,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 25,
     "title": "Capitolul 1: Pronumele Personale Subiect (Yo, Tú, Él, Ella, Usted, Nosotros, Vosotros, Ellos, Ustedes)",
-    "theory": "\n<p>Bine ai venit la limba spaniolă! Primul pas de la zero absolut este învățarea pronumelor personale subiect (persoanele: eu, tu, el, ea...).</p>\n<h4>1. Cele 9 Pronume Personale</h4>\n<ul>\n  <li><code>Yo</code> [io] = Eu.</li>\n  <li><code>Tú</code> [tu] = Tu (informal, cu accent grafic pentru a nu se confunda cu posesivul <em>tu</em>).</li>\n  <li><code>Él</code> [el] = El (cu accent grafic) / <code>Ella</code> [eia] = Ea.</li>\n  <li><code>Usted</code> [usted] = Dumneavoastră (formă de politețe singular, se conjugă cu persoana a III-a singular!).</li>\n  <li><code>Nosotros</code> (masc./mixt) / <code>Nosotras</code> (exclusiv feminin) = Noi.</li>\n  <li><code>Vosotros</code> / <code>Vosotras</code> = Voi (folosit în Spania).</li>\n  <li><code>Ellos</code> / <code>Ellas</code> = Ei / Ele.</li>\n  <li><code>Ustedes</code> = Dumneavoastră (plural de politețe în Spania; în America Latină înlocuiește complet pe 'vosotros').</li>\n</ul>\n<h4>2. Omiterea Pronumelui Subiect</h4>\n<p>La fel ca în română, în spaniolă pronumele <strong>se omite în mod obișnuit</strong> deoarece terminația verbului arată clar persoana: <em>Hablo español</em> (nu e nevoie să spui <em>Yo hablo</em>).</p>\n",
+    "theory": "\n<p>Bine ai venit la limba spaniolă! Primul pas de la zero absolut este învățarea pronumelor personale subiect (persoanele: eu, tu, el, ea...).</p>\n<h4>1. Cele 9 Pronume Personale</h4>\n<ul>\n  <li><code>Yo</code> [io] = Eu.</li>\n  <li><code>Tú</code> [tu] = Tu (informal, cu accent grafic pentru a nu se confunda cu posesivul <em>tu</em>).</li>\n  <li><code>Él</code> [el] = El (cu accent grafic) / <code>Ella</code> [eia] = Ea.</li>\n  <li><code>Usted</code> [usted] = Dumneavoastră (formă de politețe singular, se conjugă cu persoana a III-a singular!).</li>\n  <li><code>Nosotros</code> (masc./mixt) / <code>Nosotras</code> (exclusiv feminin) = Noi.</li>\n  <li><code>Vosotros</code> / <code>Vosotras</code> = Voi (folosit în Spania).</li>\n  <li><code>Ellos</code> / <code>Ellas</code> = Ei / Ele.</li>\n  <li><code>Ustedes</code> = Dumneavoastră (plural de politețe în Spania; în America Latină înlocuiește complet pe 'vosotros').</li>\n</ul>\n<h4>2. Omiterea Pronumelui Subiect</h4>\n<p>La fel ca în română, în spaniolă pronumele <strong>se omite în mod obișnuit</strong> deoarece terminația verbului arată clar persoana: <em>Hablo español</em> (nu e nevoie să spui <em>Yo hablo</em>).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nYo, tú, él, ella\n</code></pre>\n",
     "glossary": [
       {
         "term": "Yo",
@@ -8048,9 +8572,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "'Usted' este pronumele de politețe utilizat pentru adăpostirea respectului cuvenit interlocutorului."
     },
     "task": "Scrie pronumele personale de singular 'Yo, tú, él, ella' separate prin virgulă.",
-    "starterCode": "// Completează pronumele\n",
+    "starterCode": "Yo, tú, él, ella",
     "expectedOutputPattern": "Yo,\\s*t[úu],\\s*[ée]l,\\s*ella\\.?",
-    "hint": "Scrie Yo, tú, él, ella"
+    "hint": "Scrie Yo, tú, él, ella",
+    "prompt": "Scrie pronumele personale de singular 'Yo, tú, él, ella' separate prin virgulă.",
+    "officialSolution": "Yo, tú, él, ella",
+    "example": "Yo, tú, él, ella",
+    "regexPattern": "Yo,\\s*t[úu],\\s*[ée]l,\\s*ella\\.?"
   },
   {
     "id": "es-a1-p2",
@@ -8060,7 +8588,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 25,
     "title": "Capitolul 2: Formule de Salut, Despărțire & Politețe (¡Hola!, Buenos días, Gracias)",
-    "theory": "\n<p>Spaniola este o limbă caldă și expresivă. Reține că în scris, propozițiile exclamative și interogative încep cu semnul de punctuație inversat: <code>¡</code> și <code>¿</code>.</p>\n<h4>1. Saluturi Uzuale</h4>\n<ul>\n  <li><code>¡Hola!</code> [ola] = Bună / Salut (litera 'h' este complet mută în spaniolă!).</li>\n  <li><code>Buenos días</code> = Bună dimineața / Bună ziua (până la prânz).</li>\n  <li><code>Buenas tardes</code> = Bună ziua / Bună seara (de la prânz până la lăsarea întunericului).</li>\n  <li><code>Buenas noches</code> = Noapte bună (sau bună seara târziu).</li>\n</ul>\n<h4>2. Politețe & Despărțire</h4>\n<ul>\n  <li><code>Por favor</code> = Vă rog / Te rog.</li>\n  <li><code>Muchas gracias</code> = Mulțumesc mult / <code>De nada</code> = Cu plăcere.</li>\n  <li><code>¡Adiós!</code> = La revedere / Adio.</li>\n  <li><code>Hasta luego</code> = Pe mai târziu / <code>Hasta pronto</code> = Pe curând.</li>\n</ul>\n",
+    "theory": "\n<p>Spaniola este o limbă caldă și expresivă. Reține că în scris, propozițiile exclamative și interogative încep cu semnul de punctuație inversat: <code>¡</code> și <code>¿</code>.</p>\n<h4>1. Saluturi Uzuale</h4>\n<ul>\n  <li><code>¡Hola!</code> [ola] = Bună / Salut (litera 'h' este complet mută în spaniolă!).</li>\n  <li><code>Buenos días</code> = Bună dimineața / Bună ziua (până la prânz).</li>\n  <li><code>Buenas tardes</code> = Bună ziua / Bună seara (de la prânz până la lăsarea întunericului).</li>\n  <li><code>Buenas noches</code> = Noapte bună (sau bună seara târziu).</li>\n</ul>\n<h4>2. Politețe & Despărțire</h4>\n<ul>\n  <li><code>Por favor</code> = Vă rog / Te rog.</li>\n  <li><code>Muchas gracias</code> = Mulțumesc mult / <code>De nada</code> = Cu plăcere.</li>\n  <li><code>¡Adiós!</code> = La revedere / Adio.</li>\n  <li><code>Hasta luego</code> = Pe mai târziu / <code>Hasta pronto</code> = Pe curând.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\n¡Hola! Buenos días, por favor.\n</code></pre>\n",
     "glossary": [
       {
         "term": "¡Hola!",
@@ -8109,9 +8637,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "În limba spaniolă, litera 'H' este complet mută; se pronunță direct vocala următoare: [ola]."
     },
     "task": "Scrie salutul de politețe '¡Hola! Buenos días, por favor.'.",
-    "starterCode": "// Scrie salutul\n",
+    "starterCode": "¡Hola! Buenos días, por favor.",
     "expectedOutputPattern": "(?:[¡!]\\s*)?Hola[!\\s]+Buenos\\s+d[íi]as,\\s*por\\s+favor\\.?",
-    "hint": "Scrie ¡Hola! Buenos días, por favor."
+    "hint": "Scrie ¡Hola! Buenos días, por favor.",
+    "prompt": "Scrie salutul de politețe '¡Hola! Buenos días, por favor.'.",
+    "officialSolution": "¡Hola! Buenos días, por favor.",
+    "example": "¡Hola! Buenos días, por favor.",
+    "regexPattern": "(?:[¡!]\\s*)?Hola[!\\s]+Buenos\\s+d[íi]as,\\s*por\\s+favor\\.?"
   },
   {
     "id": "es-a1-p3",
@@ -8121,7 +8653,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 3: Prezentarea Personală (¿Cómo te llamas? Me llamo...)",
-    "theory": "\n<p>Pentru a face cunoștință, folosim verbul reflexiv <strong>llamarse</strong> (a se numi) și verbul <strong>ser</strong> (a fi).</p>\n<h4>1. Numele Tău</h4>\n<ul>\n  <li><code>¿Cómo te llamas?</code> [komo te iamas] = Cum te cheamă? (informal).</li>\n  <li><code>¿Cómo se llama usted?</code> = Cum vă numiți? (formal).</li>\n  <li><code>Me llamo Carlos.</code> = Mă numesc Carlos.</li>\n  <li><code>¡Mucho gusto!</code> / <code>¡Encantado/a!</code> = Încântat de cunoștință!</li>\n</ul>\n<h4>2. De Unde Ești (Origine & Naționalitate)</h4>\n<ul>\n  <li><code>¿De dónde eres?</code> = De unde ești?</li>\n  <li><code>Soy de Rumanía.</code> = Sunt din România.</li>\n  <li><code>Soy rumano</code> (masc.) / <code>Soy rumana</code> (fem.) = Sunt român / româncă.</li>\n  <li><code>Vivo en Bucarest.</code> = Locuiesc în București.</li>\n</ul>\n",
+    "theory": "\n<p>Pentru a face cunoștință, folosim verbul reflexiv <strong>llamarse</strong> (a se numi) și verbul <strong>ser</strong> (a fi).</p>\n<h4>1. Numele Tău</h4>\n<ul>\n  <li><code>¿Cómo te llamas?</code> [komo te iamas] = Cum te cheamă? (informal).</li>\n  <li><code>¿Cómo se llama usted?</code> = Cum vă numiți? (formal).</li>\n  <li><code>Me llamo Carlos.</code> = Mă numesc Carlos.</li>\n  <li><code>¡Mucho gusto!</code> / <code>¡Encantado/a!</code> = Încântat de cunoștință!</li>\n</ul>\n<h4>2. De Unde Ești (Origine & Naționalitate)</h4>\n<ul>\n  <li><code>¿De dónde eres?</code> = De unde ești?</li>\n  <li><code>Soy de Rumanía.</code> = Sunt din România.</li>\n  <li><code>Soy rumano</code> (masc.) / <code>Soy rumana</code> (fem.) = Sunt român / româncă.</li>\n  <li><code>Vivo en Bucarest.</code> = Locuiesc în București.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nMe llamo Elena y soy de Rumanía.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Me llamo...",
@@ -8172,7 +8704,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția de prezentare 'Me llamo Elena y soy de Rumanía.'.",
     "starterCode": "Me llamo ",
     "expectedOutputPattern": "Me\\s+llamo\\s+Elena\\s+y\\s+soy\\s+de\\s+Ruman[íi]a\\.?",
-    "hint": "Scrie Me llamo Elena y soy de Rumanía."
+    "hint": "Scrie Me llamo Elena y soy de Rumanía.",
+    "prompt": "Scrie propoziția de prezentare 'Me llamo Elena y soy de Rumanía.'.",
+    "officialSolution": "Me llamo Elena y soy de Rumanía.",
+    "example": "Me llamo Elena y soy de Rumanía.",
+    "regexPattern": "Me\\s+llamo\\s+Elena\\s+y\\s+soy\\s+de\\s+Ruman[íi]a\\.?"
   },
   {
     "id": "es-a1-p4",
@@ -8182,7 +8718,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 4: Verbul Auxiliar „SER” (A FI — Identitate & Natură)",
-    "theory": "\n<p>În spaniolă există <strong>două verbe diferite</strong> pentru „a fi”: <strong>SER</strong> și <strong>ESTAR</strong>. Verbul <code>SER</code> descrie identitatea esențială, caracteristicile permanente, originea și profesia.</p>\n<h4>1. Conjugarea Verbului SER la Prezent</h4>\n<ul>\n  <li><code>Yo soy</code> [soi] = Eu sunt (<em>Soy estudiante</em> = Sunt student).</li>\n  <li><code>Tú eres</code> [eres] = Tu ești (<em>Eres inteligente</em>).</li>\n  <li><code>Él / Ella / Usted es</code> = El / Ea este (<em>Ella es doctora</em>).</li>\n  <li><code>Nosotros somos</code> = Noi suntem (<em>Somos amigos</em>).</li>\n  <li><code>Vosotros sois</code> = Voi sunteți.</li>\n  <li><code>Ellos / Ellas / Ustedes son</code> = Ei / Ele sunt (<em>Son amables</em>).</li>\n</ul>\n<h4>2. Când Folosim SER (Mnemonică: DOCTOR)</h4>\n<p><strong>D</strong>escriere, <strong>O</strong>rigine, <strong>C</strong>aracteristică fizică/morală, <strong>T</strong>imp/Oră (<em>Son las tres</em>), <strong>O</strong>cupație/Profesie, <strong>R</strong>elație (prieteni, frați).</p>\n",
+    "theory": "\n<p>În spaniolă există <strong>două verbe diferite</strong> pentru „a fi”: <strong>SER</strong> și <strong>ESTAR</strong>. Verbul <code>SER</code> descrie identitatea esențială, caracteristicile permanente, originea și profesia.</p>\n<h4>1. Conjugarea Verbului SER la Prezent</h4>\n<ul>\n  <li><code>Yo soy</code> [soi] = Eu sunt (<em>Soy estudiante</em> = Sunt student).</li>\n  <li><code>Tú eres</code> [eres] = Tu ești (<em>Eres inteligente</em>).</li>\n  <li><code>Él / Ella / Usted es</code> = El / Ea este (<em>Ella es doctora</em>).</li>\n  <li><code>Nosotros somos</code> = Noi suntem (<em>Somos amigos</em>).</li>\n  <li><code>Vosotros sois</code> = Voi sunteți.</li>\n  <li><code>Ellos / Ellas / Ustedes son</code> = Ei / Ele sunt (<em>Son amables</em>).</li>\n</ul>\n<h4>2. Când Folosim SER (Mnemonică: DOCTOR)</h4>\n<p><strong>D</strong>escriere, <strong>O</strong>rigine, <strong>C</strong>aracteristică fizică/morală, <strong>T</strong>imp/Oră (<em>Son las tres</em>), <strong>O</strong>cupație/Profesie, <strong>R</strong>elație (prieteni, frați).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nYo soy programador y él es médico.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Ser",
@@ -8233,7 +8769,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Yo soy programador y él es médico.' (Eu sunt programator și el este medic).",
     "starterCode": "Yo soy ",
     "expectedOutputPattern": "Yo\\s+soy\\s+programador\\s+y\\s+[ée]l\\s+es\\s+m[ée]dico\\.?",
-    "hint": "Scrie Yo soy programador y él es médico."
+    "hint": "Scrie Yo soy programador y él es médico.",
+    "prompt": "Scrie propoziția 'Yo soy programador y él es médico.' (Eu sunt programator și el este medic).",
+    "officialSolution": "Yo soy programador y él es médico.",
+    "example": "Yo soy programador y él es médico.",
+    "regexPattern": "Yo\\s+soy\\s+programador\\s+y\\s+[ée]l\\s+es\\s+m[ée]dico\\.?"
   },
   {
     "id": "es-a1-p5",
@@ -8243,7 +8783,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 5: Verbul Auxiliar „ESTAR” (A FI — Stare, Emoții & Locație)",
-    "theory": "\n<p>Al doilea verb pentru „a fi” este <strong>ESTAR</strong>. Acesta descrie starea de sănătate, emoțiile temporare și <strong>locația fizică în spațiu</strong> (unde se află ceva).</p>\n<h4>1. Conjugarea Verbului ESTAR la Prezent</h4>\n<ul>\n  <li><code>Yo estoy</code> [estoi] = Eu sunt / mă aflu (<em>Estoy contento</em>).</li>\n  <li><code>Tú estás</code> [estas] = Tu ești (<em>¿Cómo estás?</em> = Ce mai faci?).</li>\n  <li><code>Él / Ella / Usted está</code> = El / Ea este (<em>Está en casa</em> = E acasă).</li>\n  <li><code>Nosotros estamos</code> = Noi suntem / ne aflăm.</li>\n  <li><code>Vosotros estáis</code> = Voi sunteți.</li>\n  <li><code>Ellos / Ellas / Ustedes están</code> = Ei / Ele sunt (<em>Están cansados</em> = Sunt obosiți).</li>\n</ul>\n<h4>2. Când Folosim ESTAR (Mnemonică: PLACE)</h4>\n<p><strong>P</strong>oziție, <strong>L</strong>ocație (<em>Madrid está en España</em>), <strong>A</strong>cțiune în derulare, <strong>C</strong>ondiție fizică (bolnav, sănătos), <strong>E</strong>moție (trist, fericit).</p>\n",
+    "theory": "\n<p>Al doilea verb pentru „a fi” este <strong>ESTAR</strong>. Acesta descrie starea de sănătate, emoțiile temporare și <strong>locația fizică în spațiu</strong> (unde se află ceva).</p>\n<h4>1. Conjugarea Verbului ESTAR la Prezent</h4>\n<ul>\n  <li><code>Yo estoy</code> [estoi] = Eu sunt / mă aflu (<em>Estoy contento</em>).</li>\n  <li><code>Tú estás</code> [estas] = Tu ești (<em>¿Cómo estás?</em> = Ce mai faci?).</li>\n  <li><code>Él / Ella / Usted está</code> = El / Ea este (<em>Está en casa</em> = E acasă).</li>\n  <li><code>Nosotros estamos</code> = Noi suntem / ne aflăm.</li>\n  <li><code>Vosotros estáis</code> = Voi sunteți.</li>\n  <li><code>Ellos / Ellas / Ustedes están</code> = Ei / Ele sunt (<em>Están cansados</em> = Sunt obosiți).</li>\n</ul>\n<h4>2. Când Folosim ESTAR (Mnemonică: PLACE)</h4>\n<p><strong>P</strong>oziție, <strong>L</strong>ocație (<em>Madrid está en España</em>), <strong>A</strong>cțiune în derulare, <strong>C</strong>ondiție fizică (bolnav, sănătos), <strong>E</strong>moție (trist, fericit).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\n¿Cómo estás? - Estoy bien, gracias.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Estar",
@@ -8292,9 +8832,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Stările care se pot schimba (deschis/închis, curat/murdar, bolnav/sănătos) folosesc fără excepție verbul ESTAR."
     },
     "task": "Scrie întrebarea și răspunsul '¿Cómo estás? - Estoy bien, gracias.'.",
-    "starterCode": "// Scrie dialogul\n",
+    "starterCode": "¿Cómo estás? - Estoy bien, gracias.",
     "expectedOutputPattern": "(?:[¿?]\\s*)?C[óo]mo\\s+est[áa]s\\??\\s*-\\s*Estoy\\s+bien,\\s*gracias\\.?",
-    "hint": "Scrie ¿Cómo estás? - Estoy bien, gracias."
+    "hint": "Scrie ¿Cómo estás? - Estoy bien, gracias.",
+    "prompt": "Scrie întrebarea și răspunsul '¿Cómo estás? - Estoy bien, gracias.'.",
+    "officialSolution": "¿Cómo estás? - Estoy bien, gracias.",
+    "example": "¿Cómo estás? - Estoy bien, gracias.",
+    "regexPattern": "(?:[¿?]\\s*)?C[óo]mo\\s+est[áa]s\\??\\s*-\\s*Estoy\\s+bien,\\s*gracias\\.?"
   },
   {
     "id": "es-a1-p6",
@@ -8304,7 +8848,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 6: Sinteză & Diferența Crucială: SER vs ESTAR",
-    "theory": "\n<p>Confundarea lui <em>SER</em> cu <em>ESTAR</em> poate schimba complet sensul unei propoziții! Iată exemple celebre de comparație directă:</p>\n<h4>1. Schimbarea Semnificației cu Același Adjectiv</h4>\n<ul>\n  <li><code>Ser listo</code> = A fi deștept / inteligent.<br>\n      <code>Estar listo</code> = A fi gata / pregătit pentru plecare.</li>\n  <li><code>Ser bueno</code> = A fi o persoană bună la suflet.<br>\n      <code>Estar bueno</code> = Mâncarea este delicioasă / gustoasă.</li>\n  <li><code>Ser verde</code> = De culoare verde.<br>\n      <code>Estar verde</code> = Un fruct necopt sau cineva neexperimentat.</li>\n</ul>\n<h4>2. Regula Simplă de Aur</h4>\n<p><strong>SER = CINE și CE este</strong> (esența de neschimbat).<br>\n<strong>ESTAR = CUM și UNDE este</strong> (starea și locația de moment).</p>\n",
+    "theory": "\n<p>Confundarea lui <em>SER</em> cu <em>ESTAR</em> poate schimba complet sensul unei propoziții! Iată exemple celebre de comparație directă:</p>\n<h4>1. Schimbarea Semnificației cu Același Adjectiv</h4>\n<ul>\n  <li><code>Ser listo</code> = A fi deștept / inteligent.<br>\n      <code>Estar listo</code> = A fi gata / pregătit pentru plecare.</li>\n  <li><code>Ser bueno</code> = A fi o persoană bună la suflet.<br>\n      <code>Estar bueno</code> = Mâncarea este delicioasă / gustoasă.</li>\n  <li><code>Ser verde</code> = De culoare verde.<br>\n      <code>Estar verde</code> = Un fruct necopt sau cineva neexperimentat.</li>\n</ul>\n<h4>2. Regula Simplă de Aur</h4>\n<p><strong>SER = CINE și CE este</strong> (esența de neschimbat).<br>\n<strong>ESTAR = CUM și UNDE este</strong> (starea și locația de moment).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nJuan es inteligente pero hoy está cansado.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Ser listo",
@@ -8355,7 +8899,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Juan es inteligente pero hoy está cansado.' (Juan e inteligent, dar azi e obosit).",
     "starterCode": "Juan es ",
     "expectedOutputPattern": "Juan\\s+es\\s+inteligente\\s+pero\\s+hoy\\s+est[áa]\\s+cansado\\.?",
-    "hint": "Scrie Juan es inteligente pero hoy está cansado."
+    "hint": "Scrie Juan es inteligente pero hoy está cansado.",
+    "prompt": "Scrie propoziția 'Juan es inteligente pero hoy está cansado.' (Juan e inteligent, dar azi e obosit).",
+    "officialSolution": "Juan es inteligente pero hoy está cansado.",
+    "example": "Juan es inteligente pero hoy está cansado.",
+    "regexPattern": "Juan\\s+es\\s+inteligente\\s+pero\\s+hoy\\s+est[áa]\\s+cansado\\.?"
   },
   {
     "id": "es-a1-p7",
@@ -8365,7 +8913,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 7: Verbul Auxiliar „TENER” (A AVEA) la Prezent",
-    "theory": "\n<p>Verbul <strong>tener</strong> (a avea) este un verb neregulat cu schimbare de rădăcină (diftongare <em>e $\rightarrow$ ie</em>) și adăugare de <em>g</em> la persoana I (<em>yo tengo</em>).</p>\n<h4>1. Conjugarea la Prezent</h4>\n<ul>\n  <li><code>Yo tengo</code> [tengo] = Eu am.</li>\n  <li><code>Tú tienes</code> [tienes] = Tu ai.</li>\n  <li><code>Él / Ella / Usted tiene</code> = El / Ea are.</li>\n  <li><code>Nosotros tenemos</code> = Noi avem (fără diftong la nosotros!).</li>\n  <li><code>Vosotros tenéis</code> = Voi aveți.</li>\n  <li><code>Ellos / Ellas / Ustedes tienen</code> = Ei / Ele au.</li>\n</ul>\n<h4>2. Expresii cu TENER</h4>\n<ul>\n  <li><em>Tengo 24 años</em> = Am 24 de ani (vârsta se exprimă cu TENER, nu ser!).</li>\n  <li><em>Tengo hambre</em> [ambre] = Mi-e foame / <em>Tengo sed</em> = Mi-e sete.</li>\n  <li><em>Tengo calor / Tengo frío</em> = Mi-e cald / Mi-e frig.</li>\n  <li><em>Tener que + infinitiv</em> = A trebui: <em>Tengo que estudiar</em> (Trebuie să învăț).</li>\n</ul>\n",
+    "theory": "\n<p>Verbul <strong>tener</strong> (a avea) este un verb neregulat cu schimbare de rădăcină (diftongare <em>e $\rightarrow$ ie</em>) și adăugare de <em>g</em> la persoana I (<em>yo tengo</em>).</p>\n<h4>1. Conjugarea la Prezent</h4>\n<ul>\n  <li><code>Yo tengo</code> [tengo] = Eu am.</li>\n  <li><code>Tú tienes</code> [tienes] = Tu ai.</li>\n  <li><code>Él / Ella / Usted tiene</code> = El / Ea are.</li>\n  <li><code>Nosotros tenemos</code> = Noi avem (fără diftong la nosotros!).</li>\n  <li><code>Vosotros tenéis</code> = Voi aveți.</li>\n  <li><code>Ellos / Ellas / Ustedes tienen</code> = Ei / Ele au.</li>\n</ul>\n<h4>2. Expresii cu TENER</h4>\n<ul>\n  <li><em>Tengo 24 años</em> = Am 24 de ani (vârsta se exprimă cu TENER, nu ser!).</li>\n  <li><em>Tengo hambre</em> [ambre] = Mi-e foame / <em>Tengo sed</em> = Mi-e sete.</li>\n  <li><em>Tengo calor / Tengo frío</em> = Mi-e cald / Mi-e frig.</li>\n  <li><em>Tener que + infinitiv</em> = A trebui: <em>Tengo que estudiar</em> (Trebuie să învăț).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nTengo hambre y tengo que comer ahora.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Tener",
@@ -8416,7 +8964,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Tengo hambre y tengo que comer ahora.' (Mi-e foame și trebuie să mănânc acum).",
     "starterCode": "Tengo hambre ",
     "expectedOutputPattern": "Tengo\\s+hambre\\s+y\\s+tengo\\s+que\\s+comer\\s+ahora\\.?",
-    "hint": "Scrie Tengo hambre y tengo que comer ahora."
+    "hint": "Scrie Tengo hambre y tengo que comer ahora.",
+    "prompt": "Scrie propoziția 'Tengo hambre y tengo que comer ahora.' (Mi-e foame și trebuie să mănânc acum).",
+    "officialSolution": "Tengo hambre y tengo que comer ahora.",
+    "example": "Tengo hambre y tengo que comer ahora.",
+    "regexPattern": "Tengo\\s+hambre\\s+y\\s+tengo\\s+que\\s+comer\\s+ahora\\.?"
   },
   {
     "id": "es-a1-p8",
@@ -8426,7 +8978,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 8: Numerele de la 0 la 20 (Los Números del 0 al 20)",
-    "theory": "\n<p>Numerele în spaniolă au o logică fonetică foarte apropiată de limba română:</p>\n<h4>1. De la 0 la 10</h4>\n<p><code>0: cero</code>, <code>1: uno</code>, <code>2: dos</code>, <code>3: tres</code>, <code>4: cuatro</code>, <code>5: cinco</code>, <code>6: seis</code>, <code>7: siete</code>, <code>8: ocho</code>, <code>9: nueve</code>, <code>10: diez</code> [diez].</p>\n<h4>2. De la 11 la 20</h4>\n<p><code>11: once</code>, <code>12: doce</code>, <code>13: trece</code>, <code>14: catorce</code>, <code>15: quince</code> [kince].</p>\n<p>De la 16 la 19 se formează prin compunerea „zece și...” scris într-un singur cuvânt:</p>\n<p><code>16: dieciséis</code>, <code>17: diecisiete</code>, <code>18: dieciocho</code>, <code>19: diecinueve</code>, <code>20: veinte</code>.</p>\n",
+    "theory": "\n<p>Numerele în spaniolă au o logică fonetică foarte apropiată de limba română:</p>\n<h4>1. De la 0 la 10</h4>\n<p><code>0: cero</code>, <code>1: uno</code>, <code>2: dos</code>, <code>3: tres</code>, <code>4: cuatro</code>, <code>5: cinco</code>, <code>6: seis</code>, <code>7: siete</code>, <code>8: ocho</code>, <code>9: nueve</code>, <code>10: diez</code> [diez].</p>\n<h4>2. De la 11 la 20</h4>\n<p><code>11: once</code>, <code>12: doce</code>, <code>13: trece</code>, <code>14: catorce</code>, <code>15: quince</code> [kince].</p>\n<p>De la 16 la 19 se formează prin compunerea „zece și...” scris într-un singur cuvânt:</p>\n<p><code>16: dieciséis</code>, <code>17: diecisiete</code>, <code>18: dieciocho</code>, <code>19: diecinueve</code>, <code>20: veinte</code>.</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nuno, dos, tres, cuatro\n</code></pre>\n",
     "glossary": [
       {
         "term": "uno, dos, tres",
@@ -8475,9 +9027,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Numărul 15 se scrie 'quince' [kince]."
     },
     "task": "Scrie numerele 'uno, dos, tres, cuatro' separate prin virgulă și spațiu.",
-    "starterCode": "// Scrie 1, 2, 3, 4 în spaniolă\n",
+    "starterCode": "uno, dos, tres, cuatro",
     "expectedOutputPattern": "uno,\\s*dos,\\s*tres,\\s*cuatro",
-    "hint": "Scrie uno, dos, tres, cuatro"
+    "hint": "Scrie uno, dos, tres, cuatro",
+    "prompt": "Scrie numerele 'uno, dos, tres, cuatro' separate prin virgulă și spațiu.",
+    "officialSolution": "uno, dos, tres, cuatro",
+    "example": "uno, dos, tres, cuatro",
+    "regexPattern": "uno,\\s*dos,\\s*tres,\\s*cuatro"
   },
   {
     "id": "es-a1-p9",
@@ -8487,7 +9043,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 9: Numerele de la 20 la 100, Prețuri & Cumpărături",
-    "theory": "\n<p>Spre deosebire de franceză, spaniola folosește un sistem decimal curat și previzibil!</p>\n<h4>1. Zecile în Spaniolă</h4>\n<p><code>20: veinte</code>, <code>30: treinta</code>, <code>40: cuarenta</code>, <code>50: cincuenta</code>, <code>60: sesenta</code>, <code>70: setenta</code>, <code>80: ochenta</code>, <code>90: noventa</code>, <code>100: cien</code>.</p>\n<h4>2. Regula lui „Y” (Și)</h4>\n<ul>\n  <li>Pentru numerele 21-29 se scrie într-un singur cuvânt: <em>veintiuno, veintidós, veintitrés...</em></li>\n  <li>De la 31 în sus, se separă prin conjuncția <strong>y</strong> (și): <em>treinta y uno</em>, <em>cuarenta y cinco</em>, <em>noventa y nueve</em>.</li>\n</ul>\n<h4>3. Întrebarea Prețului</h4>\n<p><code>¿Cuánto cuesta esto?</code> = Cât costă asta? / <code>Cuesta veinte euros</code> = Costă 20 de euro.</p>\n",
+    "theory": "\n<p>Spre deosebire de franceză, spaniola folosește un sistem decimal curat și previzibil!</p>\n<h4>1. Zecile în Spaniolă</h4>\n<p><code>20: veinte</code>, <code>30: treinta</code>, <code>40: cuarenta</code>, <code>50: cincuenta</code>, <code>60: sesenta</code>, <code>70: setenta</code>, <code>80: ochenta</code>, <code>90: noventa</code>, <code>100: cien</code>.</p>\n<h4>2. Regula lui „Y” (Și)</h4>\n<ul>\n  <li>Pentru numerele 21-29 se scrie într-un singur cuvânt: <em>veintiuno, veintidós, veintitrés...</em></li>\n  <li>De la 31 în sus, se separă prin conjuncția <strong>y</strong> (și): <em>treinta y uno</em>, <em>cuarenta y cinco</em>, <em>noventa y nueve</em>.</li>\n</ul>\n<h4>3. Întrebarea Prețului</h4>\n<p><code>¿Cuánto cuesta esto?</code> = Cât costă asta? / <code>Cuesta veinte euros</code> = Costă 20 de euro.</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\n¿Cuánto cuesta este billete, por favor?\n</code></pre>\n",
     "glossary": [
       {
         "term": "treinta y uno",
@@ -8536,9 +9092,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "'¿Cuánto cuesta...?' este formula standard de întrebare a prețului."
     },
     "task": "Întreabă prețul: '¿Cuánto cuesta este billete, por favor?'.",
-    "starterCode": "// Întreabă prețul biletului\n",
+    "starterCode": "¿Cuánto cuesta este billete, por favor?",
     "expectedOutputPattern": "(?:[¿?]\\s*)?Cu[áa]nto\\s+cuesta\\s+este\\s+billete,\\s*por\\s+favor\\??",
-    "hint": "Scrie ¿Cuánto cuesta este billete, por favor?"
+    "hint": "Scrie ¿Cuánto cuesta este billete, por favor?",
+    "prompt": "Întreabă prețul: '¿Cuánto cuesta este billete, por favor?'.",
+    "officialSolution": "¿Cuánto cuesta este billete, por favor?",
+    "example": "¿Cuánto cuesta este billete, por favor?",
+    "regexPattern": "(?:[¿?]\\s*)?Cu[áa]nto\\s+cuesta\\s+este\\s+billete,\\s*por\\s+favor\\??"
   },
   {
     "id": "es-a1-p10",
@@ -8548,7 +9108,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 10: Zilele Săptămânii, Lunile Anului & Anotimpurile",
-    "theory": "\n<p>În limba spaniolă, zilele săptămânii și lunile anului se scriu cu <strong>literă mică</strong> (nu cu majusculă ca în engleză!).</p>\n<h4>1. Zilele Săptămânii (Los Días de la Semana)</h4>\n<p>Toate zilele de luni până vineri se termină în <code>-s</code> și sunt de genul <strong>masculin</strong>:</p>\n<p><code>el lunes</code> (luni), <code>el martes</code> (marți), <code>el miércoles</code> (miercuri), <code>el jueves</code> (joi), <code>el viernes</code> (vineri), <code>el sábado</code> (sâmbătă), <code>el domingo</code> (duminică).</p>\n<p>Pentru a spune „lunea” sau „în fiecare luni”, folosim articolul plural: <em>los lunes</em> (nu spunem 'en lunes').</p>\n<h4>2. Lunile Anului (Los Meses)</h4>\n<p><em>enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre</em>.</p>\n<h4>3. Anotimpurile (Las Estaciones)</h4>\n<p><code>la primavera</code> (primăvara), <code>el verano</code> (vara), <code>el otoño</code> (toamna), <code>el invierno</code> (iarna).</p>\n",
+    "theory": "\n<p>În limba spaniolă, zilele săptămânii și lunile anului se scriu cu <strong>literă mică</strong> (nu cu majusculă ca în engleză!).</p>\n<h4>1. Zilele Săptămânii (Los Días de la Semana)</h4>\n<p>Toate zilele de luni până vineri se termină în <code>-s</code> și sunt de genul <strong>masculin</strong>:</p>\n<p><code>el lunes</code> (luni), <code>el martes</code> (marți), <code>el miércoles</code> (miercuri), <code>el jueves</code> (joi), <code>el viernes</code> (vineri), <code>el sábado</code> (sâmbătă), <code>el domingo</code> (duminică).</p>\n<p>Pentru a spune „lunea” sau „în fiecare luni”, folosim articolul plural: <em>los lunes</em> (nu spunem 'en lunes').</p>\n<h4>2. Lunile Anului (Los Meses)</h4>\n<p><em>enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre</em>.</p>\n<h4>3. Anotimpurile (Las Estaciones)</h4>\n<p><code>la primavera</code> (primăvara), <code>el verano</code> (vara), <code>el otoño</code> (toamna), <code>el invierno</code> (iarna).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nHoy es viernes y mañana es sábado.\n</code></pre>\n",
     "glossary": [
       {
         "term": "el lunes / los lunes",
@@ -8599,7 +9159,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Hoy es viernes y mañana es sábado.' (Azi e vineri și mâine e sâmbătă).",
     "starterCode": "Hoy es ",
     "expectedOutputPattern": "Hoy\\s+es\\s+viernes\\s+y\\s+ma[ñn]ana\\s+es\\s+s[áa]bado\\.?",
-    "hint": "Scrie Hoy es viernes y mañana es sábado."
+    "hint": "Scrie Hoy es viernes y mañana es sábado.",
+    "prompt": "Scrie propoziția 'Hoy es viernes y mañana es sábado.' (Azi e vineri și mâine e sâmbătă).",
+    "officialSolution": "Hoy es viernes y mañana es sábado.",
+    "example": "Hoy es viernes y mañana es sábado.",
+    "regexPattern": "Hoy\\s+es\\s+viernes\\s+y\\s+ma[ñn]ana\\s+es\\s+s[áa]bado\\.?"
   },
   {
     "id": "es-a1-p11",
@@ -8609,7 +9173,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 11: ¿Qué hora es? Exprimarea Orei în Spaniolă",
-    "theory": "\n<p>Pentru a întreba cât este ceasul, spunem: <strong>« ¿Qué hora es? »</strong>. Răspunsul depinde dacă este ora 1 (singular) sau o altă oră (plural):</p>\n<h4>1. Regula Singular / Plural</h4>\n<ul>\n  <li>Pentru ora 1:00: <code>Es la una</code> (singular: 'Es la', deoarece 'hora' este feminin singular).</li>\n  <li>Pentru toate celelalte ore: <code>Son las dos</code>, <code>Son las tres</code>, <code>Son las diez</code> (plural: 'Son las').</li>\n</ul>\n<h4>2. Minute, Sferturi și Jumătăți</h4>\n<ul>\n  <li><code>y cuarto</code> = și un sfert (ex: <em>Son las cuatro y cuarto</em> = 4:15).</li>\n  <li><code>y media</code> = și jumătate (ex: <em>Son las cinco y media</em> = 5:30).</li>\n  <li><code>menos cuarto</code> = fără un sfert (ex: <em>Son las seis menos cuarto</em> = 5:45).</li>\n  <li><code>menos diez</code> = fără 10 minute (ex: <em>Son las siete menos diez</em> = 6:50).</li>\n</ul>\n",
+    "theory": "\n<p>Pentru a întreba cât este ceasul, spunem: <strong>« ¿Qué hora es? »</strong>. Răspunsul depinde dacă este ora 1 (singular) sau o altă oră (plural):</p>\n<h4>1. Regula Singular / Plural</h4>\n<ul>\n  <li>Pentru ora 1:00: <code>Es la una</code> (singular: 'Es la', deoarece 'hora' este feminin singular).</li>\n  <li>Pentru toate celelalte ore: <code>Son las dos</code>, <code>Son las tres</code>, <code>Son las diez</code> (plural: 'Son las').</li>\n</ul>\n<h4>2. Minute, Sferturi și Jumătăți</h4>\n<ul>\n  <li><code>y cuarto</code> = și un sfert (ex: <em>Son las cuatro y cuarto</em> = 4:15).</li>\n  <li><code>y media</code> = și jumătate (ex: <em>Son las cinco y media</em> = 5:30).</li>\n  <li><code>menos cuarto</code> = fără un sfert (ex: <em>Son las seis menos cuarto</em> = 5:45).</li>\n  <li><code>menos diez</code> = fără 10 minute (ex: <em>Son las siete menos diez</em> = 6:50).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nSon las dos y media de la tarde.\n</code></pre>\n",
     "glossary": [
       {
         "term": "¿Qué hora es?",
@@ -8660,7 +9224,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Son las dos y media de la tarde.' (Este ora două și jumătate după-amiaza).",
     "starterCode": "Son las dos ",
     "expectedOutputPattern": "Son\\s+las\\s+dos\\s+y\\s+media\\s+de\\s+la\\s+tarde\\.?",
-    "hint": "Scrie Son las dos y media de la tarde."
+    "hint": "Scrie Son las dos y media de la tarde.",
+    "prompt": "Scrie propoziția 'Son las dos y media de la tarde.' (Este ora două și jumătate după-amiaza).",
+    "officialSolution": "Son las dos y media de la tarde.",
+    "example": "Son las dos y media de la tarde.",
+    "regexPattern": "Son\\s+las\\s+dos\\s+y\\s+media\\s+de\\s+la\\s+tarde\\.?"
   },
   {
     "id": "es-a1-p12",
@@ -8670,7 +9238,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 12: Articolele & Genul Substantivelor (El, La, Los, Las / Un, Una)",
-    "theory": "\n<p>În spaniolă, genul substantivelor este foarte predictibil pe baza terminației:</p>\n<h4>1. Regula de Bază a Genului</h4>\n<ul>\n  <li>Cuvintele terminate în <code>-o</code> sunt în general <strong>masculine</strong>: <em>el libro, el perro</em>.</li>\n  <li>Cuvintele terminate în <code>-a</code> sunt în general <strong>feminine</strong>: <em>la casa, la mesa</em>.</li>\n  <li>Cuvintele terminate în <code>-ción</code>, <code>-sión</code>, <code>-dad</code> sunt întotdeauna <strong>feminine</strong>: <em>la estación, la ciudad</em>.</li>\n</ul>\n<h4>2. Articolele</h4>\n<ul>\n  <li><strong>Hotărâte</strong>: <code>el</code> (masc. sg.), <code>la</code> (fem. sg.), <code>los</code> (masc. pl.), <code>las</code> (fem. pl.).</li>\n  <li><strong>Nehotărâte</strong>: <code>un</code> (masc. sg.), <code>una</code> (fem. sg.), <code>unos</code> (masc. pl.), <code>unas</code> (fem. pl.).</li>\n</ul>\n",
+    "theory": "\n<p>În spaniolă, genul substantivelor este foarte predictibil pe baza terminației:</p>\n<h4>1. Regula de Bază a Genului</h4>\n<ul>\n  <li>Cuvintele terminate în <code>-o</code> sunt în general <strong>masculine</strong>: <em>el libro, el perro</em>.</li>\n  <li>Cuvintele terminate în <code>-a</code> sunt în general <strong>feminine</strong>: <em>la casa, la mesa</em>.</li>\n  <li>Cuvintele terminate în <code>-ción</code>, <code>-sión</code>, <code>-dad</code> sunt întotdeauna <strong>feminine</strong>: <em>la estación, la ciudad</em>.</li>\n</ul>\n<h4>2. Articolele</h4>\n<ul>\n  <li><strong>Hotărâte</strong>: <code>el</code> (masc. sg.), <code>la</code> (fem. sg.), <code>los</code> (masc. pl.), <code>las</code> (fem. pl.).</li>\n  <li><strong>Nehotărâte</strong>: <code>un</code> (masc. sg.), <code>una</code> (fem. sg.), <code>unos</code> (masc. pl.), <code>unas</code> (fem. pl.).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nel chico y la chica\n</code></pre>\n",
     "glossary": [
       {
         "term": "el / la / los / las",
@@ -8719,9 +9287,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Cuvintele de origine greacă terminate în -ma (el problema, el tema, el sistema, el idioma) sunt de genul masculin: 'el problema'."
     },
     "task": "Scrie sintagma 'el chico y la chica' (băiatul și fata).",
-    "starterCode": "// Scrie băiatul și fata\n",
+    "starterCode": "el chico y la chica",
     "expectedOutputPattern": "el\\s+chico\\s+y\\s+la\\s+chica\\.?",
-    "hint": "Scrie el chico y la chica"
+    "hint": "Scrie el chico y la chica",
+    "prompt": "Scrie sintagma 'el chico y la chica' (băiatul și fata).",
+    "officialSolution": "el chico y la chica",
+    "example": "el chico y la chica",
+    "regexPattern": "el\\s+chico\\s+y\\s+la\\s+chica\\.?"
   },
   {
     "id": "es-a1-p13",
@@ -8731,7 +9303,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
     "title": "Capitolul 13: Cum Spunem „NO”: Negația Simplă și Dublă în Spaniolă",
-    "theory": "\n<p>Negația în spaniolă este mult mai simplă decât în franceză: este suficient să plasezi cuvântul <strong>NO</strong> direct înaintea verbului conjugat.</p>\n<h4>1. Negația Simplă</h4>\n<ul>\n  <li><em>Hablo inglés</em> (Vorbesc engleză) $\rightarrow$ <em><strong>No</strong> hablo inglés</em> (Nu vorbesc engleză).</li>\n  <li><em>Tengo tiempo</em> $\rightarrow$ <em><strong>No</strong> tengo tiempo</em> (Nu am timp).</li>\n</ul>\n<h4>2. Negația Dublă Spaniolă (Obligatorie!)</h4>\n<p>Spre deosebire de engleză unde dubla negație este interzisă, în spaniolă <strong>dubla negație este obligatorie</strong> dacă termenul negativ stă după verb:</p>\n<ul>\n  <li><code>nunca</code> (niciodată): <em><strong>No</strong> voy <strong>nunca</strong> allí</em> (Nu merg niciodată acolo).</li>\n  <li><code>nada</code> (nimic): <em><strong>No</strong> sé <strong>nada</strong></em> (Nu știu nimic).</li>\n  <li><code>nadie</code> (nimeni): <em><strong>No</strong> hay <strong>nadie</strong> aquí</em> (Nu este nimeni aici).</li>\n</ul>\n",
+    "theory": "\n<p>Negația în spaniolă este mult mai simplă decât în franceză: este suficient să plasezi cuvântul <strong>NO</strong> direct înaintea verbului conjugat.</p>\n<h4>1. Negația Simplă</h4>\n<ul>\n  <li><em>Hablo inglés</em> (Vorbesc engleză) $\rightarrow$ <em><strong>No</strong> hablo inglés</em> (Nu vorbesc engleză).</li>\n  <li><em>Tengo tiempo</em> $\rightarrow$ <em><strong>No</strong> tengo tiempo</em> (Nu am timp).</li>\n</ul>\n<h4>2. Negația Dublă Spaniolă (Obligatorie!)</h4>\n<p>Spre deosebire de engleză unde dubla negație este interzisă, în spaniolă <strong>dubla negație este obligatorie</strong> dacă termenul negativ stă după verb:</p>\n<ul>\n  <li><code>nunca</code> (niciodată): <em><strong>No</strong> voy <strong>nunca</strong> allí</em> (Nu merg niciodată acolo).</li>\n  <li><code>nada</code> (nimic): <em><strong>No</strong> sé <strong>nada</strong></em> (Nu știu nimic).</li>\n  <li><code>nadie</code> (nimeni): <em><strong>No</strong> hay <strong>nadie</strong> aquí</em> (Nu este nimeni aici).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nNo entiendo nada, lo siento.\n</code></pre>\n",
     "glossary": [
       {
         "term": "no + verb",
@@ -8782,7 +9354,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția negativă 'No entiendo nada, lo siento.' (Nu înțeleg nimic, îmi pare rău).",
     "starterCode": "No entiendo ",
     "expectedOutputPattern": "No\\s+entiendo\\s+nada,\\s*lo\\s+siento\\.?",
-    "hint": "Scrie No entiendo nada, lo siento."
+    "hint": "Scrie No entiendo nada, lo siento.",
+    "prompt": "Scrie propoziția negativă 'No entiendo nada, lo siento.' (Nu înțeleg nimic, îmi pare rău).",
+    "officialSolution": "No entiendo nada, lo siento.",
+    "example": "No entiendo nada, lo siento.",
+    "regexPattern": "No\\s+entiendo\\s+nada,\\s*lo\\s+siento\\.?"
   },
   {
     "id": "es-a1-p14",
@@ -8792,7 +9368,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 14: Cuvinte Interogative (¿Quién?, ¿Qué?, ¿Dónde?, ¿Cuándo?, ¿Por qué?)",
-    "theory": "\n<p>Toate cuvintele interogative din spaniolă poartă <strong>accent grafic (tilde)</strong> pentru a le distinge de conjuncțiile sau pronumele relative omonime.</p>\n<h4>1. Cele 7 Cuvinte Cheie de Întrebare</h4>\n<ul>\n  <li><code>¿Quién? / ¿Quiénes?</code> = Cine? (<em>¿Quién es él?</em> = Cine este el?).</li>\n  <li><code>¿Qué?</code> = Ce? (<em>¿Qué pasa?</em> = Ce se întâmplă?).</li>\n  <li><code>¿Dónde?</code> = Unde? (<em>¿Dónde está el baño?</em> = Unde este toaleta?).</li>\n  <li><code>¿Cuándo?</code> = Când? (<em>¿Cuándo salimos?</em> = Când plecăm?).</li>\n  <li><code>¿Cómo?</code> = Cum? (<em>¿Cómo se dice...?</em> = Cum se spune...?).</li>\n  <li><code>¿Cuánto / Cuánta?</code> = Cât? (<em>¿Cuánto cuesta?</em> = Cât costă?).</li>\n  <li><code>¿Por qué?</code> (separat și cu accent) = De ce? Răspunsul este <code>Porque...</code> (într-un cuvânt și fără accent: Pentru că...).</li>\n</ul>\n",
+    "theory": "\n<p>Toate cuvintele interogative din spaniolă poartă <strong>accent grafic (tilde)</strong> pentru a le distinge de conjuncțiile sau pronumele relative omonime.</p>\n<h4>1. Cele 7 Cuvinte Cheie de Întrebare</h4>\n<ul>\n  <li><code>¿Quién? / ¿Quiénes?</code> = Cine? (<em>¿Quién es él?</em> = Cine este el?).</li>\n  <li><code>¿Qué?</code> = Ce? (<em>¿Qué pasa?</em> = Ce se întâmplă?).</li>\n  <li><code>¿Dónde?</code> = Unde? (<em>¿Dónde está el baño?</em> = Unde este toaleta?).</li>\n  <li><code>¿Cuándo?</code> = Când? (<em>¿Cuándo salimos?</em> = Când plecăm?).</li>\n  <li><code>¿Cómo?</code> = Cum? (<em>¿Cómo se dice...?</em> = Cum se spune...?).</li>\n  <li><code>¿Cuánto / Cuánta?</code> = Cât? (<em>¿Cuánto cuesta?</em> = Cât costă?).</li>\n  <li><code>¿Por qué?</code> (separat și cu accent) = De ce? Răspunsul este <code>Porque...</code> (într-un cuvânt și fără accent: Pentru că...).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\n¿Dónde está la playa, por favor?\n</code></pre>\n",
     "glossary": [
       {
         "term": "¿Por qué? vs Porque",
@@ -8841,9 +9417,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "¿Por qué? (scris separat și cu accent pe 'é') întreabă cauza, în timp ce 'porque' (scris legat și fără accent) oferă explicația."
     },
     "task": "Întreabă unde este plaja: '¿Dónde está la playa, por favor?'.",
-    "starterCode": "// Scrie întrebarea\n",
+    "starterCode": "¿Dónde está la playa, por favor?",
     "expectedOutputPattern": "(?:[¿?]\\s*)?D[óo]nde\\s+est[áa]\\s+la\\s+playa,\\s*por\\s+favor\\??",
-    "hint": "Scrie ¿Dónde está la playa, por favor?"
+    "hint": "Scrie ¿Dónde está la playa, por favor?",
+    "prompt": "Întreabă unde este plaja: '¿Dónde está la playa, por favor?'.",
+    "officialSolution": "¿Dónde está la playa, por favor?",
+    "example": "¿Dónde está la playa, por favor?",
+    "regexPattern": "(?:[¿?]\\s*)?D[óo]nde\\s+est[áa]\\s+la\\s+playa,\\s*por\\s+favor\\??"
   },
   {
     "id": "es-a1-p15",
@@ -8853,7 +9433,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 15: Culori, Adjective & Acordul de Gen și Număr",
-    "theory": "\n<p>În spaniolă, adjectivul <strong>se acordă întotdeauna în gen și număr</strong> cu substantivul determinat și este plasat de regulă <strong>după substantiv</strong>.</p>\n<h4>1. Regula de Bază a Adjectivelor</h4>\n<ul>\n  <li>Adjectivele în <code>-o</code> fac femininul în <code>-a</code>: <em>un chico alto $\rightarrow$ una chica alta</em>.</li>\n  <li>Adjectivele terminate în <code>-e</code> sau consoană sunt neutre în gen (rămân identice la masculin și feminin): <em>un libro grande / una casa grande</em>, <em>un examen difícil / una pregunta difícil</em>.</li>\n  <li>Pluralul: adaugă <code>-s</code> după vocală (<em>altos / altas</em>) și <code>-es</code> după consoană (<em>difíciles</em>).</li>\n</ul>\n<h4>2. Culorile</h4>\n<p><em>blanco/a</em> (alb), <em>negro/a</em> (negru), <em>rojo/a</em> (roșu), <em>amarillo/a</em> (galben), <em>azul / azules</em> (albastru), <em>verde / verdes</em> (verde).</p>\n",
+    "theory": "\n<p>În spaniolă, adjectivul <strong>se acordă întotdeauna în gen și număr</strong> cu substantivul determinat și este plasat de regulă <strong>după substantiv</strong>.</p>\n<h4>1. Regula de Bază a Adjectivelor</h4>\n<ul>\n  <li>Adjectivele în <code>-o</code> fac femininul în <code>-a</code>: <em>un chico alto $\rightarrow$ una chica alta</em>.</li>\n  <li>Adjectivele terminate în <code>-e</code> sau consoană sunt neutre în gen (rămân identice la masculin și feminin): <em>un libro grande / una casa grande</em>, <em>un examen difícil / una pregunta difícil</em>.</li>\n  <li>Pluralul: adaugă <code>-s</code> după vocală (<em>altos / altas</em>) și <code>-es</code> după consoană (<em>difíciles</em>).</li>\n</ul>\n<h4>2. Culorile</h4>\n<p><em>blanco/a</em> (alb), <em>negro/a</em> (negru), <em>rojo/a</em> (roșu), <em>amarillo/a</em> (galben), <em>azul / azules</em> (albastru), <em>verde / verdes</em> (verde).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nuna casa blanca con puertas verdes\n</code></pre>\n",
     "glossary": [
       {
         "term": "Concordancia de adjetivos",
@@ -8904,7 +9484,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie sintagma 'una casa blanca con puertas verdes' (o casă albă cu uși verzi).",
     "starterCode": "una casa ",
     "expectedOutputPattern": "una\\s+casa\\s+blanca\\s+con\\s+puertas\\s+verdes\\.?",
-    "hint": "Scrie una casa blanca con puertas verdes"
+    "hint": "Scrie una casa blanca con puertas verdes",
+    "prompt": "Scrie sintagma 'una casa blanca con puertas verdes' (o casă albă cu uși verzi).",
+    "officialSolution": "una casa blanca con puertas verdes",
+    "example": "una casa blanca con puertas verdes",
+    "regexPattern": "una\\s+casa\\s+blanca\\s+con\\s+puertas\\s+verdes\\.?"
   },
   {
     "id": "es-a1-p16",
@@ -8914,7 +9498,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 16: Familia & Arborele Genealogic (La Familia)",
-    "theory": "\n<p>Membrii familiei în spaniolă sunt ușor de reținut datorită perechilor regulate masculin (-o) / feminin (-a):</p>\n<h4>1. Membrii Principali</h4>\n<ul>\n  <li><code>el padre</code> = tatăl / <code>papá</code> = tati.</li>\n  <li><code>la madre</code> = mama / <code>mamá</code> = mami.</li>\n  <li><code>los padres</code> = părinții (mama și tata).</li>\n  <li><code>el hijo</code> = fiul / <code>la hija</code> = fiica / <code>los hijos</code> = copiii (sau fiii).</li>\n  <li><code>el hermano</code> = fratele / <code>la hermana</code> = sora / <code>los hermanos</code> = frații.</li>\n  <li><code>el abuelo</code> = bunicul / <code>la abuela</code> = bunica / <code>los abuelos</code> = bunicii.</li>\n  <li><code>el tío / la tía</code> = unchiul / mătușa.</li>\n  <li><code>el primo / la prima</code> = vărul / verișoara.</li>\n</ul>\n",
+    "theory": "\n<p>Membrii familiei în spaniolă sunt ușor de reținut datorită perechilor regulate masculin (-o) / feminin (-a):</p>\n<h4>1. Membrii Principali</h4>\n<ul>\n  <li><code>el padre</code> = tatăl / <code>papá</code> = tati.</li>\n  <li><code>la madre</code> = mama / <code>mamá</code> = mami.</li>\n  <li><code>los padres</code> = părinții (mama și tata).</li>\n  <li><code>el hijo</code> = fiul / <code>la hija</code> = fiica / <code>los hijos</code> = copiii (sau fiii).</li>\n  <li><code>el hermano</code> = fratele / <code>la hermana</code> = sora / <code>los hermanos</code> = frații.</li>\n  <li><code>el abuelo</code> = bunicul / <code>la abuela</code> = bunica / <code>los abuelos</code> = bunicii.</li>\n  <li><code>el tío / la tía</code> = unchiul / mătușa.</li>\n  <li><code>el primo / la prima</code> = vărul / verișoara.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nMi padre, mi madre y mis dos hermanos.\n</code></pre>\n",
     "glossary": [
       {
         "term": "los padres",
@@ -8965,7 +9549,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Mi padre, mi madre y mis dos hermanos.' (Tatăl meu, mama mea și cei doi frați ai mei).",
     "starterCode": "Mi padre, ",
     "expectedOutputPattern": "Mi\\s+padre,\\s*mi\\s+madre\\s+y\\s+mis\\s+dos\\s+hermanos\\.?",
-    "hint": "Scrie Mi padre, mi madre y mis dos hermanos."
+    "hint": "Scrie Mi padre, mi madre y mis dos hermanos.",
+    "prompt": "Scrie propoziția 'Mi padre, mi madre y mis dos hermanos.' (Tatăl meu, mama mea și cei doi frați ai mei).",
+    "officialSolution": "Mi padre, mi madre y mis dos hermanos.",
+    "example": "Mi padre, mi madre y mis dos hermanos.",
+    "regexPattern": "Mi\\s+padre,\\s*mi\\s+madre\\s+y\\s+mis\\s+dos\\s+hermanos\\.?"
   },
   {
     "id": "es-a1-p17",
@@ -8975,7 +9563,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 17: Adjectivele Posesive (Mi, Tu, Su, Nuestro, Vuestro, Su)",
-    "theory": "\n<p>În spaniolă, posesivele scurte stau <strong>înaintea substantivului</strong> și se acordă în număr (singular/plural) cu lucrul posedat:</p>\n<h4>1. Tabelul Posesivelor</h4>\n<ul>\n  <li><code>mi / mis</code> = al meu, a mea / ai mei, ale mele (<em>mi libro, mis libros</em>).</li>\n  <li><code>tu / tus</code> = al tău, a ta / ai tăi, ale tale (<em>tu casa, tus amigos</em>). Fără accent grafic!</li>\n  <li><code>su / sus</code> = al său, al lui, al ei, al dumneavoastră (<em>su pasaporte, sus llaves</em>).</li>\n  <li><code>nuestro/a, nuestros/as</code> = al nostru, a noastră, ai noștri (se acordă și în gen!).</li>\n  <li><code>vuestro/a, vuestros/as</code> = al vostru.</li>\n  <li><code>su / sus</code> = al lor, al dumneavoastră (plural).</li>\n</ul>\n",
+    "theory": "\n<p>În spaniolă, posesivele scurte stau <strong>înaintea substantivului</strong> și se acordă în număr (singular/plural) cu lucrul posedat:</p>\n<h4>1. Tabelul Posesivelor</h4>\n<ul>\n  <li><code>mi / mis</code> = al meu, a mea / ai mei, ale mele (<em>mi libro, mis libros</em>).</li>\n  <li><code>tu / tus</code> = al tău, a ta / ai tăi, ale tale (<em>tu casa, tus amigos</em>). Fără accent grafic!</li>\n  <li><code>su / sus</code> = al său, al lui, al ei, al dumneavoastră (<em>su pasaporte, sus llaves</em>).</li>\n  <li><code>nuestro/a, nuestros/as</code> = al nostru, a noastră, ai noștri (se acordă și în gen!).</li>\n  <li><code>vuestro/a, vuestros/as</code> = al vostru.</li>\n  <li><code>su / sus</code> = al lor, al dumneavoastră (plural).</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nmi maleta y mis documentos\n</code></pre>\n",
     "glossary": [
       {
         "term": "mi / mis",
@@ -9024,9 +9612,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "explanation": "Accentul diacritic diferențiază pronumele personal 'tú' (tú tienes) de adjectivul posesiv 'tu' (tu amigo)."
     },
     "task": "Scrie sintagma 'mi maleta y mis documentos' (valiza mea și documentele mele).",
-    "starterCode": "// Scrie sintagma\n",
+    "starterCode": "mi maleta y mis documentos",
     "expectedOutputPattern": "mi\\s+maleta\\s+y\\s+mis\\s+documentos\\.?",
-    "hint": "Scrie mi maleta y mis documentos"
+    "hint": "Scrie mi maleta y mis documentos",
+    "prompt": "Scrie sintagma 'mi maleta y mis documentos' (valiza mea și documentele mele).",
+    "officialSolution": "mi maleta y mis documentos",
+    "example": "mi maleta y mis documentos",
+    "regexPattern": "mi\\s+maleta\\s+y\\s+mis\\s+documentos\\.?"
   },
   {
     "id": "es-a1-p18",
@@ -9036,7 +9628,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 18: Corpul Uman & Cum Exprimăm Durerea (Me duele...)",
-    "theory": "\n<p>Pentru a spune că te doare ceva în spaniolă, se folosește verbul reflexiv-afectiv <strong>DOLER</strong> (a durea). Acesta funcționează exact ca verbul <em>gustar</em>!</p>\n<h4>1. Părțile Corpului (El Cuerpo Humano)</h4>\n<p><code>la cabeza</code> (capul), <code>la espalda</code> (spatele), <code>el estómago</code> (stomacul), <code>la garganta</code> (gâtul), <code>los ojos</code> (ochii), <code>las muelas / los dientes</code> (dinții/măselele), <code>el brazo</code> (brațul), <code>la pierna</code> (piciorul).</p>\n<h4>2. Structura: ME DUELE / ME DUELEN</h4>\n<ul>\n  <li>Dacă doare o singură parte (singular): <strong>Me duele</strong> (<em>Me duele la cabeza</em> = Mă doare capul).</li>\n  <li>Dacă dor mai multe părți (plural): <strong>Me duelen</strong> (<em>Me duelen los ojos / los pies</em> = Mă dor ochii / picioarele).</li>\n</ul>\n<p>La medic: <em>Tengo fiebre</em> (Am febră), <em>Estoy resfriado</em> (Sunt răcit).</p>\n",
+    "theory": "\n<p>Pentru a spune că te doare ceva în spaniolă, se folosește verbul reflexiv-afectiv <strong>DOLER</strong> (a durea). Acesta funcționează exact ca verbul <em>gustar</em>!</p>\n<h4>1. Părțile Corpului (El Cuerpo Humano)</h4>\n<p><code>la cabeza</code> (capul), <code>la espalda</code> (spatele), <code>el estómago</code> (stomacul), <code>la garganta</code> (gâtul), <code>los ojos</code> (ochii), <code>las muelas / los dientes</code> (dinții/măselele), <code>el brazo</code> (brațul), <code>la pierna</code> (piciorul).</p>\n<h4>2. Structura: ME DUELE / ME DUELEN</h4>\n<ul>\n  <li>Dacă doare o singură parte (singular): <strong>Me duele</strong> (<em>Me duele la cabeza</em> = Mă doare capul).</li>\n  <li>Dacă dor mai multe părți (plural): <strong>Me duelen</strong> (<em>Me duelen los ojos / los pies</em> = Mă dor ochii / picioarele).</li>\n</ul>\n<p>La medic: <em>Tengo fiebre</em> (Am febră), <em>Estoy resfriado</em> (Sunt răcit).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nMe duele la cabeza y tengo fiebre.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Me duele...",
@@ -9087,7 +9679,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Me duele la cabeza y tengo fiebre.' (Mă doare capul și am febră).",
     "starterCode": "Me duele ",
     "expectedOutputPattern": "Me\\s+duele\\s+la\\s+cabeza\\s+y\\s+tengo\\s+fiebre\\.?",
-    "hint": "Scrie Me duele la cabeza y tengo fiebre."
+    "hint": "Scrie Me duele la cabeza y tengo fiebre.",
+    "prompt": "Scrie propoziția 'Me duele la cabeza y tengo fiebre.' (Mă doare capul și am febră).",
+    "officialSolution": "Me duele la cabeza y tengo fiebre.",
+    "example": "Me duele la cabeza y tengo fiebre.",
+    "regexPattern": "Me\\s+duele\\s+la\\s+cabeza\\s+y\\s+tengo\\s+fiebre\\.?"
   },
   {
     "id": "es-a1-p19",
@@ -9097,7 +9693,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 19: Mâncarea, Băuturile & La Restaurant (En el Restaurante)",
-    "theory": "\n<p>Bucătăria spaniolă și tapas-urile sunt celebre în toată lumea. Iată vocabularul de bază pentru a comanda la bar sau restaurant:</p>\n<h4>1. Mâncăruri & Băuturi</h4>\n<ul>\n  <li><em>el pan</em> (pâinea), <em>el queso</em> (brânza), <em>el jamón</em> (șunca), <em>el pollo</em> (puiul), <em>el pescado</em> (peștele).</li>\n  <li><em>el agua</em> (apa - feminin, dar primește 'el' la singular pentru eufonie!), <em>el café con leche</em> (cafea cu lapte), <em>el zumo de naranja</em> (suc de portocale), <em>la cerveza</em> (berea), <em>el vino tinto</em> (vinul roșu).</li>\n</ul>\n<h4>2. Cum Comanzi Politicos</h4>\n<ul>\n  <li><code>Para mí...</code> = Pentru mine... (<em>Para mí, una paella, por favor</em>).</li>\n  <li><code>Quisiera...</code> / <code>Me gustaría...</code> = Aș dori...</li>\n  <li><code>¿Nos trae la cuenta, por favor?</code> = Ne aduceți nota de plată, vă rog?</li>\n  <li><code>¡Buen provecho!</code> = Poftă bună!</li>\n</ul>\n",
+    "theory": "\n<p>Bucătăria spaniolă și tapas-urile sunt celebre în toată lumea. Iată vocabularul de bază pentru a comanda la bar sau restaurant:</p>\n<h4>1. Mâncăruri & Băuturi</h4>\n<ul>\n  <li><em>el pan</em> (pâinea), <em>el queso</em> (brânza), <em>el jamón</em> (șunca), <em>el pollo</em> (puiul), <em>el pescado</em> (peștele).</li>\n  <li><em>el agua</em> (apa - feminin, dar primește 'el' la singular pentru eufonie!), <em>el café con leche</em> (cafea cu lapte), <em>el zumo de naranja</em> (suc de portocale), <em>la cerveza</em> (berea), <em>el vino tinto</em> (vinul roșu).</li>\n</ul>\n<h4>2. Cum Comanzi Politicos</h4>\n<ul>\n  <li><code>Para mí...</code> = Pentru mine... (<em>Para mí, una paella, por favor</em>).</li>\n  <li><code>Quisiera...</code> / <code>Me gustaría...</code> = Aș dori...</li>\n  <li><code>¿Nos trae la cuenta, por favor?</code> = Ne aduceți nota de plată, vă rog?</li>\n  <li><code>¡Buen provecho!</code> = Poftă bună!</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nPara mí una paella y un vaso de agua, por favor.\n</code></pre>\n",
     "glossary": [
       {
         "term": "la cuenta, por favor",
@@ -9148,7 +9744,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Comandă politicos: 'Para mí una paella y un vaso de agua, por favor.'.",
     "starterCode": "Para mí ",
     "expectedOutputPattern": "Para\\s+m[íi]\\s+una\\s+paella\\s+y\\s+un\\s+vaso\\s+de\\s+agua,\\s*por\\s+favor\\.?",
-    "hint": "Scrie Para mí una paella y un vaso de agua, por favor."
+    "hint": "Scrie Para mí una paella y un vaso de agua, por favor.",
+    "prompt": "Comandă politicos: 'Para mí una paella y un vaso de agua, por favor.'.",
+    "officialSolution": "Para mí una paella y un vaso de agua, por favor.",
+    "example": "Para mí una paella y un vaso de agua, por favor.",
+    "regexPattern": "Para\\s+m[íi]\\s+una\\s+paella\\s+y\\s+un\\s+vaso\\s+de\\s+agua,\\s*por\\s+favor\\.?"
   },
   {
     "id": "es-a1-p20",
@@ -9158,7 +9758,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 20: Locuința & Verbul Existențial „HAY” (Acolo se află / Există)",
-    "theory": "\n<p>Forma impersonală <strong>HAY</strong> (de la verbul haber) se traduce prin „există”, „se află” sau „este/sunt”, fiind invariabilă (se folosește identic și pentru singular și pentru plural!).</p>\n<h4>1. Încăperile Casei</h4>\n<p><code>la casa</code> (casa), <code>el piso / el apartamento</code> (apartamentul), <code>la cocina</code> (bucătăria), <code>el salón</code> (sufrageria), <code>el dormitorio / la habitación</code> (dormitorul), <code>el baño</code> (baia).</p>\n<h4>2. Utilizarea lui HAY</h4>\n<ul>\n  <li><em>En mi casa <strong>hay</strong> tres dormitorios</em> = În casa mea sunt trei dormitoare.</li>\n  <li><em>¿<strong>Hay</strong> un banco cerca de aquí?</em> = Este o bancă aproape de aici?</li>\n  <li><em>No <strong>hay</strong> problema</em> = Nu este nicio problemă.</li>\n</ul>\n",
+    "theory": "\n<p>Forma impersonală <strong>HAY</strong> (de la verbul haber) se traduce prin „există”, „se află” sau „este/sunt”, fiind invariabilă (se folosește identic și pentru singular și pentru plural!).</p>\n<h4>1. Încăperile Casei</h4>\n<p><code>la casa</code> (casa), <code>el piso / el apartamento</code> (apartamentul), <code>la cocina</code> (bucătăria), <code>el salón</code> (sufrageria), <code>el dormitorio / la habitación</code> (dormitorul), <code>el baño</code> (baia).</p>\n<h4>2. Utilizarea lui HAY</h4>\n<ul>\n  <li><em>En mi casa <strong>hay</strong> tres dormitorios</em> = În casa mea sunt trei dormitoare.</li>\n  <li><em>¿<strong>Hay</strong> un banco cerca de aquí?</em> = Este o bancă aproape de aici?</li>\n  <li><em>No <strong>hay</strong> problema</em> = Nu este nicio problemă.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nEn mi piso hay un salón grande y dos dormitorios.\n</code></pre>\n",
     "glossary": [
       {
         "term": "HAY",
@@ -9209,7 +9809,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'En mi piso hay un salón grande y dos dormitorios.'.",
     "starterCode": "En mi piso ",
     "expectedOutputPattern": "En\\s+mi\\s+piso\\s+hay\\s+un\\s+sal[óo]n\\s+grande\\s+y\\s+dos\\s+dormitorios\\.?",
-    "hint": "Scrie En mi piso hay un salón grande y dos dormitorios."
+    "hint": "Scrie En mi piso hay un salón grande y dos dormitorios.",
+    "prompt": "Scrie propoziția 'En mi piso hay un salón grande y dos dormitorios.'.",
+    "officialSolution": "En mi piso hay un salón grande y dos dormitorios.",
+    "example": "En mi piso hay un salón grande y dos dormitorios.",
+    "regexPattern": "En\\s+mi\\s+piso\\s+hay\\s+un\\s+sal[óo]n\\s+grande\\s+y\\s+dos\\s+dormitorios\\.?"
   },
   {
     "id": "es-a1-p21",
@@ -9219,7 +9823,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 21: Orașul & Întrebarea Direcției (La Ciudad y las Direcciones)",
-    "theory": "\n<p>Când vizitezi Madrid, Barcelona sau Sevilla, orientarea în oraș necesită câteva formule clare:</p>\n<h4>1. Locuri Publice Importante</h4>\n<p><code>la calle</code> (strada), <code>la plaza</code> (piața), <code>la estación de tren / autobús</code> (gara / autogara), <code>el aeropuerto</code> (aeroportul), <code>la farmacia</code> (farmacia), <code>el supermercado</code> (supermarketul).</p>\n<h4>2. Indicații de Traseu</h4>\n<ul>\n  <li><code>Siga todo recto</code> [siga todo rekto] = Mergeți drept înainte.</li>\n  <li><code>Gire a la izquierda</code> = Virați la stânga.</li>\n  <li><code>Gire a la derecha</code> = Virați la dreapta.</li>\n  <li><code>Tome la primera calle</code> = Luați prima stradă.</li>\n  <li><code>¿Por dónde se va a...?</code> = Pe unde se merge spre...?</li>\n</ul>\n",
+    "theory": "\n<p>Când vizitezi Madrid, Barcelona sau Sevilla, orientarea în oraș necesită câteva formule clare:</p>\n<h4>1. Locuri Publice Importante</h4>\n<p><code>la calle</code> (strada), <code>la plaza</code> (piața), <code>la estación de tren / autobús</code> (gara / autogara), <code>el aeropuerto</code> (aeroportul), <code>la farmacia</code> (farmacia), <code>el supermercado</code> (supermarketul).</p>\n<h4>2. Indicații de Traseu</h4>\n<ul>\n  <li><code>Siga todo recto</code> [siga todo rekto] = Mergeți drept înainte.</li>\n  <li><code>Gire a la izquierda</code> = Virați la stânga.</li>\n  <li><code>Gire a la derecha</code> = Virați la dreapta.</li>\n  <li><code>Tome la primera calle</code> = Luați prima stradă.</li>\n  <li><code>¿Por dónde se va a...?</code> = Pe unde se merge spre...?</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nSiga todo recto y gire a la derecha, por favor.\n</code></pre>\n",
     "glossary": [
       {
         "term": "todo recto",
@@ -9270,7 +9874,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie îndrumarea 'Siga todo recto y gire a la derecha, por favor.'.",
     "starterCode": "Siga todo ",
     "expectedOutputPattern": "Siga\\s+todo\\s+recto\\s+y\\s+gire\\s+a\\s+la\\s+derecha,\\s*por\\s+favor\\.?",
-    "hint": "Scrie Siga todo recto y gire a la derecha, por favor."
+    "hint": "Scrie Siga todo recto y gire a la derecha, por favor.",
+    "prompt": "Scrie îndrumarea 'Siga todo recto y gire a la derecha, por favor.'.",
+    "officialSolution": "Siga todo recto y gire a la derecha, por favor.",
+    "example": "Siga todo recto y gire a la derecha, por favor.",
+    "regexPattern": "Siga\\s+todo\\s+recto\\s+y\\s+gire\\s+a\\s+la\\s+derecha,\\s*por\\s+favor\\.?"
   },
   {
     "id": "es-a1-p22",
@@ -9280,7 +9888,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
     "title": "Capitolul 22: Vremea & Starea Meteo (¿Qué tiempo hace?)",
-    "theory": "\n<p>Pentru a întreba cum este vremea în spaniolă, spunem: <strong>« ¿Qué tiempo hace? »</strong>. Cele mai multe răspunsuri folosesc verbul <strong>HACER</strong> (a face):</p>\n<h4>1. Expresii Climatice cu HACER</h4>\n<ul>\n  <li><code>Hace buen tiempo</code> = E vreme frumoasă.</li>\n  <li><code>Hace mal tiempo</code> = E vreme urâtă.</li>\n  <li><code>Hace calor</code> = E cald.</li>\n  <li><code>Hace frío</code> = E frig.</li>\n  <li><code>Hace sol</code> = E soare / strălucește soarele.</li>\n  <li><code>Hace viento</code> = E vânt.</li>\n</ul>\n<h4>2. Verbe Climatice</h4>\n<ul>\n  <li><code>Llueve</code> (de la <em>llover</em>) = Plouă / <code>Está lloviendo</code> = Plouă chiar acum.</li>\n  <li><code>Nieva</code> (de la <em>nevar</em>) = Ninge.</li>\n</ul>\n",
+    "theory": "\n<p>Pentru a întreba cum este vremea în spaniolă, spunem: <strong>« ¿Qué tiempo hace? »</strong>. Cele mai multe răspunsuri folosesc verbul <strong>HACER</strong> (a face):</p>\n<h4>1. Expresii Climatice cu HACER</h4>\n<ul>\n  <li><code>Hace buen tiempo</code> = E vreme frumoasă.</li>\n  <li><code>Hace mal tiempo</code> = E vreme urâtă.</li>\n  <li><code>Hace calor</code> = E cald.</li>\n  <li><code>Hace frío</code> = E frig.</li>\n  <li><code>Hace sol</code> = E soare / strălucește soarele.</li>\n  <li><code>Hace viento</code> = E vânt.</li>\n</ul>\n<h4>2. Verbe Climatice</h4>\n<ul>\n  <li><code>Llueve</code> (de la <em>llover</em>) = Plouă / <code>Está lloviendo</code> = Plouă chiar acum.</li>\n  <li><code>Nieva</code> (de la <em>nevar</em>) = Ninge.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nHoy hace muy buen tiempo y hace sol.\n</code></pre>\n",
     "glossary": [
       {
         "term": "¿Qué tiempo hace?",
@@ -9331,7 +9939,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția meteo 'Hoy hace muy buen tiempo y hace sol.'.",
     "starterCode": "Hoy hace ",
     "expectedOutputPattern": "Hoy\\s+hace\\s+muy\\s+buen\\s+tiempo\\s+y\\s+hace\\s+sol\\.?",
-    "hint": "Scrie Hoy hace muy buen tiempo y hace sol."
+    "hint": "Scrie Hoy hace muy buen tiempo y hace sol.",
+    "prompt": "Scrie propoziția meteo 'Hoy hace muy buen tiempo y hace sol.'.",
+    "officialSolution": "Hoy hace muy buen tiempo y hace sol.",
+    "example": "Hoy hace muy buen tiempo y hace sol.",
+    "regexPattern": "Hoy\\s+hace\\s+muy\\s+buen\\s+tiempo\\s+y\\s+hace\\s+sol\\.?"
   },
   {
     "id": "es-a1-p23",
@@ -9341,7 +9953,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 40,
     "title": "Capitolul 23: Verbul „IR” (A MERGE) & El Futuro Próximo (IR + A + Infinitiv)",
-    "theory": "\n<p>Verbul <strong>ir</strong> (a merge) este complet neregulat, dar este cheia pentru a construi <strong>viitorul apropiat (El Futuro Próximo)</strong>.</p>\n<h4>1. Conjugarea Verbului IR</h4>\n<ul>\n  <li><code>Yo voy</code> [voi] = Eu merg.</li>\n  <li><code>Tú vas</code> = Tu mergi.</li>\n  <li><code>Él / Ella / Usted va</code> = El / Ea merge.</li>\n  <li><code>Nosotros vamos</code> = Noi mergem.</li>\n  <li><code>Vosotros vais</code> = Voi mergeți.</li>\n  <li><code>Ellos / Ellas / Ustedes van</code> = Ei / Ele merg.</li>\n</ul>\n<h4>2. El Futuro Próximo (IR + A + Infinitiv)</h4>\n<p>Formula magică este: <strong>IR conjugat + prepoziția 'A' + Infinitivul verbului</strong> (echivalentul perfect al lui 'going to'):</p>\n<ul>\n  <li><em><strong>Voy a comer</strong> paella</em> = Voi mânca paella.</li>\n  <li><em><strong>Vamos a viajar</strong> a España</em> = Vom călători în Spania.</li>\n  <li><em>¿Qué <strong>vas a hacer</strong> hoy?</em> = Ce ai de gând să faci azi?</li>\n</ul>\n",
+    "theory": "\n<p>Verbul <strong>ir</strong> (a merge) este complet neregulat, dar este cheia pentru a construi <strong>viitorul apropiat (El Futuro Próximo)</strong>.</p>\n<h4>1. Conjugarea Verbului IR</h4>\n<ul>\n  <li><code>Yo voy</code> [voi] = Eu merg.</li>\n  <li><code>Tú vas</code> = Tu mergi.</li>\n  <li><code>Él / Ella / Usted va</code> = El / Ea merge.</li>\n  <li><code>Nosotros vamos</code> = Noi mergem.</li>\n  <li><code>Vosotros vais</code> = Voi mergeți.</li>\n  <li><code>Ellos / Ellas / Ustedes van</code> = Ei / Ele merg.</li>\n</ul>\n<h4>2. El Futuro Próximo (IR + A + Infinitiv)</h4>\n<p>Formula magică este: <strong>IR conjugat + prepoziția 'A' + Infinitivul verbului</strong> (echivalentul perfect al lui 'going to'):</p>\n<ul>\n  <li><em><strong>Voy a comer</strong> paella</em> = Voi mânca paella.</li>\n  <li><em><strong>Vamos a viajar</strong> a España</em> = Vom călători în Spania.</li>\n  <li><em>¿Qué <strong>vas a hacer</strong> hoy?</em> = Ce ai de gând să faci azi?</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nMañana voy a estudiar español con mis amigos.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Ir",
@@ -9392,7 +10004,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția la viitor apropiat 'Mañana voy a estudiar español con mis amigos.'.",
     "starterCode": "Mañana voy ",
     "expectedOutputPattern": "Ma[ñn]ana\\s+voy\\s+a\\s+estudiar\\s+espa[ñn]ol\\s+con\\s+mis\\s+amigos\\.?",
-    "hint": "Scrie Mañana voy a estudiar español con mis amigos."
+    "hint": "Scrie Mañana voy a estudiar español con mis amigos.",
+    "prompt": "Scrie propoziția la viitor apropiat 'Mañana voy a estudiar español con mis amigos.'.",
+    "officialSolution": "Mañana voy a estudiar español con mis amigos.",
+    "example": "Mañana voy a estudiar español con mis amigos.",
+    "regexPattern": "Ma[ñn]ana\\s+voy\\s+a\\s+estudiar\\s+espa[ñn]ol\\s+con\\s+mis\\s+amigos\\.?"
   },
   {
     "id": "es-a1-p24",
@@ -9402,7 +10018,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 40,
     "title": "Capitolul 24: Verbele Reflexive & Rutina Zilnică (Levantarse, Ducharse)",
-    "theory": "\n<p>Verbele care descriu rutina personală sunt <strong>verbe reflexive</strong> și sunt însoțite de pronumele reflexive: <code>me, te, se, nos, os, se</code>.</p>\n<h4>1. Conjugarea Verbului LEVANTARSE (A se scula din pat)</h4>\n<ul>\n  <li><code>Yo me levanto</code> = Eu mă scol.</li>\n  <li><code>Tú te levantas</code> = Tu te scoli.</li>\n  <li><code>Él / Ella se levanta</code> = El / Ea se scoală.</li>\n  <li><code>Nosotros nos levantamos</code> = Noi ne sculăm.</li>\n  <li><code>Vosotros os levantáis</code> = Voi vă sculați.</li>\n  <li><code>Ellos se levantan</code> = Ei se scoală.</li>\n</ul>\n<h4>2. Alte Verbe de Rutină</h4>\n<p><code>despertarse (e->ie)</code> (a se trezi: <em>me despierto</em>), <code>ducharse</code> (a face duș), <code>vestirse (e->i)</code> (a se îmbrăca), <code>acostarse (o->ue)</code> (a merge la culcare: <em>me acuesto</em>).</p>\n",
+    "theory": "\n<p>Verbele care descriu rutina personală sunt <strong>verbe reflexive</strong> și sunt însoțite de pronumele reflexive: <code>me, te, se, nos, os, se</code>.</p>\n<h4>1. Conjugarea Verbului LEVANTARSE (A se scula din pat)</h4>\n<ul>\n  <li><code>Yo me levanto</code> = Eu mă scol.</li>\n  <li><code>Tú te levantas</code> = Tu te scoli.</li>\n  <li><code>Él / Ella se levanta</code> = El / Ea se scoală.</li>\n  <li><code>Nosotros nos levantamos</code> = Noi ne sculăm.</li>\n  <li><code>Vosotros os levantáis</code> = Voi vă sculați.</li>\n  <li><code>Ellos se levantan</code> = Ei se scoală.</li>\n</ul>\n<h4>2. Alte Verbe de Rutină</h4>\n<p><code>despertarse (e->ie)</code> (a se trezi: <em>me despierto</em>), <code>ducharse</code> (a face duș), <code>vestirse (e->i)</code> (a se îmbrăca), <code>acostarse (o->ue)</code> (a merge la culcare: <em>me acuesto</em>).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nTodos los días me levanto a las siete de la mañana.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Verbos reflexivos",
@@ -9453,7 +10069,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția de rutină 'Todos los días me levanto a las siete de la mañana.'.",
     "starterCode": "Todos los días ",
     "expectedOutputPattern": "Todos\\s+los\\s+d[íi]as\\s+me\\s+levanto\\s+a\\s+las\\s+siete\\s+de\\s+la\\s+ma[ñn]ana\\.?",
-    "hint": "Scrie Todos los días me levanto a las siete de la mañana."
+    "hint": "Scrie Todos los días me levanto a las siete de la mañana.",
+    "prompt": "Scrie propoziția de rutină 'Todos los días me levanto a las siete de la mañana.'.",
+    "officialSolution": "Todos los días me levanto a las siete de la mañana.",
+    "example": "Todos los días me levanto a las siete de la mañana.",
+    "regexPattern": "Todos\\s+los\\s+d[íi]as\\s+me\\s+levanto\\s+a\\s+las\\s+siete\\s+de\\s+la\\s+ma[ñn]ana\\.?"
   },
   {
     "id": "es-a1-p25",
@@ -9463,7 +10083,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 45,
     "title": "Capitolul 25: Sinteză Conversațională A1: Sosirea la Hotel & Înregistrarea",
-    "theory": "\n<p>¡Enhorabuena! Ai finalizat modulul A1 de la zero. Să integrăm toate cunoștințele dobândite (saluturi, ser/estar/tener, numere, politețe) într-o conversație autentică la recepția unui hotel din Spania:</p>\n<h4>1. Replicile Recepționerului</h4>\n<ul>\n  <li><em>¡Buenas tardes! Bienvenido al Hotel Sol.</em></li>\n  <li><em>¿Tiene una reserva?</em> (Aveți o rezervare?)</li>\n  <li><em>¿A qué nombre está la reserva?</em> (Pe ce nume este rezervarea?)</li>\n  <li><em>¿Me deja su pasaporte, por favor?</em> (Îmi lăsați pașaportul, vă rog?)</li>\n</ul>\n<h4>2. Răspunsurile Oaspetelui</h4>\n<ul>\n  <li><em>Sí, tengo una reserva a nombre de Radu Popescu.</em></li>\n  <li><em>Es para tres noches, con desayuno incluido.</em> (Pentru trei nopți, cu mic dejun inclus.)</li>\n  <li><em>Aquí tiene mi pasaporte. ¿A qué hora es el desayuno?</em></li>\n  <li><em>El desayuno es de 7:30 a 10:30. Su habitación es la 305 en la tercera planta.</em></li>\n</ul>\n",
+    "theory": "\n<p>¡Enhorabuena! Ai finalizat modulul A1 de la zero. Să integrăm toate cunoștințele dobândite (saluturi, ser/estar/tener, numere, politețe) într-o conversație autentică la recepția unui hotel din Spania:</p>\n<h4>1. Replicile Recepționerului</h4>\n<ul>\n  <li><em>¡Buenas tardes! Bienvenido al Hotel Sol.</em></li>\n  <li><em>¿Tiene una reserva?</em> (Aveți o rezervare?)</li>\n  <li><em>¿A qué nombre está la reserva?</em> (Pe ce nume este rezervarea?)</li>\n  <li><em>¿Me deja su pasaporte, por favor?</em> (Îmi lăsați pașaportul, vă rog?)</li>\n</ul>\n<h4>2. Răspunsurile Oaspetelui</h4>\n<ul>\n  <li><em>Sí, tengo una reserva a nombre de Radu Popescu.</em></li>\n  <li><em>Es para tres noches, con desayuno incluido.</em> (Pentru trei nopți, cu mic dejun inclus.)</li>\n  <li><em>Aquí tiene mi pasaporte. ¿A qué hora es el desayuno?</em></li>\n  <li><em>El desayuno es de 7:30 a 10:30. Su habitación es la 305 en la tercera planta.</em></li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\n¡Buenas tardes! Tengo una reserva para dos personas, por favor.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Tengo una reserva",
@@ -9514,7 +10134,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie replica '¡Buenas tardes! Tengo una reserva para dos personas, por favor.'.",
     "starterCode": "¡Buenas tardes! ",
     "expectedOutputPattern": "(?:[¡!]\\s*)?Buenas\\s+tardes[!\\s]+Tengo\\s+una\\s+reserva\\s+para\\s+dos\\s+personas,\\s*por\\s+favor\\.?",
-    "hint": "Scrie ¡Buenas tardes! Tengo una reserva para dos personas, por favor."
+    "hint": "Scrie ¡Buenas tardes! Tengo una reserva para dos personas, por favor.",
+    "prompt": "Scrie replica '¡Buenas tardes! Tengo una reserva para dos personas, por favor.'.",
+    "officialSolution": "¡Buenas tardes! Tengo una reserva para dos personas, por favor.",
+    "example": "¡Buenas tardes! Tengo una reserva para dos personas, por favor.",
+    "regexPattern": "(?:[¡!]\\s*)?Buenas\\s+tardes[!\\s]+Tengo\\s+una\\s+reserva\\s+para\\s+dos\\s+personas,\\s*por\\s+favor\\.?"
   },
   {
     "id": "es-b1-p26",
@@ -9575,7 +10199,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Hoy he estudiado español y he hablado con mi amigo.' (Astăzi am învățat spaniolă și am vorbit cu prietenul meu).",
     "starterCode": "Hoy he estudiado ",
     "expectedOutputPattern": "Hoy\\s+he\\s+estudiado\\s+espa[ñn]ol\\s+y\\s+he\\s+hablado\\s+con\\s+mi\\s+amigo\\.?",
-    "hint": "Scrie Hoy he estudiado español y he hablado con mi amigo."
+    "hint": "Scrie Hoy he estudiado español y he hablado con mi amigo.",
+    "prompt": "Scrie propoziția 'Hoy he estudiado español y he hablado con mi amigo.' (Astăzi am învățat spaniolă și am vorbit cu prietenul meu).",
+    "officialSolution": "Hoy he estudiado español y he hablado con mi amigo.",
+    "example": "Hoy he estudiado español y he hablado con mi amigo.",
+    "regexPattern": "Hoy\\s+he\\s+estudiado\\s+espa[ñn]ol\\s+y\\s+he\\s+hablado\\s+con\\s+mi\\s+amigo\\.?"
   },
   {
     "id": "es-b1-p27",
@@ -9585,7 +10213,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 27: Pretérito Indefinido (Perfectul Simplu Regulat: Hablé, Comí, Viví)",
-    "theory": "\n<p><strong>Pretérito Indefinido</strong> (sau <em>Pretérito Perfecto Simple</em>) este timpul suprem al narațiunii spaniole pentru evenimente petrecute într-un moment trecut <strong>complet încheiat</strong>, fără legătură cu prezentul (marcat de: <em>ayer</em>, <em>anoche</em>, <em>el año pasado</em>, <em>en 1995</em>).</p>\n<h4>1. Terminațiile Regulate</h4>\n<ul>\n  <li>Verbe în <code>-ar</code> (<em>hablar</em>):<br>\n  <strong>-é, -aste, -ó, -amos, -asteis, -aron</strong><br>\n  <em>hablé, hablaste, habló, hablamos, hablasteis, hablaron</em>.</li>\n  <li>Verbe în <code>-er / -ir</code> (<em>comer, vivir</em>):<br>\n  <strong>-í, -iste, -ió, -imos, -isteis, -ieron</strong><br>\n  <em>comí, comiste, comió, comimos, comisteis, comieron</em>.</li>\n</ul>\n<h4>2. Accentele Grafice Obligatorii</h4>\n<p>Atenție: persoana I (<em>habl<strong>é</strong>, com<strong>í</strong></em>) și persoana a III-a singular (<em>habl<strong>ó</strong>, com<strong>ió</strong></em>) poartă obligatoriu accent grafic!</p>\n",
+    "theory": "\n<p><strong>Pretérito Indefinido</strong> (sau <em>Pretérito Perfecto Simple</em>) este timpul suprem al narațiunii spaniole pentru evenimente petrecute într-un moment trecut <strong>complet încheiat</strong>, fără legătură cu prezentul (marcat de: <em>ayer</em>, <em>anoche</em>, <em>el año pasado</em>, <em>en 1995</em>).</p>\n<h4>1. Terminațiile Regulate</h4>\n<ul>\n  <li>Verbe în <code>-ar</code> (<em>hablar</em>):<br>\n  <strong>-é, -aste, -ó, -amos, -asteis, -aron</strong><br>\n  <em>hablé, hablaste, habló, hablamos, hablasteis, hablaron</em>.</li>\n  <li>Verbe în <code>-er / -ir</code> (<em>comer, vivir</em>):<br>\n  <strong>-í, -iste, -ió, -imos, -isteis, -ieron</strong><br>\n  <em>comí, comiste, comió, comimos, comisteis, comieron</em>.</li>\n</ul>\n<h4>2. Accentele Grafice Obligatorii</h4>\n<p>Atenție: persoana I (<em>habl<strong>é</strong>, com<strong>í</strong></em>) și persoana a III-a singular (<em>habl<strong>ó</strong>, com<strong>ió</strong></em>) poartă obligatoriu accent grafic!</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nAyer trabajé ocho horas y comí en un restaurante mexicano.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Pretérito Indefinido",
@@ -9636,7 +10264,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Ayer trabajé ocho horas y comí en un restaurante mexicano.'.",
     "starterCode": "Ayer trabajé ",
     "expectedOutputPattern": "Ayer\\s+trabaj[ée]\\s+ocho\\s+horas\\s+y\\s+com[íi]\\s+en\\s+un\\s+restaurante\\s+mexicano\\.?",
-    "hint": "Scrie Ayer trabajé ocho horas y comí en un restaurante mexicano."
+    "hint": "Scrie Ayer trabajé ocho horas y comí en un restaurante mexicano.",
+    "prompt": "Scrie propoziția 'Ayer trabajé ocho horas y comí en un restaurante mexicano.'.",
+    "officialSolution": "Ayer trabajé ocho horas y comí en un restaurante mexicano.",
+    "example": "Ayer trabajé ocho horas y comí en un restaurante mexicano.",
+    "regexPattern": "Ayer\\s+trabaj[ée]\\s+ocho\\s+horas\\s+y\\s+com[íi]\\s+en\\s+un\\s+restaurante\\s+mexicano\\.?"
   },
   {
     "id": "es-b1-p28",
@@ -9646,7 +10278,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 28: Pretérito Indefinido: Forme Neregulate Fundamentale",
-    "theory": "\n<p>Multe dintre cele mai importante verbe din spaniolă au o rădăcină specială neregulată la pretérito indefinido și împart un <strong>set comun de terminații FĂRĂ accent grafic</strong>:</p>\n<p><strong>-e, -iste, -o, -imos, -isteis, -ieron</strong></p>\n<h4>1. Rădăcini Neregulate Esențiale</h4>\n<ul>\n  <li><code>estar &rarr; estuv-</code> (estuve, estuviste, estuvo...)</li>\n  <li><code>tener &rarr; tuv-</code> (tuve, tuviste, tuvo...)</li>\n  <li><code>hacer &rarr; hic-</code> (hice, hiciste, <strong>hizo</strong>, hicimos...)</li>\n  <li><code>decir &rarr; dij-</code> (dije, dijiste, dijo, dijimos, <strong>dijeron</strong>)</li>\n  <li><code>poder &rarr; pud-</code> (pude, pudiste, pudo...)</li>\n</ul>\n<h4>2. Dubletul Neregulat Unic: SER & IR</h4>\n<p>Verbele <em>ser</em> (a fi) și <em>ir</em> (a merge) au <strong>forme 100% identice</strong> la indefinido (contextul decide înțelesul!):<br>\n<strong>fui, fuiste, fue, fuimos, fuisteis, fueron</strong>.</p>\n",
+    "theory": "\n<p>Multe dintre cele mai importante verbe din spaniolă au o rădăcină specială neregulată la pretérito indefinido și împart un <strong>set comun de terminații FĂRĂ accent grafic</strong>:</p>\n<p><strong>-e, -iste, -o, -imos, -isteis, -ieron</strong></p>\n<h4>1. Rădăcini Neregulate Esențiale</h4>\n<ul>\n  <li><code>estar &rarr; estuv-</code> (estuve, estuviste, estuvo...)</li>\n  <li><code>tener &rarr; tuv-</code> (tuve, tuviste, tuvo...)</li>\n  <li><code>hacer &rarr; hic-</code> (hice, hiciste, <strong>hizo</strong>, hicimos...)</li>\n  <li><code>decir &rarr; dij-</code> (dije, dijiste, dijo, dijimos, <strong>dijeron</strong>)</li>\n  <li><code>poder &rarr; pud-</code> (pude, pudiste, pudo...)</li>\n</ul>\n<h4>2. Dubletul Neregulat Unic: SER & IR</h4>\n<p>Verbele <em>ser</em> (a fi) și <em>ir</em> (a merge) au <strong>forme 100% identice</strong> la indefinido (contextul decide înțelesul!):<br>\n<strong>fui, fuiste, fue, fuimos, fuisteis, fueron</strong>.</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nEl fin de semana estuve en Barcelona y fui al museo.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Rădăcini neregulate în -u/-i/-j",
@@ -9697,7 +10329,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'El fin de semana estuve en Barcelona y fui al museo.'.",
     "starterCode": "El fin de semana ",
     "expectedOutputPattern": "El\\s+fin\\s+de\\s+semana\\s+estuve\\s+en\\s+Barcelona\\s+y\\s+fui\\s+al\\s+museo\\.?",
-    "hint": "Scrie El fin de semana estuve en Barcelona y fui al museo."
+    "hint": "Scrie El fin de semana estuve en Barcelona y fui al museo.",
+    "prompt": "Scrie propoziția 'El fin de semana estuve en Barcelona y fui al museo.'.",
+    "officialSolution": "El fin de semana estuve en Barcelona y fui al museo.",
+    "example": "El fin de semana estuve en Barcelona y fui al museo.",
+    "regexPattern": "El\\s+fin\\s+de\\s+semana\\s+estuve\\s+en\\s+Barcelona\\s+y\\s+fui\\s+al\\s+museo\\.?"
   },
   {
     "id": "es-b1-p29",
@@ -9707,7 +10343,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 29: Pretérito Imperfecto — Rutine & Descrieri în Trecut",
-    "theory": "\n<p><strong>Pretérito Imperfecto</strong> descrie cum erau lucrurile în trecut, circumstanțele, stările fizice/psihice și acțiunile habituale din copilărie („ce făceai de obicei”).</p>\n<h4>1. Terminațiile Regulate</h4>\n<ul>\n  <li>Verbe în <code>-ar</code> (<em>hablar</em>):<br>\n  <strong>-aba, -abas, -aba, -ábamos, -abais, -aban</strong><br>\n  <em>hablaba, hablabas, hablaba, hablábamos, hablabais, hablaban</em>.</li>\n  <li>Verbe în <code>-er / -ir</code> (<em>comer, vivir</em>):<br>\n  <strong>-ía, -ías, -ía, -íamos, -íais, -ían</strong> (toate poartă accent pe í!).</li>\n</ul>\n<h4>2. Cele Singure Trei Verbe Neregulate</h4>\n<p>Spaniola este extrem de generoasă: <strong>doar 3 verbe sunt neregulate</strong> la imperfect:</p>\n<ul>\n  <li><code>ser &rarr; era, eras, era, éramos, erais, eran</code></li>\n  <li><code>ir &rarr; iba, ibas, iba, íbamos, ibais, iban</code></li>\n  <li><code>ver &rarr; veía, veías, veía, veíamos, veíais, veían</code></li>\n</ul>\n",
+    "theory": "\n<p><strong>Pretérito Imperfecto</strong> descrie cum erau lucrurile în trecut, circumstanțele, stările fizice/psihice și acțiunile habituale din copilărie („ce făceai de obicei”).</p>\n<h4>1. Terminațiile Regulate</h4>\n<ul>\n  <li>Verbe în <code>-ar</code> (<em>hablar</em>):<br>\n  <strong>-aba, -abas, -aba, -ábamos, -abais, -aban</strong><br>\n  <em>hablaba, hablabas, hablaba, hablábamos, hablabais, hablaban</em>.</li>\n  <li>Verbe în <code>-er / -ir</code> (<em>comer, vivir</em>):<br>\n  <strong>-ía, -ías, -ía, -íamos, -íais, -ían</strong> (toate poartă accent pe í!).</li>\n</ul>\n<h4>2. Cele Singure Trei Verbe Neregulate</h4>\n<p>Spaniola este extrem de generoasă: <strong>doar 3 verbe sunt neregulate</strong> la imperfect:</p>\n<ul>\n  <li><code>ser &rarr; era, eras, era, éramos, erais, eran</code></li>\n  <li><code>ir &rarr; iba, ibas, iba, íbamos, ibais, iban</code></li>\n  <li><code>ver &rarr; veía, veías, veía, veíamos, veíais, veían</code></li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nCuando era niño, vivía en el campo y jugaba con mis amigos.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Pretérito Imperfecto",
@@ -9758,7 +10394,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie amintirea 'Cuando era niño, vivía en el campo y jugaba con mis amigos.'.",
     "starterCode": "Cuando era niño, ",
     "expectedOutputPattern": "Cuando\\s+era\\s+ni[ñn]o,\\s*viv[íi]a\\s+en\\s+el\\s+campo\\s+y\\s+jugaba\\s+con\\s+mis\\s+amigos\\.?",
-    "hint": "Scrie Cuando era niño, vivía en el campo y jugaba con mis amigos."
+    "hint": "Scrie Cuando era niño, vivía en el campo y jugaba con mis amigos.",
+    "prompt": "Scrie amintirea 'Cuando era niño, vivía en el campo y jugaba con mis amigos.'.",
+    "officialSolution": "Cuando era niño, vivía en el campo y jugaba con mis amigos.",
+    "example": "Cuando era niño, vivía en el campo y jugaba con mis amigos.",
+    "regexPattern": "Cuando\\s+era\\s+ni[ñn]o,\\s*viv[íi]a\\s+en\\s+el\\s+campo\\s+y\\s+jugaba\\s+con\\s+mis\\s+amigos\\.?"
   },
   {
     "id": "es-b1-p30",
@@ -9768,7 +10408,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 30: Imperfecto vs Indefinido — Contrastul Narativ Fundamental",
-    "theory": "\n<p>Diferențierea dintre <strong>Imperfecto</strong> și <strong>Indefinido</strong> este inima narațiunii în spaniolă.</p>\n<h4>1. Rolurile în Povestire</h4>\n<ul>\n  <li><strong>Imperfecto (Decorul / Fundalul):</strong> Pictează peisajul, ora, starea vremii, ce făcea personajul cândva: <em>Hacía frío y yo caminaba por la calle...</em></li>\n  <li><strong>Indefinido (Evenimentul Punctual):</strong> Acțiunea punctuală care intervine brusc și împinge acțiunea înainte: <em>...cuando de repente vi a mi amigo.</em></li>\n</ul>\n<h4>2. Schema de Aur</h4>\n<p><code>[Acțiune în desfășurare: Imperfecto] + cuando + [Eveniment întrerupător: Indefinido]</code><br>\n<em>Dormía plácidamente cuando sonó la alarma.</em></p>\n",
+    "theory": "\n<p>Diferențierea dintre <strong>Imperfecto</strong> și <strong>Indefinido</strong> este inima narațiunii în spaniolă.</p>\n<h4>1. Rolurile în Povestire</h4>\n<ul>\n  <li><strong>Imperfecto (Decorul / Fundalul):</strong> Pictează peisajul, ora, starea vremii, ce făcea personajul cândva: <em>Hacía frío y yo caminaba por la calle...</em></li>\n  <li><strong>Indefinido (Evenimentul Punctual):</strong> Acțiunea punctuală care intervine brusc și împinge acțiunea înainte: <em>...cuando de repente vi a mi amigo.</em></li>\n</ul>\n<h4>2. Schema de Aur</h4>\n<p><code>[Acțiune în desfășurare: Imperfecto] + cuando + [Eveniment întrerupător: Indefinido]</code><br>\n<em>Dormía plácidamente cuando sonó la alarma.</em></p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nEstudiaba en mi habitación cuando llegó mi hermano.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Escenario (Imperfecto)",
@@ -9819,7 +10459,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Estudiaba en mi habitación cuando llegó mi hermano.' (Învățam în camera mea când a sosit fratele meu).",
     "starterCode": "Estudiaba en mi habitación ",
     "expectedOutputPattern": "Estudiaba\\s+en\\s+mi\\s+habitaci[óo]n\\s+quand[o]\\s+lleg[óo]\\s+mi\\s+hermano\\.?",
-    "hint": "Scrie Estudiaba en mi habitación cuando llegó mi hermano."
+    "hint": "Scrie Estudiaba en mi habitación cuando llegó mi hermano.",
+    "prompt": "Scrie propoziția 'Estudiaba en mi habitación cuando llegó mi hermano.' (Învățam în camera mea când a sosit fratele meu).",
+    "officialSolution": "Estudiaba en mi habitación cuando llegó mi hermano.",
+    "example": "Estudiaba en mi habitación cuando llegó mi hermano.",
+    "regexPattern": "Estudiaba\\s+en\\s+mi\\s+habitaci[óo]n\\s+quand[o]\\s+lleg[óo]\\s+mi\\s+hermano\\.?"
   },
   {
     "id": "es-b1-p31",
@@ -9829,7 +10473,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 31: Pronombres de Objeto Directo (me, te, lo, la, nos, os, los, las)",
-    "theory": "\n<p><strong>Pronombres de Objeto Directo (OD)</strong> înlocuiesc substantivul asupra căruia cade direct acțiunea verbului (răspunde la întrebarea <em>¿qué?</em> sau <em>¿a quién?</em>).</p>\n<h4>1. Formele Pronumelor OD</h4>\n<ul>\n  <li><code>me / te / nos / os</code> (pentru persoane)</li>\n  <li><code>lo</code> = îl / pe el / pe acesta (masculin singular)</li>\n  <li><code>la</code> = o / pe ea / pe aceasta (feminin singular)</li>\n  <li><code>los / las</code> = îi / le (plural masculin / feminin)</li>\n</ul>\n<h4>2. Regula „A personal”</h4>\n<p>Când complementul direct este o ființă umană specifică, spaniola impune prepoziția <strong>a</strong>: <em>Veo <strong>a</strong> María &rarr; <strong>La</strong> veo.</em></p>\n<h4>3. Poziția Pronumelui</h4>\n<p>Stă <strong>în fața</strong> verbului conjugat (<em>Lo compro</em>) SAU se leagă <strong>la sfârșitul</strong> infinitivului / gerunziului (<em>Quiero comprar<strong>lo</strong></em> / <em>Estoy comprándo<strong>lo</strong></em>).</p>\n",
+    "theory": "\n<p><strong>Pronombres de Objeto Directo (OD)</strong> înlocuiesc substantivul asupra căruia cade direct acțiunea verbului (răspunde la întrebarea <em>¿qué?</em> sau <em>¿a quién?</em>).</p>\n<h4>1. Formele Pronumelor OD</h4>\n<ul>\n  <li><code>me / te / nos / os</code> (pentru persoane)</li>\n  <li><code>lo</code> = îl / pe el / pe acesta (masculin singular)</li>\n  <li><code>la</code> = o / pe ea / pe aceasta (feminin singular)</li>\n  <li><code>los / las</code> = îi / le (plural masculin / feminin)</li>\n</ul>\n<h4>2. Regula „A personal”</h4>\n<p>Când complementul direct este o ființă umană specifică, spaniola impune prepoziția <strong>a</strong>: <em>Veo <strong>a</strong> María &rarr; <strong>La</strong> veo.</em></p>\n<h4>3. Poziția Pronumelui</h4>\n<p>Stă <strong>în fața</strong> verbului conjugat (<em>Lo compro</em>) SAU se leagă <strong>la sfârșitul</strong> infinitivului / gerunziului (<em>Quiero comprar<strong>lo</strong></em> / <em>Estoy comprándo<strong>lo</strong></em>).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nCompro el periódico por la mañana y lo leo en el metro.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Objeto Directo (OD)",
@@ -9880,7 +10524,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie replica 'Compro el periódico por la mañana y lo leo en el metro.'.",
     "starterCode": "Compro el periódico ",
     "expectedOutputPattern": "Compro\\s+el\\s+peri[óo]dico\\s+por\\s+la\\s+ma[ñn]ana\\s+y\\s+lo\\s+leo\\s+en\\s+el\\s+metro\\.?",
-    "hint": "Scrie Compro el periódico por la mañana y lo leo en el metro."
+    "hint": "Scrie Compro el periódico por la mañana y lo leo en el metro.",
+    "prompt": "Scrie replica 'Compro el periódico por la mañana y lo leo en el metro.'.",
+    "officialSolution": "Compro el periódico por la mañana y lo leo en el metro.",
+    "example": "Compro el periódico por la mañana y lo leo en el metro.",
+    "regexPattern": "Compro\\s+el\\s+peri[óo]dico\\s+por\\s+la\\s+ma[ñn]ana\\s+y\\s+lo\\s+leo\\s+en\\s+el\\s+metro\\.?"
   },
   {
     "id": "es-b1-p32",
@@ -9890,7 +10538,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 35,
     "title": "Capitolul 32: Pronombres de Objeto Indirecto (me, te, le, nos, os, les) & Dublarea",
-    "theory": "\n<p><strong>Pronombres de Objeto Indirecto (OI)</strong> arată destinatarul sau beneficiarul acțiunii (răspunde la întrebarea <em>¿a quién?</em> &mdash; cui?).</p>\n<h4>1. Formele Pronumelor OI</h4>\n<ul>\n  <li><code>me / te / nos / os</code></li>\n  <li><code>le</code> = lui / ei / Dumneavoastră (singular)</li>\n  <li><code>les</code> = lor / Dumneavoastră plural</li>\n</ul>\n<h4>2. Fenomenul Dublării Pronumelui (Reduplicación)</h4>\n<p>În spaniolă, este o regulă standard ca pronumele indirect (<em>le/les</em>) să apară în propoziție <strong>chiar dacă destinatarul este numit explicit</strong>:</p>\n<p><em><strong>Le</strong> doy el regalo <strong>a Juan</strong>.</em> (Îi dau cadoul lui Juan &mdash; 'le' este obligatoriu!).<br>\n<em><strong>Les</strong> escribo un correo <strong>a mis padres</strong>.</em></p>\n",
+    "theory": "\n<p><strong>Pronombres de Objeto Indirecto (OI)</strong> arată destinatarul sau beneficiarul acțiunii (răspunde la întrebarea <em>¿a quién?</em> &mdash; cui?).</p>\n<h4>1. Formele Pronumelor OI</h4>\n<ul>\n  <li><code>me / te / nos / os</code></li>\n  <li><code>le</code> = lui / ei / Dumneavoastră (singular)</li>\n  <li><code>les</code> = lor / Dumneavoastră plural</li>\n</ul>\n<h4>2. Fenomenul Dublării Pronumelui (Reduplicación)</h4>\n<p>În spaniolă, este o regulă standard ca pronumele indirect (<em>le/les</em>) să apară în propoziție <strong>chiar dacă destinatarul este numit explicit</strong>:</p>\n<p><em><strong>Le</strong> doy el regalo <strong>a Juan</strong>.</em> (Îi dau cadoul lui Juan &mdash; 'le' este obligatoriu!).<br>\n<em><strong>Les</strong> escribo un correo <strong>a mis padres</strong>.</em></p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nLe escribo una carta a mi abuela todos los domingos.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Objeto Indirecto (OI)",
@@ -9941,7 +10589,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Le escribo una carta a mi abuela todos los domingos.' (Îi scriu o scrisoare bunicii mele în fiecare duminică).",
     "starterCode": "Le escribo una carta ",
     "expectedOutputPattern": "Le\\s+escribo\\s+una\\s+carta\\s+a\\s+mi\\s+abuela\\s+todos\\s+los\\s+domingos\\.?",
-    "hint": "Scrie Le escribo una carta a mi abuela todos los domingos."
+    "hint": "Scrie Le escribo una carta a mi abuela todos los domingos.",
+    "prompt": "Scrie propoziția 'Le escribo una carta a mi abuela todos los domingos.' (Îi scriu o scrisoare bunicii mele în fiecare duminică).",
+    "officialSolution": "Le escribo una carta a mi abuela todos los domingos.",
+    "example": "Le escribo una carta a mi abuela todos los domingos.",
+    "regexPattern": "Le\\s+escribo\\s+una\\s+carta\\s+a\\s+mi\\s+abuela\\s+todos\\s+los\\s+domingos\\.?"
   },
   {
     "id": "es-b1-p33",
@@ -9951,7 +10603,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 40,
     "title": "Capitolul 33: Combinarea Pronumelor OD + OI & Transformarea „SE LO / SE LA”",
-    "theory": "\n<p>Când o frază conține atât un pronume de Obiect Indirect (cui?) cât și unul de Obiect Direct (ce?), se aplică două reguli fundamentale:</p>\n<h4>1. Ordinea Canonica: INDIRECTUL PRIMUL!</h4>\n<p><code>Subiect + [OI] + [OD] + Verb</code><br>\n<em>¿Me dejas tu libro? &rarr; Sí, <strong>te lo</strong> dejo.</em> (te = OI, lo = OD).</p>\n<h4>2. Regula Eufonică Supremă: LE / LES devine SE!</h4>\n<p>În spaniolă este interzisă cacofonia a două pronume consecutive ce încep cu 'L' (<em>le lo</em>, <em>le la</em>, <em>les los</em>). Prin urmare, <strong>le / les se transformă întotdeauna în SE</strong>:</p>\n<p><em>¿Das el regalo a María? &rarr; Sí, <strong>se lo</strong> doy.</em> (în loc de <em>le lo doy</em>!).</p>\n",
+    "theory": "\n<p>Când o frază conține atât un pronume de Obiect Indirect (cui?) cât și unul de Obiect Direct (ce?), se aplică două reguli fundamentale:</p>\n<h4>1. Ordinea Canonica: INDIRECTUL PRIMUL!</h4>\n<p><code>Subiect + [OI] + [OD] + Verb</code><br>\n<em>¿Me dejas tu libro? &rarr; Sí, <strong>te lo</strong> dejo.</em> (te = OI, lo = OD).</p>\n<h4>2. Regula Eufonică Supremă: LE / LES devine SE!</h4>\n<p>În spaniolă este interzisă cacofonia a două pronume consecutive ce încep cu 'L' (<em>le lo</em>, <em>le la</em>, <em>les los</em>). Prin urmare, <strong>le / les se transformă întotdeauna în SE</strong>:</p>\n<p><em>¿Das el regalo a María? &rarr; Sí, <strong>se lo</strong> doy.</em> (în loc de <em>le lo doy</em>!).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\n¿Tienes el informe? Sí, se lo envío a mi jefe ahora mismo.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Regla SE LO",
@@ -10002,7 +10654,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie dialogul '¿Tienes el informe? Sí, se lo envío a mi jefe ahora mismo.'.",
     "starterCode": "¿Tienes el informe? ",
     "expectedOutputPattern": "(?:[¿?]\\s*)?Tienes\\s+el\\s+informe\\?\\s*S[íi],\\s*se\\s+lo\\s+env[íi]o\\s+a\\s+mi\\s+jefe\\s+ahora\\s+mismo\\.?",
-    "hint": "Scrie ¿Tienes el informe? Sí, se lo envío a mi jefe ahora mismo."
+    "hint": "Scrie ¿Tienes el informe? Sí, se lo envío a mi jefe ahora mismo.",
+    "prompt": "Scrie dialogul '¿Tienes el informe? Sí, se lo envío a mi jefe ahora mismo.'.",
+    "officialSolution": "¿Tienes el informe? Sí, se lo envío a mi jefe ahora mismo.",
+    "example": "¿Tienes el informe? Sí, se lo envío a mi jefe ahora mismo.",
+    "regexPattern": "(?:[¿?]\\s*)?Tienes\\s+el\\s+informe\\?\\s*S[íi],\\s*se\\s+lo\\s+env[íi]o\\s+a\\s+mi\\s+jefe\\s+ahora\\s+mismo\\.?"
   },
   {
     "id": "es-b1-p34",
@@ -10012,7 +10668,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 40,
     "title": "Capitolul 34: Por vs Para — Distincția Supremă în Limba Spaniolă",
-    "theory": "\n<p>Confundarea prepozițiilor <strong>POR</strong> și <strong>PARA</strong> este cea mai răspândită eroare a celor ce învață spaniola. Iată distincția definitivă:</p>\n<h4>1. Când folosim PARA (Săgeata &rarr; Destinație / Scop)</h4>\n<ul>\n  <li><strong>Scopul / Finalitatea:</strong> <em>Estudio español <strong>para</strong> trabajar.</em> (urmat de infinitiv).</li>\n  <li><strong>Destinatarul:</strong> <em>Este regalo es <strong>para</strong> ti.</em></li>\n  <li><strong>Termen limită / Dead-line:</strong> <em>La tarea es <strong>para</strong> el lunes.</em></li>\n  <li><strong>Direcție spre un loc:</strong> <em>Salgo <strong>para</strong> Madrid.</em></li>\n</ul>\n<h4>2. Când folosim POR (Cauza / Mijlocul / Schimbul)</h4>\n<ul>\n  <li><strong>Motivul / Cauza:</strong> <em>Llegué tarde <strong>por</strong> el tráfico.</em> (din cauza).</li>\n  <li><strong>Mijlocul de comunicare/transport:</strong> <em>Te llamo <strong>por</strong> teléfono; Enviado <strong>por</strong> correo.</em></li>\n  <li><strong>Durata / Momentul zilei:</strong> <em>Estudio <strong>por</strong> la mañana; Viví allí <strong>por</strong> tres años.</em></li>\n  <li><strong>Prețul / Schimbul:</strong> <em>Lo compré <strong>por</strong> 20 euros.</em></li>\n</ul>\n",
+    "theory": "\n<p>Confundarea prepozițiilor <strong>POR</strong> și <strong>PARA</strong> este cea mai răspândită eroare a celor ce învață spaniola. Iată distincția definitivă:</p>\n<h4>1. Când folosim PARA (Săgeata &rarr; Destinație / Scop)</h4>\n<ul>\n  <li><strong>Scopul / Finalitatea:</strong> <em>Estudio español <strong>para</strong> trabajar.</em> (urmat de infinitiv).</li>\n  <li><strong>Destinatarul:</strong> <em>Este regalo es <strong>para</strong> ti.</em></li>\n  <li><strong>Termen limită / Dead-line:</strong> <em>La tarea es <strong>para</strong> el lunes.</em></li>\n  <li><strong>Direcție spre un loc:</strong> <em>Salgo <strong>para</strong> Madrid.</em></li>\n</ul>\n<h4>2. Când folosim POR (Cauza / Mijlocul / Schimbul)</h4>\n<ul>\n  <li><strong>Motivul / Cauza:</strong> <em>Llegué tarde <strong>por</strong> el tráfico.</em> (din cauza).</li>\n  <li><strong>Mijlocul de comunicare/transport:</strong> <em>Te llamo <strong>por</strong> teléfono; Enviado <strong>por</strong> correo.</em></li>\n  <li><strong>Durata / Momentul zilei:</strong> <em>Estudio <strong>por</strong> la mañana; Viví allí <strong>por</strong> tres años.</em></li>\n  <li><strong>Prețul / Schimbul:</strong> <em>Lo compré <strong>por</strong> 20 euros.</em></li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nEstudio español para viajar y trabajo por la mañana.\n</code></pre>\n",
     "glossary": [
       {
         "term": "PARA (Finalidad)",
@@ -10063,7 +10719,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Estudio español para viajar y trabajo por la mañana.'.",
     "starterCode": "Estudio español ",
     "expectedOutputPattern": "Estudio\\s+espa[ñn]ol\\s+para\\s+viajar\\s+y\\s+trabajo\\s+por\\s+la\\s+ma[ñn]ana\\.?",
-    "hint": "Scrie Estudio español para viajar y trabajo por la mañana."
+    "hint": "Scrie Estudio español para viajar y trabajo por la mañana.",
+    "prompt": "Scrie propoziția 'Estudio español para viajar y trabajo por la mañana.'.",
+    "officialSolution": "Estudio español para viajar y trabajo por la mañana.",
+    "example": "Estudio español para viajar y trabajo por la mañana.",
+    "regexPattern": "Estudio\\s+espa[ñn]ol\\s+para\\s+viajar\\s+y\\s+trabajo\\s+por\\s+la\\s+ma[ñn]ana\\.?"
   },
   {
     "id": "es-b1-p35",
@@ -10073,7 +10733,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 40,
     "title": "Capitolul 35: El Futuro Simple & Forme Neregulate Esențiale",
-    "theory": "\n<p><strong>Futuro Simple</strong> (sau <em>Futuro Imperfecto</em>) este timpul proiectării viitoare și al predicțiilor.</p>\n<h4>1. Formare Regulată Extrem de Simplă</h4>\n<p>Se ia <strong>infinitivul întreg</strong> al verbului și se adaugă un set unic de terminații pentru TOATE cele 3 grupe:</p>\n<p><strong>-é, -ás, -á, -emos, -éis, -án</strong></p>\n<p><em>hablaré, comeré, viviré</em> (toate poartă accent grafic cu excepția persoanei I plural <em>-emos</em>!).</p>\n<h4>2. Rădăcini Neregulate Majore</h4>\n<ul>\n  <li><code>tener &rarr; tendr-</code> (tendré, tendrás...)</li>\n  <li><code>poner &rarr; pondr-</code> (pondré) / <code>salir &rarr; saldr-</code> (saldré)</li>\n  <li><code>hacer &rarr; har-</code> (haré, harás, hará...)</li>\n  <li><code>decir &rarr; dir-</code> (diré, dirás, dirá...)</li>\n  <li><code>poder &rarr; podr-</code> (podré) / <code>saber &rarr; sabr-</code> (sabré)</li>\n</ul>\n",
+    "theory": "\n<p><strong>Futuro Simple</strong> (sau <em>Futuro Imperfecto</em>) este timpul proiectării viitoare și al predicțiilor.</p>\n<h4>1. Formare Regulată Extrem de Simplă</h4>\n<p>Se ia <strong>infinitivul întreg</strong> al verbului și se adaugă un set unic de terminații pentru TOATE cele 3 grupe:</p>\n<p><strong>-é, -ás, -á, -emos, -éis, -án</strong></p>\n<p><em>hablaré, comeré, viviré</em> (toate poartă accent grafic cu excepția persoanei I plural <em>-emos</em>!).</p>\n<h4>2. Rădăcini Neregulate Majore</h4>\n<ul>\n  <li><code>tener &rarr; tendr-</code> (tendré, tendrás...)</li>\n  <li><code>poner &rarr; pondr-</code> (pondré) / <code>salir &rarr; saldr-</code> (saldré)</li>\n  <li><code>hacer &rarr; har-</code> (haré, harás, hará...)</li>\n  <li><code>decir &rarr; dir-</code> (diré, dirás, dirá...)</li>\n  <li><code>poder &rarr; podr-</code> (podré) / <code>saber &rarr; sabr-</code> (sabré)</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nMañana tendré una reunión importante y haré todo lo posible.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Futuro Simple",
@@ -10124,7 +10784,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie propoziția 'Mañana tendré una reunión importante y haré todo lo posible.'.",
     "starterCode": "Mañana tendré ",
     "expectedOutputPattern": "Ma[ñn]ana\\s+tendr[ée]\\s+una\\s+reuni[óo]n\\s+importante\\s+y\\s+har[ée]\\s+todo\\s+lo\\s+posible\\.?",
-    "hint": "Scrie Mañana tendré una reunión importante y haré todo lo posible."
+    "hint": "Scrie Mañana tendré una reunión importante y haré todo lo posible.",
+    "prompt": "Scrie propoziția 'Mañana tendré una reunión importante y haré todo lo posible.'.",
+    "officialSolution": "Mañana tendré una reunión importante y haré todo lo posible.",
+    "example": "Mañana tendré una reunión importante y haré todo lo posible.",
+    "regexPattern": "Ma[ñn]ana\\s+tendr[ée]\\s+una\\s+reuni[óo]n\\s+importante\\s+y\\s+har[ée]\\s+todo\\s+lo\\s+posible\\.?"
   },
   {
     "id": "es-b1-p36",
@@ -10134,7 +10798,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 40,
     "title": "Capitolul 36: El Condicional Simple — Politețe, Dorințe & Recomandări",
-    "theory": "\n<p><strong>El Condicional Simple</strong> este modul curtoaziei elegante, al ipotezelor și al sfaturilor amicale.</p>\n<h4>1. Rețeta de Formare</h4>\n<p>Se ia <strong>infinitivul întreg</strong> (sau aceeași rădăcină neregulată de la viitor!) și se adaugă terminațiile de imperfect de la <em>-er/-ir</em>:</p>\n<p><strong>-ía, -ías, -ía, -íamos, -íais, -ían</strong></p>\n<p><em>hablaría, comería, viviría</em>; neregulate: <em>tendría, haría, podría, sabría</em>.</p>\n<h4>2. Utilizări Esențiale</h4>\n<ul>\n  <li>Politețe / Cereri respectuoase: <em>¿<strong>Podría</strong> traerme la cuenta?</em> (Ați putea să-mi aduceți nota?)</li>\n  <li>Dorință: <em>Me <strong>gustaría</strong> aprender más idiomas.</em></li>\n  <li>Sfat / Recomandare: <em><strong>Deberías</strong> descansar un poco.</em></li>\n</ul>\n",
+    "theory": "\n<p><strong>El Condicional Simple</strong> este modul curtoaziei elegante, al ipotezelor și al sfaturilor amicale.</p>\n<h4>1. Rețeta de Formare</h4>\n<p>Se ia <strong>infinitivul întreg</strong> (sau aceeași rădăcină neregulată de la viitor!) și se adaugă terminațiile de imperfect de la <em>-er/-ir</em>:</p>\n<p><strong>-ía, -ías, -ía, -íamos, -íais, -ían</strong></p>\n<p><em>hablaría, comería, viviría</em>; neregulate: <em>tendría, haría, podría, sabría</em>.</p>\n<h4>2. Utilizări Esențiale</h4>\n<ul>\n  <li>Politețe / Cereri respectuoase: <em>¿<strong>Podría</strong> traerme la cuenta?</em> (Ați putea să-mi aduceți nota?)</li>\n  <li>Dorință: <em>Me <strong>gustaría</strong> aprender más idiomas.</em></li>\n  <li>Sfat / Recomandare: <em><strong>Deberías</strong> descansar un poco.</em></li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\n¿Podría traerme la cuenta y un vaso de agua, por favor?\n</code></pre>\n",
     "glossary": [
       {
         "term": "Condicional Simple",
@@ -10185,7 +10849,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie cererea politicoasă '¿Podría traerme la cuenta y un vaso de agua, por favor?'.",
     "starterCode": "¿Podría traerme ",
     "expectedOutputPattern": "(?:[¿?]\\s*)?Podr[íi]a\\s+traerme\\s+la\\s+cuenta\\s+y\\s+un\\s+vaso\\s+de\\s+agua,\\s*por\\s+favor\\.?",
-    "hint": "Scrie ¿Podría traerme la cuenta y un vaso de agua, por favor?"
+    "hint": "Scrie ¿Podría traerme la cuenta y un vaso de agua, por favor?",
+    "prompt": "Scrie cererea politicoasă '¿Podría traerme la cuenta y un vaso de agua, por favor?'.",
+    "officialSolution": "¿Podría traerme la cuenta y un vaso de agua, por favor?",
+    "example": "¿Podría traerme la cuenta y un vaso de agua, por favor?",
+    "regexPattern": "(?:[¿?]\\s*)?Podr[íi]a\\s+traerme\\s+la\\s+cuenta\\s+y\\s+un\\s+vaso\\s+de\\s+agua,\\s*por\\s+favor\\.?"
   },
   {
     "id": "es-b1-p37",
@@ -10195,7 +10863,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
     "xp": 45,
     "title": "Capitolul 37: Conversație Intermediară: La Medic, Farmacie & Călătorii",
-    "theory": "\n<p>Să unim întregul bagaj gramatical al Modulului B1–B2 într-o simulare reală la cabinetul medical și la farmacie în Spania.</p>\n<h4>1. Replicile Pacientului</h4>\n<ul>\n  <li><em>Buenos días, doctor. No me encuentro bien desde hace dos días.</em></li>\n  <li><em>Tengo fiebre alta, me duele la garganta y tengo tos seca.</em></li>\n  <li><em>¿Necesito guardar reposo?</em> (Trebuie să stau la pat?)</li>\n</ul>\n<h4>2. Replicile Medicului & Farmacistului</h4>\n<ul>\n  <li><em>Vamos a ver... Abra la boca. Tiene una infección en la garganta.</em></li>\n  <li><em>Le voy a recetar un antibiótico. Tome una pastilla cada ocho horas después de las comidas.</em></li>\n</ul>\n",
+    "theory": "\n<p>Să unim întregul bagaj gramatical al Modulului B1–B2 într-o simulare reală la cabinetul medical și la farmacie în Spania.</p>\n<h4>1. Replicile Pacientului</h4>\n<ul>\n  <li><em>Buenos días, doctor. No me encuentro bien desde hace dos días.</em></li>\n  <li><em>Tengo fiebre alta, me duele la garganta y tengo tos seca.</em></li>\n  <li><em>¿Necesito guardar reposo?</em> (Trebuie să stau la pat?)</li>\n</ul>\n<h4>2. Replicile Medicului & Farmacistului</h4>\n<ul>\n  <li><em>Vamos a ver... Abra la boca. Tiene una infección en la garganta.</em></li>\n  <li><em>Le voy a recetar un antibiótico. Tome una pastilla cada ocho horas después de las comidas.</em></li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nTengo fiebre alta y necesito comprar este medicamento con receta.\n</code></pre>\n",
     "glossary": [
       {
         "term": "la receta médica",
@@ -10246,7 +10914,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie replica 'Tengo fiebre alta y necesito comprar este medicamento con receta.'.",
     "starterCode": "Tengo fiebre alta ",
     "expectedOutputPattern": "Tengo\\s+fiebre\\s+alta\\s+y\\s+necesito\\s+comprar\\s+este\\s+medicamento\\s+con\\s+receta\\.?",
-    "hint": "Scrie Tengo fiebre alta y necesito comprar este medicamento con receta."
+    "hint": "Scrie Tengo fiebre alta y necesito comprar este medicamento con receta.",
+    "prompt": "Scrie replica 'Tengo fiebre alta y necesito comprar este medicamento con receta.'.",
+    "officialSolution": "Tengo fiebre alta y necesito comprar este medicamento con receta.",
+    "example": "Tengo fiebre alta y necesito comprar este medicamento con receta.",
+    "regexPattern": "Tengo\\s+fiebre\\s+alta\\s+y\\s+necesito\\s+comprar\\s+este\\s+medicamento\\s+con\\s+receta\\.?"
   },
   {
     "id": "es-c1-p38",
@@ -10256,7 +10928,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 50,
     "title": "Capitolul 38: El Subjuntivo Presente: Formare & Declanșatori W-E-I-R-D-O",
-    "theory": "\n<p><strong>Subjuntivo</strong> nu descrie fapte reale obiective, ci lumea dorințelor, a ipotezelor, emoțiilor și posibilităților.</p>\n<h4>1. Rețeta Universală a Schimbului de Vocale</h4>\n<p>Se pornește de la rădăcina formei 'yo' de la prezentul de indicativ și se inversează vocala caracteristică:</p>\n<ul>\n  <li>Verbe în <code>-ar</code> primesc terminațiile în <strong>-e</strong>:<br>\n  <strong>-e, -es, -e, -emos, -éis, -en</strong> (<em>hable, hables, hable, hablemos...</em>).</li>\n  <li>Verbe în <code>-er / -ir</code> primesc terminațiile în <strong>-a</strong>:<br>\n  <strong>-a, -as, -a, -amos, -áis, -an</strong> (<em>coma, vivas, tenga, haga...</em>).</li>\n</ul>\n<h4>2. Acronimul Declanșatorilor W-E-I-R-D-O</h4>\n<p><strong>W</strong>ishes (Quiero que...), <strong>E</strong>motions (Me alegra que...), <strong>I</strong>mpersonal (Es necesario que...), <strong>R</strong>ecommendations (Te aconsejo que...), <strong>D</strong>oubt (Dudo que...), <strong>O</strong>jalá (Măcar de...!).</p>\n",
+    "theory": "\n<p><strong>Subjuntivo</strong> nu descrie fapte reale obiective, ci lumea dorințelor, a ipotezelor, emoțiilor și posibilităților.</p>\n<h4>1. Rețeta Universală a Schimbului de Vocale</h4>\n<p>Se pornește de la rădăcina formei 'yo' de la prezentul de indicativ și se inversează vocala caracteristică:</p>\n<ul>\n  <li>Verbe în <code>-ar</code> primesc terminațiile în <strong>-e</strong>:<br>\n  <strong>-e, -es, -e, -emos, -éis, -en</strong> (<em>hable, hables, hable, hablemos...</em>).</li>\n  <li>Verbe în <code>-er / -ir</code> primesc terminațiile în <strong>-a</strong>:<br>\n  <strong>-a, -as, -a, -amos, -áis, -an</strong> (<em>coma, vivas, tenga, haga...</em>).</li>\n</ul>\n<h4>2. Acronimul Declanșatorilor W-E-I-R-D-O</h4>\n<p><strong>W</strong>ishes (Quiero que...), <strong>E</strong>motions (Me alegra que...), <strong>I</strong>mpersonal (Es necesario que...), <strong>R</strong>ecommendations (Te aconsejo que...), <strong>D</strong>oubt (Dudo que...), <strong>O</strong>jalá (Măcar de...!).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nQuiero que aprendas español y que tengas mucho éxito.\n</code></pre>\n",
     "glossary": [
       {
         "term": "El Subjuntivo",
@@ -10307,7 +10979,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie urarea 'Quiero que aprendas español y que tengas mucho éxito.'.",
     "starterCode": "Quiero que aprendas ",
     "expectedOutputPattern": "Quiero\\s+que\\s+aprendas\\s+espa[ñn]ol\\s+y\\s+que\\s+tengas\\s+mucho\\s+[ée]xito\\.?",
-    "hint": "Scrie Quiero que aprendas español y que tengas mucho éxito."
+    "hint": "Scrie Quiero que aprendas español y que tengas mucho éxito.",
+    "prompt": "Scrie urarea 'Quiero que aprendas español y que tengas mucho éxito.'.",
+    "officialSolution": "Quiero que aprendas español y que tengas mucho éxito.",
+    "example": "Quiero que aprendas español y que tengas mucho éxito.",
+    "regexPattern": "Quiero\\s+que\\s+aprendas\\s+espa[ñn]ol\\s+y\\s+que\\s+tengas\\s+mucho\\s+[ée]xito\\.?"
   },
   {
     "id": "es-c1-p39",
@@ -10317,7 +10993,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 50,
     "title": "Capitolul 39: Subjuntivo: Opinie, Certitudine vs Îndoială (Creo que vs No creo que)",
-    "theory": "\n<p>Stăpânirea absolută a conjunctivului spaniol la nivel C1 impune gestionarea nuanțelor epistemice dintre certitudine și negație.</p>\n<h4>1. Verbe de Gândire & Opinie (Creer, Pensar, Opinar)</h4>\n<ul>\n  <li><strong>Afirmativ (Certitudinea Vorbitorului) &rarr; INDICATIV:</strong><br>\n  <em>Creo que él <strong>dice</strong> la verdad.</em> (Sunt convins)</li>\n  <li><strong>Negativ (Îndoială / Dezacord) &rarr; SUBJUNTIVO:</strong><br>\n  <em>No creo que él <strong>diga</strong> la verdad.</em> (Mă îndoiesc)</li>\n</ul>\n<h4>2. Dudar vs No dudar</h4>\n<p><em>Dudo que <strong>sea</strong> verdad</em> (Subjuntivo) vs <em>No dudo que <strong>es</strong> verdad</em> (Indicativo &mdash; certitudine totală).</p>\n",
+    "theory": "\n<p>Stăpânirea absolută a conjunctivului spaniol la nivel C1 impune gestionarea nuanțelor epistemice dintre certitudine și negație.</p>\n<h4>1. Verbe de Gândire & Opinie (Creer, Pensar, Opinar)</h4>\n<ul>\n  <li><strong>Afirmativ (Certitudinea Vorbitorului) &rarr; INDICATIV:</strong><br>\n  <em>Creo que él <strong>dice</strong> la verdad.</em> (Sunt convins)</li>\n  <li><strong>Negativ (Îndoială / Dezacord) &rarr; SUBJUNTIVO:</strong><br>\n  <em>No creo que él <strong>diga</strong> la verdad.</em> (Mă îndoiesc)</li>\n</ul>\n<h4>2. Dudar vs No dudar</h4>\n<p><em>Dudo que <strong>sea</strong> verdad</em> (Subjuntivo) vs <em>No dudo que <strong>es</strong> verdad</em> (Indicativo &mdash; certitudine totală).</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nNo creo que sea la mejor solución para este problema.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Creo que + indicativo",
@@ -10368,7 +11044,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie fraza 'No creo que sea la mejor solución para este problema.'.",
     "starterCode": "No creo que sea ",
     "expectedOutputPattern": "No\\s+creo\\s+que\\s+sea\\s+la\\s+mejor\\s+soluci[óo]n\\s+para\\s+este\\s+problema\\.?",
-    "hint": "Scrie No creo que sea la mejor solución para este problema."
+    "hint": "Scrie No creo que sea la mejor solución para este problema.",
+    "prompt": "Scrie fraza 'No creo que sea la mejor solución para este problema.'.",
+    "officialSolution": "No creo que sea la mejor solución para este problema.",
+    "example": "No creo que sea la mejor solución para este problema.",
+    "regexPattern": "No\\s+creo\\s+que\\s+sea\\s+la\\s+mejor\\s+soluci[óo]n\\s+para\\s+este\\s+problema\\.?"
   },
   {
     "id": "es-c1-p40",
@@ -10378,7 +11058,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 50,
     "title": "Capitolul 40: Pretérito Imperfecto de Subjuntivo (-ra / -se)",
-    "theory": "\n<p><strong>Imperfecto de Subjuntivo</strong> este timpul ipotezelor ireale și al concordanței timpurilor în trecut.</p>\n<h4>1. Rețeta Universală de Derivare</h4>\n<p>Se pornește de la <strong>persoana a 3-a plural a pretérito indefinido</strong> (<em>ellos hablaron, comieron, tuvieron, fueron</em>), se taie <code>-ron</code> și se adaugă terminațiile:</p>\n<p><strong>-ra, -ras, -ra, -ramos, -rais, -ran</strong> (sau varianta literară în <em>-se</em>).</p>\n<h4>2. Forme Neregulate Vitale</h4>\n<ul>\n  <li><code>tener &rarr; ellos tuvieron &rarr; tuviera, tuvieras, tuviera...</code></li>\n  <li><code>ser / ir &rarr; ellos fueron &rarr; fuera, fueras, fuera...</code></li>\n  <li><code>hacer &rarr; ellos hicieron &rarr; hiciera, hicieras, hiciera...</code></li>\n</ul>\n<p>Atenție: persoana 'nosotros' primește întotdeauna accent grafic: <em>tuviéramos, fuéramos, habláramos</em>.</p>\n",
+    "theory": "\n<p><strong>Imperfecto de Subjuntivo</strong> este timpul ipotezelor ireale și al concordanței timpurilor în trecut.</p>\n<h4>1. Rețeta Universală de Derivare</h4>\n<p>Se pornește de la <strong>persoana a 3-a plural a pretérito indefinido</strong> (<em>ellos hablaron, comieron, tuvieron, fueron</em>), se taie <code>-ron</code> și se adaugă terminațiile:</p>\n<p><strong>-ra, -ras, -ra, -ramos, -rais, -ran</strong> (sau varianta literară în <em>-se</em>).</p>\n<h4>2. Forme Neregulate Vitale</h4>\n<ul>\n  <li><code>tener &rarr; ellos tuvieron &rarr; tuviera, tuvieras, tuviera...</code></li>\n  <li><code>ser / ir &rarr; ellos fueron &rarr; fuera, fueras, fuera...</code></li>\n  <li><code>hacer &rarr; ellos hicieron &rarr; hiciera, hicieras, hiciera...</code></li>\n</ul>\n<p>Atenție: persoana 'nosotros' primește întotdeauna accent grafic: <em>tuviéramos, fuéramos, habláramos</em>.</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nSi tuviera más tiempo libre, estudiaría español todos los días.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Imperfecto de Subjuntivo",
@@ -10429,7 +11109,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie fraza ipotetică 'Si tuviera más tiempo libre, estudiaría español todos los días.'.",
     "starterCode": "Si tuviera más tiempo libre, ",
     "expectedOutputPattern": "Si\\s+tuviera\\s+m[áa]s\\s+tiempo\\s+libre,\\s*estudiar[íi]a\\s+espa[ñn]ol\\s+todos\\s+los\\s+d[íi]as\\.?",
-    "hint": "Scrie Si tuviera más tiempo libre, estudiaría español todos los días."
+    "hint": "Scrie Si tuviera más tiempo libre, estudiaría español todos los días.",
+    "prompt": "Scrie fraza ipotetică 'Si tuviera más tiempo libre, estudiaría español todos los días.'.",
+    "officialSolution": "Si tuviera más tiempo libre, estudiaría español todos los días.",
+    "example": "Si tuviera más tiempo libre, estudiaría español todos los días.",
+    "regexPattern": "Si\\s+tuviera\\s+m[áa]s\\s+tiempo\\s+libre,\\s*estudiar[íi]a\\s+espa[ñn]ol\\s+todos\\s+los\\s+d[íi]as\\.?"
   },
   {
     "id": "es-c1-p41",
@@ -10439,7 +11123,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 55,
     "title": "Capitolul 41: Fraze Ipotetice cu „SI” (Reale, Posibile & Ireale)",
-    "theory": "\n<p>La fel ca în franceză, în spaniolă regula de aur este: <strong>După „SI” nu se pune NICIODATĂ viitor sau condițional!</strong></p>\n<h4>1. Cele 3 Structuri Condiționale Canonice</h4>\n<ol>\n  <li><strong>Condiție Reală / Probabilă:</strong><br>\n  <code>Si + Presente de indicativo &rarr; Futuro simple / Presente</code><br>\n  <em>Si tengo tiempo, te llamaré.</em> (Dacă am timp, te voi suna).</li>\n  <li><strong>Condiție Ireală în Prezent (Improbabilă sau Imaginară):</strong><br>\n  <code>Si + Imperfecto de subjuntivo &rarr; Condicional simple</code><br>\n  <em>Si ganara la lotería, viajaría por todo el mundo.</em></li>\n  <li><strong>Condiție Ireală în Trecut (Imposibilă / Regret Definitiv):</strong><br>\n  <code>Si + Pluscuamperfecto de subjuntivo &rarr; Condicional compuesto</code><br>\n  <em>Si hubiera sabido la verdad, habría actuado diferente.</em></li>\n</ol>\n",
+    "theory": "\n<p>La fel ca în franceză, în spaniolă regula de aur este: <strong>După „SI” nu se pune NICIODATĂ viitor sau condițional!</strong></p>\n<h4>1. Cele 3 Structuri Condiționale Canonice</h4>\n<ol>\n  <li><strong>Condiție Reală / Probabilă:</strong><br>\n  <code>Si + Presente de indicativo &rarr; Futuro simple / Presente</code><br>\n  <em>Si tengo tiempo, te llamaré.</em> (Dacă am timp, te voi suna).</li>\n  <li><strong>Condiție Ireală în Prezent (Improbabilă sau Imaginară):</strong><br>\n  <code>Si + Imperfecto de subjuntivo &rarr; Condicional simple</code><br>\n  <em>Si ganara la lotería, viajaría por todo el mundo.</em></li>\n  <li><strong>Condiție Ireală în Trecut (Imposibilă / Regret Definitiv):</strong><br>\n  <code>Si + Pluscuamperfecto de subjuntivo &rarr; Condicional compuesto</code><br>\n  <em>Si hubiera sabido la verdad, habría actuado diferente.</em></li>\n</ol>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nSi supiera la respuesta correcta, te la diría ahora mismo.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Oraciones condicionales",
@@ -10490,7 +11174,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie replica 'Si supiera la respuesta correcta, te la diría ahora mismo.'.",
     "starterCode": "Si supiera la respuesta correcta, ",
     "expectedOutputPattern": "Si\\s+supiera\\s+la\\s+respuesta\\s+correcta,\\s*te\\s+la\\s+dir[íi]a\\s+ahora\\s+mismo\\.?",
-    "hint": "Scrie Si supiera la respuesta correcta, te la diría ahora mismo."
+    "hint": "Scrie Si supiera la respuesta correcta, te la diría ahora mismo.",
+    "prompt": "Scrie replica 'Si supiera la respuesta correcta, te la diría ahora mismo.'.",
+    "officialSolution": "Si supiera la respuesta correcta, te la diría ahora mismo.",
+    "example": "Si supiera la respuesta correcta, te la diría ahora mismo.",
+    "regexPattern": "Si\\s+supiera\\s+la\\s+respuesta\\s+correcta,\\s*te\\s+la\\s+dir[íi]a\\s+ahora\\s+mismo\\.?"
   },
   {
     "id": "es-c1-p42",
@@ -10500,7 +11188,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 55,
     "title": "Capitolul 42: Modul Imperativ: Porunci Afirmative vs Interdicții Negative",
-    "theory": "\n<p>Modul imperativ în spaniolă prezintă o asimetrie fascinantă între ordinele afirmative și interdicțiile negative.</p>\n<h4>1. Imperativul Afirmativ (Porunci)</h4>\n<ul>\n  <li><code>Tú</code> = forma persoanei a III-a de la prezentul de indicativ: <em>¡Habla! ¡Come! ¡Escribe!</em> (Neregulate: <em>ven, di, sal, haz, ten, ve, pon, sé</em>).</li>\n  <li><code>Vosotros</code> = se înlocuiește <code>-r</code> de la infinitiv cu <code>-d</code>: <em>¡Hablad! ¡Comed! ¡Venid!</em></li>\n  <li><code>Usted / Ustedes</code> = folosesc formele de <strong>SUBJUNTIVO</strong>: <em>¡Hable usted! ¡Coman ustedes!</em></li>\n</ul>\n<h4>2. Imperativul Negativ (Interdicții: „Nu face asta!”)</h4>\n<p>La forma negativă, <strong>TOATE PERSOANELE folosesc exclusiv modul SUBJUNTIVO</strong>:</p>\n<p><em>¡No hables! ¡No comas! ¡No vengas! ¡No tengáis miedo! ¡No fumen aquí!</em></p>\n",
+    "theory": "\n<p>Modul imperativ în spaniolă prezintă o asimetrie fascinantă între ordinele afirmative și interdicțiile negative.</p>\n<h4>1. Imperativul Afirmativ (Porunci)</h4>\n<ul>\n  <li><code>Tú</code> = forma persoanei a III-a de la prezentul de indicativ: <em>¡Habla! ¡Come! ¡Escribe!</em> (Neregulate: <em>ven, di, sal, haz, ten, ve, pon, sé</em>).</li>\n  <li><code>Vosotros</code> = se înlocuiește <code>-r</code> de la infinitiv cu <code>-d</code>: <em>¡Hablad! ¡Comed! ¡Venid!</em></li>\n  <li><code>Usted / Ustedes</code> = folosesc formele de <strong>SUBJUNTIVO</strong>: <em>¡Hable usted! ¡Coman ustedes!</em></li>\n</ul>\n<h4>2. Imperativul Negativ (Interdicții: „Nu face asta!”)</h4>\n<p>La forma negativă, <strong>TOATE PERSOANELE folosesc exclusiv modul SUBJUNTIVO</strong>:</p>\n<p><em>¡No hables! ¡No comas! ¡No vengas! ¡No tengáis miedo! ¡No fumen aquí!</em></p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\n¡Dime la verdad y no tengas miedo de decir lo que piensas!\n</code></pre>\n",
     "glossary": [
       {
         "term": "Imperativo afirmativo",
@@ -10551,7 +11239,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie îndemnul '¡Dime la verdad y no tengas miedo de decir lo que piensas!'.",
     "starterCode": "¡Dime la verdad ",
     "expectedOutputPattern": "(?:[¡!]\\s*)?Dime\\s+la\\s+verdad\\s+y\\s+no\\s+tengas\\s+miedo\\s+de\\s+decir\\s+lo\\s+que\\s+piensas[!\\.]?",
-    "hint": "Scrie ¡Dime la verdad y no tengas miedo de decir lo que piensas!"
+    "hint": "Scrie ¡Dime la verdad y no tengas miedo de decir lo que piensas!",
+    "prompt": "Scrie îndemnul '¡Dime la verdad y no tengas miedo de decir lo que piensas!'.",
+    "officialSolution": "¡Dime la verdad y no tengas miedo de decir lo que piensas!",
+    "example": "¡Dime la verdad y no tengas miedo de decir lo que piensas!",
+    "regexPattern": "(?:[¡!]\\s*)?Dime\\s+la\\s+verdad\\s+y\\s+no\\s+tengas\\s+miedo\\s+de\\s+decir\\s+lo\\s+que\\s+piensas[!\\.]?"
   },
   {
     "id": "es-c1-p43",
@@ -10561,7 +11253,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 55,
     "title": "Capitolul 43: Vocea Pasivă & Pasiva Reflejada cu „SE”",
-    "theory": "\n<p>Spre deosebire de engleză sau franceză, spaniola vorbită și scrisă evită pasiva analitică lungă (<em>fue construido por...</em>), preferând formularea dinamică numită <strong>Pasiva Reflejada cu SE</strong>.</p>\n<h4>1. Pasiva Reflejada (SE + Verb la pers. a III-a)</h4>\n<p>Verbul se acordă obligatoriu la singular sau plural cu obiectul pacient:</p>\n<ul>\n  <li>Singular: <em><strong>Se vende</strong> piso.</em> (Se vinde apartament).</li>\n  <li>Plural: <em><strong>Se venden</strong> pisos.</em> (Se vând apartamente).</li>\n  <li><em>En esta empresa <strong>se valoran</strong> las ideas creativas.</em></li>\n</ul>\n<h4>2. Pasiva Impersonală</h4>\n<p>Când nu există un obiect determinat: <em><strong>Se vive</strong> bien aquí</em> (Se trăiește bine aici); <em><strong>Se trabaja</strong> mucho</em>.</p>\n",
+    "theory": "\n<p>Spre deosebire de engleză sau franceză, spaniola vorbită și scrisă evită pasiva analitică lungă (<em>fue construido por...</em>), preferând formularea dinamică numită <strong>Pasiva Reflejada cu SE</strong>.</p>\n<h4>1. Pasiva Reflejada (SE + Verb la pers. a III-a)</h4>\n<p>Verbul se acordă obligatoriu la singular sau plural cu obiectul pacient:</p>\n<ul>\n  <li>Singular: <em><strong>Se vende</strong> piso.</em> (Se vinde apartament).</li>\n  <li>Plural: <em><strong>Se venden</strong> pisos.</em> (Se vând apartamente).</li>\n  <li><em>En esta empresa <strong>se valoran</strong> las ideas creativas.</em></li>\n</ul>\n<h4>2. Pasiva Impersonală</h4>\n<p>Când nu există un obiect determinat: <em><strong>Se vive</strong> bien aquí</em> (Se trăiește bine aici); <em><strong>Se trabaja</strong> mucho</em>.</p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nEn esta empresa se habla español y se valoran las ideas creativas.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Pasiva Reflejada",
@@ -10612,7 +11304,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie descrierea 'En esta empresa se habla español y se valoran las ideas creativas.'.",
     "starterCode": "En esta empresa ",
     "expectedOutputPattern": "En\\s+esta\\s+empresa\\s+se\\s+habla\\s+espa[ñn]ol\\s+y\\s+se\\s+valoran\\s+las\\s+ideas\\s+creativas\\.?",
-    "hint": "Scrie En esta empresa se habla español y se valoran las ideas creativas."
+    "hint": "Scrie En esta empresa se habla español y se valoran las ideas creativas.",
+    "prompt": "Scrie descrierea 'En esta empresa se habla español y se valoran las ideas creativas.'.",
+    "officialSolution": "En esta empresa se habla español y se valoran las ideas creativas.",
+    "example": "En esta empresa se habla español y se valoran las ideas creativas.",
+    "regexPattern": "En\\s+esta\\s+empresa\\s+se\\s+habla\\s+espa[ñn]ol\\s+y\\s+se\\s+valoran\\s+las\\s+ideas\\s+creativas\\.?"
   },
   {
     "id": "es-c1-p44",
@@ -10622,7 +11318,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 60,
     "title": "Capitolul 44: Expresii Idiomatice Autentice din Spania & Metafore Colocviale",
-    "theory": "\n<p>Stăpânirea registrului idiomatic (C1/C2) transformă vorbitorul într-un cunoscător autentic al culturii hispanice.</p>\n<h4>1. Metafore Clinice & Expresii Esențiale</h4>\n<ul>\n  <li><code>Tomar el pelo a alguien</code> &mdash; a lua pe cineva peste picior / a glumi.</li>\n  <li><code>Costar un ojo de la cara</code> &mdash; a fi extrem de scump / a costa o avere.</li>\n  <li><code>Estar como una cabra</code> &mdash; a fi complet nebun / excentric.</li>\n  <li><code>Ponerse las pilas</code> &mdash; a se pune serios pe treabă / a se mobiliza energic.</li>\n  <li><code>Dar en el clavo</code> &mdash; a nimeri la fix / a găsi soluția exactă.</li>\n  <li><code>Tirar la toalla</code> &mdash; a renunța, a se da bătut.</li>\n</ul>\n",
+    "theory": "\n<p>Stăpânirea registrului idiomatic (C1/C2) transformă vorbitorul într-un cunoscător autentic al culturii hispanice.</p>\n<h4>1. Metafore Clinice & Expresii Esențiale</h4>\n<ul>\n  <li><code>Tomar el pelo a alguien</code> &mdash; a lua pe cineva peste picior / a glumi.</li>\n  <li><code>Costar un ojo de la cara</code> &mdash; a fi extrem de scump / a costa o avere.</li>\n  <li><code>Estar como una cabra</code> &mdash; a fi complet nebun / excentric.</li>\n  <li><code>Ponerse las pilas</code> &mdash; a se pune serios pe treabă / a se mobiliza energic.</li>\n  <li><code>Dar en el clavo</code> &mdash; a nimeri la fix / a găsi soluția exactă.</li>\n  <li><code>Tirar la toalla</code> &mdash; a renunța, a se da bătut.</li>\n</ul>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nTenemos que ponernos las pilas para terminar el proyecto a tiempo.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Tomar el pelo",
@@ -10673,7 +11369,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie îndemnul 'Tenemos que ponernos las pilas para terminar el proyecto a tiempo.'.",
     "starterCode": "Tenemos que ponernos ",
     "expectedOutputPattern": "Tenemos\\s+que\\s+ponernos\\s+las\\s+pilas\\s+para\\s+terminar\\s+el\\s+proyecto\\s+a\\s+tiempo\\.?",
-    "hint": "Scrie Tenemos que ponernos las pilas para terminar el proyecto a tiempo."
+    "hint": "Scrie Tenemos que ponernos las pilas para terminar el proyecto a tiempo.",
+    "prompt": "Scrie îndemnul 'Tenemos que ponernos las pilas para terminar el proyecto a tiempo.'.",
+    "officialSolution": "Tenemos que ponernos las pilas para terminar el proyecto a tiempo.",
+    "example": "Tenemos que ponernos las pilas para terminar el proyecto a tiempo.",
+    "regexPattern": "Tenemos\\s+que\\s+ponernos\\s+las\\s+pilas\\s+para\\s+terminar\\s+el\\s+proyecto\\s+a\\s+tiempo\\.?"
   },
   {
     "id": "es-c1-p45",
@@ -10683,7 +11383,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
     "xp": 65,
     "title": "Capitolul 45: Spaniolă de Afaceri, Registru Formal & Redactare de Emailuri Oficiale",
-    "theory": "\n<p>Măiestria supremă (C2) în spaniolă constă în capacitatea de a redacta documente corporative, oferte comerciale și scrisori oficiale de cel mai înalt nivel.</p>\n<h4>1. Formule de Adresare & Deschidere</h4>\n<p><em>« Estimado/a Señor/a [Apellido]: »</em><br>\n<em>« Por medio de la presente, me pongo en contacto con usted con el fin de presentarle nuestra propuesta... »</em></p>\n<h4>2. Formule de Încheiere de Protocol</h4>\n<p><em>« Agradeciendo de antemano su atención a la presente, le saluda atentamente, »</em><br>\n<em>« Quedo a su entera disposición para cualquier aclaración que estime oportuna. »</em></p>\n",
+    "theory": "\n<p>Măiestria supremă (C2) în spaniolă constă în capacitatea de a redacta documente corporative, oferte comerciale și scrisori oficiale de cel mai înalt nivel.</p>\n<h4>1. Formule de Adresare & Deschidere</h4>\n<p><em>« Estimado/a Señor/a [Apellido]: »</em><br>\n<em>« Por medio de la presente, me pongo en contacto con usted con el fin de presentarle nuestra propuesta... »</em></p>\n<h4>2. Formule de Încheiere de Protocol</h4>\n<p><em>« Agradeciendo de antemano su atención a la presente, le saluda atentamente, »</em><br>\n<em>« Quedo a su entera disposición para cualquier aclaración que estime oportuna. »</em></p>\n\n<h4>Exemple Practice de Dialog & Expresii</h4>\n<pre><code>-- Exemplu Canonic de Conversație:\nAgradeciendo de antemano su atención, le saluda atentamente.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Estimado/a Señor/a",
@@ -10734,7 +11434,11 @@ const MEGA_EXPANDED_CURRICULUM = [
     "task": "Scrie formula diplomatică 'Agradeciendo de antemano su atención, le saluda atentamente.'.",
     "starterCode": "Agradeciendo de antemano ",
     "expectedOutputPattern": "Agradeciendo\\s+de\\s+antemano\\s+su\\s+atenci[óo]n,\\s*le\\s+saluda\\s+atentamente\\.?",
-    "hint": "Scrie Agradeciendo de antemano su atención, le saluda atentamente."
+    "hint": "Scrie Agradeciendo de antemano su atención, le saluda atentamente.",
+    "prompt": "Scrie formula diplomatică 'Agradeciendo de antemano su atención, le saluda atentamente.'.",
+    "officialSolution": "Agradeciendo de antemano su atención, le saluda atentamente.",
+    "example": "Agradeciendo de antemano su atención, le saluda atentamente.",
+    "regexPattern": "Agradeciendo\\s+de\\s+antemano\\s+su\\s+atenci[óo]n,\\s*le\\s+saluda\\s+atentamente\\.?"
   },
   {
     "id": "eng-a-1",
@@ -10744,7 +11448,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător / A1",
     "xp": 25,
     "title": "Capitolul 1: Ghid de Călătorie & Întrebarea Direcției (Asking for Directions)",
-    "theory": "\n<p>Când călătorești într-o țară vorbitoare de engleză, orientarea în oraș necesită structuri de politețe și expresii de direcție clare.</p>\n<h4>1. Întrebări de Politețe</h4>\n<p><em>Excuse me, could you tell me how to get to the train station?</em> sau <em>Where is the nearest pharmacy?</em>.</p>\n<h4>2. Expresii de Direcție</h4>\n<ul>\n  <li><code>Turn left / Turn right</code> — Fă la stânga / la dreapta.</li>\n  <li><code>Go straight ahead</code> — Mergi drept înainte.</li>\n  <li><code>Across from / Opposite</code> — Vizavi de.</li>\n  <li><code>Next to</code> — Lângă.</li>\n</ul>\n",
+    "theory": "\n<p>Când călătorești într-o țară vorbitoare de engleză, orientarea în oraș necesită structuri de politețe și expresii de direcție clare.</p>\n\n<h4>1. Întrebări de Politețe</h4>\n<p><em>Excuse me, could you tell me how to get to the train station?</em> sau <em>Where is the nearest pharmacy?</em>.</p>\n\n<h4>2. Expresii de Direcție și Model de Dialog</h4>\n<pre><code>-- Model de Dialog: Asking for Directions\nTourist: \"Excuse me, where is the nearest hospital?\"\nLocal:   \"Go straight ahead for two blocks, then turn left at the traffic light.\"\nTourist: \"Is it far from here?\"\nLocal:   \"No, it is right next to the central park, across from the pharmacy.\"\nTourist: \"Thank you so much for your help!\"\nLocal:   \"You're welcome. Have a safe day!\"\n</code></pre>\n",
     "glossary": [
       {
         "term": "Go straight ahead",
@@ -10792,9 +11496,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "'Go straight ahead' este expresia standard în limba engleză pentru mersul drept înainte fără viraje."
     },
+    "prompt": "Întreabă politicos unde se află cel mai apropiat spital: 'Excuse me, where is the nearest hospital?'.",
     "task": "Întreabă politicos unde se află cel mai apropiat spital: 'Excuse me, where is the nearest hospital?'.",
-    "starterCode": "// Scrie întrebarea de direcție\n",
+    "example": "Excuse me, where is the nearest hospital?",
+    "starterCode": "Excuse me, where is the nearest hospital?",
+    "officialSolution": "Excuse me, where is the nearest hospital?",
     "expectedOutputPattern": "Excuse\\s+me,\\s*where\\s+is\\s+the\\s+nearest\\s+hospital\\??",
+    "regexPattern": "Excuse\\s+me,\\s*where\\s+is\\s+the\\s+nearest\\s+hospital\\??",
     "hint": "Scrie Excuse me, where is the nearest hospital?"
   },
   {
@@ -10805,7 +11513,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Elementar / A2",
     "xp": 30,
     "title": "Capitolul 2: Substantive Numărabile vs Nenumărabile (Countable vs Uncountable)",
-    "theory": "\n<p>În engleză, substantivele <strong>numărabile (Countable)</strong> pot avea formă de plural și pot fi numărate individual (<em>books</em>, <em>apples</em>), pe când cele <strong>nenumărabile (Uncountable)</strong> reprezintă mase, lichide sau concepte abstracte (<em>water</em>, <em>information</em>, <em>advice</em>, <em>money</em>) și au <strong>doar formă de singular</strong>.</p>\n<h4>1. Many vs Much</h4>\n<ul>\n  <li><code>Many</code> se folosește cu substantive numărabile la plural: <em>How <strong>many</strong> apples do you have?</em></li>\n  <li><code>Much</code> se folosește cu substantive nenumărabile (în special în întrebări și negații): <em>How <strong>much</strong> water is left?</em>, <em>I don't have <strong>much</strong> time</em>.</li>\n</ul>\n<h4>2. A lot of</h4>\n<p>Se poate folosi atât cu cele numărabile, cât și cu cele nenumărabile în propoziții afirmative: <em>a lot of money</em>, <em>a lot of friends</em>.</p>\n",
+    "theory": "\n<p>În engleză, substantivele <strong>numărabile (Countable)</strong> pot avea plural (<em>books</em>, <em>apples</em>), pe când cele <strong>nenumărabile (Uncountable)</strong> reprezintă mase, lichide sau concepte abstracte (<em>water</em>, <em>information</em>, <em>advice</em>, <em>money</em>) și au <strong>doar formă de singular</strong>.</p>\n\n<h4>1. Many vs Much</h4>\n<ul>\n  <li><code>Many</code> se folosește cu numărabile la plural: <em>How many apples?</em></li>\n  <li><code>Much</code> se folosește cu nenumărabile: <em>How much water?</em>, <em>How much does this cost?</em></li>\n</ul>\n\n<h4>2. Exemple Practice de Utilizare</h4>\n<pre><code>-- Countable (numărabile cu plural):\nThere are many cars in the parking lot.\nWe need three apples and two lemons.\n\n-- Uncountable (fără plural):\nHow much water do you drink daily?\nHe gave me some useful advice (NU: many advices).\nHow much does this jacket cost? It costs $50.\n</code></pre>\n",
     "glossary": [
       {
         "term": "Countable Nouns",
@@ -10853,9 +11561,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "În limba engleză, 'advice' și 'information' sunt strict nenumărabile (nu au plural și nu se numără direct; spunem 'pieces of advice' sau 'some advice')."
     },
+    "prompt": "Întreabă cât costă folosind 'How much does this cost?'.",
     "task": "Întreabă cât costă folosind 'How much does this cost?'.",
-    "starterCode": "// Întreabă prețul\n",
+    "example": "How much does this cost?",
+    "starterCode": "How much does this cost?",
+    "officialSolution": "How much does this cost?",
     "expectedOutputPattern": "How\\s+much\\s+does\\s+this\\s+cost\\??",
+    "regexPattern": "How\\s+much\\s+does\\s+this\\s+cost\\??",
     "hint": "Scrie How much does this cost?"
   },
   {
@@ -10866,7 +11578,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Intermediar / B1",
     "xp": 40,
     "title": "Capitolul 1: Phrasal Verbs Esențiale în Context Profesional",
-    "theory": "\n<p>Un <strong>Phrasal Verb</strong> combină un verb cu o particulă prepozițională sau adverbială, creând un sens complet nou și adesea imprevizibil față de verbul de bază.</p>\n<h4>1. Verbe Comune la Birou</h4>\n<ul>\n  <li><code>Bring up</code> — a aduce în discuție un subiect: <em>She brought up the budget during the meeting</em>.</li>\n  <li><code>Call off</code> — a anula definitiv un eveniment: <em>They called off the conference due to bad weather</em>.</li>\n  <li><code>Put off</code> — a amâna pentru o dată ulterioară: <em>Let's put off the decision until next Monday</em>.</li>\n  <li><code>Carry out</code> — a executa, a duce la bun sfârșit: <em>We carried out a full security audit</em>.</li>\n</ul>\n",
+    "theory": "\n<p>Un <strong>Phrasal Verb</strong> combină un verb cu o particulă prepozițională sau adverbială, creând un sens complet nou și adesea imprevizibil față de verbul de bază.</p>\n\n<h4>1. Verbe Comune la Birou</h4>\n<ul>\n  <li><code>Bring up</code> — a aduce în discuție un subiect: <em>She brought up the budget during the meeting</em>.</li>\n  <li><code>Call off</code> — a anula definitiv un eveniment: <em>They called off the conference</em>.</li>\n  <li><code>Put off</code> — a amâna: <em>Let's put off the decision until next Monday</em>.</li>\n  <li><code>Carry out</code> — a executa, a duce la bun sfârșit: <em>We carried out a full security audit</em>.</li>\n</ul>\n\n<h4>2. Exemple Practice în Propoziții</h4>\n<pre><code>-- Exemple profesionale:\n1. \"The manager decided to call off Friday's meeting due to the holiday.\"\n2. \"Don't put off until tomorrow what you can do today.\"\n3. \"We must carry out a thorough investigation before reaching a conclusion.\"\n4. \"He brought up an important security vulnerability in the standup.\"\n</code></pre>\n",
     "glossary": [
       {
         "term": "Phrasal Verb",
@@ -10914,9 +11626,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "'Put off' înseamnă a amâna (postpone) pentru o dată ulterioară, spre deosebire de 'call off' care înseamnă a anula definitiv."
     },
+    "prompt": "Completează fraza profesională 'We must carry out a thorough investigation.'.",
     "task": "Completează fraza profesională 'We must carry out a thorough investigation.'.",
-    "starterCode": "We must ",
+    "example": "We must carry out a thorough investigation.",
+    "starterCode": "We must carry out a thorough investigation.",
+    "officialSolution": "We must carry out a thorough investigation.",
     "expectedOutputPattern": "We\\s+must\\s+carry\\s+out\\s+a\\s+thorough\\s+investigation\\.?",
+    "regexPattern": "We\\s+must\\s+carry\\s+out\\s+a\\s+thorough\\s+investigation\\.?",
     "hint": "Scrie We must carry out a thorough investigation."
   },
   {
@@ -10927,7 +11643,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Intermediar Avansat / B2",
     "xp": 45,
     "title": "Capitolul 2: Modale de Deducție în Trecut (Must have, Can't have, Might have)",
-    "theory": "\n<p>Pentru a face deducții logice despre un eveniment care s-a petrecut în trecut pe baza dovezilor prezente, folosim verbe modale urmate de <strong>have + Past Participle</strong>.</p>\n<h4>1. Certitudine Pozitivă: MUST HAVE</h4>\n<p>Când ești aproape 100% convins că ceva s-a întâmplat: <em>The streets are wet; it <strong>must have rained</strong> last night</em>.</p>\n<h4>2. Imposibilitate Logică: CAN'T HAVE (sau Couldn't have)</h4>\n<p>Când ești convins că ceva a fost imposibil: <em>He <strong>can't have stolen</strong> the car; he was with me all night</em>.</p>\n<h4>3. Posibilitate Incertă: MIGHT / MAY HAVE</h4>\n<p>Când ceva este posibil, dar nesigur: <em>She hasn't arrived; she <strong>might have missed</strong> the bus</em>.</p>\n",
+    "theory": "\n<p>Pentru a face deducții logice despre un eveniment care s-a petrecut în trecut pe baza dovezilor prezente, folosim verbe modale urmate de <strong>have + Past Participle</strong>.</p>\n\n<h4>1. Cele Trei Nivele de Certitudine</h4>\n<ul>\n  <li><code>Must have + V3</code> — Certitudine pozitivă: <em>The streets are wet; it must have rained last night</em>.</li>\n  <li><code>Can't have + V3</code> — Imposibilitate logică: <em>He can't have stolen the laptop; he wasn't at the office</em>.</li>\n  <li><code>Might have + V3</code> — Posibilitate incertă: <em>She might have missed the bus</em>.</li>\n</ul>\n\n<h4>2. Exemple Practice de Deducție</h4>\n<pre><code>-- Deducții în context:\nSituation: Sarah's phone is switched off and she hasn't replied.\nDeduction 1: \"Her battery must have died.\" (Certitudine ridicată)\nDeduction 2: \"She might have boarded her flight.\" (Posibilitate)\nDeduction 3: \"She can't have forgotten our anniversary!\" (Imposibil)\n\nExample Sentence:\n\"She must have received my email because she already completed the task.\"\n</code></pre>\n",
     "glossary": [
       {
         "term": "Modal of deduction",
@@ -10975,9 +11691,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "'Must have + past participle' exprimă concluzia logică fermă că o acțiune s-a produs în trecut pe baza indiciilor evidente din prezent."
     },
+    "prompt": "Scrie propoziția de deducție 'She must have received my email.' (Cu siguranță a primit e-mailul meu).",
     "task": "Scrie propoziția de deducție 'She must have received my email.' (Cu siguranță a primit e-mailul meu).",
-    "starterCode": "// Scrie deducția\n",
+    "example": "She must have received my email.",
+    "starterCode": "She must have received my email.",
+    "officialSolution": "She must have received my email.",
     "expectedOutputPattern": "She\\s+must\\s+have\\s+received\\s+my\\s+email\\.?",
+    "regexPattern": "She\\s+must\\s+have\\s+received\\s+my\\s+email\\.?",
     "hint": "Scrie She must have received my email."
   },
   {
@@ -10988,7 +11708,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Avansat / C1",
     "xp": 55,
     "title": "Capitolul 1: Propoziții Scindate (Cleft Sentences) pentru Accentuare",
-    "theory": "\n<p><strong>Cleft Sentences</strong> sunt structuri gramaticale complexe utilizate pentru a pune accentul pe un element precis al propoziției (subiectul, cauza, momentul sau acțiunea), transformând o propoziție simplă într-una cu două clauze.</p>\n<h4>1. It-Clefts</h4>\n<p>Formula: <code>It is / was + elementul accentuat + that / who</code>.</p>\n<p><em>Dan wrote the code</em> $\rightarrow$ <em><strong>It was Dan who</strong> wrote the code</em> (Dan a fost cel care a scris codul, nu altcineva!).</p>\n<h4>2. Wh-Clefts (Pseudo-Clefts)</h4>\n<p>Formula: <code>What + clauză + is / was + elementul de impact</code>.</p>\n<p><em>I need a quiet place</em> $\rightarrow$ <em><strong>What I really need is</strong> a quiet place</em>.</p>\n",
+    "theory": "\n<p><strong>Cleft Sentences</strong> sunt structuri gramaticale complexe utilizate pentru a pune accentul pe un element precis al propoziției (subiectul, cauza, momentul sau acțiunea).</p>\n\n<h4>1. Structuri Principale</h4>\n<ul>\n  <li><code>It-cleft</code>: <em>It was Dan who fixed the critical production bug.</em></li>\n  <li><code>Wh-cleft</code>: <em>What we really need is more time.</em></li>\n</ul>\n\n<h4>2. Exemple Comparative (Standard vs Cleft)</h4>\n<pre><code>-- Standard sentence:\n\"We need comprehensive user feedback to make a sound decision.\"\n\n-- Wh-Cleft (Emphatic):\n\"What we really need is comprehensive user feedback.\"\n\n-- It-Cleft (Focus on responsible entity):\n\"It was the design team that spearheaded the entire rebranding effort.\"\n</code></pre>\n",
     "glossary": [
       {
         "term": "Cleft Sentence",
@@ -11036,9 +11756,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "'What increased our sales was the marketing campaign' folosește corect clauza 'What...' pentru a accentua campania de marketing ca factor determinant."
     },
+    "prompt": "Scrie propoziția de accentuare 'What we really need is more time.' folosind un Wh-cleft.",
     "task": "Scrie propoziția de accentuare 'What we really need is more time.' folosind un Wh-cleft.",
-    "starterCode": "What we really ",
+    "example": "What we really need is more time.",
+    "starterCode": "What we really need is more time.",
+    "officialSolution": "What we really need is more time.",
     "expectedOutputPattern": "What\\s+we\\s+really\\s+need\\s+is\\s+more\\s+time\\.?",
+    "regexPattern": "What\\s+we\\s+really\\s+need\\s+is\\s+more\\s+time\\.?",
     "hint": "Scrie What we really need is more time."
   },
   {
@@ -11049,7 +11773,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Măiestrie / C2",
     "xp": 70,
     "title": "Capitolul 2: Tehnici Avansate de Argumentare Diplomatică (Hedging & Nuance)",
-    "theory": "\n<p>În comunicarea executivă de nivel C2, dezacordul direct (<em>You are wrong</em>) este considerat neprofesionist. Vorbitorii nativi folosesc tehnica <strong>Hedging</strong> — atenuarea afirmațiilor categorice prin nuanțe subtile și formulări ipotetice.</p>\n<h4>1. Verbe și Adverbe de Atenuare</h4>\n<p>În loc de <em>This approach will fail</em>, se folosește: <em>This approach <strong>would seem to</strong> have significant drawbacks</em> sau <em>It is <strong>arguably</strong> not the most viable solution</em>.</p>\n<h4>2. Dezacordul Diplomatic</h4>\n<ul>\n  <li><em>With all due respect, I am not entirely convinced that...</em></li>\n  <li><em>I see your point, however, have we considered the potential repercussions?</em></li>\n  <li><em>To a certain extent, that may be true, but...</em></li>\n</ul>\n",
+    "theory": "\n<p>În comunicarea executivă de nivel C2, dezacordul direct (<em>You are wrong</em>) este considerat neprofesionist. Vorbitorii nativi folosesc tehnica <strong>Hedging</strong> — atenuarea afirmațiilor categorice prin nuanțe subtile și formulări ipotetice.</p>\n\n<h4>1. Formule Cheie de Hedging</h4>\n<ul>\n  <li><em>With all due respect, I must disagree with this assessment.</em></li>\n  <li><em>This approach would seem to have significant drawbacks.</em></li>\n  <li><em>It is arguably not the most viable long-term solution.</em></li>\n</ul>\n\n<h4>2. Exemple Practice de Dezacord Diplomatic</h4>\n<pre><code>-- Blunt statement (Unprofessional):\n\"Your proposal makes no sense and will lose us money.\"\n\n-- Diplomatic Hedging (Executive C2):\n\"With all due respect, I must disagree with this assessment. While I appreciate the creative direction, the financial projections would appear somewhat optimistic under current market conditions.\"\n</code></pre>\n",
     "glossary": [
       {
         "term": "Hedging",
@@ -11097,9 +11821,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Formularea folosește modale prudente (might be) și vocabular academic nuanțat (preliminary, definitive conclusions), reprezentând etalonul de stil diplomatic C2."
     },
+    "prompt": "Scrie formula diplomatică de dezacord 'With all due respect, I must disagree with this assessment.'.",
     "task": "Scrie formula diplomatică de dezacord 'With all due respect, I must disagree with this assessment.'.",
-    "starterCode": "// Scrie fraza diplomatică\n",
+    "example": "With all due respect, I must disagree with this assessment.",
+    "starterCode": "With all due respect, I must disagree with this assessment.",
+    "officialSolution": "With all due respect, I must disagree with this assessment.",
     "expectedOutputPattern": "With\\s+all\\s+due\\s+respect,\\s*I\\s+must\\s+disagree\\s+with\\s+this\\s+assessment\\.?",
+    "regexPattern": "With\\s+all\\s+due\\s+respect,\\s*I\\s+must\\s+disagree\\s+with\\s+this\\s+assessment\\.?",
     "hint": "Scrie With all due respect, I must disagree with this assessment."
   },
   {
@@ -11110,7 +11838,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "1. Începător / A1",
     "xp": 30,
     "title": "Capitolul 1: Arborele Genealogic & Relațiile de Familie (Family & Relatives)",
-    "theory": "\n<p>Descrierea familiei este unul dintre primele subiecte de conversație. În limba engleză distingem clar între <strong>Immediate Family</strong> (familia restrânsă: părinți, copii, frați) și <strong>Extended Family</strong> (rudele extinse: veri, unchi, mătuși, bunici).</p>\n<h4>1. Rudele prin Alianță (In-laws)</h4>\n<p>Toate rudele dobândite prin căsătorie primesc sufixul <code>-in-law</code>:</p>\n<ul>\n  <li><code>Mother-in-law / Father-in-law</code> — Soacra / Socrul.</li>\n  <li><code>Brother-in-law / Sister-in-law</code> — Cumnatul / Cumnata.</li>\n  <li><code>Son-in-law / Daughter-in-law</code> — Ginerele / Nora.</li>\n</ul>\n<h4>2. Frați și Surori</h4>\n<p>Substantivul colectiv neutru pentru frați și surori este <strong>siblings</strong> (<em>I have two siblings: one brother and one sister</em>).</p>\n",
+    "theory": "\n<p>Descrierea familiei este unul dintre primele subiecte de conversație. În limba engleză distingem clar între <strong>Immediate Family</strong> (familia restrânsă) și <strong>Extended Family</strong> (rudele extinse).</p>\n\n<h4>1. Rudele prin Alianță (In-laws) și Frați (Siblings)</h4>\n<p>Toate rudele prin căsătorie primesc <code>-in-law</code>: <em>mother-in-law</em> (soacra), <em>brother-in-law</em> (cumnatul). Termenul neutru pentru frați și surori este <strong>siblings</strong>.</p>\n\n<h4>2. Exemple de Propoziții Despre Familie</h4>\n<pre><code>-- Exemple practice:\n1. \"I have three siblings and a large extended family.\"\n2. \"My brother-in-law lives in Toronto with his two children.\"\n3. \"Are you an only child, or do you have any siblings?\"\n4. \"We visit our grandparents every Sunday afternoon.\"\n</code></pre>\n",
     "glossary": [
       {
         "term": "Immediate Family",
@@ -11158,9 +11886,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "Rudele dobândite prin căsătorie primesc terminația '-in-law'. Fratele partenerului este 'brother-in-law'."
     },
+    "prompt": "Scrie propoziția 'I have three siblings and a large extended family.'.",
     "task": "Scrie propoziția 'I have three siblings and a large extended family.'.",
-    "starterCode": "I have three ",
+    "example": "I have three siblings and a large extended family.",
+    "starterCode": "I have three siblings and a large extended family.",
+    "officialSolution": "I have three siblings and a large extended family.",
     "expectedOutputPattern": "I\\s+have\\s+three\\s+siblings\\s+and\\s+a\\s+large\\s+extended\\s+family\\.?",
+    "regexPattern": "I\\s+have\\s+three\\s+siblings\\s+and\\s+a\\s+large\\s+extended\\s+family\\.?",
     "hint": "Scrie I have three siblings and a large extended family."
   },
   {
@@ -11171,7 +11903,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "2. Elementar / A2",
     "xp": 35,
     "title": "Capitolul 2: Arta Culinară, Bucătărie & Gastronomie (Cooking & Recipes)",
-    "theory": "\n<p>Gătitul implică verbe specifice de preparare termică și mecanică ce diferențiază clar tehnicile culinare:</p>\n<h4>1. Verbe de Bază în Bucătărie</h4>\n<ul>\n  <li><code>Chop</code> — a toca mărunt (legume, ierburi).</li>\n  <li><code>Slice</code> — a tăia în felii (pâine, roșii).</li>\n  <li><code>Grate</code> — a da pe răzătoare (brânză, morcovi).</li>\n  <li><code>Stir</code> — a amesteca continuu cu o lingură într-un lichid.</li>\n  <li><code>Boil</code> — a fierbe în clocot (apă la 100°C).</li>\n  <li><code>Simmer</code> — a fierbe la foc mic, domol.</li>\n  <li><code>Bake</code> — a coace la cuptor (pâine, prăjituri).</li>\n  <li><code>Roast</code> — a rumeni la cuptor la temperatură înaltă (carne, cartofi).</li>\n</ul>\n",
+    "theory": "\n<p>Gătitul implică verbe specifice de preparare termică și mecanică: <code>Chop</code> (a toca mărunt), <code>Slice</code> (a felia), <code>Grate</code> (a da pe răzătoare), <code>Boil</code> (a fierbe în clocot) și <code>Simmer</code> (a fierbe domol la foc mic).</p>\n\n<h4>1. Exemplu de Rețetă și Instrucțiuni Culinare</h4>\n<pre><code>-- Cooking Steps:\n1. \"Chop the vegetables and simmer the soup for 15 minutes.\"\n2. \"Slice the bread and toast it lightly.\"\n3. \"Grate some fresh parmesan cheese over the pasta.\"\n4. \"Bake the cake in the preheated oven at 180 degrees Celsius.\"\n</code></pre>\n",
     "glossary": [
       {
         "term": "Chop",
@@ -11219,9 +11951,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "'Bake' este verbul specific pentru coacerea produselor de panificație și a dulciurilor în cuptor."
     },
+    "prompt": "Scrie instrucțiunea culinară 'Chop the vegetables and simmer the soup for 15 minutes.'.",
     "task": "Scrie instrucțiunea culinară 'Chop the vegetables and simmer the soup for 15 minutes.'.",
-    "starterCode": "// Scrie instrucțiunea\n",
+    "example": "Chop the vegetables and simmer the soup for 15 minutes.",
+    "starterCode": "Chop the vegetables and simmer the soup for 15 minutes.",
+    "officialSolution": "Chop the vegetables and simmer the soup for 15 minutes.",
     "expectedOutputPattern": "Chop\\s+the\\s+vegetables\\s+and\\s+simmer\\s+the\\s+soup\\s+for\\s+15\\s+minutes\\.?",
+    "regexPattern": "Chop\\s+the\\s+vegetables\\s+and\\s+simmer\\s+the\\s+soup\\s+for\\s+15\\s+minutes\\.?",
     "hint": "Scrie Chop the vegetables and simmer the soup for 15 minutes."
   },
   {
@@ -11232,7 +11968,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "3. Intermediar / B1",
     "xp": 40,
     "title": "Capitolul 3: Cinematografie & Recenzii de Filme (Cinema & Movie Reviews)",
-    "theory": "\n<p>Discuțiile despre filme depășesc simplul „It was good”. Engleza intermediară oferă un vocabular precis pentru a analiza scenariul, jocul actoricesc și regia.</p>\n<h4>1. Vocabular Cinematografic</h4>\n<ul>\n  <li><code>Plot twist</code> — o întorsătură neașteptată de situație în poveste.</li>\n  <li><code>Blockbuster</code> — film comercial cu buget uriaș și succes masiv de casă.</li>\n  <li><code>Soundtrack (OST)</code> — coloana sonoră originală compusă pentru film.</li>\n  <li><code>Binge-watch</code> — a viziona mai multe episoade sau un sezon întreg dintr-un serial fără oprire.</li>\n  <li><code>Lead actor / actress</code> — actorul / actrița în rolul principal.</li>\n</ul>\n",
+    "theory": "\n<p>Discuțiile despre cinematografie folosesc termeni consacrați: <code>Plot twist</code> (răsturnare de situație), <code>Blockbuster</code> (film de succes masiv), <code>Soundtrack</code> (coloana sonoră) și <code>Binge-watch</code> (vizionare maraton de episoade consecutive).</p>\n\n<h4>1. Exemple Practice de Recenzii</h4>\n<pre><code>-- Movie Review Examples:\n1. \"The movie had an amazing plot twist at the end.\"\n2. \"I binge-watched the entire miniseries in a single weekend.\"\n3. \"The lead actress delivered an Oscar-worthy performance.\"\n4. \"The soundtrack composed by Hans Zimmer elevated every emotional scene.\"\n</code></pre>\n",
     "glossary": [
       {
         "term": "Plot twist",
@@ -11280,9 +12016,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "'Binge-watch' descrie vizionarea maraton a mai multor episoade dintr-un serial într-o perioadă scurtă de timp."
     },
+    "prompt": "Scrie recenzia scurtă 'The movie had an amazing plot twist at the end.'.",
     "task": "Scrie recenzia scurtă 'The movie had an amazing plot twist at the end.'.",
-    "starterCode": "The movie had an ",
+    "example": "The movie had an amazing plot twist at the end.",
+    "starterCode": "The movie had an amazing plot twist at the end.",
+    "officialSolution": "The movie had an amazing plot twist at the end.",
     "expectedOutputPattern": "The\\s+movie\\s+had\\s+an\\s+amazing\\s+plot\\s+twist\\s+at\\s+the\\s+end\\.?",
+    "regexPattern": "The\\s+movie\\s+had\\s+an\\s+amazing\\s+plot\\s+twist\\s+at\\s+the\\s+end\\.?",
     "hint": "Scrie The movie had an amazing plot twist at the end."
   },
   {
@@ -11293,7 +12033,7 @@ const MEGA_EXPANDED_CURRICULUM = [
     "level": "4. Senior / B2",
     "xp": 50,
     "title": "Capitolul 4: Călătorii de Aventură & Imersiune Culturală (Travel & Adventure)",
-    "theory": "\n<p>Călătoriile moderne pun accent pe <strong>turismul sustenabil</strong> și pe explorarea locurilor autentice, dincolo de traseele turistice aglomerate.</p>\n<h4>1. Colocații Idiomatice de Călătorie</h4>\n<ul>\n  <li><code>Off the beaten track</code> — departe de traseele turistice convenționale, într-o zonă izolată și autentică.</li>\n  <li><code>Travel on a shoestring</code> — a călători cu un buget extrem de redus (economic).</li>\n  <li><code>Wanderlust</code> — dorința puternică și irezistibilă de a călători și de a explora lumea.</li>\n  <li><code>Cultural immersion</code> — integrarea completă în tradițiile, mâncarea și viața comunității locale.</li>\n</ul>\n",
+    "theory": "\n<p>Călătoriile moderne pun accent pe <strong>turismul autentic</strong>: <code>Off the beaten track</code> (dincolo de traseele turistice clasice), <code>Wanderlust</code> (pasiunea puternică pentru explorare) și <code>Cultural immersion</code> (imersiune în viața locală).</p>\n\n<h4>1. Exemple Practice de Conversație despre Călătorii</h4>\n<pre><code>-- Travel Expressions in Context:\n1. \"We prefer traveling off the beaten track to experience authentic culture.\"\n2. \"Her wanderlust led her to backpack across Southeast Asia for six months.\"\n3. \"Traveling on a shoestring taught him how to budget and appreciate local hospitality.\"\n4. \"Living with a host family offered deep cultural immersion.\"\n</code></pre>\n",
     "glossary": [
       {
         "term": "Off the beaten track",
@@ -11341,9 +12081,13 @@ const MEGA_EXPANDED_CURRICULUM = [
       "correctIndex": 0,
       "explanation": "'Off the beaten track' se referă la destinații izolate, puțin circulate de turiștii obișnuiți, care oferă experiențe locale autentice."
     },
+    "prompt": "Scrie propoziția de călătorie 'We prefer traveling off the beaten track to experience authentic culture.'.",
     "task": "Scrie propoziția de călătorie 'We prefer traveling off the beaten track to experience authentic culture.'.",
-    "starterCode": "We prefer traveling ",
+    "example": "We prefer traveling off the beaten track to experience authentic culture.",
+    "starterCode": "We prefer traveling off the beaten track to experience authentic culture.",
+    "officialSolution": "We prefer traveling off the beaten track to experience authentic culture.",
     "expectedOutputPattern": "We\\s+prefer\\s+traveling\\s+off\\s+the\\s+beaten\\s+track\\s+to\\s+experience\\s+authentic\\s+culture\\.?",
+    "regexPattern": "We\\s+prefer\\s+traveling\\s+off\\s+the\\s+beaten\\s+track\\s+to\\s+experience\\s+authentic\\s+culture\\.?",
     "hint": "Scrie We prefer traveling off the beaten track to experience authentic culture."
   }
 ];

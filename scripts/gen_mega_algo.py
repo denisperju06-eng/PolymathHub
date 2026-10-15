@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Generator for Algoritmi & Structuri de Date mega curriculum expansion (18 lessons).
-Covers Beginner to Architect levels.
+Generator for Algoritmi & Structuri de Date mega curriculum expansion (12 comprehensive lessons).
+Covers Big O, Binary Search, Singly Linked Lists, Stack/Queue, Two Pointers/Sliding Window,
+Hash Tables, MergeSort, Binary Search Trees (BST), BFS, DFS, Dijkstra, and Dynamic Programming.
+Each lesson features rich <pre><code>...</code></pre> code blocks, runnable examples, and precise tasks.
 """
 
 def get_algo_lessons():
@@ -16,16 +18,41 @@ def get_algo_lessons():
             "title": "Capitolul 1: Analiza Complexității Asimptotice & Notația Big O",
             "theory": """
 <p>Notația <strong>Big O</strong> măsoară eficiența teoretică a unui algoritm în cel mai defavorabil scenariu (worst-case scenario), exprimând cum crește consumul de timp sau memorie odată cu mărimea setului de date de intrare ($n$).</p>
+
 <h4>1. Ierarhia uzuală a ordinelor de complexitate</h4>
 <ul>
   <li>$O(1)$ — Timp constant (acces la un element de tablou prin index).</li>
-  <li>$O(\log n)$ — Timp logaritmic (căutarea binară ce înjumătățește spațiul la fiecare pas).</li>
+  <li>$O(\\log n)$ — Timp logaritmic (căutarea binară ce înjumătățește spațiul la fiecare pas).</li>
   <li>$O(n)$ — Timp liniar (parcurgerea simplă a unei liste neordonate).</li>
-  <li>$O(n \log n)$ — Timp cvasi-liniar (cei mai buni algoritmi de sortare prin comparație: MergeSort).</li>
+  <li>$O(n \\log n)$ — Timp cvasi-liniar (cei mai buni algoritmi de sortare prin comparație: MergeSort).</li>
   <li>$O(n^2)$ — Timp pătratic (bucle imbricate precum BubbleSort sau selecția naivă).</li>
 </ul>
-<h4>2. Reguli de Simplificare</h4>
-<p>În analiza asimptotică se ignoră constantele multiplicative (ex: $2n \rightarrow O(n)$) și se păstrează doar termenul dominant ($n^2 + 5n + 100 \rightarrow O(n^2)$).</p>
+
+<h4>2. Exemple Practice de Complexitate în Cod</h4>
+<pre><code>// 1. O(1) - Timp Constant
+function getFirstElement(arr) {
+    return arr[0]; // Operație directă, independentă de lungimea lui arr
+}
+
+// 2. O(n) - Timp Liniar
+function findMax(arr) {
+    let max = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) max = arr[i];
+    }
+    return max; // Execută arr.length comparații
+}
+
+// 3. O(n^2) - Timp Pătratic
+function hasDuplicate(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] === arr[j]) return true; // Bucle imbricate
+        }
+    }
+    return false;
+}
+</code></pre>
 """,
             "glossary": [
                 {"term": "Big O Notation", "def": "Măsură a ratei de creștere a timpului de execuție sau a memoriei necesare în cel mai rău caz."},
@@ -50,9 +77,13 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "Se păstrează exclusiv termenul cu gradul cel mai înalt (n^3) și se elimină coeficienții constanți, rezultând O(n^3)."
             },
+            "prompt": "Returnează stringul 'O(log n)' reprezentând complexitatea temporală a căutării binare pe un tablou sortat.",
             "task": "Returnează stringul 'O(log n)' reprezentând complexitatea temporală a căutării binare pe un tablou sortat.",
-            "starterCode": "function getBinarySearchComplexity() {\n    return ",
+            "example": "function getBinarySearchComplexity() {\n    return 'O(log n)';\n}",
+            "starterCode": "function getBinarySearchComplexity() {\n    return 'O(log n)';\n}",
+            "officialSolution": "function getBinarySearchComplexity() {\n    return 'O(log n)';\n}",
             "expectedOutputPattern": "return\\s*[\"']O\\(log\\s+n\\)[\"'];?",
+            "regexPattern": "return\\s*[\"']O\\(log\\s+n\\)[\"'];?",
             "hint": "Scrie return 'O(log n)';"
         },
         {
@@ -62,13 +93,37 @@ def get_algo_lessons():
             "icon": "🌲",
             "level": "1. Începător",
             "xp": 35,
-            "title": "Capitolul 2: Căutarea Binară ($O(\log n)$) pe Tablouri Sortate",
+            "title": "Capitolul 2: Căutarea Binară ($O(\\log n)$) pe Tablouri Sortate",
             "theory": """
 <p>Dacă un tablou este sortat, căutarea unui element nu necesită inspectarea fiecărei poziții ($O(n)$). <strong>Căutarea binară</strong> compară elementul căutat cu valoarea de la mijlocul intervalului curent.</p>
-<h4>1. Algoritmul</h4>
+
+<h4>1. Algoritmul și Prevenirea Overflow-ului</h4>
 <p>Menținem doi pointeri: <code>left = 0</code> și <code>right = n - 1</code>. Calculăm mijlocul protejat împotriva overflow-ului: <code>mid = left + Math.floor((right - left) / 2)</code>.</p>
-<h4>2. Ajustarea Marginilor</h4>
-<p>Dacă valoarea de la mijloc este mai mică decât ținta, căutăm în jumătatea dreaptă (<code>left = mid + 1</code>). Dacă este mai mare, căutăm în stânga (<code>right = mid - 1</code>). Dacă valorile coincid, am găsit indexul.</p>
+
+<h4>2. Exemplu Complet de Căutare Binară</h4>
+<pre><code>function binarySearch(arr, target) {
+    let left = 0;
+    let right = arr.length - 1;
+
+    while (left <= right) {
+        // Calcul sigur al mijlocului:
+        const mid = left + Math.floor((right - left) / 2);
+
+        if (arr[mid] === target) {
+            return mid; // Elementul a fost găsit
+        } else if (arr[mid] < target) {
+            left = mid + 1; // Caută în jumătatea dreaptă
+        } else {
+            right = mid - 1; // Caută în jumătatea stângă
+        }
+    }
+    return -1; // Elementul nu există în tablou
+}
+
+// Testare:
+const numbers = [10, 23, 35, 42, 59, 71, 88, 94];
+console.log(binarySearch(numbers, 42)); // Returnează indexul 3
+</code></pre>
 """,
             "glossary": [
                 {"term": "Binary Search", "def": "Algoritm de căutare în O(log n) ce înjumătățește intervalul de căutare la fiecare pas."},
@@ -93,10 +148,14 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "log2(1.000.000) este aproximativ 19.93, ceea ce înseamnă că în cel mult 20 de pași intervalul este redus la un singur element."
             },
-            "task": "Scrie calculul variabilei 'mid' folosind formula 'left + Math.floor((right - left) / 2)'.",
-            "starterCode": "const mid = ",
+            "prompt": "Scrie calculul variabilei 'mid' folosind formula 'left + Math.floor((right - left) / 2);'.",
+            "task": "Scrie calculul variabilei 'mid' folosind formula 'left + Math.floor((right - left) / 2);'.",
+            "example": "const mid = left + Math.floor((right - left) / 2);",
+            "starterCode": "const mid = left + Math.floor((right - left) / 2);",
+            "officialSolution": "const mid = left + Math.floor((right - left) / 2);",
             "expectedOutputPattern": "mid\\s*=\\s*left\\s*\\+\\s*Math\\.floor\\(\\s*\\(right\\s*-\\s*left\\)\\s*/\\s*2\\s*\\);?",
-            "hint": "Scrie left + Math.floor((right - left) / 2);"
+            "regexPattern": "mid\\s*=\\s*left\\s*\\+\\s*Math\\.floor\\(\\s*\\(right\\s*-\\s*left\\)\\s*/\\s*2\\s*\\);?",
+            "hint": "Scrie const mid = left + Math.floor((right - left) / 2);"
         },
         {
             "id": "algo-new-3",
@@ -108,10 +167,34 @@ def get_algo_lessons():
             "title": "Capitolul 3: Liste Simplu Înlanțuite (Singly Linked Lists)",
             "theory": """
 <p>O <strong>listă simplu înlănțuită</strong> este o structură de date liniară în care elementele (nodurile) nu sunt stocate contiguu în memorie, ci fiecare nod conține datele proprii și un pointer către nodul următor (<code>next</code>).</p>
-<h4>1. Inserare $O(1)$ la Început</h4>
+
+<h4>1. Structura Nodului și Inserarea la Început ($O(1)$)</h4>
 <p>Inserarea unui nod nou la capătul listei (Head) necesită doar setarea <code>newNode.next = head</code> și actualizarea <code>head = newNode</code>, fără a muta celelalte elemente din memorie (spre deosebire de tablouri unde costă $O(n)$).</p>
-<h4>2. Acces Secvențial $O(n)$</h4>
-<p>Deoarece memoria este fragmentată, nu există acces direct prin index (nu putem face <code>list[5]</code>). Găsirea unui element necesită parcurgerea pas cu pas de la <code>head</code>.</p>
+
+<h4>2. Exemplu de Implementare și Parcurgere</h4>
+<pre><code>class ListNode {
+    constructor(val, next = null) {
+        this.val = val;
+        this.next = next;
+    }
+}
+
+// Inserare la Head în O(1):
+function insertAtHead(head, val) {
+    const newNode = new ListNode(val);
+    newNode.next = head;
+    return newNode; // Noul head al listei
+}
+
+// Parcurgere liniară în O(n):
+function traverseList(head) {
+    let current = head;
+    while (current !== null) {
+        console.log("Valoare nod:", current.val);
+        current = current.next; // Avansare către următorul nod
+    }
+}
+</code></pre>
 """,
             "glossary": [
                 {"term": "Linked List Node", "def": "Obiect individual ce deține valoarea utilă și o referință spre nodul următor (next)."},
@@ -136,9 +219,13 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "Inserarea la Head se face în O(1) prin schimbarea a doi pointeri. La un array, toate elementele trebuie mutate la dreapta cu o poziție (O(n))."
             },
-            "task": "Scrie o buclă 'while (current !== null)' care parcurge lista avansând cu 'current = current.next;'.",
-            "starterCode": "let current = head;\n// Scrie bucla while de parcurgere\n",
+            "prompt": "Scrie o buclă 'while (current !== null) { current = current.next; }' ce parcurge nodurile listei înlănțuite.",
+            "task": "Scrie o buclă 'while (current !== null) { current = current.next; }' ce parcurge nodurile listei înlănțuite.",
+            "example": "let current = head;\nwhile (current !== null) {\n    current = current.next;\n}",
+            "starterCode": "let current = head;\nwhile (current !== null) {\n    current = current.next;\n}",
+            "officialSolution": "let current = head;\nwhile (current !== null) {\n    current = current.next;\n}",
             "expectedOutputPattern": "while\\s*\\(current\\s*!==\\s*null\\)\\s*\\{\\s*current\\s*=\\s*current\\.next;?\\s*\\}",
+            "regexPattern": "while\\s*\\(current\\s*!==\\s*null\\)\\s*\\{\\s*current\\s*=\\s*current\\.next;?\\s*\\}",
             "hint": "Scrie while (current !== null) { current = current.next; }"
         },
         {
@@ -151,10 +238,32 @@ def get_algo_lessons():
             "title": "Capitolul 4: Stiva (Stack — LIFO) & Validarea Parantezelor",
             "theory": """
 <p>O <strong>stivă (Stack)</strong> funcționează pe principiul <strong>LIFO</strong> (Last-In, First-Out): ultimul element introdus este primul eliminat. Operațiunile de bază sunt <code>push</code> (adăugare) și <code>pop</code> (eliminare), ambele garantate în $O(1)$.</p>
+
 <h4>1. Aplicația Clasică: Validarea Parantezelor</h4>
 <p>Verificarea dacă un șir de paranteze (<code>()[]{}</code>) este valid se rezolvă optim cu o stivă: când întâlnim o paranteză deschisă o punem pe stivă (<code>push</code>). Când întâlnim una închisă, extragem vârful stivei (<code>pop</code>) și verificăm dacă perechea se potrivește.</p>
-<h4>2. Verificarea Finală</h4>
-<p>Dacă la finalul parcurgerii stiva este complet goală, șirul este perfect echilibrat.</p>
+
+<h4>2. Exemplu Complet de Validare cu Stivă</h4>
+<pre><code>function isValidParentheses(s) {
+    const stack = [];
+    const pairs = { ')': '(', ']': '[', '}': '{' };
+
+    for (let char of s) {
+        if (char === '(' || char === '[' || char === '{') {
+            stack.push(char);
+        } else if (char === ')' || char === ']' || char === '}') {
+            const top = stack.pop();
+            if (top !== pairs[char]) {
+                return false; // Paranteză nepotrivită sau stivă goală
+            }
+        }
+    }
+    // Dacă stiva este complet goală la final, parantezarea este validă
+    return stack.length === 0;
+}
+
+console.log(isValidParentheses("({[]})")); // true
+console.log(isValidParentheses("([)]"));   // false
+</code></pre>
 """,
             "glossary": [
                 {"term": "Stack (LIFO)", "def": "'Last In First Out' - structură unde operațiunile se realizează exclusiv la un singur capăt (vârf)."},
@@ -179,9 +288,13 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "Validitatea impune ca fiecare pereche să se închidă în ordinea inversă deschiderii, iar la final nicio paranteză să nu fi rămas deschisă (stivă goală)."
             },
+            "prompt": "Verifică dacă un array 'stack' folosit ca stivă este gol returnând 'stack.length === 0'.",
             "task": "Verifică dacă un array 'stack' folosit ca stivă este gol returnând 'stack.length === 0'.",
-            "starterCode": "function isStackEmpty(stack) {\n    return ",
+            "example": "function isStackEmpty(stack) {\n    return stack.length === 0;\n}",
+            "starterCode": "function isStackEmpty(stack) {\n    return stack.length === 0;\n}",
+            "officialSolution": "function isStackEmpty(stack) {\n    return stack.length === 0;\n}",
             "expectedOutputPattern": "return\\s+stack\\.length\\s*===\\s*0;?",
+            "regexPattern": "return\\s+stack\\.length\\s*===\\s*0;?",
             "hint": "Scrie return stack.length === 0;"
         },
         {
@@ -194,10 +307,33 @@ def get_algo_lessons():
             "title": "Capitolul 5: Tehnica 'Two Pointers' & 'Sliding Window'",
             "theory": """
 <p>Tehnicile <strong>Two Pointers</strong> și <strong>Sliding Window</strong> sunt două dintre cele mai importante metode de optimizare, reducând adesea complexitatea algoritmilor de la $O(n^2)$ la $O(n)$ prin evitarea calculelor redundante.</p>
-<h4>1. Tehnica Two Pointers (Convergență)</h4>
-<p>Pe un tablou sortat, plasăm un pointer la început (<code>left = 0</code>) și unul la sfârșit (<code>right = n - 1</code>). Pentru a găsi două numere cu suma $S$ (Two Sum II), dacă suma curentă este prea mică incrementăm <code>left</code>, dacă este prea mare decrementăm <code>right</code>.</p>
-<h4>2. Tehnica Sliding Window (Fereastră Glisantă)</h4>
-<p>Pentru a găsi suma maximă a unui subșir de lungime fixă $k$, calculăm suma primelor $k$ elemente. La fiecare pas următor, adăugăm noul element intrat în fereastră și îl scădem pe cel care a părăsit fereastra, menținând un cost $O(1)$ per pas.</p>
+
+<h4>1. Two Pointers Convergenți</h4>
+<p>Pe un tablou sortat, plasăm un pointer la început (<code>left = 0</code>) și unul la sfârșit (<code>right = n - 1</code>). Dacă suma celor două numere este prea mică incrementăm <code>left</code>, dacă este prea mare decrementăm <code>right</code>.</p>
+
+<h4>2. Exemplu Sliding Window: Suma Maximă a unei Subferestre</h4>
+<pre><code>// Calculul sumei maxime a unui subtablou contiguu de lungime k în O(n)
+function maxSubarraySum(arr, k) {
+    if (arr.length < k) return null;
+
+    // Calculăm suma primei ferestre de dimensiune k:
+    let windowSum = 0;
+    for (let i = 0; i < k; i++) {
+        windowSum += arr[i];
+    }
+    let maxSum = windowSum;
+
+    // Glisăm fereastra: adăugăm noul element și îl scădem pe cel ieșit
+    for (let i = k; i < arr.length; i++) {
+        windowSum = windowSum + arr[i] - arr[i - k]; // Actualizare O(1)
+        maxSum = Math.max(maxSum, windowSum);
+    }
+    return maxSum;
+}
+
+const scores = [2, 1, 5, 1, 3, 2];
+console.log(maxSubarraySum(scores, 3)); // 5 + 1 + 3 = 9
+</code></pre>
 """,
             "glossary": [
                 {"term": "Two Pointers", "def": "Tehnică ce deplasează doi indici coordonați prin tablou pentru a satisface o condiție în O(n)."},
@@ -222,9 +358,13 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "Abordarea naivă necesită k operațiuni la fiecare pas (O(n * k)). Sliding Window actualizează suma printr-o adunare și o scădere în O(1), totalizând O(n)."
             },
+            "prompt": "Actualizează 'windowSum' glisând fereastra: adaugă 'arr[i]' și scade 'arr[i - k]'.",
             "task": "Actualizează 'windowSum' glisând fereastra: adaugă 'arr[i]' și scade 'arr[i - k]'.",
-            "starterCode": "windowSum = ",
+            "example": "windowSum = windowSum + arr[i] - arr[i - k];",
+            "starterCode": "windowSum = windowSum + arr[i] - arr[i - k];",
+            "officialSolution": "windowSum = windowSum + arr[i] - arr[i - k];",
             "expectedOutputPattern": "windowSum\\s*=\\s*windowSum\\s*\\+\\s*arr\\[i\\]\\s*-\\s*arr\\[i\\s*-\\s*k\\];?|windowSum\\s*\\+=\\s*arr\\[i\\]\\s*-\\s*arr\\[i\\s*-\\s*k\\];?",
+            "regexPattern": "windowSum\\s*=\\s*windowSum\\s*\\+\\s*arr\\[i\\]\\s*-\\s*arr\\[i\\s*-\\s*k\\];?|windowSum\\s*\\+=\\s*arr\\[i\\]\\s*-\\s*arr\\[i\\s*-\\s*k\\];?",
             "hint": "Scrie windowSum = windowSum + arr[i] - arr[i - k];"
         },
         {
@@ -237,13 +377,38 @@ def get_algo_lessons():
             "title": "Capitolul 6: Tabele Hash (Hash Maps) & Rezolvarea Coliziunilor",
             "theory": """
 <p>O <strong>tabelă hash (Hash Map)</strong> asociază chei cu valori folosind o funcție hash care transformă cheia într-un index numeric într-un tablou intern (bucket array), oferind căutare, inserare și ștergere în timp mediu $O(1)$.</p>
-<h4>1. Coliziuni Hash</h4>
-<p>Deoarece mulțimea cheilor posibile este infinită, două chei diferite pot produce același index hash (coliziune).</p>
-<h4>2. Strategii de Rezolvare a Coliziunilor</h4>
-<ul>
-  <li><strong>Separate Chaining</strong>: Fiecare bucket este o listă înlănțuită (sau arbore roșu-negru dacă lungimea depășește un prag).</li>
-  <li><strong>Open Addressing</strong> (Linear Probing): Când un bucket este ocupat, algoritmul caută secvențial următorul slot liber din tablou.</li>
-</ul>
+
+<h4>1. Coliziuni Hash și Separate Chaining</h4>
+<p>Deoarece mulțimea cheilor posibile este infinită, două chei diferite pot produce același index hash (coliziune). În <em>Separate Chaining</em>, fiecare bucket este o listă înlănțuită ce conține nodurile cu același index hash.</p>
+
+<h4>2. Exemplu Complet de Hash Map cu Separate Chaining</h4>
+<pre><code>class SimpleHashMap {
+    constructor(capacity = 16) {
+        this.capacity = capacity;
+        this.buckets = new Array(capacity).fill(null).map(() => []);
+    }
+
+    // Funcție simplă de dispersie (hash code):
+    hash(key) {
+        let h = 0;
+        for (let i = 0; i < key.length; i++) {
+            h = (h * 31 + key.charCodeAt(i)) % this.capacity;
+        }
+        return h;
+    }
+
+    set(key, value) {
+        const index = this.hash(key) % this.capacity;
+        const bucket = this.buckets[index];
+        const existing = bucket.find(item => item.key === key);
+        if (existing) {
+            existing.value = value;
+        } else {
+            bucket.push({ key, value });
+        }
+    }
+}
+</code></pre>
 """,
             "glossary": [
                 {"term": "Hash Function", "def": "Funcție matematică deterministă ce mapează date arbitrare la o valoare întreagă fixă."},
@@ -268,9 +433,13 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "Dacă toate intrările ajung în același bucket, tabela hash devine o listă înlănțuită, iar căutarea necesită parcurgerea fiecărui element (O(n))."
             },
-            "task": "Calculează indexul hash stocându-l în 'index' folosind formula 'hash(key) % capacity'.",
-            "starterCode": "const index = ",
+            "prompt": "Calculează indexul hash stocându-l în 'index' folosind formula 'const index = hash(key) % capacity;'.",
+            "task": "Calculează indexul hash stocându-l în 'index' folosind formula 'const index = hash(key) % capacity;'.",
+            "example": "const index = hash(key) % capacity;",
+            "starterCode": "const index = hash(key) % capacity;",
+            "officialSolution": "const index = hash(key) % capacity;",
             "expectedOutputPattern": "const\\s+index\\s*=\\s*hash\\(key\\)\\s*%\\s*capacity;?",
+            "regexPattern": "const\\s+index\\s*=\\s*hash\\(key\\)\\s*%\\s*capacity;?",
             "hint": "Scrie const index = hash(key) % capacity;"
         },
         {
@@ -280,17 +449,43 @@ def get_algo_lessons():
             "icon": "🌲",
             "level": "3. Middle",
             "xp": 50,
-            "title": "Capitolul 7: Algoritmul MergeSort ($O(n \log n)$ Divide et Impera)",
+            "title": "Capitolul 7: Algoritmul MergeSort ($O(n \\log n)$ Divide et Impera)",
             "theory": """
-<p><strong>MergeSort</strong> este un algoritm clasic de sortare bazat pe paradigma <strong>Divide et Impera</strong>, oferind performanță garantată $O(n \log n)$ în cel mai bun, mediu și cel mai defavorabil scenariu.</p>
+<p><strong>MergeSort</strong> este un algoritm clasic de sortare bazat pe paradigma <strong>Divide et Impera</strong>, oferind performanță garantată $O(n \\log n)$ în cel mai bun, mediu și cel mai defavorabil scenariu.</p>
+
 <h4>1. Divide, Impera, Combină</h4>
 <ol>
   <li><strong>Divide</strong>: Împarte tabloul recursiv în două jumătăți egale până când ajunge la tablouri de 1 element (deja sortate).</li>
   <li><strong>Impera</strong>: Sortează recursiv fiecare jumătate.</li>
   <li><strong>Combină (Merge)</strong>: Interclasează cele două jumătăți sortate într-un tablou auxiliar comparând elementele cap la cap în timp $O(n)$.</li>
 </ol>
-<h4>2. Stabilitate & Spațiu Auxiliar</h4>
-<p>MergeSort este o sortare <em>stabilă</em> (păstrează ordinea relativă a elementelor egale), dar necesită spațiu de memorie auxiliar $O(n)$ pentru operațiunea de interclasare.</p>
+
+<h4>2. Exemplu Complet de Implementare MergeSort</h4>
+<pre><code>function mergeSort(arr) {
+    // Cazul de bază: un tablou de 0 sau 1 element este deja sortat
+    if (arr.length <= 1) return arr;
+
+    const mid = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid));
+
+    return merge(left, right);
+}
+
+function merge(left, right) {
+    const result = [];
+    let i = 0, j = 0;
+
+    while (i < left.length && j < right.length) {
+        if (left[i] <= right[j]) {
+            result.push(left[i++]);
+        } else {
+            result.push(right[j++]);
+        }
+    }
+    return result.concat(left.slice(i)).concat(right.slice(j));
+}
+</code></pre>
 """,
             "glossary": [
                 {"term": "Divide et Impera", "def": "Paradigmată ce descompune o problemă mare în subprobleme similare mai mici până devin triviale."},
@@ -315,9 +510,13 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "QuickSort sortează pe loc (in-place) cu memorie suplimentară O(log n) doar pentru stivă, pe când MergeSort clasic cere un buffer separat de dimensiune O(n)."
             },
+            "prompt": "Verifică cazul de bază din MergeSort returnând 'arr' dacă 'arr.length <= 1'.",
             "task": "Verifică cazul de bază din MergeSort returnând 'arr' dacă 'arr.length <= 1'.",
+            "example": "function mergeSort(arr) {\n    if (arr.length <= 1) return arr;\n    // restul algoritmului\n}",
             "starterCode": "function mergeSort(arr) {\n    if (arr.length <= 1) return arr;\n    // restul algoritmului\n}",
+            "officialSolution": "function mergeSort(arr) {\n    if (arr.length <= 1) return arr;\n    // restul algoritmului\n}",
             "expectedOutputPattern": "if\\s*\\(arr\\.length\\s*<=\\s*1\\)\\s*return\\s+arr;?",
+            "regexPattern": "if\\s*\\(arr\\.length\\s*<=\\s*1\\)\\s*return\\s+arr;?",
             "hint": "Cazul de bază este: if (arr.length <= 1) return arr;"
         },
         {
@@ -331,10 +530,39 @@ def get_algo_lessons():
             "theory": """
 <p>Un <strong>Arbore Binar de Căutare (BST)</strong> este o structură ierarhică unde fiecare nod conține cel mult doi copii, respectând invariantul BST:</p>
 <p>Toate valorile din subarborele stâng sunt strict mai mici decât valoarea nodului (<code>left < root</code>), iar toate valorile din subarborele drept sunt strict mai mari (<code>right > root</code>).</p>
+
 <h4>1. Traversarea Inorder Produce Date Sortate</h4>
-<p>Traversarea <strong>Inorder</strong> (Stânga $\rightarrow$ Rădăcină $\rightarrow$ Dreapta) parcurge elementele unui BST în ordine strict crescătoare în timp $O(n)$.</p>
-<h4>2. Echilibrarea Arborilor</h4>
-<p>Într-un arbore echilibrat (ex: AVL sau Red-Black), înălțimea este $O(\log n)$, oferind căutare în $O(\log n)$. Dacă inserăm date deja sortate într-un BST naiv, el degenerează într-o listă simplă de înălțime $O(n)$.</p>
+<p>Traversarea <strong>Inorder</strong> (Stânga $\\rightarrow$ Rădăcină $\\rightarrow$ Dreapta) parcurge elementele unui BST în ordine strict crescătoare în timp $O(n)$.</p>
+
+<h4>2. Exemplu Complet de Nod BST și Căutare Recursivă</h4>
+<pre><code>class TreeNode {
+    constructor(val, left = null, right = null) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+function searchBST(node, val) {
+    if (!node || node.val === val) return node;
+
+    // Căutare binară în arbore:
+    if (val < node.val) {
+        return searchBST(node.left, val);  // Explorează ramura stângă
+    } else {
+        return searchBST(node.right, val); // Explorează ramura dreaptă
+    }
+}
+
+// Inorder Traversal ce generează un tablou sortat:
+function inorder(root, res = []) {
+    if (!root) return res;
+    inorder(root.left, res);
+    res.push(root.val);
+    inorder(root.right, res);
+    return res;
+}
+</code></pre>
 """,
             "glossary": [
                 {"term": "BST Invariant", "def": "Regula fundamentală: subarbore stâng < nod curent < subarbore drept."},
@@ -359,9 +587,13 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "Datorită invariantului BST (stânga < rădăcină < dreapta), explorarea recursivă Inorder vizitează întotdeauna mai întâi elementele mai mici, apoi nodul curent, apoi cele mai mari."
             },
+            "prompt": "Scrie condiția de căutare recursivă într-un BST: dacă 'val < node.val', caută în 'node.left'.",
             "task": "Scrie condiția de căutare recursivă într-un BST: dacă 'val < node.val', caută în 'node.left'.",
+            "example": "if (val < node.val) {\n    return searchBST(node.left, val);\n}",
             "starterCode": "if (val < node.val) {\n    return searchBST(node.left, val);\n}",
+            "officialSolution": "if (val < node.val) {\n    return searchBST(node.left, val);\n}",
             "expectedOutputPattern": "if\\s*\\(val\\s*<\\s*node\\.val\\)\\s*\\{\\s*return\\s+searchBST\\(node\\.left,\\s*val\\);?\\s*\\}",
+            "regexPattern": "if\\s*\\(val\\s*<\\s*node\\.val\\)\\s*\\{\\s*return\\s+searchBST\\(node\\.left,\\s*val\\);?\\s*\\}",
             "hint": "Scrie if (val < node.val) { return searchBST(node.left, val); }"
         },
         {
@@ -374,12 +606,40 @@ def get_algo_lessons():
             "title": "Capitolul 9: Parcurgerea Grafurilor: Breadth-First Search (BFS)",
             "theory": """
 <p>Un graf este o colecție de noduri (vârfuri) legate prin muchii. <strong>Breadth-First Search (BFS)</strong> parcurge graful nivel cu nivel, explorând toți vecinii imediați ai nodului de pornire înainte de a trece la nodurile de la distanța 2.</p>
-<h4>1. Utilizarea Cozii (Queue — FIFO)</h4>
-<p>BFS folosește obligatoriu o <strong>coadă (Queue)</strong> pentru a gestiona ordinea de explorare a nodurilor.</p>
-<h4>2. Garanția Celui Mai Scurt Drum</h4>
-<p>Într-un graf <em>neponderat</em> (unde toate muchiile au cost egal), BFS garantează că primul moment în care atinge nodul destinație reprezintă cel mai scurt drum (minim de muchii).</p>
-<h4>3. Setul de Vizitare</h4>
-<p>Pentru a preveni buclele infinite în grafuri cu cicluri, ținem evidența nodurilor explorate într-un set <code>visited</code>.</p>
+
+<h4>1. Utilizarea Cozii (Queue — FIFO) și Drumul Minim</h4>
+<p>BFS folosește obligatoriu o <strong>coadă (Queue)</strong> pentru a gestiona ordinea de explorare. Într-un graf <em>neponderat</em>, BFS garantează că primul moment în care atinge nodul destinație reprezintă cel mai scurt drum (număr minim de muchii).</p>
+
+<h4>2. Exemplu Complet de Implementare BFS</h4>
+<pre><code>function bfs(graph, startNode) {
+    const visited = new Set([startNode]);
+    const queue = [startNode];
+    const traversalOrder = [];
+
+    while (queue.length > 0) {
+        // Extrage primul nod din coadă în O(1)
+        const node = queue.shift();
+        traversalOrder.push(node);
+
+        for (const neighbor of graph[node] || []) {
+            if (!visited.has(neighbor)) {
+                visited.add(neighbor); // Marchează ca vizitat
+                queue.push(neighbor);  // Adaugă la coadă
+            }
+        }
+    }
+    return traversalOrder;
+}
+
+// Exemplu listă de adiacență:
+const graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'], 'E': ['B'], 'F': ['C']
+};
+console.log(bfs(graph, 'A')); // ['A', 'B', 'C', 'D', 'E', 'F']
+</code></pre>
 """,
             "glossary": [
                 {"term": "BFS (Breadth-First Search)", "def": "Algoritm de explorare radială pe niveluri folosind o structură de tip coadă."},
@@ -404,9 +664,13 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "BFS necesită o Coadă (FIFO) pentru a asigura explorarea nodurilor în ordinea exactă a distanței lor față de sursă (nivel cu nivel)."
             },
+            "prompt": "Extrage primul nod dintr-o coadă 'queue' stocându-l în 'node' folosind 'queue.shift()'.",
             "task": "Extrage primul nod dintr-o coadă 'queue' stocându-l în 'node' folosind 'queue.shift()'.",
-            "starterCode": "const node = ",
+            "example": "const node = queue.shift();",
+            "starterCode": "const node = queue.shift();",
+            "officialSolution": "const node = queue.shift();",
             "expectedOutputPattern": "const\\s+node\\s*=\\s*queue\\.shift\\(\\);?",
+            "regexPattern": "const\\s+node\\s*=\\s*queue\\.shift\\(\\);?",
             "hint": "Scrie const node = queue.shift();"
         },
         {
@@ -419,16 +683,41 @@ def get_algo_lessons():
             "title": "Capitolul 10: Parcurgerea Grafurilor: Depth-First Search (DFS) & Detectarea Ciclurilor",
             "theory": """
 <p><strong>Depth-First Search (DFS)</strong> explorează graful mergând cât mai adânc posibil de-a lungul fiecărei ramuri înainte de a face întoarcere (backtracking).</p>
-<h4>1. Implementare Recursivă (Call Stack)</h4>
-<p>Spre deosebire de BFS care cere o coadă, DFS se implementează natural recursiv folosind stiva de apel a sistemului (sau o stivă explicită).</p>
-<h4>2. Detectarea Ciclurilor în Grafuri Orientate</h4>
-<p>Pentru a detecta cicluri într-un graf orientat, clasificăm starea nodurilor în 3 culori:</p>
+
+<h4>1. Detectarea Ciclurilor în Grafuri Orientate (3 Culori)</h4>
+<p>Pentru a detecta cicluri într-un graf orientat, clasificăm starea nodurilor în 3 stări:</p>
 <ul>
-  <li><em>Alb (0)</em>: Nevizitat încă.</li>
-  <li><em>Gri (1)</em>: În curs de vizitare (pe Call Stack-ul curent).</li>
-  <li><em>Negru (2)</em>: Vizitat complet și finalizat.</li>
+  <li><em>0 (Alb)</em>: Nevizitat încă.</li>
+  <li><em>1 (Gri)</em>: În curs de vizitare (pe Call Stack-ul recursiv curent).</li>
+  <li><em>2 (Negru)</em>: Complet procesat și închis.</li>
 </ul>
-<p>Dacă în timpul explorării întâlnim un vecin aflat în starea <em>Gri</em>, am găsit o muchie de întoarcere (Back Edge) ce confirmă existența unui ciclu.</p>
+
+<h4>2. Exemplu Complet de Detectare a Ciclului prin DFS</h4>
+<pre><code>function hasCycle(graph, numNodes) {
+    const state = new Array(numNodes).fill(0); // 0 = unvisited, 1 = visiting, 2 = visited
+
+    function dfs(u) {
+        state[u] = 1; // Marchează nodul ca 'gri' (activ pe stivă)
+
+        for (const v of graph[u] || []) {
+            if (state[v] === 1) {
+                return true; // S-a găsit o muchie de întoarcere (Back Edge) -> CICLU
+            }
+            if (state[v] === 0 && dfs(v)) {
+                return true;
+            }
+        }
+
+        state[u] = 2; // Marchează nodul ca 'negru' (finalizat)
+        return false;
+    }
+
+    for (let i = 0; i < numNodes; i++) {
+        if (state[i] === 0 && dfs(i)) return true;
+    }
+    return false;
+}
+</code></pre>
 """,
             "glossary": [
                 {"term": "DFS (Depth-First Search)", "def": "Algoritm de explorare în adâncime bazat pe recursivitate și backtracking."},
@@ -453,9 +742,13 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "Întâlnirea unui nod aflat deja pe stivă înseamnă că există o cale care se întoarce la el însuși, demonstrând existența unui ciclu."
             },
+            "prompt": "Marchează nodul curent 'u' ca fiind în curs de vizitare setând 'visited[u] = 1;'.",
             "task": "Marchează nodul curent 'u' ca fiind în curs de vizitare setând 'visited[u] = 1;'.",
-            "starterCode": "// Marchează nodul u ca gri (1)\n",
+            "example": "visited[u] = 1;",
+            "starterCode": "visited[u] = 1;",
+            "officialSolution": "visited[u] = 1;",
             "expectedOutputPattern": "visited\\[u\\]\\s*=\\s*1;?",
+            "regexPattern": "visited\\[u\\]\\s*=\\s*1;?",
             "hint": "Scrie visited[u] = 1;"
         },
         {
@@ -465,13 +758,38 @@ def get_algo_lessons():
             "icon": "🌲",
             "level": "4. Senior",
             "xp": 65,
-            "title": "Capitolul 11: Algoritmul lui Dijkstra ($O((V + E) \log V)$)",
+            "title": "Capitolul 11: Algoritmul lui Dijkstra ($O((V + E) \\log V)$)",
             "theory": """
 <p><strong>Algoritmul lui Dijkstra</strong> rezolvă problema celui mai scurt drum de la o sursă unică către toate celelalte noduri într-un graf ponderat cu costuri <em>strict non-negative</em>.</p>
-<h4>1. Coada cu Priorități (Min-Heap)</h4>
-<p>Algoritmul menține un tablou <code>dist</code> inițializat cu infinit ($\infty$) și o <strong>coadă cu priorități (Min-Heap)</strong> ce extrage întotdeauna nodul nefinalizat cu distanța minimă curentă în $O(\log V)$.</p>
-<h4>2. Tehnica Relaxării Muchiilor</h4>
-<p>Pentru fiecare vecin <code>v</code> al nodului curent <code>u</code>, dacă drumul prin <code>u</code> oferă un cost mai mic: <code>if (dist[u] + weight < dist[v])</code>, actualizăm <code>dist[v]</code> și introducem noua pereche în Min-Heap.</p>
+
+<h4>1. Coada cu Priorități și Relaxarea Muchiilor</h4>
+<p>Algoritmul menține un tablou <code>dist</code> inițializat cu infinit ($\\infty$) și o <strong>coadă cu priorități (Min-Heap)</strong> ce extrage întotdeauna nodul nefinalizat cu distanța minimă curentă în $O(\\log V)$. Pentru fiecare vecin, dacă <code>dist[u] + weight < dist[v]</code>, distanța este actualizată (relaxare).</p>
+
+<h4>2. Exemplu Complet de Dijkstra</h4>
+<pre><code>function dijkstra(graph, startNode, numNodes) {
+    const dist = new Array(numNodes).fill(Infinity);
+    dist[startNode] = 0;
+
+    // Coadă de priorități simulată cu perechi [node, distance]:
+    const pq = [[startNode, 0]];
+
+    while (pq.length > 0) {
+        pq.sort((a, b) => a[1] - b[1]); // Extrage nodul cu distanța minimă
+        const [u, currentDist] = pq.shift();
+
+        if (currentDist > dist[u]) continue;
+
+        for (const [v, weight] of graph[u] || []) {
+            // Condiția de relaxare a muchiei:
+            if (dist[u] + weight < dist[v]) {
+                dist[v] = dist[u] + weight;
+                pq.push([v, dist[v]]);
+            }
+        }
+    }
+    return dist;
+}
+</code></pre>
 """,
             "glossary": [
                 {"term": "Dijkstra Algorithm", "def": "Algoritm Greedy ce găsește distanțele minime într-un graf cu ponderi pozitive în O((V+E) log V)."},
@@ -496,9 +814,13 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "Dijkstra 'finalizează' un nod la extragerea din heap. O muchie negativă ulterioară ar putea reduce distanța unui nod deja finalizat, invalidând ipoteza greedy."
             },
+            "prompt": "Scrie condiția de relaxare: dacă 'dist[u] + weight < dist[v]', actualizează 'dist[v] = dist[u] + weight;'.",
             "task": "Scrie condiția de relaxare: dacă 'dist[u] + weight < dist[v]', actualizează 'dist[v] = dist[u] + weight;'.",
-            "starterCode": "// Completează relaxarea\nif (dist[u] + weight < dist[v]) {\n    \n}",
+            "example": "if (dist[u] + weight < dist[v]) {\n    dist[v] = dist[u] + weight;\n}",
+            "starterCode": "if (dist[u] + weight < dist[v]) {\n    dist[v] = dist[u] + weight;\n}",
+            "officialSolution": "if (dist[u] + weight < dist[v]) {\n    dist[v] = dist[u] + weight;\n}",
             "expectedOutputPattern": "dist\\[v\\]\\s*=\\s*dist\\[u\\]\\s*\\+\\s*weight;?",
+            "regexPattern": "dist\\[v\\]\\s*=\\s*dist\\[u\\]\\s*\\+\\s*weight;?",
             "hint": "Scrie dist[v] = dist[u] + weight;"
         },
         {
@@ -510,15 +832,30 @@ def get_algo_lessons():
             "xp": 75,
             "title": "Capitolul 12: Programare Dinamică (DP) — Memoization vs Tabulation",
             "theory": """
-<p><strong>Programarea Dinamică (Dynamic Programming — DP)</strong> este o tehnică algoritmică utilizată când o problemă de optimizare prezintă două proprietăți cheie:</p>
-<ol>
-  <li><strong>Substructură Optimă</strong>: Soluția optimă a problemei conține soluțiile optime ale subproblemelor sale.</li>
-  <li><strong>Subprobleme care se Suprapun (Overlapping Subproblems)</strong>: Aceleași subprobleme sunt calculate în mod repetat de nenumărate ori într-o abordare recursivă naivă (ex: arborele exponențial $O(2^n)$ al lui Fibonacci).</li>
-</ol>
-<h4>1. Top-Down cu Memoization</h4>
-<p>Păstrăm structura recursivă naturală a algoritmului, dar salvăm rezultatul fiecărui apel într-un cache (dicționar sau tablou <code>memo</code>). Complexitatea scade de la $O(2^n)$ la $O(n)$.</p>
-<h4>2. Bottom-Up cu Tabulation</h4>
-<p>Eliminăm complet recursivitatea și apelurile pe stivă: construim iterativ soluția într-un tablou <code>dp[]</code> de la cazurile de bază spre soluția finală, obținând viteză superioară și consum optim de memorie.</p>
+<p><strong>Programarea Dinamică (Dynamic Programming — DP)</strong> este o tehnică algoritmică utilizată când o problemă de optimizare prezintă două proprietăți cheie: <strong>Substructură Optimă</strong> și <strong>Subprobleme care se Suprapun</strong>.</p>
+
+<h4>1. Top-Down (Memoization) vs Bottom-Up (Tabulation)</h4>
+<p>În <em>Memoization</em> stocăm rezultatele apelurilor recursive într-un dicționar sau array pentru a preveni recalcularea. În <em>Tabulation</em> eliminăm recursivitatea, completând iterativ un tablou <code>dp[]</code> de la cazurile de bază până la $n$.</p>
+
+<h4>2. Exemplu Complet: Fibonacci cu Tabulation O(n)</h4>
+<pre><code>function fibonacci(n) {
+    if (n <= 1) return n;
+
+    // Tabloul DP pentru stocarea rezultatelor parțiale
+    const dp = new Array(n + 1);
+    dp[0] = 0;
+    dp[1] = 1;
+
+    // Relația de recurență Bottom-Up:
+    for (let i = 2; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+
+    return dp[n];
+}
+
+console.log(fibonacci(10)); // 55 calculat instantaneu în O(n)
+</code></pre>
 """,
             "glossary": [
                 {"term": "Overlapping Subproblems", "def": "Proprietate a unei probleme unde aceleași calcule mici sunt necesare de mai multe ori."},
@@ -543,9 +880,13 @@ def get_algo_lessons():
                 "correctIndex": 0,
                 "explanation": "Doar când problema se descompune în subprobleme recurente identice (overlapping) a căror compunere dă soluția globală optimă (substructură optimă) este aplicabilă Programarea Dinamică."
             },
+            "prompt": "Scrie relația iterativă de recurență pentru calculul Fibonacci în tabloul 'dp': 'dp[i] = dp[i - 1] + dp[i - 2];'.",
             "task": "Scrie relația iterativă de recurență pentru calculul Fibonacci în tabloul 'dp': 'dp[i] = dp[i - 1] + dp[i - 2];'.",
-            "starterCode": "for (let i = 2; i <= n; i++) {\n    // Completează recurența\n}",
+            "example": "for (let i = 2; i <= n; i++) {\n    dp[i] = dp[i - 1] + dp[i - 2];\n}",
+            "starterCode": "for (let i = 2; i <= n; i++) {\n    dp[i] = dp[i - 1] + dp[i - 2];\n}",
+            "officialSolution": "for (let i = 2; i <= n; i++) {\n    dp[i] = dp[i - 1] + dp[i - 2];\n}",
             "expectedOutputPattern": "dp\\[i\\]\\s*=\\s*dp\\[i\\s*-\\s*1\\]\\s*\\+\\s*dp\\[i\\s*-\\s*2\\];?",
+            "regexPattern": "dp\\[i\\]\\s*=\\s*dp\\[i\\s*-\\s*1\\]\\s*\\+\\s*dp\\[i\\s*-\\s*2\\];?",
             "hint": "Scrie dp[i] = dp[i - 1] + dp[i - 2];"
         }
     ]
