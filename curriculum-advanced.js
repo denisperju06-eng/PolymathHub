@@ -926,13 +926,228 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
 
   // ==========================================================================
-  // TRACK 4: ENGLEZĂ C1/C2 (EXPRESII FORMALE, INVERSIUNI, VOCABULAR MASTER)
+  // TRACK 4: ENGLEZĂ (B1 INTERMEDIATE -> B2 -> C1 -> C2 MASTERY)
   // ==========================================================================
+  // --- NIVEL B1: INTERMEDIATE (CONVERSAȚIE, STRUCTURI DE BAZĂ, WORKPLACE) ---
+  {
+    id: "eng-b1-1",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "1. B1 Intermediate",
+    xp: 20,
+    title: "Present Perfect vs Past Simple",
+    theory: "Folosim <code>Present Perfect (have/has + V3)</code> pentru acțiuni începute în trecut care continuă în prezent (cu <em>for/since</em>) sau experiențe de viață, spre deosebire de <code>Past Simple</code> care descrie momente încheiate.",
+    example: "I have worked here for three years. (Încă lucrez aici)\nI worked there in 2020. (Nu mai lucrez acolo)",
+    prompt: "Tradu în engleză: „Am lucrat aici timp de trei ani.” folosind Present Perfect (I have worked here for three years).",
+    starterContext: "Present Perfect: I have worked here for three years.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I have worked here for three years.",
+      "I have worked here for three years",
+      "I've worked here for three years.",
+      "I've worked here for three years"
+    ],
+    officialSolution: "I have worked here for three years.",
+    explanation: "'Have worked ... for three years' indică o acțiune continuată până în momentul vorbirii.",
+    hint: "Model: I have worked here for three years."
+  },
+  {
+    id: "eng-b1-2",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "1. B1 Intermediate",
+    xp: 20,
+    title: "Comparatives: 'More efficient than'",
+    theory: "Pentru adjective lungi (două sau mai multe silabe, precum <em>efficient</em>), comparativul de superioritate se construiește cu <code>more + adjectiv + than</code>.",
+    example: "This new database is more efficient than the legacy system.",
+    prompt: "Completează traducerea: „Această soluție este mai eficientă decât cealaltă.” folosind 'more efficient than the other one'.",
+    starterContext: "This solution is more efficient than the other one.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "This solution is more efficient than the other one.",
+      "This solution is more efficient than the other one",
+      "This solution is more efficient than the other.",
+      "This solution is more efficient than the other"
+    ],
+    officialSolution: "This solution is more efficient than the other one.",
+    explanation: "Construcția corectă este 'more efficient than', evitând terminația sintetică -er.",
+    hint: "Scrie: This solution is more efficient than the other one."
+  },
+  {
+    id: "eng-b1-3",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "1. B1 Intermediate",
+    xp: 20,
+    title: "First Conditional: Posibilități Reale în Viitor",
+    theory: "Condiționalul de tip 1 exprimă o condiție reală în viitor: <code>If + Present Simple, will + verb de bază</code>. În clauza introdusă de 'if' nu se folosește niciodată 'will'!",
+    example: "If the server goes down, we will restart the service.",
+    prompt: "Scrie fraza condițională de tip 1: „If it rains tomorrow, we will stay at home.”",
+    starterContext: "If it rains tomorrow, we will stay at home.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "If it rains tomorrow, we will stay at home.",
+      "If it rains tomorrow, we will stay at home",
+      "If it rains tomorrow, we'll stay at home.",
+      "If it rains tomorrow, we'll stay at home"
+    ],
+    officialSolution: "If it rains tomorrow, we will stay at home.",
+    explanation: "Rains (Present Simple) în clauza if, urmat de will stay în clauza principală.",
+    hint: "Scrie: If it rains tomorrow, we will stay at home."
+  },
+  {
+    id: "eng-b1-4",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "1. B1 Intermediate",
+    xp: 20,
+    title: "Second Conditional: Situații Ipotetice",
+    theory: "Condiționalul de tip 2 descrie o situație nereală sau ipotetică în prezent: <code>If + Past Simple, would + verb de bază</code>.",
+    example: "If I knew the password, I would share it with you.",
+    prompt: "Tradu: „Dacă aș avea mai mult timp, aș învăța o limbă nouă.” folosind 'If I had more time, I would learn a new language.'",
+    starterContext: "If I had more time, I would learn a new language.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "If I had more time, I would learn a new language.",
+      "If I had more time, I would learn a new language",
+      "If I had more time, I'd learn a new language.",
+      "If I had more time, I'd learn a new language"
+    ],
+    officialSolution: "If I had more time, I would learn a new language.",
+    explanation: "'Had' reprezintă timpul trecut ipotetic, iar 'would learn' este consecința potențială.",
+    hint: "Scrie: If I had more time, I would learn a new language."
+  },
+  {
+    id: "eng-b1-5",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "1. B1 Intermediate",
+    xp: 20,
+    title: "Sfat Profesional: Verbul Modal 'Should'",
+    theory: "Verbul modal <code>should</code> se folosește pentru a oferi sfaturi, recomandări profesionale și bune practici în echipă.",
+    example: "You should review the pull request before approving it.",
+    prompt: "Tradu: „Ar trebui să testezi codul înainte de a trimite modificările.” folosind 'You should test the code before submitting the changes.'",
+    starterContext: "You should test the code before submitting the changes.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "You should test the code before submitting the changes.",
+      "You should test the code before submitting the changes",
+      "You should test the code before submitting.",
+      "You should test the code before submitting"
+    ],
+    officialSolution: "You should test the code before submitting the changes.",
+    explanation: "'Should test' este formula politicoasă de recomandare tehnică.",
+    hint: "Scrie: You should test the code before submitting the changes."
+  },
+  {
+    id: "eng-b1-6",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "1. B1 Intermediate",
+    xp: 20,
+    title: "Phrasal Verbs Tehnice B1: 'Set up'",
+    theory: "Verbul frazal <code>to set up</code> înseamnă a instala, a configura sau a inițializa un sistem, un cont sau o aplicație.",
+    example: "It takes ten minutes to set up the development environment.",
+    prompt: "Tradu: „Trebuie să configurez noul cont.” folosind verbul frazal 'to set up the new account'.",
+    starterContext: "I need to set up the new account.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I need to set up the new account.",
+      "I need to set up the new account",
+      "We need to set up the new account.",
+      "We need to set up the new account"
+    ],
+    officialSolution: "I need to set up the new account.",
+    explanation: "'Set up' este expresia consacrată în IT pentru configurare și instalare.",
+    hint: "Scrie: I need to set up the new account."
+  },
+  {
+    id: "eng-b1-7",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "1. B1 Intermediate",
+    xp: 20,
+    title: "Programarea Ședințelor: 'Schedule a meeting'",
+    theory: "În comunicarea de business la nivelul B1, propunerea unei discuții se formulează natural cu <code>schedule a meeting for + moment</code>.",
+    example: "Let's schedule a meeting for Friday afternoon.",
+    prompt: "Tradu: „Hai să programăm o întâlnire pentru mâine dimineață.” folosind 'Let's schedule a meeting for tomorrow morning.'",
+    starterContext: "Let's schedule a meeting for tomorrow morning.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "Let's schedule a meeting for tomorrow morning.",
+      "Let's schedule a meeting for tomorrow morning",
+      "Let us schedule a meeting for tomorrow morning.",
+      "Let us schedule a meeting for tomorrow morning"
+    ],
+    officialSolution: "Let's schedule a meeting for tomorrow morning.",
+    explanation: "'Schedule a meeting' este formularea naturală în engleza de birou.",
+    hint: "Scrie: Let's schedule a meeting for tomorrow morning."
+  },
+  {
+    id: "eng-b1-8",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "1. B1 Intermediate",
+    xp: 20,
+    title: "Confirmarea Informației: Question Tags",
+    theory: "Pentru a cere confirmarea unei afirmații, adăugăm un question tag negativ la final: <code>You speak English, don't you?</code>.",
+    example: "You are the project manager, aren't you?",
+    prompt: "Completează propoziția cu tag-ul de confirmare corect: „You speak English, don't you?”",
+    starterContext: "You speak English, don't you?",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "You speak English, don't you?",
+      "You speak English, don't you"
+    ],
+    officialSolution: "You speak English, don't you?",
+    explanation: "Verbul principal 'speak' impune auxiliarul 'don't you?'.",
+    hint: "Scrie: You speak English, don't you?"
+  },
+  {
+    id: "eng-b1-9",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "1. B1 Intermediate",
+    xp: 20,
+    title: "Obiceiuri Trecute: 'Used to'",
+    theory: "Structura <code>used to + infinitiv</code> exprimă o stare sau un obicei din trecut care nu mai există în prezent.",
+    example: "I used to write Java code, but now I work with TypeScript.",
+    prompt: "Tradu: „Locuiam la Londra, dar acum locuiesc la Berlin.” folosind 'I used to live in London, but now I live in Berlin.'",
+    starterContext: "I used to live in London, but now I live in Berlin.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I used to live in London, but now I live in Berlin.",
+      "I used to live in London, but now I live in Berlin"
+    ],
+    officialSolution: "I used to live in London, but now I live in Berlin.",
+    explanation: "'Used to live' marchează clar trecerea de la starea trecută la cea actuală.",
+    hint: "Scrie: I used to live in London, but now I live in Berlin."
+  },
+  {
+    id: "eng-b1-10",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "1. B1 Intermediate",
+    xp: 20,
+    title: "Exprimarea Opiniei: 'In my opinion'",
+    theory: "Expresia introductivă <code>In my opinion, ...</code> deschide o perspectivă personală într-o conversație tehnică sau de afaceri.",
+    example: "In my opinion, automated testing saves hundreds of hours.",
+    prompt: "Tradu: „În opinia mea, aceasta este cea mai bună abordare.” folosind 'In my opinion, this is the best approach.'",
+    starterContext: "In my opinion, this is the best approach.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "In my opinion, this is the best approach.",
+      "In my opinion, this is the best approach"
+    ],
+    officialSolution: "In my opinion, this is the best approach.",
+    explanation: "'In my opinion, this is the best approach' este formula universală de consens la nivel B1.",
+    hint: "Scrie: In my opinion, this is the best approach."
+  },
   {
     id: "eng-adv-1",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "1. Începător",
+    level: "1. B1 Intermediate",
     xp: 20,
     title: "Modale de Deducție: Must be at home",
     theory: "Verbul modal <code>must</code> exprimă o deducție logică fermă bazată pe dovezi clare în prezent, în contrast cu <code>can't</code> care exprimă o imposibilitate logică.",
@@ -950,11 +1165,229 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     explanation: "'Must be' exprimă certitudinea dedusă logic din faptul că luminile sunt aprinse.",
     hint: "Model: He must be at home; the lights are on."
   },
+
+  // --- NIVEL B2: UPPER-INTERMEDIATE (BUSINESS, PHRASAL VERBS, PASIV) ---
+  {
+    id: "eng-b2-1",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "2. B2 Upper-Intermediate",
+    xp: 25,
+    title: "Diateza Pasivă în Rapoarte Tehnice",
+    theory: "În engleza profesională B2, diateza pasivă (<code>to be + Past Participle</code>) mută atenția pe acțiunea realizată și obiectul afectat.",
+    example: "The vulnerabilities were patched within three hours.",
+    prompt: "Tradu: „Baza de date a fost actualizată aseară de către echipă.” folosind 'The database was updated last night by the team.'",
+    starterContext: "The database was updated last night by the team.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "The database was updated last night by the team.",
+      "The database was updated last night by the team"
+    ],
+    officialSolution: "The database was updated last night by the team.",
+    explanation: "'Was updated' este forma pasivă la timpul trecut (Past Simple Passive).",
+    hint: "Scrie: The database was updated last night by the team."
+  },
+  {
+    id: "eng-b2-2",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "2. B2 Upper-Intermediate",
+    xp: 25,
+    title: "Third Conditional: Regrete și Cauze Trecute",
+    theory: "Condiționalul de tip 3 analizează situații imposibil de schimbat din trecut: <code>If + had + V3, would have + V3</code>.",
+    example: "If we had run the load test, the server would not have crashed.",
+    prompt: "Tradu: „Dacă am fi testat mai devreme, eroarea nu s-ar fi produs.” folosind 'If we had tested earlier, the error would not have occurred.'",
+    starterContext: "If we had tested earlier, the error would not have occurred.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "If we had tested earlier, the error would not have occurred.",
+      "If we had tested earlier, the error would not have occurred",
+      "If we had tested earlier, the error wouldn't have occurred.",
+      "If we had tested earlier, the error wouldn't have occurred"
+    ],
+    officialSolution: "If we had tested earlier, the error would not have occurred.",
+    explanation: "Third conditional conectează acțiunea ipotetică ('had tested') de rezultatul ratat ('would not have occurred').",
+    hint: "Scrie: If we had tested earlier, the error would not have occurred."
+  },
+  {
+    id: "eng-b2-3",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "2. B2 Upper-Intermediate",
+    xp: 25,
+    title: "Vorbirea Indirectă (Reported Speech)",
+    theory: "După un verb introductiv la trecut (<em>said</em>), timpurile verbale fac un pas în trecut (backshift): Present devine Past.",
+    example: "\"I am debugging the app\" -> He said that he was debugging the app.",
+    prompt: "Transformă 'I am writing the documentation' în vorbire indirectă la trecut: „She said that she was writing the documentation.”",
+    starterContext: "She said that she was writing the documentation.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "She said that she was writing the documentation.",
+      "She said that she was writing the documentation",
+      "She said she was writing the documentation.",
+      "She said she was writing the documentation"
+    ],
+    officialSolution: "She said that she was writing the documentation.",
+    explanation: "'am writing' se transformă în 'was writing' din cauza concordanței timpurilor după 'said'.",
+    hint: "Scrie: She said that she was writing the documentation."
+  },
+  {
+    id: "eng-b2-4",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "2. B2 Upper-Intermediate",
+    xp: 25,
+    title: "Phrasal Verbs de Afaceri: 'Call off'",
+    theory: "Verbul frazal <code>to call off</code> este sinonimul uzual profesional al verbului <em>to cancel</em> (a anula o întâlnire sau lansare).",
+    example: "The stakeholders decided to call off the product launch.",
+    prompt: "Tradu: „Au anulat întâlnirea din cauza vremii rele.” folosind 'They called off the meeting due to bad weather.'",
+    starterContext: "They called off the meeting due to bad weather.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "They called off the meeting due to bad weather.",
+      "They called off the meeting due to bad weather",
+      "They called off the meeting because of bad weather.",
+      "They called off the meeting because of bad weather"
+    ],
+    officialSolution: "They called off the meeting due to bad weather.",
+    explanation: "'Called off' este cel mai frecvent phrasal verb pentru anulare în afaceri.",
+    hint: "Scrie: They called off the meeting due to bad weather."
+  },
+  {
+    id: "eng-b2-5",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "2. B2 Upper-Intermediate",
+    xp: 25,
+    title: "Critica Constructivă: 'Should have told'",
+    theory: "Construcția <code>should have + Past Participle</code> exprimă o acțiune recomandabilă care ar fi trebuit să se întâmple în trecut, dar nu a avut loc.",
+    example: "You should have notified the team before pushing to master.",
+    prompt: "Tradu: „Ar fi trebuit să mă anunți mai devreme.” folosind structura 'You should have told me earlier.'",
+    starterContext: "You should have told me earlier.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "You should have told me earlier.",
+      "You should have told me earlier"
+    ],
+    officialSolution: "You should have told me earlier.",
+    explanation: "'Should have told' semnalează o ocazie ratată sau o deficiență de sincronizare în trecut.",
+    hint: "Scrie: You should have told me earlier."
+  },
+  {
+    id: "eng-b2-6",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "2. B2 Upper-Intermediate",
+    xp: 25,
+    title: "Conectori de Contrast: 'On the other hand'",
+    theory: "Perechea <code>On the one hand..., on the other hand...</code> balansează avantaje și dezavantaje la nivelul B2.",
+    example: "On the one hand microservices offer scalability, but on the other hand they increase complexity.",
+    prompt: "Tradu: „Pe de o parte e rapid, dar pe de altă parte e scump.” folosind 'On the one hand it is fast, but on the other hand it is expensive.'",
+    starterContext: "On the one hand it is fast, but on the other hand it is expensive.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "On the one hand it is fast, but on the other hand it is expensive.",
+      "On the one hand it is fast, but on the other hand it is expensive",
+      "On the one hand it's fast, but on the other hand it's expensive.",
+      "On the one hand it's fast, but on the other hand it's expensive"
+    ],
+    officialSolution: "On the one hand it is fast, but on the other hand it is expensive.",
+    explanation: "Structura prezintă un echilibru argumentativ clar și matur.",
+    hint: "Scrie: On the one hand it is fast, but on the other hand it is expensive."
+  },
+  {
+    id: "eng-b2-7",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "2. B2 Upper-Intermediate",
+    xp: 25,
+    title: "Email Profesional: Încheiere Elegantă",
+    theory: "În corespondența profesională, fraza standard de încheiere este <code>I look forward to hearing from you soon</code> (urmată obligatoriu de gerunziu -ing).",
+    example: "Thank you for the prompt reply. I look forward to hearing from you soon.",
+    prompt: "Scrie formula profesională de încheiere: „I look forward to hearing from you soon.”",
+    starterContext: "I look forward to hearing from you soon.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "I look forward to hearing from you soon.",
+      "I look forward to hearing from you soon",
+      "Looking forward to hearing from you soon.",
+      "Looking forward to hearing from you soon"
+    ],
+    officialSolution: "I look forward to hearing from you soon.",
+    explanation: "'look forward to' se construiește obligatoriu cu gerunziul verbului (hearing).",
+    hint: "Scrie: I look forward to hearing from you soon."
+  },
+  {
+    id: "eng-b2-8",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "2. B2 Upper-Intermediate",
+    xp: 25,
+    title: "Prepoziții Dependente: 'Familiar with'",
+    theory: "Adjectivul <code>familiar</code> se construiește cu prepoziția <code>with</code> pentru a exprima familiaritatea cu o tehnologie.",
+    example: "Are you familiar with the microfrontend architecture?",
+    prompt: "Tradu: „Suntem familiarizați cu această tehnologie.” folosind 'We are familiar with this technology.'",
+    starterContext: "We are familiar with this technology.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "We are familiar with this technology.",
+      "We are familiar with this technology",
+      "We're familiar with this technology.",
+      "We're familiar with this technology"
+    ],
+    officialSolution: "We are familiar with this technology.",
+    explanation: "'Familiar with' este colocarea corectă în limba engleză.",
+    hint: "Scrie: We are familiar with this technology."
+  },
+  {
+    id: "eng-b2-9",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "2. B2 Upper-Intermediate",
+    xp: 25,
+    title: "Probabilitate și Predicție: 'Likely to'",
+    theory: "Construcția <code>is likely to + verb</code> exprimă o probabilitate ridicată într-un stil formal de business.",
+    example: "The market adoption is likely to accelerate next quarter.",
+    prompt: "Tradu: „Este foarte probabil ca proiectul să aibă succes.” folosind 'The project is very likely to succeed.'",
+    starterContext: "The project is very likely to succeed.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "The project is very likely to succeed.",
+      "The project is very likely to succeed",
+      "The project is likely to succeed.",
+      "The project is likely to succeed"
+    ],
+    officialSolution: "The project is very likely to succeed.",
+    explanation: "'Is likely to succeed' este formularea preferată în estimări profesionale.",
+    hint: "Scrie: The project is very likely to succeed."
+  },
+  {
+    id: "eng-b2-10",
+    track: "Engleză (B1 → C2)",
+    icon: "🇬🇧",
+    level: "2. B2 Upper-Intermediate",
+    xp: 25,
+    title: "Idiom de Aliniere: 'On the same page'",
+    theory: "Expresia idiomatică <code>to be on the same page</code> înseamnă a avea aceeași înțelegere și aceeași viziune comună cu echipa.",
+    example: "Before we sprint, let's make sure we are all on the same page.",
+    prompt: "Tradu: „Trebuie să ne asigurăm că toți suntem pe aceeași lungime de undă.” folosind 'We need to make sure we are all on the same page.'",
+    starterContext: "We need to make sure we are all on the same page.",
+    caseSensitive: false,
+    acceptedAnswers: [
+      "We need to make sure we are all on the same page.",
+      "We need to make sure we are all on the same page",
+      "We must make sure we are all on the same page.",
+      "We must make sure we are all on the same page"
+    ],
+    officialSolution: "We need to make sure we are all on the same page.",
+    explanation: "'On the same page' este unul dintre cele mai folosite idiomuri profesionale din mediul agil.",
+    hint: "Scrie: We need to make sure we are all on the same page."
+  },
   {
     id: "eng-adv-2",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "2. Junior",
+    level: "2. B2 Upper-Intermediate",
     xp: 25,
     title: "Idiom Profesional: 'Hit the ground running'",
     theory: "Expresia idiomatică <code>to hit the ground running</code> înseamnă a începe o activitate nouă imediat, cu mare energie, entuziasm și fără perioadă de ezitare.",
@@ -972,9 +1405,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-3",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "2. Junior",
+    level: "2. B2 Upper-Intermediate",
     xp: 25,
     title: "Idiom de Calitate: 'Cut corners'",
     theory: "Expresia <code>to cut corners</code> înseamnă a face ceva în modul cel mai ușor, ieftin sau rapid, sacrificând calitatea, rigoarea sau regulile de siguranță.",
@@ -992,11 +1425,13 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     explanation: "'Cut corners' surprinde perfect nuanța de compromis periculos asupra standardelor.",
     hint: "Scrie: We cannot cut corners when it comes to security."
   },
+
+  // --- NIVEL C1: ADVANCED (SUBJONCTIV, VOCABULAR ELEVAT, INVERSIUNI) ---
   {
     id: "eng-adv-4",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "3. Middle",
+    level: "3. C1 Advanced",
     xp: 30,
     title: "Subjonctivul Mandativ Formal: 'that he be'",
     theory: "În engleza academică și profesională formală, după adjective precum <em>imperative, essential, crucial</em> sau verbe ca <em>demand, insist</em>, verbul din clauza subordonată rămâne la forma de bază neinflectată (bare subjunctive), indiferent de persoană.",
@@ -1014,9 +1449,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-5",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "3. Middle",
+    level: "3. C1 Advanced",
     xp: 30,
     title: "Inversiune Emfatică: 'Little did they know'",
     theory: "Inversiunile cu adverbe restrictive plasează verbul auxiliar înaintea subiectului pentru un efect dramatic sau narativ puternic: <code>Little did + subiect + verb de bază</code>.",
@@ -1034,9 +1469,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-6",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "3. Middle",
+    level: "3. C1 Advanced",
     xp: 30,
     title: "Vocabular Tehnic C1: 'Paradigm shift'",
     theory: "Termenul <code>paradigm shift</code> desemnează o schimbare fundamentală în conceptele de bază și practicile experimentale ale unei discipline tehnologice sau științifice.",
@@ -1054,9 +1489,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-7",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "3. Middle",
+    level: "3. C1 Advanced",
     xp: 30,
     title: "Vocabular de Audit C1: 'Discrepancy'",
     theory: "Substantivul <code>discrepancy</code> indică o diferență ilogică, neașteptată sau inacceptabilă între două fapte, sume sau înregistrări care ar trebui să coincidă.",
@@ -1076,9 +1511,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-8",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "3. Middle",
+    level: "3. C1 Advanced",
     xp: 30,
     title: "Conector Academic C1: 'Notwithstanding'",
     theory: "Prepoziția și conectorul formal <code>notwithstanding</code> este sinonimul elevat al lui 'in spite of' sau 'despite', fiind foarte des întâlnit în contracte și publicații tehnice.",
@@ -1094,11 +1529,13 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     explanation: "Notwithstanding adaugă o solemnitate și o eleganță stilistică specifică nivelului avansat C1.",
     hint: "Scrie: Notwithstanding the challenges, the project was delivered on schedule."
   },
+
+  // --- NIVEL C1+: PROFESSIONAL (CONDIȚIONALE MIXTE, SCRUTINIZE, INVERSIUNI HAD) ---
   {
     id: "eng-adv-9",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "4. Senior",
+    level: "4. C1+ Professional",
     xp: 40,
     title: "Condițional Mixt: Past Action -> Present Consequence",
     theory: "Condiționalele mixte combină o ipoteză nereală din trecut (Past Perfect) cu un rezultat ipotetic în prezent (would + verb de bază).",
@@ -1116,9 +1553,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-10",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "4. Senior",
+    level: "4. C1+ Professional",
     xp: 40,
     title: "Inversiune Condițională Eleganta: 'Had I known...'",
     theory: "În engleza de elită, 'if' poate fi omis în frazele condiționale de tip 3 prin inversarea subiectului cu auxiliarul: <code>Had + subiect + past participle</code>.",
@@ -1136,9 +1573,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-11",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "4. Senior",
+    level: "4. C1+ Professional",
     xp: 40,
     title: "Vocabular C1: 'Ubiquitous' (Omniprezent)",
     theory: "Adjectivul <code>ubiquitous</code> descrie ceva care este prezent, întâlnit sau pare să existe peste tot în același timp.",
@@ -1156,9 +1593,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-12",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "4. Senior",
+    level: "4. C1+ Professional",
     xp: 40,
     title: "Vocabular C1: 'A pragmatic approach'",
     theory: "Adjectivul <code>pragmatic</code> caracterizează o gândire orientată pe rezultate concrete, eficiență și realism practic, evitând teoriile pure sau dogmele.",
@@ -1178,9 +1615,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-13",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "4. Senior",
+    level: "4. C1+ Professional",
     xp: 40,
     title: "Verbe de Inspecție C1: 'Scrutinize'",
     theory: "Verbul <code>to scrutinize</code> înseamnă a examina ceva extrem de minuțios, critic și cu o atenție desăvârșită la fiecare detaliu ascuns.",
@@ -1197,11 +1634,13 @@ const ADVANCED_CURRICULUM_EXPANSION = [
     explanation: "'Scrutinize' depășește simplitatea verbelor 'check' sau 'examine', implicând rigoare meticuloasă.",
     hint: "Scrie: The committee will scrutinize every line of code."
   },
+
+  // --- NIVEL C2: MASTERY (INVERSIUNI COMPLEXE, RETORICĂ NATIVĂ, PROFICIENCY) ---
   {
     id: "eng-adv-14",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "5. Exemplar",
+    level: "5. C2 Mastery",
     xp: 50,
     title: "Inversiune Negativă C2: 'Seldom have we...'",
     theory: "Adverbul restrictiv <code>seldom</code> (rar) declanșează inversiunea topică a propoziției (auxiliarul plasat înaintea subiectului), creând un ton retoric magistral de nivel C2 Mastery.",
@@ -1219,9 +1658,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-15",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "5. Exemplar",
+    level: "5. C2 Mastery",
     xp: 50,
     title: "Verbe Strategice C2: 'Mitigate'",
     theory: "Verbul <code>to mitigate</code> înseamnă a reduce gravitatea, nocivitatea sau severitatea unei probleme sau a unui risc. Opusul său direct este <code>to exacerbate</code>.",
@@ -1241,9 +1680,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-16",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "5. Exemplar",
+    level: "5. C2 Mastery",
     xp: 50,
     title: "Argumentare Critică C2: 'Play devil's advocate'",
     theory: "Expresia <code>to play devil's advocate</code> înseamnă a susține în mod deliberat o opinie contrară celei comune pentru a testa temeinicia unui argument și a descoperi vulnerabilități logice.",
@@ -1263,9 +1702,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-17",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "5. Exemplar",
+    level: "5. C2 Mastery",
     xp: 50,
     title: "Colocație Academică C2: 'Mounting evidence'",
     theory: "Colocația <code>mounting evidence</code> descrie un volum de dovezi sau date concrete care continuă să crească și devine tot mai greu de combătut.",
@@ -1285,9 +1724,9 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   },
   {
     id: "eng-adv-18",
-    track: "Engleză C1",
+    track: "Engleză (B1 → C2)",
     icon: "🇬🇧",
-    level: "5. Exemplar",
+    level: "5. C2 Mastery",
     xp: 50,
     title: "Adjective de Impact C2: 'Unprecedented'",
     theory: "Adjectivul <code>unprecedented</code> desemnează un fenomen sau o stare de fapt care nu a mai fost niciodată întâlnită, experimentată sau înregistrată în istorie.",
@@ -1307,7 +1746,22 @@ const ADVANCED_CURRICULUM_EXPANSION = [
   }
 ];
 
-// Fuziune sigură cu curriculumul global existent fără a atinge sau modifica lecțiile existente
+// Fuziune sigură și normalizare automată a nivelurilor CEFR pentru limba engleză
 if (typeof DEFAULT_CURRICULUM !== "undefined" && Array.isArray(DEFAULT_CURRICULUM)) {
   DEFAULT_CURRICULUM.push(...ADVANCED_CURRICULUM_EXPANSION);
+
+  // Normalizare completă a disciplinei de limba engleză (B1 -> C2)
+  DEFAULT_CURRICULUM.forEach(l => {
+    if (l.track && l.track.includes("Engleză")) {
+      l.track = "Engleză (B1 → C2)";
+      l.icon = "🇬🇧";
+      if (!l.level) l.level = "1. B1 Intermediate";
+      else if (l.level.includes("B1") || l.level.startsWith("1. Începător") || l.level === "1. Începător") l.level = "1. B1 Intermediate";
+      else if (l.level.includes("B2") || l.level.startsWith("2. Junior") || l.level === "2. Junior") l.level = "2. B2 Upper-Intermediate";
+      else if (l.level.startsWith("3. Middle") || l.level === "3. Middle" || (l.level.includes("C1") && !l.level.includes("C1+") && !l.level.includes("C2"))) l.level = "3. C1 Advanced";
+      else if (l.level.startsWith("4. Senior") || l.level === "4. Senior" || l.level.includes("C1+")) l.level = "4. C1+ Professional";
+      else if (l.level.startsWith("5. Exemplar") || l.level === "5. Exemplar" || l.level.includes("C2")) l.level = "5. C2 Mastery";
+    }
+  });
 }
+

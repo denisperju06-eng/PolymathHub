@@ -1,7 +1,7 @@
 {
-  "name": "Polymath Studio - Informatică & Engleză C1",
+  "name": "Polymath Studio - Informatică & Engleză (B1 → C2)",
   "short_name": "PolymathHub",
-  "description": "Platformă interactivă pentru SQL, Java, JavaScript și Engleză B2-C1 cu Streak zilnic și validare activă.",
+  "description": "Platformă interactivă pentru SQL, Java, JavaScript și Engleză (B1 → C2) cu Streak zilnic și validare activă.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0b0f19",

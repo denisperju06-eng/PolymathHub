@@ -22,7 +22,24 @@
   };
 
   let state = loadState();
+  if (state.activeTrack && state.activeTrack.includes("Engleză")) {
+    state.activeTrack = "Engleză (B1 → C2)";
+  }
   let allLessons = [...DEFAULT_CURRICULUM, ...(state.customLessons || [])];
+
+  // Asigurare compatibilitate și mapare niveluri CEFR pentru limba engleză
+  allLessons.forEach(l => {
+    if (l.track && l.track.includes("Engleză")) {
+      l.track = "Engleză (B1 → C2)";
+      l.icon = "🇬🇧";
+      if (!l.level) l.level = "1. B1 Intermediate";
+      else if (l.level.includes("B1") || l.level.startsWith("1. Începător") || l.level === "1. Începător") l.level = "1. B1 Intermediate";
+      else if (l.level.includes("B2") || l.level.startsWith("2. Junior") || l.level === "2. Junior") l.level = "2. B2 Upper-Intermediate";
+      else if (l.level.startsWith("3. Middle") || l.level === "3. Middle" || (l.level.includes("C1") && !l.level.includes("C1+") && !l.level.includes("C2"))) l.level = "3. C1 Advanced";
+      else if (l.level.startsWith("4. Senior") || l.level === "4. Senior" || l.level.includes("C1+")) l.level = "4. C1+ Professional";
+      else if (l.level.startsWith("5. Exemplar") || l.level === "5. Exemplar" || l.level.includes("C2")) l.level = "5. C2 Mastery";
+    }
+  });
 
   // Utilitare pentru calculul exact al datelor (ignorând ora, conform fusului orar local)
   function toLocalDateKey(dateObj) {
@@ -236,6 +253,38 @@
     }
   }
 
+  // Actualizează dinamic opțiunile filtrului de nivel (CEFR pentru engleză vs Nivele standard pentru programare)
+  function updateLevelFilterOptions() {
+    const levelFilterEl = document.getElementById("level-filter");
+    if (!levelFilterEl) return;
+
+    const currentVal = levelFilterEl.value;
+    const isEnglish = state.activeTrack && state.activeTrack.includes("Engleză");
+
+    if (isEnglish) {
+      levelFilterEl.innerHTML = `
+        <option value="ALL">📊 Toate Nivelele (B1 → C2)</option>
+        <option value="1. B1">🟢 Nivel B1 (Intermediate)</option>
+        <option value="2. B2">🔵 Nivel B2 (Upper-Intermediate)</option>
+        <option value="3. C1">🟣 Nivel C1 (Advanced)</option>
+        <option value="4. C1+">🟠 Nivel C1+ (Professional & Inversiuni)</option>
+        <option value="5. C2">🔴 Nivel C2 (Mastery & Fluency)</option>
+      `;
+    } else {
+      levelFilterEl.innerHTML = `
+        <option value="ALL">📊 Toate Nivelele (Începător → Exemplar)</option>
+        <option value="1. Începător">🟢 1. Începător (Baze & Sintaxă)</option>
+        <option value="2. Junior">🔵 2. Junior (Structuri & Sintaxă)</option>
+        <option value="3. Middle">🟣 3. Middle (Avansat & Optimizare)</option>
+        <option value="4. Senior">🟠 4. Senior (Arhitectură & Complexitate)</option>
+        <option value="5. Exemplar">🔴 5. Exemplar (Principal & Concurență)</option>
+      `;
+    }
+
+    const optionExists = Array.from(levelFilterEl.options).some(o => o.value === currentVal);
+    levelFilterEl.value = optionExists ? currentVal : "ALL";
+  }
+
   // Randarea tab-urilor de discipline
   function renderTracks() {
     const tracks = getTracks();
@@ -268,7 +317,10 @@
       .sort((a, b) => (a.level || "").localeCompare(b.level || ""));
 
     const filteredLessons = allTrackLessons.filter(l => {
-      const matchesLevel = selectedLevel === "ALL" || (l.level && l.level.startsWith(selectedLevel));
+      const matchesLevel = selectedLevel === "ALL" || (l.level && (
+        l.level.startsWith(selectedLevel) ||
+        l.level.includes(selectedLevel)
+      ));
       const matchesQuery =
         !query ||
         l.title.toLowerCase().includes(query) ||
@@ -361,7 +413,7 @@
         return "❌ Greșit: Lipsește cuvântul-cheie VALUES înaintea tuplului de valori.";
       }
     }
-    if (lesson.track === "Engleză C1") {
+    if (lesson.track && lesson.track.includes("Engleză")) {
       if (lesson.id === "eng-2" && /\bwhen\b/i.test(trimmed)) {
         return "❌ Capcană C1: Expresia 'No sooner' se construiește obligatoriu cu 'than', niciodată cu 'when'!";
       }
@@ -593,6 +645,7 @@
     applyTheme(state.theme);
     renderStatsAndHeatmap();
     renderTracks();
+    updateLevelFilterOptions();
     renderLessonList();
     renderActiveLesson();
   }
