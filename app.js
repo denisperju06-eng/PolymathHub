@@ -51,7 +51,8 @@
     ...(typeof ADVANCED_CURRICULUM_EXPANSION !== "undefined" ? ADVANCED_CURRICULUM_EXPANSION : []),
     ...(typeof ADVANCED_CURRICULUM !== "undefined" && typeof ADVANCED_CURRICULUM_EXPANSION === "undefined" ? ADVANCED_CURRICULUM : []),
     ...(typeof NEW_EXPANDED_CURRICULUM !== "undefined" ? NEW_EXPANDED_CURRICULUM : []),
-    ...(typeof CPP_EXPANDED_CURRICULUM !== "undefined" ? CPP_EXPANDED_CURRICULUM : [])
+    ...(typeof CPP_EXPANDED_CURRICULUM !== "undefined" ? CPP_EXPANDED_CURRICULUM : []),
+    ...(typeof MEGA_EXPANDED_CURRICULUM !== "undefined" ? MEGA_EXPANDED_CURRICULUM : [])
   ];
 
   // Deduplicare inteligentă pe baza ID-ului
@@ -108,27 +109,27 @@
       l.division = "Informatică și Programare";
     } else if (l.track && l.track.includes("Engleză")) {
       l.division = "Limbi Străine & Comunicare";
-      if (l.track.includes("Familie") || l.id.startsWith("eng-fam")) {
+      if (l.track.includes("Familie") || l.id.startsWith("eng-fam") || l.id.startsWith("eng-h-")) {
         l.track = "Engleză: Familie & Hobby";
-      } else if (l.id.startsWith("eng-a1") || l.id.startsWith("eng-a2") || (l.level && (l.level.includes("A1") || l.level.includes("A2")))) {
+      } else if (l.id.startsWith("eng-a1") || l.id.startsWith("eng-a2") || l.id.startsWith("eng-a-") || (l.level && (l.level.includes("A1") || l.level.includes("A2")))) {
         l.track = "Engleză (A1–A2)";
-        if (l.id.startsWith("eng-a1") || (l.level && l.level.includes("A1"))) l.level = "1. A1 Începător";
+        if (l.id.startsWith("eng-a1") || l.id.startsWith("eng-a-") || (l.level && l.level.includes("A1"))) l.level = "1. A1 Începător";
         else l.level = "2. A2 Elementar";
       } else if (
-        l.id.startsWith("eng-b1") || l.id.startsWith("eng-b2") ||
+        l.id.startsWith("eng-b1") || l.id.startsWith("eng-b2") || l.id.startsWith("eng-b-") ||
         l.id === "eng-adv-1" || l.id === "eng-adv-2" || l.id === "eng-adv-3" ||
         l.id === "eng-v1" || l.id === "eng-lexical-4" || l.id === "eng-lexical-12" ||
         (l.level && (l.level.includes("B1") || l.level.includes("B2")))
       ) {
         l.track = "Engleză (B1–B2)";
-        if (l.id.startsWith("eng-b1") || l.id === "eng-adv-1" || (l.level && l.level.includes("B1"))) {
+        if (l.id.startsWith("eng-b1") || l.id.startsWith("eng-b-") || l.id === "eng-adv-1" || (l.level && l.level.includes("B1"))) {
           l.level = "1. B1 Intermediate";
         } else {
           l.level = "2. B2 Upper-Intermediate";
         }
       } else {
         l.track = "Engleză (C1–C2)";
-        if (l.level && (l.level.includes("C2") || l.id.startsWith("eng-adv-14") || l.id.startsWith("eng-adv-15") || l.id.startsWith("eng-adv-16") || l.id.startsWith("eng-adv-17") || l.id.startsWith("eng-adv-18") || l.id === "eng-v6")) {
+        if (l.level && (l.level.includes("C2") || l.id.startsWith("eng-adv-14") || l.id.startsWith("eng-adv-15") || l.id.startsWith("eng-adv-16") || l.id.startsWith("eng-adv-17") || l.id.startsWith("eng-adv-18") || l.id === "eng-v6" || l.id === "eng-c-2")) {
           l.level = "3. C2 Mastery";
         } else if (l.level && (l.id.startsWith("eng-adv-9") || l.id.startsWith("eng-adv-10") || l.id.startsWith("eng-adv-11") || l.id.startsWith("eng-adv-12") || l.id.startsWith("eng-adv-13") || l.level.includes("C1+"))) {
           l.level = "2. C1+ Professional";
