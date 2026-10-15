@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ro" data-theme="cyber-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Polymath Studio | SQL, Java, JS & English C1</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <header class="top-bar">
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true">⚡</div>
+      <div>
+        <h1 class="brand-title">Polymath<span>Hub</span></h1>
+        <p class="brand-subtitle">Informatică &amp; Engleză B2→C1</p>
+      </div>
+    </div>
+
+    <div class="stats-cluster">
+      <div class="stat-pill streak-pill" id="streak-pill" title="Zile consecutive de studiu">
+        <span class="stat-icon">🔥</span>
+        <div class="stat-content">
+          <span class="stat-value" id="streak-count">0</span>
+          <span class="stat-label">Zile Streak</span>
+        </div>
+      </div>
+
+      <div class="stat-pill xp-pill" title="Puncte de experiență și rang">
+        <span class="stat-icon">🏆</span>
+        <div class="stat-content">
+          <span class="stat-value" id="xp-count">0 XP</span>
+          <span class="stat-label" id="user-rank">Rang I: Inițiat</span>
+        </div>
+      </div>
+
+      <div class="stat-pill goal-pill" title="Progresul obiectivului zilnic (3 exerciții/zi)">
+        <span class="stat-icon">🎯</span>
+        <div class="stat-content">
+          <span class="stat-value" id="daily-progress-text">0/3</span>
+          <span class="stat-label">Azi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls-cluster">
+      <label for="theme-selector" class="sr-only">Schimbă tema vizuală</label>
+      <select id="theme-selector" class="theme-select" aria-label="Selectează tema de culori">
+        <option value="cyber-dark">🌌 Cyber Indigo (Dark)</option>
+        <option value="emerald-forest">🌲 Emerald Zen (Dark)</option>
+        <option value="sunset-warm">🌅 Sunset Amber (Dark)</option>
+        <option value="daylight-clean">☀️ Daylight Studio (Light)</option>
+      </select>
+      <button id="open-custom-modal-btn" class="btn-secondary btn-sm" title="Adaugă propriul exercițiu sau hobby">
+        + Adaugă Lecție
+      </button>
+    </div>
+  </header>
+
+  <main class="app-layout">
+    <!-- Coloana Stângă: Navigare Discipline, Lecții și Heatmap Activitate -->
+    <aside class="sidebar">
+      <section class="panel">
+        <h2 class="panel-heading">Discipline &amp; Hobby-uri</h2>
+        <div class="track-tabs" id="track-tabs" role="tablist">
+          <!-- Generat dinamic din curriculum.js -->
+        </div>
+      </section>
+
+      <section class="panel lessons-panel">
+        <div class="panel-header-row">
+          <h2 class="panel-heading" id="current-track-title">Lecții</h2>
+          <span class="completion-badge" id="track-completion-badge">0%</span>
+        </div>
+        <div class="progress-bar-track" aria-hidden="true">
+          <div class="progress-bar-fill" id="track-progress-bar"></div>
+        </div>
+
+        <!-- Filtre pe Nivele de Senioritate și Căutare -->
+        <div class="filter-controls" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.85rem;">
+          <select id="level-filter" class="theme-select" style="width: 100%;" aria-label="Filtrează după nivelul de dificultate">
+            <option value="ALL">📊 Toate Nivelele (Începător → Exemplar)</option>
+            <option value="1. Începător">🟢 1. Începător (Baze & Bucle)</option>
+            <option value="2. Junior">🔵 2. Junior (Structuri & Sintaxă)</option>
+            <option value="3. Middle">🟣 3. Middle (Avansat & Vocabular C1)</option>
+            <option value="4. Senior">🟠 4. Senior (Arhitectură & Traduceri Grele)</option>
+            <option value="5. Exemplar">🔴 5. Exemplar (Principal & C2 Mastery)</option>
+          </select>
+          <input
+            type="search"
+            id="search-lessons"
+            placeholder="🔍 Caută: for, while, join, vocabular..."
+            style="width: 100%; padding: 0.5rem 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); font-size: 0.84rem;"
+          >
+        </div>
+
+        <ul class="lesson-list" id="lesson-list">
+          <!-- Generat dinamic -->
+        </ul>
+      </section>
+
+      <section class="panel heatmap-panel">
+        <div class="panel-header-row">
+          <h2 class="panel-heading">Activitate (Ultimele 28 Zile)</h2>
+          <span class="longest-streak-label">Record: <strong id="longest-streak-val">0</strong> zile</span>
+        </div>
+        <div class="heatmap-grid" id="heatmap-grid" aria-label="Calendar activitate ultimele 28 de zile">
+          <!-- 28 celule generate dinamic -->
+        </div>
+        <div class="heatmap-actions">
+          <button id="reset-progress-btn" class="btn-ghost-danger">Resetează Progresul Local</button>
+        </div>
+      </section>
+    </aside>
+
+    <!-- Zona Centrală: Teorie, Exemplu și Practică Interactivă -->
+    <section class="workspace">
+      <!-- Cardul de Teorie și Exemple -->
+      <article class="card theory-card">
+        <div class="lesson-meta-bar">
+          <span class="badge-category" id="lesson-category-badge">SQL</span>
+          <span class="badge-level" id="lesson-level-badge">Fundamente &amp; Practică</span>
+          <span class="badge-status" id="lesson-status-badge">Nerezolvat</span>
+        </div>
+
+        <h2 class="lesson-title" id="lesson-title">Titlu Lecție</h2>
+        <div class="theory-content" id="lesson-theory">
+          <!-- Conținut teoretic injectat dinamic -->
+        </div>
+
+        <div class="example-box">
+          <div class="example-header">
+            <span>📌 Model Sintactic &amp; Exemplu Explicat</span>
+            <button id="copy-example-btn" class="btn-copy">Copiază modelul</button>
+          </div>
+          <pre class="code-display"><code id="lesson-example"></code></pre>
+        </div>
+      </article>
+
+      <!-- Cardul de Practică și Verificare Strictă -->
+      <article class="card practice-card" id="practice-card">
+        <div class="practice-header">
+          <div>
+            <h3 class="practice-title">✍️ Laborator Practic de Verificare</h3>
+            <p class="practice-subtitle">Scrie codul sau propoziția corectă. Caseta rămâne roșie până când soluția este exactă.</p>
+          </div>
+          <span class="xp-reward-tag" id="lesson-xp-tag">+25 XP</span>
+        </div>
+
+        <div class="prompt-box" id="lesson-prompt">
+          <!-- Cerința exercițiului -->
+        </div>
+
+        <div class="context-snippet-wrapper" id="context-snippet-wrapper">
+          <span class="context-label">Context / Structură de pornire:</span>
+          <pre class="context-code"><code id="lesson-starter-context"></code></pre>
+        </div>
+
+        <div class="input-zone" id="input-zone">
+          <label for="user-answer-input" class="input-label">Răspunsul cursantului (Cod sau Engleză C1):</label>
+          <textarea
+            id="user-answer-input"
+            class="answer-textarea"
+            rows="3"
+            placeholder="Tastează răspunsul exact aici..."
+            spellcheck="false"
+            autocomplete="off"
+          ></textarea>
+          <div class="validation-feedback" id="validation-feedback" role="alert" aria-live="polite">
+            Introduceți soluția și apăsați „Verifică Răspunsul”.
+          </div>
+        </div>
+
+        <div class="action-buttons-row">
+          <button id="verify-btn" class="btn-primary">
+            ✓ Verifică Răspunsul
+          </button>
+          <button id="hint-btn" class="btn-secondary">
+            💡 Indiciu
+          </button>
+          <button id="give-up-btn" class="btn-give-up">
+            🏳️ M-am dat bătut (Arată Varianta Corectă)
+          </button>
+          <button id="next-lesson-btn" class="btn-success hidden">
+            Lecția Următoare →
+          </button>
+        </div>
+
+        <!-- Caseta pentru Indiciu -->
+        <div class="hint-drawer hidden" id="hint-drawer">
+          <strong>Indiciu Tehnic:</strong> <span id="hint-text"></span>
+        </div>
+
+        <!-- Caseta Ascunsă pentru Varianta Corectă (Activată doar la „M-am dat bătut”) -->
+        <div class="solution-drawer hidden" id="solution-drawer">
+          <div class="solution-drawer-header">
+            <span>🔓 Varianta Corectă Oficială</span>
+            <button id="apply-solution-btn" class="btn-apply-solution">
+              Copiază în Editor &amp; Validează
+            </button>
+          </div>
+          <pre class="solution-code"><code id="official-solution-text"></code></pre>
+          <p class="solution-explanation" id="official-solution-explanation"></p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Modal pentru Adăugarea unui Exercițiu / Hobby Personalizat -->
+  <div class="modal-backdrop hidden" id="custom-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modal-title">Adaugă Lecție sau Hobby Nou</h2>
+        <button id="close-custom-modal-btn" class="btn-close" aria-label="Închide">&times;</button>
+      </div>
+      <form id="custom-lesson-form" class="modal-form">
+        <div class="form-row">
+          <label for="custom-track">Disciplină / Hobby (existent sau nou):</label>
+          <input type="text" id="custom-track" required placeholder="Ex: SQL, Java, Python, Șah, Spaniolă...">
+        </div>
+        <div class="form-row">
+          <label for="custom-title">Titlul Lecției:</label>
+          <input type="text" id="custom-title" required placeholder="Ex: Subinterogări SQL sau Deschideri în Șah">
+        </div>
+        <div class="form-row">
+          <label for="custom-theory">Explicație Teoretică:</label>
+          <textarea id="custom-theory" rows="2" required placeholder="Explică pe scurt regula sau conceptul..."></textarea>
+        </div>
+        <div class="form-row">
+          <label for="custom-example">Exemplu Demonstrativ:</label>
+          <textarea id="custom-example" rows="2" required placeholder="Exemplu de cod sau propoziție..."></textarea>
+        </div>
+        <div class="form-row">
+          <label for="custom-prompt">Cerința Practică:</label>
+          <textarea id="custom-prompt" rows="2" required placeholder="Ce trebuie să scrie utilizatorul?"></textarea>
+        </div>
+        <div class="form-row">
+          <label for="custom-solution">Varianta Corectă Exactă:</label>
+          <input type="text" id="custom-solution" required placeholder="Răspunsul care va fi validat...">
+        </div>
+        <div class="form-row">
+          <label for="custom-hint">Indiciu (Opțional):</label>
+          <input type="text" id="custom-hint" placeholder="Un sfat scurt în caz de blocaj...">
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="cancel-modal-btn" class="btn-secondary">Anulează</button>
+          <button type="submit" class="btn-primary">Salvează în Platformă</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="curriculum.js"></script>
+  <script src="curriculum-extended.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

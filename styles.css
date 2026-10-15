@@ -1,0 +1,867 @@
+:root,
+[data-theme="cyber-dark"] {
+  --bg-primary: #0b0f19;
+  --bg-secondary: #111827;
+  --bg-elevated: #1f2937;
+  --bg-code: #090d16;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --accent-primary: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-soft: rgba(99, 102, 241, 0.15);
+  --border-color: #374151;
+  --error-red: #ef4444;
+  --error-bg: rgba(239, 68, 68, 0.14);
+  --success-green: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.14);
+  --warning-amber: #f59e0b;
+  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="emerald-forest"] {
+  --bg-primary: #061411;
+  --bg-secondary: #0d2621;
+  --bg-elevated: #143830;
+  --bg-code: #040d0b;
+  --text-primary: #ecfdf5;
+  --text-secondary: #a7f3d0;
+  --accent-primary: #10b981;
+  --accent-hover: #059669;
+  --accent-soft: rgba(16, 185, 129, 0.18);
+  --border-color: #1f5146;
+  --error-red: #f87171;
+  --error-bg: rgba(248, 113, 113, 0.16);
+  --success-green: #34d399;
+  --success-bg: rgba(52, 211, 153, 0.16);
+  --warning-amber: #fbbf24;
+  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="sunset-warm"] {
+  --bg-primary: #181016;
+  --bg-secondary: #271a24;
+  --bg-elevated: #382534;
+  --bg-code: #110b10;
+  --text-primary: #fdf2f8;
+  --text-secondary: #fbcfe8;
+  --accent-primary: #f97316;
+  --accent-hover: #ea580c;
+  --accent-soft: rgba(249, 115, 22, 0.18);
+  --border-color: #52364c;
+  --error-red: #ef4444;
+  --error-bg: rgba(239, 68, 68, 0.18);
+  --success-green: #22c55e;
+  --success-bg: rgba(34, 197, 94, 0.16);
+  --warning-amber: #facc15;
+  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="daylight-clean"] {
+  --bg-primary: #f3f4f6;
+  --bg-secondary: #ffffff;
+  --bg-elevated: #f9fafb;
+  --bg-code: #111827;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --accent-primary: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --border-color: #e5e7eb;
+  --error-red: #dc2626;
+  --error-bg: #fef2f2;
+  --success-green: #059669;
+  --success-bg: #ecfdf5;
+  --warning-amber: #d97706;
+  --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* Bara Superioară (Header) */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.9rem 1.5rem;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+.brand-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.brand-title span {
+  color: var(--accent-primary);
+}
+
+.brand-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.stats-cluster {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+}
+
+.streak-pill.active-today {
+  border-color: var(--warning-amber);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+}
+
+.stat-icon {
+  font-size: 1.2rem;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.stat-value {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.stat-label {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+}
+
+.controls-cluster {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.theme-select {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Layout Principal (Grid Responsiv) */
+.app-layout {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.panel,
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-card);
+}
+
+.panel-heading {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 0.85rem;
+  font-weight: 700;
+}
+
+.panel-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.panel-header-row .panel-heading {
+  margin-bottom: 0;
+}
+
+/* Butoanele de selecție a disciplinei */
+.track-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.track-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.track-tab-btn:hover {
+  border-color: var(--accent-primary);
+}
+
+.track-tab-btn.active {
+  background-color: var(--accent-soft);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+/* Bara de progres și lista de lecții */
+.completion-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--bg-elevated);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--accent-primary);
+  width: 0%;
+  transition: width 0.35s ease;
+}
+
+.lesson-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.lesson-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.8rem;
+  border-radius: 9px;
+  background-color: var(--bg-elevated);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 0.86rem;
+  transition: all 0.15s ease;
+}
+
+.lesson-item:hover {
+  border-color: var(--border-color);
+}
+
+.lesson-item.active {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-soft);
+  font-weight: 600;
+}
+
+.lesson-item.completed .lesson-check {
+  color: var(--success-green);
+  font-weight: 800;
+}
+
+/* Heatmap 28 de zile */
+.longest-streak-label {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin: 0.75rem 0;
+}
+
+.heatmap-cell {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+}
+
+.heatmap-cell.active-day {
+  background-color: var(--success-green);
+  color: #052e16;
+  font-weight: 700;
+  border-color: var(--success-green);
+}
+
+.heatmap-cell.today-cell {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 1px;
+}
+
+.heatmap-actions {
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+/* Zona de Lucru (Workspace) */
+.workspace {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.lesson-meta-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.badge-category,
+.badge-level,
+.badge-status {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+}
+
+.badge-category {
+  background-color: var(--accent-soft);
+  color: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
+}
+
+.badge-level {
+  background-color: var(--bg-elevated);
+  color: var(--text-secondary);
+}
+
+.badge-status {
+  margin-left: auto;
+  background-color: var(--bg-elevated);
+}
+
+.badge-status.solved {
+  background-color: var(--success-bg);
+  color: var(--success-green);
+  border: 1px solid var(--success-green);
+}
+
+.lesson-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.theory-content {
+  font-size: 0.96rem;
+  color: var(--text-primary);
+  margin-bottom: 1.15rem;
+}
+
+.theory-content code {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: var(--bg-elevated);
+  padding: 0.15rem 0.4rem;
+  border-radius: 5px;
+  font-size: 0.88em;
+  color: var(--accent-primary);
+}
+
+.example-box {
+  background-color: var(--bg-code);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.example-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.9rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.code-display,
+.context-code,
+.solution-code {
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  color: #e5e7eb;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+/* Cardul de Practică și Stările Roșu / Verde */
+.practice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.practice-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.practice-subtitle {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+.xp-reward-tag {
+  background-color: var(--accent-soft);
+  color: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.prompt-box {
+  background-color: var(--bg-elevated);
+  border-left: 4px solid var(--accent-primary);
+  padding: 0.9rem 1rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.context-snippet-wrapper {
+  margin-bottom: 1rem;
+}
+
+.context-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.context-code {
+  background-color: var(--bg-code);
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+/* Zona de Input cu tranziții spre Roșu (Greșit) sau Verde (Corect) */
+.input-zone {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-elevated);
+  transition: all 0.2s ease;
+  margin-bottom: 1rem;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.answer-textarea {
+  width: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.85rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.answer-textarea:focus {
+  border-color: var(--accent-primary);
+}
+
+.validation-feedback {
+  margin-top: 0.6rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* STARE ROȘIE PERSISTENTĂ PENTRU RĂSPUNS GREȘIT */
+.input-zone.state-error {
+  border-color: var(--error-red);
+  background-color: var(--error-bg);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+  animation: shakeError 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.input-zone.state-error .answer-textarea {
+  border-color: var(--error-red);
+  color: var(--error-red);
+  font-weight: 600;
+}
+
+.input-zone.state-error .validation-feedback {
+  color: var(--error-red);
+}
+
+/* STARE VERDE PENTRU RĂSPUNS CORECT */
+.input-zone.state-success {
+  border-color: var(--success-green);
+  background-color: var(--success-bg);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+}
+
+.input-zone.state-success .answer-textarea {
+  border-color: var(--success-green);
+  color: var(--success-green);
+  font-weight: 600;
+}
+
+.input-zone.state-success .validation-feedback {
+  color: var(--success-green);
+}
+
+@keyframes shakeError {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(4px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+  40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+
+/* Butoane de Acțiune */
+.action-buttons-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+button {
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.65rem 1.1rem;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-primary);
+}
+
+.btn-give-up {
+  background-color: transparent;
+  color: var(--warning-amber);
+  border-color: var(--warning-amber);
+}
+
+.btn-give-up:hover {
+  background-color: rgba(245, 158, 11, 0.12);
+}
+
+.btn-success {
+  background-color: var(--success-green);
+  color: #052e16;
+  font-weight: 700;
+  margin-left: auto;
+}
+
+.btn-copy,
+.btn-apply-solution {
+  padding: 0.3rem 0.65rem;
+  font-size: 0.76rem;
+  border-radius: 6px;
+  background-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+.btn-ghost-danger {
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.btn-ghost-danger:hover {
+  color: var(--error-red);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Sertare pentru Indiciu și Soluția Ascunsă */
+.hint-drawer {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 9px;
+  background-color: var(--bg-elevated);
+  border-left: 4px solid var(--warning-amber);
+  font-size: 0.88rem;
+}
+
+.solution-drawer {
+  margin-top: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--warning-amber);
+  background-color: var(--bg-code);
+  overflow: hidden;
+}
+
+.solution-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  background-color: rgba(245, 158, 11, 0.15);
+  color: var(--warning-amber);
+  font-weight: 700;
+  font-size: 0.84rem;
+}
+
+.solution-explanation {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  color: #d1d5db;
+}
+
+/* Modal Adăugare Lecție */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 200;
+}
+
+.modal-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 560px;
+  padding: 1.5rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.btn-close {
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.form-row label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.form-row input,
+.form-row textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.88rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+/* Optimizare Responsivă pentru Tablete și Telefoane Mobile */
+@media (max-width: 960px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .lesson-list {
+    max-height: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-bar {
+    padding: 0.75rem 1rem;
+  }
+
+  .stats-cluster {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .stat-pill {
+    flex: 1;
+    justify-content: center;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .controls-cluster {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .theme-select {
+    flex: 1;
+  }
+
+  .action-buttons-row button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .lesson-title {
+    font-size: 1.2rem;
+  }
+}
