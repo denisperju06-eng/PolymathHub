@@ -107,52 +107,6 @@ Interfața pune la dispoziție **7 palete cromatice** optimizate matematic pentr
 
 ---
 
-### 5. Arhitectură Local-First & Securitate
-* Toate datele (XP, Streak, Progres capitole, Teme, Nume utilizator) sunt salvate instantaneu în `window.localStorage`.
-* **Zero Backend & Zero Dependențe Externe:** Datele nu părăsesc niciodată dispozitivul utilizatorului.
-* **Zero Trackere sau Cookie-uri intrusive:** Respect absolut pentru confidențialitate și viteză.
-
----
-
-## 🚀 Rulare Locală & Dezvoltare
-
-Aplicația rulează nativ în orice browser modern fără a necesita procese de build (`npm run build`), webpack sau bundlere:
-
-### Pasul 1: Clonare Repository
-```bash
-git clone https://github.com/denisperju06-eng/PolymathHub.git
-cd PolymathHub
-```
-
-### Pasul 2: Lansare Server Local
-Poți lansa aplicația folosind orice server HTTP static simplu:
-
-* **Cu Python 3:**
-  ```bash
-  python3 -m http.server 8000
-  ```
-* **Sau cu Node.js (`npx serve`):**
-  ```bash
-  npx serve .
-  ```
-* **Sau cu extensia Live Server din VS Code / WebStorm.**
-
-### Pasul 3: Deschide în Browser
-Navighează la adresa:
-```
-http://localhost:8000
-```
-
----
-
-## 🧪 Suită de Testare & Audit Automat
-
-Proiectul dispune de o suită automatizată de audit UI/UX, accesibilitate și integritate arhitecturală bazată pe **Puppeteer Core** și **Axe-Core**:
-
-```bash
-node tests/audit-ui-ux.js
-```
-
 ### Ce verifică auditul automat (33+ Teste End-to-End):
 - [x] Zero erori de consolă sau excepții runtime la încărcare.
 - [x] Conformitate WCAG AA / AAA pentru contrastul cromatic pe toate cele 7 teme.
@@ -164,7 +118,4 @@ node tests/audit-ui-ux.js
 
 ---
 
-## 👨‍💻 Autor & Licență
 
-* **Dezvoltator:** Denis Perju ([@denisperju06-eng](https://github.com/denisperju06-eng))
-* **Licență:** [MIT](LICENSE) &mdash; Liber pentru învățare, utilizare educațională și extindere open-source.
