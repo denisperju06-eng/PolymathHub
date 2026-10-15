@@ -70,6 +70,13 @@
 
   let allLessons = Array.from(uniqueLessonsMap.values());
 
+  // Elimină vechile fragmente disparate pentru franceză și spaniolă în favoarea curriculumului canonic de 45 de capitole de la zero
+  const deprecatedPolyglotLangIds = new Set([
+    "fr-a1-1", "fr-a1-2", "fr-a1-3", "fr-b1-1-ex1", "fr-b1-1-ex2", "fr-b1-1-ex3", "fr-b1-2-ex1", "fr-b1-2-ex2", "fr-c1-1-ex1",
+    "es-a1-1", "es-a1-2", "es-a1-3", "es-b1-1-ex1", "es-b1-1-ex2", "es-b1-2-ex1", "es-b1-2-ex2", "es-c1-1-ex1"
+  ]);
+  allLessons = allLessons.filter(l => !deprecatedPolyglotLangIds.has(l.id));
+
   // Normalizare structură discipline pentru o clasificare clară și intuitivă
   allLessons.forEach(l => {
     if (l.track === "JavaScript: DOM & Events") {
@@ -102,9 +109,23 @@
     } else if (l.track && l.track.includes("Franceză")) {
       l.track = "Limba Franceză";
       l.division = "Limbi Străine & Comunicare";
+      if (!l.level || l.level.includes("A1") || l.level.includes("A2") || l.level.startsWith("1.") || l.id.startsWith("fr-a1")) {
+        l.level = "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)";
+      } else if (l.level.includes("B1") || l.level.includes("B2") || l.level.startsWith("2.") || l.level.startsWith("3.") || l.id.startsWith("fr-b1")) {
+        l.level = "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)";
+      } else {
+        l.level = "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)";
+      }
     } else if (l.track && l.track.includes("Spaniolă")) {
       l.track = "Limba Spaniolă";
       l.division = "Limbi Străine & Comunicare";
+      if (!l.level || l.level.includes("A1") || l.level.includes("A2") || l.level.startsWith("1.") || l.id.startsWith("es-a1")) {
+        l.level = "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)";
+      } else if (l.level.includes("B1") || l.level.includes("B2") || l.level.startsWith("2.") || l.level.startsWith("3.") || l.id.startsWith("es-b1")) {
+        l.level = "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)";
+      } else {
+        l.level = "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)";
+      }
     } else if (l.track === "SQL" || l.track === "Java" || l.track === "JavaScript") {
       l.division = "Informatică și Programare";
     } else if (l.track && l.track.includes("Engleză")) {
@@ -589,8 +610,8 @@
     "Engleză (B1–B2)": "Timpuri compuse, diateză pasivă, fraze condiționale și vocabular intermediar.",
     "Engleză (C1–C2)": "Structuri de inversiune, modale deductive, nuanțe stilistice și colocuiri academice.",
     "Engleză: Familie & Hobby": "Vocabular aplicat pentru viața de zi cu zi, activități, pasiuni și familie.",
-    "Limba Franceză": "De la A1 (fonetică, être/avoir) până la moduri avansate B2/C1 (Subjonctif, nuanțe literare).",
-    "Limba Spaniolă": "De la A1 (ser vs estar, vocabular) până la moduri complexe B2/C1 (Modo Subjuntivo)."
+    "Limba Franceză": "3 module progresive de la zero absolut (pronume, être/avoir, numere) până la nivel C2 (Subjonctif, idiomuri, corespondență formală).",
+    "Limba Spaniolă": "3 module progresive de la zero absolut (pronume, ser vs estar, tener) până la nivel C2 (Subjuntivo, idiomuri, spaniolă de afaceri)."
   };
 
   const trackDivisions = {
@@ -804,13 +825,18 @@
     const currentVal = els.catalogLevelFilter ? els.catalogLevelFilter.value : "ALL";
     const track = state.activeTrack || "";
 
-    if (track === "Engleză (A1–A2)" || track.includes("Franceză") || track.includes("Spaniolă")) {
+    if (track.includes("Franceză") || track.includes("Spaniolă")) {
+      els.catalogLevelFilter.innerHTML = `
+        <option value="ALL">Toate Modulele (A1 → C2)</option>
+        <option value="1.">Modulul 1: A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)</option>
+        <option value="2.">Modulul 2: B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)</option>
+        <option value="3.">Modulul 3: C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)</option>
+      `;
+    } else if (track === "Engleză (A1–A2)") {
       els.catalogLevelFilter.innerHTML = `
         <option value="ALL">Toate Nivelurile</option>
         <option value="1.">Nivel A1 (1 pt Mastery)</option>
         <option value="2.">Nivel A2 (2 pt Mastery)</option>
-        <option value="3.">Nivel B1 (3 pt Mastery)</option>
-        <option value="4.">Nivel B2 / C1 (4 pt Mastery)</option>
       `;
     } else if (track === "Engleză (B1–B2)") {
       els.catalogLevelFilter.innerHTML = `
@@ -840,10 +866,21 @@
     els.catalogLevelFilter.value = optionExists ? currentVal : "ALL";
   }
 
+  function sortLessonsCanonical(a, b) {
+    const lvlComp = (a.level || "").localeCompare(b.level || "");
+    if (lvlComp !== 0) return lvlComp;
+    const matchA = a.title ? a.title.match(/Capitolul\s+(\d+)/i) : null;
+    const matchB = b.title ? b.title.match(/Capitolul\s+(\d+)/i) : null;
+    const numA = matchA ? parseInt(matchA[1], 10) : 999;
+    const numB = matchB ? parseInt(matchB[1], 10) : 999;
+    if (numA !== numB) return numA - numB;
+    return (a.id || "").localeCompare(b.id || "");
+  }
+
   function renderCatalogChapters() {
     const allTrackLessons = allLessons
       .filter(l => l.track === state.activeTrack)
-      .sort((a, b) => (a.level || "").localeCompare(b.level || ""));
+      .sort(sortLessonsCanonical);
 
     const selectedLevel = els.catalogLevelFilter ? els.catalogLevelFilter.value : "ALL";
     const query = els.catalogSearchInput ? els.catalogSearchInput.value.trim().toLowerCase() : "";
@@ -1296,7 +1333,7 @@
 
     const trackLessons = allLessons
       .filter(l => l.track === state.activeTrack)
-      .sort((a, b) => (a.level || "").localeCompare(b.level || ""));
+      .sort(sortLessonsCanonical);
 
     const completedInTrack = trackLessons.filter(l => (state.masteryPoints[l.id] || 0) > 0).length;
     const pct = trackLessons.length ? Math.round((completedInTrack / trackLessons.length) * 100) : 0;
@@ -1752,7 +1789,7 @@
       els.nextLessonBtn.addEventListener("click", () => {
         const trackLessons = allLessons
           .filter(l => l.track === state.activeTrack)
-          .sort((a, b) => (a.level || "").localeCompare(b.level || ""));
+          .sort(sortLessonsCanonical);
         const idx = trackLessons.findIndex(l => l.id === state.activeLessonId);
 
         if (idx !== -1 && idx + 1 < trackLessons.length) {

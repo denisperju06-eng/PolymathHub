@@ -241,7 +241,7 @@ async function runAudit() {
     await page.evaluate(() => window.scrollTo(0, 0));
     await new Promise(r => setTimeout(r, 100));
     await page.click("#open-pocket-drawer-btn");
-    await new Promise(r => setTimeout(r, 200));
+    await new Promise(r => setTimeout(r, 350));
     const isPocketOpen = await page.evaluate(() => document.getElementById("pocket-drawer").classList.contains("open"));
     if (isPocketOpen) {
       successes.push("✓ Buzunarul glisant (Pocket Drawer) se deschide corect.");
@@ -249,7 +249,7 @@ async function runAudit() {
       issues.push("Buzunarul glisant nu s-a deschis la click.");
     }
     await page.click("#close-pocket-drawer-btn");
-    await new Promise(r => setTimeout(r, 200));
+    await new Promise(r => setTimeout(r, 350));
     const isPocketClosed = await page.evaluate(() => !document.getElementById("pocket-drawer").classList.contains("open"));
     if (isPocketClosed) {
       successes.push("✓ Buzunarul glisant se închide corect.");

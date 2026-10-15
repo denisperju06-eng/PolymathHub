@@ -5247,396 +5247,2287 @@ const MEGA_EXPANDED_CURRICULUM = [
     "hint": "Scrie EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM orders;"
   },
   {
-    "id": "fr-new-1",
+    "id": "fr-a1-p1",
     "track": "Limba Franceză",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥖",
-    "level": "1. Începător / A1",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 25,
+    "title": "Capitolul 1: Pronumele Personale Subiect (Je, Tu, Il, Elle, On, Nous, Vous, Ils, Elles)",
+    "theory": "\n<p>Bine ai venit la limba franceză! Primul pas de la zero absolut este învățarea pronumelor personale subiect (persoanele: eu, tu, el, ea...).</p>\n<h4>1. Cele 8 Pronume Personale</h4>\n<ul>\n  <li><code>Je</code> [jœ] = Eu (devine <code>J'</code> în fața unei vocale: <em>J'habite</em>).</li>\n  <li><code>Tu</code> [ty] = Tu (folosit doar cu prietenii, familia, copiii).</li>\n  <li><code>Il</code> [il] = El.</li>\n  <li><code>Elle</code> [el] = Ea.</li>\n  <li><code>On</code> [õ] = Noi (în franceza vorbită de zi cu zi) sau „se” impersonal.</li>\n  <li><code>Nous</code> [nu] = Noi (în registrul formal/scris).</li>\n  <li><code>Vous</code> [vu] = Voi (plural) SAU Dumneavoastră (politețe singular și plural).</li>\n  <li><code>Ils</code> [il] = Ei (masculin sau grup mixt).</li>\n  <li><code>Elles</code> [el] = Ele (exclusiv feminin).</li>\n</ul>\n<h4>2. Regula de Aur: Subiectul este Obligatoriu</h4>\n<p>Spre deosebire de română sau spaniolă unde spunem simplu „Vorbesc”, în franceză este <strong>obligatoriu</strong> să pronunți subiectul: <em>Je parle</em>.</p>\n",
+    "glossary": [
+      {
+        "term": "Je / J'",
+        "def": "Pronumele persoanei I singular ('Eu'). Devine J' în fața vocalelor sau h mut."
+      },
+      {
+        "term": "Tu vs Vous",
+        "def": "'Tu' este informal (tutuit), 'Vous' exprimă politețea respectuoasă ('Dumneavoastră') sau pluralul."
+      },
+      {
+        "term": "On",
+        "def": "Pronume informal extrem de folosit în Franța ce înlocuiește 'Nous' (Noi) în conversații."
+      },
+      {
+        "term": "Ils vs Elles",
+        "def": "'Ils' pentru băieți sau grup mixt; 'Elles' exclusiv dacă toate persoanele sunt fete."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Je / J'",
+        "right": "Eu"
+      },
+      {
+        "left": "Tu",
+        "right": "Tu (informal)"
+      },
+      {
+        "left": "Vous",
+        "right": "Voi / Dumneavoastră (politețe)"
+      },
+      {
+        "left": "Ils / Elles",
+        "right": "Ei / Ele"
+      }
+    ],
+    "quiz": {
+      "question": "Cum i te adresezi respectuos unui necunoscut, unui profesor sau unui funcționar în limba franceză?",
+      "options": [
+        "Vous (pronumele de politețe echivalent cu 'Dumneavoastră')",
+        "Tu",
+        "On",
+        "Il"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Vous' este forma obligatorie de respect și politețe (vouvoiement) când vorbești cu un adult necunoscut."
+    },
+    "task": "Scrie cele trei pronume de singular 'Je, tu, il' (eu, tu, el) separate prin virgulă.",
+    "starterCode": "// Completează pronumele\n",
+    "expectedOutputPattern": "Je,\\s*tu,\\s*il\\.?",
+    "hint": "Scrie Je, tu, il"
+  },
+  {
+    "id": "fr-a1-p2",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 25,
+    "title": "Capitolul 2: Formule de Salut, Rămas Bun & Politețe (Bonjour, Merci, Au revoir)",
+    "theory": "\n<p>Francezii pun un accent imens pe formulele de politețe. A intra într-un magazin fără a spune <em>Bonjour</em> este considerat o impolitețe gravă.</p>\n<h4>1. Saluturi Uzuale</h4>\n<ul>\n  <li><code>Bonjour</code> [bõjur] = Bună ziua / Bună dimineața (pe tot parcursul zilei).</li>\n  <li><code>Bonsoir</code> [bõswar] = Bună seara (după ora 18:00).</li>\n  <li><code>Salut</code> [saly] = Bună / Salut (informal, doar între prieteni; litera 't' finală este mută!).</li>\n  <li><code>Bonne nuit</code> [bon nwi] = Noapte bună (doar la culcare).</li>\n</ul>\n<h4>2. Politețe & Rămas Bun</h4>\n<ul>\n  <li><code>S'il vous plaît</code> [sil vu ple] = Vă rog / Te rog (formal).</li>\n  <li><code>Merci beaucoup</code> [mɛrsi boku] = Mulțumesc mult.</li>\n  <li><code>De rien</code> [də rjɛ̃] / <code>Je vous en prie</code> = Cu plăcere / Pentru nimic.</li>\n  <li><code>Au revoir</code> [o rəvwar] = La revedere.</li>\n  <li><code>À bientôt</code> [a bjɛ̃to] = Pe curând.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Bonjour",
+        "def": "Formula universală de salut în timpul zilei ('Bună ziua')."
+      },
+      {
+        "term": "S'il vous plaît",
+        "def": "Expresie esențială de politețe ce înseamnă 'Vă rog' (abreviat SVP)."
+      },
+      {
+        "term": "Merci beaucoup",
+        "def": "'Mulțumesc foarte mult'."
+      },
+      {
+        "term": "Au revoir",
+        "def": "Formula clasică de despărțire ('La revedere')."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Bonjour",
+        "right": "Bună ziua"
+      },
+      {
+        "left": "Merci beaucoup",
+        "right": "Mulțumesc mult"
+      },
+      {
+        "left": "S'il vous plaît",
+        "right": "Vă rog"
+      },
+      {
+        "left": "Au revoir",
+        "right": "La revedere"
+      }
+    ],
+    "quiz": {
+      "question": "Ce formulă de politețe este corectă pentru a spune 'Vă rog' unui chelner la restaurant în Franța?",
+      "options": [
+        "S'il vous plaît",
+        "De rien",
+        "Bonjour",
+        "Salut"
+      ],
+      "correctIndex": 0,
+      "explanation": "'S'il vous plaît' este expresia corectă și politicoasă pentru 'Vă rog'."
+    },
+    "task": "Scrie salutul de politețe complet 'Bonjour, s'il vous plaît.' (Bună ziua, vă rog).",
+    "starterCode": "// Scrie salutul\n",
+    "expectedOutputPattern": "Bonjour,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?",
+    "hint": "Scrie Bonjour, s'il vous plaît."
+  },
+  {
+    "id": "fr-a1-p3",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
-    "title": "Capitolul 1: Verbe Regulate de Grupa 1 (-er) la Prezent",
-    "theory": "\n<p>În limba franceză, verbele de grupa 1 (terminația <code>-er</code> la infinitiv) reprezintă peste 80% din totalul verbelor (ex: <em>parler</em>, <em>habiter</em>, <em>aimer</em>, <em>travailler</em>).</p>\n<h4>1. Terminațiile Prezentului</h4>\n<p>Se elimină <code>-er</code> de la infinitiv și se adaugă terminațiile: <strong>-e, -es, -e, -ons, -ez, -ent</strong>.</p>\n<pre><code>Je parle        Nous parlons\nTu parles       Vous parlez\nIl/Elle parle   Ils/Elles parlent\n</code></pre>\n<h4>2. Regula Fonetică Esențială</h4>\n<p>Terminațiile <code>-e</code>, <code>-es</code> și <code>-ent</code> sunt <strong>complet mute</strong> (se pronunță identic: [parl]). Doar terminațiile pentru <em>nous</em> (-ons) și <em>vous</em> (-ez) au sunet distinct.</p>\n",
+    "title": "Capitolul 3: Prezentarea Personală (Comment tu t'appelles? Je m'appelle...)",
+    "theory": "\n<p>Când faci cunoștință cu cineva, folosești verbul reflexiv <strong>s'appeler</strong> (a se numi) și expresii de prezentare simple.</p>\n<h4>1. Cum te prezinți</h4>\n<ul>\n  <li><code>Comment tu t'appelles?</code> [komã ty tapɛl] = Cum te cheamă? (informal).</li>\n  <li><code>Comment vous vous appelez?</code> = Cum vă numiți? (formal/politicos).</li>\n  <li><code>Je m'appelle Andrei.</code> = Mă numesc Andrei.</li>\n  <li><code>Enchanté(e)!</code> [ãʃãte] = Încântat / Încântată de cunoștință!</li>\n</ul>\n<h4>2. Țara și Originea</h4>\n<ul>\n  <li><code>D'où viens-tu?</code> = De unde ești / vii?</li>\n  <li><code>Je viens de Roumanie.</code> = Vin din România.</li>\n  <li><code>Je suis roumain</code> (masculin) / <code>Je suis roumaine</code> (feminin) = Sunt român / româncă.</li>\n</ul>\n",
     "glossary": [
       {
-        "term": "Verbes du 1er groupe",
-        "def": "Verbe regulate cu infinitivul în -er (cu excepția verbului neregulat aller)."
+        "term": "Je m'appelle...",
+        "def": "Formula standard pentru 'Mă numesc...' / 'Numele meu este...'."
       },
       {
-        "term": "Terminaisons muettes",
-        "def": "Terminațiile -e, -es, -ent care nu se pronunță vocal în limba franceză vorbită."
+        "term": "Comment tu t'appelles?",
+        "def": "Întrebare directă: 'Cum te cheamă?'."
       },
       {
-        "term": "Élision (J')",
-        "def": "Eliziunea lui 'Je' în 'J'' în fața unei vocale sau a unui h mut (ex: J'habite)."
+        "term": "Enchanté / Enchantée",
+        "def": "'Încântat(ă) de cunoștință' (se adaugă un 'e' suplimentar dacă vorbește o femeie)."
       },
       {
-        "term": "Radical",
-        "def": "Rădăcina verbului rămasă după îndepărtarea terminației de infinitiv -er."
+        "term": "Je suis roumain(e)",
+        "def": "Exprimarea naționalității: 'Sunt român / româncă'."
       }
     ],
     "matchingPairs": [
       {
-        "left": "Je parle français",
-        "right": "Eu vorbesc franceză"
+        "left": "Je m'appelle...",
+        "right": "Mă numesc..."
       },
       {
-        "left": "Nous habitons à Paris",
-        "right": "Noi locuim la Paris"
+        "left": "Comment tu t'appelles?",
+        "right": "Cum te cheamă?"
       },
       {
-        "left": "Vous travaillez ici",
-        "right": "Dumneavoastră lucrați aici"
+        "left": "Enchanté!",
+        "right": "Încântat de cunoștință!"
       },
       {
-        "left": "Ils aiment la musique",
-        "right": "Ei iubesc muzica"
+        "left": "Je suis roumain",
+        "right": "Sunt român"
       }
     ],
     "quiz": {
-      "question": "Care este forma corectă de prezent a verbului 'habiter' pentru pronumele 'nous'?",
+      "question": "Ce răspunzi politicos imediat după ce o persoană ți se prezintă spunând 'Je m'appelle Pierre'?",
       "options": [
-        "habitons (Nous habitons)",
-        "habitez",
-        "habitent",
-        "habites"
+        "Enchanté! (Încântat de cunoștință)",
+        "De rien!",
+        "Au revoir!",
+        "Pardon!"
       ],
       "correctIndex": 0,
-      "explanation": "Terminația specifică pentru persoana I plural (nous) la verbele de grupa 1 este întotdeauna '-ons'."
+      "explanation": "'Enchanté' este replica canonică de curtoazie la prezentarea unei persoane noi."
     },
-    "task": "Completează conjugarea pentru 'Je' a verbului 'parler' scriind 'Je parle roumain et français.'.",
-    "starterCode": "// Completează propoziția\n",
-    "expectedOutputPattern": "Je\\s+parle\\s+roumain\\s+et\\s+français\\.?",
-    "hint": "Scrie Je parle roumain et français."
+    "task": "Scrie fraza completă de prezentare 'Je m'appelle Dan et je suis roumain.'.",
+    "starterCode": "Je m'appelle ",
+    "expectedOutputPattern": "Je\\s+m['’]appelle\\s+Dan\\s+et\\s+je\\s+suis\\s+roumain\\.?",
+    "hint": "Scrie Je m'appelle Dan et je suis roumain."
   },
   {
-    "id": "fr-new-2",
+    "id": "fr-a1-p4",
     "track": "Limba Franceză",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥖",
-    "level": "1. Începător / A1",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 4: Verbul Auxiliar „ÊTRE” (A FI) la Prezent",
+    "theory": "\n<p>Verbul <strong>être</strong> (a fi) este cel mai important verb din limba franceză. Este complet neregulat și trebuie memorat la perfecție.</p>\n<h4>1. Conjugarea Completă la Prezent</h4>\n<ul>\n  <li><code>Je suis</code> [jə swi] = Eu sunt (<em>Je suis fatigué</em> = Sunt obosit).</li>\n  <li><code>Tu es</code> [ty ɛ] = Tu ești (<em>Tu es gentil</em> = Ești amabil).</li>\n  <li><code>Il / Elle / On est</code> [il ɛ] = El / Ea este (<em>Elle est professeure</em>).</li>\n  <li><code>Nous sommes</code> [nu sɔm] = Noi suntem (<em>Nous sommes ici</em> = Suntem aici).</li>\n  <li><code>Vous êtes</code> [vuz ɛt] = Voi sunteți / Dumneavoastră sunteți (atenție la legătura fonetică cu sunet [z]!).</li>\n  <li><code>Ils / Elles sont</code> [il sõ] = Ei / Ele sunt (<em>Ils sont contents</em>).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Être",
+        "def": "Verbul 'a fi', utilizat pentru stări, profesii, naționalități și ca auxiliar de timp."
+      },
+      {
+        "term": "Je suis",
+        "def": "Forma de persoana I: 'Eu sunt'."
+      },
+      {
+        "term": "Nous sommes",
+        "def": "Forma de persoana I plural: 'Noi suntem'."
+      },
+      {
+        "term": "Liaison la 'Vous êtes'",
+        "def": "Pronunțarea literei s finale din 'vous' ca un sunet [z] legat de 'êtes' ([vuz-ɛt])."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Je suis",
+        "right": "Eu sunt"
+      },
+      {
+        "left": "Tu es",
+        "right": "Tu ești"
+      },
+      {
+        "left": "Nous sommes",
+        "right": "Noi suntem"
+      },
+      {
+        "left": "Vous êtes",
+        "right": "Voi sunteți / Dumneavoastră sunteți"
+      }
+    ],
+    "quiz": {
+      "question": "Care este forma corectă a verbului 'être' pentru pronumele 'Nous' (Noi)?",
+      "options": [
+        "sommes (Nous sommes)",
+        "êtes",
+        "sont",
+        "suis"
+      ],
+      "correctIndex": 0,
+      "explanation": "Conjugarea regulată a verbului être la persoana I plural este 'Nous sommes'."
+    },
+    "task": "Scrie propoziția 'Je suis prêt.' (Sunt gata / pregătit).",
+    "starterCode": "// Scrie propoziția cu être\n",
+    "expectedOutputPattern": "Je\\s+suis\\s+pr[êe]t\\.?",
+    "hint": "Scrie Je suis prêt."
+  },
+  {
+    "id": "fr-a1-p5",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 5: Verbul Auxiliar „AVOIR” (A AVEA) la Prezent",
+    "theory": "\n<p>Al doilea verb fundamental este <strong>avoir</strong> (a avea). Pe lângă posesie, în franceză se folosește pentru <strong>vârstă</strong> și pentru multe senzații fizice unde în română folosim „a fi”.</p>\n<h4>1. Conjugarea la Prezent</h4>\n<ul>\n  <li><code>J'ai</code> [je] = Eu am (<em>J'ai un ami</em> = Am un prieten).</li>\n  <li><code>Tu as</code> [ty a] = Tu ai.</li>\n  <li><code>Il / Elle / On a</code> [il a] = El / Ea are.</li>\n  <li><code>Nous avons</code> [nuz avõ] = Noi avem (cu liaison [z]).</li>\n  <li><code>Vous avez</code> [vuz ave] = Voi aveți / Dumneavoastră aveți.</li>\n  <li><code>Ils / Elles ont</code> [ilz õ] = Ei / Ele au (atenție: sunet [z] la legătură!).</li>\n</ul>\n<h4>2. Expresii Idiomatice cu Avoir</h4>\n<ul>\n  <li><em>J'ai 20 ans</em> = Am 20 de ani (NU spunem 'Je suis 20 ans').</li>\n  <li><em>J'ai faim</em> [fɛ̃] = Mi-e foame.</li>\n  <li><em>J'ai soif</em> [swaf] = Mi-e sete.</li>\n  <li><em>J'ai chaud / J'ai froid</em> = Mi-e cald / Mi-e frig.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Avoir",
+        "def": "Verbul 'a avea', folosit pentru posesie, vârstă și stări fiziologice."
+      },
+      {
+        "term": "J'ai 25 ans",
+        "def": "Exprimarea vârstei în franceză: folosește obligatoriu verbul avoir, nu être!"
+      },
+      {
+        "term": "Avoir faim / soif",
+        "def": "A-i fi foame / sete (literal: 'a avea foame')."
+      },
+      {
+        "term": "Ils ont vs Ils sont",
+        "def": "Ils ont se pronunță cu [z] ([il-zõ] = au); Ils sont se pronunță cu [s] ([il-sõ] = sunt)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "J'ai",
+        "right": "Eu am"
+      },
+      {
+        "left": "J'ai faim",
+        "right": "Mi-e foame (am foame)"
+      },
+      {
+        "left": "Nous avons",
+        "right": "Noi avem"
+      },
+      {
+        "left": "J'ai 25 ans",
+        "right": "Am 25 de ani"
+      }
+    ],
+    "quiz": {
+      "question": "Cum spui corect 'Am 30 de ani' în limba franceză?",
+      "options": [
+        "J'ai 30 ans. (se folosește verbul avoir)",
+        "Je suis 30 ans.",
+        "Je fais 30 ans.",
+        "Mon âge est 30."
+      ],
+      "correctIndex": 0,
+      "explanation": "În limba franceză, vârsta se exprimă exclusiv cu verbul 'avoir' (J'ai ... ans)."
+    },
+    "task": "Scrie propoziția 'J'ai un livre et j'ai faim.' (Am o carte și mi-e foame).",
+    "starterCode": "J'ai un ",
+    "expectedOutputPattern": "J['’]ai\\s+un\\s+livre\\s+et\\s+j['’]ai\\s+faim\\.?",
+    "hint": "Scrie J'ai un livre et j'ai faim."
+  },
+  {
+    "id": "fr-a1-p6",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 6: Numerele de la 0 la 20 (Les Nombres de 0 à 20)",
+    "theory": "\n<p>Numărarea în franceză este esențială pentru ore, prețuri și numere de telefon. Iată primele 20 de numere:</p>\n<h4>1. De la 0 la 10</h4>\n<p><code>0: zéro</code>, <code>1: un</code>, <code>2: deux</code>, <code>3: trois</code>, <code>4: quatre</code>, <code>5: cinq</code>, <code>6: six</code>, <code>7: sept</code> (se pronunță [sɛt], p este mut!), <code>8: huit</code> [ɥit], <code>9: neuf</code>, <code>10: dix</code> [dis].</p>\n<h4>2. De la 11 la 20</h4>\n<p><code>11: onze</code>, <code>12: douze</code>, <code>13: treize</code>, <code>14: quatorze</code>, <code>15: quinze</code>, <code>16: seize</code>, <code>17: dix-sept</code>, <code>18: dix-huit</code>, <code>19: dix-neuf</code>, <code>20: vingt</code> [vɛ̃] (literele g și t sunt complet mute!).</p>\n",
+    "glossary": [
+      {
+        "term": "un, deux, trois",
+        "def": "Unu, doi, trei în limba franceză."
+      },
+      {
+        "term": "sept [sɛt]",
+        "def": "Cifra 7; litera 'p' nu se pronunță niciodată."
+      },
+      {
+        "term": "vingt [vɛ̃]",
+        "def": "Numărul 20; se pronunță nazal, fără 'g' sau 't' final."
+      },
+      {
+        "term": "onze à seize",
+        "def": "Numerele de la 11 la 16 care au terminația caracteristică '-ze'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "un, deux, trois",
+        "right": "1, 2, 3"
+      },
+      {
+        "left": "cinq, six, sept",
+        "right": "5, 6, 7"
+      },
+      {
+        "left": "huit, neuf, dix",
+        "right": "8, 9, 10"
+      },
+      {
+        "left": "quinze, vingt",
+        "right": "15, 20"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se scrie numărul 15 în limba franceză?",
+      "options": [
+        "quinze",
+        "cincze",
+        "seize",
+        "quatorze"
+      ],
+      "correctIndex": 0,
+      "explanation": "Numărul 15 se scrie 'quinze' [kɛ̃z]."
+    },
+    "task": "Scrie numerele 'un, deux, trois' separate prin virgulă și spațiu.",
+    "starterCode": "// Scrie 1, 2, 3 în franceză\n",
+    "expectedOutputPattern": "un,\\s*deux,\\s*trois",
+    "hint": "Scrie un, deux, trois"
+  },
+  {
+    "id": "fr-a1-p7",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
-    "title": "Capitolul 2: Articole Partitive (du, de la, de l', des)",
-    "theory": "\n<p>În limba franceză, când vorbim despre cantități nedeterminate sau alimente și substanțe nenumărabile (apă, pâine, curaj, cafea), este <strong>obligatorie</strong> utilizarea articolelor partitive.</p>\n<h4>1. Formele Articolului Partitiv</h4>\n<ul>\n  <li><code>du</code> — masculin singular (de + le): <em>du pain</em>, <em>du café</em>.</li>\n  <li><code>de la</code> — feminin singular: <em>de la viande</em>, <em>de la salade</em>.</li>\n  <li><code>de l'</code> — în fața unei vocale sau a unui h mut: <em>de l'eau</em>, <em>de l'huile</em>.</li>\n  <li><code>des</code> — plural (de + les): <em>des légumes</em>, <em>des pâtes</em>.</li>\n</ul>\n<h4>2. Regula Negației Stricte</h4>\n<p>La forma negativă, toate articolele partitive devin simplu <strong>de</strong> (sau <strong>d'</strong>): <em>Je bois du café</em> $\rightarrow$ <em>Je ne bois pas <strong>de</strong> café</em>.</p>\n",
+    "title": "Capitolul 7: Numerele de la 20 la 100 & Sistemul Vigesimal Francez",
+    "theory": "\n<p>Numerele mari în franceză conțin o particularitate istorică fascinantă: sistemul de numărare în baze de 20 (sistem vigesimal de la celți).</p>\n<h4>1. Zecile Regulate</h4>\n<p><code>20: vingt</code>, <code>30: trente</code>, <code>40: quarante</code>, <code>50: cinquante</code>, <code>60: soixante</code>.</p>\n<p>Pentru 21, 31, 41, 51, 61 se adaugă 'et un': <em>vingt et un</em>, <em>trente et un</em>.</p>\n<h4>2. Zecile Speciale (70, 80, 90)</h4>\n<ul>\n  <li><code>70: soixante-dix</code> (literalmente: 60 + 10). 71 este <em>soixante et onze</em> (60 + 11).</li>\n  <li><code>80: quatre-vingts</code> (literalmente: 4 de 20, adică 4 × 20).</li>\n  <li><code>90: quatre-vingt-dix</code> (literalmente: 4 × 20 + 10). 95 este <em>quatre-vingt-quinze</em> (4 × 20 + 15).</li>\n  <li><code>100: cent</code> [sã].</li>\n</ul>\n",
     "glossary": [
       {
-        "term": "Article partitif",
-        "def": "Articol folosit pentru a desemna o parte dintr-o substanță nenumărabilă."
+        "term": "soixante-dix (70)",
+        "def": "Compus din 60 (soixante) + 10 (dix)."
       },
       {
-        "term": "du (de + le)",
-        "def": "Articol partitiv masculin singular."
+        "term": "quatre-vingts (80)",
+        "def": "Compus din 4 × 20 (patru douăzeci)."
       },
       {
-        "term": "de l'",
-        "def": "Formă de eliziune folosită înaintea cuvintelor care încep cu vocală sau h mut."
+        "term": "quatre-vingt-dix (90)",
+        "def": "Compus din 4 × 20 + 10."
       },
       {
-        "term": "Transformare la negație",
-        "def": "Regula prin care du, de la, des devin 'de' după negația 'ne... pas'."
+        "term": "cent (100)",
+        "def": "Numărul o sută în limba franceză."
       }
     ],
     "matchingPairs": [
       {
-        "left": "Je bois du café",
-        "right": "Beau cafea (masculin)"
+        "left": "trente",
+        "right": "30"
       },
       {
-        "left": "Elle mange de la salade",
-        "right": "Ea mănâncă salată (feminin)"
+        "left": "cinquante",
+        "right": "50"
       },
       {
-        "left": "Je voudrais de l'eau",
-        "right": "Aș dori apă (în fața vocalei)"
+        "left": "soixante-dix",
+        "right": "70 (60 + 10)"
       },
       {
-        "left": "Je n'ai pas de sucre",
-        "right": "Nu am zahăr (de la negație)"
+        "left": "quatre-vingts",
+        "right": "80 (4 x 20)"
       }
     ],
     "quiz": {
-      "question": "Cum se transformă propoziția 'Je mange du pain' la forma negativă?",
+      "question": "Cum se spune numărul 80 în limba franceză standard?",
       "options": [
-        "Je ne mange pas de pain.",
-        "Je ne mange pas du pain.",
-        "Je ne mange pas des pains.",
-        "Je mange pas pain."
+        "quatre-vingts (literal: patru de douăzeci)",
+        "octante",
+        "huitante",
+        "dix-huit"
       ],
       "correctIndex": 0,
-      "explanation": "După negația 'ne... pas', articolele partitive (du, de la, des) se transformă întotdeauna în prepoziția simplă 'de'."
+      "explanation": "În franceza din Franța, 80 se calculează ca 4 × 20: 'quatre-vingts'."
     },
-    "task": "Scrie propoziția 'Je voudrais de l'eau, s'il vous plaît.' folosind articolul partitiv pentru apă.",
-    "starterCode": "// Cere apă politicos\n",
-    "expectedOutputPattern": "Je\\s+voudrais\\s+de\\s+l['’]eau,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?",
-    "hint": "Scrie Je voudrais de l'eau, s'il vous plaît."
+    "task": "Scrie numărul 100 în limba franceză: 'cent'.",
+    "starterCode": "// Scrie 100\n",
+    "expectedOutputPattern": "cent",
+    "hint": "Scrie cent"
   },
   {
-    "id": "fr-new-3",
+    "id": "fr-a1-p8",
     "track": "Limba Franceză",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥖",
-    "level": "2. Junior / A2",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 8: Zilele Săptămânii, Lunile Anului & Anotimpurile",
+    "theory": "\n<p>Toate zilele săptămânii și toate anotimpurile sunt de genul <strong>masculin</strong> în limba franceză și se scriu cu <strong>literă mică</strong>.</p>\n<h4>1. Zilele Săptămânii (Les Jours de la Semaine)</h4>\n<p><code>lundi</code> (luni), <code>mardi</code> (marți), <code>mercredi</code> (miercuri), <code>jeudi</code> (joi), <code>vendredi</code> (vineri), <code>samedi</code> (sâmbătă), <code>dimanche</code> (duminică).</p>\n<h4>2. Lunile Anului (Les Mois)</h4>\n<p><em>janvier, février, mars, avril, mai, juin, juillet, août [ut], septembre, octobre, novembre, décembre</em>.</p>\n<h4>3. Anotimpurile (Les Saisons)</h4>\n<p><code>le printemps</code> (primăvara), <code>l'été</code> (vara), <code>l'automne</code> (toamna), <code>l'hiver</code> (iarna).</p>\n<p>Spunem: <em>au printemps</em> (primăvara), dar <em>en été, en automne, en hiver</em> (în fața vocalelor).</p>\n",
+    "glossary": [
+      {
+        "term": "lundi, mardi...",
+        "def": "Zilele săptămânii se scriu cu literă mică în franceză."
+      },
+      {
+        "term": "le week-end",
+        "def": "Sfârșitul de săptămână (sâmbătă și duminică)."
+      },
+      {
+        "term": "en été / en hiver",
+        "def": "Prepoziția 'en' folosită pentru anotimpurile care încep cu vocală."
+      },
+      {
+        "term": "aujourd'hui",
+        "def": "Cuvântul pentru 'astăzi' în limba franceză."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "lundi",
+        "right": "Luni"
+      },
+      {
+        "left": "vendredi",
+        "right": "Vineri"
+      },
+      {
+        "left": "samedi et dimanche",
+        "right": "Sâmbătă și duminică (weekend)"
+      },
+      {
+        "left": "l'été et l'hiver",
+        "right": "Vara și iarna"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se spune 'Vineri' în limba franceză?",
+      "options": [
+        "vendredi",
+        "mardi",
+        "jeudi",
+        "samedi"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ziua de vineri este 'vendredi'."
+    },
+    "task": "Scrie propoziția 'Aujourd'hui c'est lundi.' (Astăzi este luni).",
+    "starterCode": "Aujourd'hui c'est ",
+    "expectedOutputPattern": "Aujourd['’]hui\\s+c['’]est\\s+lundi\\.?",
+    "hint": "Scrie Aujourd'hui c'est lundi."
+  },
+  {
+    "id": "fr-a1-p9",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 9: Cât este ceasul? Exprimarea Timpului (L'Heure)",
+    "theory": "\n<p>Pentru a întreba cât este ceasul, spunem: <strong>« Quelle heure est-il? »</strong>. Răspunsul începe întotdeauna cu structura impersonală <strong>« Il est... »</strong>.</p>\n<h4>1. Ore Fixe</h4>\n<ul>\n  <li><em>Il est une heure</em> = Este ora 1.</li>\n  <li><em>Il est deux heures</em> = Este ora 2 (adăugăm 's' la heures).</li>\n  <li><em>Il est midi</em> = Este ora 12:00 la prânz.</li>\n  <li><em>Il est minuit</em> = Este ora 12:00 noaptea (miezul nopții).</li>\n</ul>\n<h4>2. Minute, Jumătăți și Sferturi</h4>\n<ul>\n  <li><em>et quart</em> = și un sfert (ex: <em>Il est trois heures et quart</em> = 3:15).</li>\n  <li><em>et demie</em> = și jumătate (ex: <em>Il est quatre heures et demie</em> = 4:30).</li>\n  <li><em>moins le quart</em> = fără un sfert (ex: <em>Il est cinq heures moins le quart</em> = 4:45).</li>\n  <li><em>moins dix</em> = fără 10 minute (ex: <em>cinq heures moins dix</em> = 4:50).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Quelle heure est-il?",
+        "def": "Întrebarea standard: 'Cât este ceasul?'."
+      },
+      {
+        "term": "Il est midi / minuit",
+        "def": "Ora 12 ziua (midi) / ora 12 noaptea (minuit)."
+      },
+      {
+        "term": "et demie",
+        "def": "Și jumătate (ex: 2:30 = deux heures et demie)."
+      },
+      {
+        "term": "moins le quart",
+        "def": "Fără un sfert (ex: 5:45 = six heures moins le quart)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Quelle heure est-il?",
+        "right": "Cât este ceasul?"
+      },
+      {
+        "left": "Il est midi",
+        "right": "Este ora 12:00 la prânz"
+      },
+      {
+        "left": "cinq heures et quart",
+        "right": "5 și un sfert (5:15)"
+      },
+      {
+        "left": "six heures et demie",
+        "right": "6 și jumătate (6:30)"
+      }
+    ],
+    "quiz": {
+      "question": "Cum traduci în franceză 'Este ora 8 și jumătate' (8:30)?",
+      "options": [
+        "Il est huit heures et demie.",
+        "Il est huit heures et quart.",
+        "Il est huit heures moins le quart.",
+        "Il est midi."
+      ],
+      "correctIndex": 0,
+      "explanation": "'Et demie' înseamnă și jumătate; deci 'Il est huit heures et demie'."
+    },
+    "task": "Scrie propoziția 'Il est midi et quart.' (Este ora 12 și un sfert).",
+    "starterCode": "Il est ",
+    "expectedOutputPattern": "Il\\s+est\\s+midi\\s+et\\s+quart\\.?",
+    "hint": "Scrie Il est midi et quart."
+  },
+  {
+    "id": "fr-a1-p10",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 10: Articolele Hotărâte & Nehotărâte (Le, La, L', Les / Un, Une, Des)",
+    "theory": "\n<p>În franceză, fiecare substantiv are un gen (masculin sau feminin) și este însoțit aproape întotdeauna de un articol.</p>\n<h4>1. Articole Nehotărâte (Un, O, Niște)</h4>\n<ul>\n  <li><code>un</code> = masculin singular (<em>un livre</em> = o carte, <em>un garçon</em> = un băiat).</li>\n  <li><code>une</code> = feminin singular (<em>une table</em> = o masă, <em>une fille</em> = o fată).</li>\n  <li><code>des</code> = plural nedeterminat (<em>des livres</em> = niște cărți).</li>\n</ul>\n<h4>2. Articole Hotărâte (Cel, Cea, -ul, -a)</h4>\n<ul>\n  <li><code>le</code> = masculin singular (<em>le café</em> = cafeaua).</li>\n  <li><code>la</code> = feminin singular (<em>la maison</em> = casa).</li>\n  <li><code>l'</code> = masculin sau feminin înainte de vocală sau h mut (<em>l'ami</em>, <em>l'hôtel</em>).</li>\n  <li><code>les</code> = plural pentru ambele genuri (<em>les amis</em> = prietenii).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "un / une / des",
+        "def": "Articole nehotărâte: un (masc.), une (fem.), des (plural)."
+      },
+      {
+        "term": "le / la / les",
+        "def": "Articole hotărâte: le (masc.), la (fem.), les (plural)."
+      },
+      {
+        "term": "l' (Élision)",
+        "def": "Forma redusă pentru le/la în fața cuvintelor care încep cu vocală (l'école)."
+      },
+      {
+        "term": "Pluralul regulat (-s)",
+        "def": "Majoritatea substantivelor formează pluralul adăugând un -s mut la final."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "un livre / le livre",
+        "right": "o carte / cartea (masculin)"
+      },
+      {
+        "left": "une maison / la maison",
+        "right": "o casă / casa (feminin)"
+      },
+      {
+        "left": "l'ami / les amis",
+        "right": "prietenul / prietenii (eliziune)"
+      },
+      {
+        "left": "des étudiants",
+        "right": "niște studenți (plural nehotărât)"
+      }
+    ],
+    "quiz": {
+      "question": "Ce articol hotărât este corect în fața cuvântului feminin 'école' (școală)?",
+      "options": [
+        "l' (l'école, datorită vocalei 'é')",
+        "la école",
+        "le école",
+        "une école"
+      ],
+      "correctIndex": 0,
+      "explanation": "Când un cuvânt feminin începe cu o vocală, 'la' devine 'l'' prin eliziune: 'l'école'."
+    },
+    "task": "Scrie perechea articol hotărât + substantiv: 'le garçon et la fille' (băiatul și fata).",
+    "starterCode": "// Scrie băiatul și fata\n",
+    "expectedOutputPattern": "le\\s+gar[çc]on\\s+et\\s+la\\s+fille\\.?",
+    "hint": "Scrie le garçon et la fille"
+  },
+  {
+    "id": "fr-a1-p11",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 11: Cum Spunem „NU”: Negația (Ne ... Pas)",
+    "theory": "\n<p>În limba franceză, negația standard este formată din <strong>două părți</strong> care îmbrățișează verbul ca un sandviș: <strong>NE + verb + PAS</strong>.</p>\n<h4>1. Structura de Bază</h4>\n<ul>\n  <li><em>Je parle</em> (Vorbesc) $\rightarrow$ <em>Je <strong>ne</strong> parle <strong>pas</strong></em> (Nu vorbesc).</li>\n  <li><em>Il comprend</em> (El înțelege) $\rightarrow$ <em>Il <strong>ne</strong> comprend <strong>pas</strong></em> (El nu înțelege).</li>\n</ul>\n<h4>2. Eliziunea 'N'' în fața Vocalelor</h4>\n<p>Dacă verbul începe cu o vocală sau un 'h' mut, <code>ne</code> devine obligatoriu <code>n'</code>:</p>\n<ul>\n  <li><em>J'aime</em> $\rightarrow$ <em>Je <strong>n'</strong>aime <strong>pas</strong></em>.</li>\n  <li><em>Il est prêt</em> $\rightarrow$ <em>Il <strong>n'</strong>est <strong>pas</strong> prêt</em>.</li>\n  <li><em>J'ai faim</em> $\rightarrow$ <em>Je <strong>n'</strong>ai <strong>pas</strong> faim</em>.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "ne ... pas",
+        "def": "Negația franceză dublă ce încadrează verbul conjugat."
+      },
+      {
+        "term": "n' ... pas",
+        "def": "Forma elidată când verbul începe cu vocală sau h mut (ex: n'est pas)."
+      },
+      {
+        "term": "Omiterea lui 'ne' în vorbire",
+        "def": "În conversația rapidă informală, francezii omit des 'ne' spunând doar 'J'sais pas'."
+      },
+      {
+        "term": "Negație la Passé Composé",
+        "def": "Încadrează doar auxiliarul: 'Je n'ai pas mangé'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Je ne sais pas",
+        "right": "Nu știu"
+      },
+      {
+        "left": "Je ne parle pas anglais",
+        "right": "Nu vorbesc engleză"
+      },
+      {
+        "left": "Il n'est pas ici",
+        "right": "El nu este aici (cu n')"
+      },
+      {
+        "left": "Je n'ai pas le temps",
+        "right": "Nu am timp"
+      }
+    ],
+    "quiz": {
+      "question": "Care este forma negativă corectă a propoziției 'Je comprends' (Înțeleg)?",
+      "options": [
+        "Je ne comprends pas.",
+        "Je pas comprends.",
+        "Je non comprends.",
+        "Je ne comprends."
+      ],
+      "correctIndex": 0,
+      "explanation": "Formula obligatorie este 'ne' în fața verbului și 'pas' imediat după acesta: 'Je ne comprends pas'."
+    },
+    "task": "Scrie propoziția negativă 'Je ne parle pas français.' (Nu vorbesc franceză).",
+    "starterCode": "Je ne ",
+    "expectedOutputPattern": "Je\\s+ne\\s+parle\\s+pas\\s+fran[çc]ais\\.?",
+    "hint": "Scrie Je ne parle pas français."
+  },
+  {
+    "id": "fr-a1-p12",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 12: Cuvinte Interogative (Qui, Que, Où, Quand, Comment, Pourquoi)",
+    "theory": "\n<p>Pentru a pune întrebări de la zero, ai nevoie de cele 7 cuvinte interogative esențiale:</p>\n<h4>1. Pronumele și Adverbele de Întrebare</h4>\n<ul>\n  <li><code>Qui?</code> [ki] = Cine? (<em>Qui est là?</em> = Cine este acolo?).</li>\n  <li><code>Que / Qu'est-ce que?</code> = Ce? (<em>Qu'est-ce que tu fais?</em> = Ce faci?).</li>\n  <li><code>Où?</code> [u] = Unde? (<em>Où habitez-vous?</em> = Unde locuiți?).</li>\n  <li><code>Quand?</code> [kã] = Când? (<em>Quand part le train?</em> = Când pleacă trenul?).</li>\n  <li><code>Comment?</code> [kɔmã] = Cum? (<em>Comment ça va?</em> = Cum merge / Ce mai faci?).</li>\n  <li><code>Combien?</code> [kõbjɛ̃] = Cât / Câți? (<em>Combien ça coûte?</em> = Cât costă asta?).</li>\n  <li><code>Pourquoi?</code> [purkwa] = De ce? Răspunsul începe cu <code>Parce que</code> (Pentru că).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Où",
+        "def": "Unde (atenție la accentul grav 'ù' ce îl diferențiază de 'ou' = sau)."
+      },
+      {
+        "term": "Qu'est-ce que...",
+        "def": "Structură foarte folosită pentru a întreba 'Ce...' fără inversiune."
+      },
+      {
+        "term": "Pourquoi / Parce que",
+        "def": "Perechea 'De ce?' / 'Pentru că...' în limba franceză."
+      },
+      {
+        "term": "Comment ça va?",
+        "def": "Formula informală celebră: 'Ce mai faci?' / 'Cum merge?'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Où habites-tu?",
+        "right": "Unde locuiești?"
+      },
+      {
+        "left": "Combien ça coûte?",
+        "right": "Cât costă asta?"
+      },
+      {
+        "left": "Comment ça va?",
+        "right": "Cum merge / Ce mai faci?"
+      },
+      {
+        "left": "Pourquoi? - Parce que...",
+        "right": "De ce? - Pentru că..."
+      }
+    ],
+    "quiz": {
+      "question": "Ce cuvânt interogativ folosești pentru a întreba 'Unde este gara?'?",
+      "options": [
+        "Où (Où est la gare?)",
+        "Quand",
+        "Qui",
+        "Pourquoi"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Où' înseamnă 'Unde' în limba franceză."
+    },
+    "task": "Întreabă unde este toaleta: 'Où sont les toilettes, s'il vous plaît?'.",
+    "starterCode": "Où sont ",
+    "expectedOutputPattern": "O[ùu]\\s+sont\\s+les\\s+toilettes,\\s*s['’]il\\s+vous\\s+pla[iî]t\\??",
+    "hint": "Scrie Où sont les toilettes, s'il vous plaît?"
+  },
+  {
+    "id": "fr-a1-p13",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 13: Culori, Adjective & Acordul de Gen și Număr",
+    "theory": "\n<p>În franceză, adjectivele <strong>se acordă în gen (masculin/feminin) și număr (singular/plural)</strong> cu substantivul pe care îl descriu.</p>\n<h4>1. Regula Generală</h4>\n<ul>\n  <li>Pentru feminin: adaugă un <code>-e</code> la forma de masculin (<em>petit $\rightarrow$ petite</em>, <em>grand $\rightarrow$ grande</em>).</li>\n  <li>Pentru plural: adaugă un <code>-s</code> la ambele genuri (<em>petits / petites</em>).</li>\n</ul>\n<h4>2. Culorile de Bază</h4>\n<ul>\n  <li><em>blanc / blanche</em> (alb / albă), <em>noir / noire</em> (negru / neagră).</li>\n  <li><em>bleu / bleue</em> (albastru / albastră), <em>vert / verte</em> (verde).</li>\n  <li><em>rouge</em> (roșu - deja se termină în -e, rămâne la fel la feminin!).</li>\n  <li><em>jaune</em> (galben), <em>orange</em> și <em>marron</em> (sunt invariabile!).</li>\n</ul>\n<h4>3. Poziția Adjectivului</h4>\n<p>Majoritatea adjectivelor stau <strong>după substantiv</strong> (<em>un livre rouge</em>), cu excepția celor scurte de frumusețe, vârstă, bunătate și mărime (BAGS: <em>un beau garçon</em>, <em>une grande maison</em>).</p>\n",
+    "glossary": [
+      {
+        "term": "Accord des adjectifs",
+        "def": "Regula prin care adjectivul primește -e la feminin și -s la plural."
+      },
+      {
+        "term": "Poziție după substantiv",
+        "def": "Culorile și majoritatea adjectivelor stau DUPĂ substantiv (une voiture blanche)."
+      },
+      {
+        "term": "Invariable",
+        "def": "Adjective de culoare care nu își schimbă niciodată forma (marron, orange)."
+      },
+      {
+        "term": "blanc / blanche",
+        "def": "Schimbare neregulată de feminin cu adăugarea lui 'he'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "un chat noir",
+        "right": "o pisică neagră (motan negru - masc.)"
+      },
+      {
+        "left": "une voiture noire",
+        "right": "o mașină neagră (feminin cu -e)"
+      },
+      {
+        "left": "des maisons blanches",
+        "right": "case albe (feminin plural cu -es)"
+      },
+      {
+        "left": "un grand appartement",
+        "right": "un apartament mare (adjectiv plasat înainte)"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se acordă adjectivul 'vert' (verde) pentru substantivul feminin plural 'les pommes' (merele)?",
+      "options": [
+        "vertes (feminin plural: primește -e și -s)",
+        "verts",
+        "verte",
+        "vert"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Pomme' este feminin, iar 'les pommes' este la plural; așadar adăugăm '-es': 'les pommes vertes'."
+    },
+    "task": "Scrie sintagma 'une maison blanche et une grande porte' (o casă albă și o ușă mare).",
+    "starterCode": "une maison ",
+    "expectedOutputPattern": "une\\s+maison\\s+blanche\\s+et\\s+une\\s+grande\\s+porte\\.?",
+    "hint": "Scrie une maison blanche et une grande porte"
+  },
+  {
+    "id": "fr-a1-p14",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 14: Familia & Arborele Genealogic (La Famille)",
+    "theory": "\n<p>Să învățăm membrii familiei în limba franceză alături de articolele corespunzătoare:</p>\n<h4>1. Familia Directă</h4>\n<ul>\n  <li><code>le père</code> [pɛr] = tatăl / <code>papa</code> = tati.</li>\n  <li><code>la mère</code> [mɛr] = mama / <code>maman</code> = mami.</li>\n  <li><code>les parents</code> [parã] = părinții (atenție: nu înseamnă 'rude', ci strict 'părinți'!).</li>\n  <li><code>le fils</code> [fis] = fiul (litera l este mută, s se pronunță!).</li>\n  <li><code>la fille</code> [fij] = fiica (sau fata).</li>\n  <li><code>le frère</code> [frɛr] = fratele.</li>\n  <li><code>la sœur</code> [sœr] = sora.</li>\n</ul>\n<h4>2. Rude Extinse</h4>\n<p><code>les grands-parents</code> (bunicii), <code>le grand-père</code> (bunicul), <code>la grand-mère</code> (bunica), <code>l'oncle</code> (unchiul), <code>la tante</code> (mătușa), <code>le cousin / la cousine</code> (vărul / verișoara).</p>\n",
+    "glossary": [
+      {
+        "term": "les parents",
+        "def": "Părinții (tatăl și mama); este un 'faux ami' (nu înseamnă toate rudele)."
+      },
+      {
+        "term": "le frère / la sœur",
+        "def": "Fratele / sora în limba franceză."
+      },
+      {
+        "term": "le fils [fis]",
+        "def": "Fiul; pronunția este specială: l nu se aude, s se aude clar."
+      },
+      {
+        "term": "la grand-mère",
+        "def": "Bunica (se leagă cu cratimă)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "le père et la mère",
+        "right": "Tatăl și mama"
+      },
+      {
+        "left": "le frère et la sœur",
+        "right": "Fratele și sora"
+      },
+      {
+        "left": "le grand-père",
+        "right": "Bunicul"
+      },
+      {
+        "left": "mon cousin",
+        "right": "Vărul meu"
+      }
+    ],
+    "quiz": {
+      "question": "Ce înseamnă cuvântul francez 'les parents'?",
+      "options": [
+        "Părinții (tatăl și mama)",
+        "Toate rudele îndepărtate",
+        "Bunicii",
+        "Copiii"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Les parents' înseamnă strict părinții (mama și tata). Pentru rude în general se folosește cuvântul 'les proches' sau 'la famille'."
+    },
+    "task": "Scrie propoziția 'Mon père, ma mère et mon frère.' (Tatăl meu, mama mea și fratele meu).",
+    "starterCode": "Mon père, ",
+    "expectedOutputPattern": "Mon\\s+p[èe]re,\\s*ma\\s+m[èe]re\\s+et\\s+mon\\s+fr[èe]re\\.?",
+    "hint": "Scrie Mon père, ma mère et mon frère."
+  },
+  {
+    "id": "fr-a1-p15",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 15: Adjectivele Posesive (Mon, Ma, Mes / Ton, Ta, Tes / Son, Sa, Ses)",
+    "theory": "\n<p>În franceză, adjectivul posesiv <strong>se acordă cu obiectul posedat</strong> (cu ce ai), NU cu persoana care îl deține!</p>\n<h4>1. Tabelul Posesivelor</h4>\n<table>\n  <tr><th>Posesor</th><th>Masc. Sg.</th><th>Fem. Sg.</th><th>Plural (Masc & Fem)</th></tr>\n  <tr><td>Eu (Je)</td><td><code>mon</code></td><td><code>ma</code></td><td><code>mes</code></td></tr>\n  <tr><td>Tu (Tu)</td><td><code>ton</code></td><td><code>ta</code></td><td><code>tes</code></td></tr>\n  <tr><td>El/Ea (Il/Elle)</td><td><code>son</code></td><td><code>sa</code></td><td><code>ses</code></td></tr>\n  <tr><td>Noi (Nous)</td><td><code>notre</code></td><td><code>notre</code></td><td><code>nos</code></td></tr>\n  <tr><td>Voi/Dvs (Vous)</td><td><code>votre</code></td><td><code>votre</code></td><td><code>vos</code></td></tr>\n  <tr><td>Ei/Ele (Ils/Elles)</td><td><code>leur</code></td><td><code>leur</code></td><td><code>leurs</code></td></tr>\n</table>\n<h4>2. Regula Secretă: 'Mon' în loc de 'Ma'</h4>\n<p>Dacă un cuvânt feminin începe cu o vocală, se folosește <code>mon</code> în loc de <code>ma</code> pentru a evita ciocnirea a două vocale: <em><strong>mon</strong> amie</em> (prietena mea), NU <em>ma amie</em>!</p>\n",
+    "glossary": [
+      {
+        "term": "mon, ton, son",
+        "def": "Posesive masculine: al meu, al tău, al său."
+      },
+      {
+        "term": "ma, ta, sa",
+        "def": "Posesive feminine: a mea, a ta, a sa."
+      },
+      {
+        "term": "mes, tes, ses",
+        "def": "Posesive de plural pentru ambele genuri."
+      },
+      {
+        "term": "mon amie",
+        "def": "Excepție eufonică: folosirea lui 'mon' în fața unui cuvânt feminin ce începe cu vocală."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "mon livre / ma maison",
+        "right": "cartea mea / casa mea"
+      },
+      {
+        "left": "mes amis",
+        "right": "prietenii mei"
+      },
+      {
+        "left": "notre projet / nos projets",
+        "right": "proiectul nostru / proiectele noastre"
+      },
+      {
+        "left": "mon amie (feminin)",
+        "right": "prietena mea (cu mon pentru eufonie)"
+      }
+    ],
+    "quiz": {
+      "question": "De ce spunem 'mon amie' (prietena mea) dacă 'amie' este un substantiv de genul feminin?",
+      "options": [
+        "Pentru a evita cacofonia și ciocnirea a două vocale (ma amie ar suna sacadat).",
+        "'Amie' este de fapt de genul masculin.",
+        "Forma 'ma' a fost ștearsă din dicționar.",
+        "Se folosește doar când vorbește un băiat."
+      ],
+      "correctIndex": 0,
+      "explanation": "În fața oricărui substantiv feminin care începe cu vocală sau h mut, ma/ta/sa devin obligatoriu mon/ton/son pentru fluiditate fonetică."
+    },
+    "task": "Scrie sintagma 'mon passeport et mes bagages' (pașaportul meu și bagajele mele).",
+    "starterCode": "// Scrie sintagma\n",
+    "expectedOutputPattern": "mon\\s+passeport\\s+et\\s+mes\\s+bagages\\.?",
+    "hint": "Scrie mon passeport et mes bagages"
+  },
+  {
+    "id": "fr-a1-p16",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 16: Corpul Uman & Cum Exprimăm Durerea (J'ai mal à...)",
+    "theory": "\n<p>Când mergi la medic sau la farmacie în Franța, trebuie să știi să indici unde te doare.</p>\n<h4>1. Părțile Corpului (Le Corps Humain)</h4>\n<ul>\n  <li><code>la tête</code> (capul), <code>le ventre</code> (burta/stomacul), <code>le dos</code> (spatele).</li>\n  <li><code>la gorge</code> (gâtul), <code>les yeux</code> (ochii), <code>les dents</code> (dinții).</li>\n  <li><code>le bras</code> (brațul), <code>la jambe</code> (piciorul).</li>\n</ul>\n<h4>2. Structura: AVOIR MAL À...</h4>\n<p>Prepoziția <code>à</code> se contractă cu articolul hotărât:</p>\n<ul>\n  <li>à + le = <strong>au</strong>: <em>J'ai mal <strong>au</strong> ventre / au dos</em> (Mă doare burta / spatele).</li>\n  <li>à + la = <strong>à la</strong>: <em>J'ai mal <strong>à la</strong> tête / à la gorge</em> (Mă doare capul / gâtul).</li>\n  <li>à + l' = <strong>à l'</strong>: <em>J'ai mal <strong>à l'</strong>oreille</em> (Mă doare urechea).</li>\n  <li>à + les = <strong>aux</strong>: <em>J'ai mal <strong>aux</strong> dents / aux yeux</em> (Mă dor dinții / ochii).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "J'ai mal à la tête",
+        "def": "'Mă doare capul' (literal: am durere la cap)."
+      },
+      {
+        "term": "J'ai mal au ventre",
+        "def": "'Mă doare burta' (contractat: à + le = au)."
+      },
+      {
+        "term": "J'ai mal aux dents",
+        "def": "'Mă dor dinții' (contractat: à + les = aux)."
+      },
+      {
+        "term": "le dos",
+        "def": "Spatele (litera 's' este mută)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "J'ai mal à la tête",
+        "right": "Mă doare capul"
+      },
+      {
+        "left": "J'ai mal au ventre",
+        "right": "Mă doare burta (au = à + le)"
+      },
+      {
+        "left": "J'ai mal aux yeux",
+        "right": "Mă dor ochii (aux = à + les)"
+      },
+      {
+        "left": "J'ai de la fièvre",
+        "right": "Am febră"
+      }
+    ],
+    "quiz": {
+      "question": "Cum spui corect 'Mă doare stomacul' dacă 'ventre' este un substantiv masculin?",
+      "options": [
+        "J'ai mal au ventre. (à + le = au)",
+        "J'ai mal à la ventre.",
+        "J'ai mal à le ventre.",
+        "Je suis mal ventre."
+      ],
+      "correctIndex": 0,
+      "explanation": "Prepoziția 'à' fuzionată cu articolul masculin 'le' formează obligatoriu articolul contractat 'au': 'J'ai mal au ventre'."
+    },
+    "task": "Scrie fraza medicală 'J'ai mal à la tête et j'ai de la fièvre.' (Mă doare capul și am febră).",
+    "starterCode": "J'ai mal à ",
+    "expectedOutputPattern": "J['’]ai\\s+mal\\s+[àa]\\s+la\\s+t[êe]te\\s+et\\s+j['’]ai\\s+de\\s+la\\s+fi[èe]vre\\.?",
+    "hint": "Scrie J'ai mal à la tête et j'ai de la fièvre."
+  },
+  {
+    "id": "fr-a1-p17",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 17: Mâncarea, Băuturile & La Restaurant (Comanda & Nota)",
+    "theory": "\n<p>Mâncarea este o artă în cultura franceză. Iată cum comanzi ca un localnic într-o braserie pariziană:</p>\n<h4>1. Mesele Zilei & Alimente Esențiale</h4>\n<ul>\n  <li><code>le petit-déjeuner</code> = micul dejun.</li>\n  <li><code>le déjeuner</code> = prânzul.</li>\n  <li><code>le dîner</code> = cina.</li>\n  <li><em>le poulet</em> (puiul), <em>la viande</em> (carnea), <em>le poisson</em> (peștele), <em>les légumes</em> (legumele), <em>le fromage</em> (brânza).</li>\n</ul>\n<h4>2. Cum Comanzi Politicos</h4>\n<p>Nu spune niciodată « Je veux » (Vreau - sună agresiv!). Folosește condiționalul de politețe:</p>\n<ul>\n  <li><code>Je voudrais...</code> [jə vudrɛ] = Aș dori... (<em>Je voudrais un café, s'il vous plaît</em>).</li>\n  <li><code>Pour moi, ce sera...</code> = Pentru mine va fi...</li>\n  <li><code>L'addition, s'il vous plaît!</code> [ladisjõ] = Nota de plată, vă rog!</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Je voudrais...",
+        "def": "Formulă de aur de politețe: 'Aș dori...' în loc de brutalul 'Vreau'."
+      },
+      {
+        "term": "L'addition, s'il vous plaît",
+        "def": "Cum ceri nota de plată la restaurant în Franța."
+      },
+      {
+        "term": "une carafe d'eau",
+        "def": "O carafă de apă de la robinet, gratuită prin lege în restaurantele franceze."
+      },
+      {
+        "term": "Bon appétit!",
+        "def": "'Poftă bună!'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Je voudrais un café",
+        "right": "Aș dori o cafea"
+      },
+      {
+        "left": "L'addition, s'il vous plaît",
+        "right": "Nota de plată, vă rog"
+      },
+      {
+        "left": "Une carafe d'eau",
+        "right": "O carafă cu apă (gratuită)"
+      },
+      {
+        "left": "C'est délicieux!",
+        "right": "Este delicios!"
+      }
+    ],
+    "quiz": {
+      "question": "Ce expresie folosești pentru a cere nota de plată la finalul mesei într-un restaurant francez?",
+      "options": [
+        "L'addition, s'il vous plaît!",
+        "Le compte, s'il vous plaît!",
+        "La facture maintenant!",
+        "Combien pour moi?"
+      ],
+      "correctIndex": 0,
+      "explanation": "La restaurant, nota se numește exclusiv 'l'addition'."
+    },
+    "task": "Comandă politicos: 'Je voudrais l'addition, s'il vous plaît.'.",
+    "starterCode": "Je voudrais ",
+    "expectedOutputPattern": "Je\\s+voudrais\\s+l['’]addition,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?",
+    "hint": "Scrie Je voudrais l'addition, s'il vous plaît."
+  },
+  {
+    "id": "fr-a1-p18",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 18: Locuința, Camerele & Mobilierul (La Maison)",
+    "theory": "\n<p>Să descriem o locuință (apartament sau casă) și încăperile sale:</p>\n<h4>1. Încăperile Casei</h4>\n<ul>\n  <li><code>la maison</code> = casa / <code>l'appartement</code> (masc.) = apartamentul.</li>\n  <li><code>le salon</code> / <code>le séjour</code> = sufrageria / camera de zi.</li>\n  <li><code>la cuisine</code> = bucătăria.</li>\n  <li><code>la chambre</code> = dormitorul.</li>\n  <li><code>la salle de bains</code> = baia.</li>\n  <li><code>les toilettes</code> (feminin plural) = toaleta (în Franța toaleta este adesea o cameră separată de baie!).</li>\n</ul>\n<h4>2. Mobilier & Obiecte</h4>\n<p><code>la table</code> (masa), <code>la chaise</code> (scaunul), <code>le lit</code> (patul), <code>l'armoire</code> (dulapul), <code>le canapé</code> (canapeaua).</p>\n",
+    "glossary": [
+      {
+        "term": "la chambre",
+        "def": "Dormitorul (sau o cameră de hotel)."
+      },
+      {
+        "term": "la salle de bains",
+        "def": "Baia unde se află cada sau dușul."
+      },
+      {
+        "term": "le salon",
+        "def": "Camera de zi / sufrageria."
+      },
+      {
+        "term": "Il y a...",
+        "def": "Expresie esențială ce înseamnă 'Se află...' / 'Există...'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "dans la cuisine",
+        "right": "în bucătărie"
+      },
+      {
+        "left": "dans la chambre",
+        "right": "în dormitor"
+      },
+      {
+        "left": "Il y a un grand lit",
+        "right": "Se află un pat mare"
+      },
+      {
+        "left": "sur la table",
+        "right": "pe masă"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se numește 'dormitorul' în limba franceză?",
+      "options": [
+        "la chambre",
+        "la cuisine",
+        "le bureau",
+        "le garage"
+      ],
+      "correctIndex": 0,
+      "explanation": "Dormitorul este 'la chambre'."
+    },
+    "task": "Scrie propoziția 'Il y a une table et quatre chaises dans la cuisine.'.",
+    "starterCode": "Il y a une ",
+    "expectedOutputPattern": "Il\\s+y\\s+a\\s+une\\s+table\\s+et\\s+quatre\\s+chaises\\s+dans\\s+la\\s+cuisine\\.?",
+    "hint": "Scrie Il y a une table et quatre chaises dans la cuisine."
+  },
+  {
+    "id": "fr-a1-p19",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 19: Orașul & Întrebarea Direcției (La Ville et les Directions)",
+    "theory": "\n<p>Când vizitezi Parisul sau alt oraș francofon, trebuie să știi să te orientezi pe stradă:</p>\n<h4>1. Locuri Publice</h4>\n<p><code>la rue</code> (strada), <code>la place</code> (piața), <code>la gare</code> (gara), <code>l'hôtel</code> (hotelul), <code>la pharmacie</code> (farmacia), <code>le supermarché</code> (supermarketul), <code>le pont</code> (podul).</p>\n<h4>2. Indicații de Direcție</h4>\n<ul>\n  <li><code>Allez tout droit</code> [ale tu drwa] = Mergeți drept înainte.</li>\n  <li><code>Tournez à gauche</code> = Virați la stânga.</li>\n  <li><code>Tournez à droite</code> = Virați la dreapta.</li>\n  <li><code>Prenez la première rue à droite</code> = Luați prima stradă la dreapta.</li>\n  <li><code>C'est près d'ici / C'est loin</code> = E aproape de aici / E departe.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "tout droit",
+        "def": "Drept înainte (atenție: 'à droite' înseamnă la dreapta; 'tout droit' înseamnă drept înainte!)."
+      },
+      {
+        "term": "à gauche / à droite",
+        "def": "La stânga / la dreapta."
+      },
+      {
+        "term": "la gare",
+        "def": "Gara feroviară."
+      },
+      {
+        "term": "Où se trouve...?",
+        "def": "Unde se află...?"
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Allez tout droit",
+        "right": "Mergeți drept înainte"
+      },
+      {
+        "left": "Tournez à gauche",
+        "right": "Virați la stânga"
+      },
+      {
+        "left": "Tournez à droite",
+        "right": "Virați la dreapta"
+      },
+      {
+        "left": "Où est la gare?",
+        "right": "Unde este gara?"
+      }
+    ],
+    "quiz": {
+      "question": "Ce înseamnă instrucțiunea 'Allez tout droit, puis tournez à droite'?",
+      "options": [
+        "Mergeți drept înainte, apoi virați la dreapta.",
+        "Mergeți la stânga, apoi opriți-vă.",
+        "Traversați strada și luați autobuzul.",
+        "Întoarceți-vă la hotel."
+      ],
+      "correctIndex": 0,
+      "explanation": "'Tout droit' înseamnă drept înainte, iar 'à droite' înseamnă la dreapta."
+    },
+    "task": "Scrie îndrumarea 'Allez tout droit et tournez à gauche.' (Mergeți drept înainte și virați la stânga).",
+    "starterCode": "Allez tout ",
+    "expectedOutputPattern": "Allez\\s+tout\\s+droit\\s+et\\s+tournez\\s+[àa]\\s+gauche\\.?",
+    "hint": "Scrie Allez tout droit et tournez à gauche."
+  },
+  {
+    "id": "fr-a1-p20",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 20: Vremea & Starea Meteo (Quel temps fait-il?)",
+    "theory": "\n<p>Pentru a întreba despre vreme, se folosește întrebarea: <strong>« Quel temps fait-il? »</strong>. Răspunsul folosește aproape mereu construcția impersonală <strong>« Il fait... »</strong> (de la verbul faire):</p>\n<h4>1. Expresii Climatice</h4>\n<ul>\n  <li><code>Il fait beau</code> = E vreme frumoasă.</li>\n  <li><code>Il fait mauvais</code> = E vreme urâtă.</li>\n  <li><code>Il fait chaud</code> = E cald.</li>\n  <li><code>Il fait froid</code> = E frig.</li>\n  <li><code>Il y a du soleil</code> = E soare.</li>\n  <li><code>Il y a du vent</code> = E vânt.</li>\n</ul>\n<h4>2. Verbe Meteorologice Speciale</h4>\n<ul>\n  <li><code>Il pleut</code> (de la verbul <em>pleuvoir</em>) = Plouă.</li>\n  <li><code>Il neige</code> (de la verbul <em>neiger</em>) = Ninge.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Quel temps fait-il?",
+        "def": "Întrebarea clasică: 'Cum este vremea?'."
+      },
+      {
+        "term": "Il fait beau / froid",
+        "def": "Construcție impersonală cu verbul faire pentru descrierea vremii."
+      },
+      {
+        "term": "Il pleut",
+        "def": "'Plouă' (de la verbul neregulat pleuvoir)."
+      },
+      {
+        "term": "Il neige",
+        "def": "'Ninge'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Il fait beau",
+        "right": "E vreme frumoasă"
+      },
+      {
+        "left": "Il fait froid",
+        "right": "E frig"
+      },
+      {
+        "left": "Il pleut",
+        "right": "Plouă"
+      },
+      {
+        "left": "Il y a du soleil",
+        "right": "Este soare"
+      }
+    ],
+    "quiz": {
+      "question": "Cum spui 'Plouă și e frig astăzi' în limba franceză?",
+      "options": [
+        "Il pleut et il fait froid aujourd'hui.",
+        "Il fait pleuvoir et froid.",
+        "Il est pleuvant et froid.",
+        "La pluie est froide aujourd'hui."
+      ],
+      "correctIndex": 0,
+      "explanation": "'Il pleut' înseamnă plouă, iar 'il fait froid' înseamnă este frig."
+    },
+    "task": "Scrie propoziția meteo 'Aujourd'hui il fait beau et il y a du soleil.'.",
+    "starterCode": "Aujourd'hui il ",
+    "expectedOutputPattern": "Aujourd['’]hui\\s+il\\s+fait\\s+beau\\s+et\\s+il\\s+y\\s+a\\s+du\\s+soleil\\.?",
+    "hint": "Scrie Aujourd'hui il fait beau et il y a du soleil."
+  },
+  {
+    "id": "fr-a1-p21",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 40,
-    "title": "Capitolul 3: Passé Composé cu Auxiliarul „Avoir”",
-    "theory": "\n<p><strong>Passé Composé</strong> exprimă o acțiune punctuală finalizată în trecut. Pentru majoritatea covârșitoare a verbelor, se formează cu auxiliarul <strong>avoir</strong> conjugat la prezent + <strong>participiul trecut (participe passé)</strong> al verbului.</p>\n<h4>1. Formarea Participiului Trecut</h4>\n<ul>\n  <li>Verbe în <code>-er</code> $\rightarrow$ <code>-é</code> (<em>parler $\rightarrow$ parlé</em>, <em>manger $\rightarrow$ mangé</em>).</li>\n  <li>Verbe în <code>-ir</code> $\rightarrow$ <code>-i</code> (<em>finir $\rightarrow$ fini</em>, <em>choisir $\rightarrow$ choisi</em>).</li>\n  <li>Verbe neregulate: <em>avoir $\rightarrow$ eu</em>, <em>être $\rightarrow$ été</em>, <em>faire $\rightarrow$ fait</em>, <em>voir $\rightarrow$ vu</em>.</li>\n</ul>\n<h4>2. Structura Propoziției</h4>\n<p><em>J'ai mangé un croissant</em> (Am mâncat un croissant). La negație, particulele <code>ne... pas</code> încadrează auxiliarul: <em>Je n'ai pas mangé</em>.</p>\n",
+    "title": "Capitolul 21: Verbul „ALLER” (A MERGE) & Le Futur Proche (Viitorul Imediat)",
+    "theory": "\n<p>Verbul <strong>aller</strong> (a merge) este al treilea cel mai utilizat verb din franceză și servește drept motor pentru construirea <strong>viitorului imediat (Le Futur Proche)</strong>.</p>\n<h4>1. Conjugarea Verbului ALLER</h4>\n<ul>\n  <li><code>Je vais</code> [jə vɛ] = Eu merg / mă duc.</li>\n  <li><code>Tu vas</code> [ty va] = Tu mergi.</li>\n  <li><code>Il / Elle va</code> = El / Ea merge.</li>\n  <li><code>Nous allons</code> [nuz alõ] = Noi mergem.</li>\n  <li><code>Vous allez</code> [vuz ale] = Voi mergeți.</li>\n  <li><code>Ils / Elles vont</code> [il võ] = Ei / Ele merg.</li>\n</ul>\n<h4>2. Le Futur Proche (ALLER + Infinitiv)</h4>\n<p>Pentru a exprima ceva ce vei face imediat sau în viitorul apropiat, folosești formula: <strong>ALLER conjugat + Infinitivul verbului</strong>:</p>\n<ul>\n  <li><em>Je <strong>vais manger</strong></em> = Voi mânca / Urmează să mănânc.</li>\n  <li><em>Nous <strong>allons partir</strong></em> = Vom pleca.</li>\n  <li><em>Qu'est-ce que tu <strong>vas faire</strong>?</em> = Ce ai de gând să faci?</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Aller",
+        "def": "Verbul 'a merge', complet neregulat (vais, vas, va, allons, allez, vont)."
+      },
+      {
+        "term": "Futur Proche",
+        "def": "Timp viitor foarte simplu format din Aller + Infinitiv (echivalent cu 'I am going to...')."
+      },
+      {
+        "term": "Je vais",
+        "def": "Eu merg / Urmează să fac ceva."
+      },
+      {
+        "term": "Nous allons",
+        "def": "Noi mergem."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Je vais au cinéma",
+        "right": "Merg la cinema"
+      },
+      {
+        "left": "Je vais manger",
+        "right": "Urmează să mănânc (Futur Proche)"
+      },
+      {
+        "left": "Nous allons voyager",
+        "right": "Vom călători"
+      },
+      {
+        "left": "Ils vont partir",
+        "right": "Ei vor pleca"
+      }
+    ],
+    "quiz": {
+      "question": "Cum formezi Futur Proche pentru 'Eu voi dormi' (dormir = a dormi)?",
+      "options": [
+        "Je vais dormir.",
+        "Je dors futur.",
+        "Je suis dormir.",
+        "Je aller dormir."
+      ],
+      "correctIndex": 0,
+      "explanation": "Formula pentru Futur Proche este Je vais + infinitivul: 'Je vais dormir'."
+    },
+    "task": "Scrie propoziția la Futur Proche 'Je vais étudier le français ce soir.' (Voi studia franceza diseară).",
+    "starterCode": "Je vais ",
+    "expectedOutputPattern": "Je\\s+vais\\s+[ée]tudier\\s+le\\s+fran[çc]ais\\s+ce\\s+soir\\.?",
+    "hint": "Scrie Je vais étudier le français ce soir."
+  },
+  {
+    "id": "fr-a1-p22",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 40,
+    "title": "Capitolul 22: Verbele Reflexive & Rutina Zilnică (Se lever, Se doucher)",
+    "theory": "\n<p>Verbele care descriu acțiunile pe care le facem asupra propriului corp (rutina zilnică) sunt <strong>verbe pronominale (reflexive)</strong> și folosesc pronumele reflexive: <code>me, te, se, nous, vous, se</code>.</p>\n<h4>1. Conjugarea unui Verb Reflexiv (Exemplu: Se lever = A se trezi/scula)</h4>\n<ul>\n  <li><code>Je me lève</code> = Eu mă scol.</li>\n  <li><code>Tu te lèves</code> = Tu te scoli.</li>\n  <li><code>Il / Elle se lève</code> = El / Ea se scoală.</li>\n  <li><code>Nous nous levons</code> = Noi ne sculăm.</li>\n  <li><code>Vous vous levez</code> = Voi vă sculați.</li>\n  <li><code>Ils / Elles se lèvent</code> = Ei / Ele se scoală.</li>\n</ul>\n<h4>2. Alte Verbe de Rutină</h4>\n<p><code>se réveiller</code> (a se trezi), <code>se doucher</code> (a face duș), <code>s'habiller</code> (a se îmbrăca), <code>se coucher</code> (a se culca).</p>\n",
+    "glossary": [
+      {
+        "term": "Verbes pronominaux",
+        "def": "Verbe reflexive precedate de pronumele me, te, se, nous, vous, se."
+      },
+      {
+        "term": "Je me réveille",
+        "def": "'Mă trezesc'."
+      },
+      {
+        "term": "Je me couche",
+        "def": "'Mă culc' (merg la culcare)."
+      },
+      {
+        "term": "s'habiller",
+        "def": "A se îmbrăca (elidat în s' în fața vocalei)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Je me réveille à 7h",
+        "right": "Mă trezesc la ora 7"
+      },
+      {
+        "left": "Je me douche",
+        "right": "Fac duș"
+      },
+      {
+        "left": "Il s'habille vite",
+        "right": "El se îmbracă repede"
+      },
+      {
+        "left": "Nous nous couchons",
+        "right": "Ne culcăm"
+      }
+    ],
+    "quiz": {
+      "question": "Care este forma corectă pentru 'Noi ne trezim la ora 8' folosind verbul 'se réveiller'?",
+      "options": [
+        "Nous nous réveillons à 8h.",
+        "Nous réveillons à 8h.",
+        "Nous se réveillons à 8h.",
+        "Nous vous réveillons à 8h."
+      ],
+      "correctIndex": 0,
+      "explanation": "La persoana 'nous', pronumele reflexiv se repetă: 'Nous nous réveillons'."
+    },
+    "task": "Scrie propoziția de rutină 'Je me lève à sept heures tous les jours.' (Mă scol la ora 7 în fiecare zi).",
+    "starterCode": "Je me ",
+    "expectedOutputPattern": "Je\\s+me\\s+l[èe]ve\\s+[àa]\\s+sept\\s+heures\\s+tous\\s+les\\s+jours\\.?",
+    "hint": "Scrie Je me lève à sept heures tous les jours."
+  },
+  {
+    "id": "fr-a1-p23",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 40,
+    "title": "Capitolul 23: Verbele Modale: Pouvoir (A putea), Vouloir (A vrea), Devoir (A trebui)",
+    "theory": "\n<p>Verbele modale sunt urmate direct de un alt verb la <strong>infinitiv</strong> (fără nicio prepoziție între ele).</p>\n<h4>1. POUVOIR (A Putea)</h4>\n<p><em>Je peux, tu peux, il peut, nous pouvons, vous pouvez, ils peuvent</em>.<br>\nExemplu: <em>Je peux vous aider?</em> = Pot să vă ajut?</p>\n<h4>2. VOULOIR (A Vrea)</h4>\n<p><em>Je veux, tu veux, il veut, nous voulons, vous voulez, ils veulent</em>.<br>\nExemplu: <em>Tu veux venir avec moi?</em> = Vrei să vii cu mine?</p>\n<h4>3. DEVOIR (A Trebui / Obligație)</h4>\n<p><em>Je dois, tu dois, il doit, nous devons, vous devez, ils doivent</em>.<br>\nExemplu: <em>Je dois partir maintenant</em> = Trebuie să plec acum.</p>\n",
+    "glossary": [
+      {
+        "term": "Pouvoir",
+        "def": "A putea (capacitate sau permisiune)."
+      },
+      {
+        "term": "Vouloir",
+        "def": "A vrea (dorință)."
+      },
+      {
+        "term": "Devoir",
+        "def": "A trebui (obligație sau datorie)."
+      },
+      {
+        "term": "Modal + Infinitif",
+        "def": "Construcție directă fără prepoziție: Je peux faire, Je dois partir."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Je peux vous aider?",
+        "right": "Pot să vă ajut?"
+      },
+      {
+        "left": "Je veux apprendre",
+        "right": "Vreau să învăț"
+      },
+      {
+        "left": "Je dois partir",
+        "right": "Trebuie să plec"
+      },
+      {
+        "left": "Ils peuvent venir",
+        "right": "Ei pot să vină"
+      }
+    ],
+    "quiz": {
+      "question": "Cum traduci în franceză 'Trebuie să lucrez astăzi' folosind verbul 'devoir'?",
+      "options": [
+        "Je dois travailler aujourd'hui.",
+        "Je peux travailler aujourd'hui.",
+        "Je veux travailler aujourd'hui.",
+        "Je suis travailler aujourd'hui."
+      ],
+      "correctIndex": 0,
+      "explanation": "'Je dois' înseamnă 'eu trebuie', urmat de infinitivul 'travailler'."
+    },
+    "task": "Scrie propoziția 'Je veux apprendre le français et je peux réussir.'.",
+    "starterCode": "Je veux ",
+    "expectedOutputPattern": "Je\\s+veux\\s+apprendre\\s+le\\s+fran[çc]ais\\s+et\\s+je\\s+peux\\s+r[ée]ussir\\.?",
+    "hint": "Scrie Je veux apprendre le français et je peux réussir."
+  },
+  {
+    "id": "fr-a1-p24",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 40,
+    "title": "Capitolul 24: Verbele Neregulate Majore: FAIRE (A face) & PRENDRE (A lua)",
+    "theory": "\n<p>Verbele <strong>faire</strong> și <strong>prendre</strong> apar în sute de expresii uzuale franceze:</p>\n<h4>1. FAIRE (A face)</h4>\n<p><code>Je fais, tu fais, il fait, nous faisons [fəzõ], vous faites, ils font</code>.<br>\nUtilizări: <em>faire du sport</em> (a face sport), <em>faire la cuisine</em> (a găti), <em>faire les courses</em> (a face cumpărături), <em>faire attention</em> (a fi atent).</p>\n<h4>2. PRENDRE (A lua)</h4>\n<p><code>Je prends, tu prends, il prend, nous prenons, vous prenez, ils prennent</code>.<br>\nUtilizări: <em>prendre le bus/métro</em> (a lua autobuzul), <em>prendre un café</em> (a bea o cafea), <em>prendre une douche</em> (a face un duș).</p>\n",
+    "glossary": [
+      {
+        "term": "Faire",
+        "def": "Verb neregulat: je fais, tu fais, il fait, nous faisons, vous faites, ils font."
+      },
+      {
+        "term": "faire les courses",
+        "def": "Expresie idiomatică ce înseamnă 'a face cumpărături de alimente'."
+      },
+      {
+        "term": "Prendre",
+        "def": "A lua; folosit și pentru mâncare/băutură (prendre un café) și transport (prendre le train)."
+      },
+      {
+        "term": "vous faites",
+        "def": "Atenție: la vous nu este 'faisez', ci 'vous faites'!"
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Je fais du sport",
+        "right": "Fac sport"
+      },
+      {
+        "left": "Je prends le métro",
+        "right": "Iau metroul"
+      },
+      {
+        "left": "Nous faisons les courses",
+        "right": "Facem cumpărăturile"
+      },
+      {
+        "left": "Vous faites attention",
+        "right": "Sunteți atent"
+      }
+    ],
+    "quiz": {
+      "question": "Care este forma de persoana a 2-a plural (vous) a verbului 'faire'?",
+      "options": [
+        "vous faites (formă neregulată unică)",
+        "vous faisez",
+        "vous font",
+        "vous faitez"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Faire' este unul dintre puținele verbe a cărui formă pentru 'vous' este 'vous faites' (nu faisez!)."
+    },
+    "task": "Scrie propoziția 'Je prends un café et je fais mes devoirs.' (Beau o cafea și îmi fac temele).",
+    "starterCode": "Je prends ",
+    "expectedOutputPattern": "Je\\s+prends\\s+un\\s+caf[ée]\\s+et\\s+je\\s+fais\\s+mes\\s+devoirs\\.?",
+    "hint": "Scrie Je prends un café et je fais mes devoirs."
+  },
+  {
+    "id": "fr-a1-p25",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 45,
+    "title": "Capitolul 25: Sinteză Conversațională A1: Dialog Complet la Hotel & Check-in",
+    "theory": "\n<p>Felicitări! Ai finalizat Fundamentele de la Zero A1. Să unim tot ce am învățat (salutări, être, avoir, numere, politețe) într-un dialog real de check-in la un hotel francez.</p>\n<h4>1. Replicile Recepționerului</h4>\n<ul>\n  <li><em>Bonjour Monsieur/Madame, bienvenue à l'Hôtel de Paris.</em></li>\n  <li><em>Vous avez une réservation?</em> (Aveți o rezervare?)</li>\n  <li><em>C'est à quel nom?</em> (Pe ce nume este?)</li>\n</ul>\n<h4>2. Răspunsurile Clientului</h4>\n<ul>\n  <li><em>Oui, j'ai une réservation au nom de Popescu pour trois nuits.</em></li>\n  <li><em>Voici mon passeport.</em> (Iată pașaportul meu.)</li>\n  <li><em>À quelle heure est le petit-déjeuner?</em> (La ce oră este micul dejun?)</li>\n  <li><em>Le petit-déjeuner est de 7h à 10h. Voici votre clé, chambre 204.</em></li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "une réservation",
+        "def": "O rezervare la hotel sau restaurant."
+      },
+      {
+        "term": "Voici mon passeport",
+        "def": "'Iată pașaportul meu' (prezentarea documentelor)."
+      },
+      {
+        "term": "la clé",
+        "def": "Cheia camerei de hotel."
+      },
+      {
+        "term": "au nom de...",
+        "def": "Pe numele lui..."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "J'ai une réservation",
+        "right": "Am o rezervare"
+      },
+      {
+        "left": "C'est à quel nom?",
+        "right": "Pe ce nume este?"
+      },
+      {
+        "left": "Voici votre clé",
+        "right": "Iată cheia dumneavoastră"
+      },
+      {
+        "left": "Pour trois nuits",
+        "right": "Pentru trei nopți"
+      }
+    ],
+    "quiz": {
+      "question": "Cum îi spui recepționerului că ai o rezervare pe numele 'Ionescu'?",
+      "options": [
+        "J'ai une réservation au nom de Ionescu.",
+        "Je suis réservation nom Ionescu.",
+        "Mon nom est réserver Ionescu.",
+        "Je prends Ionescu."
+      ],
+      "correctIndex": 0,
+      "explanation": "Formula consacrată în franceză este 'J'ai une réservation au nom de [Nume]'."
+    },
+    "task": "Scrie replica 'Bonjour, j'ai une réservation pour deux personnes, s'il vous plaît.'.",
+    "starterCode": "Bonjour, j'ai ",
+    "expectedOutputPattern": "Bonjour,\\s*j['’]ai\\s+une\\s+r[ée]servation\\s+pour\\s+deux\\s+personnes,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?",
+    "hint": "Scrie Bonjour, j'ai une réservation pour deux personnes, s'il vous plaît."
+  },
+  {
+    "id": "fr-b1-p26",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 26: Passé Composé cu Auxiliarul AVOIR & Participiul Regulat",
+    "theory": "\n<p><strong>Passé Composé</strong> este cel mai frecvent timp trecut în limba franceză pentru acțiuni încheiate, punctuale.</p>\n<h4>1. Structura cu Auxiliarul AVOIR</h4>\n<p>Se compune din: <code>Subiect + AVOIR la prezent + Participiu trecut</code>.</p>\n<ul>\n  <li>Verbe în <code>-er</code> &rarr; participiu în <code>-é</code>: <em>parler &rarr; parlé</em>, <em>manger &rarr; mangé</em>.</li>\n  <li>Verbe în <code>-ir</code> &rarr; participiu în <code>-i</code>: <em>finir &rarr; fini</em>, <em>choisir &rarr; choisi</em>.</li>\n  <li>Verbe în <code>-re</code> &rarr; participiu în <code>-u</code>: <em>vendre &rarr; vendu</em>, <em>attendre &rarr; attendu</em>.</li>\n</ul>\n<h4>2. Regula Absenței Acordului cu Subiectul</h4>\n<p>Când auxiliarul este <strong>avoir</strong>, participiul trecut <strong>NU</strong> se acordă cu subiectul: <em>Elle a mangé</em> (fără 'e' la final!), <em>Ils ont parlé</em> (fără 's'!).</p>\n",
     "glossary": [
       {
         "term": "Passé Composé",
-        "def": "Timpul trecut compus cel mai utilizat în limba franceză pentru acțiuni încheiate."
+        "def": "Timpul trecut compus francez pentru evenimente terminate punctual în trecut."
       },
       {
-        "term": "Auxiliaire avoir",
-        "def": "Verbul 'a avea' conjugat la prezent (ai, as, a, avons, avez, ont) ca bază a timpului."
+        "term": "Participiul trecut (-é, -i, -u)",
+        "def": "Forma verbală trecută obținută prin înlocuirea terminației de infinitiv."
       },
       {
-        "term": "Participe passé",
-        "def": "Forma verbală de participiu trecut (ex: parlé, fini, fait, vu)."
+        "term": "Auxiliarul Avoir",
+        "def": "Auxiliarul folosit de peste 85% din verbele franceze la timpurile compuse."
       },
       {
-        "term": "Négation au passé",
-        "def": "Plasarea lui 'ne... pas' în jurul auxiliarului avoir (n'ai pas)."
+        "term": "Non-acord cu subiectul",
+        "def": "La timpurile compuse cu avoir, participiul nu își schimbă forma după genul sau numărul subiectului."
       }
     ],
     "matchingPairs": [
       {
-        "left": "J'ai parlé avec lui",
-        "right": "Am vorbit cu el"
+        "left": "J'ai parlé au directeur",
+        "right": "Am vorbit cu directorul"
       },
       {
-        "left": "Nous avons fini le projet",
-        "right": "Am terminat proiectul"
+        "left": "Elle a fini ses devoirs",
+        "right": "Ea și-a terminat temele"
       },
       {
-        "left": "Elle a fait ses devoirs",
-        "right": "Ea și-a făcut temele"
+        "left": "Nous avons attendu le train",
+        "right": "Noi am așteptat trenul"
       },
       {
-        "left": "Tu n'as pas vu le film",
-        "right": "Nu ai văzut filmul"
+        "left": "Ils ont vendu la maison",
+        "right": "Ei au vândut casa"
       }
     ],
     "quiz": {
-      "question": "Care este participiul trecut (participe passé) corect al verbului 'faire' în franceză?",
+      "question": "Cum se traduce corect 'Ea a mâncat o salată' folosind verbul 'manger' la passé composé?",
       "options": [
-        "fait (J'ai fait)",
-        "faisé",
-        "fais",
-        "faise"
+        "Elle a mangé une salade. (participiul nu se acordă cu subiectul la avoir)",
+        "Elle a mangée une salade.",
+        "Elle est mangé une salade.",
+        "Elle a mangeait une salade."
       ],
       "correctIndex": 0,
-      "explanation": "'Faire' este un verb neregulat al cărui participiu trecut este 'fait'."
+      "explanation": "Cu auxiliarul avoir, participiul trecut rămâne neschimbat (mangé), indiferent dacă subiectul este feminin (Elle)."
     },
-    "task": "Scrie propoziția la Passé Composé 'J'ai fini mon travail.' (Mi-am terminat munca).",
-    "starterCode": "// Completează propoziția\n",
-    "expectedOutputPattern": "J['’]ai\\s+fini\\s+mon\\s+travail\\.?",
-    "hint": "Scrie J'ai fini mon travail."
+    "task": "Scrie propoziția 'Hier, j'ai mangé une pomme et j'ai regardé un film.' (Ieri am mâncat un măr și am privit un film).",
+    "starterCode": "Hier, j'ai mangé ",
+    "expectedOutputPattern": "Hier,\\s*j['’]ai\\s+mang[ée]\\s+une\\s+pomme\\s+et\\s+j['’]ai\\s+regard[ée]\\s+un\\s+film\\.?",
+    "hint": "Scrie Hier, j'ai mangé une pomme et j'ai regardé un film."
   },
   {
-    "id": "fr-new-4",
+    "id": "fr-b1-p27",
     "track": "Limba Franceză",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥖",
-    "level": "2. Junior / A2",
-    "xp": 40,
-    "title": "Capitolul 4: Passé Composé cu Auxiliarul „Être” & Acordul Participiului",
-    "theory": "\n<p>Un grup restrâns de verbe (verbele de mișcare și schimbare a stării — cunoscute ca <em>La maison d'être</em>) plus <strong>toate verbele reflexive</strong> formează Passé Composé cu auxiliarul <strong>être</strong>.</p>\n<h4>1. Verbele cu 'être'</h4>\n<p><em>aller</em>, <em>venir</em>, <em>arriver</em>, <em>partir</em>, <em>entrer</em>, <em>sortir</em>, <em>naître</em>, <em>mourir</em>, <em>rester</em>, <em>tomber</em>.</p>\n<h4>2. Regula Acordului Obligatoriu</h4>\n<p>La timpurile compuse cu <code>être</code>, participiul trecut <strong>se acordă obligatoriu în gen și număr</strong> cu subiectul:</p>\n<ul>\n  <li>Masculin plural: adaugă <code>-s</code> (<em>Ils sont allés</em>).</li>\n  <li>Feminin singular: adaugă <code>-e</code> (<em>Elle est allée</em>).</li>\n  <li>Feminin plural: adaugă <code>-es</code> (<em>Elles sont allées</em>).</li>\n</ul>\n",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 27: Passé Composé cu Auxiliarul ÊTRE & Acordul Participiului",
+    "theory": "\n<p>Aproximativ 14 verbe fundamentale (de mișcare/transformare) și <strong>toate verbele reflexive</strong> formează trecutul compus cu auxiliarul <strong>ÊTRE</strong>.</p>\n<h4>1. Verbele din „Casa lui Être”</h4>\n<p><em>Aller/Venir, Arriver/Partir, Entrer/Sortir, Monter/Descendre, Naître/Mourir, Rester, Tomber, Retourner, Passer</em>.</p>\n<h4>2. Regula de Aur a Acordului</h4>\n<p>Cu auxiliarul <strong>être</strong>, participiul trecut <strong>SE ACORDĂ OBLIGATORIU</strong> în gen și număr cu subiectul frazei:</p>\n<ul>\n  <li>Masculin singular: <em>Il est allé</em></li>\n  <li>Feminin singular (+e): <em>Elle est allé<strong>e</strong></em></li>\n  <li>Masculin plural (+s): <em>Ils sont allé<strong>s</strong></em></li>\n  <li>Feminin plural (+es): <em>Elles sont allé<strong>es</strong></em></li>\n</ul>\n",
     "glossary": [
       {
-        "term": "Verbes de mouvement (Être)",
-        "def": "Cele 14 verbe fundamentale de mișcare ce folosesc obligatoriu auxiliarul être."
+        "term": "La maison d'être",
+        "def": "Grupul de verbe de mișcare și stare ce cer auxiliarul être la timpurile compuse."
       },
       {
-        "term": "Accord du participe",
-        "def": "Modificarea terminației participiului trecut pentru a se potrivi în gen și număr cu subiectul."
+        "term": "Acordul în gen și număr",
+        "def": "Adăugarea sufixului -e (feminin) și/sau -s (plural) la participiul verbelor conjugate cu être."
       },
       {
-        "term": "Verbes pronominaux",
-        "def": "Verbe reflexive (se lever, se coucher) conjugate exclusiv cu être la trecut."
+        "term": "Verbe reflexive la passé composé",
+        "def": "Toate verbele reflexive folosesc obligatoriu être (ex: Elle s'est levée)."
       },
       {
-        "term": "Maison d'être",
-        "def": "Mnemonică vizuală franceză pentru învățarea verbelor de mișcare pereche (venir/aller etc)."
+        "term": "Partir / Arriver",
+        "def": "Pereche clasică de verbe de deplasare conjugate cu être."
       }
     ],
     "matchingPairs": [
       {
-        "left": "Il est allé au bureau",
-        "right": "El a mers la birou (masculin singular)"
+        "left": "Elle est allée à Paris",
+        "right": "Ea a mers la Paris (acord feminin +e)"
       },
       {
-        "left": "Elle est allée au bureau",
-        "right": "Ea a mers la birou (feminin singular cu -e)"
+        "left": "Ils sont arrivés à l'heure",
+        "right": "Ei au sosit la timp (acord plural +s)"
       },
       {
-        "left": "Ils sont partis tôt",
-        "right": "Ei au plecat devreme (masculin plural cu -s)"
+        "left": "Elles sont parties tôt",
+        "right": "Ele au plecat devreme (acord feminin plural +es)"
       },
       {
-        "left": "Elles sont arrivées",
-        "right": "Ele au sosit (feminin plural cu -es)"
+        "left": "Il est né en France",
+        "right": "El s-a născut în Franța"
       }
     ],
     "quiz": {
-      "question": "Cum se acordă corect participiul verbului 'partir' în propoziția 'Marie et Sophie sont ...'?",
+      "question": "Care este forma corectă pentru 'Ele au sosit la gară' (Elles + arriver)?",
       "options": [
-        "parties (feminin plural: acord cu -es)",
-        "parti",
-        "partis",
-        "partie"
+        "Elles sont arrivées à la gare. (acord feminin plural +es)",
+        "Elles ont arrivé à la gare.",
+        "Elles sont arrivé à la gare.",
+        "Elles sont arrivés à la gare."
       ],
       "correctIndex": 0,
-      "explanation": "Subiectul este format din două persoane de gen feminin (Marie et Sophie = Elles), așadar participiul trecut primește terminația '-es': parties."
+      "explanation": "'Arriver' cere auxiliarul être, iar subiectul 'Elles' impune adăugarea terminației '-es' (arrivées)."
     },
-    "task": "Scrie propoziția la trecut 'Elle est arrivée à l'heure.' (Ea a sosit la timp) cu acordul feminin.",
-    "starterCode": "// Scrie propoziția cu acord\n",
-    "expectedOutputPattern": "Elle\\s+est\\s+arriv[ée]e\\s+[àa]\\s+l['’]heure\\.?",
-    "hint": "Scrie Elle est arrivée à l'heure."
+    "task": "Scrie propoziția 'Elle est allée à la gare et ils sont arrivés à l'heure.'.",
+    "starterCode": "Elle est allée ",
+    "expectedOutputPattern": "Elle\\s+est\\s+all[ée]e\\s+[àa]\\s+la\\s+gare\\s+et\\s+ils\\s+sont\\s+arriv[ée]s\\s+[àa]\\s+l['’]heure\\.?",
+    "hint": "Scrie Elle est allée à la gare et ils sont arrivés à l'heure."
   },
   {
-    "id": "fr-new-5",
+    "id": "fr-b1-p28",
     "track": "Limba Franceză",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥖",
-    "level": "3. Middle / B1",
-    "xp": 45,
-    "title": "Capitolul 5: L'Imparfait vs Passé Composé în Narațiuni",
-    "theory": "\n<p>Stăpânirea timpurilor trecute în franceză depinde de alternanța dintre <strong>L'Imparfait</strong> (Imperfect) și <strong>Passé Composé</strong>.</p>\n<h4>1. L'Imparfait: Decorul, Durata și Rutina</h4>\n<p>Descrie circumstanțele, stările sufletești, vremea sau acțiuni repetitive din trecut fără un început/sfârșit precis: <em>Il faisait beau</em> (Era vreme frumoasă), <em>Quand j'étais petit</em> (Când eram mic).</p>\n<h4>2. Passé Composé: Evenimentul Punctual</h4>\n<p>Exprimă acțiunea punctuală care întrerupe starea din fundal: <em>Je dormais (imparfait) quand le téléphone a sonné (passé composé)</em>.</p>\n",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 28: L'Imparfait — Formare, Valori & Descrieri în Trecut",
+    "theory": "\n<p><strong>L'Imparfait</strong> este timpul evocării, al stărilor continue, al descrierilor și al obiceiurilor repetate din trecut („ce se întâmpla de obicei” sau „cum era”).</p>\n<h4>1. Regula Universală de Formare</h4>\n<p>Se ia rădăcina persoanei I plural (<code>nous</code>) de la prezent și se adaugă terminațiile unice:</p>\n<p><strong>-ais, -ais, -ait, -ions, -iez, -aient</strong></p>\n<p>Exemplu: <em>nous parl-ons &rarr; je parlais, tu parlais, il parlait, nous parlions, vous parliez, ils parlaient</em>.</p>\n<h4>2. Singura Excepție: Verbul ÊTRE</h4>\n<p>Rădăcina lui <em>être</em> este <code>ét-</code>: <em>j'étais, tu étais, il était, nous étions, vous étiez, ils étaient</em>.</p>\n",
     "glossary": [
       {
         "term": "L'Imparfait",
-        "def": "Timp trecut folosit pentru descrieri, stări continue și acțiuni habituale în trecut."
+        "def": "Timpul imperfect francez folosit pentru descrieri, stări și acțiuni habituale din trecut."
       },
       {
-        "term": "Terminaisons de l'imparfait",
-        "def": "Terminațiile universale: -ais, -ais, -ait, -ions, -iez, -aient."
+        "term": "Terminațiile unice",
+        "def": "-ais, -ais, -ait, -ions, -iez, -aient (primele trei și ultima au sunet identic [ɛ])."
       },
       {
-        "term": "Action de premier plan",
-        "def": "Eveniment punctual rapid exprimat prin Passé Composé."
+        "term": "Habitude dans le passé",
+        "def": "Obicei sau rutină din trecut (ex: În fiecare duminică mergeam la bunici)."
       },
       {
-        "term": "Arrière-plan narratif",
-        "def": "Cadrul narativ și descrierea de fundal exprimată prin Imparfait."
+        "term": "J'étais",
+        "def": "Forma neregulată de imperfect a verbului auxiliar être."
       }
     ],
     "matchingPairs": [
       {
-        "left": "Il faisait froid",
-        "right": "Era frig (descriere de fundal - Imparfait)"
+        "left": "Quand j'étais petit",
+        "right": "Când eram mic"
       },
       {
-        "left": "Soudain, il est tombé",
-        "right": "Deodată, a căzut (acțiune punctuală - Passé Composé)"
+        "left": "Il faisait beau hier",
+        "right": "Era vreme frumoasă ieri (descriere)"
       },
       {
-        "left": "Chaque matin, je buvais",
-        "right": "În fiecare dimineață beam (obicei repetat - Imparfait)"
+        "left": "Nous habitions à Lyon",
+        "right": "Noi locuiam la Lyon (stare continuă)"
       },
       {
-        "left": "Pendant que je lisais",
-        "right": "În timp ce citeam (acțiune continuă în derulare)"
+        "left": "Tu lisais tous les soirs",
+        "right": "Tu citeai în fiecare seară (obicei)"
       }
     ],
     "quiz": {
-      "question": "În fraza 'Quand j'étais petit, je ... au football tous les jours', ce formă este corectă pentru a exprima o rutină repetată?",
+      "question": "Care este forma de persoana I singular (Je) la imperfect a verbului 'faire' (nous faisons)?",
       "options": [
-        "jouais (L'Imparfait - exprimă un obicei repetat)",
-        "ai joué (Passé Composé)",
-        "joue (Présent)",
-        "jouer"
+        "Je faisais (rădăcina fais- + -ais)",
+        "Je ferais",
+        "Je fais",
+        "Je fis"
       ],
       "correctIndex": 0,
-      "explanation": "Expresia 'tous les jours' semnalează o acțiune repetată și habituală în trecut, caz clasic în care se folosește L'Imparfait (jouais)."
+      "explanation": "Pornind de la 'nous faisons', îndepărtăm '-ons' și adăugăm '-ais' &rarr; 'je faisais'."
     },
-    "task": "Completează fraza cu forma de imperfect a verbului être: 'Quand j'étais jeune, j'aimais voyager.'.",
-    "starterCode": "Quand j'",
-    "expectedOutputPattern": "Quand\\s+j['’][ée]tais\\s+jeune,\\s*j['’]aimais\\s+voyager\\.?",
-    "hint": "Scrie Quand j'étais jeune, j'aimais voyager."
+    "task": "Scrie propoziția 'Quand j'étais petit, je lisais beaucoup de livres.' (Când eram mic, citeam multe cărți).",
+    "starterCode": "Quand j'étais petit, ",
+    "expectedOutputPattern": "Quand\\s+j['’][ée]tais\\s+petit,\\s*je\\s+lisais\\s+beaucoup\\s+de\\s+livres\\.?",
+    "hint": "Scrie Quand j'étais petit, je lisais beaucoup de livres."
   },
   {
-    "id": "fr-new-6",
+    "id": "fr-b1-p29",
     "track": "Limba Franceză",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥖",
-    "level": "3. Middle / B1",
-    "xp": 50,
-    "title": "Capitolul 6: Pronumele Relative: 'Qui', 'Que', 'Où' și 'Dont'",
-    "theory": "\n<p>Pronumele relative leagă două propoziții simple într-o frază complexă, evitând repetiția substantivului (antecedentul).</p>\n<h4>1. Qui vs Que</h4>\n<ul>\n  <li><code>Qui</code> este <strong>subiect</strong> (urmat întotdeauna de un verb): <em>L'homme <strong>qui</strong> parle est mon professeur</em>.</li>\n  <li><code>Que</code> este <strong>obiect direct</strong> (urmat de subiect + verb): <em>Le livre <strong>que</strong> je lis est passionnant</em>.</li>\n</ul>\n<h4>2. Où și Dont</h4>\n<ul>\n  <li><code>Où</code> indică locul sau timpul: <em>La ville <strong>où</strong> j'habite</em>.</li>\n  <li><code>Dont</code> înlocuiește un complement introdus de prepoziția <strong>de</strong> (parler de, avoir besoin de): <em>Le projet <strong>dont</strong> j'ai besoin</em>.</li>\n</ul>\n",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 29: Imparfait vs Passé Composé — Contrastul Narativ Fundamental",
+    "theory": "\n<p>Stăpânirea contrastului dintre <strong>Imparfait</strong> și <strong>Passé Composé</strong> este piatra de temelie a nivelului B1 în limba franceză.</p>\n<h4>1. Rolul Narativ în Text</h4>\n<ul>\n  <li><strong>Imparfait (Fundalul / Decorul):</strong> Descrie starea vremii, sentimentele, acțiunea în desfășurare fără început sau sfârșit precizat.</li>\n  <li><strong>Passé Composé (Evenimentul Punctual):</strong> Acțiunea punctuală care survine brusc și întrerupe acțiunea din fundal.</li>\n</ul>\n<h4>2. Schema Clasică</h4>\n<p><em>Je dormais (imparfait - acțiune continuă) quand soudain le téléphone a sonné (passé composé - acțiune punctuală).</em></p>\n",
     "glossary": [
       {
-        "term": "Pronom relatif",
-        "def": "Cuvânt de legătură ce preia rolul unui antecedent dintr-o propoziție anterioară."
+        "term": "Plan d'arrière (Decor)",
+        "def": "Imperfectul creează atmosfera și contextul narațiunii."
       },
       {
-        "term": "Qui (Subiect)",
-        "def": "Pronume relativ ce îndeplinește funcția de subiect în propoziția secundară."
+        "term": "Premier plan (Eveniment)",
+        "def": "Passé composé introduce evenimentele concrete ce împing povestea mai departe."
       },
       {
-        "term": "Que (COD)",
-        "def": "Pronume relativ ce îndeplinește funcția de complement direct."
+        "term": "Quand soudain",
+        "def": "'Când deodată' — semnal narativ clasic ce introduce un passé composé."
       },
       {
-        "term": "Dont (de + substantiv)",
-        "def": "Pronume relativ specific ce înlocuiește expresii construite cu prepoziția 'de'."
+        "term": "Interruption",
+        "def": "O acțiune scurtă la trecut compus care întrerupe o acțiune continuă la imperfect."
       }
     ],
     "matchingPairs": [
       {
-        "left": "C'est la femme qui travaille ici",
-        "right": "Qui este subiectul verbului travaille"
+        "left": "Il pleuvait dehors",
+        "right": "Ploua afară (imparfait: decor)"
       },
       {
-        "left": "C'est le film que j'ai vu",
-        "right": "Que este obiectul direct al lui j'ai vu"
+        "left": "Il est sorti sans parapluie",
+        "right": "A ieșit fără umbrelă (passé composé: acțiune)"
       },
       {
-        "left": "Le pays où je suis né",
-        "right": "Où indică locul nașterii"
+        "left": "Je regardais la télé",
+        "right": "Mă uitam la televizor (acțiune în derulare)"
       },
       {
-        "left": "Ce dont j'ai peur",
-        "right": "Dont înlocuiește 'avoir peur de'"
+        "left": "La lumière s'est éteinte",
+        "right": "S-a stins lumina (eveniment brusc)"
       }
     ],
     "quiz": {
-      "question": "Ce pronume relativ completează corect fraza: 'C'est un problème ... nous avons parlé hier' (a vorbi despre = parler de)?",
+      "question": "În fraza 'Pendant que je lisais, quelqu'un ... à la porte', ce timp trebuie folosit pentru verbul 'frapper' (a bate)?",
       "options": [
-        "dont (deoarece verbul este 'parler de')",
-        "que",
+        "a frappé (Passé composé: acțiune punctuală care intervine)",
+        "frappait (Imparfait)",
+        "frappe (Présent)",
+        "va frapper (Futur)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Bătaia la ușă este un eveniment punctual care întrerupe acțiunea continuă de citit (je lisais)."
+    },
+    "task": "Scrie propoziția 'Je marchais dans la rue quand j'ai vu mon ami.' (Mergeam pe stradă când l-am văzut pe prietenul meu).",
+    "starterCode": "Je marchais dans la rue ",
+    "expectedOutputPattern": "Je\\s+marchais\\s+dans\\s+la\\s+rue\\s+quand\\s+j['’]ai\\s+vu\\s+mon\\s+ami\\.?",
+    "hint": "Scrie Je marchais dans la rue quand j'ai vu mon ami."
+  },
+  {
+    "id": "fr-b1-p30",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 30: Pronumele de Obiect Direct (COD: Me, Te, Le, La, Nous, Vous, Les)",
+    "theory": "\n<p><strong>Pronumele COD</strong> (Complément d'Objet Direct) înlocuiește o persoană sau un obiect determinat direct de verb (fără prepoziție), răspunzând la întrebarea <em>qui?</em> (pe cine?) sau <em>quoi?</em> (ce?).</p>\n<h4>1. Formele Pronumelor COD</h4>\n<ul>\n  <li><code>me / m'</code> = mă / pe mine</li>\n  <li><code>te / t'</code> = te / pe tine</li>\n  <li><code>le / l'</code> = îl / pe el / pe acesta</li>\n  <li><code>la / l'</code> = o / pe ea</li>\n  <li><code>nous</code> = ne / pe noi</li>\n  <li><code>vous</code> = vă / pe voi</li>\n  <li><code>les</code> = îi / le / pe ei / pe ele</li>\n</ul>\n<h4>2. Poziția în Frază</h4>\n<p>Pronumele COD stă <strong>în fața verbului conjugat</strong>: <em>Je regarde le film &rarr; Je <strong>le</strong> regarde.</em> La imperativ afirmativ stă după verb cu cratimă: <em>Regarde-le!</em>.</p>\n",
+    "glossary": [
+      {
+        "term": "COD (Complément Direct)",
+        "def": "Complement direct ce răspunde la întrebarea cine? sau ce? fără prepoziție."
+      },
+      {
+        "term": "Le / La / Les",
+        "def": "Pronume de persoana a III-a acordate cu genul și numărul substantivului înlocuit."
+      },
+      {
+        "term": "Poziția pre-verbală",
+        "def": "În franceză, pronumele complement se plasează în fața verbului, nu după el."
+      },
+      {
+        "term": "Élision devant voyelle",
+        "def": "Me, te, le, la devin m', t', l' în fața unei vocale (ex: Je l'adore)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Tu aimes cette chanson?",
+        "right": "Oui, je l'aime beaucoup (la &rarr; l')"
+      },
+      {
+        "left": "Il invite ses amis?",
+        "right": "Oui, il les invite ce soir (les)"
+      },
+      {
+        "left": "Tu m'écoutes?",
+        "right": "Oui, je t'écoute attentivement"
+      },
+      {
+        "left": "Vous voyez ce panneau?",
+        "right": "Oui, nous le voyons clairement (le)"
+      }
+    ],
+    "quiz": {
+      "question": "Cum înlocuiești 'la valise' în fraza 'Je prépare la valise' folosind un pronume COD?",
+      "options": [
+        "Je la prépare.",
+        "Je le prépare.",
+        "Je lui prépare.",
+        "Je prépare la."
+      ],
+      "correctIndex": 0,
+      "explanation": "'La valise' este feminin singular direct, prin urmare se înlocuiește cu pronumele pre-verbal 'la': Je la prépare."
+    },
+    "task": "Scrie replica 'Tu aimes ce livre? Oui, je le lis tous les soirs.'.",
+    "starterCode": "Tu aimes ce livre? ",
+    "expectedOutputPattern": "Tu\\s+aimes\\s+ce\\s+livre\\?\\s*Oui,\\s*je\\s+le\\s+lis\\s+tous\\s+les\\s+soirs\\.?",
+    "hint": "Scrie Tu aimes ce livre? Oui, je le lis tous les soirs."
+  },
+  {
+    "id": "fr-b1-p31",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 31: Pronumele de Obiect Indirect (COI: Me, Te, Lui, Nous, Vous, Leur)",
+    "theory": "\n<p><strong>Pronumele COI</strong> (Complément d'Objet Indirect) înlocuiește o persoană precedată de prepoziția <strong>à</strong> (răspunde la întrebarea <em>à qui?</em> &mdash; cui?).</p>\n<h4>1. Formele Pronumelor COI</h4>\n<ul>\n  <li><code>me / te / nous / vous</code> (identice cu cele de la COD)</li>\n  <li><code>lui</code> = lui / ei (singular, invariabil în gen! <em>à Pierre &rarr; lui; à Marie &rarr; lui</em>)</li>\n  <li><code>leur</code> = lor (plural, invariabil, fără 's'!)</li>\n</ul>\n<h4>2. Exemple Fundamentale</h4>\n<p><em>Je téléphone à mon père &rarr; Je <strong>lui</strong> téléphone.</em><br>\n<em>J'écris à mes collègues &rarr; Je <strong>leur</strong> écris.</em></p>\n",
+    "glossary": [
+      {
+        "term": "COI (Complément Indirect)",
+        "def": "Complement indirect introdus de prepoziția à și care desemnează o persoană beneficiară."
+      },
+      {
+        "term": "Lui (COI)",
+        "def": "Pronume indirect invariabil ce înseamnă atât 'lui' cât și 'ei' (ex: Je lui donne la clé)."
+      },
+      {
+        "term": "Leur (COI)",
+        "def": "Pronume indirect plural ('lor'), care se scrie ÎNTOTDEAUNA fără 's' final."
+      },
+      {
+        "term": "Téléphoner à qn",
+        "def": "Verb cu regim indirect ce impune un pronume COI (je lui téléphone)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Je parle à Thomas",
+        "right": "Je lui parle (lui singular)"
+      },
+      {
+        "left": "Je parle à Sophie",
+        "right": "Je lui parle (identic pentru feminin!)"
+      },
+      {
+        "left": "J'envoie un mail aux clients",
+        "right": "Je leur envoie un mail (leur plural)"
+      },
+      {
+        "left": "Tu me réponds?",
+        "right": "Oui, je te réponds tout de suite"
+      }
+    ],
+    "quiz": {
+      "question": "Cum înlocuiești 'à mes parents' în fraza 'Je téléphone à mes parents chaque semaine'?",
+      "options": [
+        "Je leur téléphone chaque semaine. (leur = COI plural)",
+        "Je les téléphone chaque semaine.",
+        "Je lui téléphone chaque semaine.",
+        "Je leurs téléphone chaque semaine."
+      ],
+      "correctIndex": 0,
+      "explanation": "'Téléphoner à' cere COI, iar pentru plural ('mes parents') forma corectă este 'leur' fără -s."
+    },
+    "task": "Scrie propoziția 'Je téléphone à Marie pour lui donner les clés.' (Îi telefonez Mariei pentru a-i da cheile).",
+    "starterCode": "Je téléphone à Marie ",
+    "expectedOutputPattern": "Je\\s+t[ée]l[ée]phone\\s+[àa]\\s+Marie\\s+pour\\s+lui\\s+donner\\s+les\\s+cl[ée]s\\.?",
+    "hint": "Scrie Je téléphone à Marie pour lui donner les clés."
+  },
+  {
+    "id": "fr-b1-p32",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 40,
+    "title": "Capitolul 32: Pronumele Adverbiale „EN” (Cantitate) & „Y” (Loc & à + Lucru)",
+    "theory": "\n<p>Pronumele adverbiale <strong>EN</strong> și <strong>Y</strong> sunt specifice limbii franceze și înlocuiesc grupuri prepoziționale esențiale.</p>\n<h4>1. Pronumele „Y” (Acolo / La asta)</h4>\n<ul>\n  <li>Înlocuiește un complement de loc introdus de <em>à, en, dans, chez, sur</em>: <em>Tu vas à Paris? &rarr; Oui, j'<strong>y</strong> vais.</em></li>\n  <li>Înlocuiește un lucru introdus de <em>à</em>: <em>Tu penses à ton avenir? &rarr; Oui, j'<strong>y</strong> pense.</em></li>\n</ul>\n<h4>2. Pronumele „EN” (De acolo / Din asta / Cantitate)</h4>\n<ul>\n  <li>Înlocuiește un substantiv precedat de <em>de / du / de la / des</em>: <em>Tu veux du thé? &rarr; Oui, j'<strong>en</strong> veux.</em></li>\n  <li>Înlocuiește un substantiv însoțit de o cantitate sau număr: <em>Tu as des frères? &rarr; Oui, j'<strong>en</strong> ai deux.</em></li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Pronom Y",
+        "def": "Înlocuiește un loc ('acolo') sau o idee/obiect introdus de prepoziția à."
+      },
+      {
+        "term": "Pronom EN",
+        "def": "Înlocuiește articole partitive (du, de la), cantități numerice sau expresii cu 'de'."
+      },
+      {
+        "term": "J'y vais",
+        "def": "'Merg acolo' — expresie uzuală de deplasare spre un loc stabilit."
+      },
+      {
+        "term": "J'en ai deux",
+        "def": "Menționarea cifrei rămâne la final când substantivul este înlocuit cu 'en'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Tu vas chez le médecin?",
+        "right": "Oui, j'y vais à 15 heures (loc &rarr; y)"
+      },
+      {
+        "left": "Tu manges des croissants?",
+        "right": "Oui, j'en mange le matin (cantitate &rarr; en)"
+      },
+      {
+        "left": "Tu penses à ce projet?",
+        "right": "Oui, j'y pense constamment (à + lucru &rarr; y)"
+      },
+      {
+        "left": "Combien de pommes as-tu?",
+        "right": "J'en ai trois dans mon sac (en + număr)"
+      }
+    ],
+    "quiz": {
+      "question": "Cum răspunzi afirmativ la întrebarea 'Tu veux du café?' folosind pronumele corect?",
+      "options": [
+        "Oui, j'en veux. (du café &rarr; en)",
+        "Oui, je le veux.",
+        "Oui, j'y veux.",
+        "Oui, je lui veux."
+      ],
+      "correctIndex": 0,
+      "explanation": "Articolul partitiv 'du café' se înlocuiește întotdeauna cu pronumele adverbial 'en'."
+    },
+    "task": "Scrie replica 'Tu vas au bureau aujourd'hui? Oui, j'y vais en métro.'.",
+    "starterCode": "Tu vas au bureau ",
+    "expectedOutputPattern": "Tu\\s+vas\\s+au\\s+bureau\\s+aujourd['’]hui\\?\\s*Oui,\\s*j['’]y\\s+vais\\s+en\\s+m[ée]tro\\.?",
+    "hint": "Scrie Tu vas au bureau aujourd'hui? Oui, j'y vais en métro."
+  },
+  {
+    "id": "fr-b1-p33",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 40,
+    "title": "Capitolul 33: Le Futur Simple — Terminații, Rădăcini Neregulate & Proiecții",
+    "theory": "\n<p><strong>Futur Simple</strong> este timpul viitor formal și proiectiv (programe, previziuni, planuri pe termen mediu și lung).</p>\n<h4>1. Formare Regulată</h4>\n<p>Se ia <strong>infinitivul întreg</strong> al verbului și se adaugă terminațiile verbului <em>avoir</em>:</p>\n<p><strong>-ai, -as, -a, -ons, -ez, -ont</strong></p>\n<p>Exemplu: <em>parler &rarr; je parlerai, tu parleras, il parlera, nous parlerons, vous parlerez, ils parleront</em>.</p>\n<h4>2. Rădăcini Neregulate Majore</h4>\n<ul>\n  <li><em>être &rarr; ser-</em> (je serai)</li>\n  <li><em>avoir &rarr; aur-</em> (j'aurai)</li>\n  <li><em>aller &rarr; ir-</em> (j'irai)</li>\n  <li><em>faire &rarr; fer-</em> (je ferai)</li>\n  <li><em>pouvoir &rarr; pourr-</em> (je pourrai)</li>\n  <li><em>vouloir &rarr; voudr-</em> (je voudrai)</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Futur Simple",
+        "def": "Timpul viitor simplu format din infinitiv + terminațiile -ai, -as, -a, -ons, -ez, -ont."
+      },
+      {
+        "term": "Rădăcină în -r",
+        "def": "Toate formele de viitor simplu conțin litera 'r' înainte de terminație."
+      },
+      {
+        "term": "Je serai / J'aurai",
+        "def": "Formele de viitor neregulate ale verbelor être și avoir."
+      },
+      {
+        "term": "Projections futures",
+        "def": "Previziuni meteorologice, carieră și evenimente oficiale viitoare."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Demain je serai là",
+        "right": "Mâine voi fi acolo (être)"
+      },
+      {
+        "left": "Nous aurons le temps",
+        "right": "Vom avea timp (avoir)"
+      },
+      {
+        "left": "Tu iras en vacances",
+        "right": "Vei merge în vacanță (aller)"
+      },
+      {
+        "left": "Ils feront un effort",
+        "right": "Ei vor face un efort (faire)"
+      }
+    ],
+    "quiz": {
+      "question": "Care este forma de viitor simplu pentru 'Nous' a verbului 'aller'?",
+      "options": [
+        "Nous irons (rădăcina ir- + -ons)",
+        "Nous allerons",
+        "Nous allions",
+        "Nous vont aller"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Aller' are rădăcina neregulată de viitor 'ir-', deci la nous devine 'nous irons'."
+    },
+    "task": "Scrie propoziția 'Demain, nous voyagerons en France et nous visiterons Paris.'.",
+    "starterCode": "Demain, nous ",
+    "expectedOutputPattern": "Demain,\\s*nous\\s+voyagerons\\s+en\\s+France\\s+et\\s+nous\\s+visiterons\\s+Paris\\.?",
+    "hint": "Scrie Demain, nous voyagerons en France et nous visiterons Paris."
+  },
+  {
+    "id": "fr-b1-p34",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 40,
+    "title": "Capitolul 34: Le Conditionnel Présent — Politețe, Dorințe & Sfaturi",
+    "theory": "\n<p><strong>Conditionnel Présent</strong> este modul politeții desăvârșite, al dorințelor ipotetice și al sfaturilor prietenești.</p>\n<h4>1. Rețeta Matematică de Formare</h4>\n<p><code>Rădăcina de viitor simplu + Terminațiile de Imparfait</code>:</p>\n<p><strong>-ais, -ais, -ait, -ions, -iez, -aient</strong></p>\n<p>Exemple: <em>vouloir &rarr; je voudr<strong>ais</strong></em> (aș dori); <em>pouvoir &rarr; pourr- &rarr; pourr<strong>iez</strong>-vous?</em> (ați putea?).</p>\n<h4>2. Utilizări Esențiale</h4>\n<ul>\n  <li>Politețe la restaurant/hotel: <em>Je voudrais un café</em> (în loc de agresivul 'je veux').</li>\n  <li>Sfat: <em>Tu devrais faire du sport</em> (ar trebui să faci sport).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Conditionnel Présent",
+        "def": "Modul folosit pentru cereri politicoase, dorințe și ipoteze."
+      },
+      {
+        "term": "Je voudrais",
+        "def": "Formula universală de politețe la comandă ('Aș dori...')."
+      },
+      {
+        "term": "Pourriez-vous...?",
+        "def": "'Ați putea să...?' — cerere respectuoasă la adresa unei persoane necunoscute."
+      },
+      {
+        "term": "Tu devrais",
+        "def": "'Ar trebui să...' — formularea unui sfat sau a unei recomandări amicale."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Je voudrais un café",
+        "right": "Aș dori o cafea (politețe)"
+      },
+      {
+        "left": "Pourriez-vous m'aider?",
+        "right": "Ați putea să mă ajutați? (cerere respectuoasă)"
+      },
+      {
+        "left": "J'aimerais voyager",
+        "right": "Mi-ar plăcea să călătoresc (dorință)"
+      },
+      {
+        "left": "Tu devrais te reposer",
+        "right": "Ar trebui să te odihnești (sfat)"
+      }
+    ],
+    "quiz": {
+      "question": "Cum soliciți politicos un pahar cu apă într-o cafenea la Paris?",
+      "options": [
+        "Je voudrais un verre d'eau, s'il vous plaît.",
+        "Je veux un verre d'eau immédiatement.",
+        "J'ai un verre d'eau.",
+        "Je prendrai de l'eau maintenant."
+      ],
+      "correctIndex": 0,
+      "explanation": "'Je voudrais' la modul condițional este formula consacrată de politețe în franceză."
+    },
+    "task": "Scrie comanda 'Je voudrais réserver une table pour deux personnes, s'il vous plaît.'.",
+    "starterCode": "Je voudrais réserver ",
+    "expectedOutputPattern": "Je\\s+voudrais\\s+r[ée]server\\s+une\\s+table\\s+pour\\s+deux\\s+personnes,\\s*s['’]il\\s+vous\\s+pla[iî]t\\.?",
+    "hint": "Scrie Je voudrais réserver une table pour deux personnes, s'il vous plaît."
+  },
+  {
+    "id": "fr-b1-p35",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 40,
+    "title": "Capitolul 35: Pronumele Relative Simple: QUI, QUE, OÙ, DONT",
+    "theory": "\n<p>Pronumele relative leagă două propoziții, evitând repetiția inutilă a unui substantiv.</p>\n<h4>1. QUI vs QUE</h4>\n<ul>\n  <li><code>QUI</code> = subiectul propoziției relative (este <strong>urmat de un verb</strong>): <em>C'est l'homme <strong>qui parle</strong>.</em></li>\n  <li><code>QUE (QU')</code> = complement direct (este <strong>urmat de un subiect + verb</strong>): <em>C'est le livre <strong>que je lis</strong>.</em></li>\n</ul>\n<h4>2. OÙ & DONT</h4>\n<ul>\n  <li><code>OÙ</code> = loc sau timp: <em>La ville <strong>où j'habite</strong></em>; <em>Le jour <strong>où je suis né</strong></em>.</li>\n  <li><code>DONT</code> = înlocuiește un complement introdus de <strong>de</strong> (<em>parler de, avoir besoin de, être fier de</em>): <em>C'est le projet <strong>dont je parle</strong></em>.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Qui (relatif)",
+        "def": "Pronume relativ cu rol de subiect, urmat nemijlocit de verb."
+      },
+      {
+        "term": "Que / Qu'",
+        "def": "Pronume relativ cu rol de complement direct, urmat de subiect și predicat."
+      },
+      {
+        "term": "Dont",
+        "def": "Pronume relativ ce înlocuiește un substantiv guvernat de prepoziția 'de'."
+      },
+      {
+        "term": "Où",
+        "def": "Pronume relativ de spațiu ('unde') sau de timp ('când')."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Le collègue qui travaille ici",
+        "right": "Colegul care lucrează aici (qui + verb)"
+      },
+      {
+        "left": "Le film que nous regardons",
+        "right": "Filmul pe care îl privim (que + subiect)"
+      },
+      {
+        "left": "La maison où je suis né",
+        "right": "Casa unde m-am născut (où = loc)"
+      },
+      {
+        "left": "Le livre dont j'ai besoin",
+        "right": "Cartea de care am nevoie (avoir besoin de)"
+      }
+    ],
+    "quiz": {
+      "question": "În fraza 'Voici la voiture ... j'ai achetée hier', ce pronume relativ trebuie inserat?",
+      "options": [
+        "que (urmat de subiectul 'j'')",
         "qui",
+        "dont",
         "où"
       ],
       "correctIndex": 0,
-      "explanation": "Verbul 'parler' cere prepoziția 'de' (parler de quelque chose). Complementele cu 'de' sunt înlocuite întotdeauna de pronumele relativ 'dont'."
+      "explanation": "Mașina este complementul direct al verbului cumpărat de mine (j'ai achetée), deci folosim 'que'."
     },
-    "task": "Completează fraza cu pronumele relativ 'dont': 'Voici le livre dont tout le monde parle.'.",
-    "starterCode": "Voici le livre ",
-    "expectedOutputPattern": "Voici\\s+le\\s+livre\\s+dont\\s+tout\\s+le\\s+monde\\s+parle\\.?",
-    "hint": "Scrie Voici le livre dont tout le monde parle."
+    "task": "Scrie fraza 'C'est l'ami qui m'aide et le livre que je lis.'.",
+    "starterCode": "C'est l'ami ",
+    "expectedOutputPattern": "C['’]est\\s+l['’]ami\\s+qui\\s+m['’]aide\\s+et\\s+le\\s+livre\\s+que\\s+je\\s+lis\\.?",
+    "hint": "Scrie C'est l'ami qui m'aide et le livre que je lis."
   },
   {
-    "id": "fr-new-7",
+    "id": "fr-b1-p36",
     "track": "Limba Franceză",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥖",
-    "level": "4. Senior / B2",
-    "xp": 55,
-    "title": "Capitolul 7: Le Subjonctif Présent — Necesitate, Dorință & Îndoială",
-    "theory": "\n<p><strong>Subjonctif</strong> nu este un timp, ci un <strong>mod verbal</strong> al subiectivității, al incertitudinii, al dorinței și al obligației, apărând aproape întotdeauna în propoziții secundare introduse de <code>que</code>.</p>\n<h4>1. Declanșatori Canonici</h4>\n<ul>\n  <li>Necesitate/Obligație: <em>Il faut que...</em>, <em>Il est nécessaire que...</em></li>\n  <li>Dorință/Voință: <em>Je veux que...</em>, <em>Je souhaite que...</em></li>\n  <li>Emoție/Sentiment: <em>Je suis content que...</em>, <em>J'ai peur que...</em></li>\n  <li>Îndoială: <em>Je doute que...</em></li>\n</ul>\n<h4>2. Formare</h4>\n<p>Se ia rădăcina persoanei a 3-a plural de la prezent (<em>ils finiss-ent</em>) și se adaugă terminațiile: <strong>-e, -es, -e, -ions, -iez, -ent</strong>. Forme neregulate esențiale: <em>être $\rightarrow$ que je sois</em>, <em>avoir $\rightarrow$ que j'aie</em>, <em>faire $\rightarrow$ que je fasse</em>.</p>\n",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 45,
+    "title": "Capitolul 36: Conectori Logici: Cauză, Consecință & Opoziție",
+    "theory": "\n<p>Pentru a structura un discurs coerent și nuanțat la nivelul B1/B2, este indispensabilă folosirea conectorilor logici.</p>\n<h4>1. Cauza (De ce?)</h4>\n<ul>\n  <li><code>Parce que</code> + frază: <em>Je reste chez moi parce qu'il pleut.</em></li>\n  <li><code>Puisque</code> = de vreme ce / fiindcă (cauză cunoscută de ambii interlocutori).</li>\n  <li><code>Grâce à</code> + substantiv (cauză pozitivă): <em>Grâce à son aide, j'ai réussi.</em></li>\n  <li><code>À cause de</code> + substantiv (cauză negativă): <em>À cause de la grève, le train est annulé.</em></li>\n</ul>\n<h4>2. Consecința & Opoziția</h4>\n<ul>\n  <li>Consecință: <code>Donc</code> (deci), <code>Par conséquent</code> (prin urmare).</li>\n  <li>Opoziție: <code>Mais</code> (dar), <code>Cependant / Pourtant</code> (totuși, cu toate acestea).</li>\n</ul>\n",
     "glossary": [
       {
-        "term": "Mode Subjonctif",
-        "def": "Mod gramatical francez ce reflectă nesiguranța, voința, necesitatea sau emoția vorbitorului."
+        "term": "Grâce à (+)",
+        "def": "Datorită (folosit exclusiv pentru cauze cu consecințe favorabile)."
+      },
+      {
+        "term": "À cause de (-)",
+        "def": "Din cauza (folosit pentru factori perturbatori sau negativi)."
+      },
+      {
+        "term": "Donc / Par conséquent",
+        "def": "Conectori logici fundamentali de exprimare a deducției și consecinței."
+      },
+      {
+        "term": "Cependant",
+        "def": "Conector formal de opoziție echivalent cu 'totuși' sau 'cu toate acestea'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Grâce à mon travail",
+        "right": "Datorită muncii mele (pozitiv)"
+      },
+      {
+        "left": "À cause de la pluie",
+        "right": "Din cauza ploii (negativ)"
+      },
+      {
+        "left": "Il étudie, donc il réussit",
+        "right": "El învață, deci reușește (consecință)"
+      },
+      {
+        "left": "Il est fatigué, pourtant il continue",
+        "right": "E obosit, totuși continuă (opoziție)"
+      }
+    ],
+    "quiz": {
+      "question": "Ce conector cauzal folosești în: 'J'ai obtenu ce poste ... mes compétences en informatique'?",
+      "options": [
+        "grâce à (cauză pozitivă și favorabilă)",
+        "à cause de",
+        "parce que",
+        "donc"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Grâce à' se folosește în fața unui substantiv atunci când rezultatul este un succes pozitiv."
+    },
+    "task": "Scrie fraza 'Il fait froid, donc je mets un manteau chaud.' (Este frig, deci îmi pun o haină călduroasă).",
+    "starterCode": "Il fait froid, ",
+    "expectedOutputPattern": "Il\\s+fait\\s+froid,\\s*donc\\s+je\\s+mets\\s+un\\s+manteau\\s+chaud\\.?",
+    "hint": "Scrie Il fait froid, donc je mets un manteau chaud."
+  },
+  {
+    "id": "fr-b1-p37",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 45,
+    "title": "Capitolul 37: Conversație Intermediară: La Medic, Farmacie & Situații Urgente",
+    "theory": "\n<p>Să consolidăm întregul Modul B1–B2 printr-un scenariu practic din viața reală: consultul medical și cumpărarea medicamentelor în Franța.</p>\n<h4>1. Replicile Pacientului</h4>\n<ul>\n  <li><em>Docteur, je ne me sens pas bien depuis hier.</em> (Nu mă simt bine de ieri.)</li>\n  <li><em>J'ai mal à la gorge, j'ai de la fièvre et je tousse.</em> (Mă doare în gât, am febră și tușesc.)</li>\n  <li><em>Est-ce que c'est grave?</em> (Este grav?)</li>\n</ul>\n<h4>2. Replicile Medicului & Farmacistului</h4>\n<ul>\n  <li><em>Ouvrez la bouche et respirez fort. C'est une angine.</em></li>\n  <li><em>Voici votre ordonnance. Prenez un comprimé trois fois par jour avant les repas.</em></li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "une ordonnance",
+        "def": "Rețetă medicală eliberată de medic pentru farmacie."
+      },
+      {
+        "term": "un comprimé",
+        "def": "O pastilă sau comprimat medicamentos."
+      },
+      {
+        "term": "tousser / avoir de la fièvre",
+        "def": "A tuși / a avea temperatură/febră."
+      },
+      {
+        "term": "trois fois par jour",
+        "def": "De trei ori pe zi (frecvența de administrare a tratamentului)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "J'ai mal à la gorge",
+        "right": "Mă doare în gât"
+      },
+      {
+        "left": "Prenez un comprimé",
+        "right": "Luați un comprimat"
+      },
+      {
+        "left": "Avant les repas",
+        "right": "Înainte de mese"
+      },
+      {
+        "left": "Voici votre ordonnance",
+        "right": "Iată rețeta dumneavoastră"
+      }
+    ],
+    "quiz": {
+      "question": "Cum îi spui medicului în franceză că ai o durere acută de gât și ai nevoie de o rețetă?",
+      "options": [
+        "J'ai mal à la gorge et j'ai besoin d'une ordonnance.",
+        "Je suis mal gorge et veux papier.",
+        "J'ai douleur gorge avec médicament.",
+        "Mon gorge est cassé."
+      ],
+      "correctIndex": 0,
+      "explanation": "Construcția corectă este 'J'ai mal à la gorge' urmată de substantivul 'une ordonnance'."
+    },
+    "task": "Scrie propoziția 'J'ai mal à la gorge et j'ai besoin d'une ordonnance médicale.'.",
+    "starterCode": "J'ai mal à la gorge ",
+    "expectedOutputPattern": "J['’]ai\\s+mal\\s+[àa]\\s+la\\s+gorge\\s+et\\s+j['’]ai\\s+besoin\\s+d['’]une\\s+ordonnance\\s+m[ée]dicale\\.?",
+    "hint": "Scrie J'ai mal à la gorge et j'ai besoin d'une ordonnance médicale."
+  },
+  {
+    "id": "fr-c1-p38",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 50,
+    "title": "Capitolul 38: Le Subjonctif Présent — Necesitate, Voință & Declanșatori Canonici",
+    "theory": "\n<p><strong>Subjonctif</strong> nu este un timp, ci <strong>modul subiectivității</strong>, al incertitudinii, al dorinței, sentimentelor și necesității.</p>\n<h4>1. Declanșatori Canonici Obligatorii</h4>\n<ul>\n  <li>Necesitate / Obligație: <em>Il faut que...</em>, <em>Il est impératif que...</em></li>\n  <li>Voință / Dorință: <em>Je veux que...</em>, <em>J'exige que...</em></li>\n  <li>Sentiment / Temere: <em>Je suis ravi que...</em>, <em>J'ai peur que...</em></li>\n</ul>\n<h4>2. Regula Universală de Formare</h4>\n<p>Se ia rădăcina persoanei a 3-a plural de la prezent (<em>ils finiss-ent</em>) și se adaugă terminațiile:</p>\n<p><strong>-e, -es, -e, -ions, -iez, -ent</strong></p>\n<p>Excepții esențiale: <em>faire &rarr; que je fasse</em>; <em>être &rarr; que je sois</em>; <em>avoir &rarr; que j'aie</em>; <em>aller &rarr; que j'aille</em>.</p>\n",
+    "glossary": [
+      {
+        "term": "Le Subjonctif",
+        "def": "Mod gramatical cerut de expresii ce denotă voință, îndoială, necesitate sau emoție."
       },
       {
         "term": "Il faut que + subj.",
         "def": "Construcție impersonală obligatorie ce impune întotdeauna modul conjunctiv."
       },
       {
-        "term": "Subjonctif irrégulier",
-        "def": "Forme specifice pentru verbele être (sois), avoir (aie), faire (fasse), aller (aille)."
+        "term": "Que je fasse",
+        "def": "Forma neregulată de subjonctif a verbului faire."
       },
       {
-        "term": "Certitude vs Doute",
-        "def": "Certitudinea (je pense que) cere indicativ; îndoiala (je doute que) cere subjonctif."
+        "term": "Double sujet obligatoire",
+        "def": "Subjonctif se folosește când subiectul din propoziția principală diferă de cel din secundară."
       }
     ],
     "matchingPairs": [
@@ -5645,582 +7536,3205 @@ const MEGA_EXPANDED_CURRICULUM = [
         "right": "Subjonctif de la faire (fasses)"
       },
       {
-        "left": "Je veux qu'il vienne",
-        "right": "Subjonctif de la venir (vienne)"
+        "left": "Je veux que tu viennes",
+        "right": "Subjonctif de la venir (viennes)"
       },
       {
-        "left": "Il est important que nous soyons là",
+        "left": "Il est temps que nous partions",
+        "right": "Subjonctif de la partir (partions)"
+      },
+      {
+        "left": "Bien que nous soyons prêts",
         "right": "Subjonctif de la être (soyons)"
-      },
-      {
-        "left": "Bien que (quoique)",
-        "right": "Conjuncție concesivă ce cere întotdeauna subjonctif"
       }
     ],
     "quiz": {
-      "question": "Ce mod și formă verbală trebuie folosită după expresia 'Il faut que vous ...' pentru verbul 'partir'?",
+      "question": "Care este forma corectă de subjonctif a verbului 'faire' pentru pronumele 'vous'?",
       "options": [
-        "partiez (Subjonctif présent: Il faut que vous partiez)",
-        "partez (Indicatif présent)",
-        "partir",
-        "partirez (Futur)"
+        "fassiez (Il faut que vous fassiez)",
+        "faisez",
+        "faites",
+        "fassent"
       ],
       "correctIndex": 0,
-      "explanation": "'Il faut que' impune obligatoriu modul subjonctif. Pentru pronumele 'vous', terminația este '-iez' (partiez)."
+      "explanation": "Rădăcina neregulată a verbului faire la subjonctif este fass-, primind terminația -iez pentru vous: fassiez."
     },
-    "task": "Completează expresia de necesitate la subjonctif scriind 'Il faut que nous fassions un effort.'.",
-    "starterCode": "Il faut que nous ",
-    "expectedOutputPattern": "Il\\s+faut\\s+que\\s+nous\\s+fassions\\s+un\\s+effort\\.?",
-    "hint": "Scrie Il faut que nous fassions un effort."
+    "task": "Scrie cerința 'Il faut que vous fassiez attention à tous les détails.' (Trebuie să fiți atent la toate detaliile).",
+    "starterCode": "Il faut que vous ",
+    "expectedOutputPattern": "Il\\s+faut\\s+que\\s+vous\\s+fassiez\\s+attention\\s+[àa]\\s+tous\\s+les\\s+d[ée]tails\\.?",
+    "hint": "Scrie Il faut que vous fassiez attention à tous les détails."
   },
   {
-    "id": "fr-new-8",
+    "id": "fr-c1-p39",
     "track": "Limba Franceză",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥖",
-    "level": "5. Arhitect / C1",
-    "xp": 70,
-    "title": "Capitolul 8: Expresii Idiomatice Avansate & Corespondență Formală",
-    "theory": "\n<p>Atingerea măiestriei în limba franceză (nivel C1/C2) impune stăpânirea formulelor diplomatice de cancelarie și a expresiilor colocviale idiomatice.</p>\n<h4>1. Formule de Încheiere în Corespondență Oficială</h4>\n<p>Scrisorile profesionale se încheie cu formule consacrate precum: <em>« Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées. »</em>.</p>\n<h4>2. Expresii Idiomatice Esențiale</h4>\n<ul>\n  <li><em>Avoir le cafard</em> — a fi deprimat, melancolic.</li>\n  <li><em>Poser un lapin</em> — a trage pe sfoară / a nu te prezenta la o întâlnire stabilită.</li>\n  <li><em>Coûter les yeux de la tête</em> — a costa o avere (extrem de scump).</li>\n  <li><em>D'ores et déjà</em> — încă de pe acum, deja.</li>\n</ul>\n",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 50,
+    "title": "Capitolul 39: Subjonctif vs Indicatif — Certitudine vs Îndoială (Penser que vs Douter que)",
+    "theory": "\n<p>La nivelul C1, nuanța dintre certitudine și dubiu determină alegerea dintre indicativ și subjonctif.</p>\n<h4>1. Verbele de Opinie & Gândire</h4>\n<ul>\n  <li>Forma Afirmativă (Certitudine) &rarr; <strong>INDICATIF</strong>:<br>\n  <em>Je pense qu'il <strong>sait</strong> la vérité.</em> (Sunt sigur)</li>\n  <li>Forma Negativă sau Interogativă (Îndoială) &rarr; <strong>SUBJONCTIF</strong>:<br>\n  <em>Je ne pense pas qu'il <strong>sache</strong> la vérité.</em> (Mă îndoiesc)</li>\n</ul>\n<h4>2. Douter que vs Se douter que</h4>\n<p><em>Je doute qu'il <strong>vienne</strong></em> (mă îndoiesc &rarr; subjonctif) vs <em>Je me doute qu'il <strong>viendra</strong></em> (bănuiesc / știu &rarr; indicatif).</p>\n",
     "glossary": [
       {
-        "term": "Correspondance formelle",
-        "def": "Registru strict de politețe protocolară utilizat în scrisorile oficiale și contracte."
+        "term": "Certitude & Indicatif",
+        "def": "Expresiile de certitudine (je sais que, il est certain que) cer modul indicativ."
       },
       {
-        "term": "Veuillez agréer...",
-        "def": "Formula standard supremă de politețe la finalul unei scrisori oficiale."
+        "term": "Doute & Subjonctif",
+        "def": "Îndoiala (je ne crois pas que, je doute que) impune întotdeauna modul conjunctiv."
+      },
+      {
+        "term": "Sache",
+        "def": "Forma neregulată de subjonctif a verbului savoir (je ne pense pas qu'il sache)."
+      },
+      {
+        "term": "Nuance de modalité",
+        "def": "Schimbarea modului verbal modifică gradul de siguranță asumat de vorbitor."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Je pense qu'il a raison",
+        "right": "Indicatif (convingere afirmativă)"
+      },
+      {
+        "left": "Je ne pense pas qu'il ait raison",
+        "right": "Subjonctif (incertitudine la forma negativă)"
+      },
+      {
+        "left": "Il est évident que c'est vrai",
+        "right": "Indicatif (evidență obiectivă)"
+      },
+      {
+        "left": "Il est douteux que ce soit vrai",
+        "right": "Subjonctif (caracter îndoielnic)"
+      }
+    ],
+    "quiz": {
+      "question": "Ce mod și formă se folosește în fraza 'Je ne crois pas qu'elle ... la bonne décision' pentru verbul 'prendre'?",
+      "options": [
+        "prenne (Subjonctif présent cerut de ne pas croire que)",
+        "prend (Indicatif)",
+        "prendra (Futur)",
+        "prenait (Imparfait)"
+      ],
+      "correctIndex": 0,
+      "explanation": "La forma negativă, 'ne pas croire que' declanșează obligatoriu subjonctif: 'qu'elle prenne'."
+    },
+    "task": "Scrie propoziția 'Je ne pense pas qu'il sache la réponse exacte.' (Nu cred că el știe răspunsul exact).",
+    "starterCode": "Je ne pense pas ",
+    "expectedOutputPattern": "Je\\s+ne\\s+pense\\s+pas\\s+qu['’]il\\s+sache\\s+la\\s+r[ée]ponse\\s+exacte\\.?",
+    "hint": "Scrie Je ne pense pas qu'il sache la réponse exacte."
+  },
+  {
+    "id": "fr-c1-p40",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 50,
+    "title": "Capitolul 40: Frazele Ipotetice cu „SI” (Si + Présent, Si + Imparfait, Si + Plus-que-parfait)",
+    "theory": "\n<p>Concordanța timpurilor în frazele condiționale introduse de <strong>SI</strong> este o regulă de aur: <em>„Si” n'aime pas les „-rais”!</em> (După „si” nu se pune NICIODATĂ viitor sau condițional!).</p>\n<h4>1. Cele 3 Tipuri Fundamentale de Ipoteză</h4>\n<ol>\n  <li><strong>Ipotetic Real / Posibil:</strong><br>\n  <code>Si + Présent &rarr; Futur Simple</code><br>\n  <em>Si j'ai le temps, je viendrai te voir.</em></li>\n  <li><strong>Ipotetic Ireál în Prezent (Condiție Nerealizată Acum):</strong><br>\n  <code>Si + Imparfait &rarr; Conditionnel Présent</code><br>\n  <em>Si j'avais de l'argent, j'achèterais cette maison.</em></li>\n  <li><strong>Ipotetic Ireál în Trecut (Regret Trecut):</strong><br>\n  <code>Si + Plus-que-parfait &rarr; Conditionnel Passé</code><br>\n  <em>Si j'avais su, je serais venu.</em></li>\n</ol>\n",
+    "glossary": [
+      {
+        "term": "Hypothèse réalisable",
+        "def": "Si + prezent urmat de viitor simplu pentru acțiuni posibile în viitor."
+      },
+      {
+        "term": "Irréel du présent",
+        "def": "Si + imperfect urmat de condițional prezent pentru situații imaginare actuale."
+      },
+      {
+        "term": "Irréel du passé",
+        "def": "Si + mai mult ca perfect urmat de condițional trecut pentru regrete definitive."
+      },
+      {
+        "term": "Interdiction du futur après SI",
+        "def": "Regulă strictă: conjuncția condițională 'si' nu poate fi urmată de -rai sau -rais."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Si tu veux, nous irons au cinéma",
+        "right": "Si + présent &rarr; futur simple"
+      },
+      {
+        "left": "Si j'étais riche, je voyagerais",
+        "right": "Si + imparfait &rarr; conditionnel présent"
+      },
+      {
+        "left": "Si tu avais travaillé, tu aurais réussi",
+        "right": "Si + plus-que-parfait &rarr; conditionnel passé"
+      },
+      {
+        "left": "Si vous avez faim, mangez!",
+        "right": "Si + présent &rarr; impératif"
+      }
+    ],
+    "quiz": {
+      "question": "Care este continuarea corectă a frazei 'Si j'avais le choix, je ... en Italie'?",
+      "options": [
+        "vivrais (Conditionnel présent acordat cu Si + imparfait)",
+        "vivrai (Futur simple)",
+        "vis (Présent)",
+        "aurais vécu"
+      ],
+      "correctIndex": 0,
+      "explanation": "După 'Si + imparfait' (avais), propoziția principală cere în mod obligatoriu condiționalul prezent: vivrais."
+    },
+    "task": "Scrie fraza ipotetică 'Si j'avais plus de temps, j'apprendrais le français chaque jour.'.",
+    "starterCode": "Si j'avais plus de temps, ",
+    "expectedOutputPattern": "Si\\s+j['’]avais\\s+plus\\s+de\\s+temps,\\s*j['’]apprendrais\\s+le\\s+fran[çc]ais\\s+chaque\\s+jour\\.?",
+    "hint": "Scrie Si j'avais plus de temps, j'apprendrais le français chaque jour."
+  },
+  {
+    "id": "fr-c1-p41",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 55,
+    "title": "Capitolul 41: Vocea Pasivă & Formele Pasive Reflexive",
+    "theory": "\n<p>Vocea pasivă este folosită intens în articolele de presă, documentele administrative și stilul științific din Franța.</p>\n<h4>1. Formarea Vocii Pasive</h4>\n<p><code>Subiect pacient + ÊTRE (la orice timp) + Participiu trecut (acordat!) + PAR + Agent</code>.</p>\n<ul>\n  <li>Prezent: <em>Le pont <strong>est construit</strong> par les ingénieurs.</em></li>\n  <li>Passé Composé: <em>Le musée <strong>a été inauguré</strong> par le président.</em></li>\n  <li>Futur Simple: <em>Le rapport <strong>sera publié</strong> demain.</em></li>\n</ul>\n<h4>2. Pasiva Reflexivă Impersonală</h4>\n<p>Când autorul acțiunii este nedeterminat, franceza preferă forma pronominală pasivă: <em>Ce vin <strong>se boit</strong> frais</em> (Acest vin se bea rece).</p>\n",
+    "glossary": [
+      {
+        "term": "Voix passive",
+        "def": "Construcție sintactică ce evidențiază obiectul asupra căruia se răsfrânge acțiunea."
+      },
+      {
+        "term": "Complément d'agent",
+        "def": "Autorul acțiunii pasive introdus prin prepoziția 'par' sau 'de'."
+      },
+      {
+        "term": "A été inauguré",
+        "def": "Trecutul compus al vocii pasive (a été + participiu acordat)."
+      },
+      {
+        "term": "Passif pronominal",
+        "def": "Formă reflexivă cu valoare pasivă impersonală (ex: Cela ne se dit pas)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Le texte a été écrit par Paul",
+        "right": "Textul a fost scris de Paul"
+      },
+      {
+        "left": "La décision sera prise demain",
+        "right": "Decizia va fi luată mâine"
+      },
+      {
+        "left": "Ce livre se lit facilement",
+        "right": "Această carte se citește ușor (pasiv reflexiv)"
+      },
+      {
+        "left": "La maison est entourée d'arbres",
+        "right": "Casa este înconjurată de copaci"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se traduce la diateza pasivă trecută 'Acest proiect a fost realizat de echipa noastră'?",
+      "options": [
+        "Ce projet a été réalisé par notre équipe.",
+        "Ce projet est réalisé notre équipe.",
+        "Ce projet avait réaliser par équipe.",
+        "Ce projet a réaliser de équipe."
+      ],
+      "correctIndex": 0,
+      "explanation": "Structura de passé composé la pasiv este 'a été' urmat de participiul trecut acordat 'réalisé'."
+    },
+    "task": "Scrie propoziția 'Ce projet a été réalisé avec succès par notre équipe.'.",
+    "starterCode": "Ce projet a été réalisé ",
+    "expectedOutputPattern": "Ce\\s+projet\\s+a\\s+[ée]t[ée]\\s+r[ée]alis[ée]\\s+avec\\s+succ[èe]s\\s+par\\s+notre\\s+[ée]quipe\\.?",
+    "hint": "Scrie Ce projet a été réalisé avec succès par notre équipe."
+  },
+  {
+    "id": "fr-c1-p42",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 55,
+    "title": "Capitolul 42: Le Gérondif & Le Participe Présent — Simultaneitate & Modalitate",
+    "theory": "\n<p><strong>Le Gérondif</strong> și <strong>Le Participe Présent</strong> conferă fluiditate și eleganță frazei franceze, sintetizând idei complexe într-o singură propoziție.</p>\n<h4>1. Le Gérondif (EN + Participiu Prezent)</h4>\n<p>Se formează din: <code>EN + Rădăcina 'nous' de la prezent + -ANT</code>.</p>\n<ul>\n  <li><strong>Simultaneitate:</strong> <em>Il écoute de la musique <strong>en travaillant</strong>.</em> (Ascultă muzică în timp ce lucrează.)</li>\n  <li><strong>Mijloc / Modalitate:</strong> <em>C'est <strong>en forgeant</strong> qu'on devient forgeron.</em> (Practicând devii meșter.)</li>\n  <li><strong>Condiție:</strong> <em><strong>En faisant</strong> des efforts, vous réussirez.</em></li>\n</ul>\n<h4>2. Regula Subiectului Identic</h4>\n<p>Gérondif-ul cere obligatoriu ca subiectul acțiunii principale să fie identic cu cel al acțiunii secundare.</p>\n",
+    "glossary": [
+      {
+        "term": "Le Gérondif",
+        "def": "Formă verbală invariabilă precedată de prepoziția 'en' ce exprimă simultaneitatea sau modul."
+      },
+      {
+        "term": "Terminația -ant",
+        "def": "Terminația participiului prezent și a gerunziului obținută din rădăcina persoanei nous."
+      },
+      {
+        "term": "Simultanéité",
+        "def": "Două acțiuni realizate în același timp de către același subiect."
+      },
+      {
+        "term": "En apprenant",
+        "def": "Învățând / în timp ce înveți (gerunziul verbului apprendre)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "En écoutant la radio",
+        "right": "Ascultând radioul (în timp ce ascultă)"
+      },
+      {
+        "left": "En prenant le métro",
+        "right": "Luând metroul (mijloc)"
+      },
+      {
+        "left": "En faisant du sport",
+        "right": "Făcând sport"
+      },
+      {
+        "left": "Tout en souriant",
+        "right": "Zâmbind în tot acest timp (emfază)"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se formează gerunziul verbului 'écouter' (nous écoutons)?",
+      "options": [
+        "en écoutant (en + écout- + -ant)",
+        "écoutant",
+        "en écouté",
+        "en écouter"
+      ],
+      "correctIndex": 0,
+      "explanation": "Gérondif-ul se formează întotdeauna din prepoziția 'en' urmată de participiul prezent în '-ant': en écoutant."
+    },
+    "task": "Scrie mărturisirea 'J'ai appris le français en écoutant des podcasts tous les jours.'.",
+    "starterCode": "J'ai appris le français ",
+    "expectedOutputPattern": "J['’]ai\\s+appris\\s+le\\s+fran[çc]ais\\s+en\\s+[ée]coutant\\s+des\\s+podcasts\\s+tous\\s+les\\s+jours\\.?",
+    "hint": "Scrie J'ai appris le français en écoutant des podcasts tous les jours."
+  },
+  {
+    "id": "fr-c1-p43",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 60,
+    "title": "Capitolul 43: Discursul Indirect în Trecut & Concordanța Timpurilor",
+    "theory": "\n<p>Raportarea spuselor cuiva într-un context narativ trecut cere aplicarea strictă a concordanței timpurilor (<em>la concordance des temps</em>).</p>\n<h4>1. Schimbările de Timp când Verbul Introductiv este la Trecut</h4>\n<ul>\n  <li>Prezent &rarr; <strong>Imparfait</strong>:<br>\n  <em>Il a dit: « Je suis fatigué » &rarr; Il a dit qu'il <strong>était</strong> fatigué.</em></li>\n  <li>Passé Composé &rarr; <strong>Plus-que-parfait</strong>:<br>\n  <em>Il a dit: « J'ai fini » &rarr; Il a dit qu'il <strong>avait fini</strong>.</em></li>\n  <li>Futur Simple &rarr; <strong>Conditionnel Présent</strong>:<br>\n  <em>Il a dit: « Je viendrai » &rarr; Il a dit qu'il <strong>viendrait</strong>.</em></li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Discours indirect au passé",
+        "def": "Raportarea replicilor când verbul de declarație (a dit, a expliqué) este la trecut."
+      },
+      {
+        "term": "Futur dans le passé",
+        "def": "Condiționalul prezent folosit pentru a exprima o acțiune viitoare din perspectiva trecutului."
+      },
+      {
+        "term": "Plus-que-parfait",
+        "def": "Timpul mai mult ca perfect (avais/étais + participiu) ce exprimă o anterioritate absolută."
+      },
+      {
+        "term": "Verbe introducteur",
+        "def": "Verbul de comunicare (dire, affirmer, expliquer, demander) ce declanșează concordanța."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Il a dit: 'Je pars' &rarr;",
+        "right": "Il a dit qu'il partait (imparfait)"
+      },
+      {
+        "left": "Il a dit: 'Je partirai' &rarr;",
+        "right": "Il a dit qu'il partirait (conditionnel)"
+      },
+      {
+        "left": "Il a dit: 'Je suis parti' &rarr;",
+        "right": "Il a dit qu'il était parti (plus-que-parfait)"
+      },
+      {
+        "left": "Il a demandé si...",
+        "right": "Întrebare indirectă (fără inversiune)"
+      }
+    ],
+    "quiz": {
+      "question": "Cum transpui la vorbire indirectă trecută replica: Paul a affirmé: « Je téléphonerai à midi »?",
+      "options": [
+        "Paul a affirmé qu'il téléphonerait à midi. (futur &rarr; conditionnel présent)",
+        "Paul a affirmé qu'il téléphonera à midi.",
+        "Paul a affirmé qu'il téléphonait à midi.",
+        "Paul a affirmé qu'il a téléphoné à midi."
+      ],
+      "correctIndex": 0,
+      "explanation": "După un verb introductiv la trecut (a affirmé), timpul viitor 'téléphonerai' devine condițional prezent: 'téléphonerait'."
+    },
+    "task": "Scrie fraza indirectă 'Il m'a expliqué qu'il viendrait demain matin à huit heures.'.",
+    "starterCode": "Il m'a expliqué qu'il ",
+    "expectedOutputPattern": "Il\\s+m['’]a\\s+expliqu[ée]\\s+qu['’]il\\s+viendrait\\s+demain\\s+matin\\s+[àa]\\s+huit\\s+heures\\.?",
+    "hint": "Scrie Il m'a expliqué qu'il viendrait demain matin à huit heures."
+  },
+  {
+    "id": "fr-c1-p44",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 60,
+    "title": "Capitolul 44: Expresii Idiomatice Majore din Hexagon & Nuanțe Argotice",
+    "theory": "\n<p>Atingerea nivelului de măiestrie lingvistică (C1/C2) presupune înțelegerea metaforelor și a expresiilor idiomatice specifice culturii franceze contemporane.</p>\n<h4>1. Metafore Clinice & Cotidiene</h4>\n<ul>\n  <li><code>Avoir le cafard</code> &mdash; a fi deprimat, trist, melancolic.</li>\n  <li><code>Poser un lapin à quelqu'un</code> &mdash; a lipsi nemotivat de la o întâlnire stabilită.</li>\n  <li><code>Coûter les yeux de la tête</code> &mdash; a fi exorbitant de scump, a costa o avere.</li>\n  <li><code>Tomber dans les pommes</code> &mdash; a leșina, a-și pierde cunoștința.</li>\n  <li><code>Casser les pieds à quelqu'un</code> &mdash; a agasa, a enerva peste măsură.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Avoir le cafard",
+        "def": "Expresie idiomatică franceză celebră ce desemnează o stare de melancolie sau tristețe profundă."
+      },
+      {
+        "term": "Coûter les yeux de la tête",
+        "def": "Echivalentul francez pentru 'costă o avere'."
       },
       {
         "term": "Poser un lapin",
-        "def": "Expresie idiomatică ce înseamnă a lipsi nemotivat de la o întâlnire."
+        "def": "A nu te prezenta la întâlnirea pe care ai fixat-o cu o altă persoană."
       },
       {
-        "term": "D'ores et déjà",
-        "def": "Locuțiune adverbială formală de nivel înalt sinonimă cu 'dès maintenant'."
+        "term": "Tomber dans les pommes",
+        "def": "Expresie colocvială autentică ce înseamnă a leșina brusc."
       }
     ],
     "matchingPairs": [
       {
-        "left": "Poser un lapin à quelqu'un",
+        "left": "Poser un lapin",
         "right": "A nu veni la o întâlnire stabilită"
       },
       {
-        "left": "Ça coûte les yeux de la tête",
-        "right": "Costă o avere"
+        "left": "Coûter les yeux de la tête",
+        "right": "A costa o avere"
       },
       {
-        "left": "Avoir le cafard",
-        "right": "A fi cuprins de tristețe sau nostalgie"
+        "left": "Tomber dans les pommes",
+        "right": "A leșina din senin"
+      },
+      {
+        "left": "Casser les pieds",
+        "right": "A enerva sau agasa pe cineva"
+      }
+    ],
+    "quiz": {
+      "question": "Ce înseamnă când un francez exclamă: 'Cette voiture coûte les yeux de la tête!'?",
+      "options": [
+        "Această mașină costă o avere (este extrem de scumpă).",
+        "Această mașină are faruri foarte frumoase.",
+        "Această mașină este la reducere promoțională.",
+        "Această mașină este periculoasă la condus."
+      ],
+      "correctIndex": 0,
+      "explanation": "'Coûter les yeux de la tête' este metafora franceză standard pentru un preț uriaș."
+    },
+    "task": "Scrie propoziția 'Ça coûte les yeux de la tête mais c'est d'une qualité exceptionnelle.'.",
+    "starterCode": "Ça coûte les yeux de la tête ",
+    "expectedOutputPattern": "[ÇC]a\\s+co[uû]te\\s+les\\s+yeux\\s+de\\s+la\\s+t[êe]te\\s+mais\\s+c['’]est\\s+d['’]une\\s+qualit[ée]\\s+exceptionnelle\\.?",
+    "hint": "Scrie Ça coûte les yeux de la tête mais c'est d'une qualité exceptionnelle."
+  },
+  {
+    "id": "fr-c1-p45",
+    "track": "Limba Franceză",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥖",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 65,
+    "title": "Capitolul 45: Corespondență Formală, CV & Franceză Diplomatică / Corporativă",
+    "theory": "\n<p>Culmea măiestriei (C2) este redactarea impecabilă a scrisorilor oficiale de cancelarie și a comunicării diplomatice corporative.</p>\n<h4>1. Formulele de Deschidere & Referință</h4>\n<p><em>« À l'attention de Monsieur le Directeur Général »</em><br>\n<em>« Suite à notre entretien téléphonique du 14 courant, j'ai l'honneur de vous soumettre ma candidature... »</em></p>\n<h4>2. Formula Supremă de Încheiere de Protocol</h4>\n<p><em>« Dans l'attente d'un retour favorable de votre part, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées. »</em></p>\n",
+    "glossary": [
+      {
+        "term": "Veuillez agréer...",
+        "def": "Formula solemnă supremă de politețe la finalul documentelor oficiale franceze."
+      },
+      {
+        "term": "Salutations distinguées",
+        "def": "Formulă de respect aristocratic și diplomatic rezervată scrisorilor oficiale."
+      },
+      {
+        "term": "Dans l'attente de...",
+        "def": "'În așteptarea...' — locuițiune de tranziție către formula de curtoazie finală."
+      },
+      {
+        "term": "À l'attention de",
+        "def": "Formulă protocolară de adresare specifică către o persoană sau funcție executivă."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "À l'attention de Monsieur...",
+        "right": "În atenția Domnului... (antet oficial)"
+      },
+      {
+        "left": "Dans l'attente de votre réponse",
+        "right": "În așteptarea răspunsului dumneavoastră"
       },
       {
         "left": "Veuillez agréer mes salutations",
-        "right": "Formulă solemnă de încheiere a scrisorilor oficiale"
+        "right": "Formulă solemnă de curtoazie finală"
+      },
+      {
+        "left": "Je vous saurais gré de...",
+        "right": "V-aș fi profund recunoscător dacă..."
       }
     ],
     "quiz": {
-      "question": "Ce înseamnă expresia franceză colocvială 'Il m'a posé un lapin hier soir'?",
+      "question": "Care este cea mai respectuoasă formulă diplomatică de încheiere a unei scrisori oficiale în Franța?",
       "options": [
-        "Nu a venit la întâlnirea pe care o stabiliserăm aseară.",
-        "Mi-a făcut cadou un iepure alb.",
-        "A pregătit o cină delicioasă.",
-        "A întârziat 5 minute din cauza traficului."
+        "Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.",
+        "Merci beaucoup et à bientôt!",
+        "Salut cordialement à toute l'équipe.",
+        "Je vous attends demain matin."
       ],
       "correctIndex": 0,
-      "explanation": "'Poser un lapin' este o expresie idiomatică consacrată ce înseamnă a nu te prezenta la o întâlnire stabilită cu cineva."
+      "explanation": "Formula de cancelarie 'Veuillez agréer... salutations distinguées' este etalonul absolut al curtoaziei administrative franceze."
     },
-    "task": "Scrie expresia formală 'Veuillez agréer mes salutations distinguées.' ca formulă de încheiere diplomatică.",
-    "starterCode": "// Scrie formula de politețe\n",
-    "expectedOutputPattern": "Veuillez\\s+agr[ée]er\\s+mes\\s+salutations\\s+distingu[ée]es\\.?",
-    "hint": "Scrie Veuillez agréer mes salutations distinguées."
+    "task": "Scrie formula protocolară solemnă 'Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées.'.",
+    "starterCode": "Veuillez agréer, ",
+    "expectedOutputPattern": "Veuillez\\s+agr[ée]er,\\s*Madame,\\s*Monsieur,\\s*l['’]expression\\s+de\\s+mes\\s+salutations\\s+distingu[ée]es\\.?",
+    "hint": "Scrie Veuillez agréer, Madame, Monsieur, l'expression de mes salutations distinguées."
   },
   {
-    "id": "es-new-1",
+    "id": "es-a1-p1",
     "track": "Limba Spaniolă",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥘",
-    "level": "1. Începător / A1",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 25,
+    "title": "Capitolul 1: Pronumele Personale Subiect (Yo, Tú, Él, Ella, Usted, Nosotros, Vosotros, Ellos, Ustedes)",
+    "theory": "\n<p>Bine ai venit la limba spaniolă! Primul pas de la zero absolut este învățarea pronumelor personale subiect (persoanele: eu, tu, el, ea...).</p>\n<h4>1. Cele 9 Pronume Personale</h4>\n<ul>\n  <li><code>Yo</code> [io] = Eu.</li>\n  <li><code>Tú</code> [tu] = Tu (informal, cu accent grafic pentru a nu se confunda cu posesivul <em>tu</em>).</li>\n  <li><code>Él</code> [el] = El (cu accent grafic) / <code>Ella</code> [eia] = Ea.</li>\n  <li><code>Usted</code> [usted] = Dumneavoastră (formă de politețe singular, se conjugă cu persoana a III-a singular!).</li>\n  <li><code>Nosotros</code> (masc./mixt) / <code>Nosotras</code> (exclusiv feminin) = Noi.</li>\n  <li><code>Vosotros</code> / <code>Vosotras</code> = Voi (folosit în Spania).</li>\n  <li><code>Ellos</code> / <code>Ellas</code> = Ei / Ele.</li>\n  <li><code>Ustedes</code> = Dumneavoastră (plural de politețe în Spania; în America Latină înlocuiește complet pe 'vosotros').</li>\n</ul>\n<h4>2. Omiterea Pronumelui Subiect</h4>\n<p>La fel ca în română, în spaniolă pronumele <strong>se omite în mod obișnuit</strong> deoarece terminația verbului arată clar persoana: <em>Hablo español</em> (nu e nevoie să spui <em>Yo hablo</em>).</p>\n",
+    "glossary": [
+      {
+        "term": "Yo",
+        "def": "Pronumele 'Eu' în limba spaniolă."
+      },
+      {
+        "term": "Tú vs Usted",
+        "def": "'Tú' este informal (tutuit); 'Usted' este pronumele de respect ('Dumneavoastră')."
+      },
+      {
+        "term": "Nosotros / Nosotras",
+        "def": "Distinge genul la persoana I plural: feminin exclusiv (nosotras) sau masculin/mixt (nosotros)."
+      },
+      {
+        "term": "Omiterea subiectului",
+        "def": "Spre deosebire de engleză sau franceză, spaniola nu cere menționarea pronumelui 'yo' la fiecare frază."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Yo",
+        "right": "Eu"
+      },
+      {
+        "left": "Tú",
+        "right": "Tu (informal)"
+      },
+      {
+        "left": "Usted",
+        "right": "Dumneavoastră (singular politicos)"
+      },
+      {
+        "left": "Nosotros / Ellos",
+        "right": "Noi / Ei"
+      }
+    ],
+    "quiz": {
+      "question": "Cum i te adresezi politicos unui adult necunoscut sau unui medic în limba spaniolă?",
+      "options": [
+        "Usted (Dumneavoastră)",
+        "Tú",
+        "Vosotros",
+        "Ella"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Usted' este pronumele de politețe utilizat pentru adăpostirea respectului cuvenit interlocutorului."
+    },
+    "task": "Scrie pronumele personale de singular 'Yo, tú, él, ella' separate prin virgulă.",
+    "starterCode": "// Completează pronumele\n",
+    "expectedOutputPattern": "Yo,\\s*t[úu],\\s*[ée]l,\\s*ella\\.?",
+    "hint": "Scrie Yo, tú, él, ella"
+  },
+  {
+    "id": "es-a1-p2",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 25,
+    "title": "Capitolul 2: Formule de Salut, Despărțire & Politețe (¡Hola!, Buenos días, Gracias)",
+    "theory": "\n<p>Spaniola este o limbă caldă și expresivă. Reține că în scris, propozițiile exclamative și interogative încep cu semnul de punctuație inversat: <code>¡</code> și <code>¿</code>.</p>\n<h4>1. Saluturi Uzuale</h4>\n<ul>\n  <li><code>¡Hola!</code> [ola] = Bună / Salut (litera 'h' este complet mută în spaniolă!).</li>\n  <li><code>Buenos días</code> = Bună dimineața / Bună ziua (până la prânz).</li>\n  <li><code>Buenas tardes</code> = Bună ziua / Bună seara (de la prânz până la lăsarea întunericului).</li>\n  <li><code>Buenas noches</code> = Noapte bună (sau bună seara târziu).</li>\n</ul>\n<h4>2. Politețe & Despărțire</h4>\n<ul>\n  <li><code>Por favor</code> = Vă rog / Te rog.</li>\n  <li><code>Muchas gracias</code> = Mulțumesc mult / <code>De nada</code> = Cu plăcere.</li>\n  <li><code>¡Adiós!</code> = La revedere / Adio.</li>\n  <li><code>Hasta luego</code> = Pe mai târziu / <code>Hasta pronto</code> = Pe curând.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "¡Hola!",
+        "def": "Formula universală de salut în orice moment al zilei ('H' este mut)."
+      },
+      {
+        "term": "Por favor",
+        "def": "'Te rog / Vă rog' în limba spaniolă."
+      },
+      {
+        "term": "Muchas gracias",
+        "def": "'Mulțumesc foarte mult'."
+      },
+      {
+        "term": "Hasta luego",
+        "def": "Formulă de despărțire frecventă ce înseamnă 'Pe mai târziu'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "¡Hola!",
+        "right": "Bună!"
+      },
+      {
+        "left": "Buenos días",
+        "right": "Bună dimineața / Bună ziua"
+      },
+      {
+        "left": "Muchas gracias",
+        "right": "Mulțumesc mult"
+      },
+      {
+        "left": "Hasta luego",
+        "right": "Pe mai târziu"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se pronunță corect salutul '¡Hola!' în limba spaniolă?",
+      "options": [
+        "[ola] (litera H nu se pronunță niciodată în spaniolă)",
+        "[hola] cu H aspirat ca în engleză",
+        "[jola] cu sunetul H rusesc",
+        "[ula]"
+      ],
+      "correctIndex": 0,
+      "explanation": "În limba spaniolă, litera 'H' este complet mută; se pronunță direct vocala următoare: [ola]."
+    },
+    "task": "Scrie salutul de politețe '¡Hola! Buenos días, por favor.'.",
+    "starterCode": "// Scrie salutul\n",
+    "expectedOutputPattern": "(?:[¡!]\\s*)?Hola[!\\s]+Buenos\\s+d[íi]as,\\s*por\\s+favor\\.?",
+    "hint": "Scrie ¡Hola! Buenos días, por favor."
+  },
+  {
+    "id": "es-a1-p3",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 30,
-    "title": "Capitolul 1: Verbe Regulate la Prezent (-ar, -er, -ir)",
-    "theory": "\n<p>Verbele în spaniolă se împart în 3 conjugări conform terminației de infinitiv: <strong>-ar</strong> (<em>hablar</em>), <strong>-er</strong> (<em>comer</em>) și <strong>-ir</strong> (<em>vivir</em>).</p>\n<h4>1. Terminațiile Prezentului de Indicativ</h4>\n<ul>\n  <li><code>-ar</code>: -o, -as, -a, -amos, -áis, -an (<em>hablo, hablas, habla...</em>)</li>\n  <li><code>-er</code>: -o, -es, -e, -emos, -éis, -en (<em>como, comes, come...</em>)</li>\n  <li><code>-ir</code>: -o, -es, -e, -imos, -ís, -en (<em>vivo, vives, vive...</em>)</li>\n</ul>\n<h4>2. Omiterea Pronumelui Subiect</h4>\n<p>Deoarece terminațiile verbale sunt unice și neambigue, pronumele subiect (yo, tú, nosotros) este <strong>omis în mod uzual</strong>, fiind folosit doar pentru emfază.</p>\n",
+    "title": "Capitolul 3: Prezentarea Personală (¿Cómo te llamas? Me llamo...)",
+    "theory": "\n<p>Pentru a face cunoștință, folosim verbul reflexiv <strong>llamarse</strong> (a se numi) și verbul <strong>ser</strong> (a fi).</p>\n<h4>1. Numele Tău</h4>\n<ul>\n  <li><code>¿Cómo te llamas?</code> [komo te iamas] = Cum te cheamă? (informal).</li>\n  <li><code>¿Cómo se llama usted?</code> = Cum vă numiți? (formal).</li>\n  <li><code>Me llamo Carlos.</code> = Mă numesc Carlos.</li>\n  <li><code>¡Mucho gusto!</code> / <code>¡Encantado/a!</code> = Încântat de cunoștință!</li>\n</ul>\n<h4>2. De Unde Ești (Origine & Naționalitate)</h4>\n<ul>\n  <li><code>¿De dónde eres?</code> = De unde ești?</li>\n  <li><code>Soy de Rumanía.</code> = Sunt din România.</li>\n  <li><code>Soy rumano</code> (masc.) / <code>Soy rumana</code> (fem.) = Sunt român / româncă.</li>\n  <li><code>Vivo en Bucarest.</code> = Locuiesc în București.</li>\n</ul>\n",
     "glossary": [
       {
-        "term": "Presente de indicativo",
-        "def": "Timpul prezent utilizat pentru fapte curente, adevăruri generale și rutine."
+        "term": "Me llamo...",
+        "def": "Formula standard: 'Mă numesc...' / 'Numele meu este...'."
       },
       {
-        "term": "Omisión del pronombre",
-        "def": "Practica standard în spaniolă de a nu rosti 'yo' sau 'tú' datorită terminației clare a verbului."
+        "term": "Mucho gusto",
+        "def": "'Încântat de cunoștință' (răspuns universal la prezentare)."
       },
       {
-        "term": "Conjugación en -ar",
-        "def": "Prima grupă de verbe din limba spaniolă (hablar, trabajar, estudiar)."
+        "term": "¿De dónde eres?",
+        "def": "Întrebare directă: 'De unde ești?'."
       },
       {
-        "term": "Conjugación en -er/-ir",
-        "def": "A doua și a treia grupă de verbe (comer, beber, vivir, escribir)."
+        "term": "Soy de...",
+        "def": "'Sunt din...' (indică țara sau orașul de origine)."
       }
     ],
     "matchingPairs": [
       {
-        "left": "Hablo español",
-        "right": "Vorbesc spaniolă (Yo)"
+        "left": "Me llamo...",
+        "right": "Mă numesc..."
       },
       {
-        "left": "Comemos juntos",
-        "right": "Mâncăm împreună (Nosotros)"
+        "left": "¿Cómo te llamas?",
+        "right": "Cum te cheamă?"
       },
       {
-        "left": "Viven en Madrid",
-        "right": "Ei trăiesc la Madrid (Ellos)"
+        "left": "¡Mucho gusto!",
+        "right": "Încântat de cunoștință!"
       },
       {
-        "left": "¿Trabajas hoy?",
-        "right": "Lucrezi astăzi? (Tú)"
+        "left": "Soy de Rumanía",
+        "right": "Sunt din România"
       }
     ],
     "quiz": {
-      "question": "Care este forma de prezent a verbului 'escribir' pentru persoana 'nosotros'?",
+      "question": "Ce răspunzi natural când cineva îți spune 'Me llamo Pedro'?",
       "options": [
-        "escribimos (Nosotros escribimos)",
-        "escribemos",
-        "escriben",
-        "escribo"
+        "¡Mucho gusto! (Încântat de cunoștință)",
+        "De nada!",
+        "Por favor!",
+        "Buenas noches!"
       ],
       "correctIndex": 0,
-      "explanation": "La conjugarea a treia (-ir), persoana I plural primește terminația '-imos': escribimos."
+      "explanation": "'¡Mucho gusto!' este formula canonică și călduroasă de curtoazie la prima întâlnire."
     },
-    "task": "Scrie propoziția 'Hablo español y rumano.' (Vorbesc spaniolă și română) omițând pronumele subiect.",
-    "starterCode": "// Scrie propoziția\n",
-    "expectedOutputPattern": "Hablo\\s+espa[ñn]ol\\s+y\\s+rumano\\.?",
-    "hint": "Scrie Hablo español y rumano."
+    "task": "Scrie propoziția de prezentare 'Me llamo Elena y soy de Rumanía.'.",
+    "starterCode": "Me llamo ",
+    "expectedOutputPattern": "Me\\s+llamo\\s+Elena\\s+y\\s+soy\\s+de\\s+Ruman[íi]a\\.?",
+    "hint": "Scrie Me llamo Elena y soy de Rumanía."
   },
   {
-    "id": "es-new-2",
+    "id": "es-a1-p4",
     "track": "Limba Spaniolă",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥘",
-    "level": "1. Începător / A1",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 4: Verbul Auxiliar „SER” (A FI — Identitate & Natură)",
+    "theory": "\n<p>În spaniolă există <strong>două verbe diferite</strong> pentru „a fi”: <strong>SER</strong> și <strong>ESTAR</strong>. Verbul <code>SER</code> descrie identitatea esențială, caracteristicile permanente, originea și profesia.</p>\n<h4>1. Conjugarea Verbului SER la Prezent</h4>\n<ul>\n  <li><code>Yo soy</code> [soi] = Eu sunt (<em>Soy estudiante</em> = Sunt student).</li>\n  <li><code>Tú eres</code> [eres] = Tu ești (<em>Eres inteligente</em>).</li>\n  <li><code>Él / Ella / Usted es</code> = El / Ea este (<em>Ella es doctora</em>).</li>\n  <li><code>Nosotros somos</code> = Noi suntem (<em>Somos amigos</em>).</li>\n  <li><code>Vosotros sois</code> = Voi sunteți.</li>\n  <li><code>Ellos / Ellas / Ustedes son</code> = Ei / Ele sunt (<em>Son amables</em>).</li>\n</ul>\n<h4>2. Când Folosim SER (Mnemonică: DOCTOR)</h4>\n<p><strong>D</strong>escriere, <strong>O</strong>rigine, <strong>C</strong>aracteristică fizică/morală, <strong>T</strong>imp/Oră (<em>Son las tres</em>), <strong>O</strong>cupație/Profesie, <strong>R</strong>elație (prieteni, frați).</p>\n",
+    "glossary": [
+      {
+        "term": "Ser",
+        "def": "Verbul 'a fi' utilizat pentru trăsături permanente, identitate, naționalitate, profesie și oră."
+      },
+      {
+        "term": "Yo soy",
+        "def": "Eu sunt."
+      },
+      {
+        "term": "Somos",
+        "def": "Noi suntem."
+      },
+      {
+        "term": "Profesii fără articol",
+        "def": "În spaniolă nu se pune 'un' la profesii: 'Soy profesor' (nu 'Soy un profesor')."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Yo soy",
+        "right": "Eu sunt"
+      },
+      {
+        "left": "Tú eres",
+        "right": "Tu ești"
+      },
+      {
+        "left": "Nosotros somos",
+        "right": "Noi suntem"
+      },
+      {
+        "left": "Ellos son",
+        "right": "Ei sunt"
+      }
+    ],
+    "quiz": {
+      "question": "Care este forma corectă a verbului 'ser' pentru persoana 'Él' (El)?",
+      "options": [
+        "es (Él es)",
+        "soy",
+        "eres",
+        "somos"
+      ],
+      "correctIndex": 0,
+      "explanation": "La persoana a III-a singular, verbul ser devine 'es' (Él es, Ella es, Usted es)."
+    },
+    "task": "Scrie propoziția 'Yo soy programador y él es médico.' (Eu sunt programator și el este medic).",
+    "starterCode": "Yo soy ",
+    "expectedOutputPattern": "Yo\\s+soy\\s+programador\\s+y\\s+[ée]l\\s+es\\s+m[ée]dico\\.?",
+    "hint": "Scrie Yo soy programador y él es médico."
+  },
+  {
+    "id": "es-a1-p5",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 5: Verbul Auxiliar „ESTAR” (A FI — Stare, Emoții & Locație)",
+    "theory": "\n<p>Al doilea verb pentru „a fi” este <strong>ESTAR</strong>. Acesta descrie starea de sănătate, emoțiile temporare și <strong>locația fizică în spațiu</strong> (unde se află ceva).</p>\n<h4>1. Conjugarea Verbului ESTAR la Prezent</h4>\n<ul>\n  <li><code>Yo estoy</code> [estoi] = Eu sunt / mă aflu (<em>Estoy contento</em>).</li>\n  <li><code>Tú estás</code> [estas] = Tu ești (<em>¿Cómo estás?</em> = Ce mai faci?).</li>\n  <li><code>Él / Ella / Usted está</code> = El / Ea este (<em>Está en casa</em> = E acasă).</li>\n  <li><code>Nosotros estamos</code> = Noi suntem / ne aflăm.</li>\n  <li><code>Vosotros estáis</code> = Voi sunteți.</li>\n  <li><code>Ellos / Ellas / Ustedes están</code> = Ei / Ele sunt (<em>Están cansados</em> = Sunt obosiți).</li>\n</ul>\n<h4>2. Când Folosim ESTAR (Mnemonică: PLACE)</h4>\n<p><strong>P</strong>oziție, <strong>L</strong>ocație (<em>Madrid está en España</em>), <strong>A</strong>cțiune în derulare, <strong>C</strong>ondiție fizică (bolnav, sănătos), <strong>E</strong>moție (trist, fericit).</p>\n",
+    "glossary": [
+      {
+        "term": "Estar",
+        "def": "Verbul 'a fi' utilizat pentru locație în spațiu, stări de moment și emoții trecătoare."
+      },
+      {
+        "term": "Estoy bien",
+        "def": "'Sunt bine' (răspunsul clasic la ¿Cómo estás?)."
+      },
+      {
+        "term": "Locație cu Estar",
+        "def": "Orice localizare pe hartă folosește obligatoriu Estar (El hotel está cerca)."
+      },
+      {
+        "term": "Cansado/a",
+        "def": "Obosit / obosită (se folosește întotdeauna cu estar)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "¿Cómo estás?",
+        "right": "Ce mai faci? / Cum ești?"
+      },
+      {
+        "left": "Estoy muy bien",
+        "right": "Sunt foarte bine"
+      },
+      {
+        "left": "Madrid está en España",
+        "right": "Madridul se află în Spania (locație)"
+      },
+      {
+        "left": "Estamos listos",
+        "right": "Suntem gata / pregătiți"
+      }
+    ],
+    "quiz": {
+      "question": "De ce spunem 'El museo está cerrado' folosind verbul ESTAR și nu SER?",
+      "options": [
+        "Deoarece a fi închis este o stare temporară, nu o caracteristică permanentă a clădirii.",
+        "Verbul ser este interzis pentru clădiri.",
+        "Estar înseamnă doar a deschide.",
+        "Nu există nicio regulă, sunt sinonime."
+      ],
+      "correctIndex": 0,
+      "explanation": "Stările care se pot schimba (deschis/închis, curat/murdar, bolnav/sănătos) folosesc fără excepție verbul ESTAR."
+    },
+    "task": "Scrie întrebarea și răspunsul '¿Cómo estás? - Estoy bien, gracias.'.",
+    "starterCode": "// Scrie dialogul\n",
+    "expectedOutputPattern": "(?:[¿?]\\s*)?C[óo]mo\\s+est[áa]s\\??\\s*-\\s*Estoy\\s+bien,\\s*gracias\\.?",
+    "hint": "Scrie ¿Cómo estás? - Estoy bien, gracias."
+  },
+  {
+    "id": "es-a1-p6",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 35,
-    "title": "Capitolul 2: Verbul 'Gustar' și Construcțiile Afective",
-    "theory": "\n<p>Verbul <strong>gustar</strong> nu funcționează ca verbul „a plăcea” din engleză; el se acordă cu <strong>obiectul care place</strong>, nu cu persoana căreia îi place!</p>\n<h4>1. Structura cu Pronume de Obiect Indirect</h4>\n<p>Folosim pronumele: <code>me</code>, <code>te</code>, <code>le</code>, <code>nos</code>, <code>os</code>, <code>les</code>:</p>\n<ul>\n  <li>Dacă lucrul care place este la singular sau un verb infinitiv: <strong>gusta</strong> (<em>Me gusta el café</em>, <em>Me gusta viajar</em>).</li>\n  <li>Dacă lucrul care place este la plural: <strong>gustan</strong> (<em>Me gustan los libros</em>).</li>\n</ul>\n<h4>2. Verbe Similare</h4>\n<p>Aceeași structură este folosită de: <em>encantar</em> (a adora), <em>interesar</em>, <em>doler</em> (a durea), <em>parecer</em>.</p>\n",
+    "title": "Capitolul 6: Sinteză & Diferența Crucială: SER vs ESTAR",
+    "theory": "\n<p>Confundarea lui <em>SER</em> cu <em>ESTAR</em> poate schimba complet sensul unei propoziții! Iată exemple celebre de comparație directă:</p>\n<h4>1. Schimbarea Semnificației cu Același Adjectiv</h4>\n<ul>\n  <li><code>Ser listo</code> = A fi deștept / inteligent.<br>\n      <code>Estar listo</code> = A fi gata / pregătit pentru plecare.</li>\n  <li><code>Ser bueno</code> = A fi o persoană bună la suflet.<br>\n      <code>Estar bueno</code> = Mâncarea este delicioasă / gustoasă.</li>\n  <li><code>Ser verde</code> = De culoare verde.<br>\n      <code>Estar verde</code> = Un fruct necopt sau cineva neexperimentat.</li>\n</ul>\n<h4>2. Regula Simplă de Aur</h4>\n<p><strong>SER = CINE și CE este</strong> (esența de neschimbat).<br>\n<strong>ESTAR = CUM și UNDE este</strong> (starea și locația de moment).</p>\n",
     "glossary": [
       {
-        "term": "Verbo gustar",
-        "def": "Verb special ce se acordă exclusiv cu lucrul sau lucrurile plăcute (gusta / gustan)."
+        "term": "Ser listo",
+        "def": "A fi inteligent din fire."
       },
       {
-        "term": "Pronombres de OI",
-        "def": "Pronumele me, te, le, nos, os, les ce indică persoana afectată de senzație."
+        "term": "Estar listo",
+        "def": "A fi gata de acțiune."
       },
       {
-        "term": "A mí me gusta...",
-        "def": "Construcție prepozițională de accentuare facultativă a persoanei."
+        "term": "Esență vs Stare",
+        "def": "Ser descrie natura intrinsecă; Estar descrie stadiul prezent."
       },
       {
-        "term": "encantar",
-        "def": "Verb similar cu gustar ce exprimă o preferință foarte puternică (a adora)."
+        "term": "Ubicación (Locație)",
+        "def": "Aflarea în spațiu cere întotdeauna Estar (¿Dónde está el baño?)."
       }
     ],
     "matchingPairs": [
       {
-        "left": "Me gusta la música",
-        "right": "Îmi place muzica (singular)"
+        "left": "Soy feliz",
+        "right": "Sunt o persoană fericită din fire (Ser)"
       },
       {
-        "left": "Me gustan las ciudades",
-        "right": "Îmi plac orașele (plural)"
+        "left": "Estoy feliz hoy",
+        "right": "Sunt fericit astăzi pentru că am primit o veste (Estar)"
       },
       {
-        "left": "Nos encanta viajar",
-        "right": "Ne încântă să călătorim (cu infinitiv)"
+        "left": "La comida está rica",
+        "right": "Mâncarea este gustoasă acum (Estar)"
       },
       {
-        "left": "¿Te gusta este libro?",
-        "right": "Îți place această carte?"
+        "left": "Juan es listo",
+        "right": "Juan este foarte deștept (Ser)"
       }
     ],
     "quiz": {
-      "question": "Ce formă a verbului gustar este corectă în propoziția 'A ellos les ... las tapas españolas'?",
+      "question": "Ce înseamnă propoziția 'La sopa está fría'?",
       "options": [
-        "gustan (deoarece 'las tapas' este la plural)",
-        "gusta",
-        "gustamos",
-        "gusto"
+        "Supa este rece acum (stare temporară, trebuie încălzită).",
+        "Supa este o ființă rece.",
+        "Supa se află în Spania.",
+        "Supa este foarte fierbinte."
       ],
       "correctIndex": 0,
-      "explanation": "Subiectul gramatical al propoziției este 'las tapas españolas' (plural); prin urmare, verbul se acordă la plural: 'gustan'."
+      "explanation": "Cu 'estar', 'fría' indică starea temporară a mâncării în acest moment."
     },
-    "task": "Completează propoziția 'Me gustan los idiomas.' (Îmi plac limbile străine) cu forma corectă de plural.",
-    "starterCode": "// Completează propoziția\n",
-    "expectedOutputPattern": "Me\\s+gustan\\s+los\\s+idiomas\\.?",
-    "hint": "Scrie Me gustan los idiomas."
+    "task": "Scrie propoziția 'Juan es inteligente pero hoy está cansado.' (Juan e inteligent, dar azi e obosit).",
+    "starterCode": "Juan es ",
+    "expectedOutputPattern": "Juan\\s+es\\s+inteligente\\s+pero\\s+hoy\\s+est[áa]\\s+cansado\\.?",
+    "hint": "Scrie Juan es inteligente pero hoy está cansado."
   },
   {
-    "id": "es-new-3",
+    "id": "es-a1-p7",
     "track": "Limba Spaniolă",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥘",
-    "level": "2. Junior / A2",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 7: Verbul Auxiliar „TENER” (A AVEA) la Prezent",
+    "theory": "\n<p>Verbul <strong>tener</strong> (a avea) este un verb neregulat cu schimbare de rădăcină (diftongare <em>e $\rightarrow$ ie</em>) și adăugare de <em>g</em> la persoana I (<em>yo tengo</em>).</p>\n<h4>1. Conjugarea la Prezent</h4>\n<ul>\n  <li><code>Yo tengo</code> [tengo] = Eu am.</li>\n  <li><code>Tú tienes</code> [tienes] = Tu ai.</li>\n  <li><code>Él / Ella / Usted tiene</code> = El / Ea are.</li>\n  <li><code>Nosotros tenemos</code> = Noi avem (fără diftong la nosotros!).</li>\n  <li><code>Vosotros tenéis</code> = Voi aveți.</li>\n  <li><code>Ellos / Ellas / Ustedes tienen</code> = Ei / Ele au.</li>\n</ul>\n<h4>2. Expresii cu TENER</h4>\n<ul>\n  <li><em>Tengo 24 años</em> = Am 24 de ani (vârsta se exprimă cu TENER, nu ser!).</li>\n  <li><em>Tengo hambre</em> [ambre] = Mi-e foame / <em>Tengo sed</em> = Mi-e sete.</li>\n  <li><em>Tengo calor / Tengo frío</em> = Mi-e cald / Mi-e frig.</li>\n  <li><em>Tener que + infinitiv</em> = A trebui: <em>Tengo que estudiar</em> (Trebuie să învăț).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Tener",
+        "def": "Verbul 'a avea' (tengo, tienes, tiene, tenemos, tenéis, tienen)."
+      },
+      {
+        "term": "Tengo 20 años",
+        "def": "Exprimarea vârstei în spaniolă cere verbul tener."
+      },
+      {
+        "term": "Tener que + inf",
+        "def": "Structură ce exprimă o obligație personală ('trebuie să...')."
+      },
+      {
+        "term": "Tener hambre / sed",
+        "def": "A fi foame / sete (literalmente 'a avea foame/sete')."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Tengo un coche",
+        "right": "Am o mașină"
+      },
+      {
+        "left": "Tengo 25 años",
+        "right": "Am 25 de ani"
+      },
+      {
+        "left": "Tengo mucha hambre",
+        "right": "Mi-e foarte foame"
+      },
+      {
+        "left": "Tenemos que salir",
+        "right": "Trebuie să ieșim (obligație)"
+      }
+    ],
+    "quiz": {
+      "question": "Cum spui 'Câți ani ai?' în limba spaniolă?",
+      "options": [
+        "¿Cuántos años tienes?",
+        "¿Cuántos años eres?",
+        "¿Cómo tienes años?",
+        "¿Qué edad eres?"
+      ],
+      "correctIndex": 0,
+      "explanation": "Vârsta se asociază cu verbul 'tener': '¿Cuántos años tienes?' (Câți ani ai?)."
+    },
+    "task": "Scrie propoziția 'Tengo hambre y tengo que comer ahora.' (Mi-e foame și trebuie să mănânc acum).",
+    "starterCode": "Tengo hambre ",
+    "expectedOutputPattern": "Tengo\\s+hambre\\s+y\\s+tengo\\s+que\\s+comer\\s+ahora\\.?",
+    "hint": "Scrie Tengo hambre y tengo que comer ahora."
+  },
+  {
+    "id": "es-a1-p8",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 8: Numerele de la 0 la 20 (Los Números del 0 al 20)",
+    "theory": "\n<p>Numerele în spaniolă au o logică fonetică foarte apropiată de limba română:</p>\n<h4>1. De la 0 la 10</h4>\n<p><code>0: cero</code>, <code>1: uno</code>, <code>2: dos</code>, <code>3: tres</code>, <code>4: cuatro</code>, <code>5: cinco</code>, <code>6: seis</code>, <code>7: siete</code>, <code>8: ocho</code>, <code>9: nueve</code>, <code>10: diez</code> [diez].</p>\n<h4>2. De la 11 la 20</h4>\n<p><code>11: once</code>, <code>12: doce</code>, <code>13: trece</code>, <code>14: catorce</code>, <code>15: quince</code> [kince].</p>\n<p>De la 16 la 19 se formează prin compunerea „zece și...” scris într-un singur cuvânt:</p>\n<p><code>16: dieciséis</code>, <code>17: diecisiete</code>, <code>18: dieciocho</code>, <code>19: diecinueve</code>, <code>20: veinte</code>.</p>\n",
+    "glossary": [
+      {
+        "term": "uno, dos, tres",
+        "def": "Unu, doi, trei în limba spaniolă."
+      },
+      {
+        "term": "once a quince",
+        "def": "Numerele de la 11 la 15 cu terminația caracteristică '-ce'."
+      },
+      {
+        "term": "dieciséis",
+        "def": "Numărul 16; conține accent grafic pe ultimul 'e'."
+      },
+      {
+        "term": "veinte",
+        "def": "Numărul 20."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "uno, dos, tres",
+        "right": "1, 2, 3"
+      },
+      {
+        "left": "cuatro, cinco, seis",
+        "right": "4, 5, 6"
+      },
+      {
+        "left": "siete, ocho, nueve, diez",
+        "right": "7, 8, 9, 10"
+      },
+      {
+        "left": "quince, veinte",
+        "right": "15, 20"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se scrie numărul 15 în limba spaniolă?",
+      "options": [
+        "quince",
+        "diecicinco",
+        "once",
+        "catorce"
+      ],
+      "correctIndex": 0,
+      "explanation": "Numărul 15 se scrie 'quince' [kince]."
+    },
+    "task": "Scrie numerele 'uno, dos, tres, cuatro' separate prin virgulă și spațiu.",
+    "starterCode": "// Scrie 1, 2, 3, 4 în spaniolă\n",
+    "expectedOutputPattern": "uno,\\s*dos,\\s*tres,\\s*cuatro",
+    "hint": "Scrie uno, dos, tres, cuatro"
+  },
+  {
+    "id": "es-a1-p9",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 9: Numerele de la 20 la 100, Prețuri & Cumpărături",
+    "theory": "\n<p>Spre deosebire de franceză, spaniola folosește un sistem decimal curat și previzibil!</p>\n<h4>1. Zecile în Spaniolă</h4>\n<p><code>20: veinte</code>, <code>30: treinta</code>, <code>40: cuarenta</code>, <code>50: cincuenta</code>, <code>60: sesenta</code>, <code>70: setenta</code>, <code>80: ochenta</code>, <code>90: noventa</code>, <code>100: cien</code>.</p>\n<h4>2. Regula lui „Y” (Și)</h4>\n<ul>\n  <li>Pentru numerele 21-29 se scrie într-un singur cuvânt: <em>veintiuno, veintidós, veintitrés...</em></li>\n  <li>De la 31 în sus, se separă prin conjuncția <strong>y</strong> (și): <em>treinta y uno</em>, <em>cuarenta y cinco</em>, <em>noventa y nueve</em>.</li>\n</ul>\n<h4>3. Întrebarea Prețului</h4>\n<p><code>¿Cuánto cuesta esto?</code> = Cât costă asta? / <code>Cuesta veinte euros</code> = Costă 20 de euro.</p>\n",
+    "glossary": [
+      {
+        "term": "treinta y uno",
+        "def": "31 (de la 31 încolo numerele se leagă cu 'y')."
+      },
+      {
+        "term": "¿Cuánto cuesta?",
+        "def": "'Cât costă?' în magazine și restaurante."
+      },
+      {
+        "term": "cien",
+        "def": "Numărul 100 exact (devine 'ciento uno' de la 101 în sus)."
+      },
+      {
+        "term": "euro / euros",
+        "def": "Moneda oficială."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "treinta y cinco",
+        "right": "35"
+      },
+      {
+        "left": "cincuenta euros",
+        "right": "50 de euro"
+      },
+      {
+        "left": "¿Cuánto cuesta esto?",
+        "right": "Cât costă asta?"
+      },
+      {
+        "left": "cien",
+        "right": "100"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se întreabă 'Cât costă cartea?' în limba spaniolă?",
+      "options": [
+        "¿Cuánto cuesta el libro?",
+        "¿Cómo vale el libro?",
+        "¿Qué precio tiene el libro?",
+        "¿Cuánto libro cuesta?"
+      ],
+      "correctIndex": 0,
+      "explanation": "'¿Cuánto cuesta...?' este formula standard de întrebare a prețului."
+    },
+    "task": "Întreabă prețul: '¿Cuánto cuesta este billete, por favor?'.",
+    "starterCode": "// Întreabă prețul biletului\n",
+    "expectedOutputPattern": "(?:[¿?]\\s*)?Cu[áa]nto\\s+cuesta\\s+este\\s+billete,\\s*por\\s+favor\\??",
+    "hint": "Scrie ¿Cuánto cuesta este billete, por favor?"
+  },
+  {
+    "id": "es-a1-p10",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 10: Zilele Săptămânii, Lunile Anului & Anotimpurile",
+    "theory": "\n<p>În limba spaniolă, zilele săptămânii și lunile anului se scriu cu <strong>literă mică</strong> (nu cu majusculă ca în engleză!).</p>\n<h4>1. Zilele Săptămânii (Los Días de la Semana)</h4>\n<p>Toate zilele de luni până vineri se termină în <code>-s</code> și sunt de genul <strong>masculin</strong>:</p>\n<p><code>el lunes</code> (luni), <code>el martes</code> (marți), <code>el miércoles</code> (miercuri), <code>el jueves</code> (joi), <code>el viernes</code> (vineri), <code>el sábado</code> (sâmbătă), <code>el domingo</code> (duminică).</p>\n<p>Pentru a spune „lunea” sau „în fiecare luni”, folosim articolul plural: <em>los lunes</em> (nu spunem 'en lunes').</p>\n<h4>2. Lunile Anului (Los Meses)</h4>\n<p><em>enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre</em>.</p>\n<h4>3. Anotimpurile (Las Estaciones)</h4>\n<p><code>la primavera</code> (primăvara), <code>el verano</code> (vara), <code>el otoño</code> (toamna), <code>el invierno</code> (iarna).</p>\n",
+    "glossary": [
+      {
+        "term": "el lunes / los lunes",
+        "def": "Zilele folosesc articolul 'el' sau 'los' ('los viernes' = vinerea)."
+      },
+      {
+        "term": "el fin de semana",
+        "def": "Sfârșitul de săptămână (weekend)."
+      },
+      {
+        "term": "hoy",
+        "def": "Cuvântul pentru 'astăzi'."
+      },
+      {
+        "term": "mañana",
+        "def": "'Mâine' (sau 'dimineață' dacă este precedat de articol: la mañana)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "el lunes",
+        "right": "Luni"
+      },
+      {
+        "left": "el viernes",
+        "right": "Vineri"
+      },
+      {
+        "left": "el sábado y domingo",
+        "right": "Sâmbătă și duminică"
+      },
+      {
+        "left": "el verano",
+        "right": "Vara"
+      }
+    ],
+    "quiz": {
+      "question": "Cum spui 'Ne vedem luni' sau 'Vin lunea' în spaniolă?",
+      "options": [
+        "el lunes / los lunes (folosind articolul hotărât, fără prepoziția 'en')",
+        "en lunes",
+        "a lunes",
+        "sobre lunes"
+      ],
+      "correctIndex": 0,
+      "explanation": "În limba spaniolă este o greșeală să spui 'en lunes'. Se folosește exclusiv articolul: 'el lunes' sau 'los lunes'."
+    },
+    "task": "Scrie propoziția 'Hoy es viernes y mañana es sábado.' (Azi e vineri și mâine e sâmbătă).",
+    "starterCode": "Hoy es ",
+    "expectedOutputPattern": "Hoy\\s+es\\s+viernes\\s+y\\s+ma[ñn]ana\\s+es\\s+s[áa]bado\\.?",
+    "hint": "Scrie Hoy es viernes y mañana es sábado."
+  },
+  {
+    "id": "es-a1-p11",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 11: ¿Qué hora es? Exprimarea Orei în Spaniolă",
+    "theory": "\n<p>Pentru a întreba cât este ceasul, spunem: <strong>« ¿Qué hora es? »</strong>. Răspunsul depinde dacă este ora 1 (singular) sau o altă oră (plural):</p>\n<h4>1. Regula Singular / Plural</h4>\n<ul>\n  <li>Pentru ora 1:00: <code>Es la una</code> (singular: 'Es la', deoarece 'hora' este feminin singular).</li>\n  <li>Pentru toate celelalte ore: <code>Son las dos</code>, <code>Son las tres</code>, <code>Son las diez</code> (plural: 'Son las').</li>\n</ul>\n<h4>2. Minute, Sferturi și Jumătăți</h4>\n<ul>\n  <li><code>y cuarto</code> = și un sfert (ex: <em>Son las cuatro y cuarto</em> = 4:15).</li>\n  <li><code>y media</code> = și jumătate (ex: <em>Son las cinco y media</em> = 5:30).</li>\n  <li><code>menos cuarto</code> = fără un sfert (ex: <em>Son las seis menos cuarto</em> = 5:45).</li>\n  <li><code>menos diez</code> = fără 10 minute (ex: <em>Son las siete menos diez</em> = 6:50).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "¿Qué hora es?",
+        "def": "Întrebarea standard: 'Cât este ceasul?'."
+      },
+      {
+        "term": "Es la una",
+        "def": "Formulă unică la singular dedicată orei 1."
+      },
+      {
+        "term": "Son las...",
+        "def": "Formulă plurală folosită pentru toate orele de la 2 la 12."
+      },
+      {
+        "term": "y media",
+        "def": "Și jumătate (ex: 8:30 = Son las ocho y media)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "¿Qué hora es?",
+        "right": "Cât este ceasul?"
+      },
+      {
+        "left": "Es la una en punto",
+        "right": "Este ora 1 fix"
+      },
+      {
+        "left": "Son las tres y cuarto",
+        "right": "Este ora 3 și un sfert (3:15)"
+      },
+      {
+        "left": "Son las cinco y media",
+        "right": "Este ora 5 și jumătate (5:30)"
+      }
+    ],
+    "quiz": {
+      "question": "De ce spunem 'Es la una' dar 'Son las dos'?",
+      "options": [
+        "Ora 1 este la singular ('Es la'), pe când orele de la 2 în sus sunt la plural ('Son las').",
+        "Ora 1 este specială doar duminica.",
+        "Nu este nicio diferență, poți spune oricum.",
+        "Depinde dacă este zi sau noapte."
+      ],
+      "correctIndex": 0,
+      "explanation": "Substantivul subînțeles 'hora' este singular la 1 (Es la una hora), dar plural la 2-12 (Son las dos horas)."
+    },
+    "task": "Scrie propoziția 'Son las dos y media de la tarde.' (Este ora două și jumătate după-amiaza).",
+    "starterCode": "Son las dos ",
+    "expectedOutputPattern": "Son\\s+las\\s+dos\\s+y\\s+media\\s+de\\s+la\\s+tarde\\.?",
+    "hint": "Scrie Son las dos y media de la tarde."
+  },
+  {
+    "id": "es-a1-p12",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 12: Articolele & Genul Substantivelor (El, La, Los, Las / Un, Una)",
+    "theory": "\n<p>În spaniolă, genul substantivelor este foarte predictibil pe baza terminației:</p>\n<h4>1. Regula de Bază a Genului</h4>\n<ul>\n  <li>Cuvintele terminate în <code>-o</code> sunt în general <strong>masculine</strong>: <em>el libro, el perro</em>.</li>\n  <li>Cuvintele terminate în <code>-a</code> sunt în general <strong>feminine</strong>: <em>la casa, la mesa</em>.</li>\n  <li>Cuvintele terminate în <code>-ción</code>, <code>-sión</code>, <code>-dad</code> sunt întotdeauna <strong>feminine</strong>: <em>la estación, la ciudad</em>.</li>\n</ul>\n<h4>2. Articolele</h4>\n<ul>\n  <li><strong>Hotărâte</strong>: <code>el</code> (masc. sg.), <code>la</code> (fem. sg.), <code>los</code> (masc. pl.), <code>las</code> (fem. pl.).</li>\n  <li><strong>Nehotărâte</strong>: <code>un</code> (masc. sg.), <code>una</code> (fem. sg.), <code>unos</code> (masc. pl.), <code>unas</code> (fem. pl.).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "el / la / los / las",
+        "def": "Articole hotărâte spaniole (-ul, -a, -ii, -ele)."
+      },
+      {
+        "term": "un / una / unos / unas",
+        "def": "Articole nehotărâte (un, o, niște)."
+      },
+      {
+        "term": "-dad / -ción",
+        "def": "Terminații ce garantează genul feminin (la felicidad, la canción)."
+      },
+      {
+        "term": "Excepții celebre",
+        "def": "el problema, el día, el mapa (deși se termină în -a, sunt masculine de origine greacă!)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "el libro / los libros",
+        "right": "cartea / cărțile (masculin)"
+      },
+      {
+        "left": "la casa / las casas",
+        "right": "casa / casele (feminin)"
+      },
+      {
+        "left": "la ciudad",
+        "right": "orașul (terminat în -dad: feminin)"
+      },
+      {
+        "left": "el día",
+        "right": "ziua (excepție: masculin deși se termină în -a)"
+      }
+    ],
+    "quiz": {
+      "question": "Ce articol hotărât primește cuvântul 'problema' în limba spaniolă?",
+      "options": [
+        "el (el problema — este o excepție masculină de origine greacă)",
+        "la problema",
+        "las problema",
+        "lo problema"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cuvintele de origine greacă terminate în -ma (el problema, el tema, el sistema, el idioma) sunt de genul masculin: 'el problema'."
+    },
+    "task": "Scrie sintagma 'el chico y la chica' (băiatul și fata).",
+    "starterCode": "// Scrie băiatul și fata\n",
+    "expectedOutputPattern": "el\\s+chico\\s+y\\s+la\\s+chica\\.?",
+    "hint": "Scrie el chico y la chica"
+  },
+  {
+    "id": "es-a1-p13",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 30,
+    "title": "Capitolul 13: Cum Spunem „NO”: Negația Simplă și Dublă în Spaniolă",
+    "theory": "\n<p>Negația în spaniolă este mult mai simplă decât în franceză: este suficient să plasezi cuvântul <strong>NO</strong> direct înaintea verbului conjugat.</p>\n<h4>1. Negația Simplă</h4>\n<ul>\n  <li><em>Hablo inglés</em> (Vorbesc engleză) $\rightarrow$ <em><strong>No</strong> hablo inglés</em> (Nu vorbesc engleză).</li>\n  <li><em>Tengo tiempo</em> $\rightarrow$ <em><strong>No</strong> tengo tiempo</em> (Nu am timp).</li>\n</ul>\n<h4>2. Negația Dublă Spaniolă (Obligatorie!)</h4>\n<p>Spre deosebire de engleză unde dubla negație este interzisă, în spaniolă <strong>dubla negație este obligatorie</strong> dacă termenul negativ stă după verb:</p>\n<ul>\n  <li><code>nunca</code> (niciodată): <em><strong>No</strong> voy <strong>nunca</strong> allí</em> (Nu merg niciodată acolo).</li>\n  <li><code>nada</code> (nimic): <em><strong>No</strong> sé <strong>nada</strong></em> (Nu știu nimic).</li>\n  <li><code>nadie</code> (nimeni): <em><strong>No</strong> hay <strong>nadie</strong> aquí</em> (Nu este nimeni aici).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "no + verb",
+        "def": "Structura de bază a negației în limba spaniolă."
+      },
+      {
+        "term": "Doble negación",
+        "def": "Regulă obligatorie: 'No entiendo nada' (literal: Nu înțeleg nimic)."
+      },
+      {
+        "term": "nunca / jamás",
+        "def": "'Niciodată'."
+      },
+      {
+        "term": "nadie",
+        "def": "'Nimeni'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "No hablo español",
+        "right": "Nu vorbesc spaniolă"
+      },
+      {
+        "left": "No sé nada",
+        "right": "Nu știu nimic (dublă negație)"
+      },
+      {
+        "left": "No hay nadie",
+        "right": "Nu este nimeni"
+      },
+      {
+        "left": "Nunca fumo",
+        "right": "Niciodată nu fumez"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se traduce corect 'Nu știu nimic' în limba spaniolă?",
+      "options": [
+        "No sé nada. (cu dublă negație obligatorie)",
+        "Sé nada.",
+        "No sé algo.",
+        "No nada sé."
+      ],
+      "correctIndex": 0,
+      "explanation": "Când cuvântul negativ 'nada' stă după verb, verbul trebuie precedat obligatoriu de 'no': 'No sé nada'."
+    },
+    "task": "Scrie propoziția negativă 'No entiendo nada, lo siento.' (Nu înțeleg nimic, îmi pare rău).",
+    "starterCode": "No entiendo ",
+    "expectedOutputPattern": "No\\s+entiendo\\s+nada,\\s*lo\\s+siento\\.?",
+    "hint": "Scrie No entiendo nada, lo siento."
+  },
+  {
+    "id": "es-a1-p14",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 14: Cuvinte Interogative (¿Quién?, ¿Qué?, ¿Dónde?, ¿Cuándo?, ¿Por qué?)",
+    "theory": "\n<p>Toate cuvintele interogative din spaniolă poartă <strong>accent grafic (tilde)</strong> pentru a le distinge de conjuncțiile sau pronumele relative omonime.</p>\n<h4>1. Cele 7 Cuvinte Cheie de Întrebare</h4>\n<ul>\n  <li><code>¿Quién? / ¿Quiénes?</code> = Cine? (<em>¿Quién es él?</em> = Cine este el?).</li>\n  <li><code>¿Qué?</code> = Ce? (<em>¿Qué pasa?</em> = Ce se întâmplă?).</li>\n  <li><code>¿Dónde?</code> = Unde? (<em>¿Dónde está el baño?</em> = Unde este toaleta?).</li>\n  <li><code>¿Cuándo?</code> = Când? (<em>¿Cuándo salimos?</em> = Când plecăm?).</li>\n  <li><code>¿Cómo?</code> = Cum? (<em>¿Cómo se dice...?</em> = Cum se spune...?).</li>\n  <li><code>¿Cuánto / Cuánta?</code> = Cât? (<em>¿Cuánto cuesta?</em> = Cât costă?).</li>\n  <li><code>¿Por qué?</code> (separat și cu accent) = De ce? Răspunsul este <code>Porque...</code> (într-un cuvânt și fără accent: Pentru că...).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "¿Por qué? vs Porque",
+        "def": "¿Por qué? = De ce? (întrebare separată cu accent); Porque = Pentru că (răspuns legat fără accent)."
+      },
+      {
+        "term": "¿Dónde está...?",
+        "def": "Întrebare crucială pentru orientare: 'Unde se află...?'."
+      },
+      {
+        "term": "¿Cómo se dice?",
+        "def": "Cum se spune în spaniolă...?"
+      },
+      {
+        "term": "Tilde en interrogativos",
+        "def": "Accentul grafic obligatoriu pe toate cuvintele de întrebare (qué, quién, dónde...)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "¿Dónde está la estación?",
+        "right": "Unde este gara?"
+      },
+      {
+        "left": "¿Qué hora es?",
+        "right": "Cât este ceasul?"
+      },
+      {
+        "left": "¿Cómo te llamas?",
+        "right": "Cum te cheamă?"
+      },
+      {
+        "left": "¿Por qué estudias español?",
+        "right": "De ce înveți spaniolă?"
+      }
+    ],
+    "quiz": {
+      "question": "Care este diferența dintre '¿Por qué?' și 'Porque' în limba spaniolă?",
+      "options": [
+        "'¿Por qué?' este întrebarea ('De ce?'), iar 'Porque' este răspunsul explicativ ('Pentru că').",
+        "Sunt complet identice și interschimbabile.",
+        "'Porque' înseamnă 'Dacă'.",
+        "'¿Por qué?' se folosește doar pentru mâncare."
+      ],
+      "correctIndex": 0,
+      "explanation": "¿Por qué? (scris separat și cu accent pe 'é') întreabă cauza, în timp ce 'porque' (scris legat și fără accent) oferă explicația."
+    },
+    "task": "Întreabă unde este plaja: '¿Dónde está la playa, por favor?'.",
+    "starterCode": "// Scrie întrebarea\n",
+    "expectedOutputPattern": "(?:[¿?]\\s*)?D[óo]nde\\s+est[áa]\\s+la\\s+playa,\\s*por\\s+favor\\??",
+    "hint": "Scrie ¿Dónde está la playa, por favor?"
+  },
+  {
+    "id": "es-a1-p15",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 15: Culori, Adjective & Acordul de Gen și Număr",
+    "theory": "\n<p>În spaniolă, adjectivul <strong>se acordă întotdeauna în gen și număr</strong> cu substantivul determinat și este plasat de regulă <strong>după substantiv</strong>.</p>\n<h4>1. Regula de Bază a Adjectivelor</h4>\n<ul>\n  <li>Adjectivele în <code>-o</code> fac femininul în <code>-a</code>: <em>un chico alto $\rightarrow$ una chica alta</em>.</li>\n  <li>Adjectivele terminate în <code>-e</code> sau consoană sunt neutre în gen (rămân identice la masculin și feminin): <em>un libro grande / una casa grande</em>, <em>un examen difícil / una pregunta difícil</em>.</li>\n  <li>Pluralul: adaugă <code>-s</code> după vocală (<em>altos / altas</em>) și <code>-es</code> după consoană (<em>difíciles</em>).</li>\n</ul>\n<h4>2. Culorile</h4>\n<p><em>blanco/a</em> (alb), <em>negro/a</em> (negru), <em>rojo/a</em> (roșu), <em>amarillo/a</em> (galben), <em>azul / azules</em> (albastru), <em>verde / verdes</em> (verde).</p>\n",
+    "glossary": [
+      {
+        "term": "Concordancia de adjetivos",
+        "def": "Acordul obligatoriu în gen (o/a) și număr (s/es) între substantiv și adjectiv."
+      },
+      {
+        "term": "Adjetivos en -e (grande)",
+        "def": "Adjective invariabile în gen: se folosesc identic și la masculin și la feminin."
+      },
+      {
+        "term": "Posición pospuesta",
+        "def": "În spaniolă culorile și descrierile stau DUPĂ substantiv (un coche rojo)."
+      },
+      {
+        "term": "azul / verdes",
+        "def": "Pluralul adjectivelor: +s după vocală, +es după consoană."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "un coche rojo",
+        "right": "o mașină roșie (masculin în spaniolă)"
+      },
+      {
+        "left": "una casa blanca",
+        "right": "o casă albă (feminin)"
+      },
+      {
+        "left": "los ojos azules",
+        "right": "ochii albaștri (plural cu -es)"
+      },
+      {
+        "left": "una ciudad grande",
+        "right": "un oraș mare (adjectiv neutru în -e)"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se acordă adjectivul 'español' pentru substantivul feminin plural 'las ciudades' (orașele)?",
+      "options": [
+        "españolas (feminin plural)",
+        "españoles",
+        "españols",
+        "española"
+      ],
+      "correctIndex": 0,
+      "explanation": "Femininul este 'española', iar la plural primește '-s', rezultând 'españolas'."
+    },
+    "task": "Scrie sintagma 'una casa blanca con puertas verdes' (o casă albă cu uși verzi).",
+    "starterCode": "una casa ",
+    "expectedOutputPattern": "una\\s+casa\\s+blanca\\s+con\\s+puertas\\s+verdes\\.?",
+    "hint": "Scrie una casa blanca con puertas verdes"
+  },
+  {
+    "id": "es-a1-p16",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 16: Familia & Arborele Genealogic (La Familia)",
+    "theory": "\n<p>Membrii familiei în spaniolă sunt ușor de reținut datorită perechilor regulate masculin (-o) / feminin (-a):</p>\n<h4>1. Membrii Principali</h4>\n<ul>\n  <li><code>el padre</code> = tatăl / <code>papá</code> = tati.</li>\n  <li><code>la madre</code> = mama / <code>mamá</code> = mami.</li>\n  <li><code>los padres</code> = părinții (mama și tata).</li>\n  <li><code>el hijo</code> = fiul / <code>la hija</code> = fiica / <code>los hijos</code> = copiii (sau fiii).</li>\n  <li><code>el hermano</code> = fratele / <code>la hermana</code> = sora / <code>los hermanos</code> = frații.</li>\n  <li><code>el abuelo</code> = bunicul / <code>la abuela</code> = bunica / <code>los abuelos</code> = bunicii.</li>\n  <li><code>el tío / la tía</code> = unchiul / mătușa.</li>\n  <li><code>el primo / la prima</code> = vărul / verișoara.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "los padres",
+        "def": "Părinții (tatăl și mama)."
+      },
+      {
+        "term": "los hermanos",
+        "def": "Frații (sau frații și surorile împreună)."
+      },
+      {
+        "term": "los abuelos",
+        "def": "Bunicii."
+      },
+      {
+        "term": "hijo / hija",
+        "def": "Fiul / fiica."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "el padre y la madre",
+        "right": "Tatăl și mama"
+      },
+      {
+        "left": "el hermano y la hermana",
+        "right": "Fratele și sora"
+      },
+      {
+        "left": "los abuelos",
+        "right": "Bunicii"
+      },
+      {
+        "left": "mis primos",
+        "right": "Verii mei"
+      }
+    ],
+    "quiz": {
+      "question": "Cum spui 'fratele meu și sora mea' în limba spaniolă?",
+      "options": [
+        "mi hermano y mi hermana",
+        "mi padre y mi madre",
+        "mi tío y mi tía",
+        "mi abuelo y mi abuela"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Hermano' este fratele, iar 'hermana' este sora."
+    },
+    "task": "Scrie propoziția 'Mi padre, mi madre y mis dos hermanos.' (Tatăl meu, mama mea și cei doi frați ai mei).",
+    "starterCode": "Mi padre, ",
+    "expectedOutputPattern": "Mi\\s+padre,\\s*mi\\s+madre\\s+y\\s+mis\\s+dos\\s+hermanos\\.?",
+    "hint": "Scrie Mi padre, mi madre y mis dos hermanos."
+  },
+  {
+    "id": "es-a1-p17",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 17: Adjectivele Posesive (Mi, Tu, Su, Nuestro, Vuestro, Su)",
+    "theory": "\n<p>În spaniolă, posesivele scurte stau <strong>înaintea substantivului</strong> și se acordă în număr (singular/plural) cu lucrul posedat:</p>\n<h4>1. Tabelul Posesivelor</h4>\n<ul>\n  <li><code>mi / mis</code> = al meu, a mea / ai mei, ale mele (<em>mi libro, mis libros</em>).</li>\n  <li><code>tu / tus</code> = al tău, a ta / ai tăi, ale tale (<em>tu casa, tus amigos</em>). Fără accent grafic!</li>\n  <li><code>su / sus</code> = al său, al lui, al ei, al dumneavoastră (<em>su pasaporte, sus llaves</em>).</li>\n  <li><code>nuestro/a, nuestros/as</code> = al nostru, a noastră, ai noștri (se acordă și în gen!).</li>\n  <li><code>vuestro/a, vuestros/as</code> = al vostru.</li>\n  <li><code>su / sus</code> = al lor, al dumneavoastră (plural).</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "mi / mis",
+        "def": "Posesiv pentru persoana I: 'meu' / 'mei'."
+      },
+      {
+        "term": "tu vs tú",
+        "def": "'tu' fără accent este adjectiv posesiv (tu coche); 'tú' cu accent este pronume subiect (tú hablas)."
+      },
+      {
+        "term": "su / sus",
+        "def": "Posesiv polivalent ce înseamnă 'al lui', 'al ei' sau 'al Dumneavoastră'."
+      },
+      {
+        "term": "nuestro / nuestra",
+        "def": "Singurul posesiv de bază care se acordă și în gen: nuestro hijo / nuestra hija."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "mi amigo / mis amigos",
+        "right": "prietenul meu / prietenii mei"
+      },
+      {
+        "left": "tu pasaporte",
+        "right": "pașaportul tău"
+      },
+      {
+        "left": "su casa",
+        "right": "casa lui / casa ei / casa dumneavoastră"
+      },
+      {
+        "left": "nuestra familia",
+        "right": "familia noastră (acord feminin)"
+      }
+    ],
+    "quiz": {
+      "question": "Care este diferența dintre 'tu' (fără accent) și 'tú' (cu accent)?",
+      "options": [
+        "'tu' este adjectiv posesiv ('tău': tu libro), iar 'tú' este pronumele subiect ('tu': tú eres).",
+        "Sunt complet identice.",
+        "'tu' se folosește doar pentru femei.",
+        "'tú' înseamnă 'eu'."
+      ],
+      "correctIndex": 0,
+      "explanation": "Accentul diacritic diferențiază pronumele personal 'tú' (tú tienes) de adjectivul posesiv 'tu' (tu amigo)."
+    },
+    "task": "Scrie sintagma 'mi maleta y mis documentos' (valiza mea și documentele mele).",
+    "starterCode": "// Scrie sintagma\n",
+    "expectedOutputPattern": "mi\\s+maleta\\s+y\\s+mis\\s+documentos\\.?",
+    "hint": "Scrie mi maleta y mis documentos"
+  },
+  {
+    "id": "es-a1-p18",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 18: Corpul Uman & Cum Exprimăm Durerea (Me duele...)",
+    "theory": "\n<p>Pentru a spune că te doare ceva în spaniolă, se folosește verbul reflexiv-afectiv <strong>DOLER</strong> (a durea). Acesta funcționează exact ca verbul <em>gustar</em>!</p>\n<h4>1. Părțile Corpului (El Cuerpo Humano)</h4>\n<p><code>la cabeza</code> (capul), <code>la espalda</code> (spatele), <code>el estómago</code> (stomacul), <code>la garganta</code> (gâtul), <code>los ojos</code> (ochii), <code>las muelas / los dientes</code> (dinții/măselele), <code>el brazo</code> (brațul), <code>la pierna</code> (piciorul).</p>\n<h4>2. Structura: ME DUELE / ME DUELEN</h4>\n<ul>\n  <li>Dacă doare o singură parte (singular): <strong>Me duele</strong> (<em>Me duele la cabeza</em> = Mă doare capul).</li>\n  <li>Dacă dor mai multe părți (plural): <strong>Me duelen</strong> (<em>Me duelen los ojos / los pies</em> = Mă dor ochii / picioarele).</li>\n</ul>\n<p>La medic: <em>Tengo fiebre</em> (Am febră), <em>Estoy resfriado</em> (Sunt răcit).</p>\n",
+    "glossary": [
+      {
+        "term": "Me duele...",
+        "def": "'Mă doare...' urmat de o parte a corpului la singular."
+      },
+      {
+        "term": "Me duelen...",
+        "def": "'Mă dor...' urmat de o parte a corpului la plural."
+      },
+      {
+        "term": "la cabeza / la espalda",
+        "def": "Capul / spatele."
+      },
+      {
+        "term": "Tengo fiebre",
+        "def": "Am febră (se folosește verbul tener)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Me duele la cabeza",
+        "right": "Mă doare capul (singular)"
+      },
+      {
+        "left": "Me duelen los pies",
+        "right": "Mă dor picioarele (plural: duelen)"
+      },
+      {
+        "left": "Tengo dolor de garganta",
+        "right": "Am durere de gât"
+      },
+      {
+        "left": "Estoy enfermo",
+        "right": "Sunt bolnav (cu estar)"
+      }
+    ],
+    "quiz": {
+      "question": "Ce formă a verbului doler este corectă în propoziția 'Me ... los ojos' (Mă dor ochii)?",
+      "options": [
+        "duelen (deoarece 'los ojos' este la plural)",
+        "duele",
+        "duelo",
+        "dolemos"
+      ],
+      "correctIndex": 0,
+      "explanation": "La fel ca verbul gustar, doler se acordă cu ce doare: dacă este plural (los ojos), folosim 'duelen'."
+    },
+    "task": "Scrie propoziția 'Me duele la cabeza y tengo fiebre.' (Mă doare capul și am febră).",
+    "starterCode": "Me duele ",
+    "expectedOutputPattern": "Me\\s+duele\\s+la\\s+cabeza\\s+y\\s+tengo\\s+fiebre\\.?",
+    "hint": "Scrie Me duele la cabeza y tengo fiebre."
+  },
+  {
+    "id": "es-a1-p19",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 19: Mâncarea, Băuturile & La Restaurant (En el Restaurante)",
+    "theory": "\n<p>Bucătăria spaniolă și tapas-urile sunt celebre în toată lumea. Iată vocabularul de bază pentru a comanda la bar sau restaurant:</p>\n<h4>1. Mâncăruri & Băuturi</h4>\n<ul>\n  <li><em>el pan</em> (pâinea), <em>el queso</em> (brânza), <em>el jamón</em> (șunca), <em>el pollo</em> (puiul), <em>el pescado</em> (peștele).</li>\n  <li><em>el agua</em> (apa - feminin, dar primește 'el' la singular pentru eufonie!), <em>el café con leche</em> (cafea cu lapte), <em>el zumo de naranja</em> (suc de portocale), <em>la cerveza</em> (berea), <em>el vino tinto</em> (vinul roșu).</li>\n</ul>\n<h4>2. Cum Comanzi Politicos</h4>\n<ul>\n  <li><code>Para mí...</code> = Pentru mine... (<em>Para mí, una paella, por favor</em>).</li>\n  <li><code>Quisiera...</code> / <code>Me gustaría...</code> = Aș dori...</li>\n  <li><code>¿Nos trae la cuenta, por favor?</code> = Ne aduceți nota de plată, vă rog?</li>\n  <li><code>¡Buen provecho!</code> = Poftă bună!</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "la cuenta, por favor",
+        "def": "Cum ceri nota de plată în Spania ('Nota, vă rog')."
+      },
+      {
+        "term": "el agua",
+        "def": "Apa (substantiv feminin ce ia articolul 'el' la singular pentru a nu zice 'la agua')."
+      },
+      {
+        "term": "las tapas",
+        "def": "Mici porții de mâncare servite tradițional la băuturi în Spania."
+      },
+      {
+        "term": "¡Buen provecho!",
+        "def": "Urarea spaniolă pentru 'Poftă bună!'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "¿La cuenta, por favor?",
+        "right": "Nota de plată, vă rog"
+      },
+      {
+        "left": "Un café con leche",
+        "right": "O cafea cu lapte"
+      },
+      {
+        "left": "Una botella de agua",
+        "right": "O sticlă de apă"
+      },
+      {
+        "left": "¡Buen provecho!",
+        "right": "Poftă bună!"
+      }
+    ],
+    "quiz": {
+      "question": "Cum ceri nota de plată chelnerului într-un restaurant din Madrid?",
+      "options": [
+        "¿La cuenta, por favor?",
+        "¿El precio, señor?",
+        "¿La adición, por favor?",
+        "¿Cuánto dinero quiero?"
+      ],
+      "correctIndex": 0,
+      "explanation": "'La cuenta, por favor' este formula standard și universală în lumea hispanică."
+    },
+    "task": "Comandă politicos: 'Para mí una paella y un vaso de agua, por favor.'.",
+    "starterCode": "Para mí ",
+    "expectedOutputPattern": "Para\\s+m[íi]\\s+una\\s+paella\\s+y\\s+un\\s+vaso\\s+de\\s+agua,\\s*por\\s+favor\\.?",
+    "hint": "Scrie Para mí una paella y un vaso de agua, por favor."
+  },
+  {
+    "id": "es-a1-p20",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 20: Locuința & Verbul Existențial „HAY” (Acolo se află / Există)",
+    "theory": "\n<p>Forma impersonală <strong>HAY</strong> (de la verbul haber) se traduce prin „există”, „se află” sau „este/sunt”, fiind invariabilă (se folosește identic și pentru singular și pentru plural!).</p>\n<h4>1. Încăperile Casei</h4>\n<p><code>la casa</code> (casa), <code>el piso / el apartamento</code> (apartamentul), <code>la cocina</code> (bucătăria), <code>el salón</code> (sufrageria), <code>el dormitorio / la habitación</code> (dormitorul), <code>el baño</code> (baia).</p>\n<h4>2. Utilizarea lui HAY</h4>\n<ul>\n  <li><em>En mi casa <strong>hay</strong> tres dormitorios</em> = În casa mea sunt trei dormitoare.</li>\n  <li><em>¿<strong>Hay</strong> un banco cerca de aquí?</em> = Este o bancă aproape de aici?</li>\n  <li><em>No <strong>hay</strong> problema</em> = Nu este nicio problemă.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "HAY",
+        "def": "Formă impersonală invariabilă ce înseamnă 'Există / Se află' (atât singular cât și plural)."
+      },
+      {
+        "term": "el dormitorio",
+        "def": "Dormitorul în limba spaniolă."
+      },
+      {
+        "term": "el salón",
+        "def": "Camera de zi / sufrageria."
+      },
+      {
+        "term": "cerca de / lejos de",
+        "def": "Aproape de / departe de."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Hay una mesa",
+        "right": "Se află o masă (singular)"
+      },
+      {
+        "left": "Hay cuatro sillas",
+        "right": "Se află patru scaune (plural - tot cu hay!)"
+      },
+      {
+        "left": "No hay problema",
+        "right": "Nu este nicio problemă"
+      },
+      {
+        "left": "en la cocina",
+        "right": "în bucătărie"
+      }
+    ],
+    "quiz": {
+      "question": "Ce formă a verbului folosești pentru a spune 'Se află multe hoteluri în acest oraș'?",
+      "options": [
+        "Hay (Hay muchos hoteles)",
+        "Están muchos hoteles",
+        "Son muchos hoteles",
+        "Hacen muchos hoteles"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Hay' este forma impersonală existențială universală folosită cu substantive nedeterminate sau cantități la plural."
+    },
+    "task": "Scrie propoziția 'En mi piso hay un salón grande y dos dormitorios.'.",
+    "starterCode": "En mi piso ",
+    "expectedOutputPattern": "En\\s+mi\\s+piso\\s+hay\\s+un\\s+sal[óo]n\\s+grande\\s+y\\s+dos\\s+dormitorios\\.?",
+    "hint": "Scrie En mi piso hay un salón grande y dos dormitorios."
+  },
+  {
+    "id": "es-a1-p21",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 21: Orașul & Întrebarea Direcției (La Ciudad y las Direcciones)",
+    "theory": "\n<p>Când vizitezi Madrid, Barcelona sau Sevilla, orientarea în oraș necesită câteva formule clare:</p>\n<h4>1. Locuri Publice Importante</h4>\n<p><code>la calle</code> (strada), <code>la plaza</code> (piața), <code>la estación de tren / autobús</code> (gara / autogara), <code>el aeropuerto</code> (aeroportul), <code>la farmacia</code> (farmacia), <code>el supermercado</code> (supermarketul).</p>\n<h4>2. Indicații de Traseu</h4>\n<ul>\n  <li><code>Siga todo recto</code> [siga todo rekto] = Mergeți drept înainte.</li>\n  <li><code>Gire a la izquierda</code> = Virați la stânga.</li>\n  <li><code>Gire a la derecha</code> = Virați la dreapta.</li>\n  <li><code>Tome la primera calle</code> = Luați prima stradă.</li>\n  <li><code>¿Por dónde se va a...?</code> = Pe unde se merge spre...?</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "todo recto",
+        "def": "Drept înainte (atenție: 'a la derecha' = la dreapta; 'todo recto' = drept înainte!)."
+      },
+      {
+        "term": "a la izquierda / derecha",
+        "def": "La stânga / la dreapta."
+      },
+      {
+        "term": "la calle",
+        "def": "Strada."
+      },
+      {
+        "term": "la estación de tren",
+        "def": "Gara de tren."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Siga todo recto",
+        "right": "Mergeți drept înainte"
+      },
+      {
+        "left": "Gire a la derecha",
+        "right": "Virați la dreapta"
+      },
+      {
+        "left": "Gire a la izquierda",
+        "right": "Virați la stânga"
+      },
+      {
+        "left": "¿Dónde está el metro?",
+        "right": "Unde este metroul?"
+      }
+    ],
+    "quiz": {
+      "question": "Ce înseamnă instrucțiunea 'Siga todo recto y luego gire a la izquierda'?",
+      "options": [
+        "Mergeți drept înainte și apoi virați la stânga.",
+        "Mergeți la dreapta și opriți-vă.",
+        "Luați autobuzul spre aeroport.",
+        "Întoarceți-vă la hotel."
+      ],
+      "correctIndex": 0,
+      "explanation": "'Todo recto' înseamnă drept înainte, iar 'a la izquierda' înseamnă la stânga."
+    },
+    "task": "Scrie îndrumarea 'Siga todo recto y gire a la derecha, por favor.'.",
+    "starterCode": "Siga todo ",
+    "expectedOutputPattern": "Siga\\s+todo\\s+recto\\s+y\\s+gire\\s+a\\s+la\\s+derecha,\\s*por\\s+favor\\.?",
+    "hint": "Scrie Siga todo recto y gire a la derecha, por favor."
+  },
+  {
+    "id": "es-a1-p22",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 35,
+    "title": "Capitolul 22: Vremea & Starea Meteo (¿Qué tiempo hace?)",
+    "theory": "\n<p>Pentru a întreba cum este vremea în spaniolă, spunem: <strong>« ¿Qué tiempo hace? »</strong>. Cele mai multe răspunsuri folosesc verbul <strong>HACER</strong> (a face):</p>\n<h4>1. Expresii Climatice cu HACER</h4>\n<ul>\n  <li><code>Hace buen tiempo</code> = E vreme frumoasă.</li>\n  <li><code>Hace mal tiempo</code> = E vreme urâtă.</li>\n  <li><code>Hace calor</code> = E cald.</li>\n  <li><code>Hace frío</code> = E frig.</li>\n  <li><code>Hace sol</code> = E soare / strălucește soarele.</li>\n  <li><code>Hace viento</code> = E vânt.</li>\n</ul>\n<h4>2. Verbe Climatice</h4>\n<ul>\n  <li><code>Llueve</code> (de la <em>llover</em>) = Plouă / <code>Está lloviendo</code> = Plouă chiar acum.</li>\n  <li><code>Nieva</code> (de la <em>nevar</em>) = Ninge.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "¿Qué tiempo hace?",
+        "def": "Întrebarea clasică: 'Cum este vremea?'."
+      },
+      {
+        "term": "Hace calor / frío",
+        "def": "Descrierea temperaturii cu verbul hacer ('face cald/frig')."
+      },
+      {
+        "term": "Llueve",
+        "def": "'Plouă' (verb neregulat llover -> llueve)."
+      },
+      {
+        "term": "Hace sol",
+        "def": "'Este soare'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Hace mucho calor",
+        "right": "Este foarte cald"
+      },
+      {
+        "left": "Hace mucho frío",
+        "right": "Este foarte frig"
+      },
+      {
+        "left": "Hoy llueve",
+        "right": "Astăzi plouă"
+      },
+      {
+        "left": "Hace buen tiempo",
+        "right": "Este vreme frumoasă"
+      }
+    ],
+    "quiz": {
+      "question": "Cum spui 'Astăzi e cald și e soare' în limba spaniolă?",
+      "options": [
+        "Hoy hace calor y hace sol.",
+        "Hoy es caliente y sol.",
+        "Hoy está sol y calor.",
+        "Hoy tiene calor."
+      ],
+      "correctIndex": 0,
+      "explanation": "Temperatura și soarele se exprimă canonic cu verbul 'hacer': 'hace calor y hace sol'."
+    },
+    "task": "Scrie propoziția meteo 'Hoy hace muy buen tiempo y hace sol.'.",
+    "starterCode": "Hoy hace ",
+    "expectedOutputPattern": "Hoy\\s+hace\\s+muy\\s+buen\\s+tiempo\\s+y\\s+hace\\s+sol\\.?",
+    "hint": "Scrie Hoy hace muy buen tiempo y hace sol."
+  },
+  {
+    "id": "es-a1-p23",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
     "xp": 40,
-    "title": "Capitolul 3: Pretérito Indefinido — Acțiuni Finalizate în Trecut",
-    "theory": "\n<p><strong>Pretérito Indefinido</strong> (echivalentul Simple Past din engleză sau al Perfectului Simplu) este timpul cel mai important pentru acțiuni complet finalizate în trecut într-un moment temporal precis.</p>\n<h4>1. Verbe Regulate</h4>\n<ul>\n  <li><code>-ar</code>: -é, -aste, -ó, -amos, -asteis, -aron (<em>hablé, hablaste, habló...</em>)</li>\n  <li><code>-er / -ir</code>: -í, -iste, -ió, -imos, -isteis, -ieron (<em>comí, comiste, comió...</em>)</li>\n</ul>\n<h4>2. Forme Neregulate Cruciale</h4>\n<p>Verbele <em>ser</em> (a fi) și <em>ir</em> (a merge) au exact aceeași formă la trecut: <strong>fui, fuiste, fue, fuimos, fuisteis, fueron</strong>. Verbul <em>hacer</em> devine <strong>hice, hiciste, hizo...</strong>.</p>\n",
+    "title": "Capitolul 23: Verbul „IR” (A MERGE) & El Futuro Próximo (IR + A + Infinitiv)",
+    "theory": "\n<p>Verbul <strong>ir</strong> (a merge) este complet neregulat, dar este cheia pentru a construi <strong>viitorul apropiat (El Futuro Próximo)</strong>.</p>\n<h4>1. Conjugarea Verbului IR</h4>\n<ul>\n  <li><code>Yo voy</code> [voi] = Eu merg.</li>\n  <li><code>Tú vas</code> = Tu mergi.</li>\n  <li><code>Él / Ella / Usted va</code> = El / Ea merge.</li>\n  <li><code>Nosotros vamos</code> = Noi mergem.</li>\n  <li><code>Vosotros vais</code> = Voi mergeți.</li>\n  <li><code>Ellos / Ellas / Ustedes van</code> = Ei / Ele merg.</li>\n</ul>\n<h4>2. El Futuro Próximo (IR + A + Infinitiv)</h4>\n<p>Formula magică este: <strong>IR conjugat + prepoziția 'A' + Infinitivul verbului</strong> (echivalentul perfect al lui 'going to'):</p>\n<ul>\n  <li><em><strong>Voy a comer</strong> paella</em> = Voi mânca paella.</li>\n  <li><em><strong>Vamos a viajar</strong> a España</em> = Vom călători în Spania.</li>\n  <li><em>¿Qué <strong>vas a hacer</strong> hoy?</em> = Ce ai de gând să faci azi?</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Ir",
+        "def": "Verbul 'a merge' (voy, vas, va, vamos, vais, van)."
+      },
+      {
+        "term": "Ir + a + infinitivo",
+        "def": "Structura viitorului apropiat în spaniolă ('urmează să fac ceva')."
+      },
+      {
+        "term": "¡Vamos!",
+        "def": "Exclamație celebră ce înseamnă 'Haidem!' / 'Să mergem!'."
+      },
+      {
+        "term": "al (a + el)",
+        "def": "Contracție obligatorie: 'Voy al cine' (nu 'Voy a el cine')."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Voy a comer",
+        "right": "Voi mânca / Urmează să mănânc"
+      },
+      {
+        "left": "Vamos a la playa",
+        "right": "Mergem la plajă"
+      },
+      {
+        "left": "Van a salir",
+        "right": "Ei vor ieși"
+      },
+      {
+        "left": "¿Qué vas a hacer?",
+        "right": "Ce vei face?"
+      }
+    ],
+    "quiz": {
+      "question": "Ce prepoziție este OBLIGATORIE între verbul 'ir' și infinitiv pentru a forma viitorul apropiat (ex: 'Voy ... estudiar')?",
+      "options": [
+        "a (Voy a estudiar)",
+        "de",
+        "por",
+        "en"
+      ],
+      "correctIndex": 0,
+      "explanation": "Structura viitorului apropiat în spaniolă cere întotdeauna prepoziția 'a': 'Ir + a + infinitivo'."
+    },
+    "task": "Scrie propoziția la viitor apropiat 'Mañana voy a estudiar español con mis amigos.'.",
+    "starterCode": "Mañana voy ",
+    "expectedOutputPattern": "Ma[ñn]ana\\s+voy\\s+a\\s+estudiar\\s+espa[ñn]ol\\s+con\\s+mis\\s+amigos\\.?",
+    "hint": "Scrie Mañana voy a estudiar español con mis amigos."
+  },
+  {
+    "id": "es-a1-p24",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 40,
+    "title": "Capitolul 24: Verbele Reflexive & Rutina Zilnică (Levantarse, Ducharse)",
+    "theory": "\n<p>Verbele care descriu rutina personală sunt <strong>verbe reflexive</strong> și sunt însoțite de pronumele reflexive: <code>me, te, se, nos, os, se</code>.</p>\n<h4>1. Conjugarea Verbului LEVANTARSE (A se scula din pat)</h4>\n<ul>\n  <li><code>Yo me levanto</code> = Eu mă scol.</li>\n  <li><code>Tú te levantas</code> = Tu te scoli.</li>\n  <li><code>Él / Ella se levanta</code> = El / Ea se scoală.</li>\n  <li><code>Nosotros nos levantamos</code> = Noi ne sculăm.</li>\n  <li><code>Vosotros os levantáis</code> = Voi vă sculați.</li>\n  <li><code>Ellos se levantan</code> = Ei se scoală.</li>\n</ul>\n<h4>2. Alte Verbe de Rutină</h4>\n<p><code>despertarse (e->ie)</code> (a se trezi: <em>me despierto</em>), <code>ducharse</code> (a face duș), <code>vestirse (e->i)</code> (a se îmbrăca), <code>acostarse (o->ue)</code> (a merge la culcare: <em>me acuesto</em>).</p>\n",
+    "glossary": [
+      {
+        "term": "Verbos reflexivos",
+        "def": "Verbe marcate la infinitiv cu '-se' ce folosesc pronumele me, te, se, nos, os, se."
+      },
+      {
+        "term": "me levanto",
+        "def": "'Mă scol din pat'."
+      },
+      {
+        "term": "me acuesto",
+        "def": "'Mă culc' (cu diftongare o -> ue)."
+      },
+      {
+        "term": "ducharse",
+        "def": "A face duș."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Me despierto a las 7",
+        "right": "Mă trezesc la ora 7"
+      },
+      {
+        "left": "Me ducho por la mañana",
+        "right": "Fac duș dimineața"
+      },
+      {
+        "left": "Se viste rápido",
+        "right": "Se îmbracă repede"
+      },
+      {
+        "left": "Nos acostamos temprano",
+        "right": "Ne culcăm devreme"
+      }
+    ],
+    "quiz": {
+      "question": "Care este forma corectă pentru 'Noi facem duș' folosind verbul reflexiv 'ducharse'?",
+      "options": [
+        "Nosotros nos duchamos.",
+        "Nosotros se duchamos.",
+        "Nosotros duchamos.",
+        "Nosotros os duchamos."
+      ],
+      "correctIndex": 0,
+      "explanation": "La persoana 'nosotros', pronumele reflexiv corespunzător este 'nos': 'Nosotros nos duchamos'."
+    },
+    "task": "Scrie propoziția de rutină 'Todos los días me levanto a las siete de la mañana.'.",
+    "starterCode": "Todos los días ",
+    "expectedOutputPattern": "Todos\\s+los\\s+d[íi]as\\s+me\\s+levanto\\s+a\\s+las\\s+siete\\s+de\\s+la\\s+ma[ñn]ana\\.?",
+    "hint": "Scrie Todos los días me levanto a las siete de la mañana."
+  },
+  {
+    "id": "es-a1-p25",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "1. Modulul A1–A2 (De la Zero: Pronume, Auxiliare & Conversație)",
+    "xp": 45,
+    "title": "Capitolul 25: Sinteză Conversațională A1: Sosirea la Hotel & Înregistrarea",
+    "theory": "\n<p>¡Enhorabuena! Ai finalizat modulul A1 de la zero. Să integrăm toate cunoștințele dobândite (saluturi, ser/estar/tener, numere, politețe) într-o conversație autentică la recepția unui hotel din Spania:</p>\n<h4>1. Replicile Recepționerului</h4>\n<ul>\n  <li><em>¡Buenas tardes! Bienvenido al Hotel Sol.</em></li>\n  <li><em>¿Tiene una reserva?</em> (Aveți o rezervare?)</li>\n  <li><em>¿A qué nombre está la reserva?</em> (Pe ce nume este rezervarea?)</li>\n  <li><em>¿Me deja su pasaporte, por favor?</em> (Îmi lăsați pașaportul, vă rog?)</li>\n</ul>\n<h4>2. Răspunsurile Oaspetelui</h4>\n<ul>\n  <li><em>Sí, tengo una reserva a nombre de Radu Popescu.</em></li>\n  <li><em>Es para tres noches, con desayuno incluido.</em> (Pentru trei nopți, cu mic dejun inclus.)</li>\n  <li><em>Aquí tiene mi pasaporte. ¿A qué hora es el desayuno?</em></li>\n  <li><em>El desayuno es de 7:30 a 10:30. Su habitación es la 305 en la tercera planta.</em></li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Tengo una reserva",
+        "def": "Am o rezervare la hotel sau restaurant."
+      },
+      {
+        "term": "a nombre de...",
+        "def": "Pe numele lui..."
+      },
+      {
+        "term": "Aquí tiene",
+        "def": "'Poftiți / Iată' la înmânarea unui document."
+      },
+      {
+        "term": "la habitación",
+        "def": "Camera de hotel."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Tengo una reserva",
+        "right": "Am o rezervare"
+      },
+      {
+        "left": "¿A qué nombre?",
+        "right": "Pe ce nume?"
+      },
+      {
+        "left": "Aquí tiene mi pasaporte",
+        "right": "Iată pașaportul meu"
+      },
+      {
+        "left": "Para tres noches",
+        "right": "Pentru trei nopți"
+      }
+    ],
+    "quiz": {
+      "question": "Cum îi spui recepționerului spaniol că ai o rezervare pe numele 'García'?",
+      "options": [
+        "Tengo una reserva a nombre de García.",
+        "Soy una reserva nombre García.",
+        "Mi reserva está García.",
+        "Hago una reserva García."
+      ],
+      "correctIndex": 0,
+      "explanation": "Formula canonică în spaniolă este 'Tengo una reserva a nombre de [Nume]'."
+    },
+    "task": "Scrie replica '¡Buenas tardes! Tengo una reserva para dos personas, por favor.'.",
+    "starterCode": "¡Buenas tardes! ",
+    "expectedOutputPattern": "(?:[¡!]\\s*)?Buenas\\s+tardes[!\\s]+Tengo\\s+una\\s+reserva\\s+para\\s+dos\\s+personas,\\s*por\\s+favor\\.?",
+    "hint": "Scrie ¡Buenas tardes! Tengo una reserva para dos personas, por favor."
+  },
+  {
+    "id": "es-b1-p26",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 26: Pretérito Perfecto Compuesto (He comido, has hablado — Trecutul Apropiat)",
+    "theory": "\n<p><strong>Pretérito Perfecto Compuesto</strong> este timpul acțiunilor finalizate într-o unitate de timp care <strong>încă include momentul prezent</strong> (marcat de: <em>hoy</em>, <em>esta mañana</em>, <em>esta semana</em>, <em>este año</em>, <em>últimamente</em>, <em>alguna vez</em>, <em>nunca</em>).</p>\n<h4>1. Rețeta de Formare</h4>\n<p><code>Auxiliarul HABER la prezent + Participiul Trecut Invariabil</code></p>\n<pre><code>Yo he hablado / comido / vivido\nTú has hablado / comido / vivido\nÉl / Ella / Usted ha hablado / comido / vivido\nNosotros hemos hablado / comido / vivido\nVosotros habéis hablado / comido / vivido\nEllos / Ustedes han hablado / comido / vivido\n</code></pre>\n<h4>2. Regula Invariabilității</h4>\n<p>Spre deosebire de franceză sau italiană, în spaniolă participiul trecut <strong>NU se acordă NICIODATĂ</strong> și <strong>NU se separă</strong> de auxiliar: <em>Ella ha comido</em> (nu comid<strong>a</strong>!).</p>\n",
+    "glossary": [
+      {
+        "term": "Pretérito Perfecto",
+        "def": "Timpul compus spaniol pentru acțiuni trecute legate de prezent (hoy, esta semana)."
+      },
+      {
+        "term": "Auxiliarul HABER",
+        "def": "He, has, ha, hemos, habéis, han — unicul auxiliar folosit la timpurile compuse active."
+      },
+      {
+        "term": "Participiu invariabil",
+        "def": "Forma în -ado/-ido nu își schimbă niciodată terminația în funcție de gen sau număr."
+      },
+      {
+        "term": "Marcatori temporali (Hoy)",
+        "def": "Indică faptul că perioada de timp nu s-a scurs încă în momentul vorbirii."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Hoy he estudiado mucho",
+        "right": "Astăzi am învățat mult"
+      },
+      {
+        "left": "Esta semana hemos trabajado",
+        "right": "Săptămâna aceasta am lucrat"
+      },
+      {
+        "left": "¿Has estado en España?",
+        "right": "Ai fost vreodată în Spania?"
+      },
+      {
+        "left": "Nunca han visto eso",
+        "right": "Ei nu au văzut niciodată asta"
+      }
+    ],
+    "quiz": {
+      "question": "Cum se traduce corect 'Astăzi am mâncat paella' folosind pretérito perfecto?",
+      "options": [
+        "Hoy he comido paella. (haber + participiu invariabil)",
+        "Hoy he comida paella.",
+        "Hoy soy comido paella.",
+        "Hoy comí paella siempre."
+      ],
+      "correctIndex": 0,
+      "explanation": "Cu marcatorul 'Hoy', folosim 'he comido' (haber la prezent + participiu invariabil în -o)."
+    },
+    "task": "Scrie propoziția 'Hoy he estudiado español y he hablado con mi amigo.' (Astăzi am învățat spaniolă și am vorbit cu prietenul meu).",
+    "starterCode": "Hoy he estudiado ",
+    "expectedOutputPattern": "Hoy\\s+he\\s+estudiado\\s+espa[ñn]ol\\s+y\\s+he\\s+hablado\\s+con\\s+mi\\s+amigo\\.?",
+    "hint": "Scrie Hoy he estudiado español y he hablado con mi amigo."
+  },
+  {
+    "id": "es-b1-p27",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 27: Pretérito Indefinido (Perfectul Simplu Regulat: Hablé, Comí, Viví)",
+    "theory": "\n<p><strong>Pretérito Indefinido</strong> (sau <em>Pretérito Perfecto Simple</em>) este timpul suprem al narațiunii spaniole pentru evenimente petrecute într-un moment trecut <strong>complet încheiat</strong>, fără legătură cu prezentul (marcat de: <em>ayer</em>, <em>anoche</em>, <em>el año pasado</em>, <em>en 1995</em>).</p>\n<h4>1. Terminațiile Regulate</h4>\n<ul>\n  <li>Verbe în <code>-ar</code> (<em>hablar</em>):<br>\n  <strong>-é, -aste, -ó, -amos, -asteis, -aron</strong><br>\n  <em>hablé, hablaste, habló, hablamos, hablasteis, hablaron</em>.</li>\n  <li>Verbe în <code>-er / -ir</code> (<em>comer, vivir</em>):<br>\n  <strong>-í, -iste, -ió, -imos, -isteis, -ieron</strong><br>\n  <em>comí, comiste, comió, comimos, comisteis, comieron</em>.</li>\n</ul>\n<h4>2. Accentele Grafice Obligatorii</h4>\n<p>Atenție: persoana I (<em>habl<strong>é</strong>, com<strong>í</strong></em>) și persoana a III-a singular (<em>habl<strong>ó</strong>, com<strong>ió</strong></em>) poartă obligatoriu accent grafic!</p>\n",
     "glossary": [
       {
         "term": "Pretérito Indefinido",
-        "def": "Timp trecut folosit pentru acțiuni precise și punctuale încheiate definitiv în trecut."
+        "def": "Timpul perfect simplu spaniol pentru fapte punctuale petrecute în intervale de timp expirate."
       },
       {
-        "term": "Marcadores temporales",
-        "def": "Cuvinte cheie: ayer (ieri), anoche (aseară), la semana pasada (săptămâna trecută)."
+        "term": "Marcatori de trecut (Ayer)",
+        "def": "Ayer (ieri), anoche (aseară), la semana pasada (săptămâna trecută)."
       },
       {
-        "term": "Fui (Ser / Ir)",
-        "def": "Formă identică la trecut atât pentru verbul 'a fi', cât și pentru 'a merge'."
+        "term": "Accent grafic pe pers. 1 și 3",
+        "def": "Hablé și habló cer obligatoriu accent pe tildă pentru a nu se confunda cu prezentul."
       },
       {
-        "term": "Acentuación aguda",
-        "def": "Accentele grafice obligatorii pe prima și a treia persoană singular (-é, -ó, -í)."
+        "term": "Conjugarea unificată -er/-ir",
+        "def": "Grupele a doua și a treia împart terminații identice la pretérito indefinido."
       }
     ],
     "matchingPairs": [
       {
         "left": "Ayer hablé con María",
-        "right": "Ieri am vorbit cu Maria"
+        "right": "Ieri am vorbit cu Maria (-é)"
       },
       {
-        "left": "El año pasado fui a Madrid",
-        "right": "Anul trecut am fost la Madrid (ir/ser)"
+        "left": "Él comió una ensalada",
+        "right": "El a mâncat o salată (-ió)"
       },
       {
-        "left": "Hizo un trabajo excelente",
-        "right": "A făcut o treabă excelentă (hacer)"
+        "left": "Vivimos dos años en Madrid",
+        "right": "Am trăit doi ani la Madrid (-imos)"
       },
       {
-        "left": "Llegaron muy tarde",
-        "right": "Au sosit foarte târziu"
+        "left": "Ellos compraron una casa",
+        "right": "Ei au cumpărat o casă (-aron)"
       }
     ],
     "quiz": {
-      "question": "Care este forma de persoana a 3-a singular (él/ella) a verbului 'hacer' la Pretérito Indefinido?",
+      "question": "Care este forma de persoana a 3-a singular (él/ella) a verbului 'escribir' la pretérito indefinido?",
       "options": [
-        "hizo (cu 'z' pentru a păstra fonetica)",
-        "hició",
-        "haced",
-        "hace"
+        "escribió (accent grafic pe ó)",
+        "escribe",
+        "escribía",
+        "escribio"
       ],
       "correctIndex": 0,
-      "explanation": "Verbul 'hacer' schimbă litera 'c' în 'z' la persoana a treia singular (hizo) pentru a menține pronunția corectă."
+      "explanation": "La verbele în -er/-ir, persoana a 3-a singular primește terminația '-ió' cu accent obligatoriu: escribió."
     },
-    "task": "Scrie propoziția 'Ayer comí paella con mis amigos.' folosind forma de trecut a verbului comer.",
-    "starterCode": "// Scrie propoziția la Pretérito Indefinido\n",
-    "expectedOutputPattern": "Ayer\\s+com[íi]\\s+paella\\s+con\\s+mis\\s+amigos\\.?",
-    "hint": "Scrie Ayer comí paella con mis amigos."
+    "task": "Scrie propoziția 'Ayer trabajé ocho horas y comí en un restaurante mexicano.'.",
+    "starterCode": "Ayer trabajé ",
+    "expectedOutputPattern": "Ayer\\s+trabaj[ée]\\s+ocho\\s+horas\\s+y\\s+com[íi]\\s+en\\s+un\\s+restaurante\\s+mexicano\\.?",
+    "hint": "Scrie Ayer trabajé ocho horas y comí en un restaurante mexicano."
   },
   {
-    "id": "es-new-4",
+    "id": "es-b1-p28",
     "track": "Limba Spaniolă",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥘",
-    "level": "2. Junior / A2",
-    "xp": 40,
-    "title": "Capitolul 4: Pretérito Imperfecto & Diferența față de Indefinido",
-    "theory": "\n<p><strong>Pretérito Imperfecto</strong> este timpul descrierilor, al stărilor continue și al obiceiurilor repetate din trecut (<em>Când eram mic, mergeam la plajă în fiecare vară</em>).</p>\n<h4>1. Formare</h4>\n<ul>\n  <li><code>-ar</code>: -aba, -abas, -aba, -ábamos, -abais, -aban (<em>hablaba, cantaba...</em>)</li>\n  <li><code>-er / -ir</code>: -ía, -ías, -ía, -íamos, -íais, -ían (<em>comía, vivía...</em>)</li>\n</ul>\n<h4>2. Contrastul în Narațiuni</h4>\n<p><em>Imperfecto</em> stabilește scena de fundal (<em>Hacía sol y la gente paseaba</em>), iar <em>Indefinido</em> introduce acțiunea bruscă (<em>De repente, empezó a llover</em>).</p>\n",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 28: Pretérito Indefinido: Forme Neregulate Fundamentale",
+    "theory": "\n<p>Multe dintre cele mai importante verbe din spaniolă au o rădăcină specială neregulată la pretérito indefinido și împart un <strong>set comun de terminații FĂRĂ accent grafic</strong>:</p>\n<p><strong>-e, -iste, -o, -imos, -isteis, -ieron</strong></p>\n<h4>1. Rădăcini Neregulate Esențiale</h4>\n<ul>\n  <li><code>estar &rarr; estuv-</code> (estuve, estuviste, estuvo...)</li>\n  <li><code>tener &rarr; tuv-</code> (tuve, tuviste, tuvo...)</li>\n  <li><code>hacer &rarr; hic-</code> (hice, hiciste, <strong>hizo</strong>, hicimos...)</li>\n  <li><code>decir &rarr; dij-</code> (dije, dijiste, dijo, dijimos, <strong>dijeron</strong>)</li>\n  <li><code>poder &rarr; pud-</code> (pude, pudiste, pudo...)</li>\n</ul>\n<h4>2. Dubletul Neregulat Unic: SER & IR</h4>\n<p>Verbele <em>ser</em> (a fi) și <em>ir</em> (a merge) au <strong>forme 100% identice</strong> la indefinido (contextul decide înțelesul!):<br>\n<strong>fui, fuiste, fue, fuimos, fuisteis, fueron</strong>.</p>\n",
+    "glossary": [
+      {
+        "term": "Rădăcini neregulate în -u/-i/-j",
+        "def": "Estuv-, tuv-, hic-, dij- împart terminațiile comune fără accent grafic."
+      },
+      {
+        "term": "Hizo (pers. 3 faire)",
+        "def": "La persoana a 3-a, 'c' se transformă în 'z' pentru a păstra pronunția: hizo."
+      },
+      {
+        "term": "Fui (Ser / Ir)",
+        "def": "Formă identică atât pentru 'am fost', cât și pentru 'am mers'."
+      },
+      {
+        "term": "Absența accentului grafic",
+        "def": "Verbele cu rădăcină neregulată la indefinido nu poartă niciodată accent grafic."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Ayer estuve en casa",
+        "right": "Ieri am fost / am stat acasă (estar)"
+      },
+      {
+        "left": "Tuve mucho trabajo",
+        "right": "Am avut mult de lucru (tener)"
+      },
+      {
+        "left": "Hizo un pastel delicioso",
+        "right": "A făcut o prăjitură delicioasă (hacer)"
+      },
+      {
+        "left": "El año pasado fui a Madrid",
+        "right": "Anul trecut am mers la Madrid (ir)"
+      }
+    ],
+    "quiz": {
+      "question": "Care este forma de persoana a 3-a singular (él/ella) a verbului 'hacer' la pretérito indefinido?",
+      "options": [
+        "hizo (cu 'z' pentru păstrarea foneticii)",
+        "hició",
+        "hace",
+        "hizo con acento"
+      ],
+      "correctIndex": 0,
+      "explanation": "La verbul hacer, forma de persoana a 3-a se ortografiază cu 'z' (hizo) și nu poartă accent grafic."
+    },
+    "task": "Scrie propoziția 'El fin de semana estuve en Barcelona y fui al museo.'.",
+    "starterCode": "El fin de semana ",
+    "expectedOutputPattern": "El\\s+fin\\s+de\\s+semana\\s+estuve\\s+en\\s+Barcelona\\s+y\\s+fui\\s+al\\s+museo\\.?",
+    "hint": "Scrie El fin de semana estuve en Barcelona y fui al museo."
+  },
+  {
+    "id": "es-b1-p29",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 29: Pretérito Imperfecto — Rutine & Descrieri în Trecut",
+    "theory": "\n<p><strong>Pretérito Imperfecto</strong> descrie cum erau lucrurile în trecut, circumstanțele, stările fizice/psihice și acțiunile habituale din copilărie („ce făceai de obicei”).</p>\n<h4>1. Terminațiile Regulate</h4>\n<ul>\n  <li>Verbe în <code>-ar</code> (<em>hablar</em>):<br>\n  <strong>-aba, -abas, -aba, -ábamos, -abais, -aban</strong><br>\n  <em>hablaba, hablabas, hablaba, hablábamos, hablabais, hablaban</em>.</li>\n  <li>Verbe în <code>-er / -ir</code> (<em>comer, vivir</em>):<br>\n  <strong>-ía, -ías, -ía, -íamos, -íais, -ían</strong> (toate poartă accent pe í!).</li>\n</ul>\n<h4>2. Cele Singure Trei Verbe Neregulate</h4>\n<p>Spaniola este extrem de generoasă: <strong>doar 3 verbe sunt neregulate</strong> la imperfect:</p>\n<ul>\n  <li><code>ser &rarr; era, eras, era, éramos, erais, eran</code></li>\n  <li><code>ir &rarr; iba, ibas, iba, íbamos, ibais, iban</code></li>\n  <li><code>ver &rarr; veía, veías, veía, veíamos, veíais, veían</code></li>\n</ul>\n",
     "glossary": [
       {
         "term": "Pretérito Imperfecto",
-        "def": "Timp trecut dedicat descrierilor de decor, vârstei, vremii și obiceiurilor din trecut."
+        "def": "Timpul imperfect spaniol pentru descrieri, rutine din trecut și acțiuni continue."
       },
       {
-        "term": "Terminaciones en -aba",
-        "def": "Sufixul specific și regulat pentru verbele de grupa I la imperfect."
+        "term": "-aba / -ía",
+        "def": "Sufixele caracteristice ale celor două mari grupe de verbe la imperfect."
       },
       {
-        "term": "Acción habitual",
-        "def": "Comportamente repetate introduse de 'siempre', 'todos los días', 'a menudo'."
+        "term": "Era, iba, veía",
+        "def": "Singurele trei verbe neregulate din întreaga limbă spaniolă la pretérito imperfecto."
       },
       {
-        "term": "De repente...",
-        "def": "Marcator temporal care introduce o acțiune bruscă exprimată prin Indefinido."
+        "term": "De niño / Cuando era joven",
+        "def": "Expresii tipice ce introduc o descriere sau o acțiune continuă la imperfect."
       }
     ],
     "matchingPairs": [
       {
         "left": "Cuando era niño",
-        "right": "Când eram copil (descriere - Imperfecto)"
+        "right": "Când eram copil (ser)"
       },
       {
-        "left": "Siempre leía antes de dormir",
-        "right": "Citeam mereu înainte de culcare (obicei)"
+        "left": "Siempre iba al parque",
+        "right": "Mergeam mereu în parc (ir)"
       },
       {
-        "left": "Dormía cuando sonó la alarma",
-        "right": "Dormeam (imperfecto) când a sunat alarma (indefinido)"
+        "left": "Vivíamos en una casa grande",
+        "right": "Locuiam într-o casă mare (vivir)"
       },
       {
-        "left": "Tenía 20 años",
-        "right": "Aveam 20 de ani (vârsta se exprimă prin imperfect)"
+        "left": "Hacía mucho sol",
+        "right": "Era foarte însorit (descriere meteo)"
       }
     ],
     "quiz": {
-      "question": "În propoziția 'Mientras nosotros ... la cena, llegó Pedro', ce timp verbal este corect pentru acțiunea în derulare?",
+      "question": "Care este forma de persoana I singular (Yo) la imperfect a verbului 'ir'?",
       "options": [
-        "preparábamos (Imperfecto - acțiune continuă în fundal)",
-        "preparamos (Pretérito Indefinido)",
-        "preparar",
-        "habíamos preparado"
+        "iba (Yo iba al colegio)",
+        "fui",
+        "iría",
+        "voy"
       ],
       "correctIndex": 0,
-      "explanation": "'Mientras' (în timp ce) indică o acțiune continuă aflată în desfășurare în fundal, cerând modul Pretérito Imperfecto (preparábamos)."
+      "explanation": "'Ir' are forma neregulată 'iba' la pretérito imperfecto: yo iba, tú ibas, él iba."
     },
-    "task": "Scrie propoziția de descriere din trecut 'Cuando vivía en Madrid, comía tapas todos los días.'.",
-    "starterCode": "// Completează propoziția la imperfect\n",
-    "expectedOutputPattern": "Cuando\\s+viv[íi]a\\s+en\\s+Madrid,\\s*com[íi]a\\s+tapas\\s+todos\\s+los\\s+d[íi]as\\.?",
-    "hint": "Scrie Cuando vivía en Madrid, comía tapas todos los días."
+    "task": "Scrie amintirea 'Cuando era niño, vivía en el campo y jugaba con mis amigos.'.",
+    "starterCode": "Cuando era niño, ",
+    "expectedOutputPattern": "Cuando\\s+era\\s+ni[ñn]o,\\s*viv[íi]a\\s+en\\s+el\\s+campo\\s+y\\s+jugaba\\s+con\\s+mis\\s+amigos\\.?",
+    "hint": "Scrie Cuando era niño, vivía en el campo y jugaba con mis amigos."
   },
   {
-    "id": "es-new-5",
+    "id": "es-b1-p30",
     "track": "Limba Spaniolă",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥘",
-    "level": "3. Middle / B1",
-    "xp": 45,
-    "title": "Capitolul 5: Diferența Esențială: 'Por' vs 'Para'",
-    "theory": "\n<p>Distincția dintre <strong>por</strong> și <strong>para</strong> este una dintre cele mai frecvente provocări în limba spaniolă, ambele traducându-se prin „pentru”, dar având nuanțe logice total diferite.</p>\n<h4>1. Utilizările lui 'PARA' (Direcție, Scop & Destinatar)</h4>\n<ul>\n  <li>Scop/Obiectiv (In order to): <em>Estudio español <strong>para</strong> conseguir un trabajo</em>.</li>\n  <li>Destinatar: <em>Este regalo es <strong>para</strong> ti</em>.</li>\n  <li>Termen limită (Deadline): <em>La tarea es <strong>para</strong> mañana</em>.</li>\n</ul>\n<h4>2. Utilizările lui 'POR' (Cauză, Motiv & Mijloc)</h4>\n<ul>\n  <li>Cauză/Motiv (Because of): <em>Llegué tarde <strong>por</strong> el tráfico</em>.</li>\n  <li>Mijloc/Canal de comunicare: <em>Te llamo <strong>por</strong> teléfono</em>.</li>\n  <li>Durată aproximativă: <em>Viví allí <strong>por</strong> dos años</em>.</li>\n</ul>\n",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 30: Imperfecto vs Indefinido — Contrastul Narativ Fundamental",
+    "theory": "\n<p>Diferențierea dintre <strong>Imperfecto</strong> și <strong>Indefinido</strong> este inima narațiunii în spaniolă.</p>\n<h4>1. Rolurile în Povestire</h4>\n<ul>\n  <li><strong>Imperfecto (Decorul / Fundalul):</strong> Pictează peisajul, ora, starea vremii, ce făcea personajul cândva: <em>Hacía frío y yo caminaba por la calle...</em></li>\n  <li><strong>Indefinido (Evenimentul Punctual):</strong> Acțiunea punctuală care intervine brusc și împinge acțiunea înainte: <em>...cuando de repente vi a mi amigo.</em></li>\n</ul>\n<h4>2. Schema de Aur</h4>\n<p><code>[Acțiune în desfășurare: Imperfecto] + cuando + [Eveniment întrerupător: Indefinido]</code><br>\n<em>Dormía plácidamente cuando sonó la alarma.</em></p>\n",
     "glossary": [
       {
-        "term": "Para (Finalidad)",
-        "def": "Prepoziție ce indică scopul, obiectivul viitor, destinația sau destinatarul."
+        "term": "Escenario (Imperfecto)",
+        "def": "Cadrul temporal, emoțional sau spațial în care se plasează o poveste."
       },
       {
-        "term": "Por (Causa)",
-        "def": "Prepoziție ce indică motivul trecut, cauza, prețul, mijlocul sau schimbul."
+        "term": "Acontecimiento (Indefinido)",
+        "def": "Evenimentul specific, marcat în timp, care schimbă starea de lucruri."
       },
       {
-        "term": "Para siempre",
-        "def": "Expresie fixă ce înseamnă 'pentru totdeauna'."
+        "term": "De repente / De pronto",
+        "def": "'Deodată' — conector ce marchează trecerea bruscă spre un pretérito indefinido."
       },
       {
-        "term": "Por favor / Por ejemplo",
-        "def": "Locuțiuni uzuale formate cu prepoziția por."
+        "term": "Interrupción temporal",
+        "def": "Întreruperea unei activități continue printr-un eveniment scurt și punctual."
       }
     ],
     "matchingPairs": [
       {
-        "left": "Estudio para aprender",
-        "right": "Învăț cu scopul de a ști (Para = finalitate)"
+        "left": "Estudiaba tranquilamente",
+        "right": "Învățam liniștit (acțiune continuă: imperfecto)"
       },
       {
-        "left": "Gracias por tu ayuda",
-        "right": "Mulțumesc pentru ajutorul tău (Por = cauză/motiv)"
+        "left": "Sonó el teléfono",
+        "right": "A sunat telefonul (întrerupere: indefinido)"
       },
       {
-        "left": "El informe es para el viernes",
-        "right": "Raportul este pentru vineri (Para = termen limită)"
+        "left": "Hacía mal tiempo",
+        "right": "Era vreme urâtă (descriere de fundal)"
       },
       {
-        "left": "Viajamos por tren",
-        "right": "Călătorim cu trenul (Por = mijloc de transport)"
+        "left": "Decidimos quedarnos en casa",
+        "right": "Am decis să rămânem acasă (decizie punctuală)"
       }
     ],
     "quiz": {
-      "question": "Ce prepoziție completează corect fraza: 'No pudimos salir ... la lluvia' (din cauza ploii)?",
+      "question": "În fraza 'Mientras nosotros cenábamos, alguien ... a la puerta', ce formă a verbului 'llamar' este corectă?",
       "options": [
-        "por (indică cauza sau motivul)",
-        "para",
-        "con",
-        "de"
+        "llamó (Indefinido: acțiune punctuală care întrerupe cina)",
+        "llamaba (Imperfecto)",
+        "llama (Presente)",
+        "ha llamado"
       ],
       "correctIndex": 0,
-      "explanation": "Ploaia este cauza pentru care nu s-a putut ieși. Cauza sau motivul se exprimă întotdeauna prin prepoziția 'por'."
+      "explanation": "Bătaia la ușă survine punctual în timp ce cina era în desfășurare, cerând 'llamó' (indefinido)."
     },
-    "task": "Completează fraza de scop 'Trabajo duro para tener éxito.' (Muncesc din greu pentru a avea succes).",
-    "starterCode": "Trabajo duro ",
-    "expectedOutputPattern": "Trabajo\\s+duro\\s+para\\s+tener\\s+[ée]xito\\.?",
-    "hint": "Scrie Trabajo duro para tener éxito."
+    "task": "Scrie propoziția 'Estudiaba en mi habitación cuando llegó mi hermano.' (Învățam în camera mea când a sosit fratele meu).",
+    "starterCode": "Estudiaba en mi habitación ",
+    "expectedOutputPattern": "Estudiaba\\s+en\\s+mi\\s+habitaci[óo]n\\s+quand[o]\\s+lleg[óo]\\s+mi\\s+hermano\\.?",
+    "hint": "Scrie Estudiaba en mi habitación cuando llegó mi hermano."
   },
   {
-    "id": "es-new-6",
+    "id": "es-b1-p31",
     "track": "Limba Spaniolă",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥘",
-    "level": "4. Senior / B2",
-    "xp": 55,
-    "title": "Capitolul 6: Presente de Subjuntivo — Dorințe, Emoții și 'Ojalá'",
-    "theory": "\n<p><strong>Modo Subjuntivo</strong> este folosit în spaniolă ori de câte ori acțiunea nu este un fapt sigur, ci o dorință, o cerință, o îndoială sau o reacție emoțională.</p>\n<h4>1. Formare: Schimbarea Vocalei</h4>\n<p>Se ia persoana I singular de la prezent (<em>yo hablo</em>, <em>yo como</em>), se elimină <code>-o</code> și se inversează vocala tematică:</p>\n<ul>\n  <li>Verbele în <code>-ar</code> iau terminații cu <strong>-e</strong>: -e, -es, -e, -emos, -éis, -en (<em>hable, hables...</em>).</li>\n  <li>Verbele în <code>-er / -ir</code> iau terminații cu <strong>-a</strong>: -a, -as, -a, -amos, -áis, -an (<em>coma, comas...</em>, <em>viva, vivas...</em>).</li>\n</ul>\n<h4>2. Cuvântul Magic: 'Ojalá'</h4>\n<p><em>Ojalá (que)</em> (de origine arabă, însemnând „Dacă vrea Dumnezeu”) este urmat întotdeauna de subjonctiv: <em>¡Ojalá tengas un buen día!</em>.</p>\n",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 31: Pronombres de Objeto Directo (me, te, lo, la, nos, os, los, las)",
+    "theory": "\n<p><strong>Pronombres de Objeto Directo (OD)</strong> înlocuiesc substantivul asupra căruia cade direct acțiunea verbului (răspunde la întrebarea <em>¿qué?</em> sau <em>¿a quién?</em>).</p>\n<h4>1. Formele Pronumelor OD</h4>\n<ul>\n  <li><code>me / te / nos / os</code> (pentru persoane)</li>\n  <li><code>lo</code> = îl / pe el / pe acesta (masculin singular)</li>\n  <li><code>la</code> = o / pe ea / pe aceasta (feminin singular)</li>\n  <li><code>los / las</code> = îi / le (plural masculin / feminin)</li>\n</ul>\n<h4>2. Regula „A personal”</h4>\n<p>Când complementul direct este o ființă umană specifică, spaniola impune prepoziția <strong>a</strong>: <em>Veo <strong>a</strong> María &rarr; <strong>La</strong> veo.</em></p>\n<h4>3. Poziția Pronumelui</h4>\n<p>Stă <strong>în fața</strong> verbului conjugat (<em>Lo compro</em>) SAU se leagă <strong>la sfârșitul</strong> infinitivului / gerunziului (<em>Quiero comprar<strong>lo</strong></em> / <em>Estoy comprándo<strong>lo</strong></em>).</p>\n",
     "glossary": [
       {
-        "term": "Subjuntivo",
-        "def": "Modul gramatical al dorințelor, posibilității, incertitudinii și emoțiilor subiective."
+        "term": "Objeto Directo (OD)",
+        "def": "Complementul direct înlocuit prin lo, la, los, las în funcție de gen și număr."
       },
       {
-        "term": "Inversión de vocal",
-        "def": "Regula de aur a subjonctivului: verbele în -ar iau 'e', iar cele în -er/-ir iau 'a'."
+        "term": "A personal",
+        "def": "Prepoziția obligatorie în spaniolă înaintea unui complement direct ce reprezintă o persoană."
       },
       {
-        "term": "Ojalá",
-        "def": "Particulă de dorință ce impune fără excepție utilizarea modului subjuntivo."
+        "term": "Enclisis (Alipire)",
+        "def": "Lipirea pronumelui la sfârșitul formelor de infinitiv, gerunziu și imperativ afirmativ."
       },
       {
-        "term": "Quiero que...",
-        "def": "Expresie de voință cu schimbare de subiect ce cere subjuntivo (Quiero que vengas)."
+        "term": "Poziție proclitică",
+        "def": "Plasarea pronumelui nemijlocit înaintea verbului conjugat (ex: Lo tengo)."
       }
     ],
     "matchingPairs": [
       {
-        "left": "Quiero que estudies más",
-        "right": "Vreau ca tu să înveți mai mult"
+        "left": "¿Compras el periódico?",
+        "right": "Sí, lo compro todos los días (el periódico &rarr; lo)"
       },
       {
-        "left": "¡Ojalá no llueva mañana!",
-        "right": "Să sperăm că nu va ploua mâine!"
+        "left": "¿Conoces a Carmen?",
+        "right": "Sí, la conozco muy bien (a Carmen &rarr; la)"
       },
       {
-        "left": "Es necesario que tengamos paciencia",
-        "right": "Este necesar să avem răbdare"
+        "left": "¿Tienes las llaves?",
+        "right": "Sí, las tengo en el bolsillo (las llaves &rarr; las)"
       },
       {
-        "left": "Dudo que sea verdad",
-        "right": "Mă îndoiesc că este adevărat (subjuntivo de la ser)"
+        "left": "¿Quieres ver la película?",
+        "right": "Sí, quiero verla esta noche (enclisis: verla)"
       }
     ],
     "quiz": {
-      "question": "Ce formă de Subjuntivo a verbului 'tener' completează corect urarea '¡Espero que ... un buen viaje!' (tú)?",
+      "question": "Cum înlocuiești 'la carta' în fraza 'Escribo la carta para mi jefe' folosind un pronume OD?",
       "options": [
-        "tengas (Espero que tengas)",
-        "tienes",
-        "tenga",
-        "tener"
+        "La escribo para mi jefe.",
+        "Lo escribo para mi jefe.",
+        "Le escribo para mi jefe.",
+        "Escribo la para mi jefe."
       ],
       "correctIndex": 0,
-      "explanation": "Expresia 'Espero que' introduce o dorință adresată altei persoane (tú), cerând prezentul de subjonctiv al verbului tener: 'tengas'."
+      "explanation": "'La carta' este feminin singular, prin urmare se înlocuiește cu pronumele proclitic 'la': La escribo."
     },
-    "task": "Scrie urarea clasică '¡Ojalá tengas un día excelente!' folosind modul subjuntivo.",
-    "starterCode": "// Scrie urarea cu Ojalá\n",
-    "expectedOutputPattern": "(?:[¡!]\\s*)?Ojal[áa]\\s+tengas\\s+un\\s+d[íi]a\\s+excelente[!]?\\.?",
-    "hint": "Scrie ¡Ojalá tengas un día excelente!"
+    "task": "Scrie replica 'Compro el periódico por la mañana y lo leo en el metro.'.",
+    "starterCode": "Compro el periódico ",
+    "expectedOutputPattern": "Compro\\s+el\\s+peri[óo]dico\\s+por\\s+la\\s+ma[ñn]ana\\s+y\\s+lo\\s+leo\\s+en\\s+el\\s+metro\\.?",
+    "hint": "Scrie Compro el periódico por la mañana y lo leo en el metro."
   },
   {
-    "id": "es-new-7",
+    "id": "es-b1-p32",
     "track": "Limba Spaniolă",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥘",
-    "level": "4. Senior / B2",
-    "xp": 60,
-    "title": "Capitolul 7: Pronume Directe și Indirecte Combinate ('Se lo dije')",
-    "theory": "\n<p>Când o propoziție conține atât un pronume de <strong>obiect indirect</strong> (cui?) cât și unul de <strong>obiect direct</strong> (ce?), ordinea este întotdeauna: <strong>OI + OD + Verb</strong>.</p>\n<h4>1. Regula de Cacofonie: 'Le lo' devine 'SE LO'</h4>\n<p>În limba spaniolă este interzisă succesiunea a două pronume care încep cu litera L (<em>le lo</em>, <em>le la</em>, <em>les los</em>). Din motive fonetice, <code>le</code> sau <code>les</code> se transformă automat în <strong>se</strong>:</p>\n<p><em>¿Le diste el libro a Juan? $\rightarrow$ Sí, <strong>se lo</strong> di</em> (în loc de <em>le lo di</em>).</p>\n<h4>2. Poziția Față de Verb</h4>\n<p>Pronumele stau în fața verbelor conjugate. În cazul infinitivului, gerunziului și imperativului afirmativ, ele se alipesc la final ca un singur cuvânt: <em>Voy a decírtelo</em>, <em>Dímelo</em>.</p>\n",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 35,
+    "title": "Capitolul 32: Pronombres de Objeto Indirecto (me, te, le, nos, os, les) & Dublarea",
+    "theory": "\n<p><strong>Pronombres de Objeto Indirecto (OI)</strong> arată destinatarul sau beneficiarul acțiunii (răspunde la întrebarea <em>¿a quién?</em> &mdash; cui?).</p>\n<h4>1. Formele Pronumelor OI</h4>\n<ul>\n  <li><code>me / te / nos / os</code></li>\n  <li><code>le</code> = lui / ei / Dumneavoastră (singular)</li>\n  <li><code>les</code> = lor / Dumneavoastră plural</li>\n</ul>\n<h4>2. Fenomenul Dublării Pronumelui (Reduplicación)</h4>\n<p>În spaniolă, este o regulă standard ca pronumele indirect (<em>le/les</em>) să apară în propoziție <strong>chiar dacă destinatarul este numit explicit</strong>:</p>\n<p><em><strong>Le</strong> doy el regalo <strong>a Juan</strong>.</em> (Îi dau cadoul lui Juan &mdash; 'le' este obligatoriu!).<br>\n<em><strong>Les</strong> escribo un correo <strong>a mis padres</strong>.</em></p>\n",
     "glossary": [
       {
-        "term": "Doble pronombre",
-        "def": "Combinația dintre pronumele de obiect indirect și cel de obiect direct într-o singură frază."
+        "term": "Objeto Indirecto (OI)",
+        "def": "Complementul indirect ce desemnează beneficiarul unei acțiuni (me, te, le, nos, os, les)."
       },
       {
-        "term": "Regla de 'SE'",
-        "def": "Transformarea obligatorie a lui 'le' în 'se' înaintea pronumelor lo, la, los, las."
+        "term": "Reduplicación del pronombre",
+        "def": "Dublarea obligatorie a complementului prin pronumele 'le' chiar dacă persoana este numită."
       },
       {
-        "term": "Pronombres enclíticos",
-        "def": "Pronume atașate direct la finalul infinitivului, gerunziului sau imperativului afirmativ."
+        "term": "Le (singular)",
+        "def": "Formă invariabilă în gen: înseamnă atât 'lui' cât și 'ei' sau 'dumneavoastră'."
+      },
+      {
+        "term": "Les (plural)",
+        "def": "Formă de plural indirect ce înseamnă 'lor' sau 'dumneavoastră (plural)'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Le hablo a Pedro",
+        "right": "Îi vorbesc lui Pedro (dublare cu le)"
+      },
+      {
+        "left": "Le compro flores a mi madre",
+        "right": "Îi cumpăr flori mamei mele"
+      },
+      {
+        "left": "Les explico la lección a los alumnos",
+        "right": "Le explic lecția elevilor (les plural)"
+      },
+      {
+        "left": "¿Me dices la verdad?",
+        "right": "Îmi spui adevărul mie? (me)"
+      }
+    ],
+    "quiz": {
+      "question": "De ce fraza 'Doy el libro a María' sună nefiresc în spaniolă fără pronume?",
+      "options": [
+        "Deoarece spaniola cere dublarea prin 'le': 'Le doy el libro a María'.",
+        "Deoarece María trebuie să fie subiectul.",
+        "Deoarece lipsește un adjectiv.",
+        "Deoarece verbul dar este reflexiv."
+      ],
+      "correctIndex": 0,
+      "explanation": "Dublarea complementului indirect prin 'le' este norma gramaticală firească în spaniolă."
+    },
+    "task": "Scrie propoziția 'Le escribo una carta a mi abuela todos los domingos.' (Îi scriu o scrisoare bunicii mele în fiecare duminică).",
+    "starterCode": "Le escribo una carta ",
+    "expectedOutputPattern": "Le\\s+escribo\\s+una\\s+carta\\s+a\\s+mi\\s+abuela\\s+todos\\s+los\\s+domingos\\.?",
+    "hint": "Scrie Le escribo una carta a mi abuela todos los domingos."
+  },
+  {
+    "id": "es-b1-p33",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 40,
+    "title": "Capitolul 33: Combinarea Pronumelor OD + OI & Transformarea „SE LO / SE LA”",
+    "theory": "\n<p>Când o frază conține atât un pronume de Obiect Indirect (cui?) cât și unul de Obiect Direct (ce?), se aplică două reguli fundamentale:</p>\n<h4>1. Ordinea Canonica: INDIRECTUL PRIMUL!</h4>\n<p><code>Subiect + [OI] + [OD] + Verb</code><br>\n<em>¿Me dejas tu libro? &rarr; Sí, <strong>te lo</strong> dejo.</em> (te = OI, lo = OD).</p>\n<h4>2. Regula Eufonică Supremă: LE / LES devine SE!</h4>\n<p>În spaniolă este interzisă cacofonia a două pronume consecutive ce încep cu 'L' (*le lo*, *le la*, *les los*). Prin urmare, <strong>le / les se transformă întotdeauna în SE</strong>:</p>\n<p><em>¿Das el regalo a María? &rarr; Sí, <strong>se lo</strong> doy.</em> (în loc de *le lo doy*!).</p>\n",
+    "glossary": [
+      {
+        "term": "Regla SE LO",
+        "def": "Transformarea eufonică a lui le/les în 'se' în fața pronumelor lo, la, los, las."
       },
       {
         "term": "Orden OI + OD",
-        "def": "Regula fixă conform căreia persoana (OI) precede întotdeauna lucrul (OD)."
+        "def": "Indirectul precede întotdeauna directul în secvența pronominală spaniolă."
+      },
+      {
+        "term": "Cacofonía evitada",
+        "def": "Evitarea sunetului dublu l-l (*le lo) prin conversia în sunetul sibilant 'se'."
+      },
+      {
+        "term": "Te lo juro",
+        "def": "'Ți-o jur' — expresie populară ilustrând combinarea pronumelor te + lo."
       }
     ],
     "matchingPairs": [
       {
-        "left": "Se lo expliqué ayer",
-        "right": "I l-am explicat ieri (în loc de le lo)"
+        "left": "¿Me prestas el coche?",
+        "right": "Sí, te lo presto (te + lo)"
       },
       {
-        "left": "Me lo puedes enviar",
-        "right": "Mi-l poți trimite mie"
+        "left": "¿Le das la carta a Juan?",
+        "right": "Sí, se la doy (le &rarr; se + la)"
       },
       {
-        "left": "Dígamelo, por favor",
-        "right": "Spuneți-mi-l mie (pronume enclitice atașate la imperativ)"
+        "left": "¿Nos envías las fotos?",
+        "right": "Sí, os las envío mañana (os + las)"
       },
       {
-        "left": "No te lo creas",
-        "right": "Să nu o crezi (la imperativ negativ)"
+        "left": "¿Les dices el secreto?",
+        "right": "No, no se lo digo (les &rarr; se + lo)"
       }
     ],
     "quiz": {
-      "question": "De ce propoziția 'Le lo dije a mi jefe' este incorectă în limba spaniolă?",
+      "question": "Cum răspunzi afirmativ la '¿Le entregas el informe al director?' înlocuind ambele complemente?",
       "options": [
-        "Succesiunea pronumelor 'le lo' este interzisă fonetic; 'le' trebuie înlocuit obligatoriu cu 'se' (Se lo dije).",
-        "Verbul decir nu suportă pronume de obiect direct.",
-        "Pronumele trebuie plasate întotdeauna după verb.",
-        "Nu este permisă menționarea șefului într-o propoziție."
+        "Sí, se lo entrego. (le devine se în fața lui lo)",
+        "Sí, le lo entrego.",
+        "Sí, lo le entrego.",
+        "Sí, se la entrego."
       ],
       "correctIndex": 0,
-      "explanation": "Când pronumele de persoana a 3-a indirect (le/les) este urmat de un pronume direct (lo/la/los/las), el se transformă întotdeauna în 'se' pentru eufonie."
+      "explanation": "OI 'le' devine obligatoriu 'se' în fața OD masculin 'lo' (el informe): 'se lo entrego'."
     },
-    "task": "Răspunde afirmativ la întrebarea dacă i-ai dat raportul directorului: 'Sí, se lo entregué ayer.'.",
-    "starterCode": "// Răspunde cu se lo\n",
-    "expectedOutputPattern": "S[íi],\\s+se\\s+lo\\s+entregu[ée]\\s+ayer\\.?",
-    "hint": "Scrie Sí, se lo entregué ayer."
+    "task": "Scrie dialogul '¿Tienes el informe? Sí, se lo envío a mi jefe ahora mismo.'.",
+    "starterCode": "¿Tienes el informe? ",
+    "expectedOutputPattern": "(?:[¿?]\\s*)?Tienes\\s+el\\s+informe\\?\\s*S[íi],\\s*se\\s+lo\\s+env[íi]o\\s+a\\s+mi\\s+jefe\\s+ahora\\s+mismo\\.?",
+    "hint": "Scrie ¿Tienes el informe? Sí, se lo envío a mi jefe ahora mismo."
   },
   {
-    "id": "es-new-8",
+    "id": "es-b1-p34",
     "track": "Limba Spaniolă",
     "division": "Limbi Străine & Comunicare",
     "icon": "🥘",
-    "level": "5. Arhitect / C1",
-    "xp": 70,
-    "title": "Capitolul 8: Modismos, Expresii Idiomatice & Spaniola de Afaceri",
-    "theory": "\n<p>Fluența de nivel înalt (C1) în limba spaniolă presupune folosirea firească a expresiilor colocviale și stăpânirea limbajului formal corporativ.</p>\n<h4>1. Modisme Populare Spaniole</h4>\n<ul>\n  <li><em>Costar un ojo de la cara</em> — a costa o avere (extrem de scump).</li>\n  <li><em>Estar en las nubes</em> — a fi distrat, cu capul în nori.</li>\n  <li><em>Dar en el clavo</em> — a nimeri la fix, a găsi soluția perfectă.</li>\n  <li><em>Tomar el pelo</em> — a lua pe cineva peste picior, a glumi.</li>\n</ul>\n<h4>2. Conectori Discursivi pentru Afaceri</h4>\n<p>În negocieri și rapoarte se utilizează: <em>Sin embargo</em> (totuși), <em>Por consiguiente</em> (prin urmare), <em>En lo que respecta a</em> (în ceea ce privește), <em>Llevar a cabo</em> (a duce la îndeplinire un proiect).</p>\n",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 40,
+    "title": "Capitolul 34: Por vs Para — Distincția Supremă în Limba Spaniolă",
+    "theory": "\n<p>Confundarea prepozițiilor <strong>POR</strong> și <strong>PARA</strong> este cea mai răspândită eroare a celor ce învață spaniola. Iată distincția definitivă:</p>\n<h4>1. Când folosim PARA (Săgeata &rarr; Destinație / Scop)</h4>\n<ul>\n  <li><strong>Scopul / Finalitatea:</strong> <em>Estudio español <strong>para</strong> trabajar.</em> (urmat de infinitiv).</li>\n  <li><strong>Destinatarul:</strong> <em>Este regalo es <strong>para</strong> ti.</em></li>\n  <li><strong>Termen limită / Dead-line:</strong> <em>La tarea es <strong>para</strong> el lunes.</em></li>\n  <li><strong>Direcție spre un loc:</strong> <em>Salgo <strong>para</strong> Madrid.</em></li>\n</ul>\n<h4>2. Când folosim POR (Cauza / Mijlocul / Schimbul)</h4>\n<ul>\n  <li><strong>Motivul / Cauza:</strong> <em>Llegué tarde <strong>por</strong> el tráfico.</em> (din cauza).</li>\n  <li><strong>Mijlocul de comunicare/transport:</strong> <em>Te llamo <strong>por</strong> teléfono; Enviado <strong>por</strong> correo.</em></li>\n  <li><strong>Durata / Momentul zilei:</strong> <em>Estudio <strong>por</strong> la mañana; Viví allí <strong>por</strong> tres años.</em></li>\n  <li><strong>Prețul / Schimbul:</strong> <em>Lo compré <strong>por</strong> 20 euros.</em></li>\n</ul>\n",
     "glossary": [
       {
-        "term": "Modismo",
-        "def": "Expresie idiomatică specifică unei limbi al cărei înțeles nu rezultă din suma cuvintelor individuale."
+        "term": "PARA (Finalidad)",
+        "def": "Privește înainte: scopul, destinatarul, termenul limită."
       },
       {
-        "term": "Dar en el clavo",
-        "def": "A găsi exact răspunsul sau soluția corectă la o problemă complicată."
+        "term": "POR (Causa / Medio)",
+        "def": "Privește înapoi sau prin: cauza, mijlocul, durata, prețul de schimb."
       },
       {
-        "term": "Llevar a cabo",
-        "def": "Sintagmă profesională elegantă ce înseamnă a executa, a realiza un plan sau proiect."
+        "term": "Por la mañana / tarde",
+        "def": "Expresie fixă cu por pentru momentele zilei (dimineața, după-amiaza)."
       },
       {
-        "term": "Marcadores formales",
-        "def": "Conectori logici utilizați pentru structurarea argumentației în contexte academice și de business."
+        "term": "Para siempre",
+        "def": "Locuțiune adverbială însemnând 'pentru totdeauna'."
       }
     ],
     "matchingPairs": [
       {
-        "left": "Me estás tomando el pelo",
-        "right": "Mă iei peste picior / glumești cu mine"
+        "left": "Trabajo para ganar dinero",
+        "right": "Scop / Finalitate (para)"
+      },
+      {
+        "left": "Gracias por tu ayuda",
+        "right": "Cauză / Recunoștință (por)"
+      },
+      {
+        "left": "El informe es para mañana",
+        "right": "Termen limită viitor (para)"
+      },
+      {
+        "left": "Lo compré por 50 euros",
+        "right": "Preț de schimb comercial (por)"
+      }
+    ],
+    "quiz": {
+      "question": "Ce prepoziție folosești în fraza: 'Viajo a España ... mejorar mi pronunciación'?",
+      "options": [
+        "para (exprimă scopul/finalitatea acțiunii)",
+        "por",
+        "de",
+        "con"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Para' urmat de infinitiv (mejorar) indică obiectivul sau scopul călătoriei."
+    },
+    "task": "Scrie propoziția 'Estudio español para viajar y trabajo por la mañana.'.",
+    "starterCode": "Estudio español ",
+    "expectedOutputPattern": "Estudio\\s+espa[ñn]ol\\s+para\\s+viajar\\s+y\\s+trabajo\\s+por\\s+la\\s+ma[ñn]ana\\.?",
+    "hint": "Scrie Estudio español para viajar y trabajo por la mañana."
+  },
+  {
+    "id": "es-b1-p35",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 40,
+    "title": "Capitolul 35: El Futuro Simple & Forme Neregulate Esențiale",
+    "theory": "\n<p><strong>Futuro Simple</strong> (sau <em>Futuro Imperfecto</em>) este timpul proiectării viitoare și al predicțiilor.</p>\n<h4>1. Formare Regulată Extrem de Simplă</h4>\n<p>Se ia <strong>infinitivul întreg</strong> al verbului și se adaugă un set unic de terminații pentru TOATE cele 3 grupe:</p>\n<p><strong>-é, -ás, -á, -emos, -éis, -án</strong></p>\n<p><em>hablaré, comeré, viviré</em> (toate poartă accent grafic cu excepția persoanei I plural <em>-emos</em>!).</p>\n<h4>2. Rădăcini Neregulate Majore</h4>\n<ul>\n  <li><code>tener &rarr; tendr-</code> (tendré, tendrás...)</li>\n  <li><code>poner &rarr; pondr-</code> (pondré) / <code>salir &rarr; saldr-</code> (saldré)</li>\n  <li><code>hacer &rarr; har-</code> (haré, harás, hará...)</li>\n  <li><code>decir &rarr; dir-</code> (diré, dirás, dirá...)</li>\n  <li><code>poder &rarr; podr-</code> (podré) / <code>saber &rarr; sabr-</code> (sabré)</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Futuro Simple",
+        "def": "Timpul viitor format din infinitivul complet + terminațiile -é, -ás, -á, -emos, -éis, -án."
+      },
+      {
+        "term": "Rădăcini cu -dr-",
+        "def": "Tendr-, pondr-, saldr-, vendr- introduc un d eufonic în rădăcina de viitor."
+      },
+      {
+        "term": "Haré / Diré",
+        "def": "Formele contrase de viitor ale verbelor neregulate hacer și decir."
+      },
+      {
+        "term": "Accente pe terminație",
+        "def": "5 din cele 6 forme de viitor simplu poartă obligatoriu accent grafic."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Mañana hablaré con él",
+        "right": "Mâine voi vorbi cu el (hablar)"
+      },
+      {
+        "left": "Tendremos tiempo suficiente",
+        "right": "Vom avea suficient timp (tener)"
+      },
+      {
+        "left": "Haré todo lo posible",
+        "right": "Voi face tot ce este posibil (hacer)"
+      },
+      {
+        "left": "Te diré la verdad",
+        "right": "Îți voi spune adevărul (decir)"
+      }
+    ],
+    "quiz": {
+      "question": "Care este forma de viitor simplu pentru 'Yo' a verbului 'tener'?",
+      "options": [
+        "tendré (rădăcina neregulată tendr- + -é)",
+        "teneré",
+        "tuvé",
+        "tengo"
+      ],
+      "correctIndex": 0,
+      "explanation": "'Tener' adoptă rădăcina neregulată 'tendr-', devenind la persoana I 'tendré'."
+    },
+    "task": "Scrie propoziția 'Mañana tendré una reunión importante y haré todo lo posible.'.",
+    "starterCode": "Mañana tendré ",
+    "expectedOutputPattern": "Ma[ñn]ana\\s+tendr[ée]\\s+una\\s+reuni[óo]n\\s+importante\\s+y\\s+har[ée]\\s+todo\\s+lo\\s+posible\\.?",
+    "hint": "Scrie Mañana tendré una reunión importante y haré todo lo posible."
+  },
+  {
+    "id": "es-b1-p36",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 40,
+    "title": "Capitolul 36: El Condicional Simple — Politețe, Dorințe & Recomandări",
+    "theory": "\n<p><strong>El Condicional Simple</strong> este modul curtoaziei elegante, al ipotezelor și al sfaturilor amicale.</p>\n<h4>1. Rețeta de Formare</h4>\n<p>Se ia <strong>infinitivul întreg</strong> (sau aceeași rădăcină neregulată de la viitor!) și se adaugă terminațiile de imperfect de la <em>-er/-ir</em>:</p>\n<p><strong>-ía, -ías, -ía, -íamos, -íais, -ían</strong></p>\n<p><em>hablaría, comería, viviría</em>; neregulate: <em>tendría, haría, podría, sabría</em>.</p>\n<h4>2. Utilizări Esențiale</h4>\n<ul>\n  <li>Politețe / Cereri respectuoase: <em>¿<strong>Podría</strong> traerme la cuenta?</em> (Ați putea să-mi aduceți nota?)</li>\n  <li>Dorință: <em>Me <strong>gustaría</strong> aprender más idiomas.</em></li>\n  <li>Sfat / Recomandare: <em><strong>Deberías</strong> descansar un poco.</em></li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Condicional Simple",
+        "def": "Modul folosit pentru cereri politicoase, sfaturi și dorințe ipotetice."
+      },
+      {
+        "term": "Me gustaría...",
+        "def": "Formula universală spaniolă de curtoazie ('Mi-ar plăcea să...')."
+      },
+      {
+        "term": "¿Podría...?",
+        "def": "Întrebare respectuoasă de politețe adresată unei persoane (Usted)."
+      },
+      {
+        "term": "Deberías...",
+        "def": "Formularea unui sfat prietenesc echivalent cu 'ar trebui să...'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Me gustaría un café",
+        "right": "Mi-ar plăcea o cafea (politețe)"
+      },
+      {
+        "left": "¿Podría ayudarme, por favor?",
+        "right": "Ați putea să mă ajutați? (cerere respectuoasă)"
+      },
+      {
+        "left": "Deberías dormir más",
+        "right": "Ar trebui să dormi mai mult (sfat)"
+      },
+      {
+        "left": "Yo en tu lugar no lo haría",
+        "right": "Eu în locul tău nu aș face-o (ipoteză)"
+      }
+    ],
+    "quiz": {
+      "question": "Cum soliciți politicos nota de plată într-un restaurant din Madrid?",
+      "options": [
+        "¿Podría traerme la cuenta, por favor?",
+        "¡Dame la cuenta ya!",
+        "Quiero cuenta ahora.",
+        "Trae la cuenta."
+      ],
+      "correctIndex": 0,
+      "explanation": "'¿Podría traerme...?' la condițional este formula etalon de politețe la restaurant."
+    },
+    "task": "Scrie cererea politicoasă '¿Podría traerme la cuenta y un vaso de agua, por favor?'.",
+    "starterCode": "¿Podría traerme ",
+    "expectedOutputPattern": "(?:[¿?]\\s*)?Podr[íi]a\\s+traerme\\s+la\\s+cuenta\\s+y\\s+un\\s+vaso\\s+de\\s+agua,\\s*por\\s+favor\\.?",
+    "hint": "Scrie ¿Podría traerme la cuenta y un vaso de agua, por favor?"
+  },
+  {
+    "id": "es-b1-p37",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "2. Modulul B1–B2 (Intermediar: Timpuri, Pronume & Gramatică)",
+    "xp": 45,
+    "title": "Capitolul 37: Conversație Intermediară: La Medic, Farmacie & Călătorii",
+    "theory": "\n<p>Să unim întregul bagaj gramatical al Modulului B1–B2 într-o simulare reală la cabinetul medical și la farmacie în Spania.</p>\n<h4>1. Replicile Pacientului</h4>\n<ul>\n  <li><em>Buenos días, doctor. No me encuentro bien desde hace dos días.</em></li>\n  <li><em>Tengo fiebre alta, me duele la garganta y tengo tos seca.</em></li>\n  <li><em>¿Necesito guardar reposo?</em> (Trebuie să stau la pat?)</li>\n</ul>\n<h4>2. Replicile Medicului & Farmacistului</h4>\n<ul>\n  <li><em>Vamos a ver... Abra la boca. Tiene una infección en la garganta.</em></li>\n  <li><em>Le voy a recetar un antibiótico. Tome una pastilla cada ocho horas después de las comidas.</em></li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "la receta médica",
+        "def": "Prescripția / rețeta emisă de medic pentru eliberarea medicamentelor."
+      },
+      {
+        "term": "una pastilla",
+        "def": "O pastilă sau comprimat."
+      },
+      {
+        "term": "guardar reposo",
+        "def": "A se odihni la pat conform indicațiilor medicale."
+      },
+      {
+        "term": "cada ocho horas",
+        "def": "La fiecare opt ore (ritmul de administrare a tratamentului)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "No me encuentro bien",
+        "right": "Nu mă simt bine"
+      },
+      {
+        "left": "Tengo fiebre alta",
+        "right": "Am febră mare"
+      },
+      {
+        "left": "Una pastilla cada ocho horas",
+        "right": "O pastilă la fiecare opt ore"
+      },
+      {
+        "left": "Con receta médica",
+        "right": "Cu prescripție / rețetă medicală"
+      }
+    ],
+    "quiz": {
+      "question": "Cum îi spui farmacistului că ai febră mare și ai nevoie de acest medicament cu rețetă?",
+      "options": [
+        "Tengo fiebre alta y necesito comprar este medicamento con receta.",
+        "Soy fiebre y quiero pastilla.",
+        "Tengo calor y medicamento papel.",
+        "Fiebre está alta comprar."
+      ],
+      "correctIndex": 0,
+      "explanation": "Expresia corectă este 'Tengo fiebre alta' și 'con receta médica'."
+    },
+    "task": "Scrie replica 'Tengo fiebre alta y necesito comprar este medicamento con receta.'.",
+    "starterCode": "Tengo fiebre alta ",
+    "expectedOutputPattern": "Tengo\\s+fiebre\\s+alta\\s+y\\s+necesito\\s+comprar\\s+este\\s+medicamento\\s+con\\s+receta\\.?",
+    "hint": "Scrie Tengo fiebre alta y necesito comprar este medicamento con receta."
+  },
+  {
+    "id": "es-c1-p38",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 50,
+    "title": "Capitolul 38: El Subjuntivo Presente: Formare & Declanșatori W-E-I-R-D-O",
+    "theory": "\n<p><strong>Subjuntivo</strong> nu descrie fapte reale obiective, ci lumea dorințelor, a ipotezelor, emoțiilor și posibilităților.</p>\n<h4>1. Rețeta Universală a Schimbului de Vocale</h4>\n<p>Se pornește de la rădăcina formei 'yo' de la prezentul de indicativ și se inversează vocala caracteristică:</p>\n<ul>\n  <li>Verbe în <code>-ar</code> primesc terminațiile în <strong>-e</strong>:<br>\n  <strong>-e, -es, -e, -emos, -éis, -en</strong> (<em>hable, hables, hable, hablemos...</em>).</li>\n  <li>Verbe în <code>-er / -ir</code> primesc terminațiile în <strong>-a</strong>:<br>\n  <strong>-a, -as, -a, -amos, -áis, -an</strong> (<em>coma, vivas, tenga, haga...</em>).</li>\n</ul>\n<h4>2. Acronimul Declanșatorilor W-E-I-R-D-O</h4>\n<p><strong>W</strong>ishes (Quiero que...), <strong>E</strong>motions (Me alegra que...), <strong>I</strong>mpersonal (Es necesario que...), <strong>R</strong>ecommendations (Te aconsejo que...), <strong>D</strong>oubt (Dudo que...), <strong>O</strong>jalá (Măcar de...!).</p>\n",
+    "glossary": [
+      {
+        "term": "El Subjuntivo",
+        "def": "Modul gramatical al subiectivității, dorinței, îndoielii și emoției."
+      },
+      {
+        "term": "Schimbul de vocale",
+        "def": "-ar trece la setul -e; -er și -ir trec la setul -a."
+      },
+      {
+        "term": "Quiero que...",
+        "def": "Declanșator clasic de voință ce cere întotdeauna modul subjuntivo în secundară."
+      },
+      {
+        "term": "Ojalá",
+        "def": "Interjecție de origine arabă ce introduce obligatoriu modul conjunctiv ('De ar da Dumnezeu!')."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Quiero que vengas",
+        "right": "Vreau să vii (voință: venir &rarr; vengas)"
+      },
+      {
+        "left": "Es importante que estudies",
+        "right": "Expresie impersonală (estudiar &rarr; estudies)"
+      },
+      {
+        "left": "Me alegro de que estés aquí",
+        "right": "Emoție (estar &rarr; estés)"
+      },
+      {
+        "left": "¡Ojalá haga buen tiempo!",
+        "right": "Dorință intensă (hacer &rarr; haga)"
+      }
+    ],
+    "quiz": {
+      "question": "Care este forma corectă de subjuntivo presente a verbului 'tener' pentru 'tú'?",
+      "options": [
+        "tengas (din rădăcina 'tengo' + terminația -as)",
+        "tienes",
+        "tengás",
+        "tenas"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pornind de la 'yo tengo', înlocuim 'o' cu terminația '-as' a grupei -er: tengas."
+    },
+    "task": "Scrie urarea 'Quiero que aprendas español y que tengas mucho éxito.'.",
+    "starterCode": "Quiero que aprendas ",
+    "expectedOutputPattern": "Quiero\\s+que\\s+aprendas\\s+espa[ñn]ol\\s+y\\s+que\\s+tengas\\s+mucho\\s+[ée]xito\\.?",
+    "hint": "Scrie Quiero que aprendas español y que tengas mucho éxito."
+  },
+  {
+    "id": "es-c1-p39",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 50,
+    "title": "Capitolul 39: Subjuntivo: Opinie, Certitudine vs Îndoială (Creo que vs No creo que)",
+    "theory": "\n<p>Stăpânirea absolută a conjunctivului spaniol la nivel C1 impune gestionarea nuanțelor epistemice dintre certitudine și negație.</p>\n<h4>1. Verbe de Gândire & Opinie (Creer, Pensar, Opinar)</h4>\n<ul>\n  <li><strong>Afirmativ (Certitudinea Vorbitorului) &rarr; INDICATIV:</strong><br>\n  <em>Creo que él <strong>dice</strong> la verdad.</em> (Sunt convins)</li>\n  <li><strong>Negativ (Îndoială / Dezacord) &rarr; SUBJUNTIVO:</strong><br>\n  <em>No creo que él <strong>diga</strong> la verdad.</em> (Mă îndoiesc)</li>\n</ul>\n<h4>2. Dudar vs No dudar</h4>\n<p><em>Dudo que <strong>sea</strong> verdad</em> (Subjuntivo) vs <em>No dudo que <strong>es</strong> verdad</em> (Indicativo &mdash; certitudine totală).</p>\n",
+    "glossary": [
+      {
+        "term": "Creo que + indicativo",
+        "def": "Formularea afirmativă a opiniei exprimă certitudine și cere modul indicativ."
+      },
+      {
+        "term": "No creo que + subjuntivo",
+        "def": "Negația opiniei contestă realitatea faptei și impune modul subjuntivo."
+      },
+      {
+        "term": "Dudar que",
+        "def": "Verb de dubiu ce impune obligatoriu modul conjunctiv (dudo que sea)."
+      },
+      {
+        "term": "Sea (subjuntivo de ser)",
+        "def": "Forma neregulată de conjunctiv a verbului ser (no creo que sea así)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Pienso que es verdad",
+        "right": "Indicativ (convingere afirmativă)"
+      },
+      {
+        "left": "No pienso que sea verdad",
+        "right": "Subjuntivo (dezacord la forma negativă)"
+      },
+      {
+        "left": "Es seguro que vendrán",
+        "right": "Indicativ (siguranță obiectivă)"
+      },
+      {
+        "left": "No es seguro que vengan",
+        "right": "Subjuntivo (incertitudine)"
+      }
+    ],
+    "quiz": {
+      "question": "Ce mod și formă verbală se folosește în: 'No creo que Juan ... la respuesta correcta' pentru verbul 'saber'?",
+      "options": [
+        "sepa (Subjuntivo presente de la saber cerut de 'No creo que')",
+        "sabe (Indicativo)",
+        "sabrá (Futuro)",
+        "supo"
+      ],
+      "correctIndex": 0,
+      "explanation": "'No creo que' impune în mod obligatoriu modul conjunctiv: forma neregulată este 'sepa'."
+    },
+    "task": "Scrie fraza 'No creo que sea la mejor solución para este problema.'.",
+    "starterCode": "No creo que sea ",
+    "expectedOutputPattern": "No\\s+creo\\s+que\\s+sea\\s+la\\s+mejor\\s+soluci[óo]n\\s+para\\s+este\\s+problema\\.?",
+    "hint": "Scrie No creo que sea la mejor solución para este problema."
+  },
+  {
+    "id": "es-c1-p40",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 50,
+    "title": "Capitolul 40: Pretérito Imperfecto de Subjuntivo (-ra / -se)",
+    "theory": "\n<p><strong>Imperfecto de Subjuntivo</strong> este timpul ipotezelor ireale și al concordanței timpurilor în trecut.</p>\n<h4>1. Rețeta Universală de Derivare</h4>\n<p>Se pornește de la <strong>persoana a 3-a plural a pretérito indefinido</strong> (<em>ellos hablaron, comieron, tuvieron, fueron</em>), se taie <code>-ron</code> și se adaugă terminațiile:</p>\n<p><strong>-ra, -ras, -ra, -ramos, -rais, -ran</strong> (sau varianta literară în <em>-se</em>).</p>\n<h4>2. Forme Neregulate Vitale</h4>\n<ul>\n  <li><code>tener &rarr; ellos tuvieron &rarr; tuviera, tuvieras, tuviera...</code></li>\n  <li><code>ser / ir &rarr; ellos fueron &rarr; fuera, fueras, fuera...</code></li>\n  <li><code>hacer &rarr; ellos hicieron &rarr; hiciera, hicieras, hiciera...</code></li>\n</ul>\n<p>Atenție: persoana 'nosotros' primește întotdeauna accent grafic: <em>tuviéramos, fuéramos, habláramos</em>.</p>\n",
+    "glossary": [
+      {
+        "term": "Imperfecto de Subjuntivo",
+        "def": "Conjunctivul trecut spaniol derivat direct din persoana a 3-a plural a pretérito indefinido."
+      },
+      {
+        "term": "Terminații în -ra și -se",
+        "def": "Formele în -ra (tuviera) și -se (tuviese) sunt 100% echivalente și interschimbabile."
+      },
+      {
+        "term": "Tuviéramos",
+        "def": "Persoana nosotros poartă accent pe vocala antepenultimei silabe."
+      },
+      {
+        "term": "Si tuviera tiempo...",
+        "def": "Formula canonică de debut a frazelor ipotetice ireale."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Si tuviera dinero",
+        "right": "Dacă aș avea bani (tener &rarr; tuviera)"
+      },
+      {
+        "left": "Si fuera tú",
+        "right": "Dacă aș fi în locul tău (ser &rarr; fuera)"
+      },
+      {
+        "left": "Ojalá supiera la verdad",
+        "right": "Măcar de aș ști adevărul (saber &rarr; supiera)"
+      },
+      {
+        "left": "Me pidió que viniera",
+        "right": "Mi-a cerut să vin (venir &rarr; viniera)"
+      }
+    ],
+    "quiz": {
+      "question": "De la ce formă verbală se obține imperfecto de subjuntivo al verbului 'estar'?",
+      "options": [
+        "De la 'estuvieron' (indefinido ellos) &rarr; estuviera",
+        "De la infinitivul estar",
+        "De la prezentul están",
+        "De la imperfectul estaban"
+      ],
+      "correctIndex": 0,
+      "explanation": "Regula matematică este: persoana a 3-a plural indefinido (estuvieron) minus -ron plus -ra &rarr; estuviera."
+    },
+    "task": "Scrie fraza ipotetică 'Si tuviera más tiempo libre, estudiaría español todos los días.'.",
+    "starterCode": "Si tuviera más tiempo libre, ",
+    "expectedOutputPattern": "Si\\s+tuviera\\s+m[áa]s\\s+tiempo\\s+libre,\\s*estudiar[íi]a\\s+espa[ñn]ol\\s+todos\\s+los\\s+d[íi]as\\.?",
+    "hint": "Scrie Si tuviera más tiempo libre, estudiaría español todos los días."
+  },
+  {
+    "id": "es-c1-p41",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 55,
+    "title": "Capitolul 41: Fraze Ipotetice cu „SI” (Reale, Posibile & Ireale)",
+    "theory": "\n<p>La fel ca în franceză, în spaniolă regula de aur este: <strong>După „SI” nu se pune NICIODATĂ viitor sau condițional!</strong></p>\n<h4>1. Cele 3 Structuri Condiționale Canonice</h4>\n<ol>\n  <li><strong>Condiție Reală / Probabilă:</strong><br>\n  <code>Si + Presente de indicativo &rarr; Futuro simple / Presente</code><br>\n  <em>Si tengo tiempo, te llamaré.</em> (Dacă am timp, te voi suna).</li>\n  <li><strong>Condiție Ireală în Prezent (Improbabilă sau Imaginară):</strong><br>\n  <code>Si + Imperfecto de subjuntivo &rarr; Condicional simple</code><br>\n  <em>Si ganara la lotería, viajaría por todo el mundo.</em></li>\n  <li><strong>Condiție Ireală în Trecut (Imposibilă / Regret Definitiv):</strong><br>\n  <code>Si + Pluscuamperfecto de subjuntivo &rarr; Condicional compuesto</code><br>\n  <em>Si hubiera sabido la verdad, habría actuado diferente.</em></li>\n</ol>\n",
+    "glossary": [
+      {
+        "term": "Oraciones condicionales",
+        "def": "Fraze ipotetice introduse de conjuncția 'si' ce reglementează corelația timpurilor."
+      },
+      {
+        "term": "Si + subjuntivo imperfecto",
+        "def": "Combinația specifică pentru a exprima o ipoteză imaginară în prezent."
+      },
+      {
+        "term": "Condicional en la principal",
+        "def": "Propoziția principală conține consecința la modul condițional (viajaría)."
+      },
+      {
+        "term": "Interdicția viitorului după SI",
+        "def": "Nu se poate spune *Si tendré*, ci doar 'Si tengo'."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Si llueve mañana",
+        "right": "no iremos a la playa (Si + presente &rarr; futuro)"
+      },
+      {
+        "left": "Si supiera bailar",
+        "right": "iría a la fiesta (Si + subjuntivo &rarr; condicional)"
+      },
+      {
+        "left": "Si puedes",
+        "right": "ven a verme esta tarde (Si + presente &rarr; imperativo)"
+      },
+      {
+        "left": "Si fuera rico",
+        "right": "compraría un barco (ireal actual)"
+      }
+    ],
+    "quiz": {
+      "question": "Care este continuarea gramatical corectă a frazei 'Si tuviera dinero, ... un coche nuevo'?",
+      "options": [
+        "compraría (Condicional simple corelat cu imperfecto de subjuntivo)",
+        "compraré",
+        "compro",
+        "comprara"
+      ],
+      "correctIndex": 0,
+      "explanation": "După 'Si + imperfecto de subjuntivo' (tuviera), concluzia ipotezei cere condiționalul: compraría."
+    },
+    "task": "Scrie replica 'Si supiera la respuesta correcta, te la diría ahora mismo.'.",
+    "starterCode": "Si supiera la respuesta correcta, ",
+    "expectedOutputPattern": "Si\\s+supiera\\s+la\\s+respuesta\\s+correcta,\\s*te\\s+la\\s+dir[íi]a\\s+ahora\\s+mismo\\.?",
+    "hint": "Scrie Si supiera la respuesta correcta, te la diría ahora mismo."
+  },
+  {
+    "id": "es-c1-p42",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 55,
+    "title": "Capitolul 42: Modul Imperativ: Porunci Afirmative vs Interdicții Negative",
+    "theory": "\n<p>Modul imperativ în spaniolă prezintă o asimetrie fascinantă între ordinele afirmative și interdicțiile negative.</p>\n<h4>1. Imperativul Afirmativ (Porunci)</h4>\n<ul>\n  <li><code>Tú</code> = forma persoanei a III-a de la prezentul de indicativ: <em>¡Habla! ¡Come! ¡Escribe!</em> (Neregulate: <em>ven, di, sal, haz, ten, ve, pon, sé</em>).</li>\n  <li><code>Vosotros</code> = se înlocuiește <code>-r</code> de la infinitiv cu <code>-d</code>: <em>¡Hablad! ¡Comed! ¡Venid!</em></li>\n  <li><code>Usted / Ustedes</code> = folosesc formele de <strong>SUBJUNTIVO</strong>: <em>¡Hable usted! ¡Coman ustedes!</em></li>\n</ul>\n<h4>2. Imperativul Negativ (Interdicții: „Nu face asta!”)</h4>\n<p>La forma negativă, <strong>TOATE PERSOANELE folosesc exclusiv modul SUBJUNTIVO</strong>:</p>\n<p><em>¡No hables! ¡No comas! ¡No vengas! ¡No tengáis miedo! ¡No fumen aquí!</em></p>\n",
+    "glossary": [
+      {
+        "term": "Imperativo afirmativo",
+        "def": "Forme dedicate pentru comenzi pozitive (¡Ven aquí!)."
+      },
+      {
+        "term": "Imperativo negativo",
+        "def": "Interdicții formate exclusiv cu 'No' + forme de Subjuntivo presente."
+      },
+      {
+        "term": "Ven, di, sal, haz...",
+        "def": "Cele opt verbe neregulate monosilabice de imperativ afirmativ pentru tú."
+      },
+      {
+        "term": "Enclisis la imperativ",
+        "def": "La afirmativ pronumele se lipesc la final: ¡Dímelo! (Spune-mi-o!)."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "¡Haz los deberes!",
+        "right": "Fă-ți temele! (hacer afirmativ)"
+      },
+      {
+        "left": "¡No hagas ruido!",
+        "right": "Nu face zgomot! (subjuntivo negativ)"
+      },
+      {
+        "left": "¡Dime la verdad!",
+        "right": "Spune-mi adevărul! (enclisis: di + me)"
+      },
+      {
+        "left": "¡No me digas mentiras!",
+        "right": "Nu-mi spune minciuni! (negativ proclitic)"
+      }
+    ],
+    "quiz": {
+      "question": "Cum formulezi interdicția 'Nu vorbi atât de tare!' pentru persoana 'tú'?",
+      "options": [
+        "¡No hables tan alto! (subjuntivo presente obligatoriu la negație)",
+        "¡No habla tan alto!",
+        "¡No hablar tan alto!",
+        "¡No hablas tan alto!"
+      ],
+      "correctIndex": 0,
+      "explanation": "Imperativul negativ cere obligatoriu forma de subjuntivo presente: 'No hables'."
+    },
+    "task": "Scrie îndemnul '¡Dime la verdad y no tengas miedo de decir lo que piensas!'.",
+    "starterCode": "¡Dime la verdad ",
+    "expectedOutputPattern": "(?:[¡!]\\s*)?Dime\\s+la\\s+verdad\\s+y\\s+no\\s+tengas\\s+miedo\\s+de\\s+decir\\s+lo\\s+que\\s+piensas[!\\.]?",
+    "hint": "Scrie ¡Dime la verdad y no tengas miedo de decir lo que piensas!"
+  },
+  {
+    "id": "es-c1-p43",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 55,
+    "title": "Capitolul 43: Vocea Pasivă & Pasiva Reflejada cu „SE”",
+    "theory": "\n<p>Spre deosebire de engleză sau franceză, spaniola vorbită și scrisă evită pasiva analitică lungă (<em>fue construido por...</em>), preferând formularea dinamică numită <strong>Pasiva Reflejada cu SE</strong>.</p>\n<h4>1. Pasiva Reflejada (SE + Verb la pers. a III-a)</h4>\n<p>Verbul se acordă obligatoriu la singular sau plural cu obiectul pacient:</p>\n<ul>\n  <li>Singular: <em><strong>Se vende</strong> piso.</em> (Se vinde apartament).</li>\n  <li>Plural: <em><strong>Se venden</strong> pisos.</em> (Se vând apartamente).</li>\n  <li><em>En esta empresa <strong>se valoran</strong> las ideas creativas.</em></li>\n</ul>\n<h4>2. Pasiva Impersonală</h4>\n<p>Când nu există un obiect determinat: <em><strong>Se vive</strong> bien aquí</em> (Se trăiește bine aici); <em><strong>Se trabaja</strong> mucho</em>.</p>\n",
+    "glossary": [
+      {
+        "term": "Pasiva Reflejada",
+        "def": "Construcție pasivă specifică spaniolă formată din particula 'se' + verb acordat la persoana a III-a."
+      },
+      {
+        "term": "Se venden pisos",
+        "def": "Exemplul clasic de acord plural la pasiva reflejada când substantivul este la plural."
+      },
+      {
+        "term": "Pasiva analítica",
+        "def": "Forma ser + participiu (El libro fue escrito por Cervantes) rezervată stilului jurnalistic solemn."
+      },
+      {
+        "term": "Se impersonal",
+        "def": "Structură fără subiect definit ce exprimă o generalitate valabilă pentru oricine."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Se habla español aquí",
+        "right": "Aici se vorbește spaniolă (singular)"
+      },
+      {
+        "left": "Se buscan programadores",
+        "right": "Se caută programatori (plural: buscan)"
+      },
+      {
+        "left": "Se alquila habitación",
+        "right": "Se închiriază cameră (singular)"
+      },
+      {
+        "left": "Se alquilan habitaciones",
+        "right": "Se închiriază camere (plural: alquilan)"
+      }
+    ],
+    "quiz": {
+      "question": "Care este forma corectă pentru un anunț imobiliar care anunță vânzarea a trei case?",
+      "options": [
+        "Se venden tres casas. (verbul se acordă la plural cu 'casas')",
+        "Se vende tres casas.",
+        "Es vendido tres casas.",
+        "Se vendieron tres casas ayer solo."
+      ],
+      "correctIndex": 0,
+      "explanation": "La pasiva reflejada, verbul trebuie să se acorde la plural cu subiectul pacient: 'Se venden tres casas'."
+    },
+    "task": "Scrie descrierea 'En esta empresa se habla español y se valoran las ideas creativas.'.",
+    "starterCode": "En esta empresa ",
+    "expectedOutputPattern": "En\\s+esta\\s+empresa\\s+se\\s+habla\\s+espa[ñn]ol\\s+y\\s+se\\s+valoran\\s+las\\s+ideas\\s+creativas\\.?",
+    "hint": "Scrie En esta empresa se habla español y se valoran las ideas creativas."
+  },
+  {
+    "id": "es-c1-p44",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 60,
+    "title": "Capitolul 44: Expresii Idiomatice Autentice din Spania & Metafore Colocviale",
+    "theory": "\n<p>Stăpânirea registrului idiomatic (C1/C2) transformă vorbitorul într-un cunoscător autentic al culturii hispanice.</p>\n<h4>1. Metafore Clinice & Expresii Esențiale</h4>\n<ul>\n  <li><code>Tomar el pelo a alguien</code> &mdash; a lua pe cineva peste picior / a glumi.</li>\n  <li><code>Costar un ojo de la cara</code> &mdash; a fi extrem de scump / a costa o avere.</li>\n  <li><code>Estar como una cabra</code> &mdash; a fi complet nebun / excentric.</li>\n  <li><code>Ponerse las pilas</code> &mdash; a se pune serios pe treabă / a se mobiliza energic.</li>\n  <li><code>Dar en el clavo</code> &mdash; a nimeri la fix / a găsi soluția exactă.</li>\n  <li><code>Tirar la toalla</code> &mdash; a renunța, a se da bătut.</li>\n</ul>\n",
+    "glossary": [
+      {
+        "term": "Tomar el pelo",
+        "def": "A tachina sau a glumi pe seama cuiva ('Nu mă lua peste picior!')."
+      },
+      {
+        "term": "Costar un ojo de la cara",
+        "def": "Expresie idiomatică pentru ceva extrem de scump."
+      },
+      {
+        "term": "Ponerse las pilas",
+        "def": "'A-și pune bateriile' — a deveni activ și concentrat pe un obiectiv."
+      },
+      {
+        "term": "Dar en el clavo",
+        "def": "A nimeri cuiul cu ciocanul &mdash; a spune exact lucrul potrivit."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "No me tomes el pelo",
+        "right": "Nu mă lua peste picior"
       },
       {
         "left": "Cuesta un ojo de la cara",
         "right": "Costă o avere"
       },
       {
-        "left": "Vamos a llevar a cabo la auditoría",
-        "right": "Vom duce la îndeplinire auditul"
+        "left": "Hay que ponerse las pilas",
+        "right": "Trebuie să ne punem serios pe treabă"
       },
       {
-        "left": "Por consiguiente",
-        "right": "Prin urmare / în consecință"
+        "left": "Has dado en el clavo",
+        "right": "Ai nimerit la fix"
       }
     ],
     "quiz": {
-      "question": "Ce înseamnă expresia spaniolă 'Has dado en el clavo con esta solución'?",
+      "question": "Ce vrea să spună un coleg din Madrid când zice: '¡Tenemos que ponernos las pilas!'?",
       "options": [
-        "Ai nimerit perfect / ai găsit soluția exactă.",
-        "Ai bătut un cui în peretele biroului.",
-        "Soluția ta a costat prea mulți bani.",
-        "Proiectul a eșuat din cauza ta."
+        "Trebuie să ne mobilizăm serios și să muncim cu energie.",
+        "Trebuie să cumpărăm baterii pentru telecomandă.",
+        "Trebuie să plecăm acasă mai devreme.",
+        "Trebuie să mergem la un concert rock."
       ],
       "correctIndex": 0,
-      "explanation": "'Dar en el clavo' este o expresie idiomatică ce înseamnă a nimeri fix la țintă, a intui impecabil soluția unei probleme."
+      "explanation": "'Ponerse las pilas' este o expresie extrem de uzuală ce înseamnă a se mobiliza și a munci temeinic."
     },
-    "task": "Scrie propoziția profesională 'Vamos a llevar a cabo el proyecto según lo planeado.'.",
-    "starterCode": "// Completează propoziția formală\n",
-    "expectedOutputPattern": "Vamos\\s+a\\s+llevar\\s+a\\s+cabo\\s+el\\s+proyecto\\s+seg[úu]n\\s+lo\\s+planeado\\.?",
-    "hint": "Scrie Vamos a llevar a cabo el proyecto según lo planeado."
+    "task": "Scrie îndemnul 'Tenemos que ponernos las pilas para terminar el proyecto a tiempo.'.",
+    "starterCode": "Tenemos que ponernos ",
+    "expectedOutputPattern": "Tenemos\\s+que\\s+ponernos\\s+las\\s+pilas\\s+para\\s+terminar\\s+el\\s+proyecto\\s+a\\s+tiempo\\.?",
+    "hint": "Scrie Tenemos que ponernos las pilas para terminar el proyecto a tiempo."
+  },
+  {
+    "id": "es-c1-p45",
+    "track": "Limba Spaniolă",
+    "division": "Limbi Străine & Comunicare",
+    "icon": "🥘",
+    "level": "3. Modulul C1–C2 (Avansat: Subjonctif, Idiomuri & Limbaj Formal)",
+    "xp": 65,
+    "title": "Capitolul 45: Spaniolă de Afaceri, Registru Formal & Redactare de Emailuri Oficiale",
+    "theory": "\n<p>Măiestria supremă (C2) în spaniolă constă în capacitatea de a redacta documente corporative, oferte comerciale și scrisori oficiale de cel mai înalt nivel.</p>\n<h4>1. Formule de Adresare & Deschidere</h4>\n<p><em>« Estimado/a Señor/a [Apellido]: »</em><br>\n<em>« Por medio de la presente, me pongo en contacto con usted con el fin de presentarle nuestra propuesta... »</em></p>\n<h4>2. Formule de Încheiere de Protocol</h4>\n<p><em>« Agradeciendo de antemano su atención a la presente, le saluda atentamente, »</em><br>\n<em>« Quedo a su entera disposición para cualquier aclaración que estime oportuna. »</em></p>\n",
+    "glossary": [
+      {
+        "term": "Estimado/a Señor/a",
+        "def": "Formula standard formală de deschidere a unei corespondențe oficiale în lumea hispanică."
+      },
+      {
+        "term": "Agradeciendo de antemano",
+        "def": "'Mulțumindu-vă anticipat...' — formulă uzuală de respect profesional."
+      },
+      {
+        "term": "Le saluda atentamente",
+        "def": "'Vă salută cu respect' — încheierea standard a scrisorilor de afaceri."
+      },
+      {
+        "term": "A su entera disposición",
+        "def": "Expresie diplomatică ce confirmă disponibilitatea pentru clarificări."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "Estimado Señor Director",
+        "right": "Stimate Domnule Director (antet formal)"
+      },
+      {
+        "left": "Por medio de la presente",
+        "right": "Prin prezenta (scrisoare oficială)"
+      },
+      {
+        "left": "Le saluda atentamente",
+        "right": "Vă salută cu stimă (încheiere protocolară)"
+      },
+      {
+        "left": "Quedo a su disposición",
+        "right": "Rămân la dispoziția dumneavoastră"
+      }
+    ],
+    "quiz": {
+      "question": "Care este cea mai elegantă și respectuoasă formulă de încheiere a unui email corporativ oficial în Spania?",
+      "options": [
+        "Agradeciendo de antemano su atención, le saluda atentamente,",
+        "¡Un abrazo muy fuerte y nos vemos!",
+        "Chao, hablamos pronto por WhatsApp.",
+        "Espero tu respuesta rápida hoy."
+      ],
+      "correctIndex": 0,
+      "explanation": "'Agradeciendo de antemano su atención, le saluda atentamente' este formula clasică protocolară de afaceri."
+    },
+    "task": "Scrie formula diplomatică 'Agradeciendo de antemano su atención, le saluda atentamente.'.",
+    "starterCode": "Agradeciendo de antemano ",
+    "expectedOutputPattern": "Agradeciendo\\s+de\\s+antemano\\s+su\\s+atenci[óo]n,\\s*le\\s+saluda\\s+atentamente\\.?",
+    "hint": "Scrie Agradeciendo de antemano su atención, le saluda atentamente."
   },
   {
     "id": "eng-a-1",
