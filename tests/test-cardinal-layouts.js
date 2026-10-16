@@ -32,10 +32,10 @@ async function testCardinalLayouts() {
       return Array.from(select.options).map(o => ({ value: o.value, text: o.text }));
     });
 
-    if (layoutOptions.length === 5) {
-      successes.push(`✓ Selectorul de layout conține exact 5 moduri cardinale (${layoutOptions.map(o => o.value).join(", ")}).`);
+    if (layoutOptions.length >= 5) {
+      successes.push(`✓ Selectorul de layout conține toate modurile arhitecturale (${layoutOptions.map(o => o.value).join(", ")}).`);
     } else {
-      errors.push(`Așteptat 5 moduri cardinale în selector, găsit ${layoutOptions.length}`);
+      errors.push(`Așteptat cel puțin 5 moduri cardinale în selector, găsit ${layoutOptions.length}`);
     }
 
     // 2. Bento Next.js (Implicit)
@@ -182,7 +182,7 @@ async function testCardinalLayouts() {
     console.log("\n📱 8. Verificare Responsivitate Mobil (375x667) pentru cele 5 moduri...");
     await page.setViewport({ width: 375, height: 667 });
 
-    const layouts = ["bento-nextjs", "dual-split", "swiss-editorial", "cyber-kernel", "spatial-cosmos"];
+    const layouts = ["bento-nextjs", "dual-split", "swiss-editorial", "cyber-kernel", "spatial-cosmos", "micro-scroll"];
     let mobileOverflowOk = true;
 
     for (const l of layouts) {

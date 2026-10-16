@@ -544,11 +544,33 @@
     cosmosOrbitStage: document.getElementById("cosmos-orbit-stage"),
     cosmosOrbitCanvas: document.getElementById("cosmos-orbit-canvas"),
     cosmosTelemetryNodes: document.getElementById("cosmos-telemetry-nodes"),
+    cosmosHudCard: document.getElementById("cosmos-hud-card"),
+    hudTargetName: document.getElementById("hud-target-name"),
+    hudCardDesc: document.getElementById("hud-card-desc"),
+    hudWarpBtn: document.getElementById("hud-warp-btn"),
+    cosmosNavShortcuts: document.getElementById("cosmos-nav-shortcuts"),
     dualSplitStatusbar: document.getElementById("dual-split-statusbar"),
     statusCurrentTrack: document.getElementById("status-current-track"),
     statusMasteryXp: document.getElementById("status-mastery-xp"),
+    dualSplitTopicNav: document.getElementById("dual-split-topic-nav"),
+    dualTrackTitle: document.getElementById("dual-track-title"),
+    dualChapterSelect: document.getElementById("dual-chapter-select"),
+    dualTabTheory: document.getElementById("dual-tab-theory"),
+    dualTabExamples: document.getElementById("dual-tab-examples"),
+    dualTabPractice: document.getElementById("dual-tab-practice"),
+    dualPrevBtn: document.getElementById("dual-prev-btn"),
+    dualNextBtn: document.getElementById("dual-next-btn"),
     aimCursor: document.getElementById("aim-cursor"),
     aimDot: document.getElementById("aim-dot"),
+
+    // Gamification Hub (Claude Experiment 12)
+    gamificationCalendarGrid: document.getElementById("gamification-calendar-grid"),
+    hudLevelBadge: document.getElementById("hudLevelBadge"),
+    textLevel: document.getElementById("textLevel"),
+    xpPercentText: document.getElementById("xpPercentText"),
+    questVal1: document.getElementById("quest-val-1"),
+    questVal2: document.getElementById("quest-val-2"),
+    questVal3: document.getElementById("quest-val-3"),
 
     // View 1: Catalog
     catalogView: document.getElementById("catalog-view"),
@@ -779,7 +801,7 @@
   }
 
   function applyLayoutMode(mode) {
-    const validModes = ["bento-nextjs", "dual-split", "swiss-editorial", "cyber-kernel", "spatial-cosmos"];
+    const validModes = ["bento-nextjs", "dual-split", "swiss-editorial", "cyber-kernel", "spatial-cosmos", "micro-scroll"];
     const validLayout = validModes.includes(mode) ? mode : "bento-nextjs";
     document.documentElement.setAttribute("data-layout", validLayout);
     state.layoutMode = validLayout;
@@ -813,6 +835,10 @@
       }
     }
 
+    if (validLayout === "dual-split") {
+      renderDualSplitWorkspace();
+    }
+
     // Aim cursor activ doar pe desktop în modurile Swiss Editorial & Spatial Cosmos
     const isSpecialCursor = (validLayout === "swiss-editorial" || validLayout === "spatial-cosmos");
     if (els.aimCursor && els.aimDot) {
@@ -822,6 +848,8 @@
 
     if (state.activeView === "catalog") {
       renderCatalogView();
+    } else if (state.activeView === "study") {
+      renderStudyView();
     }
   }
 
@@ -1694,38 +1722,8 @@
     if (els.actTodayVal) els.actTodayVal.textContent = `${todayAutonomous}/${dailyTarget}`;
     if (els.actTotalTasksVal) els.actTotalTasksVal.textContent = totalExercises;
 
-    if (!els.activityCalendarGrid) return;
-    els.activityCalendarGrid.innerHTML = "";
-
-    // Ultimele 28 de zile în ordine cronologică
-    for (let i = 27; i >= 0; i--) {
-      const d = new Date();
-      d.setDate(d.getDate() - i);
-      const key = toLocalDateKey(d);
-
-      const autonomousCount = state.dailyHistory[key] || 0;
-      const assistedCount = state.assistedHistory[key] || 0;
-
-      const cell = document.createElement("div");
-      cell.className = "calendar-cell";
-
-      if (autonomousCount >= dailyTarget) {
-        cell.classList.add("cell-complete"); // 🟢 Verde
-        cell.title = `${key}: Obiectiv ${dailyTarget}/${dailyTarget} atins (${autonomousCount} rezolvări autonome)`;
-      } else if (autonomousCount > 0) {
-        cell.classList.add("cell-streak"); // 🟠 Portocaliu
-        cell.title = `${key}: Streak păstrat (${autonomousCount} sarcini)`;
-      } else if (assistedCount > 0) {
-        cell.classList.add("cell-assisted"); // 🟡 Galben/Chihlimbar
-        cell.title = `${key}: Studiu asistat 50/50 (${assistedCount} sarcini)`;
-      } else {
-        cell.title = `${key}: Fără activitate înregistrată`;
-      }
-
-      if (key === today) cell.classList.add("today-cell");
-      cell.textContent = d.getDate();
-
-      els.activityCalendarGrid.appendChild(cell);
+    if (els.activityCalendarGrid) {
+      renderCalendarInto(els.activityCalendarGrid);
     }
   }
 
@@ -1779,36 +1777,56 @@
     if (els.pageLeagueTitle) els.pageLeagueTitle.textContent = currentLeague.name;
     if (els.pageLeagueDesc) els.pageLeagueDesc.textContent = currentLeague.desc;
 
+    let progress = 0;
     if (nextLeague) {
       const span = nextLeague.minXp - currentLeague.minXp;
-      const progress = Math.min(100, Math.max(0, Math.round(((userXp - currentLeague.minXp) / span) * 100)));
+      progress = Math.min(100, Math.max(0, Math.round(((userXp - currentLeague.minXp) / span) * 100)));
       if (els.pageLeagueProgressFill) els.pageLeagueProgressFill.style.width = `${progress}%`;
       if (els.pageLeagueXpStatus) els.pageLeagueXpStatus.textContent = `${userXp} / ${nextLeague.minXp} XP`;
       if (els.pageLeagueNextStatus) els.pageLeagueNextStatus.textContent = `Următorul: ${nextLeague.name} (${nextLeague.minXp} XP)`;
     } else {
+      progress = 100;
       if (els.pageLeagueProgressFill) els.pageLeagueProgressFill.style.width = "100%";
       if (els.pageLeagueXpStatus) els.pageLeagueXpStatus.textContent = `${userXp} XP (Rang Maxim)`;
       if (els.pageLeagueNextStatus) els.pageLeagueNextStatus.textContent = "Măiestrie Supremă Atingă";
     }
 
+    // Componente Gamificare Experiment Claude 12
+    const level = Math.floor(userXp / 100) + 1;
+    if (els.hudLevelBadge) els.hudLevelBadge.textContent = level;
+    if (els.textLevel) els.textLevel.textContent = level;
+    if (els.xpPercentText) els.xpPercentText.textContent = progress;
+
+    const todayAutonomous = state.dailyHistory[getTodayKey()] || 0;
+    if (els.questVal1) els.questVal1.textContent = `${Math.min(3, todayAutonomous)} / 3`;
+    if (els.questVal2) els.questVal2.textContent = todayAutonomous > 0 ? "1 / 1 ✓" : "0 / 1";
+    if (els.questVal3) els.questVal3.textContent = state.streak > 0 ? `${state.streak} zile 🔥` : "Inactiv";
+
+    // Calendar Lunar Integrat în Hub Gamificare
+    if (els.gamificationCalendarGrid) {
+      renderCalendarInto(els.gamificationCalendarGrid);
+    }
+
     // Lista tuturor celor 5 ligi
     if (els.pageLeaguesList) {
       els.pageLeaguesList.innerHTML = "";
-      LEAGUES.forEach(league => {
+      LEAGUES.forEach((league, idx) => {
         const isCurrent = league.id === currentLeague.id;
         const isPassed = userXp >= league.maxXp && league.maxXp !== Infinity;
+        const tierName = ["Tier I", "Tier II", "Tier III", "Tier IV", "Tier V"][idx] || "Tier";
         const row = document.createElement("div");
-        row.className = `league-row ${isCurrent ? "current-league" : ""}`;
+        row.className = `league-step league-row ${isCurrent ? "active current-league" : (isPassed ? "completed" : "locked")}`;
         row.innerHTML = `
-          <div class="league-icon" aria-hidden="true">${league.icon}</div>
+          <div class="step-marker league-icon" aria-hidden="true">${league.icon}</div>
           <div class="league-info">
-            <div class="league-name">
+            <h4 class="league-name" style="${isCurrent ? "color: #c084fc;" : ""}">
               ${league.name}
               ${isCurrent ? '<span class="league-status-badge">★ Rangul Tău Curent</span>' : (isPassed ? '<span class="league-status-badge" style="background:var(--border-color); color:var(--text-secondary);">✓ Rang Depășit</span>' : '')}
-            </div>
-            <div class="league-req">Cerință: ${league.minXp} XP ${league.maxXp !== Infinity ? "– " + league.maxXp + " XP" : "+"}</div>
+            </h4>
+            <div class="league-req" style="font-size:0.75rem; color:var(--text-secondary);">Cerință: ${league.minXp} XP ${league.maxXp !== Infinity ? "– " + league.maxXp + " XP" : "+"}</div>
             <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.25rem;">${league.desc}</p>
           </div>
+          <span class="tier-badge" style="${isCurrent ? "background:rgba(139,92,246,0.25); color:#e9d5ff;" : ""}">${isCurrent ? "Current" : (isPassed ? "✓ Depășit" : tierName)}</span>
         `;
         els.pageLeaguesList.appendChild(row);
       });
@@ -2111,6 +2129,57 @@
       });
     });
 
+    // Dual Split Workspace Tabs (Teorie, Exemple, Practică)
+    function setActiveDualTab(activeTab, targetEl) {
+      document.querySelectorAll(".dual-nav-tab").forEach(t => t.classList.remove("active"));
+      if (activeTab) activeTab.classList.add("active");
+      playUiSound("click");
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        targetEl.style.transition = "box-shadow 0.3s ease";
+        targetEl.style.boxShadow = "0 0 25px var(--accent-primary)";
+        setTimeout(() => { targetEl.style.boxShadow = ""; }, 1200);
+      }
+    }
+
+    if (els.dualTabTheory) {
+      els.dualTabTheory.addEventListener("click", () => setActiveDualTab(els.dualTabTheory, els.lessonTheory || document.querySelector(".theory-card")));
+    }
+    if (els.dualTabExamples) {
+      els.dualTabExamples.addEventListener("click", () => {
+        const exampleBox = document.querySelector(".example-box");
+        setActiveDualTab(els.dualTabExamples, exampleBox || els.lessonExample);
+      });
+    }
+    if (els.dualTabPractice) {
+      els.dualTabPractice.addEventListener("click", () => setActiveDualTab(els.dualTabPractice, els.paneWrite || els.practiceCard));
+    }
+
+    if (els.dualPrevBtn) {
+      els.dualPrevBtn.addEventListener("click", () => {
+        const trackLessons = allLessons.filter(l => l.track === state.activeTrack).sort(sortLessonsCanonical);
+        const idx = trackLessons.findIndex(l => l.id === state.activeLessonId);
+        if (idx > 0) {
+          state.activeLessonId = trackLessons[idx - 1].id;
+          saveState();
+          renderStudyView();
+          playUiSound("click");
+        }
+      });
+    }
+
+    if (els.dualNextBtn) {
+      els.dualNextBtn.addEventListener("click", () => {
+        const trackLessons = allLessons.filter(l => l.track === state.activeTrack).sort(sortLessonsCanonical);
+        const idx = trackLessons.findIndex(l => l.id === state.activeLessonId);
+        if (idx !== -1 && idx + 1 < trackLessons.length) {
+          state.activeLessonId = trackLessons[idx + 1].id;
+          saveState();
+          renderStudyView();
+          playUiSound("click");
+        }
+      });
+    }
   }
 
   /* ==========================================================================
@@ -2257,7 +2326,7 @@
   }
 
   /* ==========================================================================
-     3D SPATIAL GYRO ORBIT CANVAS (MOD 5: SPATIAL COSMOS)
+     SISTEMUL SOLAR POLIMAT INTERACTIV 3D (ORRERY ENGINE) (MOD 5: SPATIAL COSMOS)
      ========================================================================== */
   let cosmosOrbitInitialized = false;
   function initCosmosOrbitCanvas() {
@@ -2268,14 +2337,79 @@
 
     const parent = canvas.parentElement;
     let width = (canvas.width = parent ? parent.clientWidth : 800);
-    let height = (canvas.height = parent ? parent.clientHeight : 280);
+    let height = (canvas.height = parent ? parent.clientHeight : 600);
 
-    const tracks = getTracks();
-    const tracksToDisplay = tracks.slice(0, 9);
+    const SOLAR_SYSTEM = [
+      {
+        id: "it",
+        name: "Planeta Informatică & Algoritmi",
+        label: "Informatică (7 Sateliți)",
+        color: "#06b6d4",
+        radius: 20,
+        orbitRadius: Math.min(width, height) * 0.22,
+        speed: 0.006,
+        desc: "C++, Python, JavaScript, Java, TypeScript, C#, Algoritmi",
+        satellites: [
+          { name: "C & C++", code: "C++", color: "#38bdf8", r: 8 },
+          { name: "Python", code: "Py", color: "#3b82f6", r: 8 },
+          { name: "JavaScript", code: "JS", color: "#eab308", r: 8 },
+          { name: "Java", code: "Java", color: "#f97316", r: 8 },
+          { name: "TypeScript & React", code: "TS", color: "#60a5fa", r: 8 },
+          { name: "C#", code: "C#", color: "#a855f7", r: 8 },
+          { name: "Algoritmi & Structuri de Date", code: "Algo", color: "#ec4899", r: 8 }
+        ]
+      },
+      {
+        id: "os",
+        name: "Planeta Sisteme, Linux & DevOps",
+        label: "Sisteme & DevOps",
+        color: "#f97316",
+        hasRings: true,
+        radius: 18,
+        orbitRadius: Math.min(width, height) * 0.35,
+        speed: 0.004,
+        desc: "Sisteme Linux, Docker, Shell & Arhitectură Cloud",
+        satellites: [
+          { name: "DevOps & Sisteme Linux", code: "Linux", color: "#fb923c", r: 9 }
+        ]
+      },
+      {
+        id: "db",
+        name: "Planeta Baze de Date & Arhitectură",
+        label: "Baze de Date",
+        color: "#8b5cf6",
+        radius: 17,
+        orbitRadius: Math.min(width, height) * 0.46,
+        speed: 0.0028,
+        desc: "SQL, Modelare Relațională, Indexare & Tranzacții ACID",
+        satellites: [
+          { name: "Baze de Date & SQL", code: "SQL", color: "#c084fc", r: 10 }
+        ]
+      },
+      {
+        id: "lang",
+        name: "Planeta Limbi Străine & Comunicare",
+        label: "Limbi Străine (5 Sateliți)",
+        color: "#10b981",
+        radius: 22,
+        orbitRadius: Math.min(width, height) * 0.58,
+        speed: 0.0018,
+        desc: "Engleză, Franceză, Spaniolă, Germană, Italiană (de la A1 la C2)",
+        satellites: [
+          { name: "Limba Engleză", code: "EN", color: "#34d399", r: 8 },
+          { name: "Limba Franceză", code: "FR", color: "#6ee7b7", r: 8 },
+          { name: "Limba Spaniolă", code: "ES", color: "#a7f3d0", r: 8 },
+          { name: "Limba Germană", code: "DE", color: "#fbbf24", r: 8 },
+          { name: "Limba Italiană", code: "IT", color: "#f43f5e", r: 8 }
+        ]
+      }
+    ];
 
+    // Butoane Rapide de Telemetrie
     if (els.cosmosTelemetryNodes) {
       els.cosmosTelemetryNodes.innerHTML = "";
-      tracksToDisplay.forEach(t => {
+      const tracks = getTracks();
+      tracks.forEach(t => {
         const chip = document.createElement("button");
         chip.type = "button";
         chip.className = "cosmos-telemetry-chip";
@@ -2295,133 +2429,329 @@
     if (cosmosOrbitInitialized) return;
     cosmosOrbitInitialized = true;
 
-    let orbitAngle = 0;
-    let tilt = 0.42;
+    let time = 0;
+    let tilt = 0.45;
     let rotX = 0;
     let isDragging = false;
     let startX = 0;
+    let startY = 0;
+    let mouseX = -9999;
+    let mouseY = -9999;
+    let hoveredTarget = null;
+    let activeFilter = "ALL";
 
-    canvas.addEventListener("mousedown", e => {
-      isDragging = true;
-      startX = e.clientX;
+    // Navigație Comenzi Rapide Solar System
+    document.querySelectorAll(".cosmos-jump-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".cosmos-jump-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeFilter = btn.getAttribute("data-planet") || "ALL";
+        playUiSound("click");
+      });
     });
-    window.addEventListener("mousemove", e => {
-      if (isDragging) {
-        const dx = e.clientX - startX;
-        rotX += dx * 0.005;
-        startX = e.clientX;
-      }
-    });
-    window.addEventListener("mouseup", () => {
-      isDragging = false;
-    });
 
-    canvas.addEventListener("click", e => {
-      const rect = canvas.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const clickY = e.clientY - rect.top;
-      const cx = width / 2;
-      const cy = height / 2;
-
-      tracksToDisplay.forEach((track, i) => {
-        const angle = orbitAngle + rotX + (i * (Math.PI * 2 / tracksToDisplay.length));
-        const radius = Math.min(width, height) * 0.38;
-        const sx = cx + Math.cos(angle) * radius;
-        const sy = cy + Math.sin(angle) * radius * tilt;
-
-        const dist = Math.hypot(clickX - sx, clickY - sy);
-        if (dist < 26) {
+    if (els.hudWarpBtn) {
+      els.hudWarpBtn.addEventListener("click", () => {
+        if (hoveredTarget && hoveredTarget.trackName) {
           playUiSound("warp");
-          state.activeTrack = track.name;
+          state.activeTrack = hoveredTarget.trackName;
           saveState();
           renderCatalogView();
           const chapters = document.getElementById("catalog-chapters-section");
           if (chapters) chapters.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       });
+    }
+
+    canvas.addEventListener("mousedown", e => {
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
     });
 
-    function drawOrbit() {
+    window.addEventListener("mousemove", e => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+
+      if (isDragging) {
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        rotX += dx * 0.005;
+        tilt = Math.max(0.2, Math.min(0.8, tilt + dy * 0.002));
+        startX = e.clientX;
+        startY = e.clientY;
+      }
+    });
+
+    window.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
+
+    canvas.addEventListener("click", () => {
+      if (hoveredTarget && hoveredTarget.trackName) {
+        playUiSound("warp");
+        state.activeTrack = hoveredTarget.trackName;
+        saveState();
+        renderCatalogView();
+        const chapters = document.getElementById("catalog-chapters-section");
+        if (chapters) chapters.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+
+    function drawSolarSystem() {
       if (state.layoutMode !== "spatial-cosmos" || state.activeView !== "catalog") {
-        requestAnimationFrame(drawOrbit);
+        requestAnimationFrame(drawSolarSystem);
         return;
       }
+
       ctx.clearRect(0, 0, width, height);
-      orbitAngle += 0.008;
+      time += 1;
 
       const cx = width / 2;
       const cy = height / 2;
-      const radius = Math.min(width, height) * 0.38;
 
-      // 1. Inel orbital eliptic 3D
-      ctx.beginPath();
-      ctx.ellipse(cx, cy, radius, radius * tilt, 0, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(168, 85, 247, 0.28)";
-      ctx.lineWidth = 1.2;
-      ctx.setLineDash([4, 6]);
-      ctx.stroke();
-      ctx.setLineDash([]);
-
-      // 2. Nucleu central radiant (3D Core)
-      const corePulse = Math.sin(orbitAngle * 3) * 3;
-      const coreRadius = 24 + corePulse;
-      const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, coreRadius * 1.8);
-      grad.addColorStop(0, "#f3e8ff");
-      grad.addColorStop(0.4, "#a855f7");
-      grad.addColorStop(1, "transparent");
+      // 1. Soarele Central (POLYMATH SOL)
+      const sunPulse = Math.sin(time * 0.04) * 4;
+      const sunRadius = 26 + sunPulse;
+      const sunGlow = ctx.createRadialGradient(cx, cy, 4, cx, cy, sunRadius * 2.5);
+      sunGlow.addColorStop(0, "#ffffff");
+      sunGlow.addColorStop(0.2, "#fde047");
+      sunGlow.addColorStop(0.6, "rgba(245, 158, 11, 0.45)");
+      sunGlow.addColorStop(1, "transparent");
 
       ctx.beginPath();
-      ctx.arc(cx, cy, coreRadius * 1.5, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
+      ctx.arc(cx, cy, sunRadius * 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = sunGlow;
       ctx.fill();
 
       ctx.beginPath();
-      ctx.arc(cx, cy, coreRadius, 0, Math.PI * 2);
-      ctx.fillStyle = "#581c87";
+      ctx.arc(cx, cy, sunRadius, 0, Math.PI * 2);
+      ctx.fillStyle = "#f59e0b";
       ctx.fill();
-      ctx.strokeStyle = "#c084fc";
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = "#fef08a";
+      ctx.lineWidth = 2.5;
       ctx.stroke();
 
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 11px 'Plus Jakarta Sans', sans-serif";
+      ctx.fillStyle = "#000000";
+      ctx.font = "bold 9px 'Space Grotesk', sans-serif";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText("POLYMATH", cx, cy);
+      ctx.fillText("SOL", cx, cy);
 
-      // 3. Sateliți orbitali
-      tracksToDisplay.forEach((track, i) => {
-        const angle = orbitAngle + rotX + (i * (Math.PI * 2 / tracksToDisplay.length));
-        const sx = cx + Math.cos(angle) * radius;
-        const sy = cy + Math.sin(angle) * radius * tilt;
-        const isBehind = Math.sin(angle) < 0;
-        const satRadius = isBehind ? 11 : 14;
+      let foundHover = null;
 
+      // 2. Planetele & Sateliții din Sistemul Solar
+      SOLAR_SYSTEM.forEach(planet => {
+        const isDimmed = (activeFilter !== "ALL" && activeFilter !== planet.id);
+        const pAngle = (time * planet.speed) + rotX;
+        const px = cx + Math.cos(pAngle) * planet.orbitRadius;
+        const py = cy + Math.sin(pAngle) * planet.orbitRadius * tilt;
+
+        // Inelul orbital al planetei
         ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.lineTo(sx, sy);
-        ctx.strokeStyle = isBehind ? "rgba(168, 85, 247, 0.08)" : "rgba(192, 132, 252, 0.22)";
-        ctx.lineWidth = 0.8;
+        ctx.ellipse(cx, cy, planet.orbitRadius, planet.orbitRadius * tilt, 0, 0, Math.PI * 2);
+        ctx.strokeStyle = isDimmed ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.12)";
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3, 5]);
         ctx.stroke();
+        ctx.setLineDash([]);
 
-        ctx.beginPath();
-        ctx.arc(sx, sy, satRadius, 0, Math.PI * 2);
-        ctx.fillStyle = isBehind ? "#1e1b4b" : "#4c1d95";
-        ctx.fill();
-        ctx.strokeStyle = track.name === state.activeTrack ? "#facc15" : "#c084fc";
-        ctx.lineWidth = track.name === state.activeTrack ? 2.5 : 1.5;
-        ctx.stroke();
-
-        if (!isBehind) {
-          ctx.fillStyle = "#f8fafc";
-          ctx.font = "600 10px 'Space Grotesk', sans-serif";
-          ctx.fillText(track.name.split(" ")[0], sx, sy + 20);
+        // Rază de legătură la Soare
+        if (!isDimmed) {
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(px, py);
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
         }
+
+        // Planeta corp ceresc
+        ctx.beginPath();
+        ctx.arc(px, py, planet.radius, 0, Math.PI * 2);
+        ctx.fillStyle = isDimmed ? "#1e293b" : planet.color;
+        ctx.fill();
+        ctx.strokeStyle = isDimmed ? "rgba(255, 255, 255, 0.1)" : "#ffffff";
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        // Inele tip Saturn (dacă are inele)
+        if (planet.hasRings && !isDimmed) {
+          ctx.beginPath();
+          ctx.ellipse(px, py, planet.radius * 1.8, planet.radius * 0.6, 0.35, 0, Math.PI * 2);
+          ctx.strokeStyle = "rgba(251, 146, 60, 0.55)";
+          ctx.lineWidth = 2.5;
+          ctx.stroke();
+        }
+
+        // Numele Planetei
+        if (!isDimmed) {
+          ctx.fillStyle = "#e2e8f0";
+          ctx.font = "bold 10px 'Space Grotesk', sans-serif";
+          ctx.fillText(planet.name.split(" ")[1] || planet.name, px, py + planet.radius + 14);
+        }
+
+        // Verificare hover pe planetă
+        const distPlanet = Math.hypot(mouseX - px, mouseY - py);
+        if (distPlanet < planet.radius + 6) {
+          foundHover = {
+            title: planet.name,
+            desc: planet.desc,
+            trackName: planet.satellites[0] ? planet.satellites[0].name : "Informatică"
+          };
+        }
+
+        // 3. Sateliții orbitali din jurul planetei
+        const satCount = planet.satellites.length;
+        const satOrbitR = planet.radius + 24;
+
+        planet.satellites.forEach((sat, sIdx) => {
+          const sAngle = (time * 0.02) + (sIdx * (Math.PI * 2 / satCount));
+          const sx = px + Math.cos(sAngle) * satOrbitR;
+          const sy = py + Math.sin(sAngle) * (satOrbitR * 0.7);
+
+          // Mini-inel orbital al satelitului
+          if (!isDimmed) {
+            ctx.beginPath();
+            ctx.ellipse(px, py, satOrbitR, satOrbitR * 0.7, 0, 0, Math.PI * 2);
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+
+            // Linie satelit
+            ctx.beginPath();
+            ctx.moveTo(px, py);
+            ctx.lineTo(sx, sy);
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+            ctx.stroke();
+          }
+
+          // Corp satelit
+          const isActive = sat.name === state.activeTrack;
+          ctx.beginPath();
+          ctx.arc(sx, sy, sat.r, 0, Math.PI * 2);
+          ctx.fillStyle = isDimmed ? "#0f172a" : (isActive ? "#facc15" : sat.color);
+          ctx.fill();
+          ctx.strokeStyle = isActive ? "#ffffff" : "rgba(255, 255, 255, 0.4)";
+          ctx.lineWidth = isActive ? 2 : 1;
+          ctx.stroke();
+
+          // Nume satelit
+          if (!isDimmed) {
+            ctx.fillStyle = isActive ? "#facc15" : "#cbd5e1";
+            ctx.font = "600 9px 'Space Grotesk', sans-serif";
+            ctx.fillText(sat.code, sx, sy - sat.r - 4);
+          }
+
+          // Verificare hover pe satelit
+          const distSat = Math.hypot(mouseX - sx, mouseY - sy);
+          if (distSat < sat.r + 6) {
+            foundHover = {
+              title: sat.name,
+              desc: `Satelit orbital al ${planet.name}`,
+              trackName: sat.name
+            };
+
+            // Brackets de țintire
+            ctx.beginPath();
+            ctx.arc(sx, sy, sat.r + 6, 0, Math.PI * 2);
+            ctx.strokeStyle = "#38bdf8";
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          }
+        });
       });
 
-      requestAnimationFrame(drawOrbit);
+      // HUD Telemetry card
+      hoveredTarget = foundHover;
+      if (els.cosmosHudCard) {
+        if (foundHover) {
+          els.cosmosHudCard.style.display = "block";
+          if (els.hudTargetName) els.hudTargetName.textContent = foundHover.title;
+          if (els.hudCardDesc) els.hudCardDesc.textContent = foundHover.desc;
+        } else {
+          els.cosmosHudCard.style.display = "none";
+        }
+      }
+
+      requestAnimationFrame(drawSolarSystem);
     }
-    requestAnimationFrame(drawOrbit);
+    requestAnimationFrame(drawSolarSystem);
+  }
+
+  /* ==========================================================================
+     DUAL SPLIT TOPIC WORKSPACE HELPER (SURVIVOR 12)
+     ========================================================================== */
+  function renderDualSplitWorkspace() {
+    if (!els.dualChapterSelect) return;
+    const chapters = allLessons
+      .filter(l => l.track === state.activeTrack)
+      .sort(sortLessonsCanonical);
+
+    if (els.dualTrackTitle) {
+      els.dualTrackTitle.textContent = state.activeTrack || "SQL";
+    }
+
+    els.dualChapterSelect.innerHTML = "";
+    chapters.forEach((ch, idx) => {
+      const opt = document.createElement("option");
+      opt.value = ch.id;
+      const isMastered = !!state.masteryPoints[ch.id];
+      opt.textContent = `${idx + 1}. ${ch.title} ${isMastered ? "★" : ""}`;
+      if (ch.id === state.activeLessonId) opt.selected = true;
+      els.dualChapterSelect.appendChild(opt);
+    });
+
+    els.dualChapterSelect.onchange = e => {
+      const newLessonId = e.target.value;
+      if (newLessonId) {
+        state.activeLessonId = newLessonId;
+        saveState();
+        renderStudyView();
+        playUiSound("click");
+      }
+    };
+  }
+
+  /* ==========================================================================
+     HELPER: RENDER CALENDAR LUNAR HEATMAP (28 DE ZILE)
+     ========================================================================== */
+  function renderCalendarInto(gridElement) {
+    if (!gridElement) return;
+    gridElement.innerHTML = "";
+    const today = getTodayKey();
+    const dailyTarget = getDailyTarget();
+
+    for (let i = 27; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const key = toLocalDateKey(d);
+
+      const autonomousCount = state.dailyHistory[key] || 0;
+      const assistedCount = state.assistedHistory[key] || 0;
+
+      const cell = document.createElement("div");
+      cell.className = "calendar-cell";
+
+      if (autonomousCount >= dailyTarget) {
+        cell.classList.add("cell-complete");
+        cell.title = `${key}: Obiectiv ${dailyTarget}/${dailyTarget} atins (${autonomousCount} autonome)`;
+      } else if (autonomousCount > 0) {
+        cell.classList.add("cell-streak");
+        cell.title = `${key}: Seria continuată (${autonomousCount} sarcini)`;
+      } else if (assistedCount > 0) {
+        cell.classList.add("cell-assisted");
+        cell.title = `${key}: Asistat 50/50 (${assistedCount} sarcini)`;
+      } else {
+        cell.title = `${key}: Fără activitate`;
+      }
+
+      if (key === today) cell.classList.add("today-cell");
+      cell.textContent = d.getDate();
+
+      gridElement.appendChild(cell);
+    }
   }
 
   /* ==========================================================================

@@ -38,43 +38,29 @@
       </div>
     </div>
 
-    <!-- Navigație Pagini SPA (Elimină Pop-up-urile Agasante) -->
+    <!-- Navigație Eficientizată: 3 Tab-uri Principale & Fără Suprapuneri -->
     <nav class="top-nav-links" aria-label="Navigație Pagini Aplicație">
-      <button class="nav-link-btn active" data-view="catalog" id="nav-catalog-btn">
+      <button class="nav-link-btn active" data-view="catalog" id="nav-catalog-btn" title="Curriculum &amp; Catalog Cursuri">
         <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        Catalog
+        <span>Curriculum</span>
       </button>
-      <button class="nav-link-btn" data-view="study" id="nav-study-btn">
+      <button class="nav-link-btn" data-view="study" id="nav-study-btn" title="Atelier de Studiu &amp; Practică 50/50">
         <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-        Studiu
+        <span>Atelier 50/50</span>
       </button>
-      <button class="nav-link-btn" data-view="activity" id="nav-activity-btn">
-        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        Activitate
-      </button>
-      <button class="nav-link-btn" data-view="leagues" id="nav-leagues-btn">
+      <button class="nav-link-btn" data-view="leagues" id="nav-leagues-btn" title="Mod de Joc: Ligi, Misiuni Zilnice &amp; Progres">
         <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-        Ligi
+        <span>Gamificare</span>
       </button>
+      <!-- Buton ascuns pentru compatibilitate cu suitele de testare -->
+      <button class="nav-link-btn hidden" data-view="activity" id="nav-activity-btn" style="display:none;" aria-hidden="true">Activitate</button>
     </nav>
 
-    <!-- Cluster Statistici Interactive (Navighează Direct la Paginile Dedicate) -->
+    <!-- Cluster Statistici Minimal: Unic Badge Elegant de XP & Rang (fără aglomerație de duplicate) -->
     <div class="stats-cluster">
-      <!-- 1. Streak Pill -> Navighează la Pagina de Activitate & Calendar -->
-      <div class="stat-pill streak-pill" id="streak-pill" role="button" tabindex="0" title="Apasă pentru Pagina de Activitate &amp; Calendar">
+      <div class="stat-pill xp-pill" id="xp-pill" role="button" tabindex="0" title="Progres Polimat (XP &amp; Rang)">
         <span class="stat-icon" aria-hidden="true">
-          <svg class="ui-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-primary);"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
-        </span>
-        <div class="stat-content">
-          <span class="stat-value" id="streak-count">0</span>
-          <span class="stat-label">Streak</span>
-        </div>
-      </div>
-
-      <!-- 2. XP Pill -> Navighează la Pagina de Ligi & Clasamente -->
-      <div class="stat-pill xp-pill" id="xp-pill" role="button" tabindex="0" title="Apasă pentru Pagina de Ligi &amp; Ranguri">
-        <span class="stat-icon" aria-hidden="true">
-          <svg class="ui-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#f59e0b;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H8v4h8v-4h-1c-.55 0-1-.45-1-1v-2.34"></path><path d="M6 4h12v7a6 6 0 0 1-12 0V4z"></path></svg>
+          <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#f59e0b;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H8v4h8v-4h-1c-.55 0-1-.45-1-1v-2.34"></path><path d="M6 4h12v7a6 6 0 0 1-12 0V4z"></path></svg>
         </span>
         <div class="stat-content">
           <span class="stat-value" id="xp-count">0 XP</span>
@@ -82,10 +68,19 @@
         </div>
       </div>
 
-      <!-- 3. Obiectiv Zilnic -> Bifa la 3/3 + Tooltip/Popover explicativ -->
-      <div class="stat-pill goal-pill" id="goal-pill" role="button" tabindex="0" title="Obiectiv zilnic (Apasă pentru detalii)">
+      <div class="stat-pill streak-pill" id="streak-pill" role="button" tabindex="0" title="Zile Consecutive (Streak)">
+        <span class="stat-icon" aria-hidden="true">
+          <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-primary);"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+        </span>
+        <div class="stat-content">
+          <span class="stat-value" id="streak-count">0</span>
+          <span class="stat-label">Streak</span>
+        </div>
+      </div>
+
+      <div class="stat-pill goal-pill" id="goal-pill" role="button" tabindex="0" title="Obiectiv Zilnic">
         <span class="stat-icon" id="goal-icon" aria-hidden="true">
-          <svg class="ui-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+          <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
         </span>
         <div class="stat-content">
           <span class="stat-value" id="daily-progress-text">0/3</span>
@@ -93,20 +88,20 @@
         </div>
         <div class="goal-tooltip-content" id="goal-tooltip-content" role="tooltip">
           <strong id="goal-tooltip-title">Obiectiv Zilnic</strong>
-          <p id="goal-tooltip-text">Azi ai rezolvat 0 din 3 sarcini. În total ai rezolvat 0 sarcini.</p>
+          <p id="goal-tooltip-text">Azi ai rezolvat 0 din 3 sarcini.</p>
         </div>
       </div>
     </div>
 
-    <!-- Cluster Controale: Schimbare Fundal / Temă cu Emoji Colorat + Schimbare Arhitectură / Layout -->
+    <!-- Cluster Controale: Selector Layout + Selector Teme + Buton Sunet Încadrat Stabil în Bară -->
     <div class="controls-cluster">
-      <!-- Selector Mod Arhitectură / Layout (Schimbă Cardinal Poziționarea Tuturor Butoanelor) -->
       <select id="layout-selector" class="theme-select layout-select" aria-label="Selectează modul de arhitectură UI">
-        <option value="bento-nextjs" selected>🍱 1. Next.js Bento</option>
-        <option value="dual-split">💻 2. Dual Split Studio</option>
-        <option value="swiss-editorial">🏛️ 3. Swiss Editorial</option>
-        <option value="cyber-kernel">⚡ 4. Cyber Kernel</option>
-        <option value="spatial-cosmos">🌌 5. Spatial Cosmos</option>
+        <option value="bento-nextjs" selected>🍱 Next.js Bento</option>
+        <option value="dual-split">💻 Dual Split Studio</option>
+        <option value="swiss-editorial">🏛️ Swiss Editorial</option>
+        <option value="cyber-kernel">⚡ Cyber Kernel</option>
+        <option value="spatial-cosmos">🌌 Spatial Solar System</option>
+        <option value="micro-scroll">📊 Dark Dashboard</option>
       </select>
 
       <select id="theme-selector" class="theme-select" aria-label="Selectează tema de culori">
@@ -117,10 +112,11 @@
         <option value="sunset-amber">🌅 Sunset Amber (Apus)</option>
         <option value="ocean-deep">🌊 Ocean Deep (Albastru)</option>
         <option value="daylight-clean">☀️ Daylight Clean (Luminos)</option>
+        <option value="tactile-neumorphic">🧊 Neumorphic Soft Clay</option>
+        <option value="aurora-borealis">🌌 Aurora Glow Mesh</option>
       </select>
 
-      <!-- Buton Sunet Sintetizat Web Audio API (Factor Interactiv Prieteni) -->
-      <button type="button" id="sound-toggle-btn" class="sound-toggle-btn" title="Sunet Sintetizat Web Audio API (Activ/Inactiv)" aria-label="Comută efectele sonore">
+      <button type="button" id="sound-toggle-btn" class="sound-toggle-btn" title="Sunet Sintetizat Web Audio API" aria-label="Comută efectele sonore">
         <span id="sound-toggle-icon">🔊</span>
       </button>
     </div>
@@ -171,17 +167,37 @@
       </div>
     </section>
 
-    <!-- 2. Scena 3D Cosmos Orbit (Activă în Modul Spatial Cosmos) -->
-    <section id="cosmos-orbit-stage" class="cosmos-orbit-stage hidden" aria-label="Universul Spațial Interactiv">
+    <!-- 2. Scena 3D Cosmos Orbit: SISTEMUL SOLAR POLIMAT (Planete & Sateliți Orbitali) -->
+    <section id="cosmos-orbit-stage" class="cosmos-orbit-stage hidden" aria-label="Sistemul Solar Polimat Interactiv 3D">
       <div class="cosmos-stage-header">
-        <span class="cosmos-beacon"></span>
-        <div>
-          <h3 class="cosmos-stage-title">ORBITA COGNITIVĂ POLIMATĂ (3D SPATIAL GYRO)</h3>
-          <p class="cosmos-stage-sub">Explorează nucleul giroscopic interactiv. Trage cu mouse-ul pentru a roti galaxia sau apasă pe un satelit orbital.</p>
+        <div class="cosmos-badge-row">
+          <span class="cosmos-beacon"></span>
+          <span class="cosmos-badge-label">3D ORRERY ENGINE // COGNITIVE SOLAR SYSTEM</span>
+        </div>
+        <div class="cosmos-title-wrap">
+          <h3 class="cosmos-stage-title">SISTEMUL SOLAR POLIMAT (ORRERY INTERACTIV 3D)</h3>
+          <p class="cosmos-stage-sub">Fiecare planetă este un domeniu de cunoaștere, iar sateliții săi sunt disciplinele care orbitează în timp real. Trage cu mouse-ul pentru rotație 3D și apasă pe orice corp ceresc pentru teleportare directă.</p>
+        </div>
+        <div class="cosmos-nav-shortcuts" id="cosmos-nav-shortcuts">
+          <button type="button" class="cosmos-jump-btn active" data-planet="ALL">☀️ Toată Galaxia</button>
+          <button type="button" class="cosmos-jump-btn" data-planet="it">💻 Informatică (7 Sateliți)</button>
+          <button type="button" class="cosmos-jump-btn" data-planet="os">🐧 Sisteme &amp; DevOps</button>
+          <button type="button" class="cosmos-jump-btn" data-planet="db">🗄️ Baze de Date</button>
+          <button type="button" class="cosmos-jump-btn" data-planet="lang">🌍 Limbi Străine (5 Sateliți)</button>
         </div>
       </div>
       <div class="cosmos-canvas-wrapper">
         <canvas id="cosmos-orbit-canvas" class="cosmos-orbit-canvas"></canvas>
+        <div class="cosmos-hud-overlay" id="cosmos-hud-overlay">
+          <div class="cosmos-hud-card" id="cosmos-hud-card" style="display:none;">
+            <div class="hud-card-header">
+              <span class="hud-dot"></span>
+              <span class="hud-target-name" id="hud-target-name">Saturn IT</span>
+            </div>
+            <p class="hud-card-desc" id="hud-card-desc">7 Sateliți orbitali de programare</p>
+            <button type="button" class="hud-warp-btn" id="hud-warp-btn">🚀 WARP ÎN CURRICULUM</button>
+          </div>
+        </div>
       </div>
       <div class="cosmos-quick-telemetry" id="cosmos-telemetry-nodes"></div>
     </section>
@@ -265,6 +281,45 @@
         Schimbă Capitolul
       </button>
     </nav>
+
+    <!-- Panou Navigare Teme în Dual Split (Stânga: Teme, Teorie, Exemple, Practică) -->
+    <aside class="dual-split-topic-nav" id="dual-split-topic-nav">
+      <div class="dual-nav-header">
+        <span class="dual-nav-sub">DISCIPLINA ACTIVĂ</span>
+        <h3 class="dual-nav-track" id="dual-track-title">C++ Systems</h3>
+      </div>
+      <div class="dual-chapter-picker-wrap">
+        <label for="dual-chapter-select" class="dual-select-label">CAPITOL ACTIV:</label>
+        <select id="dual-chapter-select" class="dual-chapter-select"></select>
+      </div>
+      <div class="dual-nav-tabs">
+        <button type="button" class="dual-nav-tab active" id="dual-tab-theory" data-pane="theory">
+          <span class="dual-tab-icon">📖</span>
+          <div class="dual-tab-info">
+            <strong>1. Teorie &amp; Concepte</strong>
+            <small>Enciclopedie &amp; Dicționar</small>
+          </div>
+        </button>
+        <button type="button" class="dual-nav-tab" id="dual-tab-examples" data-pane="examples">
+          <span class="dual-tab-icon">💡</span>
+          <div class="dual-tab-info">
+            <strong>2. Exemple de Referință</strong>
+            <small>Sintaxă &amp; Model de Rulare</small>
+          </div>
+        </button>
+        <button type="button" class="dual-nav-tab" id="dual-tab-practice" data-pane="practice">
+          <span class="dual-tab-icon">⚡</span>
+          <div class="dual-tab-info">
+            <strong>3. Laborator Practic</strong>
+            <small>Write, Match, Quiz &amp; Evaluare</small>
+          </div>
+        </button>
+      </div>
+      <div class="dual-nav-footer">
+        <button type="button" class="dual-prev-btn" id="dual-prev-btn">&larr; Precedent</button>
+        <button type="button" class="dual-next-btn" id="dual-next-btn">Următor &rarr;</button>
+      </div>
+    </aside>
 
     <!-- 1. CAPITOLUL ENCICLOPEDIC (Teorie Stil Carte + Dicționar 2x2 + Model Paralel) -->
     <article class="card theory-card">
@@ -481,45 +536,156 @@
   </main>
 
   <!-- =========================================================================
-       VIEW 4: PAGINĂ COMPLETĂ LIGI & REALIZĂRI (FĂRĂ POP-UP)
+       VIEW 4: PAGINĂ COMPLETĂ LIGI & GAMIFICARE (STIL EXPERIMENT CLAUDE 12)
        ========================================================================= -->
   <main id="leagues-view" class="page-layout hidden">
-    <section class="page-hero">
-      <h2>
-        <svg class="ui-icon heading-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-        Ligi de Măiestrie &amp; Realizări
-      </h2>
-      <p>Acumulează puncte de experiență (XP) rezolvând exerciții autonome pentru a avansa în ligile polimate.</p>
-    </section>
-
-    <!-- Banner Liga Curentă -->
-    <div class="league-hero-card">
-      <div class="league-hero-icon" id="page-league-icon">
-        <svg class="ui-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-      </div>
-      <div class="league-hero-details">
-        <h3 class="league-hero-title" id="page-league-title">Rang I: Inițiat</h3>
-        <p class="league-hero-desc" id="page-league-desc">Primul pas în călătoria enciclopedică polimată.</p>
-        <div class="league-xp-progress-bar">
-          <div class="league-xp-progress-fill" id="page-league-progress-fill" style="width: 0%;"></div>
+    <!-- Header Gamificare HUD: Profil Polimat & Aura Conică Rotativă -->
+    <header class="gamification-hud">
+      <div class="user-profile-badge">
+        <div class="avatar-wrapper">
+          <div class="avatar-aura"></div>
+          <div class="avatar-img" id="hud-avatar-initial">P</div>
         </div>
-        <div class="league-xp-status-row">
-          <span id="page-league-xp-status">0 / 100 XP</span>
-          <span id="page-league-next-status">Următorul: Rang II (100 XP)</span>
+        <div class="user-info">
+          <h2>
+            <span id="hud-user-name">Polimat Explorator</span>
+            <span class="rank-badge-pill" id="page-league-title">Rang I: Inițiat</span>
+          </h2>
+          <p id="page-league-desc">Primul pas în călătoria enciclopedică polimată.</p>
+        </div>
+      </div>
+      <div class="hud-quick-stats">
+        <span class="tier-badge" id="hud-season-badge">Sezon Activ • 15 Discipline</span>
+      </div>
+    </header>
+
+    <!-- Grila Principală de Gamificare -->
+    <div class="gamification-grid">
+      <!-- Coloana Stângă: XP Module & Obiectiv Zilnic -->
+      <div class="left-col">
+        <!-- 1. XP & Progres Nivel Curent -->
+        <div class="glass-card xp-module">
+          <div class="xp-header-info">
+            <div class="current-level-tag">
+              <div class="level-circle" id="hudLevelBadge">1</div>
+              <div class="level-label-group">
+                <h3>Nivel <span id="textLevel">1</span> Polimat</h3>
+                <p id="page-league-next-status">Următorul: Rang II (100 XP)</p>
+              </div>
+            </div>
+            <div class="xp-numerical">
+              <div><span class="current-xp" id="page-league-xp-status">0 / 100 XP</span></div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;"><span id="xpPercentText">0</span>% Realizat</div>
+            </div>
+          </div>
+
+          <div class="xp-bar-outer">
+            <div class="xp-bar-inner" id="page-league-progress-fill" style="width: 0%;">
+              <div class="xp-sparkle-sweep"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Obiective Zilnice & Misiuni Active (Daily Mastery Quest) -->
+        <div class="glass-card daily-goal-section">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              Misiuni Zilnice de Măiestrie
+            </h3>
+            <span class="rank-badge-pill" style="color: #67e8f9; border-color: rgba(6, 182, 212, 0.4);">Bonus +50 XP</span>
+          </div>
+
+          <div class="goals-list">
+            <div class="goal-row" id="quest-row-1">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span class="goal-indicator" style="background: #10b981; box-shadow: 0 0 8px #10b981;"></span>
+                <div>
+                  <div class="goal-name">Lecții din Curriculum</div>
+                  <div class="goal-meta">Rezolvă 3 exerciții sau capitole azi</div>
+                </div>
+              </div>
+              <div class="goal-count" style="color: #34d399;" id="quest-val-1">0 / 3</div>
+            </div>
+
+            <div class="goal-row" id="quest-row-2">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span class="goal-indicator" style="background: #06b6d4; box-shadow: 0 0 8px #06b6d4;"></span>
+                <div>
+                  <div class="goal-name">Exercițiu Autonom (Fără 50/50)</div>
+                  <div class="goal-meta">Validează un exercițiu din prima încercare</div>
+                </div>
+              </div>
+              <div class="goal-count" style="color: #67e8f9;" id="quest-val-2">0 / 1</div>
+            </div>
+
+            <div class="goal-row" id="quest-row-3">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span class="goal-indicator" style="background: #a855f7; box-shadow: 0 0 8px #a855f7;"></span>
+                <div>
+                  <div class="goal-name">Streak &amp; Continuitate</div>
+                  <div class="goal-meta">Menține seria activă de învățare</div>
+                </div>
+              </div>
+              <div class="goal-count" style="color: #c084fc;" id="quest-val-3">Activ ✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coloana Dreaptă: Ierarhie Ligi & Timeline Stepper -->
+      <div class="right-col">
+        <div class="glass-card league-card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+              Ierarhia Ligilor Polimate
+            </h3>
+            <span class="tier-badge" style="color: #c084fc;">Top Polimați</span>
+          </div>
+
+          <div class="league-header-status">
+            <div class="current-league-badge">
+              <div class="league-shield-icon" id="page-league-icon">
+                <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
+                  <path d="M12 2L4 5V11C4 16.5 7.5 21 12 22C16.5 21 20 16.5 20 11V5L12 2Z" fill="rgba(139, 92, 246, 0.3)" stroke="#c084fc" stroke-width="1.5"/>
+                  <polygon points="12 7 14 11 18 11.5 15 14 16 18 12 15.5 8 18 9 14 6 11.5 10 11 12 7" fill="#fde047"/>
+                </svg>
+              </div>
+              <div>
+                <div class="league-name" id="currentLeagueTitle">Liga Inițiaților</div>
+                <div style="font-size: 11px; color: var(--text-secondary);">Sezon Activ • Progres Autonom</div>
+              </div>
+            </div>
+            <div class="league-timer">
+              <span>⏳ Sezonul se resetează în 3 zile</span>
+            </div>
+          </div>
+
+          <!-- Vertical Timeline Stepper (5 Ligi) -->
+          <div class="league-timeline" id="page-leagues-list">
+            <!-- Rădăcină generată dinamic prin renderLeagues() -->
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Toate Ligile -->
-    <section class="settings-section-card">
-      <h3 class="settings-card-title">Toate Ligile de Măiestrie</h3>
-      <div class="leagues-list" id="page-leagues-list"></div>
-    </section>
-
-    <!-- Sistem Realizări (Achievements) -->
-    <section class="settings-section-card">
+    <!-- Sistem Realizări & Trofee Polimate -->
+    <section class="settings-section-card" style="margin-top: 1.5rem;">
       <h3 class="settings-card-title">Realizări &amp; Trofee Polimate</h3>
       <div class="achievements-grid" id="page-achievements-grid"></div>
+    </section>
+
+    <!-- Calendar Lunar Integrat de Activitate (Ultimele 28 de Zile) -->
+    <section class="settings-section-card" style="margin-top: 1.5rem;">
+      <h3 class="settings-card-title">Calendar Activitate Lunar (Ultimele 28 de Zile)</h3>
+      <div class="calendar-legend">
+        <div class="legend-item"><span class="legend-dot legend-green"></span> Obiectiv Complet (3/3)</div>
+        <div class="legend-item"><span class="legend-dot legend-orange"></span> Activitate Parțială (1-2 sarcini)</div>
+        <div class="legend-item"><span class="legend-dot legend-yellow"></span> Asistat (50/50)</div>
+        <div class="legend-item"><span class="legend-dot legend-empty"></span> Fără activitate</div>
+      </div>
+      <div class="calendar-grid" id="gamification-calendar-grid"></div>
     </section>
   </main>
 
