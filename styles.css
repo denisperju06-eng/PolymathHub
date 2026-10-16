@@ -30,6 +30,7 @@
   --warning-bg: rgba(245, 158, 11, 0.18);
   --assisted-amber: #d97706;
   --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --bg-surface-glass: rgba(12, 41, 33, 0.85);
 }
 
 [data-theme="cyber-dark"] {
@@ -59,6 +60,7 @@
   --warning-bg: rgba(245, 158, 11, 0.18);
   --assisted-amber: #d97706;
   --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --bg-surface-glass: rgba(17, 24, 39, 0.88);
 }
 
 [data-theme="sepia-book"] {
@@ -88,6 +90,7 @@
   --warning-bg: rgba(183, 121, 31, 0.15);
   --assisted-amber: #92400e;
   --shadow-card: 0 4px 16px rgba(74, 55, 33, 0.08);
+  --bg-surface-glass: rgba(251, 246, 233, 0.92);
 }
 
 [data-theme="neon-amethyst"] {
@@ -117,6 +120,7 @@
   --warning-bg: rgba(251, 191, 36, 0.16);
   --assisted-amber: #d97706;
   --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --bg-surface-glass: rgba(23, 13, 38, 0.88);
 }
 
 [data-theme="sunset-amber"] {
@@ -146,6 +150,7 @@
   --warning-bg: rgba(251, 191, 36, 0.16);
   --assisted-amber: #b45309;
   --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --bg-surface-glass: rgba(33, 21, 10, 0.88);
 }
 
 [data-theme="ocean-deep"] {
@@ -175,6 +180,7 @@
   --warning-bg: rgba(251, 191, 36, 0.16);
   --assisted-amber: #d97706;
   --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --bg-surface-glass: rgba(12, 31, 54, 0.88);
 }
 
 [data-theme="daylight-clean"] {
@@ -204,6 +210,7 @@
   --warning-bg: #fef3c7;
   --assisted-amber: #92400e;
   --shadow-card: 0 4px 14px rgba(15, 23, 42, 0.06);
+  --bg-surface-glass: rgba(255, 255, 255, 0.92);
 }
 
 * {
@@ -217,7 +224,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
@@ -226,6 +233,70 @@ body {
   overflow-wrap: break-word;
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* ==========================================================================
+   DYNAMIC AMBIENT AURORA & CONSTELLATION PARTICLES (NEXT.JS ULTRA-AESTHETIC)
+   ========================================================================== */
+.ambient-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  max-width: 100vw;
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.18;
+  animation: floatOrb 18s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+.orb-primary {
+  width: 580px;
+  height: 580px;
+  background: var(--accent-primary);
+  top: -160px;
+  left: 12%;
+}
+
+.orb-secondary {
+  width: 520px;
+  height: 520px;
+  background: var(--accent-hover);
+  top: 35%;
+  right: -120px;
+  animation-delay: -6s;
+}
+
+.orb-tertiary {
+  width: 440px;
+  height: 440px;
+  background: #f59e0b;
+  bottom: -120px;
+  left: 28%;
+  animation-delay: -11s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(45px, -35px) scale(1.12); }
+  100% { transform: translate(-35px, 45px) scale(0.94); }
+}
+
+#ambient-particle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.75;
 }
 
 #confetti-canvas {
@@ -238,21 +309,27 @@ body {
 }
 
 /* ==========================================================================
-   TOP BAR & BRAND & INTERACTIVE PILLS
+   FLOATING HIGH-PRECISION NEXT.JS DECK & BRAND & INTERACTIVE PILLS
    ========================================================================== */
 
 .top-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1rem;
-  gap: 0.65rem;
-  background-color: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
+  padding: 0.7rem 1.35rem;
+  gap: 0.75rem;
+  background-color: var(--bg-surface-glass);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
   position: sticky;
-  top: 0;
+  top: 0.75rem;
   z-index: 100;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.4);
+  max-width: 1300px;
+  margin: 0.75rem auto 1.5rem auto;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* =========================================================================
@@ -465,52 +542,111 @@ body {
 .catalog-hero {
   text-align: center;
   margin-bottom: 2.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  background: var(--accent-soft);
+  border: 1px solid var(--border-color);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px var(--accent-soft);
+}
+
+.pulsing-beacon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-primary);
+  box-shadow: 0 0 10px var(--accent-primary);
+  animation: beaconPulse 2s infinite ease-in-out;
+}
+
+@keyframes beaconPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.55; }
 }
 
 .catalog-hero h2 {
-  font-size: 1.85rem;
+  font-size: 2.15rem;
   font-weight: 800;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+.gradient-headline {
+  background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .catalog-hero p {
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  max-width: 600px;
+  font-size: 1rem;
+  max-width: 640px;
   margin: 0 auto;
+  line-height: 1.6;
 }
 
 .domain-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
+  gap: 1.35rem;
   margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .domain-card {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 14px;
-  padding: 1.35rem;
+  border-radius: 18px;
+  padding: 1.45rem;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
 }
 
 .domain-card:hover {
   border-color: var(--accent-primary);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-soft);
 }
 
 .domain-card.active {
   border-color: var(--accent-primary);
   background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bg-secondary) 100%);
-  box-shadow: 0 0 16px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 24px var(--accent-soft);
+}
+
+.domain-card .card-gloss-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.12) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.domain-card:hover .card-gloss-overlay {
+  opacity: 1;
 }
 
 .domain-card-header {
@@ -626,13 +762,29 @@ body {
   background-color: var(--bg-elevated);
   border-radius: 999px;
   overflow: hidden;
+  position: relative;
 }
 
 .domain-progress-fill {
   height: 100%;
   background-color: var(--accent-primary);
   width: 0%;
-  transition: width 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.domain-progress-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmerBar 2.5s infinite linear;
+}
+
+@keyframes shimmerBar {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 /* Buton Toggle Afișare / Restrângere Domenii */
@@ -2038,7 +2190,17 @@ button {
   height: 100%;
   background: linear-gradient(90deg, var(--accent-primary) 0%, #34d399 100%);
   border-radius: 999px;
-  transition: width 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.league-xp-progress-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: shimmerBar 2.5s infinite linear;
 }
 
 .league-xp-status-row {
@@ -2150,6 +2312,13 @@ button {
 /* Responsiv */
 @media (max-width: 768px) {
   .top-bar {
+    top: 0;
+    margin: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    max-width: 100%;
     padding: 0.65rem 0.75rem;
     flex-wrap: wrap;
     gap: 0.5rem;

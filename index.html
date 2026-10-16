@@ -9,9 +9,17 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Ambient Dynamic Aurora Mesh & Interactive Constellation Canvas -->
+  <div class="ambient-glow" aria-hidden="true">
+    <div class="glow-orb orb-primary"></div>
+    <div class="glow-orb orb-secondary"></div>
+    <div class="glow-orb orb-tertiary"></div>
+  </div>
+  <canvas id="ambient-particle-canvas" aria-hidden="true"></canvas>
+
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
   <!-- BARA SUPERIOARĂ STATISTICI, NAVIGAȚIE PAGINI & PROFIL -->
@@ -105,7 +113,14 @@
        ========================================================================= -->
   <main id="catalog-view" class="catalog-layout">
     <section class="catalog-hero">
-      <h2>Enciclopedia &amp; Laboratorul Interactiv</h2>
+      <div class="hero-badge-ribbon">
+        <span class="pulsing-beacon" aria-hidden="true"></span>
+        <span class="badge-text">Enciclopedie &amp; Laborator Interactiv Next.js</span>
+      </div>
+      <h2>
+        Dincolo de cutii monotone.<br>
+        <span class="gradient-headline">Arhitectură fluidă pentru polimați.</span>
+      </h2>
       <p>Selectează o disciplină de studiu din domeniul Informatică sau Limbi Străine pentru a explora capitolele enciclopedice și a începe practica activă.</p>
     </section>
 

@@ -846,6 +846,7 @@
       card.setAttribute("role", "button");
       card.setAttribute("tabindex", "0");
       card.innerHTML = `
+        <div class="card-gloss-overlay" aria-hidden="true"></div>
         <div class="domain-card-header">
           <span class="domain-card-icon" aria-hidden="true">${track.icon}</span>
           <div style="display:flex; gap:0.4rem; align-items:center;">
@@ -863,6 +864,26 @@
           <div class="domain-progress-fill" style="width: ${pct}%;"></div>
         </div>
       `;
+
+      // 3D Perspective Tilt & Specular Cursor Sheen on Desktop
+      if (window.matchMedia("(min-width: 769px) and (hover: hover)").matches) {
+        card.addEventListener("mousemove", e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -6;
+          const rotateY = ((x - centerX) / centerX) * 6;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+          card.style.setProperty("--mouse-x", `${(x / rect.width) * 100}%`);
+          card.style.setProperty("--mouse-y", `${(y / rect.height) * 100}%`);
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
+        });
+      }
 
       function selectDomainAndScroll() {
         state.activeTrack = track.name;
@@ -1853,6 +1874,119 @@
 
   }
 
+  /* ==========================================================================
+     INTERACTIVE AMBIENT PARTICLE CONSTELLATION SYSTEM (NEXT.JS CANVAS)
+     ========================================================================== */
+  function initAmbientParticles() {
+    const canvas = document.getElementById("ambient-particle-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        buildParticles();
+      }, 200);
+    });
+
+    const mouse = { x: null, y: null, radius: 130 };
+    window.addEventListener("mousemove", e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+    window.addEventListener("mouseleave", () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    let particles = [];
+    class AmbientParticle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 1.6 + 0.8;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+
+        if (mouse.x !== null) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < mouse.radius && dist > 0) {
+            const force = (mouse.radius - dist) / mouse.radius;
+            this.x -= (dx / dist) * force * 2.2;
+            this.y -= (dy / dist) * force * 2.2;
+          }
+        }
+      }
+      draw(themeColor) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = themeColor;
+        ctx.fill();
+      }
+    }
+
+    function buildParticles() {
+      particles = [];
+      const isMobile = window.innerWidth < 768;
+      const count = isMobile ? 16 : Math.min(55, Math.floor((width * height) / 24000));
+      for (let i = 0; i < count; i++) {
+        particles.push(new AmbientParticle());
+      }
+    }
+    buildParticles();
+
+    let isVisible = true;
+    document.addEventListener("visibilitychange", () => {
+      isVisible = !document.hidden;
+    });
+
+    function renderLoop() {
+      if (isVisible) {
+        ctx.clearRect(0, 0, width, height);
+        const style = getComputedStyle(document.documentElement);
+        const primaryColor = style.getPropertyValue("--accent-primary").trim() || "#10b981";
+
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw(primaryColor);
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.hypot(dx, dy);
+
+            if (dist < 110) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              const alpha = (1 - dist / 110) * 0.14;
+              ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+              ctx.lineWidth = 0.7;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      requestAnimationFrame(renderLoop);
+    }
+    requestAnimationFrame(renderLoop);
+  }
+
   function renderAll() {
     applyTheme(state.theme);
     renderStats();
@@ -1862,5 +1996,6 @@
   document.addEventListener("DOMContentLoaded", () => {
     bindEvents();
     renderAll();
+    initAmbientParticles();
   });
 })();
