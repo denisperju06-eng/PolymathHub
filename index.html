@@ -9,9 +9,13 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Custom Momentum Aim Cursor (Activ în Modurile Editorial & Cosmos) -->
+  <div id="aim-cursor" class="custom-aim-cursor" aria-hidden="true"></div>
+  <div id="aim-dot" class="custom-aim-dot" aria-hidden="true"></div>
+
   <!-- Ambient Dynamic Aurora Mesh & Interactive Constellation Canvas -->
   <div class="ambient-glow" aria-hidden="true">
     <div class="glow-orb orb-primary"></div>
@@ -94,8 +98,17 @@
       </div>
     </div>
 
-    <!-- Cluster Controale: Schimbare Fundal / Temă cu Emoji Colorat -->
+    <!-- Cluster Controale: Schimbare Fundal / Temă cu Emoji Colorat + Schimbare Arhitectură / Layout -->
     <div class="controls-cluster">
+      <!-- Selector Mod Arhitectură / Layout (Schimbă Cardinal Poziționarea Tuturor Butoanelor) -->
+      <select id="layout-selector" class="theme-select layout-select" aria-label="Selectează modul de arhitectură UI">
+        <option value="bento-nextjs" selected>🍱 1. Next.js Bento</option>
+        <option value="dual-split">💻 2. Dual Split Studio</option>
+        <option value="swiss-editorial">🏛️ 3. Swiss Editorial</option>
+        <option value="cyber-kernel">⚡ 4. Cyber Kernel</option>
+        <option value="spatial-cosmos">🌌 5. Spatial Cosmos</option>
+      </select>
+
       <select id="theme-selector" class="theme-select" aria-label="Selectează tema de culori">
         <option value="emerald-forest" selected>🟢 Emerald Zen (Verde)</option>
         <option value="cyber-dark">🌑 Cyber Dark (Negru)</option>
@@ -105,6 +118,11 @@
         <option value="ocean-deep">🌊 Ocean Deep (Albastru)</option>
         <option value="daylight-clean">☀️ Daylight Clean (Luminos)</option>
       </select>
+
+      <!-- Buton Sunet Sintetizat Web Audio API (Factor Interactiv Prieteni) -->
+      <button type="button" id="sound-toggle-btn" class="sound-toggle-btn" title="Sunet Sintetizat Web Audio API (Activ/Inactiv)" aria-label="Comută efectele sonore">
+        <span id="sound-toggle-icon">🔊</span>
+      </button>
     </div>
   </header>
 
@@ -122,6 +140,50 @@
         <span class="gradient-headline">Arhitectură fluidă pentru polimați.</span>
       </h2>
       <p>Selectează o disciplină de studiu din domeniul Informatică sau Limbi Străine pentru a explora capitolele enciclopedice și a începe practica activă.</p>
+    </section>
+
+    <!-- 1. Consola Cyber Command Kernel (Activă în Modul Cyber Kernel) -->
+    <section id="cyber-command-stage" class="cyber-command-stage hidden" aria-label="Consola Cibernetică de Comenzi">
+      <div class="cyber-kernel-header">
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <span class="cyber-status-dot"></span>
+          <span class="cyber-title">&gt; POLYMATH.KERNEL // SYS_ONLINE [PORT: 8000] [MEM: 64MB]</span>
+        </div>
+        <span class="cyber-clock" id="cyber-telemetry-clock">ONLINE // 60 FPS</span>
+      </div>
+      <div class="cyber-cli-bar">
+        <span class="cyber-prompt">$</span>
+        <input type="text" id="cyber-cli-input" class="cyber-cli-input" placeholder="Tastează o comandă (ex: run cpp, run python, run sql, run fr, stats, solve, hint)..." autocomplete="off" spellcheck="false">
+        <button type="button" id="cyber-cli-run-btn" class="cyber-run-btn">EXECUTE</button>
+      </div>
+      <div class="cyber-quick-tags" id="cyber-quick-tags">
+        <span class="cyber-tag" data-cmd="run cpp">run c++</span>
+        <span class="cyber-tag" data-cmd="run python">run python</span>
+        <span class="cyber-tag" data-cmd="run sql">run sql</span>
+        <span class="cyber-tag" data-cmd="run js">run javascript</span>
+        <span class="cyber-tag" data-cmd="run fr">run franceză</span>
+        <span class="cyber-tag" data-cmd="stats">sys.stats()</span>
+        <span class="cyber-tag" data-cmd="sound">sound.toggle()</span>
+      </div>
+      <div class="cyber-terminal-output" id="cyber-terminal-output">
+        <p class="cyber-log-line">&gt; POLYMATH KERNEL V5.2 // Conectat la baza de date cu 15 discipline.</p>
+        <p class="cyber-log-line text-cyan">&gt; Tastează comenzi de rulare sau dă click pe etichetele rapide de mai sus.</p>
+      </div>
+    </section>
+
+    <!-- 2. Scena 3D Cosmos Orbit (Activă în Modul Spatial Cosmos) -->
+    <section id="cosmos-orbit-stage" class="cosmos-orbit-stage hidden" aria-label="Universul Spațial Interactiv">
+      <div class="cosmos-stage-header">
+        <span class="cosmos-beacon"></span>
+        <div>
+          <h3 class="cosmos-stage-title">ORBITA COGNITIVĂ POLIMATĂ (3D SPATIAL GYRO)</h3>
+          <p class="cosmos-stage-sub">Explorează nucleul giroscopic interactiv. Trage cu mouse-ul pentru a roti galaxia sau apasă pe un satelit orbital.</p>
+        </div>
+      </div>
+      <div class="cosmos-canvas-wrapper">
+        <canvas id="cosmos-orbit-canvas" class="cosmos-orbit-canvas"></canvas>
+      </div>
+      <div class="cosmos-quick-telemetry" id="cosmos-telemetry-nodes"></div>
     </section>
 
     <!-- Filtru Categorii / Diviziuni (Informatică & Programare vs Limbi Străine) -->
@@ -483,6 +545,19 @@
       <ul class="lesson-list" id="pocket-lesson-list"></ul>
     </div>
   </aside>
+
+  <!-- Bara de Status IDE pentru Modul Dual Split Studio -->
+  <footer id="dual-split-statusbar" class="dual-split-statusbar hidden" aria-label="Bara de status IDE">
+    <div class="status-left">
+      <span class="status-badge"><svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg> UTF-8</span>
+      <span class="status-badge">Spaces: 2</span>
+      <span class="status-badge" id="status-current-track">Workspace: SQL</span>
+    </div>
+    <div class="status-right">
+      <span class="status-badge text-accent" id="status-mastery-xp">XP: 0</span>
+      <span class="status-badge">Mode: Dual Split Studio</span>
+    </div>
+  </footer>
 
   <!-- TOAST CONTAINER PENTRU NOTIFICĂRI SISTEM -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>

@@ -16,6 +16,10 @@ async function testPythonAndThemes() {
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
   await page.goto(BASE_URL, { waitUntil: "networkidle0" });
+  await page.evaluate(() => {
+    localStorage.clear();
+  });
+  await page.reload({ waitUntil: "networkidle0" });
 
   const errors = [];
   const successes = [];

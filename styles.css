@@ -2388,4 +2388,441 @@ button {
     font-size: 0.68rem;
     padding-left: 0.1rem;
   }
+
+  .layout-select {
+    max-width: 110px;
+    padding: 0.35rem 0.4rem;
+    font-size: 0.72rem;
+  }
+
+  .sound-toggle-btn {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* ==========================================================================
+   CONTROALE EXTRA: SELECTOR ARHITECTURĂ / LAYOUT & BUTON AUDIO SINTETIZAT
+   ========================================================================== */
+.layout-select {
+  font-weight: 700;
+  border-color: var(--accent-primary);
+  background-color: var(--bg-elevated);
+}
+
+.sound-toggle-btn {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.sound-toggle-btn:hover {
+  border-color: var(--accent-primary);
+  transform: scale(1.05);
+}
+.sound-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+/* ==========================================================================
+   CUSTOM MOMENTUM AIM CURSOR (EDITORIAL & COSMOS)
+   ========================================================================== */
+.custom-aim-cursor {
+  position: fixed;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  display: none;
+  transition: width 0.2s, height 0.2s, border-color 0.2s, opacity 0.2s;
+}
+.custom-aim-dot {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background-color: #d4af37;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+@media (hover: none) {
+  .custom-aim-cursor,
+  .custom-aim-dot {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   1. CYBER COMMAND KERNEL STAGE (MOD 4)
+   ========================================================================== */
+.cyber-command-stage {
+  background: rgba(5, 10, 16, 0.92);
+  border: 1px solid rgba(0, 255, 157, 0.35);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 30px rgba(0, 255, 157, 0.12), inset 0 0 20px rgba(0, 0, 0, 0.6);
+  font-family: 'JetBrains Mono', monospace;
+  position: relative;
+  overflow: hidden;
+}
+.cyber-kernel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.76rem;
+  color: #00ff9d;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+  padding-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.cyber-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff9d;
+  box-shadow: 0 0 8px #00ff9d;
+  animation: cyberBlink 1.5s infinite ease-in-out;
+}
+@keyframes cyberBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.8); }
+}
+.cyber-cli-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 255, 157, 0.3);
+  border-radius: 8px;
+  padding: 0.45rem 0.85rem;
+  margin-bottom: 0.85rem;
+}
+.cyber-prompt {
+  color: #00ff9d;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.cyber-cli-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f8fafc;
+  font-family: inherit;
+  font-size: 0.84rem;
+}
+.cyber-run-btn {
+  background: rgba(0, 255, 157, 0.18);
+  border: 1px solid #00ff9d;
+  color: #00ff9d;
+  border-radius: 6px;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.72rem;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.cyber-run-btn:hover {
+  background: #00ff9d;
+  color: #000;
+}
+.cyber-quick-tags {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+.cyber-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.cyber-tag:hover {
+  border-color: #00ff9d;
+  color: #00ff9d;
+  background: rgba(0, 255, 157, 0.1);
+}
+.cyber-terminal-output {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+  padding: 0.65rem;
+  font-size: 0.74rem;
+  line-height: 1.5;
+  max-height: 100px;
+  overflow-y: auto;
+}
+.cyber-log-line {
+  color: #94a3b8;
+  margin-bottom: 0.2rem;
+}
+.cyber-log-line.text-cyan {
+  color: #00f0ff;
+}
+
+/* ==========================================================================
+   2. GRAND SPATIAL COSMOS ORBIT STAGE (MOD 5)
+   ========================================================================== */
+.cosmos-orbit-stage {
+  background: radial-gradient(circle at center, rgba(16, 24, 48, 0.8) 0%, rgba(2, 4, 10, 0.95) 85%);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(168, 85, 247, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+.cosmos-stage-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+.cosmos-beacon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #a855f7;
+  box-shadow: 0 0 14px #a855f7;
+  animation: beaconPulse 2s infinite ease-in-out;
+}
+.cosmos-stage-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #f8fafc;
+}
+.cosmos-stage-sub {
+  font-size: 0.82rem;
+  color: #c084fc;
+}
+.cosmos-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.cosmos-orbit-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+.cosmos-orbit-canvas:active {
+  cursor: grabbing;
+}
+.cosmos-quick-telemetry {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+.cosmos-telemetry-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(168, 85, 247, 0.14);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  color: #e9d5ff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.cosmos-telemetry-chip:hover {
+  background: rgba(168, 85, 247, 0.3);
+  border-color: #a855f7;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   3. DUAL SPLIT STATUSBAR (MOD 2)
+   ========================================================================== */
+.dual-split-statusbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 0.35rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-secondary);
+  backdrop-filter: blur(12px);
+}
+.status-left, .status-right {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ==========================================================================
+   4. CELE 5 MODURI DE ARHITECTURĂ CARDINALĂ (STILURILE APLICATE)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   MODUL 2: DUAL SPLIT STUDIO (HORIZONTALLY SPLIT IDE WORKSPACE)
+   -------------------------------------------------------------------------- */
+@media (min-width: 900px) {
+  [data-layout="dual-split"] .study-layout {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    max-width: 1440px;
+  }
+  [data-layout="dual-split"] .study-top-nav {
+    grid-column: 1 / -1;
+  }
+  [data-layout="dual-split"] .theory-card {
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    position: sticky;
+    top: 5.5rem;
+  }
+  [data-layout="dual-split"] .practice-card {
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    position: sticky;
+    top: 5.5rem;
+  }
+}
+[data-layout="dual-split"] #dual-split-statusbar {
+  display: flex !important;
+}
+[data-layout="dual-split"] .domain-card {
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-primary);
+}
+
+/* --------------------------------------------------------------------------
+   MODUL 3: SWISS EDITORIAL PRESTIGE (ROOM & PILLAR STYLING)
+   -------------------------------------------------------------------------- */
+[data-layout="swiss-editorial"] {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+}
+[data-layout="swiss-editorial"] body {
+  font-family: 'Space Grotesk', sans-serif;
+  cursor: crosshair;
+}
+[data-layout="swiss-editorial"] h1,
+[data-layout="swiss-editorial"] h2,
+[data-layout="swiss-editorial"] h3,
+[data-layout="swiss-editorial"] .brand-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+[data-layout="swiss-editorial"] .domain-card {
+  border-radius: 0;
+  border-color: rgba(197, 160, 89, 0.3);
+  border-left: 3px solid #c5a059;
+  background: rgba(18, 16, 14, 0.85);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+[data-layout="swiss-editorial"] .custom-aim-cursor,
+[data-layout="swiss-editorial"] .custom-aim-dot {
+  display: block;
+}
+[data-layout="swiss-editorial"] .catalog-hero h2 {
+  font-size: 2.45rem;
+  font-weight: 300;
+  font-style: italic;
+}
+[data-layout="swiss-editorial"] .book-reader p:first-of-type::first-letter {
+  font-size: 3.2rem;
+  float: left;
+  line-height: 0.8;
+  padding-right: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--accent-primary);
+}
+
+/* --------------------------------------------------------------------------
+   MODUL 4: CYBER COMMAND KERNEL (MATRIX TERMINAL HUD)
+   -------------------------------------------------------------------------- */
+[data-layout="cyber-kernel"] body {
+  font-family: 'JetBrains Mono', monospace;
+  background: #03070a;
+}
+[data-layout="cyber-kernel"] #cyber-command-stage {
+  display: block !important;
+}
+[data-layout="cyber-kernel"] .top-bar {
+  border-radius: 4px;
+  border: 1px solid rgba(0, 255, 157, 0.3);
+}
+[data-layout="cyber-kernel"] .domain-card {
+  border-radius: 4px;
+  border: 1px solid rgba(0, 255, 157, 0.25);
+  background: rgba(5, 12, 20, 0.95);
+}
+[data-layout="cyber-kernel"] .domain-card:hover {
+  border-color: #00ff9d;
+  box-shadow: 0 0 25px rgba(0, 255, 157, 0.35);
+}
+[data-layout="cyber-kernel"] .answer-textarea {
+  border-color: #00ff9d;
+  box-shadow: 0 0 15px rgba(0, 255, 157, 0.15);
+  background: #02070c;
+}
+
+/* --------------------------------------------------------------------------
+   MODUL 5: GRAND SPATIAL COSMOS (ORBIT & RPG INVENTORY)
+   -------------------------------------------------------------------------- */
+[data-layout="spatial-cosmos"] #cosmos-orbit-stage {
+  display: block !important;
+}
+[data-layout="spatial-cosmos"] .domain-card {
+  border-radius: 20px;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(20, 15, 35, 0.8) 0%, rgba(10, 8, 20, 0.9) 100%);
+}
+[data-layout="spatial-cosmos"] .domain-card:hover {
+  border-color: #c084fc;
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+}
+[data-layout="spatial-cosmos"] .domain-card-icon {
+  background: rgba(168, 85, 247, 0.25);
+  color: #e9d5ff;
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.4);
 }

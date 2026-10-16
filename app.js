@@ -14,6 +14,8 @@
     dailyHistory: {},    // { [date]: count of autonomous tasks }
     assistedHistory: {}, // { [date]: count of assisted (50/50) tasks }
     theme: "emerald-forest",
+    layoutMode: "bento-nextjs",
+    soundEnabled: true,
     customLessons: [],
     activeTrack: "SQL",
     activeLessonId: "sql-1",
@@ -531,6 +533,22 @@
     goalTooltipTitle: document.getElementById("goal-tooltip-title"),
     goalTooltipText: document.getElementById("goal-tooltip-text"),
     themeSelector: document.getElementById("theme-selector"),
+    layoutSelector: document.getElementById("layout-selector"),
+    soundToggleBtn: document.getElementById("sound-toggle-btn"),
+    soundToggleIcon: document.getElementById("sound-toggle-icon"),
+    cyberCommandStage: document.getElementById("cyber-command-stage"),
+    cyberCliInput: document.getElementById("cyber-cli-input"),
+    cyberCliRunBtn: document.getElementById("cyber-cli-run-btn"),
+    cyberTerminalOutput: document.getElementById("cyber-terminal-output"),
+    cyberTelemetryClock: document.getElementById("cyber-telemetry-clock"),
+    cosmosOrbitStage: document.getElementById("cosmos-orbit-stage"),
+    cosmosOrbitCanvas: document.getElementById("cosmos-orbit-canvas"),
+    cosmosTelemetryNodes: document.getElementById("cosmos-telemetry-nodes"),
+    dualSplitStatusbar: document.getElementById("dual-split-statusbar"),
+    statusCurrentTrack: document.getElementById("status-current-track"),
+    statusMasteryXp: document.getElementById("status-mastery-xp"),
+    aimCursor: document.getElementById("aim-cursor"),
+    aimDot: document.getElementById("aim-dot"),
 
     // View 1: Catalog
     catalogView: document.getElementById("catalog-view"),
@@ -635,6 +653,176 @@
     if (els.themeSelector) els.themeSelector.value = validTheme;
     state.theme = validTheme;
     saveState();
+  }
+
+  /* ==========================================================================
+     SINTETIZATOR AUDIO WEB AUDIO API (100% NATIV, FĂRĂ DEPENDENȚE EXTERNE)
+     ========================================================================== */
+  let audioCtx = null;
+  function getAudioContext() {
+    if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContextClass();
+    }
+    if (audioCtx && audioCtx.state === "suspended") {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  function playUiSound(type = "click") {
+    if (!state.soundEnabled) return;
+    try {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+
+      if (type === "click") {
+        // Clic mecanic de tastatură tactile
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(650, now);
+        osc.frequency.exponentialRampToValueAtTime(120, now + 0.04);
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.04);
+      } else if (type === "success") {
+        // Coardă armonică triumfală ascendentă (C5, E5, G5, C6)
+        const notes = [523.25, 659.25, 783.99, 1046.50];
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const t = now + idx * 0.06;
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(freq, t);
+          gain.gain.setValueAtTime(0.08, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.28);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(t);
+          osc.stop(t + 0.28);
+        });
+      } else if (type === "hint") {
+        // Semnal acustic cald de ghidaj
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.14);
+        gain.gain.setValueAtTime(0.06, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.14);
+      } else if (type === "warp") {
+        // Puls spațial sci-fi (Cosmos / Cyber)
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(180, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.18);
+        gain.gain.setValueAtTime(0.05, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.18);
+      }
+    } catch (e) {
+      // Ignoră erorile audio dacă utilizatorul nu a interacționat încă cu pagina
+    }
+  }
+
+  function toggleSound() {
+    state.soundEnabled = !state.soundEnabled;
+    saveState();
+    if (els.soundToggleIcon) {
+      els.soundToggleIcon.textContent = state.soundEnabled ? "🔊" : "🔇";
+    }
+    if (state.soundEnabled) {
+      playUiSound("success");
+      showToast("🔊 Efecte audio sintetizate activate");
+    } else {
+      showToast("🔇 Efecte audio dezactivate");
+    }
+  }
+
+  /* ==========================================================================
+     METRICI & CLASIFICĂRI SPECIALE PENTRU CELE 5 ARHITECTURI DE LAYOUT
+     ========================================================================== */
+  function getTrackRarity(name) {
+    if (name.includes("C & C++") || name.includes("Algoritmi")) return "💎 LEGENDARY CITADEL";
+    if (name.includes("Python") || name.includes("Java") || name.includes("SQL")) return "🔮 EPIC RUNESTONE";
+    if (name.includes("Engleză") || name.includes("Franceză") || name.includes("Spaniolă")) return "🏛️ MYTHIC POLYGLOT";
+    return "⚡ RARE MATRIX";
+  }
+
+  function getTrackAct(name) {
+    if (name.includes("C & C++") || name.includes("Linux") || name.includes("SQL")) return "ACT I: SISTEME & HARDWARE";
+    if (name.includes("Python") || name.includes("Algoritmi") || name.includes("Java") || name.includes("TypeScript") || name.includes("JavaScript") || name.includes("C#")) return "ACT II: INTELIGENȚĂ & ALGORITMI";
+    return "ACT III: POLIGLOT & COMUNICARE";
+  }
+
+  function updateDualSplitStatusbar() {
+    if (!els.dualSplitStatusbar) return;
+    if (els.statusCurrentTrack) {
+      els.statusCurrentTrack.textContent = `Workspace: ${state.activeTrack || "SQL"}`;
+    }
+    if (els.statusMasteryXp) {
+      els.statusMasteryXp.textContent = `XP: ${state.xp || 0}`;
+    }
+  }
+
+  function applyLayoutMode(mode) {
+    const validModes = ["bento-nextjs", "dual-split", "swiss-editorial", "cyber-kernel", "spatial-cosmos"];
+    const validLayout = validModes.includes(mode) ? mode : "bento-nextjs";
+    document.documentElement.setAttribute("data-layout", validLayout);
+    state.layoutMode = validLayout;
+    saveState();
+    if (els.layoutSelector) els.layoutSelector.value = validLayout;
+
+    // Toggle etape speciale de layout
+    if (els.cyberCommandStage) {
+      if (validLayout === "cyber-kernel" && state.activeView === "catalog") {
+        els.cyberCommandStage.classList.remove("hidden");
+      } else {
+        els.cyberCommandStage.classList.add("hidden");
+      }
+    }
+
+    if (els.cosmosOrbitStage) {
+      if (validLayout === "spatial-cosmos" && state.activeView === "catalog") {
+        els.cosmosOrbitStage.classList.remove("hidden");
+        initCosmosOrbitCanvas();
+      } else {
+        els.cosmosOrbitStage.classList.add("hidden");
+      }
+    }
+
+    if (els.dualSplitStatusbar) {
+      if (validLayout === "dual-split") {
+        els.dualSplitStatusbar.classList.remove("hidden");
+        updateDualSplitStatusbar();
+      } else {
+        els.dualSplitStatusbar.classList.add("hidden");
+      }
+    }
+
+    // Aim cursor activ doar pe desktop în modurile Swiss Editorial & Spatial Cosmos
+    const isSpecialCursor = (validLayout === "swiss-editorial" || validLayout === "spatial-cosmos");
+    if (els.aimCursor && els.aimDot) {
+      els.aimCursor.style.display = isSpecialCursor ? "block" : "none";
+      els.aimDot.style.display = isSpecialCursor ? "block" : "none";
+    }
+
+    if (state.activeView === "catalog") {
+      renderCatalogView();
+    }
   }
 
   const TRACK_ICONS = {
@@ -841,6 +1029,13 @@
       const pct = trackLessons.length ? Math.round((completedCount / trackLessons.length) * 100) : 0;
       const isActive = state.activeTrack === track.name;
 
+      const rarity = getTrackRarity(track.name);
+      const act = getTrackAct(track.name);
+      const isCyber = state.layoutMode === "cyber-kernel";
+      const isEditorial = state.layoutMode === "swiss-editorial";
+      const isCosmos = state.layoutMode === "spatial-cosmos";
+      const isDual = state.layoutMode === "dual-split";
+
       const card = document.createElement("div");
       card.className = `domain-card ${isActive ? "active" : ""}`;
       card.setAttribute("role", "button");
@@ -849,12 +1044,15 @@
         <div class="card-gloss-overlay" aria-hidden="true"></div>
         <div class="domain-card-header">
           <span class="domain-card-icon" aria-hidden="true">${track.icon}</span>
-          <div style="display:flex; gap:0.4rem; align-items:center;">
+          <div style="display:flex; gap:0.4rem; align-items:center; flex-wrap:wrap;">
             <span class="domain-division-badge">${track.division === "Informatică și Programare" ? "Informatică" : "Limbi Străine"}</span>
             <span class="domain-card-badge">${trackLessons.length} capitole</span>
           </div>
         </div>
-        <h3 class="domain-card-title">${track.name}</h3>
+        ${isCosmos ? `<div style="margin-bottom:0.25rem;"><small class="domain-rarity-badge" style="font-size:0.68rem; font-weight:800; color:#c084fc; letter-spacing:0.04em;">${rarity}</small></div>` : ""}
+        ${isEditorial ? `<div style="margin-bottom:0.25rem;"><small class="domain-act-badge" style="font-size:0.68rem; font-family:'Cormorant Garamond',serif; font-style:italic; color:#c5a059; letter-spacing:0.06em;">${act}</small></div>` : ""}
+        ${isDual ? `<div style="margin-bottom:0.25rem;"><small class="domain-ide-badge" style="font-size:0.68rem; font-family:'JetBrains Mono',monospace; color:var(--accent-primary);">SRC: //tracks/${track.name.toLowerCase().replace(/[^a-z0-9]/g, '_')}</small></div>` : ""}
+        <h3 class="domain-card-title">${isCyber ? `$ run ${track.name.toLowerCase()}` : track.name}</h3>
         <p class="domain-card-desc">${track.description}</p>
         <div class="domain-progress-row">
           <span>Progres Măiestrie</span>
@@ -886,9 +1084,11 @@
       }
 
       function selectDomainAndScroll() {
+        playUiSound("click");
         state.activeTrack = track.name;
         saveState();
         renderCatalogView();
+        if (state.layoutMode === "dual-split") updateDualSplitStatusbar();
         const chaptersSection = document.getElementById("catalog-chapters-section") || els.catalogSelectedDomainTitle;
         if (chaptersSection) {
           chaptersSection.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1872,6 +2072,45 @@
       els.themeSelector.addEventListener("change", e => applyTheme(e.target.value));
     }
 
+    // Comutator Moduri Arhitectură / Layout (5 Arhitecturi Cardinale)
+    if (els.layoutSelector) {
+      els.layoutSelector.addEventListener("change", e => {
+        applyLayoutMode(e.target.value);
+        playUiSound("click");
+      });
+    }
+
+    // Buton Toggle Sunet Sintetizat
+    if (els.soundToggleBtn) {
+      els.soundToggleBtn.addEventListener("click", toggleSound);
+    }
+
+    // Cyber Command Kernel CLI
+    if (els.cyberCliRunBtn) {
+      els.cyberCliRunBtn.addEventListener("click", executeCyberCli);
+    }
+    if (els.cyberCliInput) {
+      els.cyberCliInput.addEventListener("keydown", e => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          executeCyberCli();
+        } else if (e.key.length === 1 || e.key === "Backspace") {
+          playUiSound("click");
+        }
+      });
+    }
+
+    // Etichete Rapide Cyber CLI
+    document.querySelectorAll(".cyber-tag").forEach(tag => {
+      tag.addEventListener("click", () => {
+        const cmd = tag.getAttribute("data-cmd");
+        if (els.cyberCliInput && cmd) {
+          els.cyberCliInput.value = cmd;
+          executeCyberCli();
+        }
+      });
+    });
+
   }
 
   /* ==========================================================================
@@ -1987,8 +2226,278 @@
     requestAnimationFrame(renderLoop);
   }
 
+  /* ==========================================================================
+     CUSTOM MOMENTUM AIM CURSOR (EDITORIAL & COSMOS)
+     ========================================================================== */
+  function initAimCursor() {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+
+    window.addEventListener("mousemove", e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (els.aimDot) {
+        els.aimDot.style.left = `${mouseX}px`;
+        els.aimDot.style.top = `${mouseY}px`;
+      }
+    });
+
+    function loopCursor() {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      if (els.aimCursor) {
+        els.aimCursor.style.left = `${ringX}px`;
+        els.aimCursor.style.top = `${ringY}px`;
+      }
+      requestAnimationFrame(loopCursor);
+    }
+    requestAnimationFrame(loopCursor);
+  }
+
+  /* ==========================================================================
+     3D SPATIAL GYRO ORBIT CANVAS (MOD 5: SPATIAL COSMOS)
+     ========================================================================== */
+  let cosmosOrbitInitialized = false;
+  function initCosmosOrbitCanvas() {
+    const canvas = document.getElementById("cosmos-orbit-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const parent = canvas.parentElement;
+    let width = (canvas.width = parent ? parent.clientWidth : 800);
+    let height = (canvas.height = parent ? parent.clientHeight : 280);
+
+    const tracks = getTracks();
+    const tracksToDisplay = tracks.slice(0, 9);
+
+    if (els.cosmosTelemetryNodes) {
+      els.cosmosTelemetryNodes.innerHTML = "";
+      tracksToDisplay.forEach(t => {
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "cosmos-telemetry-chip";
+        chip.innerHTML = `<span>⚡ Warp:</span> <strong>${t.name}</strong>`;
+        chip.addEventListener("click", () => {
+          playUiSound("warp");
+          state.activeTrack = t.name;
+          saveState();
+          renderCatalogView();
+          const chaptersSection = document.getElementById("catalog-chapters-section");
+          if (chaptersSection) chaptersSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        els.cosmosTelemetryNodes.appendChild(chip);
+      });
+    }
+
+    if (cosmosOrbitInitialized) return;
+    cosmosOrbitInitialized = true;
+
+    let orbitAngle = 0;
+    let tilt = 0.42;
+    let rotX = 0;
+    let isDragging = false;
+    let startX = 0;
+
+    canvas.addEventListener("mousedown", e => {
+      isDragging = true;
+      startX = e.clientX;
+    });
+    window.addEventListener("mousemove", e => {
+      if (isDragging) {
+        const dx = e.clientX - startX;
+        rotX += dx * 0.005;
+        startX = e.clientX;
+      }
+    });
+    window.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
+
+    canvas.addEventListener("click", e => {
+      const rect = canvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+      const cx = width / 2;
+      const cy = height / 2;
+
+      tracksToDisplay.forEach((track, i) => {
+        const angle = orbitAngle + rotX + (i * (Math.PI * 2 / tracksToDisplay.length));
+        const radius = Math.min(width, height) * 0.38;
+        const sx = cx + Math.cos(angle) * radius;
+        const sy = cy + Math.sin(angle) * radius * tilt;
+
+        const dist = Math.hypot(clickX - sx, clickY - sy);
+        if (dist < 26) {
+          playUiSound("warp");
+          state.activeTrack = track.name;
+          saveState();
+          renderCatalogView();
+          const chapters = document.getElementById("catalog-chapters-section");
+          if (chapters) chapters.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+
+    function drawOrbit() {
+      if (state.layoutMode !== "spatial-cosmos" || state.activeView !== "catalog") {
+        requestAnimationFrame(drawOrbit);
+        return;
+      }
+      ctx.clearRect(0, 0, width, height);
+      orbitAngle += 0.008;
+
+      const cx = width / 2;
+      const cy = height / 2;
+      const radius = Math.min(width, height) * 0.38;
+
+      // 1. Inel orbital eliptic 3D
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, radius, radius * tilt, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(168, 85, 247, 0.28)";
+      ctx.lineWidth = 1.2;
+      ctx.setLineDash([4, 6]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // 2. Nucleu central radiant (3D Core)
+      const corePulse = Math.sin(orbitAngle * 3) * 3;
+      const coreRadius = 24 + corePulse;
+      const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, coreRadius * 1.8);
+      grad.addColorStop(0, "#f3e8ff");
+      grad.addColorStop(0.4, "#a855f7");
+      grad.addColorStop(1, "transparent");
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, coreRadius * 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, coreRadius, 0, Math.PI * 2);
+      ctx.fillStyle = "#581c87";
+      ctx.fill();
+      ctx.strokeStyle = "#c084fc";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 11px 'Plus Jakarta Sans', sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("POLYMATH", cx, cy);
+
+      // 3. Sateliți orbitali
+      tracksToDisplay.forEach((track, i) => {
+        const angle = orbitAngle + rotX + (i * (Math.PI * 2 / tracksToDisplay.length));
+        const sx = cx + Math.cos(angle) * radius;
+        const sy = cy + Math.sin(angle) * radius * tilt;
+        const isBehind = Math.sin(angle) < 0;
+        const satRadius = isBehind ? 11 : 14;
+
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(sx, sy);
+        ctx.strokeStyle = isBehind ? "rgba(168, 85, 247, 0.08)" : "rgba(192, 132, 252, 0.22)";
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(sx, sy, satRadius, 0, Math.PI * 2);
+        ctx.fillStyle = isBehind ? "#1e1b4b" : "#4c1d95";
+        ctx.fill();
+        ctx.strokeStyle = track.name === state.activeTrack ? "#facc15" : "#c084fc";
+        ctx.lineWidth = track.name === state.activeTrack ? 2.5 : 1.5;
+        ctx.stroke();
+
+        if (!isBehind) {
+          ctx.fillStyle = "#f8fafc";
+          ctx.font = "600 10px 'Space Grotesk', sans-serif";
+          ctx.fillText(track.name.split(" ")[0], sx, sy + 20);
+        }
+      });
+
+      requestAnimationFrame(drawOrbit);
+    }
+    requestAnimationFrame(drawOrbit);
+  }
+
+  /* ==========================================================================
+     CYBER COMMAND KERNEL EXECUTION ENGINE (MOD 4)
+     ========================================================================== */
+  function executeCyberCli() {
+    if (!els.cyberCliInput) return;
+    const cmd = els.cyberCliInput.value.trim().toLowerCase();
+    els.cyberCliInput.value = "";
+    if (!cmd) return;
+
+    playUiSound("warp");
+    const out = els.cyberTerminalOutput;
+
+    function log(msg, colorClass = "") {
+      if (!out) return;
+      const p = document.createElement("p");
+      p.className = `cyber-log-line ${colorClass}`;
+      p.textContent = msg;
+      out.appendChild(p);
+      out.scrollTop = out.scrollHeight;
+    }
+
+    log(`$ ${cmd}`, "text-cyan");
+
+    if (cmd === "help") {
+      log("> COMENZI DISPONIBILE:");
+      log("> run <cpp | python | sql | js | java | linux | algo | fr | es>");
+      log("> stats       -> Afișează telemetrie XP, streak și capitole rezolvate");
+      log("> sound       -> Comută efectele sonore sintetizate (on/off)");
+      log("> solve       -> Activează soluția asistată 50/50");
+      log("> clear       -> Curăță ecranul terminalului");
+    } else if (cmd === "clear") {
+      if (out) out.innerHTML = `<p class="cyber-log-line text-cyan">&gt; Consola curățată.</p>`;
+    } else if (cmd === "stats") {
+      const today = getTodayKey();
+      const done = state.dailyHistory[today] || 0;
+      log(`> SYS.STATS: XP=${state.xp} | STREAK=${state.streak} zile | AZI=${done}/3 | MASTER=${Object.keys(state.masteryPoints).length} capitole`);
+    } else if (cmd === "sound") {
+      toggleSound();
+      log(`> AUDIO: Stare comutată la ${state.soundEnabled ? "ACTIVAT" : "DEZACTIVAT"}.`, "text-cyan");
+    } else if (cmd.startsWith("run ") || cmd.startsWith("start ")) {
+      const query = cmd.replace(/^(run|start)\s+/, "").trim();
+      const tracks = getTracks();
+      const matched = tracks.find(t => {
+        const tn = t.name.toLowerCase();
+        return tn.includes(query) ||
+          (query === "cpp" && tn.includes("c++")) ||
+          (query === "c++" && tn.includes("c & c++")) ||
+          (query === "js" && tn.includes("javascript")) ||
+          (query === "fr" && tn.includes("franceză")) ||
+          (query === "es" && tn.includes("spaniolă")) ||
+          (query === "py" && tn.includes("python"));
+      });
+
+      if (matched) {
+        state.activeTrack = matched.name;
+        saveState();
+        renderCatalogView();
+        log(`> EXECUȚIE: Salt la disciplina ${matched.name}...`, "text-cyan");
+        const chaptersSection = document.getElementById("catalog-chapters-section");
+        if (chaptersSection) chaptersSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        log(`> EROARE: Disciplina "${query}" nu a fost găsită. Tastează 'help'.`);
+      }
+    } else {
+      log(`> Comandă necunoscută: "${cmd}". Tastează 'help' pentru instrucțiuni.`);
+    }
+  }
+
   function renderAll() {
     applyTheme(state.theme);
+    applyLayoutMode(state.layoutMode || "bento-nextjs");
+    if (els.soundToggleIcon) {
+      els.soundToggleIcon.textContent = state.soundEnabled ? "🔊" : "🔇";
+    }
     renderStats();
     switchView(state.activeView || "catalog");
   }
@@ -1997,5 +2506,6 @@
     bindEvents();
     renderAll();
     initAmbientParticles();
+    initAimCursor();
   });
 })();
