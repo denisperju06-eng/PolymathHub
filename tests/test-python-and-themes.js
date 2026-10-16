@@ -25,7 +25,17 @@ async function testPythonAndThemes() {
   // =========================================================================
   console.log("\n🐍 1. Verificare Python: Starter Code fără răspuns pre-completat...");
   
-  // Selectăm domeniul Python
+  // Selectăm domeniul Python (extinzând lista de domenii dacă e colapsată)
+  await page.evaluate(() => {
+    let domainCard = Array.from(document.querySelectorAll(".domain-card"))
+      .find(c => c.textContent.includes("Python"));
+    if (!domainCard) {
+      const toggleBtn = document.getElementById("btn-toggle-domains");
+      if (toggleBtn) toggleBtn.click();
+    }
+  });
+  await new Promise(r => setTimeout(r, 200));
+
   await page.evaluate(() => {
     const domainCard = Array.from(document.querySelectorAll(".domain-card"))
       .find(c => c.textContent.includes("Python"));

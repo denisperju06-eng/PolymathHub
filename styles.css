@@ -635,12 +635,44 @@ body {
   transition: width 0.35s ease;
 }
 
+/* Buton Toggle Afișare / Restrângere Domenii */
+.catalog-domains-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 0.75rem 0 2rem 0;
+}
+
+.btn-toggle-domains {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: var(--bg-elevated);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.btn-toggle-domains:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-soft);
+  color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
 /* Panou Capitole din Domeniul Selectat */
 .catalog-chapters-section {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 1.75rem;
+  scroll-margin-top: 80px;
 }
 
 .catalog-chapters-header {
@@ -1422,6 +1454,21 @@ button {
   margin-bottom: 1.25rem;
 }
 
+.matching-col-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.matching-col-header {
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  padding-left: 0.2rem;
+}
+
 .matching-col {
   display: flex;
   flex-direction: column;
@@ -2149,6 +2196,27 @@ button {
   }
 
   .matching-columns-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .matching-col {
+    gap: 0.45rem;
+  }
+
+  .match-card {
+    padding: 0.5rem 0.55rem;
+    font-size: 0.76rem;
+    min-height: 48px;
+    line-height: 1.35;
+    border-radius: 8px;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .matching-col-header {
+    font-size: 0.68rem;
+    padding-left: 0.1rem;
   }
 }

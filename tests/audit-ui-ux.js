@@ -138,21 +138,34 @@ async function runAudit() {
 
     // 5. Testare Pagina Principală (Catalog & Domenii & Filtre Diviziuni)
     console.log("📚 Testare Pagina Principală (Catalog View & Diviziuni)...");
-    const domainCardsCount = await page.evaluate(() => document.querySelectorAll(".domain-card").length);
-    if (domainCardsCount === 15) {
-      successes.push(`✓ Pagina Principală conține exact toate cele 15 domenii de studiu.`);
+    const initialDomainsCount = await page.evaluate(() => document.querySelectorAll(".domain-card").length);
+    if (initialDomainsCount === 6) {
+      successes.push(`✓ Pagina Principală afișează inițial un număr moderat de 6 domenii pentru un aspect aerisit.`);
     } else {
-      issues.push(`Număr neașteptat de domenii în catalog: ${domainCardsCount} (așteptat: 15).`);
+      issues.push(`Număr neașteptat inițial de domenii în catalog: ${initialDomainsCount} (așteptat: 6).`);
     }
 
-    // Testare filtrare pe Diviziunea Informatică (9 domenii)
+    // Extindere toate domeniile
+    await page.click("#btn-toggle-domains");
+    await new Promise(r => setTimeout(r, 150));
+    const allDomainsCount = await page.evaluate(() => document.querySelectorAll(".domain-card").length);
+    if (allDomainsCount === 15) {
+      successes.push(`✓ Extinderea prin butonul toggle afișează complet toate cele 15 domenii de studiu.`);
+    } else {
+      issues.push(`Extinderea domeniilor a eșuat: găsite ${allDomainsCount} (așteptat: 15).`);
+    }
+
+    // Testare filtrare pe Diviziunea Informatică (inițial 6, extins 9)
     await page.click('.division-pill-btn[data-division="Informatică și Programare"]');
     await new Promise(r => setTimeout(r, 150));
+    const infoInitCount = await page.evaluate(() => document.querySelectorAll(".domain-card").length);
+    await page.click("#btn-toggle-domains");
+    await new Promise(r => setTimeout(r, 150));
     const infoCount = await page.evaluate(() => document.querySelectorAll(".domain-card").length);
-    if (infoCount === 9) {
-      successes.push(`✓ Filtrarea pe Diviziunea Informatică & Programare afișează exact 9 discipline.`);
+    if (infoInitCount === 6 && infoCount === 9) {
+      successes.push(`✓ Filtrarea pe Diviziunea Informatică & Programare afișează 6 inițial și 9 la extindere.`);
     } else {
-      issues.push(`Filtrarea pe Informatică a eșuat: găsite ${infoCount} (așteptat: 9).`);
+      issues.push(`Filtrarea pe Informatică a eșuat: inițial ${infoInitCount}, extins ${infoCount} (așteptat: 6 și 9).`);
     }
 
     // Testare filtrare pe Diviziunea Limbi Străine (6 domenii)
@@ -165,7 +178,7 @@ async function runAudit() {
       issues.push(`Filtrarea pe Limbi Străine a eșuat: găsite ${langCount} (așteptat: 6).`);
     }
 
-    // Revenire la Toate Disciplinele (15 domenii)
+    // Revenire la Toate Disciplinele
     await page.click('.division-pill-btn[data-division="ALL"]');
     await new Promise(r => setTimeout(r, 150));
 
@@ -210,14 +223,24 @@ async function runAudit() {
       issues.push("Eroare la comutarea în Study View (elementele nu au clasele corespunzătoare).");
     }
 
-    // 7. Testare Layout 2x2 (Dicționar & Quiz)
-    console.log("📐 Testare simetrie 2x2 Grid...");
+    // 7. Testare Layout Dicționar & Quiz
+    console.log("📐 Testare Dicționar & Quiz...");
+    const dictHeaderClean = await page.evaluate(() => {
+      const h = document.querySelector(".dictionary-header");
+      return h && !h.textContent.includes("2x2") && h.textContent.includes("Dicționar");
+    });
+    if (dictHeaderClean) {
+      successes.push("✓ Titlul Dicționarului este curat și nu mai conține textul derutant '(2x2)'.");
+    } else {
+      issues.push("Titlul dicționarului încă conține textul '(2x2)'.");
+    }
+
     const dictCols = await page.evaluate(() => {
       const grid = document.getElementById("lesson-dictionary");
       return window.getComputedStyle(grid).getPropertyValue("grid-template-columns").split(" ").length;
     });
     if (dictCols === 2) {
-      successes.push("✓ Dicționarul de Concepte este aranjat într-o grilă simetrică 2x2 (2 coloane).");
+      successes.push("✓ Dicționarul de Concepte este aranjat într-o grilă simetrică (2 coloane pe ecran desktop).");
     } else {
       issues.push(`Dicționarul nu are 2 coloane: detectat ${dictCols} coloane.`);
     }
@@ -231,9 +254,22 @@ async function runAudit() {
     });
     const quizOptionsTotal = await page.evaluate(() => document.querySelectorAll(".quiz-option-btn").length);
     if (quizCols === 2 && quizOptionsTotal === 4) {
-      successes.push(`✓ Modul Quiz este aranjat simetric 2x2 (${quizOptionsTotal} opțiuni pe 2 coloane).`);
+      successes.push(`✓ Modul Quiz este aranjat simetric (${quizOptionsTotal} opțiuni pe 2 coloane).`);
     } else {
       issues.push(`Quiz-ul nu este 2x2: ${quizCols} coloane, ${quizOptionsTotal} opțiuni.`);
+    }
+
+    // Comutare la Modul Potrivire (Matching)
+    await page.click("#tab-mode-match");
+    await new Promise(r => setTimeout(r, 150));
+    const matchCols = await page.evaluate(() => {
+      const grid = document.querySelector(".matching-columns-grid");
+      return window.getComputedStyle(grid).getPropertyValue("grid-template-columns").split(" ").length;
+    });
+    if (matchCols === 2) {
+      successes.push("✓ Modul Potrivire păstrează 2 coloane paralele (Termeni vs Semnificație).");
+    } else {
+      issues.push(`Modul Potrivire nu are 2 coloane: detectat ${matchCols}.`);
     }
 
     // 8. Testare Buzunar Glisant (Pocket Drawer)

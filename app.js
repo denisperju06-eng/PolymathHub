@@ -535,6 +535,10 @@
     // View 1: Catalog
     catalogView: document.getElementById("catalog-view"),
     catalogDomainsGrid: document.getElementById("catalog-domains-grid"),
+    catalogDomainsToggleWrap: document.getElementById("catalog-domains-toggle-wrap"),
+    btnToggleDomains: document.getElementById("btn-toggle-domains"),
+    btnToggleDomainsText: document.getElementById("btn-toggle-domains-text"),
+    btnToggleDomainsIcon: document.getElementById("btn-toggle-domains-icon"),
     catalogDomainSubtitle: document.getElementById("catalog-domain-subtitle"),
     catalogSelectedDomainTitle: document.getElementById("catalog-selected-domain-title"),
     catalogLevelFilter: document.getElementById("catalog-level-filter"),
@@ -688,6 +692,8 @@
   };
 
   let currentDivisionFilter = "ALL";
+  let domainsExpanded = false;
+  const DOMAINS_LIMIT = 6;
 
   function getTracks() {
     const tracksOrder = [
@@ -815,7 +821,21 @@
       return track.division === currentDivisionFilter;
     });
 
-    visibleTracks.forEach(track => {
+    const shouldLimit = !domainsExpanded && visibleTracks.length > DOMAINS_LIMIT;
+    let tracksToRender = visibleTracks;
+
+    if (shouldLimit) {
+      tracksToRender = visibleTracks.slice(0, DOMAINS_LIMIT);
+      // Asigură că dacă domeniul activ curent este în visibleTracks, el este vizibil
+      if (!tracksToRender.some(t => t.name === state.activeTrack)) {
+        const activeObj = visibleTracks.find(t => t.name === state.activeTrack);
+        if (activeObj) {
+          tracksToRender[DOMAINS_LIMIT - 1] = activeObj;
+        }
+      }
+    }
+
+    tracksToRender.forEach(track => {
       const trackLessons = allLessons.filter(l => l.track === track.name);
       const completedCount = trackLessons.filter(l => (state.masteryPoints[l.id] || 0) > 0).length;
       const pct = trackLessons.length ? Math.round((completedCount / trackLessons.length) * 100) : 0;
@@ -844,23 +864,44 @@
         </div>
       `;
 
-      card.addEventListener("click", () => {
+      function selectDomainAndScroll() {
         state.activeTrack = track.name;
         saveState();
         renderCatalogView();
-      });
+        const chaptersSection = document.getElementById("catalog-chapters-section") || els.catalogSelectedDomainTitle;
+        if (chaptersSection) {
+          chaptersSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      card.addEventListener("click", selectDomainAndScroll);
 
       card.addEventListener("keydown", e => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          state.activeTrack = track.name;
-          saveState();
-          renderCatalogView();
+          selectDomainAndScroll();
         }
       });
 
       els.catalogDomainsGrid.appendChild(card);
     });
+
+    // Buton Toggle Afișare / Restrângere Domenii Suplimentare
+    if (els.catalogDomainsToggleWrap && els.btnToggleDomains) {
+      if (visibleTracks.length <= DOMAINS_LIMIT) {
+        els.catalogDomainsToggleWrap.classList.add("hidden");
+      } else {
+        els.catalogDomainsToggleWrap.classList.remove("hidden");
+        const total = visibleTracks.length;
+        if (domainsExpanded) {
+          if (els.btnToggleDomainsText) els.btnToggleDomainsText.textContent = `Restrânge la ${DOMAINS_LIMIT} discipline`;
+          if (els.btnToggleDomainsIcon) els.btnToggleDomainsIcon.innerHTML = `<polyline points="18 15 12 9 6 15"></polyline>`;
+        } else {
+          if (els.btnToggleDomainsText) els.btnToggleDomainsText.textContent = `Afișează toate domeniile (${total}) ▾`;
+          if (els.btnToggleDomainsIcon) els.btnToggleDomainsIcon.innerHTML = `<polyline points="6 9 12 15 18 9"></polyline>`;
+        }
+      }
+    }
 
     // Actualizare Antet Capitole Domeniu Selectat
     els.catalogDomainSubtitle.textContent = `DOMENIUL SELECTAT: ${state.activeTrack.toUpperCase()}`;
@@ -1697,9 +1738,18 @@
         document.querySelectorAll(".division-pill-btn").forEach(p => p.classList.remove("active"));
         pill.classList.add("active");
         currentDivisionFilter = pill.getAttribute("data-division") || "ALL";
+        domainsExpanded = false;
         renderCatalogView();
       });
     });
+
+    // Buton Toggle Afișare / Restrângere Domenii Suplimentare
+    if (els.btnToggleDomains) {
+      els.btnToggleDomains.addEventListener("click", () => {
+        domainsExpanded = !domainsExpanded;
+        renderCatalogView();
+      });
+    }
 
     // Filtre & Căutare în Catalog
     if (els.catalogLevelFilter) {

@@ -130,6 +130,14 @@
       <!-- Generat dinamic din curriculum -->
     </section>
 
+    <!-- Buton Afișare / Restrângere Domenii Suplimentare (Inițial 4-6) -->
+    <div class="catalog-domains-toggle-wrap" id="catalog-domains-toggle-wrap">
+      <button type="button" class="btn-toggle-domains" id="btn-toggle-domains">
+        <span id="btn-toggle-domains-text">Afișează toate domeniile (15)</span>
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="btn-toggle-domains-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+    </div>
+
     <!-- Secțiunea de Capitole a Domeniului Selectat -->
     <section class="catalog-chapters-section" id="catalog-chapters-section">
       <div class="catalog-chapters-header">
@@ -194,10 +202,10 @@
       <!-- Conținut stil carte / enciclopedie -->
       <div class="book-reader" id="lesson-theory"></div>
 
-      <!-- Dicționar & Tabel Concepte / Vocabular (Grilă 2x2) -->
+      <!-- Dicționar & Tabel Concepte / Vocabular -->
       <div class="dictionary-box" id="dictionary-box">
         <div class="dictionary-header">
-          <span>Dicționar &amp; Concepte Esențiale (2x2)</span>
+          <span>Dicționar &amp; Concepte Esențiale</span>
         </div>
         <div class="dictionary-grid" id="lesson-dictionary"></div>
       </div>
@@ -300,8 +308,14 @@
           <p class="question-text">Selectează un element din <strong>Coloana Stângă</strong> și apoi corespondentul său din <strong>Coloana Dreaptă</strong>.</p>
         </div>
         <div class="matching-columns-grid">
-          <div class="matching-col" id="match-col-left"></div>
-          <div class="matching-col" id="match-col-right"></div>
+          <div class="matching-col-wrap">
+            <span class="matching-col-header">1. Alege Termenul (Stânga)</span>
+            <div class="matching-col" id="match-col-left"></div>
+          </div>
+          <div class="matching-col-wrap">
+            <span class="matching-col-header">2. Alege Perechea (Dreapta)</span>
+            <div class="matching-col" id="match-col-right"></div>
+          </div>
         </div>
         <div class="matching-footer">
           <span id="match-status-msg" class="validation-feedback">Potrivește toate perechile pentru a câștiga puncte de Măiestrie!</span>
