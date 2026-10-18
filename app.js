@@ -3052,87 +3052,18 @@
   }
 
   /* ==========================================================================
-     SISTEMUL SOLAR POLIMAT INTERACTIV 3D (ORRERY ENGINE) (MOD 5: SPATIAL COSMOS)
+     SISTEMUL SOLAR POLIMAT & CITADELA 3D (SURVIVOR 13 ARCHITECTURE) (MOD 5)
      ========================================================================== */
   let cosmosOrbitInitialized = false;
+  let cosmosThreeRenderer = null;
+  let cosmosThreeCamera = null;
+
   function initCosmosOrbitCanvas() {
     const canvas = document.getElementById("cosmos-orbit-canvas");
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const parent = canvas.parentElement;
-    let width = (canvas.width = parent ? parent.clientWidth : 800);
-    let height = (canvas.height = parent ? parent.clientHeight : 600);
-
-    const SOLAR_SYSTEM = [
-      {
-        id: "it",
-        name: "Planeta Informatică & Algoritmi",
-        label: "Informatică (7 Sateliți)",
-        color: "#06b6d4",
-        radius: 20,
-        orbitRadius: Math.min(width, height) * 0.22,
-        speed: 0.006,
-        desc: "C++, Python, JavaScript, Java, TypeScript, C#, Algoritmi",
-        satellites: [
-          { name: "C & C++", code: "C++", color: "#38bdf8", r: 8 },
-          { name: "Python", code: "Py", color: "#3b82f6", r: 8 },
-          { name: "JavaScript", code: "JS", color: "#eab308", r: 8 },
-          { name: "Java", code: "Java", color: "#f97316", r: 8 },
-          { name: "TypeScript & React", code: "TS", color: "#60a5fa", r: 8 },
-          { name: "C#", code: "C#", color: "#a855f7", r: 8 },
-          { name: "Algoritmi & Structuri de Date", code: "Algo", color: "#ec4899", r: 8 }
-        ]
-      },
-      {
-        id: "os",
-        name: "Planeta Sisteme, Linux & DevOps",
-        label: "Sisteme & DevOps",
-        color: "#f97316",
-        hasRings: true,
-        radius: 18,
-        orbitRadius: Math.min(width, height) * 0.35,
-        speed: 0.004,
-        desc: "Sisteme Linux, Docker, Shell & Arhitectură Cloud",
-        satellites: [
-          { name: "DevOps & Sisteme Linux", code: "Linux", color: "#fb923c", r: 9 }
-        ]
-      },
-      {
-        id: "db",
-        name: "Planeta Baze de Date & Arhitectură",
-        label: "Baze de Date",
-        color: "#8b5cf6",
-        radius: 17,
-        orbitRadius: Math.min(width, height) * 0.46,
-        speed: 0.0028,
-        desc: "SQL, Modelare Relațională, Indexare & Tranzacții ACID",
-        satellites: [
-          { name: "Baze de Date & SQL", code: "SQL", color: "#c084fc", r: 10 }
-        ]
-      },
-      {
-        id: "lang",
-        name: "Planeta Limbi Străine & Comunicare",
-        label: "Limbi Străine (5 Sateliți)",
-        color: "#10b981",
-        radius: 22,
-        orbitRadius: Math.min(width, height) * 0.58,
-        speed: 0.0018,
-        desc: "Engleză, Franceză, Spaniolă, Germană, Italiană (de la A1 la C2)",
-        satellites: [
-          { name: "Limba Engleză", code: "EN", color: "#34d399", r: 8 },
-          { name: "Limba Franceză", code: "FR", color: "#6ee7b7", r: 8 },
-          { name: "Limba Spaniolă", code: "ES", color: "#a7f3d0", r: 8 },
-          { name: "Limba Germană", code: "DE", color: "#fbbf24", r: 8 },
-          { name: "Limba Italiană", code: "IT", color: "#f43f5e", r: 8 }
-        ]
-      }
-    ];
 
     // Butoane Rapide de Telemetrie
-    if (els.cosmosTelemetryNodes) {
+    if (els.cosmosTelemetryNodes && els.cosmosTelemetryNodes.children.length === 0) {
       els.cosmosTelemetryNodes.innerHTML = "";
       const tracks = getTracks();
       tracks.forEach(t => {
@@ -3152,258 +3083,605 @@
       });
     }
 
-    if (cosmosOrbitInitialized) return;
+    if (cosmosOrbitInitialized) {
+      if (cosmosThreeRenderer && cosmosThreeCamera) {
+        const parent = canvas.parentElement;
+        const w = parent ? parent.clientWidth : 800;
+        const h = parent ? parent.clientHeight : 600;
+        if (w > 0 && h > 0) {
+          cosmosThreeCamera.aspect = w / h;
+          cosmosThreeCamera.updateProjectionMatrix();
+          cosmosThreeRenderer.setSize(w, h);
+        }
+      }
+      return;
+    }
     cosmosOrbitInitialized = true;
 
-    let time = 0;
-    let tilt = 0.45;
-    let rotX = 0;
-    let isDragging = false;
-    let startX = 0;
-    let startY = 0;
-    let mouseX = -9999;
-    let mouseY = -9999;
-    let hoveredTarget = null;
-    let activeFilter = "ALL";
+    // Verificăm disponibilitatea Three.js
+    if (typeof THREE === "undefined") {
+      initFallback2DCosmos(canvas);
+      return;
+    }
 
-    // Navigație Comenzi Rapide Solar System
-    document.querySelectorAll(".cosmos-jump-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".cosmos-jump-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        activeFilter = btn.getAttribute("data-planet") || "ALL";
-        playUiSound("click");
-      });
+    try {
+      initThreeJSCosmos(canvas);
+    } catch (err) {
+      console.warn("WebGL Cosmos Init failed, falling back to 2D:", err);
+      initFallback2DCosmos(canvas);
+    }
+  }
+
+  function initThreeJSCosmos(canvas) {
+    const parent = canvas.parentElement;
+    let width = parent ? parent.clientWidth : 800;
+    let height = parent ? parent.clientHeight : 600;
+    if (width <= 0) width = 800;
+    if (height <= 0) height = 600;
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+      antialias: true,
+      alpha: true,
+      powerPreference: "high-performance"
     });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(width, height);
+    if (renderer.toneMapping !== undefined) {
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.3;
+    }
+    cosmosThreeRenderer = renderer;
 
-    if (els.hudWarpBtn) {
-      els.hudWarpBtn.addEventListener("click", () => {
-        if (hoveredTarget && hoveredTarget.trackName) {
-          playUiSound("warp");
-          state.activeTrack = hoveredTarget.trackName;
-          saveState();
-          renderCatalogView();
-          const chapters = document.getElementById("catalog-chapters-section");
-          if (chapters) chapters.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x020307, 0.02);
+
+    const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 1000);
+    camera.position.set(0, 5, 30);
+    cosmosThreeCamera = camera;
+
+    // World Group to hold all 3D entities
+    const worldGroup = new THREE.Group();
+    scene.add(worldGroup);
+
+    // 1. Lighting Rig
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
+    scene.add(ambientLight);
+
+    const goldKeyLight = new THREE.PointLight(0xd4af37, 2.5, 70);
+    goldKeyLight.position.set(0, 10, 10);
+    scene.add(goldKeyLight);
+
+    const cyanFillLight = new THREE.PointLight(0x00f0ff, 1.8, 60);
+    cyanFillLight.position.set(-15, -5, 5);
+    scene.add(cyanFillLight);
+
+    const fuchsiaRimLight = new THREE.PointLight(0xd946ef, 1.8, 60);
+    fuchsiaRimLight.position.set(15, -5, 5);
+    scene.add(fuchsiaRimLight);
+
+    // 2. Ambient Particle Nebula (2500 Particles)
+    const pCount = 2500;
+    const pGeo = new THREE.BufferGeometry();
+    const pPos = new Float32Array(pCount * 3);
+    const pColors = new Float32Array(pCount * 3);
+    const colorA = new THREE.Color(0xd4af37);
+    const colorB = new THREE.Color(0x00f0ff);
+
+    for (let i = 0; i < pCount * 3; i += 3) {
+      pPos[i] = (Math.random() - 0.5) * 110;
+      pPos[i + 1] = (Math.random() - 0.5) * 80;
+      pPos[i + 2] = (Math.random() - 0.5) * 110;
+      const mixed = colorA.clone().lerp(colorB, Math.random());
+      pColors[i] = mixed.r;
+      pColors[i + 1] = mixed.g;
+      pColors[i + 2] = mixed.b;
+    }
+    pGeo.setAttribute("position", new THREE.BufferAttribute(pPos, 3));
+    pGeo.setAttribute("color", new THREE.BufferAttribute(pColors, 3));
+
+    const pMat = new THREE.PointsMaterial({
+      size: 0.18,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.65,
+      blending: THREE.AdditiveBlending
+    });
+    const nebula = new THREE.Points(pGeo, pMat);
+    worldGroup.add(nebula);
+
+    // 3. Grid Plane
+    const grid = new THREE.GridHelper(100, 50, 0xd4af37, 0x161e2e);
+    grid.position.y = -10;
+    worldGroup.add(grid);
+
+    // 4. Central Polymath Citadel Monolith (Survivor 13 Monolith)
+    const citadelGroup = new THREE.Group();
+    worldGroup.add(citadelGroup);
+
+    const cageGeo = new THREE.IcosahedronGeometry(5, 1);
+    const cageMat = new THREE.MeshStandardMaterial({
+      color: 0xd4af37,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.45,
+      emissive: 0x5a450e
+    });
+    const cageMesh = new THREE.Mesh(cageGeo, cageMat);
+    citadelGroup.add(cageMesh);
+
+    const coreGeo = new THREE.OctahedronGeometry(2.8, 2);
+    const coreMat = new THREE.MeshStandardMaterial({
+      color: 0x00f0ff,
+      wireframe: true,
+      emissive: 0x004455,
+      emissiveIntensity: 0.85
+    });
+    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+    citadelGroup.add(coreMesh);
+
+    const ringGeo = new THREE.TorusGeometry(8, 0.05, 16, 120);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.4 });
+    const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+    ringMesh.rotation.x = Math.PI / 2.2;
+    citadelGroup.add(ringMesh);
+
+    // Helper Laser Beam
+    function createBeam(from, to, hex) {
+      const geo = new THREE.BufferGeometry().setFromPoints([from, to]);
+      const mat = new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: 0.4 });
+      return new THREE.Line(geo, mat);
+    }
+
+    const interactiveObjects = [];
+    const disciplineNodes = {};
+
+    // 5. The 4 Major Quadrants (Survivor 13 Architecture)
+    // 01. ACT I • TENSOR & INFORMATICĂ (it)
+    const aiGroup = new THREE.Group();
+    aiGroup.position.set(-14, 4, 3);
+    const aiMesh = new THREE.Mesh(
+      new THREE.DodecahedronGeometry(3.0, 0),
+      new THREE.MeshStandardMaterial({ color: 0xf59e0b, wireframe: true, emissive: 0x78350f, emissiveIntensity: 0.7 })
+    );
+    aiMesh.userData = {
+      id: "it",
+      title: "Act I • Tensor & Informatică",
+      desc: "7 Sateliți: C++, Python, JavaScript, Java, TypeScript, C#, Algoritmi",
+      trackName: "Python",
+      isMajor: true,
+      color: "#f59e0b"
+    };
+    aiGroup.add(aiMesh);
+    const aiCore = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(1.5, 0),
+      new THREE.MeshStandardMaterial({ color: 0xfbbf24, wireframe: false, emissive: 0xd97706, roughness: 0.3 })
+    );
+    aiGroup.add(aiCore);
+    worldGroup.add(aiGroup);
+    interactiveObjects.push(aiMesh);
+    disciplineNodes["it"] = { group: aiGroup, mesh: aiMesh, cameraTarget: new THREE.Vector3(-14, 4, 11) };
+
+    // 02. ACT II • SILICON & SISTEME LINUX (os)
+    const sysGroup = new THREE.Group();
+    sysGroup.position.set(14, 5, -2);
+    const sysMesh = new THREE.Mesh(
+      new THREE.TorusKnotGeometry(2.5, 0.65, 64, 8),
+      new THREE.MeshStandardMaterial({ color: 0x06b6d4, wireframe: true, emissive: 0x0e7490, emissiveIntensity: 0.7 })
+    );
+    sysMesh.userData = {
+      id: "os",
+      title: "Act II • Silicon Systems & Linux",
+      desc: "Sisteme Linux, Docker, Shell & Arhitectură Cloud",
+      trackName: "DevOps & Sisteme Linux",
+      isMajor: true,
+      color: "#06b6d4"
+    };
+    sysGroup.add(sysMesh);
+    const sysCore = new THREE.Mesh(
+      new THREE.SphereGeometry(1.3, 16, 16),
+      new THREE.MeshStandardMaterial({ color: 0x22d3ee, wireframe: false, emissive: 0x0891b2, roughness: 0.3 })
+    );
+    sysGroup.add(sysCore);
+    worldGroup.add(sysGroup);
+    interactiveObjects.push(sysMesh);
+    disciplineNodes["os"] = { group: sysGroup, mesh: sysMesh, cameraTarget: new THREE.Vector3(14, 5, 6) };
+
+    // 03. ACT III • LATTICE & BAZE DE DATE (db)
+    const sqlGroup = new THREE.Group();
+    sqlGroup.position.set(-9, -5, 7);
+    const sqlMesh = new THREE.Mesh(
+      new THREE.OctahedronGeometry(3.0, 1),
+      new THREE.MeshStandardMaterial({ color: 0x10b981, wireframe: true, emissive: 0x064e3b, emissiveIntensity: 0.7 })
+    );
+    sqlMesh.userData = {
+      id: "db",
+      title: "Act III • Lattice & Baze de Date",
+      desc: "Calcul Relațional, SQL, B-Tree & Tranzacții ACID",
+      trackName: "Baze de Date & SQL",
+      isMajor: true,
+      color: "#10b981"
+    };
+    sqlGroup.add(sqlMesh);
+    const sqlCore = new THREE.Mesh(
+      new THREE.OctahedronGeometry(1.4, 0),
+      new THREE.MeshStandardMaterial({ color: 0x34d399, wireframe: false, emissive: 0x059669, roughness: 0.3 })
+    );
+    sqlGroup.add(sqlCore);
+    worldGroup.add(sqlGroup);
+    interactiveObjects.push(sqlMesh);
+    disciplineNodes["db"] = { group: sqlGroup, mesh: sqlMesh, cameraTarget: new THREE.Vector3(-9, -5, 15) };
+
+    // 04. ACT IV • PHONETICS & LIMBI STRĂINE (lang)
+    const lingGroup = new THREE.Group();
+    lingGroup.position.set(10, -4, 6);
+    const lingMesh = new THREE.Mesh(
+      new THREE.TorusGeometry(3.0, 0.8, 16, 50),
+      new THREE.MeshStandardMaterial({ color: 0xd946ef, wireframe: true, emissive: 0x86198f, emissiveIntensity: 0.7 })
+    );
+    lingMesh.userData = {
+      id: "lang",
+      title: "Act IV • Phonetics & Limbi Străine",
+      desc: "5 Sateliți: Engleză, Franceză, Spaniolă, Germană, Italiană",
+      trackName: "Limba Engleză",
+      isMajor: true,
+      color: "#d946ef"
+    };
+    lingGroup.add(lingMesh);
+    const lingCore = new THREE.Mesh(
+      new THREE.DodecahedronGeometry(1.4, 0),
+      new THREE.MeshStandardMaterial({ color: 0xf472b6, wireframe: false, emissive: 0xdb2777, roughness: 0.3 })
+    );
+    lingGroup.add(lingCore);
+    worldGroup.add(lingGroup);
+    interactiveObjects.push(lingMesh);
+    disciplineNodes["lang"] = { group: lingGroup, mesh: lingMesh, cameraTarget: new THREE.Vector3(10, -4, 14) };
+
+    // Neon Laser Beams from Satellites to Central Citadel
+    worldGroup.add(createBeam(aiGroup.position, new THREE.Vector3(0, 0, 0), 0xf59e0b));
+    worldGroup.add(createBeam(sysGroup.position, new THREE.Vector3(0, 0, 0), 0x06b6d4));
+    worldGroup.add(createBeam(sqlGroup.position, new THREE.Vector3(0, 0, 0), 0x10b981));
+    worldGroup.add(createBeam(lingGroup.position, new THREE.Vector3(0, 0, 0), 0xd946ef));
+
+    // 6. Sub-satellites for Individual Courses
+    const subSatellites = [];
+    function addSubSatellites(parentGroup, satellitesList, baseOrbitR, speedMultiplier) {
+      const ring = new THREE.Mesh(
+        new THREE.TorusGeometry(baseOrbitR, 0.02, 8, 64),
+        new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.15 })
+      );
+      ring.rotation.x = Math.PI / 2;
+      parentGroup.add(ring);
+
+      const count = satellitesList.length;
+      satellitesList.forEach((sat, idx) => {
+        const satMesh = new THREE.Mesh(
+          new THREE.SphereGeometry(0.55, 12, 12),
+          new THREE.MeshStandardMaterial({
+            color: new THREE.Color(sat.color),
+            emissive: new THREE.Color(sat.color),
+            emissiveIntensity: 0.6,
+            roughness: 0.4
+          })
+        );
+        satMesh.userData = {
+          id: sat.code,
+          title: sat.name,
+          desc: `Satelit orbital • ${sat.name}`,
+          trackName: sat.name,
+          isSatellite: true,
+          color: sat.color
+        };
+        parentGroup.add(satMesh);
+        interactiveObjects.push(satMesh);
+        subSatellites.push({
+          mesh: satMesh,
+          orbitR: baseOrbitR,
+          speed: speedMultiplier,
+          offset: (idx * (Math.PI * 2 / count))
+        });
       });
     }
 
+    // IT Sub-satellites (7)
+    addSubSatellites(aiGroup, [
+      { name: "C & C++", code: "C++", color: "#38bdf8" },
+      { name: "Python", code: "Py", color: "#3b82f6" },
+      { name: "JavaScript", code: "JS", color: "#eab308" },
+      { name: "Java", code: "Java", color: "#f97316" },
+      { name: "TypeScript & React", code: "TS", color: "#60a5fa" },
+      { name: "C#", code: "C#", color: "#a855f7" },
+      { name: "Algoritmi & Structuri de Date", code: "Algo", color: "#ec4899" }
+    ], 5.2, 0.015);
+
+    // Systems Sub-satellite (1)
+    addSubSatellites(sysGroup, [
+      { name: "DevOps & Sisteme Linux", code: "Linux", color: "#fb923c" }
+    ], 4.5, 0.02);
+
+    // SQL Sub-satellite (1)
+    addSubSatellites(sqlGroup, [
+      { name: "Baze de Date & SQL", code: "SQL", color: "#c084fc" }
+    ], 4.6, 0.018);
+
+    // Languages Sub-satellites (5)
+    addSubSatellites(lingGroup, [
+      { name: "Limba Engleză", code: "EN", color: "#34d399" },
+      { name: "Limba Franceză", code: "FR", color: "#6ee7b7" },
+      { name: "Limba Spaniolă", code: "ES", color: "#a7f3d0" },
+      { name: "Limba Germană", code: "DE", color: "#fbbf24" },
+      { name: "Limba Italiană", code: "IT", color: "#f43f5e" }
+    ], 5.0, 0.014);
+
+    // 7. Drag & Orbit Controls with Smooth Lerp
+    let isDragging = false;
+    let prevMouse = { x: 0, y: 0 };
+    let targetRot = { x: 0, y: 0 };
+    let curRot = { x: 0, y: 0 };
+    const mouseNorm = new THREE.Vector2(-9999, -9999);
+    const raycaster = new THREE.Raycaster();
+    let hoveredObject = null;
+    let hoveredTarget = null;
+
     canvas.addEventListener("mousedown", e => {
       isDragging = true;
-      startX = e.clientX;
-      startY = e.clientY;
+      prevMouse = { x: e.clientX, y: e.clientY };
     });
-
+    window.addEventListener("mouseup", () => { isDragging = false; });
     window.addEventListener("mousemove", e => {
       const rect = canvas.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
+      const relX = e.clientX - rect.left;
+      const relY = e.clientY - rect.top;
+      if (relX >= 0 && relX <= rect.width && relY >= 0 && relY <= rect.height) {
+        mouseNorm.x = (relX / rect.width) * 2 - 1;
+        mouseNorm.y = -(relY / rect.height) * 2 + 1;
+      }
 
       if (isDragging) {
-        const dx = e.clientX - startX;
-        const dy = e.clientY - startY;
-        rotX += dx * 0.005;
-        tilt = Math.max(0.2, Math.min(0.8, tilt + dy * 0.002));
-        startX = e.clientX;
-        startY = e.clientY;
+        const dx = e.clientX - prevMouse.x;
+        const dy = e.clientY - prevMouse.y;
+        targetRot.y += dx * 0.003;
+        targetRot.x += dy * 0.003;
+        targetRot.x = Math.max(-0.6, Math.min(0.6, targetRot.x));
+        prevMouse = { x: e.clientX, y: e.clientY };
       }
     });
 
-    window.addEventListener("mouseup", () => {
-      isDragging = false;
-    });
+    // Touch Support
+    canvas.addEventListener("touchstart", e => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
+    }, { passive: true });
+    window.addEventListener("touchmove", e => {
+      if (isDragging && e.touches.length === 1) {
+        const dx = e.touches[0].clientX - prevMouse.x;
+        const dy = e.touches[0].clientY - prevMouse.y;
+        targetRot.y += dx * 0.005;
+        targetRot.x += dy * 0.005;
+        targetRot.x = Math.max(-0.6, Math.min(0.6, targetRot.x));
+        prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
+    }, { passive: true });
+    window.addEventListener("touchend", () => { isDragging = false; });
 
+    // Wheel Zoom
+    canvas.addEventListener("wheel", e => {
+      camera.position.z += e.deltaY * 0.02;
+      camera.position.z = Math.max(12, Math.min(48, camera.position.z));
+      e.preventDefault();
+    }, { passive: false });
+
+    // Click handler on 3D Canvas
     canvas.addEventListener("click", () => {
-      if (hoveredTarget && hoveredTarget.trackName) {
+      if (hoveredTarget) {
         playUiSound("warp");
-        state.activeTrack = hoveredTarget.trackName;
-        saveState();
-        renderCatalogView();
-        const chapters = document.getElementById("catalog-chapters-section");
-        if (chapters) chapters.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (hoveredTarget.isMajor) {
+          flyToNode(hoveredTarget.id);
+        } else if (hoveredTarget.trackName) {
+          warpToTrack(hoveredTarget.trackName);
+        }
       }
     });
 
-    function drawSolarSystem() {
-      if (state.layoutMode !== "spatial-cosmos" || state.activeView !== "catalog") {
-        requestAnimationFrame(drawSolarSystem);
+    function flyToNode(id) {
+      document.querySelectorAll(".cosmos-jump-btn").forEach(b => {
+        b.classList.toggle("active", b.getAttribute("data-planet") === id);
+      });
+
+      if (id === "ALL") {
+        if (typeof gsap !== "undefined") {
+          gsap.to(camera.position, { x: 0, y: 5, z: 30, duration: 1.8, ease: "power3.inOut" });
+          gsap.to(targetRot, { x: 0, y: 0, duration: 1.5, ease: "power2.out" });
+        } else {
+          camera.position.set(0, 5, 30);
+          targetRot.x = targetRot.y = 0;
+        }
         return;
       }
 
-      ctx.clearRect(0, 0, width, height);
+      const node = disciplineNodes[id];
+      if (node && typeof gsap !== "undefined") {
+        gsap.to(camera.position, {
+          x: node.cameraTarget.x,
+          y: node.cameraTarget.y,
+          z: node.cameraTarget.z,
+          duration: 1.8,
+          ease: "power3.inOut"
+        });
+      }
+    }
+
+    function warpToTrack(trackName) {
+      state.activeTrack = trackName;
+      saveState();
+      renderCatalogView();
+      const chapters = document.getElementById("catalog-chapters-section");
+      if (chapters) chapters.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // Navigație Comenzi Rapide Solar System (Exact cele 5 Butoane din test)
+    document.querySelectorAll(".cosmos-jump-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const planetId = btn.getAttribute("data-planet") || "ALL";
+        playUiSound("click");
+        flyToNode(planetId);
+      });
+    });
+
+    // HUD Warp Button
+    if (els.hudWarpBtn) {
+      els.hudWarpBtn.addEventListener("click", () => {
+        const target = (hoveredTarget && hoveredTarget.trackName) || "Python";
+        playUiSound("warp");
+        warpToTrack(target);
+      });
+    }
+
+    // Resize Handler
+    window.addEventListener("resize", () => {
+      if (!canvas || !renderer || !camera) return;
+      const p = canvas.parentElement;
+      if (!p) return;
+      const w = p.clientWidth;
+      const h = p.clientHeight;
+      if (w <= 0 || h <= 0) return;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+
+    // 8. Animation Loop
+    let time = 0;
+    function animate(t) {
+      if (state.layoutMode !== "spatial-cosmos" || state.activeView !== "catalog") {
+        requestAnimationFrame(animate);
+        return;
+      }
       time += 1;
 
-      const cx = width / 2;
-      const cy = height / 2;
+      // Smooth Orbit Lerp
+      curRot.x += (targetRot.x - curRot.x) * 0.05;
+      curRot.y += (targetRot.y - curRot.y) * 0.05;
+      worldGroup.rotation.y = curRot.y;
+      worldGroup.rotation.x = curRot.x;
 
-      // 1. Soarele Central (POLYMATH SOL)
-      const sunPulse = Math.sin(time * 0.04) * 4;
-      const sunRadius = 26 + sunPulse;
-      const sunGlow = ctx.createRadialGradient(cx, cy, 4, cx, cy, sunRadius * 2.5);
-      sunGlow.addColorStop(0, "#ffffff");
-      sunGlow.addColorStop(0.2, "#fde047");
-      sunGlow.addColorStop(0.6, "rgba(245, 158, 11, 0.45)");
-      sunGlow.addColorStop(1, "transparent");
+      // Rotate Monolith Citadel
+      citadelGroup.rotation.y += 0.003;
+      cageMesh.rotation.x += 0.002;
+      coreMesh.rotation.y -= 0.005;
 
-      ctx.beginPath();
-      ctx.arc(cx, cy, sunRadius * 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = sunGlow;
-      ctx.fill();
+      // Rotate Major Satellites
+      aiGroup.rotation.y += 0.006;
+      sysGroup.rotation.x += 0.008;
+      sqlGroup.rotation.y += 0.009;
+      lingGroup.rotation.z += 0.007;
 
-      ctx.beginPath();
-      ctx.arc(cx, cy, sunRadius, 0, Math.PI * 2);
-      ctx.fillStyle = "#f59e0b";
-      ctx.fill();
-      ctx.strokeStyle = "#fef08a";
-      ctx.lineWidth = 2.5;
-      ctx.stroke();
-
-      ctx.fillStyle = "#000000";
-      ctx.font = "bold 9px 'Space Grotesk', sans-serif";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText("SOL", cx, cy);
-
-      let foundHover = null;
-
-      // 2. Planetele & Sateliții din Sistemul Solar
-      SOLAR_SYSTEM.forEach(planet => {
-        const isDimmed = (activeFilter !== "ALL" && activeFilter !== planet.id);
-        const pAngle = (time * planet.speed) + rotX;
-        const px = cx + Math.cos(pAngle) * planet.orbitRadius;
-        const py = cy + Math.sin(pAngle) * planet.orbitRadius * tilt;
-
-        // Inelul orbital al planetei
-        ctx.beginPath();
-        ctx.ellipse(cx, cy, planet.orbitRadius, planet.orbitRadius * tilt, 0, 0, Math.PI * 2);
-        ctx.strokeStyle = isDimmed ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.12)";
-        ctx.lineWidth = 1;
-        ctx.setLineDash([3, 5]);
-        ctx.stroke();
-        ctx.setLineDash([]);
-
-        // Rază de legătură la Soare
-        if (!isDimmed) {
-          ctx.beginPath();
-          ctx.moveTo(cx, cy);
-          ctx.lineTo(px, py);
-          ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
-        }
-
-        // Planeta corp ceresc
-        ctx.beginPath();
-        ctx.arc(px, py, planet.radius, 0, Math.PI * 2);
-        ctx.fillStyle = isDimmed ? "#1e293b" : planet.color;
-        ctx.fill();
-        ctx.strokeStyle = isDimmed ? "rgba(255, 255, 255, 0.1)" : "#ffffff";
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-
-        // Inele tip Saturn (dacă are inele)
-        if (planet.hasRings && !isDimmed) {
-          ctx.beginPath();
-          ctx.ellipse(px, py, planet.radius * 1.8, planet.radius * 0.6, 0.35, 0, Math.PI * 2);
-          ctx.strokeStyle = "rgba(251, 146, 60, 0.55)";
-          ctx.lineWidth = 2.5;
-          ctx.stroke();
-        }
-
-        // Numele Planetei
-        if (!isDimmed) {
-          ctx.fillStyle = "#e2e8f0";
-          ctx.font = "bold 10px 'Space Grotesk', sans-serif";
-          ctx.fillText(planet.name.split(" ")[1] || planet.name, px, py + planet.radius + 14);
-        }
-
-        // Verificare hover pe planetă
-        const distPlanet = Math.hypot(mouseX - px, mouseY - py);
-        if (distPlanet < planet.radius + 6) {
-          foundHover = {
-            title: planet.name,
-            desc: planet.desc,
-            trackName: planet.satellites[0] ? planet.satellites[0].name : "Informatică"
-          };
-        }
-
-        // 3. Sateliții orbitali din jurul planetei
-        const satCount = planet.satellites.length;
-        const satOrbitR = planet.radius + 24;
-
-        planet.satellites.forEach((sat, sIdx) => {
-          const sAngle = (time * 0.02) + (sIdx * (Math.PI * 2 / satCount));
-          const sx = px + Math.cos(sAngle) * satOrbitR;
-          const sy = py + Math.sin(sAngle) * (satOrbitR * 0.7);
-
-          // Mini-inel orbital al satelitului
-          if (!isDimmed) {
-            ctx.beginPath();
-            ctx.ellipse(px, py, satOrbitR, satOrbitR * 0.7, 0, 0, Math.PI * 2);
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
-
-            // Linie satelit
-            ctx.beginPath();
-            ctx.moveTo(px, py);
-            ctx.lineTo(sx, sy);
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
-            ctx.stroke();
-          }
-
-          // Corp satelit
-          const isActive = sat.name === state.activeTrack;
-          ctx.beginPath();
-          ctx.arc(sx, sy, sat.r, 0, Math.PI * 2);
-          ctx.fillStyle = isDimmed ? "#0f172a" : (isActive ? "#facc15" : sat.color);
-          ctx.fill();
-          ctx.strokeStyle = isActive ? "#ffffff" : "rgba(255, 255, 255, 0.4)";
-          ctx.lineWidth = isActive ? 2 : 1;
-          ctx.stroke();
-
-          // Nume satelit
-          if (!isDimmed) {
-            ctx.fillStyle = isActive ? "#facc15" : "#cbd5e1";
-            ctx.font = "600 9px 'Space Grotesk', sans-serif";
-            ctx.fillText(sat.code, sx, sy - sat.r - 4);
-          }
-
-          // Verificare hover pe satelit
-          const distSat = Math.hypot(mouseX - sx, mouseY - sy);
-          if (distSat < sat.r + 6) {
-            foundHover = {
-              title: sat.name,
-              desc: `Satelit orbital al ${planet.name}`,
-              trackName: sat.name
-            };
-
-            // Brackets de țintire
-            ctx.beginPath();
-            ctx.arc(sx, sy, sat.r + 6, 0, Math.PI * 2);
-            ctx.strokeStyle = "#38bdf8";
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-          }
-        });
+      // Orbit Sub-Satellites
+      subSatellites.forEach(s => {
+        const angle = (time * s.speed) + s.offset;
+        s.mesh.position.x = Math.cos(angle) * s.orbitR;
+        s.mesh.position.z = Math.sin(angle) * s.orbitR;
+        s.mesh.position.y = Math.sin(angle * 2) * 0.35;
       });
 
-      // HUD Telemetry card
-      hoveredTarget = foundHover;
-      if (els.cosmosHudCard) {
-        if (foundHover) {
+      // Drift Nebula
+      nebula.rotation.y = t * 0.00004;
+
+      // Raycast Hover Detection
+      raycaster.setFromCamera(mouseNorm, camera);
+      const hits = raycaster.intersectObjects(interactiveObjects);
+      let foundHit = null;
+
+      if (hits.length > 0) {
+        foundHit = hits[0].object;
+        if (hoveredObject !== foundHit) {
+          if (hoveredObject) hoveredObject.scale.set(1, 1, 1);
+          hoveredObject = foundHit;
+          hoveredObject.scale.set(1.18, 1.18, 1.18);
+          playUiSound("quantum");
+        }
+      } else {
+        if (hoveredObject) {
+          hoveredObject.scale.set(1, 1, 1);
+          hoveredObject = null;
+        }
+      }
+
+      // Update HUD card
+      if (foundHit && foundHit.userData) {
+        hoveredTarget = foundHit.userData;
+        if (els.cosmosHudCard) {
           els.cosmosHudCard.style.display = "block";
-          if (els.hudTargetName) els.hudTargetName.textContent = foundHover.title;
-          if (els.hudCardDesc) els.hudCardDesc.textContent = foundHover.desc;
-        } else {
+          if (els.hudTargetName) els.hudTargetName.textContent = hoveredTarget.title;
+          if (els.hudCardDesc) els.hudCardDesc.textContent = hoveredTarget.desc;
+        }
+      } else {
+        hoveredTarget = null;
+        if (els.cosmosHudCard) {
           els.cosmosHudCard.style.display = "none";
         }
       }
 
-      requestAnimationFrame(drawSolarSystem);
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
     }
-    requestAnimationFrame(drawSolarSystem);
+    requestAnimationFrame(animate);
+  }
+
+  function initFallback2DCosmos(canvas) {
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const parent = canvas.parentElement;
+    let width = (canvas.width = parent ? parent.clientWidth : 800);
+    let height = (canvas.height = parent ? parent.clientHeight : 600);
+
+    const SOLAR_SYSTEM = [
+      { id: "it", name: "Planeta Informatică & Algoritmi", color: "#06b6d4", radius: 24, orbitRadius: Math.min(width, height) * 0.24, speed: 0.006, desc: "C++, Python, JavaScript, Java, TypeScript, C#, Algoritmi" },
+      { id: "os", name: "Planeta Sisteme, Linux & DevOps", color: "#f97316", radius: 22, orbitRadius: Math.min(width, height) * 0.36, speed: 0.004, desc: "Sisteme Linux, Docker, Shell & Cloud" },
+      { id: "db", name: "Planeta Baze de Date & Arhitectură", color: "#8b5cf6", radius: 20, orbitRadius: Math.min(width, height) * 0.47, speed: 0.0028, desc: "SQL, Modelare Relațională & ACID" },
+      { id: "lang", name: "Planeta Limbi Străine & Comunicare", color: "#10b981", radius: 24, orbitRadius: Math.min(width, height) * 0.58, speed: 0.0018, desc: "Engleză, Franceză, Spaniolă, Germană, Italiană" }
+    ];
+
+    let time = 0;
+    function draw2D() {
+      if (state.layoutMode !== "spatial-cosmos" || state.activeView !== "catalog") {
+        requestAnimationFrame(draw2D);
+        return;
+      }
+      ctx.clearRect(0, 0, width, height);
+      time += 1;
+      const cx = width / 2;
+      const cy = height / 2;
+
+      // Soare
+      ctx.beginPath();
+      ctx.arc(cx, cy, 32, 0, Math.PI * 2);
+      ctx.fillStyle = "#f59e0b";
+      ctx.fill();
+      ctx.strokeStyle = "#fef08a";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      SOLAR_SYSTEM.forEach(p => {
+        const angle = time * p.speed;
+        const px = cx + Math.cos(angle) * p.orbitRadius;
+        const py = cy + Math.sin(angle) * (p.orbitRadius * 0.45);
+
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, p.orbitRadius, p.orbitRadius * 0.45, 0, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(px, py, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw2D);
+    }
+    requestAnimationFrame(draw2D);
   }
 
   /* ==========================================================================
