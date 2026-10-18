@@ -838,10 +838,14 @@
 
     if (validLayout === "dual-split") {
       if (!state.activeDualPane) state.activeDualPane = "theory";
+      document.documentElement.setAttribute("data-dual-pane", state.activeDualPane);
       document.body.setAttribute("data-dual-pane", state.activeDualPane);
+      if (els.studyView) els.studyView.setAttribute("data-dual-pane", state.activeDualPane);
       renderDualSplitWorkspace();
     } else {
+      document.documentElement.removeAttribute("data-dual-pane");
       document.body.removeAttribute("data-dual-pane");
+      if (els.studyView) els.studyView.removeAttribute("data-dual-pane");
     }
 
     // Aim cursor activ doar pe desktop în modurile Swiss Editorial & Spatial Cosmos
@@ -2821,7 +2825,9 @@
 
       state.activeDualPane = paneName;
       if (state.layoutMode === "dual-split") {
+        document.documentElement.setAttribute("data-dual-pane", paneName);
         document.body.setAttribute("data-dual-pane", paneName);
+        if (els.studyView) els.studyView.setAttribute("data-dual-pane", paneName);
 
         // Glisare animată de sus în jos pe containerul vizibil din dreapta
         const targetContainer = (paneName === "theory" || paneName === "examples")
@@ -2833,6 +2839,7 @@
           void targetContainer.offsetWidth; // retrigger reflow
           targetContainer.classList.add("dual-pane-animate");
           targetContainer.scrollTop = 0;
+          targetContainer.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       } else if (targetEl) {
         targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -3433,7 +3440,9 @@
     };
 
     const activePane = state.activeDualPane || "theory";
+    document.documentElement.setAttribute("data-dual-pane", activePane);
     document.body.setAttribute("data-dual-pane", activePane);
+    if (els.studyView) els.studyView.setAttribute("data-dual-pane", activePane);
     document.querySelectorAll(".dual-nav-tab").forEach(tab => {
       tab.classList.toggle("active", tab.getAttribute("data-pane") === activePane);
     });

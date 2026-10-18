@@ -2954,65 +2954,81 @@ button {
 
 /* 1. Secvența Implicită sau Activă: TEORIE & CONCEPTE */
 [data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) .theory-card,
-[data-layout="dual-split"][data-dual-pane="theory"] .theory-card {
+[data-layout="dual-split"][data-dual-pane="theory"] .theory-card,
+[data-layout="dual-split"] [data-dual-pane="theory"] .theory-card {
   display: block !important;
 }
 [data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #theory-article-content,
-[data-layout="dual-split"][data-dual-pane="theory"] #theory-article-content {
+[data-layout="dual-split"][data-dual-pane="theory"] #theory-article-content,
+[data-layout="dual-split"] [data-dual-pane="theory"] #theory-article-content {
   display: block !important;
 }
 [data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #ast-terminal-box,
-[data-layout="dual-split"][data-dual-pane="theory"] #ast-terminal-box {
+[data-layout="dual-split"][data-dual-pane="theory"] #ast-terminal-box,
+[data-layout="dual-split"] [data-dual-pane="theory"] #ast-terminal-box {
   display: none !important;
 }
 [data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #practice-card,
-[data-layout="dual-split"][data-dual-pane="theory"] #practice-card {
+[data-layout="dual-split"][data-dual-pane="theory"] #practice-card,
+[data-layout="dual-split"] [data-dual-pane="theory"] #practice-card {
   display: none !important;
 }
 
 /* 2. Secvența 2: EXEMPLE & AST DEBUGGER (SURVIVOR 03) */
-[data-layout="dual-split"][data-dual-pane="examples"] .theory-card {
+[data-layout="dual-split"][data-dual-pane="examples"] .theory-card,
+[data-layout="dual-split"] [data-dual-pane="examples"] .theory-card {
   display: block !important;
   border: none !important;
   background: transparent !important;
   box-shadow: none !important;
   padding: 0 !important;
 }
-[data-layout="dual-split"][data-dual-pane="examples"] #theory-article-content {
+[data-layout="dual-split"][data-dual-pane="examples"] #theory-article-content,
+[data-layout="dual-split"] [data-dual-pane="examples"] #theory-article-content {
   display: none !important;
 }
-[data-layout="dual-split"][data-dual-pane="examples"] #ast-terminal-box {
+[data-layout="dual-split"][data-dual-pane="examples"] #ast-terminal-box,
+[data-layout="dual-split"] [data-dual-pane="examples"] #ast-terminal-box {
   display: flex !important;
   width: 100% !important;
   margin-top: 0 !important;
 }
-[data-layout="dual-split"][data-dual-pane="examples"] #practice-card {
+[data-layout="dual-split"][data-dual-pane="examples"] #practice-card,
+[data-layout="dual-split"] [data-dual-pane="examples"] #practice-card {
   display: none !important;
 }
 
 /* 3. Secvența 3: ATELIER PRACTIC & SIMULATOR */
-[data-layout="dual-split"][data-dual-pane="practice"] .theory-card {
+[data-layout="dual-split"][data-dual-pane="practice"] .theory-card,
+[data-layout="dual-split"] [data-dual-pane="practice"] .theory-card {
   display: none !important;
 }
-[data-layout="dual-split"][data-dual-pane="practice"] #practice-card {
+[data-layout="dual-split"][data-dual-pane="practice"] #practice-card,
+[data-layout="dual-split"] [data-dual-pane="practice"] #practice-card {
   display: block !important;
 }
-[data-layout="dual-split"][data-dual-pane="practice"] #practice-mode-write {
+[data-layout="dual-split"][data-dual-pane="practice"] #practice-mode-write,
+[data-layout="dual-split"] [data-dual-pane="practice"] #practice-mode-write {
   display: block !important;
 }
 [data-layout="dual-split"][data-dual-pane="practice"] #practice-mode-match,
-[data-layout="dual-split"][data-dual-pane="practice"] #practice-mode-quiz {
+[data-layout="dual-split"] [data-dual-pane="practice"] #practice-mode-match,
+[data-layout="dual-split"][data-dual-pane="practice"] #practice-mode-quiz,
+[data-layout="dual-split"] [data-dual-pane="practice"] #practice-mode-quiz {
   display: none !important;
 }
 
 /* 4. Secvența 4: EXERCIȚII TACTILE (NEOMORPHIC QUIZ & MATCHING) */
-[data-layout="dual-split"][data-dual-pane="exercises"] .theory-card {
+[data-layout="dual-split"][data-dual-pane="exercises"] .theory-card,
+[data-layout="dual-split"] [data-dual-pane="exercises"] .theory-card {
   display: none !important;
 }
-[data-layout="dual-split"][data-dual-pane="exercises"] #practice-card {
+[data-layout="dual-split"][data-dual-pane="exercises"] #practice-card,
+[data-layout="dual-split"] [data-dual-pane="exercises"] #practice-card {
   display: block !important;
 }
-[data-layout="dual-split"][data-dual-pane="exercises"] #practice-mode-write {
+[data-layout="dual-split"][data-dual-pane="exercises"] #practice-mode-write,
+[data-layout="dual-split"] [data-dual-pane="exercises"] #practice-mode-write {
   display: none !important;
 }
 
