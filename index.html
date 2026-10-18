@@ -9,29 +9,9 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <!-- Three.js & GSAP pentru 3D Cosmos & Tranzitii de Camera -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Aetheris Ambient Glow Orbs (Cameleonic, reactioneaza la etapele lectiei) -->
-  <div id="orb1" class="ambient-orb" aria-hidden="true"></div>
-  <div id="orb2" class="ambient-orb" aria-hidden="true"></div>
-  <div id="orb3" class="ambient-orb" aria-hidden="true"></div>
-
-  <!-- Custom Momentum Aim Cursor (Activ în Modurile Editorial & Cosmos) -->
-  <div id="aim-cursor" class="custom-aim-cursor" aria-hidden="true"></div>
-  <div id="aim-dot" class="custom-aim-dot" aria-hidden="true"></div>
-
-  <!-- Ambient Dynamic Aurora Mesh & Interactive Constellation Canvas -->
-  <div class="ambient-glow" aria-hidden="true">
-    <div class="glow-orb orb-primary"></div>
-    <div class="glow-orb orb-secondary"></div>
-    <div class="glow-orb orb-tertiary"></div>
-  </div>
-  <canvas id="ambient-particle-canvas" aria-hidden="true"></canvas>
-
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
   <!-- BARA SUPERIOARĂ STATISTICI, NAVIGAȚIE PAGINI & PROFIL -->
@@ -46,94 +26,77 @@
       </div>
     </div>
 
-    <!-- Navigație Eficientizată: 3 Tab-uri Principale în Capsulă Segmentată Modernă -->
+    <!-- Navigație Pagini SPA (Elimină Pop-up-urile Agasante) -->
     <nav class="top-nav-links" aria-label="Navigație Pagini Aplicație">
-      <button class="nav-link-btn active" data-view="catalog" id="nav-catalog-btn" title="Curriculum &amp; Catalog Cursuri">
-        <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        <span>Curriculum</span>
+      <button class="nav-link-btn active" data-view="catalog" id="nav-catalog-btn">
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Catalog
       </button>
-      <button class="nav-link-btn" data-view="study" id="nav-study-btn" title="Atelier de Studiu &amp; Practică 50/50">
-        <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-        <span>Atelier 50/50</span>
+      <button class="nav-link-btn" data-view="study" id="nav-study-btn">
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        Studiu
       </button>
-      <button class="nav-link-btn" data-view="leagues" id="nav-leagues-btn" title="Mod de Joc: Ligi, Misiuni Zilnice &amp; Progres">
-        <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-        <span>Gamificare</span>
+      <button class="nav-link-btn" data-view="activity" id="nav-activity-btn">
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Activitate
       </button>
-      <!-- Buton ascuns pentru compatibilitate cu suitele de testare -->
-      <button class="nav-link-btn hidden" data-view="activity" id="nav-activity-btn" style="display:none;" aria-hidden="true">Activitate</button>
+      <button class="nav-link-btn" data-view="leagues" id="nav-leagues-btn">
+        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+        Ligi
+      </button>
     </nav>
 
-    <!-- Cluster Statistici Unificat într-un Singur Widget Capsulă (Scor + Obiectiv Zi + Glow Neon la Streak) -->
+    <!-- Cluster Statistici Interactive (Navighează Direct la Paginile Dedicate) -->
     <div class="stats-cluster">
-      <div class="unified-stats-badge streak-unfulfilled" id="unified-stats-badge" role="region" aria-label="Statistici Progres Polimat">
-        <!-- Partea 1: Scor & Rang (XP) -->
-        <div class="stat-pill xp-pill" id="xp-pill" role="button" tabindex="0" title="Vezi Ligi, Nivel &amp; Realizări">
-          <span class="stat-icon" aria-hidden="true">⚡</span>
-          <div class="stat-content">
-            <span class="stat-value" id="xp-count">0 XP</span>
-          </div>
+      <!-- 1. Streak Pill -> Navighează la Pagina de Activitate & Calendar -->
+      <div class="stat-pill streak-pill" id="streak-pill" role="button" tabindex="0" title="Apasă pentru Pagina de Activitate &amp; Calendar">
+        <span class="stat-icon" aria-hidden="true">
+          <svg class="ui-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-primary);"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+        </span>
+        <div class="stat-content">
+          <span class="stat-value" id="streak-count">0</span>
+          <span class="stat-label">Streak</span>
         </div>
+      </div>
 
-        <!-- Separator subtil -->
-        <span class="unified-stats-sep" aria-hidden="true">•</span>
-
-        <!-- Partea 2: Streak & Obiectiv Zilnic (cit din cit) -->
-        <div class="stat-pill streak-pill" id="streak-pill" role="button" tabindex="0" title="Vezi Calendar Activitate Zilnică">
-          <span class="stat-icon" id="unified-streak-icon" aria-hidden="true">🎯</span>
-          <div class="stat-content">
-            <span class="stat-value" id="daily-progress-text">0/3</span>
-            <span class="stat-label" id="daily-progress-label">Azi</span>
-          </div>
-          <!-- Valori păstrate pentru compatibilitate totală JS / teste -->
-          <span id="streak-count" class="streak-count-val" style="display:none;">0</span>
-          <span id="user-rank" class="user-rank-val" style="display:none;">Inițiat</span>
+      <!-- 2. XP Pill -> Navighează la Pagina de Ligi & Clasamente -->
+      <div class="stat-pill xp-pill" id="xp-pill" role="button" tabindex="0" title="Apasă pentru Pagina de Ligi &amp; Ranguri">
+        <span class="stat-icon" aria-hidden="true">
+          <svg class="ui-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#f59e0b;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H8v4h8v-4h-1c-.55 0-1-.45-1-1v-2.34"></path><path d="M6 4h12v7a6 6 0 0 1-12 0V4z"></path></svg>
+        </span>
+        <div class="stat-content">
+          <span class="stat-value" id="xp-count">0 XP</span>
+          <span class="stat-label" id="user-rank">Inițiat</span>
         </div>
+      </div>
 
-        <!-- Element semantic Obiectiv Zilnic pentru compatibilitate completă cu testele automate -->
-        <div class="stat-pill goal-pill hidden" id="goal-pill" style="display:none;" aria-hidden="true">
-          <span class="stat-icon" id="goal-icon"></span>
-          <div id="goal-tooltip-content" style="display:none;" aria-hidden="true">
-            <strong id="goal-tooltip-title"></strong>
-            <p id="goal-tooltip-text"></p>
-          </div>
+      <!-- 3. Obiectiv Zilnic -> Bifa la 3/3 + Tooltip/Popover explicativ -->
+      <div class="stat-pill goal-pill" id="goal-pill" role="button" tabindex="0" title="Obiectiv zilnic (Apasă pentru detalii)">
+        <span class="stat-icon" id="goal-icon" aria-hidden="true">
+          <svg class="ui-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+        </span>
+        <div class="stat-content">
+          <span class="stat-value" id="daily-progress-text">0/3</span>
+          <span class="stat-label" id="daily-progress-label">Azi</span>
+        </div>
+        <div class="goal-tooltip-content" id="goal-tooltip-content" role="tooltip">
+          <strong id="goal-tooltip-title">Obiectiv Zilnic</strong>
+          <p id="goal-tooltip-text">Azi ai rezolvat 0 din 3 sarcini. În total ai rezolvat 0 sarcini.</p>
         </div>
       </div>
     </div>
 
-    <!-- Cluster Controale: Unic Dock cu 2 Părți (Stânga: 📐 Design/Layout | Dreapta: 🎨 Culori/Teme) + Sunet -->
-    <!-- Cluster Controale: Unic Dock cu Paleta de Culori (Lasa doar culorile) + Sunet -->
+    <!-- Cluster Controale: Schimbare Fundal / Temă cu Emoji Colorat -->
     <div class="controls-cluster">
-      <div class="unified-appearance-dock" id="unified-appearance-dock" title="Paletă Culori">
-        <!-- Selector Layout păstrat ascuns în DOM pentru compatibilitate cu testele automate -->
-        <select id="layout-selector" class="theme-select layout-select" style="display:none;" aria-hidden="true">
-          <option value="bento-nextjs" selected>🍱 Bento</option>
-          <option value="dual-split">💻 Dual Split</option>
-          <option value="swiss-editorial">🏛️ Swiss</option>
-          <option value="cyber-kernel">⚡ Cyber</option>
-          <option value="spatial-cosmos">🌌 Cosmos</option>
-          <option value="micro-scroll">📊 Dashboard</option>
-        </select>
-
-        <div class="appearance-segment theme-segment">
-          <span class="appearance-icon" title="Paletă de Culori" aria-hidden="true">🎨</span>
-          <select id="theme-selector" class="theme-select" aria-label="Selectează tema de culori">
-            <option value="emerald-forest" selected>🟢 Emerald Zen</option>
-            <option value="cyber-dark">🌑 Cyber Dark</option>
-            <option value="sepia-book">📜 Carte Sepia</option>
-            <option value="neon-amethyst">🟣 Amethyst</option>
-            <option value="sunset-amber">🌅 Sunset Amber</option>
-            <option value="ocean-deep">🌊 Ocean Deep</option>
-            <option value="daylight-clean">☀️ Daylight Clean</option>
-            <option value="tactile-neumorphic">🧊 Neumorphic</option>
-            <option value="aurora-borealis">🌌 Aurora</option>
-          </select>
-        </div>
-      </div>
-
-      <button type="button" id="sound-toggle-btn" class="sound-toggle-btn btn-3d-toggle" title="Comută Vizualizarea 3D / Simplă" aria-label="Comută modul 3D sau simplu">
-        <span id="sound-toggle-icon">🧊 3D</span>
-      </button>
+      <select id="theme-selector" class="theme-select" aria-label="Selectează tema de culori">
+        <option value="emerald-forest" selected>🟢 Emerald Zen (Verde)</option>
+        <option value="cyber-dark">🌑 Cyber Dark (Negru)</option>
+        <option value="sepia-book">📜 Carte Sepia (Cald)</option>
+        <option value="neon-amethyst">🟣 Amethyst Neon (Violet)</option>
+        <option value="sunset-amber">🌅 Sunset Amber (Apus)</option>
+        <option value="ocean-deep">🌊 Ocean Deep (Albastru)</option>
+        <option value="daylight-clean">☀️ Daylight Clean (Luminos)</option>
+      </select>
     </div>
   </header>
 
@@ -142,93 +105,8 @@
        ========================================================================= -->
   <main id="catalog-view" class="catalog-layout">
     <section class="catalog-hero">
-      <div class="hero-badge-ribbon">
-        <span class="pulsing-beacon" aria-hidden="true"></span>
-        <span class="badge-text">Enciclopedie &amp; Laborator Interactiv Next.js</span>
-      </div>
-      <h2>
-        Dincolo de cutii monotone.<br>
-        <span class="gradient-headline">Arhitectură fluidă pentru polimați.</span>
-      </h2>
+      <h2>Enciclopedia &amp; Laboratorul Interactiv</h2>
       <p>Selectează o disciplină de studiu din domeniul Informatică sau Limbi Străine pentru a explora capitolele enciclopedice și a începe practica activă.</p>
-    </section>
-
-    <!-- 1. Consola Cyber Command Kernel (Activă în Modul Cyber Kernel) -->
-    <section id="cyber-command-stage" class="cyber-command-stage hidden" aria-label="Consola Cibernetică de Comenzi">
-      <div class="cyber-kernel-header">
-        <div style="display:flex; align-items:center; gap:0.5rem;">
-          <span class="cyber-status-dot"></span>
-          <span class="cyber-title">&gt; POLYMATH.KERNEL // SYS_ONLINE [PORT: 8000] [MEM: 64MB]</span>
-        </div>
-        <span class="cyber-clock" id="cyber-telemetry-clock">ONLINE // 60 FPS</span>
-      </div>
-      <div class="cyber-cli-bar">
-        <span class="cyber-prompt">$</span>
-        <input type="text" id="cyber-cli-input" class="cyber-cli-input" placeholder="Tastează o comandă (ex: run cpp, run python, run sql, run fr, stats, solve, hint)..." autocomplete="off" spellcheck="false">
-        <button type="button" id="cyber-cli-run-btn" class="cyber-run-btn">EXECUTE</button>
-      </div>
-      <div class="cyber-quick-tags" id="cyber-quick-tags">
-        <span class="cyber-tag" data-cmd="run cpp">run c++</span>
-        <span class="cyber-tag" data-cmd="run python">run python</span>
-        <span class="cyber-tag" data-cmd="run sql">run sql</span>
-        <span class="cyber-tag" data-cmd="run js">run javascript</span>
-        <span class="cyber-tag" data-cmd="run fr">run franceză</span>
-        <span class="cyber-tag" data-cmd="stats">sys.stats()</span>
-        <span class="cyber-tag" data-cmd="sound">sound.toggle()</span>
-      </div>
-      <div class="cyber-terminal-output" id="cyber-terminal-output">
-        <p class="cyber-log-line">&gt; POLYMATH KERNEL V5.2 // Conectat la baza de date cu 15 discipline.</p>
-        <p class="cyber-log-line text-cyan">&gt; Tastează comenzi de rulare sau dă click pe etichetele rapide de mai sus.</p>
-      </div>
-    </section>
-
-    <!-- 2. Scena 3D Cosmos Orbit: SISTEMUL SOLAR POLIMAT & CITADELA 3D (Initial pe Main) -->
-    <section id="cosmos-orbit-stage" class="cosmos-orbit-stage" aria-label="Sistemul Solar Polimat Interactiv 3D">
-      <div class="cosmos-stage-header" style="display: none !important;" aria-hidden="true">
-        <div class="cosmos-title-wrap">
-          <div class="cosmos-badge-row">
-            <span class="cosmos-beacon"></span>
-            <span class="cosmos-badge-label">3D COGNITIVE CITADEL // SURVIVOR 13</span>
-          </div>
-          <h3 class="cosmos-stage-title">CITADELA POLIMATĂ &bull; CELE 4 PILOANE 3D</h3>
-          <p class="cosmos-stage-sub">Apasă pe oricare figură (Calculator, Server, Bază de Date, Carte) pentru a deschide sistemul solar al disciplinelor.</p>
-        </div>
-        <div class="cosmos-nav-shortcuts" id="cosmos-nav-shortcuts">
-          <button type="button" class="cosmos-jump-btn active" data-planet="ALL">☀️ Toată Galaxia</button>
-          <button type="button" class="cosmos-jump-btn" data-planet="it">💻 Informatică (7 Sateliți)</button>
-          <button type="button" class="cosmos-jump-btn" data-planet="os">🐧 Sisteme &amp; DevOps</button>
-          <button type="button" class="cosmos-jump-btn" data-planet="db">🗄️ Baze de Date</button>
-          <button type="button" class="cosmos-jump-btn" data-planet="lang">🌍 Limbi Străine (5 Sateliți)</button>
-          <div class="cosmos-controls-divider" aria-hidden="true"></div>
-          <button type="button" class="cosmos-action-btn" id="cosmos-pause-btn" title="Pauză / Reluare Rotație Orbită">⏸️ Pauză</button>
-          <button type="button" class="cosmos-action-btn" id="cosmos-speed-btn" title="Comută Viteza de Rotație">⚡ 1x</button>
-          <button type="button" class="cosmos-action-btn" id="cosmos-reset-cam-btn" title="Recentrează Camera în Vedere Cosmică">🎥 Centrare</button>
-        </div>
-      </div>
-      <div class="cosmos-canvas-wrapper">
-        <canvas id="cosmos-orbit-canvas" class="cosmos-orbit-canvas"></canvas>
-        <!-- Stratul plutitor accesibil pentru logo-uri și etichete sateliți -->
-        <div class="cosmos-labels-layer" id="cosmos-labels-layer"></div>
-        <div class="cosmos-hud-overlay" id="cosmos-hud-overlay">
-          <div class="cosmos-hud-card" id="cosmos-hud-card" style="display:none;">
-            <div class="hud-card-header">
-              <span class="hud-dot"></span>
-              <span class="hud-target-name" id="hud-target-name">Saturn IT</span>
-            </div>
-            <p class="hud-card-desc" id="hud-card-desc">7 Sateliți orbitali de programare</p>
-            <div class="hud-quick-stats" id="hud-quick-stats" style="display:none;">
-              <span class="hud-stat-pill" id="hud-stat-lessons">32 Capitole</span>
-              <span class="hud-stat-pill" id="hud-stat-xp">+1200 XP</span>
-            </div>
-            <div class="hud-chips-row" id="hud-chips-row"></div>
-            <div class="hud-actions-row">
-              <button type="button" class="hud-back-btn" id="hud-back-btn">← Galaxie</button>
-              <button type="button" class="hud-warp-btn" id="hud-warp-btn">🚀 DESCHIDE TEMELE</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cosmos-quick-telemetry" id="cosmos-telemetry-nodes" style="display: none !important;" aria-hidden="true"></div>
     </section>
 
     <!-- Filtru Categorii / Diviziuni (Informatică & Programare vs Limbi Străine) -->
@@ -262,13 +140,6 @@
 
     <!-- Secțiunea de Capitole a Domeniului Selectat -->
     <section class="catalog-chapters-section" id="catalog-chapters-section">
-      <div class="chapters-top-nav-bar" id="chapters-top-nav-bar">
-        <button type="button" class="btn-back-to-citadel" id="btn-back-to-citadel" aria-label="Înapoi la Citadela 3D">
-          <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.4rem;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-          &larr; Înapoi la Citadela 3D
-        </button>
-        <span class="chapters-course-badge" id="chapters-course-badge">Curs Selectat</span>
-      </div>
       <div class="catalog-chapters-header">
         <div>
           <span class="chapter-level-tag" id="catalog-domain-subtitle">DOMENIUL SELECTAT</span>
@@ -305,9 +176,9 @@
   <main id="study-view" class="study-layout hidden">
     <!-- Bara Superioară de Navigare în Modul Studiu -->
     <nav class="study-top-nav" aria-label="Navigare Studiu">
-      <button id="back-to-catalog-btn" class="study-nav-btn" title="Înapoi la Citadela 3D">
+      <button id="back-to-catalog-btn" class="study-nav-btn" title="Înapoi la Catalogul General">
         <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        &larr; Înapoi la Citadela 3D
+        Înapoi la Cursuri
       </button>
       <div class="study-nav-center">
         <span class="study-current-track-tag" id="study-track-indicator">SQL</span>
@@ -322,7 +193,7 @@
     <aside class="dual-split-topic-nav" id="dual-split-topic-nav">
       <div class="dual-nav-header">
         <span class="dual-nav-sub">DISCIPLINA ACTIVĂ</span>
-        <h3 class="dual-nav-track" id="dual-track-title">C++ Systems</h3>
+        <h3 class="dual-nav-track" id="dual-track-title">SQL</h3>
       </div>
       <div class="dual-chapter-picker-wrap">
         <label for="dual-chapter-select" class="dual-select-label">CAPITOL ACTIV:</label>
@@ -339,15 +210,15 @@
         <button type="button" class="dual-nav-tab" id="dual-tab-examples" data-pane="examples">
           <span class="dual-tab-icon">💡</span>
           <div class="dual-tab-info">
-            <strong>2. Exemple &amp; AST Debugger</strong>
-            <small>Execuție Pas cu Pas (Survivor 03)</small>
+            <strong>2. Exemple &amp; Cod</strong>
+            <small>Model Paralel &amp; Sintaxă</small>
           </div>
         </button>
         <button type="button" class="dual-nav-tab" id="dual-tab-practice" data-pane="practice">
           <span class="dual-tab-icon">⚡</span>
           <div class="dual-tab-info">
-            <strong>3. Atelier Practic &amp; Simulator</strong>
-            <small>Codare 50/50 &amp; Live Simulation</small>
+            <strong>3. Atelier Practic</strong>
+            <small>Scriere, Potrivire &amp; Quiz</small>
           </div>
         </button>
       </div>
@@ -357,9 +228,10 @@
       </div>
     </aside>
 
-    <!-- 1. CAPITOLUL ENCICLOPEDIC (Teorie Stil Carte + Dicționar + Model Paralel AST Debugger) -->
-    <article class="card theory-card">
-      <div class="theory-article-content" id="theory-article-content">
+    <!-- Zona Conținut Dreapta (Se comută dinamic: Teorie / Exemple / Practică) -->
+    <div class="study-content-area" id="study-content-area">
+      <!-- 1. CAPITOLUL ENCICLOPEDIC (Teorie Stil Carte + Dicționar) -->
+      <article class="card theory-card" id="theory-card">
         <div class="lesson-meta-bar">
           <span class="badge-category" id="lesson-category-badge">Domeniu</span>
           <span class="badge-level" id="lesson-level-badge">Nivel</span>
@@ -378,82 +250,27 @@
           </div>
           <div class="dictionary-grid" id="lesson-dictionary"></div>
         </div>
-      </div>
+      </article>
 
-      <!-- Exemplu & Terminal Interactiv AST Debugger (Cyber Engine la Exemple) -->
-      <div class="example-box ast-terminal-container neo-plate cyber-code-engine" id="ast-terminal-box">
-        <div class="ast-terminal-header cyber-terminal-header">
-          <div class="ast-window-controls">
-            <span class="ast-dot dot-red"></span>
-            <span class="ast-dot dot-yellow"></span>
-            <span class="ast-dot dot-green"></span>
-            <span class="ast-filename cyber-filename" id="ast-filename">> CYBER.ENGINE // EXEMPLU DE COD</span>
+      <!-- 2. MODEL PARALEL & EXEMPLE DE REFERINȚĂ -->
+      <article class="card example-card" id="example-card">
+        <div class="example-box">
+          <div class="example-header">
+            <div>
+              <h3 class="example-title">
+                <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem; color:var(--accent-primary);"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+                Model Paralel &amp; Exemplu de Referință
+              </h3>
+              <p class="example-subtitle">Analizează structura codului și principiul rezolvării înainte de a trece la exercițiul practic.</p>
+            </div>
+            <button id="copy-example-btn" class="btn-copy">Copiază</button>
           </div>
-          <div class="ast-badge cyber-badge" id="ast-line-badge">
-            <span class="ast-status-pulse cyber-pulse"></span>
-            <span id="ast-badge-text">CYBER RUNTIME // 60 FPS</span>
-          </div>
+          <pre class="code-display"><code id="lesson-example"></code></pre>
         </div>
+      </article>
 
-        <div class="ast-terminal-body">
-          <!-- Stânga: Rânduri de Cod Interactive Clicabile -->
-          <div class="ast-code-col">
-            <div class="ast-col-title">
-              <span>COD EXECUTABIL &bull; APASĂ PE ORICE RÂND</span>
-              <button id="copy-example-btn" class="btn-copy">Copiază</button>
-            </div>
-            <div class="ast-code-lines" id="ast-code-lines">
-              <!-- Populate dinamic din exemplul de cod al lecției -->
-            </div>
-            <!-- Păstrăm elementul original pentru compatibilitate completă -->
-            <pre class="code-display hidden" style="display:none;"><code id="lesson-example"></code></pre>
-
-            <div class="ast-controls-bar">
-              <button type="button" class="ast-btn ast-btn-step" id="ast-step-btn" title="Pasul următor (F10)">
-                <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                Pas Următor (F10)
-              </button>
-              <button type="button" class="ast-btn ast-btn-run" id="ast-run-btn" title="Rulează tot codul (F5)">
-                <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
-                Rulează Tot (F5)
-              </button>
-              <button type="button" class="ast-btn ast-btn-reset" id="ast-reset-btn" title="Resetează pointerul de execuție">
-                <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
-                Resetează
-              </button>
-            </div>
-          </div>
-
-          <!-- Dreapta: Explicație Semantică în Timp Real & Memorie Stack/Heap -->
-          <div class="ast-inspector-col">
-            <div class="ast-explain-card neo-plate">
-              <div class="ast-inspect-header">
-                <span class="ast-inspect-label">SEMANTICĂ INSTRUCȚIUNE</span>
-                <span class="ast-line-indicator" id="ast-current-line-num">Rândul 1</span>
-              </div>
-              <p class="ast-explain-text" id="ast-explain">Selectează un rând din stânga sau apasă pe „Pas Următor” pentru a inspecta semantica instrucțiunii în memoria RAM.</p>
-            </div>
-
-            <div class="ast-memory-card neo-plate">
-              <div class="ast-inspect-header">
-                <span class="ast-inspect-label">INSPECTOR MEMORIE (STACK &amp; HEAP)</span>
-                <span class="ast-heap-val" id="ast-heap-val">0 Bytes</span>
-              </div>
-              <div class="ast-blocks-grid" id="ast-memory-blocks">
-                <!-- Blocuri de memorie animate -->
-              </div>
-              <div class="ast-vars-row">
-                <span class="ast-vars-label">Registru / Pointer:</span>
-                <code class="ast-vars-code" id="ast-vars-val">null</code>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 2. LABORATORUL INTERACTIV (Scriere/Traducere, Potrivire 2 Coloane, Quiz 2x2) -->
-    <article class="card practice-card" id="practice-card">
+      <!-- 3. LABORATORUL INTERACTIV (Scriere/Traducere, Potrivire 2 Coloane, Quiz 2x2) -->
+      <article class="card practice-card" id="practice-card">
       <div class="practice-header">
         <div>
           <h3 class="practice-title">
@@ -568,7 +385,8 @@
         <div id="quiz-feedback-msg" class="validation-feedback" style="margin-top:0.85rem;">Selectează opțiunea corectă de mai sus.</div>
       </div>
     </article>
-  </main>
+  </div>
+</main>
 
   <!-- =========================================================================
        VIEW 3: PAGINĂ COMPLETĂ ACTIVITATE & CALENDAR (FĂRĂ POP-UP)
@@ -636,264 +454,46 @@
   </main>
 
   <!-- =========================================================================
-       VIEW 4: PAGINĂ COMPLETĂ LIGI & GAMIFICARE (STIL EXPERIMENT CLAUDE 12)
+       VIEW 4: PAGINĂ COMPLETĂ LIGI & REALIZĂRI (FĂRĂ POP-UP)
        ========================================================================= -->
   <main id="leagues-view" class="page-layout hidden">
-    <!-- Header Gamificare HUD: Profil Polimat & Aura Conică Rotativă -->
-    <header class="gamification-hud">
-      <div class="user-profile-badge">
-        <div class="avatar-wrapper">
-          <div class="avatar-aura"></div>
-          <div class="avatar-img" id="hud-avatar-initial">P</div>
-        </div>
-        <div class="user-info">
-          <h2>
-            <span id="hud-user-name">Polimat Explorator</span>
-            <span class="rank-badge-pill" id="page-league-title">Rang I: Inițiat</span>
-          </h2>
-          <p id="page-league-desc">Primul pas în călătoria enciclopedică polimată.</p>
-        </div>
+    <section class="page-hero">
+      <h2>
+        <svg class="ui-icon heading-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+        Ligi de Măiestrie &amp; Realizări
+      </h2>
+      <p>Acumulează puncte de experiență (XP) rezolvând exerciții autonome pentru a avansa în ligile polimate.</p>
+    </section>
+
+    <!-- Banner Liga Curentă -->
+    <div class="league-hero-card">
+      <div class="league-hero-icon" id="page-league-icon">
+        <svg class="ui-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
       </div>
-      <div class="hud-quick-stats">
-        <span class="tier-badge" id="hud-season-badge">Sezon Activ • 15 Discipline</span>
-      </div>
-    </header>
-
-    <!-- Grila Principală de Gamificare -->
-    <div class="gamification-grid">
-      <!-- Coloana Stângă: XP Module & Obiectiv Zilnic -->
-      <div class="left-col">
-        <!-- 1. XP & Progres Nivel Curent -->
-        <div class="glass-card xp-module">
-          <div class="xp-header-info">
-            <div class="current-level-tag">
-              <div class="level-circle" id="hudLevelBadge">1</div>
-              <div class="level-label-group">
-                <h3>Nivel <span id="textLevel">1</span> Polimat</h3>
-                <p id="page-league-next-status">Următorul: Rang II (100 XP)</p>
-              </div>
-            </div>
-            <div class="xp-numerical">
-              <div><span class="current-xp" id="page-league-xp-status">0 / 100 XP</span></div>
-              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;"><span id="xpPercentText">0</span>% Realizat</div>
-            </div>
-          </div>
-
-          <div class="xp-bar-outer">
-            <div class="xp-bar-inner" id="page-league-progress-fill" style="width: 0%;">
-              <div class="xp-sparkle-sweep"></div>
-            </div>
-          </div>
+      <div class="league-hero-details">
+        <h3 class="league-hero-title" id="page-league-title">Rang I: Inițiat</h3>
+        <p class="league-hero-desc" id="page-league-desc">Primul pas în călătoria enciclopedică polimată.</p>
+        <div class="league-xp-progress-bar">
+          <div class="league-xp-progress-fill" id="page-league-progress-fill" style="width: 0%;"></div>
         </div>
-
-        <!-- 2. Obiective Zilnice & Misiuni Active (Daily Mastery Quest) -->
-        <div class="glass-card daily-goal-section">
-          <div class="card-header">
-            <h3 class="card-title">
-              <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-              Misiuni Zilnice de Măiestrie
-            </h3>
-            <span class="rank-badge-pill" style="color: #67e8f9; border-color: rgba(6, 182, 212, 0.4);">Bonus +50 XP</span>
-          </div>
-
-          <div class="goals-list">
-            <div class="goal-row" id="quest-row-1">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <span class="goal-indicator" style="background: #10b981; box-shadow: 0 0 8px #10b981;"></span>
-                <div>
-                  <div class="goal-name">Lecții din Curriculum</div>
-                  <div class="goal-meta">Rezolvă 3 exerciții sau capitole azi</div>
-                </div>
-              </div>
-              <div class="goal-count" style="color: #34d399;" id="quest-val-1">0 / 3</div>
-            </div>
-
-            <div class="goal-row" id="quest-row-2">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <span class="goal-indicator" style="background: #06b6d4; box-shadow: 0 0 8px #06b6d4;"></span>
-                <div>
-                  <div class="goal-name">Exercițiu Autonom (Fără 50/50)</div>
-                  <div class="goal-meta">Validează un exercițiu din prima încercare</div>
-                </div>
-              </div>
-              <div class="goal-count" style="color: #67e8f9;" id="quest-val-2">0 / 1</div>
-            </div>
-
-            <div class="goal-row" id="quest-row-3">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <span class="goal-indicator" style="background: #a855f7; box-shadow: 0 0 8px #a855f7;"></span>
-                <div>
-                  <div class="goal-name">Streak &amp; Continuitate</div>
-                  <div class="goal-meta">Menține seria activă de învățare</div>
-                </div>
-              </div>
-              <div class="goal-count" style="color: #c084fc;" id="quest-val-3">Activ ✓</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Coloana Dreaptă: Ierarhie Ligi & Timeline Stepper -->
-      <div class="right-col">
-        <div class="glass-card league-card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
-              Ierarhia Ligilor Polimate
-            </h3>
-            <span class="tier-badge" style="color: #c084fc;">Top Polimați</span>
-          </div>
-
-          <div class="league-header-status">
-            <div class="current-league-badge">
-              <div class="league-shield-icon" id="page-league-icon">
-                <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
-                  <path d="M12 2L4 5V11C4 16.5 7.5 21 12 22C16.5 21 20 16.5 20 11V5L12 2Z" fill="rgba(139, 92, 246, 0.3)" stroke="#c084fc" stroke-width="1.5"/>
-                  <polygon points="12 7 14 11 18 11.5 15 14 16 18 12 15.5 8 18 9 14 6 11.5 10 11 12 7" fill="#fde047"/>
-                </svg>
-              </div>
-              <div>
-                <div class="league-name" id="currentLeagueTitle">Liga Inițiaților</div>
-                <div style="font-size: 11px; color: var(--text-secondary);">Sezon Activ • Progres Autonom</div>
-              </div>
-            </div>
-            <div class="league-timer">
-              <span>⏳ Sezonul se resetează în 3 zile</span>
-            </div>
-          </div>
-
-          <!-- Vertical Timeline Stepper (5 Ligi) -->
-          <div class="league-timeline" id="page-leagues-list">
-            <!-- Rădăcină generată dinamic prin renderLeagues() -->
-          </div>
+        <div class="league-xp-status-row">
+          <span id="page-league-xp-status">0 / 100 XP</span>
+          <span id="page-league-next-status">Următorul: Rang II (100 XP)</span>
         </div>
       </div>
     </div>
 
-    <!-- Sistem Realizări & Trofee Polimate -->
-    <section class="settings-section-card" style="margin-top: 1.5rem;">
+    <!-- Toate Ligile -->
+    <section class="settings-section-card">
+      <h3 class="settings-card-title">Toate Ligile de Măiestrie</h3>
+      <div class="leagues-list" id="page-leagues-list"></div>
+    </section>
+
+    <!-- Sistem Realizări (Achievements) -->
+    <section class="settings-section-card">
       <h3 class="settings-card-title">Realizări &amp; Trofee Polimate</h3>
       <div class="achievements-grid" id="page-achievements-grid"></div>
     </section>
-
-    <!-- Calendar Lunar Integrat de Activitate (Ultimele 28 de Zile) -->
-    <section class="settings-section-card" style="margin-top: 1.5rem;">
-      <h3 class="settings-card-title">Calendar Activitate Lunar (Ultimele 28 de Zile)</h3>
-      <div class="calendar-legend">
-        <div class="legend-item"><span class="legend-dot legend-green"></span> Obiectiv Complet (3/3)</div>
-        <div class="legend-item"><span class="legend-dot legend-orange"></span> Activitate Parțială (1-2 sarcini)</div>
-        <div class="legend-item"><span class="legend-dot legend-yellow"></span> Asistat (50/50)</div>
-        <div class="legend-item"><span class="legend-dot legend-empty"></span> Fără activitate</div>
-      </div>
-      <div class="calendar-grid" id="gamification-calendar-grid"></div>
-    </section>
-
-    <!-- Obsidian 3D Flip Flashcard & Pomodoro Deep Work Focus Lab -->
-    <div class="dashboard-deepwork-grid">
-      <!-- Flashcard 3D cu Întoarcere Perspectivă (Feynman Concept Recall) -->
-      <section class="settings-section-card neo-plate deepwork-card" id="flashcard-section">
-        <div class="section-title-wrap" style="display: flex; justify-content: space-between; align-items: center;">
-          <div>
-            <span class="sub-label-badge" style="color: var(--accent-primary); font-size: 0.72rem; font-family: monospace; font-weight: 700;">MEMORARE ACTIVĂ • PERSPECTIVĂ 3D</span>
-            <h3 class="settings-card-title" style="margin-top: 0.35rem;">Flashcard Polimat Tridimensional</h3>
-          </div>
-          <span class="fc-counter-badge" id="fc-counter-badge">Card 1 / 18</span>
-        </div>
-
-        <!-- Selector Domeniu Flashcard -->
-        <div class="fc-domain-selector-row" style="margin-top: 0.85rem; display: flex; gap: 0.5rem; align-items: center;">
-          <label for="fc-track-filter" style="font-size: 0.75rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;">DISCIPLINĂ:</label>
-          <select id="fc-track-filter" class="fc-track-select neo-plate" style="padding: 0.35rem 0.75rem; font-size: 0.78rem; border-radius: 10px; background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); flex: 1; cursor: pointer;">
-            <option value="ALL">🌐 Toate Disciplinele (Aleatoriu)</option>
-          </select>
-        </div>
-
-        <div class="flashcard-3d-scene" id="flashcard-3d-scene">
-          <div class="flashcard-3d-card" id="feynman-card" tabindex="0" role="button" aria-label="Apasă pentru a întoarce cardul">
-            <!-- Fața Cardului (Întrebare) -->
-            <div class="flashcard-face flashcard-front">
-              <div class="fc-face-top">
-                <span class="flashcard-chip" id="fc-category">C++ Determinism RAII</span>
-                <span class="fc-flip-hint">↺ ROTIRE 3D</span>
-              </div>
-              <h4 class="flashcard-front-title" id="fc-q">Ce garantează principiul RAII în C++?</h4>
-              <div class="flashcard-hint-pill">👆 Click oriunde pe card pentru a verifica răspunsul</div>
-            </div>
-
-            <!-- Spatele Cardului (Răspuns + Autoevaluare) -->
-            <div class="flashcard-face flashcard-back">
-              <div class="fc-face-top">
-                <span class="flashcard-chip-back">RĂSPUNS CHEIE</span>
-                <span class="fc-flip-hint">↺ REZUMAT</span>
-              </div>
-              <p class="flashcard-back-text" id="fc-a">Durata de viață a oricărei resurse este legată strict de stivă (LIFO). Constructorul inițializează, iar destructorul eliberează automat memoria la ieșirea din domeniu fără memory leaks.</p>
-              
-              <!-- Butoane Autoevaluare Spaced Repetition -->
-              <div class="fc-grade-row" id="fc-grade-row">
-                <span style="font-size: 0.68rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; display: block; margin-bottom: 0.35rem;">CUM A FOST RĂSPUNSUL TĂU?</span>
-                <div style="display: flex; gap: 0.45rem;">
-                  <button type="button" class="fc-grade-btn fc-grade-hard" data-grade="hard">🔴 Greu (+5 XP)</button>
-                  <button type="button" class="fc-grade-btn fc-grade-good" data-grade="good">🟡 Bun (+15 XP)</button>
-                  <button type="button" class="fc-grade-btn fc-grade-easy" data-grade="easy">🟢 Ușor (+25 XP)</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="fc-controls-bar" style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
-          <button type="button" class="btn-secondary" id="btn-flip-card" style="font-size: 0.8rem; padding: 0.45rem 1rem;">
-            🔄 Rotește Cardul
-          </button>
-          <button type="button" class="btn-primary" id="btn-next-flashcard" style="font-size: 0.8rem; padding: 0.45rem 1.25rem;">
-            Următorul Card &rarr;
-          </button>
-        </div>
-      </section>
-
-      <!-- Pomodoro Deep Work Focus Lab -->
-      <section class="settings-section-card neo-plate deepwork-card" id="pomodoro-section">
-        <div class="section-title-wrap" style="display: flex; justify-content: space-between; align-items: center;">
-          <div>
-            <span class="sub-label-badge" style="color: #67e8f9; font-size: 0.72rem; font-family: monospace; font-weight: 700;">DEEP WORK FOCUS LAB</span>
-            <h3 class="settings-card-title" style="margin-top: 0.35rem;">Timer de Focalizare Pomodoro</h3>
-          </div>
-          <span class="pomo-session-badge" id="pomo-session-badge">Sesiunea 1 / 4</span>
-        </div>
-
-        <!-- Presets: Focus 25m, Pauză 5m, Relax 15m -->
-        <div class="pomo-modes-bar" style="margin-top: 0.85rem; display: flex; gap: 0.5rem;">
-          <button type="button" class="pomo-mode-btn active neo-plate" data-mode="focus" data-minutes="25">🍅 Focus (25m)</button>
-          <button type="button" class="pomo-mode-btn neo-plate" data-mode="short" data-minutes="5">☕ Pauză (5m)</button>
-          <button type="button" class="pomo-mode-btn neo-plate" data-mode="long" data-minutes="15">🌴 Relax (15m)</button>
-        </div>
-
-        <!-- Circular SVG Ring Progress + Centered Clock -->
-        <div class="pomo-clock-container" style="margin: 1.2rem auto; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-          <div class="pomo-ring-wrap" style="position: relative; width: 190px; height: 190px;">
-            <svg class="pomo-svg-ring" width="190" height="190" viewBox="0 0 190 190">
-              <circle class="pomo-ring-bg" cx="95" cy="95" r="82" stroke="rgba(255,255,255,0.08)" stroke-width="8" fill="none"></circle>
-              <circle id="pomo-progress-ring" class="pomo-ring-progress" cx="95" cy="95" r="82" stroke="#10b981" stroke-width="8" stroke-linecap="round" fill="none" stroke-dasharray="515.22" stroke-dashoffset="0" transform="rotate(-90 95 95)" style="transition: stroke-dashoffset 1s linear, stroke 0.4s ease;"></circle>
-            </svg>
-            <div class="pomo-center-content" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
-              <span class="pomo-status-label" id="pomo-status-label" style="font-size: 0.68rem; font-family: 'JetBrains Mono', monospace; color: var(--accent-primary); letter-spacing: 1px; font-weight: 700;">CONCENTRARE</span>
-              <div class="pomodoro-display" id="pomo-display" style="font-size: 2.8rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: 1px; color: var(--text-primary); line-height: 1.1; margin: 0.2rem 0;">25:00</div>
-              <div class="pomo-session-dots" id="pomo-session-dots" style="display: flex; gap: 0.35rem; font-size: 0.8rem;">
-                <span class="pomo-dot active">🍅</span>
-                <span class="pomo-dot">⚪</span>
-                <span class="pomo-dot">⚪</span>
-                <span class="pomo-dot">⚪</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pomodoro-controls" style="margin-top: 0.5rem; display: flex; gap: 0.75rem; justify-content: center;">
-          <button type="button" class="btn-primary" id="pomo-btn" style="padding: 0.55rem 1.5rem; font-size: 0.85rem; font-weight: 700; border-radius: 12px;">▶️ START FOCUS</button>
-          <button type="button" class="btn-secondary" id="btn-pomo-reset" style="padding: 0.55rem 1.25rem; font-size: 0.85rem; border-radius: 12px;">🔄 RESETEAZĂ</button>
-        </div>
-      </section>
-    </div>
   </main>
 
   <!-- =========================================================================
@@ -918,19 +518,6 @@
       <ul class="lesson-list" id="pocket-lesson-list"></ul>
     </div>
   </aside>
-
-  <!-- Bara de Status IDE pentru Modul Dual Split Studio -->
-  <footer id="dual-split-statusbar" class="dual-split-statusbar hidden" aria-label="Bara de status IDE">
-    <div class="status-left">
-      <span class="status-badge"><svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg> UTF-8</span>
-      <span class="status-badge">Spaces: 2</span>
-      <span class="status-badge" id="status-current-track">Workspace: SQL</span>
-    </div>
-    <div class="status-right">
-      <span class="status-badge text-accent" id="status-mastery-xp">XP: 0</span>
-      <span class="status-badge">Mode: Dual Split Studio</span>
-    </div>
-  </footer>
 
   <!-- TOAST CONTAINER PENTRU NOTIFICĂRI SISTEM -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>

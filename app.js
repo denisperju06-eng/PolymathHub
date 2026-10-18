@@ -14,12 +14,10 @@
     dailyHistory: {},    // { [date]: count of autonomous tasks }
     assistedHistory: {}, // { [date]: count of assisted (50/50) tasks }
     theme: "emerald-forest",
-    layoutMode: "bento-nextjs",
-    soundEnabled: false,
-    is3DActive: true,
     customLessons: [],
     activeTrack: "SQL",
     activeLessonId: "sql-1",
+    activeDualPane: "theory", // "theory" | "examples" | "practice"
     activePracticeMode: "write", // "write" | "match" | "quiz"
     activeView: "catalog",       // "catalog" | "study" | "activity" | "leagues"
     user: {
@@ -331,6 +329,7 @@
       parsed.assistedHistory = parsed.assistedHistory || {};
       parsed.theme = parsed.theme || "emerald-forest";
       parsed.activeView = ["catalog", "study", "activity", "leagues"].includes(parsed.activeView) ? parsed.activeView : "catalog";
+      parsed.activeDualPane = ["theory", "examples", "practice"].includes(parsed.activeDualPane) ? parsed.activeDualPane : "theory";
       parsed.customLessons = [];
       parsed.preferences = {
         dailyTarget: (parsed.preferences && parsed.preferences.dailyTarget) ? Number(parsed.preferences.dailyTarget) : 3,
@@ -534,45 +533,6 @@
     goalTooltipTitle: document.getElementById("goal-tooltip-title"),
     goalTooltipText: document.getElementById("goal-tooltip-text"),
     themeSelector: document.getElementById("theme-selector"),
-    layoutSelector: document.getElementById("layout-selector"),
-    soundToggleBtn: document.getElementById("sound-toggle-btn"),
-    soundToggleIcon: document.getElementById("sound-toggle-icon"),
-    cyberCommandStage: document.getElementById("cyber-command-stage"),
-    cyberCliInput: document.getElementById("cyber-cli-input"),
-    cyberCliRunBtn: document.getElementById("cyber-cli-run-btn"),
-    cyberTerminalOutput: document.getElementById("cyber-terminal-output"),
-    cyberTelemetryClock: document.getElementById("cyber-telemetry-clock"),
-    cosmosOrbitStage: document.getElementById("cosmos-orbit-stage"),
-    cosmosOrbitCanvas: document.getElementById("cosmos-orbit-canvas"),
-    cosmosTelemetryNodes: document.getElementById("cosmos-telemetry-nodes"),
-    cosmosHudCard: document.getElementById("cosmos-hud-card"),
-    hudTargetName: document.getElementById("hud-target-name"),
-    hudCardDesc: document.getElementById("hud-card-desc"),
-    hudWarpBtn: document.getElementById("hud-warp-btn"),
-    cosmosNavShortcuts: document.getElementById("cosmos-nav-shortcuts"),
-    dualSplitStatusbar: document.getElementById("dual-split-statusbar"),
-    statusCurrentTrack: document.getElementById("status-current-track"),
-    statusMasteryXp: document.getElementById("status-mastery-xp"),
-    dualSplitTopicNav: document.getElementById("dual-split-topic-nav"),
-    dualTrackTitle: document.getElementById("dual-track-title"),
-    dualChapterSelect: document.getElementById("dual-chapter-select"),
-    dualTabTheory: document.getElementById("dual-tab-theory"),
-    dualTabExamples: document.getElementById("dual-tab-examples"),
-    dualTabPractice: document.getElementById("dual-tab-practice"),
-    dualTabExercises: document.getElementById("dual-tab-exercises"),
-    dualPrevBtn: document.getElementById("dual-prev-btn"),
-    dualNextBtn: document.getElementById("dual-next-btn"),
-    aimCursor: document.getElementById("aim-cursor"),
-    aimDot: document.getElementById("aim-dot"),
-
-    // Gamification Hub (Claude Experiment 12)
-    gamificationCalendarGrid: document.getElementById("gamification-calendar-grid"),
-    hudLevelBadge: document.getElementById("hudLevelBadge"),
-    textLevel: document.getElementById("textLevel"),
-    xpPercentText: document.getElementById("xpPercentText"),
-    questVal1: document.getElementById("quest-val-1"),
-    questVal2: document.getElementById("quest-val-2"),
-    questVal3: document.getElementById("quest-val-3"),
 
     // View 1: Catalog
     catalogView: document.getElementById("catalog-view"),
@@ -592,6 +552,19 @@
     backToCatalogBtn: document.getElementById("back-to-catalog-btn"),
     studyTrackIndicator: document.getElementById("study-track-indicator"),
     openPocketDrawerBtn: document.getElementById("open-pocket-drawer-btn"),
+
+    // Dual Split Nav in Study View
+    dualSplitTopicNav: document.getElementById("dual-split-topic-nav"),
+    dualTrackTitle: document.getElementById("dual-track-title"),
+    dualChapterSelect: document.getElementById("dual-chapter-select"),
+    dualTabTheory: document.getElementById("dual-tab-theory"),
+    dualTabExamples: document.getElementById("dual-tab-examples"),
+    dualTabPractice: document.getElementById("dual-tab-practice"),
+    dualPrevBtn: document.getElementById("dual-prev-btn"),
+    dualNextBtn: document.getElementById("dual-next-btn"),
+    theoryCard: document.getElementById("theory-card"),
+    exampleCard: document.getElementById("example-card"),
+    practiceCard: document.getElementById("practice-card"),
 
     // Study Theory
     lessonCategoryBadge: document.getElementById("lesson-category-badge"),
@@ -677,223 +650,6 @@
     if (els.themeSelector) els.themeSelector.value = validTheme;
     state.theme = validTheme;
     saveState();
-  }
-
-  /* ==========================================================================
-     SINTETIZATOR AUDIO WEB AUDIO API (100% NATIV, FĂRĂ DEPENDENȚE EXTERNE)
-     ========================================================================== */
-  let audioCtx = null;
-  function getAudioContext() {
-    if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContextClass();
-    }
-    if (audioCtx && audioCtx.state === "suspended") {
-      audioCtx.resume();
-    }
-    return audioCtx;
-  }
-
-  function playUiSound(type = "click") {
-    if (!state.soundEnabled) return;
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-      const now = ctx.currentTime;
-
-      if (type === "click") {
-        // Clic mecanic de tastatură tactile
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(650, now);
-        osc.frequency.exponentialRampToValueAtTime(120, now + 0.04);
-        gain.gain.setValueAtTime(0.08, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.04);
-      } else if (type === "success") {
-        // Coardă armonică triumfală ascendentă (C5, E5, G5, C6)
-        const notes = [523.25, 659.25, 783.99, 1046.50];
-        notes.forEach((freq, idx) => {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          const t = now + idx * 0.06;
-          osc.type = "triangle";
-          osc.frequency.setValueAtTime(freq, t);
-          gain.gain.setValueAtTime(0.08, t);
-          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.28);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start(t);
-          osc.stop(t + 0.28);
-        });
-      } else if (type === "hint") {
-        // Semnal acustic cald de ghidaj
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(440, now);
-        osc.frequency.exponentialRampToValueAtTime(880, now + 0.14);
-        gain.gain.setValueAtTime(0.06, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.14);
-      } else if (type === "warp") {
-        // Puls spațial sci-fi (Cosmos / Cyber)
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sawtooth";
-        osc.frequency.setValueAtTime(180, now);
-        osc.frequency.exponentialRampToValueAtTime(880, now + 0.18);
-        gain.gain.setValueAtTime(0.05, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.18);
-      }
-    } catch (e) {
-      // Ignoră erorile audio dacă utilizatorul nu a interacționat încă cu pagina
-    }
-  }
-
-  function updateScrollLock() {
-    const isMobile = window.innerWidth <= 768;
-    const isViewingChapters = document.body.classList.contains("viewing-chapters");
-    const isDesktop3DCatalog = !isMobile && (state.is3DActive !== false) && !document.body.classList.contains("simple-catalog-mode") && (state.activeView === "catalog") && !isViewingChapters;
-    if (isDesktop3DCatalog) {
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-      window.scrollTo(0, 0);
-    } else {
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
-    }
-  }
-
-  function toggleSound() {
-    if (window.innerWidth <= 768) {
-      state.is3DActive = false;
-      document.body.classList.add("simple-catalog-mode");
-      state.soundEnabled = !state.soundEnabled;
-      saveState();
-      updateScrollLock();
-      return;
-    }
-    state.is3DActive = (state.is3DActive === undefined) ? false : !state.is3DActive;
-    state.soundEnabled = !state.soundEnabled;
-    saveState();
-    if (els.soundToggleIcon) {
-      els.soundToggleIcon.textContent = state.is3DActive ? "🧊 3D" : "📄 Simplu";
-    }
-    const stage = document.getElementById("cosmos-orbit-stage");
-    if (stage) {
-      stage.style.display = state.is3DActive ? "block" : "none";
-    }
-    document.body.classList.toggle("simple-catalog-mode", !state.is3DActive);
-    const simpleHero = document.querySelector(".catalog-hero");
-    if (simpleHero && window.innerWidth > 768) {
-      simpleHero.style.display = state.is3DActive ? "none" : "block";
-    }
-    updateScrollLock();
-    if (state.is3DActive) {
-      showToast("🧊 Modul 3D Citadela activat");
-    } else {
-      showToast("📄 Modul Simplu activat");
-    }
-  }
-
-  /* ==========================================================================
-     METRICI & CLASIFICĂRI SPECIALE PENTRU CELE 5 ARHITECTURI DE LAYOUT
-     ========================================================================== */
-  function getTrackRarity(name) {
-    if (name.includes("C & C++") || name.includes("Algoritmi")) return "💎 LEGENDARY CITADEL";
-    if (name.includes("Python") || name.includes("Java") || name.includes("SQL")) return "🔮 EPIC RUNESTONE";
-    if (name.includes("Engleză") || name.includes("Franceză") || name.includes("Spaniolă")) return "🏛️ MYTHIC POLYGLOT";
-    return "⚡ RARE MATRIX";
-  }
-
-  function getTrackAct(name) {
-    if (name.includes("C & C++") || name.includes("Linux") || name.includes("SQL")) return "ACT I: SISTEME & HARDWARE";
-    if (name.includes("Python") || name.includes("Algoritmi") || name.includes("Java") || name.includes("TypeScript") || name.includes("JavaScript") || name.includes("C#")) return "ACT II: INTELIGENȚĂ & ALGORITMI";
-    return "ACT III: POLIGLOT & COMUNICARE";
-  }
-
-  function updateDualSplitStatusbar() {
-    if (!els.dualSplitStatusbar) return;
-    if (els.statusCurrentTrack) {
-      els.statusCurrentTrack.textContent = `Workspace: ${state.activeTrack || "SQL"}`;
-    }
-    if (els.statusMasteryXp) {
-      els.statusMasteryXp.textContent = `XP: ${state.xp || 0}`;
-    }
-  }
-
-  function applyLayoutMode(mode) {
-    const validModes = ["bento-nextjs", "dual-split", "swiss-editorial", "cyber-kernel", "spatial-cosmos", "micro-scroll"];
-    const validLayout = validModes.includes(mode) ? mode : "bento-nextjs";
-    document.documentElement.setAttribute("data-layout", validLayout);
-    state.layoutMode = validLayout;
-    saveState();
-    if (els.layoutSelector) els.layoutSelector.value = validLayout;
-
-    // Toggle etape speciale de layout
-    if (els.cyberCommandStage) {
-      if (validLayout === "cyber-kernel" && state.activeView === "catalog") {
-        els.cyberCommandStage.classList.remove("hidden");
-      } else {
-        els.cyberCommandStage.classList.add("hidden");
-      }
-    }
-
-    if (els.cosmosOrbitStage) {
-      if (state.activeView === "catalog") {
-        els.cosmosOrbitStage.classList.remove("hidden");
-        initCosmosOrbitCanvas();
-      } else {
-        els.cosmosOrbitStage.classList.add("hidden");
-      }
-    }
-
-    if (els.dualSplitStatusbar) {
-      if (state.activeView === "study" || validLayout === "dual-split") {
-        els.dualSplitStatusbar.classList.remove("hidden");
-        updateDualSplitStatusbar();
-      } else {
-        els.dualSplitStatusbar.classList.add("hidden");
-      }
-    }
-
-    // Dual Split Workspace este activat peste tot în ecranul de studiu și răspuns
-    if (state.activeView === "study" || validLayout === "dual-split") {
-      if (!state.activeDualPane) state.activeDualPane = "theory";
-      document.documentElement.setAttribute("data-dual-pane", state.activeDualPane);
-      document.body.setAttribute("data-dual-pane", state.activeDualPane);
-      if (els.studyView) els.studyView.setAttribute("data-dual-pane", state.activeDualPane);
-      renderDualSplitWorkspace();
-    } else {
-      document.documentElement.removeAttribute("data-dual-pane");
-      document.body.removeAttribute("data-dual-pane");
-      if (els.studyView) els.studyView.removeAttribute("data-dual-pane");
-    }
-
-    // Aim cursor activ doar pe desktop în modurile Swiss Editorial & Spatial Cosmos
-    const isSpecialCursor = (validLayout === "swiss-editorial" || validLayout === "spatial-cosmos");
-    if (els.aimCursor && els.aimDot) {
-      els.aimCursor.style.display = isSpecialCursor ? "block" : "none";
-      els.aimDot.style.display = isSpecialCursor ? "block" : "none";
-    }
-
-    if (state.activeView === "catalog") {
-      renderCatalogView();
-    } else if (state.activeView === "study") {
-      renderStudyView();
-    }
   }
 
   const TRACK_ICONS = {
@@ -991,30 +747,9 @@
     if (els.xpCount) els.xpCount.textContent = `${state.xp} XP`;
     if (els.userRank) els.userRank.textContent = getRankTitle(state.xp);
 
-    // Stare Obiectiv Zilnic & Widget Unificat de Statistici
-    const isStreakMet = todayAutonomous >= dailyTarget;
-    const unifiedBadge = document.getElementById("unified-stats-badge");
-    const unifiedStreakIcon = document.getElementById("unified-streak-icon");
-    const unifiedStreakLabel = document.getElementById("unified-streak-label");
-
-    if (unifiedBadge) {
-      if (isStreakMet) {
-        unifiedBadge.classList.remove("streak-unfulfilled");
-        unifiedBadge.classList.add("streak-fulfilled");
-        if (unifiedStreakIcon) unifiedStreakIcon.textContent = "🔥";
-        if (unifiedStreakLabel) unifiedStreakLabel.textContent = "Streak!";
-        if (els.xpCount) els.xpCount.classList.add("score-milestone-glow");
-      } else {
-        unifiedBadge.classList.remove("streak-fulfilled");
-        unifiedBadge.classList.add("streak-unfulfilled");
-        if (unifiedStreakIcon) unifiedStreakIcon.textContent = "🎯";
-        if (unifiedStreakLabel) unifiedStreakLabel.textContent = "Azi";
-        if (els.xpCount) els.xpCount.classList.remove("score-milestone-glow");
-      }
-    }
-
+    // Stare Obiectiv Zilnic
     if (els.goalPill) {
-      if (isStreakMet) {
+      if (todayAutonomous >= dailyTarget) {
         els.goalPill.classList.add("goal-completed");
         if (els.dailyProgressText) els.dailyProgressText.textContent = `${dailyTarget}/${dailyTarget}`;
         if (els.dailyProgressLabel) els.dailyProgressLabel.textContent = "Complet!";
@@ -1051,10 +786,6 @@
     state.activeView = target;
     saveState();
 
-    if (target !== "catalog") {
-      document.body.classList.remove("viewing-chapters");
-    }
-
     const views = [
       els.catalogView,
       els.studyView,
@@ -1090,7 +821,6 @@
     }
 
     renderStats();
-    updateScrollLock();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -1098,10 +828,6 @@
   // VIEW 1: CATALOG VIEW (DASHBOARDUL PRINCIPAL FĂRĂ SARCINI CLUTTER)
   // =========================================================================
   function renderCatalogView() {
-    if (els.cosmosOrbitStage) {
-      els.cosmosOrbitStage.classList.remove("hidden");
-      initCosmosOrbitCanvas();
-    }
     const tracks = getTracks();
     els.catalogDomainsGrid.innerHTML = "";
 
@@ -1130,30 +856,19 @@
       const pct = trackLessons.length ? Math.round((completedCount / trackLessons.length) * 100) : 0;
       const isActive = state.activeTrack === track.name;
 
-      const rarity = getTrackRarity(track.name);
-      const act = getTrackAct(track.name);
-      const isCyber = state.layoutMode === "cyber-kernel";
-      const isEditorial = state.layoutMode === "swiss-editorial";
-      const isCosmos = state.layoutMode === "spatial-cosmos";
-      const isDual = state.layoutMode === "dual-split";
-
       const card = document.createElement("div");
       card.className = `domain-card ${isActive ? "active" : ""}`;
       card.setAttribute("role", "button");
       card.setAttribute("tabindex", "0");
       card.innerHTML = `
-        <div class="card-gloss-overlay" aria-hidden="true"></div>
         <div class="domain-card-header">
           <span class="domain-card-icon" aria-hidden="true">${track.icon}</span>
-          <div style="display:flex; gap:0.4rem; align-items:center; flex-wrap:wrap;">
+          <div style="display:flex; gap:0.4rem; align-items:center;">
             <span class="domain-division-badge">${track.division === "Informatică și Programare" ? "Informatică" : "Limbi Străine"}</span>
             <span class="domain-card-badge">${trackLessons.length} capitole</span>
           </div>
         </div>
-        ${isCosmos ? `<div style="margin-bottom:0.25rem;"><small class="domain-rarity-badge" style="font-size:0.68rem; font-weight:800; color:#c084fc; letter-spacing:0.04em;">${rarity}</small></div>` : ""}
-        ${isEditorial ? `<div style="margin-bottom:0.25rem;"><small class="domain-act-badge" style="font-size:0.68rem; font-family:'Cormorant Garamond',serif; font-style:italic; color:#c5a059; letter-spacing:0.06em;">${act}</small></div>` : ""}
-        ${isDual ? `<div style="margin-bottom:0.25rem;"><small class="domain-ide-badge" style="font-size:0.68rem; font-family:'JetBrains Mono',monospace; color:var(--accent-primary);">SRC: //tracks/${track.name.toLowerCase().replace(/[^a-z0-9]/g, '_')}</small></div>` : ""}
-        <h3 class="domain-card-title">${isCyber ? `$ run ${track.name.toLowerCase()}` : track.name}</h3>
+        <h3 class="domain-card-title">${track.name}</h3>
         <p class="domain-card-desc">${track.description}</p>
         <div class="domain-progress-row">
           <span>Progres Măiestrie</span>
@@ -1164,32 +879,10 @@
         </div>
       `;
 
-      // 3D Perspective Tilt & Specular Cursor Sheen on Desktop
-      if (window.matchMedia("(min-width: 769px) and (hover: hover)").matches) {
-        card.addEventListener("mousemove", e => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateX = ((y - centerY) / centerY) * -6;
-          const rotateY = ((x - centerX) / centerX) * 6;
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-          card.style.setProperty("--mouse-x", `${(x / rect.width) * 100}%`);
-          card.style.setProperty("--mouse-y", `${(y / rect.height) * 100}%`);
-        });
-
-        card.addEventListener("mouseleave", () => {
-          card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
-        });
-      }
-
       function selectDomainAndScroll() {
-        playUiSound("click");
         state.activeTrack = track.name;
         saveState();
         renderCatalogView();
-        if (state.layoutMode === "dual-split") updateDualSplitStatusbar();
         const chaptersSection = document.getElementById("catalog-chapters-section") || els.catalogSelectedDomainTitle;
         if (chaptersSection) {
           chaptersSection.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1334,23 +1027,75 @@
         </button>
       `;
 
-      function startThisLesson(e) {
-        if (e) e.stopPropagation();
+      item.addEventListener("click", () => {
         state.activeLessonId = lesson.id;
         lessonSessionAssisted = false;
         saveState();
-        document.body.classList.remove("viewing-chapters");
         switchView("study");
-      }
-
-      item.addEventListener("click", startThisLesson);
-      const startBtn = item.querySelector(".chapter-start-btn");
-      if (startBtn) {
-        startBtn.addEventListener("click", startThisLesson);
-      }
+      });
 
       els.catalogChaptersGrid.appendChild(item);
     });
+  }
+
+  function renderDualSplitWorkspace() {
+    if (!els.dualChapterSelect) return;
+    const chapters = allLessons
+      .filter(l => l.track === state.activeTrack)
+      .sort(sortLessonsCanonical);
+
+    if (els.dualTrackTitle) {
+      els.dualTrackTitle.textContent = state.activeTrack || "SQL";
+    }
+
+    els.dualChapterSelect.innerHTML = "";
+    chapters.forEach((ch, idx) => {
+      const opt = document.createElement("option");
+      opt.value = ch.id;
+      const isMastered = !!state.masteryPoints[ch.id];
+      opt.textContent = `${idx + 1}. ${ch.title} ${isMastered ? "★" : ""}`;
+      if (ch.id === state.activeLessonId) opt.selected = true;
+      els.dualChapterSelect.appendChild(opt);
+    });
+
+    els.dualChapterSelect.onchange = e => {
+      const newLessonId = e.target.value;
+      if (newLessonId) {
+        state.activeLessonId = newLessonId;
+        saveState();
+        renderStudyView();
+      }
+    };
+
+    const activePane = state.activeDualPane || "theory";
+    document.documentElement.setAttribute("data-dual-pane", activePane);
+    document.body.setAttribute("data-dual-pane", activePane);
+    if (els.studyView) els.studyView.setAttribute("data-dual-pane", activePane);
+    document.querySelectorAll(".dual-nav-tab").forEach(tab => {
+      tab.classList.toggle("active", tab.getAttribute("data-pane") === activePane);
+    });
+  }
+
+  function setActiveDualTab(tabEl, paneName) {
+    state.activeDualPane = paneName;
+    document.documentElement.setAttribute("data-dual-pane", paneName);
+    document.body.setAttribute("data-dual-pane", paneName);
+    if (els.studyView) els.studyView.setAttribute("data-dual-pane", paneName);
+
+    document.querySelectorAll(".dual-nav-tab").forEach(t => t.classList.remove("active"));
+    if (tabEl) tabEl.classList.add("active");
+
+    const targetContainer = (paneName === "theory")
+      ? els.theoryCard
+      : (paneName === "examples" ? els.exampleCard : els.practiceCard);
+
+    if (targetContainer) {
+      targetContainer.classList.remove("dual-pane-animate");
+      void targetContainer.offsetWidth; // retrigger reflow
+      targetContainer.classList.add("dual-pane-animate");
+      targetContainer.scrollTop = 0;
+      targetContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 
   // =========================================================================
@@ -1360,11 +1105,7 @@
     const lesson = allLessons.find(l => l.id === state.activeLessonId) || allLessons[0];
     if (!lesson) return;
 
-    // Dual Split Workspace este activat universal în studiul focalizat și răspuns
-    if (!state.activeDualPane) state.activeDualPane = "theory";
-    document.documentElement.setAttribute("data-dual-pane", state.activeDualPane);
-    document.body.setAttribute("data-dual-pane", state.activeDualPane);
-    if (els.studyView) els.studyView.setAttribute("data-dual-pane", state.activeDualPane);
+    state.activeTrack = lesson.track;
     renderDualSplitWorkspace();
 
     // Resetare sesiune de asistență pentru capitolul curent
@@ -1416,9 +1157,6 @@
 
     renderMatchingGame(lesson);
     renderQuizMode(lesson);
-    renderAstDebuggerForLesson(lesson);
-    updateFlashcardForLesson(lesson);
-    updateChameleonAura(null, 1);
     switchPracticeMode(state.activePracticeMode || "write");
   }
 
@@ -1434,6 +1172,11 @@
     els.paneWrite.classList.toggle("hidden", mode !== "write");
     els.paneMatch.classList.toggle("hidden", mode !== "match");
     els.paneQuiz.classList.toggle("hidden", mode !== "quiz");
+
+    // Comută automat la tab-ul de practică în Dual Mode dacă era pe teorie sau exemple
+    if (state.activeDualPane !== "practice" && els.dualTabPractice) {
+      setActiveDualTab(els.dualTabPractice, "practice");
+    }
   }
 
   // =========================================================================
@@ -1493,15 +1236,14 @@
     // Coloana Stângă
     pairs.forEach((pair, idx) => {
       const btn = document.createElement("button");
-      btn.className = "match-card neo-plate";
+      btn.className = "match-card";
       btn.textContent = pair.left;
       btn.dataset.idx = String(idx);
       btn.addEventListener("click", () => {
         if (matchState.matchedIndices.has(idx)) return;
         matchState.selectedLeftIndex = idx;
-        Array.from(els.matchColLeft.children).forEach(c => c.classList.remove("selected", "neo-pressed"));
-        btn.classList.add("selected", "neo-pressed");
-        playUiSound("click");
+        Array.from(els.matchColLeft.children).forEach(c => c.classList.remove("selected"));
+        btn.classList.add("selected");
       });
       els.matchColLeft.appendChild(btn);
     });
@@ -1513,7 +1255,7 @@
 
     shuffledRight.forEach(item => {
       const btn = document.createElement("button");
-      btn.className = "match-card neo-plate";
+      btn.className = "match-card";
       btn.textContent = formatRomanianTypography(item.text);
       btn.dataset.idx = String(item.originalIdx);
 
@@ -1630,13 +1372,11 @@
 
     qData.options.forEach((optText, idx) => {
       const btn = document.createElement("button");
-      btn.className = "quiz-option-btn neo-plate";
+      btn.className = "quiz-option-btn";
       btn.textContent = formatRomanianTypography(optText);
       const isCorrect = idx === qData.correctIndex;
 
       btn.addEventListener("click", () => {
-        playUiSound("click");
-        btn.classList.add("neo-pressed");
         // Dacă a fost deja selectat răspunsul corect, blochează orice alt click
         const alreadySolved = Array.from(els.quizOptionsGrid.querySelectorAll(".quiz-option-btn")).some(b => b.classList.contains("correct"));
         if (alreadySolved) return;
@@ -1816,8 +1556,38 @@
     if (els.actTodayVal) els.actTodayVal.textContent = `${todayAutonomous}/${dailyTarget}`;
     if (els.actTotalTasksVal) els.actTotalTasksVal.textContent = totalExercises;
 
-    if (els.activityCalendarGrid) {
-      renderCalendarInto(els.activityCalendarGrid);
+    if (!els.activityCalendarGrid) return;
+    els.activityCalendarGrid.innerHTML = "";
+
+    // Ultimele 28 de zile în ordine cronologică
+    for (let i = 27; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const key = toLocalDateKey(d);
+
+      const autonomousCount = state.dailyHistory[key] || 0;
+      const assistedCount = state.assistedHistory[key] || 0;
+
+      const cell = document.createElement("div");
+      cell.className = "calendar-cell";
+
+      if (autonomousCount >= dailyTarget) {
+        cell.classList.add("cell-complete"); // 🟢 Verde
+        cell.title = `${key}: Obiectiv ${dailyTarget}/${dailyTarget} atins (${autonomousCount} rezolvări autonome)`;
+      } else if (autonomousCount > 0) {
+        cell.classList.add("cell-streak"); // 🟠 Portocaliu
+        cell.title = `${key}: Streak păstrat (${autonomousCount} sarcini)`;
+      } else if (assistedCount > 0) {
+        cell.classList.add("cell-assisted"); // 🟡 Galben/Chihlimbar
+        cell.title = `${key}: Studiu asistat 50/50 (${assistedCount} sarcini)`;
+      } else {
+        cell.title = `${key}: Fără activitate înregistrată`;
+      }
+
+      if (key === today) cell.classList.add("today-cell");
+      cell.textContent = d.getDate();
+
+      els.activityCalendarGrid.appendChild(cell);
     }
   }
 
@@ -1871,56 +1641,36 @@
     if (els.pageLeagueTitle) els.pageLeagueTitle.textContent = currentLeague.name;
     if (els.pageLeagueDesc) els.pageLeagueDesc.textContent = currentLeague.desc;
 
-    let progress = 0;
     if (nextLeague) {
       const span = nextLeague.minXp - currentLeague.minXp;
-      progress = Math.min(100, Math.max(0, Math.round(((userXp - currentLeague.minXp) / span) * 100)));
+      const progress = Math.min(100, Math.max(0, Math.round(((userXp - currentLeague.minXp) / span) * 100)));
       if (els.pageLeagueProgressFill) els.pageLeagueProgressFill.style.width = `${progress}%`;
       if (els.pageLeagueXpStatus) els.pageLeagueXpStatus.textContent = `${userXp} / ${nextLeague.minXp} XP`;
       if (els.pageLeagueNextStatus) els.pageLeagueNextStatus.textContent = `Următorul: ${nextLeague.name} (${nextLeague.minXp} XP)`;
     } else {
-      progress = 100;
       if (els.pageLeagueProgressFill) els.pageLeagueProgressFill.style.width = "100%";
       if (els.pageLeagueXpStatus) els.pageLeagueXpStatus.textContent = `${userXp} XP (Rang Maxim)`;
       if (els.pageLeagueNextStatus) els.pageLeagueNextStatus.textContent = "Măiestrie Supremă Atingă";
     }
 
-    // Componente Gamificare Experiment Claude 12
-    const level = Math.floor(userXp / 100) + 1;
-    if (els.hudLevelBadge) els.hudLevelBadge.textContent = level;
-    if (els.textLevel) els.textLevel.textContent = level;
-    if (els.xpPercentText) els.xpPercentText.textContent = progress;
-
-    const todayAutonomous = state.dailyHistory[getTodayKey()] || 0;
-    if (els.questVal1) els.questVal1.textContent = `${Math.min(3, todayAutonomous)} / 3`;
-    if (els.questVal2) els.questVal2.textContent = todayAutonomous > 0 ? "1 / 1 ✓" : "0 / 1";
-    if (els.questVal3) els.questVal3.textContent = state.streak > 0 ? `${state.streak} zile 🔥` : "Inactiv";
-
-    // Calendar Lunar Integrat în Hub Gamificare
-    if (els.gamificationCalendarGrid) {
-      renderCalendarInto(els.gamificationCalendarGrid);
-    }
-
     // Lista tuturor celor 5 ligi
     if (els.pageLeaguesList) {
       els.pageLeaguesList.innerHTML = "";
-      LEAGUES.forEach((league, idx) => {
+      LEAGUES.forEach(league => {
         const isCurrent = league.id === currentLeague.id;
         const isPassed = userXp >= league.maxXp && league.maxXp !== Infinity;
-        const tierName = ["Tier I", "Tier II", "Tier III", "Tier IV", "Tier V"][idx] || "Tier";
         const row = document.createElement("div");
-        row.className = `league-step league-row ${isCurrent ? "active current-league" : (isPassed ? "completed" : "locked")}`;
+        row.className = `league-row ${isCurrent ? "current-league" : ""}`;
         row.innerHTML = `
-          <div class="step-marker league-icon" aria-hidden="true">${league.icon}</div>
+          <div class="league-icon" aria-hidden="true">${league.icon}</div>
           <div class="league-info">
-            <h4 class="league-name" style="${isCurrent ? "color: #c084fc;" : ""}">
+            <div class="league-name">
               ${league.name}
               ${isCurrent ? '<span class="league-status-badge">★ Rangul Tău Curent</span>' : (isPassed ? '<span class="league-status-badge" style="background:var(--border-color); color:var(--text-secondary);">✓ Rang Depășit</span>' : '')}
-            </h4>
-            <div class="league-req" style="font-size:0.75rem; color:var(--text-secondary);">Cerință: ${league.minXp} XP ${league.maxXp !== Infinity ? "– " + league.maxXp + " XP" : "+"}</div>
+            </div>
+            <div class="league-req">Cerință: ${league.minXp} XP ${league.maxXp !== Infinity ? "– " + league.maxXp + " XP" : "+"}</div>
             <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:0.25rem;">${league.desc}</p>
           </div>
-          <span class="tier-badge" style="${isCurrent ? "background:rgba(139,92,246,0.25); color:#e9d5ff;" : ""}">${isCurrent ? "Current" : (isPassed ? "✓ Depășit" : tierName)}</span>
         `;
         els.pageLeaguesList.appendChild(row);
       });
@@ -1946,8 +1696,6 @@
         els.pageAchievementsGrid.appendChild(card);
       });
     }
-
-    renderCurrentFlashcard();
   }
 
   function launchConfetti() {
@@ -2000,656 +1748,6 @@
   }
 
   // =========================================================================
-  // MOTORUL DE REDESIGN POLYMATH:
-  // 1. AETHERIS AMBIENT CHAMELEON AURA
-  // 2. SURVIVOR 03 VISUAL RUNTIME AST DEBUGGER
-  // 3. LIVE PRACTICE SIMULATION SANDBOX
-  // 4. OBSIDIAN 3D FLIP FLASHCARD & POMODORO TIMER
-  // =========================================================================
-
-  function updateChameleonAura(colorHexOrRgb, stepNum) {
-    const stepColors = {
-      1: { o1: "rgba(16, 185, 129, 0.32)", o2: "rgba(6, 182, 212, 0.26)", o3: "rgba(139, 92, 246, 0.2)" }, // Emerald/Cyan
-      2: { o1: "rgba(6, 182, 212, 0.34)", o2: "rgba(139, 92, 246, 0.28)", o3: "rgba(59, 130, 246, 0.22)" }, // Cyan/Amethyst
-      3: { o1: "rgba(245, 158, 11, 0.32)", o2: "rgba(16, 185, 129, 0.26)", o3: "rgba(249, 115, 22, 0.2)" }, // Amber/Emerald
-      4: { o1: "rgba(168, 85, 247, 0.32)", o2: "rgba(236, 72, 153, 0.28)", o3: "rgba(6, 182, 212, 0.2)" }  // Purple/Pink
-    };
-
-    const scheme = stepColors[stepNum] || stepColors[1];
-    document.documentElement.style.setProperty("--orb-1", scheme.o1);
-    document.documentElement.style.setProperty("--orb-2", scheme.o2);
-    document.documentElement.style.setProperty("--orb-3", scheme.o3);
-  }
-
-  let activeAstLineIndex = 0;
-  let astRunInterval = null;
-
-  function generateAstForLesson(lesson) {
-    const rawExample = lesson.example || lesson.starterCode || "";
-    const lines = rawExample
-      .split("\n")
-      .map(l => l.trimEnd())
-      .filter(l => l.trim().length > 0);
-
-    if (lines.length === 0) {
-      return [
-        { code: "// Execuție modul " + (lesson.track || "Polimat"), op: "Modulul este inițializat în memorie.", heap: "0 Bytes", blocks: 1, vars: "status: READY" }
-      ];
-    }
-
-    return lines.map((codeLine, idx) => {
-      const trimmed = codeLine.trim();
-      let op = "Execută instrucțiunea în registrul procesorului.";
-      let heap = `${(idx + 1) * 32} Bytes`;
-      let blocks = Math.min(8, Math.max(1, (idx + 1) % 8 + 1));
-      let vars = `line_${idx + 1}: OK`;
-
-      if (trimmed.startsWith("//") || trimmed.startsWith("--") || trimmed.startsWith("#")) {
-        op = "Directivă sau comentariu semantic de documentare în codul sursă.";
-        heap = "0 Bytes (Static)";
-        blocks = 0;
-        vars = "scope: global";
-      } else if (trimmed.includes("SELECT") || trimmed.includes("WHERE") || trimmed.includes("FROM")) {
-        op = "Plan de execuție SQL: filtru scanare index și alocare buffer de rezultate.";
-        heap = `${(idx + 1) * 64} Bytes (Buffer)`;
-        blocks = Math.min(8, idx + 2);
-        vars = "query_plan: SCAN_INDEX";
-      } else if (trimmed.includes("def ") || trimmed.includes("function") || trimmed.includes("class ")) {
-        op = "Declarație de funcție sau clasă: rezervă descriptorul în tabela de simboluri.";
-        heap = "128 Bytes (Stack Frame)";
-        blocks = 2;
-        vars = "symbol: callable";
-      } else if (trimmed.includes("return")) {
-        op = "Instrucțiune RETURN: transferă valoarea calculată și curăță automat stiva LIFO.";
-        heap = "0 Bytes (Curățat RAII)";
-        blocks = 0;
-        vars = "return_val: OK";
-      } else if (trimmed.includes("vector") || trimmed.includes("list") || trimmed.includes("[]") || trimmed.includes("Array")) {
-        op = "Alocare container secvențial în memorie continuă Heap cu aliniere la Cache.";
-        heap = "512 Bytes (Buffer Heap)";
-        blocks = 6;
-        vars = "ptr: 0x7ffd98";
-      } else if (trimmed.includes("import ") || trimmed.includes("#include")) {
-        op = "Legare dinamică și încărcare modul / antete în spațiul de adrese al procesului.";
-        heap = "64 Bytes (Metadata)";
-        blocks = 1;
-        vars = "module: loaded";
-      } else if (trimmed.includes("=") && !trimmed.includes("==")) {
-        op = "Operație de atribuire: evaluare expresie și scriere în memorie.";
-        heap = `${(idx + 1) * 48} Bytes`;
-        blocks = Math.min(8, idx + 2);
-        vars = "register: assigned";
-      }
-
-      return {
-        code: codeLine,
-        op,
-        heap,
-        blocks,
-        vars
-      };
-    });
-  }
-
-  function renderAstDebuggerForLesson(lesson) {
-    const linesContainer = document.getElementById("ast-code-lines");
-    if (!linesContainer) return;
-
-    if (astRunInterval) {
-      clearInterval(astRunInterval);
-      astRunInterval = null;
-    }
-
-    const astLines = generateAstForLesson(lesson);
-    activeAstLineIndex = 0;
-
-    const extMap = {
-      "C & C++": "main.cpp",
-      "Python Modern & Data Structures": "model.py",
-      "SQL": "query.sql",
-      "JavaScript: DOM & Events": "app.js",
-      "TypeScript & React": "component.tsx",
-      "DevOps & Sisteme Linux": "deploy.sh",
-      "Algoritmi & Structuri de Date": "algorithm.cpp"
-    };
-
-    const fileNameEl = document.getElementById("ast-filename");
-    if (fileNameEl) {
-      fileNameEl.textContent = extMap[lesson.track] || `${(lesson.track || "code").toLowerCase().replace(/[^a-z0-9]/g, "_")}.txt`;
-    }
-
-    function updateAstDisplay() {
-      linesContainer.innerHTML = "";
-      astLines.forEach((item, idx) => {
-        const isCurrent = idx === activeAstLineIndex;
-        const row = document.createElement("div");
-        row.className = `ast-code-row ${isCurrent ? "line-active" : ""}`;
-        row.innerHTML = `
-          <span class="ast-line-num">${idx + 1}</span>
-          <span class="ast-line-code">${escapeHtml(item.code)}</span>
-          ${isCurrent ? '<span class="ast-line-badge-tag">◄ EXECUTĂ</span>' : ''}
-        `;
-        row.addEventListener("click", () => {
-          activeAstLineIndex = idx;
-          playUiSound("click");
-          updateAstDisplay();
-        });
-        linesContainer.appendChild(row);
-      });
-
-      const current = astLines[activeAstLineIndex] || astLines[0];
-      const badgeText = document.getElementById("ast-badge-text");
-      if (badgeText) badgeText.textContent = `LINIA ${activeAstLineIndex + 1} / ${astLines.length}`;
-
-      const currentLineIndicator = document.getElementById("ast-current-line-num");
-      if (currentLineIndicator) currentLineIndicator.textContent = `Rândul ${activeAstLineIndex + 1}`;
-
-      const explainEl = document.getElementById("ast-explain");
-      if (explainEl && current) explainEl.textContent = current.op;
-
-      const heapEl = document.getElementById("ast-heap-val");
-      if (heapEl && current) heapEl.textContent = current.heap;
-
-      const varsEl = document.getElementById("ast-vars-val");
-      if (varsEl && current) varsEl.textContent = current.vars;
-
-      const blocksContainer = document.getElementById("ast-memory-blocks");
-      if (blocksContainer && current) {
-        blocksContainer.innerHTML = "";
-        for (let b = 0; b < 8; b++) {
-          const cell = document.createElement("div");
-          cell.className = `ast-block-cell ${b < current.blocks ? "active-block" : ""}`;
-          blocksContainer.appendChild(cell);
-        }
-      }
-    }
-
-    updateAstDisplay();
-
-    const stepBtn = document.getElementById("ast-step-btn");
-    if (stepBtn) {
-      stepBtn.onclick = () => {
-        activeAstLineIndex = (activeAstLineIndex + 1) % astLines.length;
-        playUiSound("click");
-        updateAstDisplay();
-      };
-    }
-
-    const runBtn = document.getElementById("ast-run-btn");
-    if (runBtn) {
-      runBtn.onclick = () => {
-        if (astRunInterval) clearInterval(astRunInterval);
-        let s = 0;
-        astRunInterval = setInterval(() => {
-          activeAstLineIndex = s;
-          updateAstDisplay();
-          playUiSound("pop");
-          s++;
-          if (s >= astLines.length) {
-            clearInterval(astRunInterval);
-            astRunInterval = null;
-            addXp(30, "Execuție completă AST!");
-            playUiSound("success");
-          }
-        }, 400);
-      };
-    }
-
-    const resetBtn = document.getElementById("ast-reset-btn");
-    if (resetBtn) {
-      resetBtn.onclick = () => {
-        if (astRunInterval) clearInterval(astRunInterval);
-        activeAstLineIndex = 0;
-        updateAstDisplay();
-        playUiSound("click");
-      };
-    }
-  }
-
-  // Live Practice Simulation Canvas
-  let simAnimId = null;
-  let simPackets = [];
-  let simBurstSparks = [];
-  let simDensity = 12;
-  let simSpeed = 2.5;
-
-  function initPracticeSimCanvas() {
-    const canvas = document.getElementById("practice-sim-canvas");
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const densitySlider = document.getElementById("sim-density-slider");
-    const densityVal = document.getElementById("sim-density-val");
-    const speedSlider = document.getElementById("sim-speed-slider");
-    const speedVal = document.getElementById("sim-speed-val");
-    const burstBtn = document.getElementById("btn-sim-burst");
-
-    if (densitySlider) {
-      densitySlider.oninput = e => {
-        simDensity = parseInt(e.target.value, 10);
-        if (densityVal) densityVal.textContent = simDensity;
-        createPackets();
-      };
-    }
-
-    if (speedSlider) {
-      speedSlider.oninput = e => {
-        simSpeed = parseFloat(e.target.value);
-        if (speedVal) speedVal.textContent = `${simSpeed}x`;
-      };
-    }
-
-    if (burstBtn) {
-      burstBtn.onclick = () => {
-        for (let i = 0; i < 35; i++) {
-          simBurstSparks.push({
-            x: canvas.width / 2,
-            y: canvas.height / 2,
-            vx: (Math.random() - 0.5) * 8 * (simSpeed / 2),
-            vy: (Math.random() - 0.5) * 8 * (simSpeed / 2),
-            radius: Math.random() * 3 + 1,
-            alpha: 1,
-            color: Math.random() > 0.5 ? "#10b981" : "#06b6d4"
-          });
-        }
-        addXp(15, "Burst Memorie generat!");
-        playUiSound("success");
-      };
-    }
-
-    function createPackets() {
-      simPackets = [];
-      const cw = canvas.width || 600;
-      const ch = canvas.height || 150;
-      for (let i = 0; i < simDensity; i++) {
-        simPackets.push({
-          x: Math.random() * cw,
-          y: Math.random() * ch,
-          vx: (Math.random() * 1.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1),
-          vy: (Math.random() * 0.8 + 0.2) * (Math.random() > 0.5 ? 1 : -1),
-          r: Math.random() * 3 + 2,
-          color: i % 2 === 0 ? "#10b981" : "#67e8f9"
-        });
-      }
-    }
-
-    createPackets();
-
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      ctx.lineWidth = 0.6;
-      for (let i = 0; i < simPackets.length; i++) {
-        for (let j = i + 1; j < simPackets.length; j++) {
-          const dx = simPackets[i].x - simPackets[j].x;
-          const dy = simPackets[i].y - simPackets[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 90) {
-            ctx.strokeStyle = `rgba(16, 185, 129, ${0.45 * (1 - dist / 90)})`;
-            ctx.beginPath();
-            ctx.moveTo(simPackets[i].x, simPackets[i].y);
-            ctx.lineTo(simPackets[j].x, simPackets[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      simPackets.forEach(p => {
-        p.x += p.vx * (simSpeed / 2);
-        p.y += p.vy * (simSpeed / 2);
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-        ctx.fillStyle = p.color;
-        ctx.shadowColor = p.color;
-        ctx.shadowBlur = 8;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      });
-
-      for (let i = simBurstSparks.length - 1; i >= 0; i--) {
-        const s = simBurstSparks[i];
-        s.x += s.vx;
-        s.y += s.vy;
-        s.alpha -= 0.025;
-        if (s.alpha <= 0) {
-          simBurstSparks.splice(i, 1);
-        } else {
-          ctx.save();
-          ctx.globalAlpha = s.alpha;
-          ctx.fillStyle = s.color;
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-        }
-      }
-
-      simAnimId = requestAnimationFrame(draw);
-    }
-
-    if (simAnimId) cancelAnimationFrame(simAnimId);
-    simAnimId = requestAnimationFrame(draw);
-  }
-
-  // =========================================================================
-  // SISTEM DE MEMORARE ACTIVĂ: FLASHCARD 3D FEYNMAN
-  // =========================================================================
-  let flashcardsPool = [];
-  let currentFlashcardIndex = 0;
-  let activeFlashcardTrack = "ALL";
-
-  function buildFlashcardsPool() {
-    const pool = [];
-    const seenTerms = new Set();
-
-    // Adunăm termenii din toate lecțiile din curriculum
-    allLessons.forEach(lesson => {
-      const track = lesson.track || "General";
-      if (Array.isArray(lesson.glossary)) {
-        lesson.glossary.forEach(g => {
-          if (g && g.term && !seenTerms.has(g.term)) {
-            seenTerms.add(g.term);
-            pool.push({
-              q: `Ce reprezintă conceptul „${g.term}”?`,
-              a: g.def,
-              category: `${track} • ${g.term}`,
-              track: track
-            });
-          }
-        });
-      }
-    });
-
-    // Fallback garantat dacă nu există încă termeni
-    if (pool.length === 0) {
-      pool.push(
-        { q: "Ce garantează principiul RAII în C++?", a: "Durata de viață a resurselor este legată de stivă (LIFO). Constructorul inițializează, iar destructorul eliberează automat memoria la ieșirea din domeniu fără memory leaks.", category: "C++ Determinism RAII", track: "C & C++" },
-        { q: "Ce este un Index B-Tree în baze de date?", a: "Structură arborescentă auto-echilibrată care menține datele sortate și permite căutări, acces secvențial, inserări și ștergeri în timp logaritmic O(log N).", category: "SQL & Storage Engine", track: "SQL" },
-        { q: "Ce reprezintă un Generator (yield) în Python?", a: "O funcție specială care returnează un iterator și generează valori la cerere (lazy evaluation), consumând memorie O(1) în loc să aloce liste mari în RAM.", category: "Python Memory & Tensors", track: "Python Modern & Data Structures" },
-        { q: "Ce este un Container Docker vs o Mașină Virtuală?", a: "Un container partajează kernel-ul sistemului de operare gazdă și izolează procesele prin cgroups și namespaces, fără overhead-ul unui hypervisor sau OS complet.", category: "DevOps & Sisteme Linux", track: "DevOps & Sisteme Linux" }
-      );
-    }
-
-    return pool;
-  }
-
-  function initFlashcardSystem() {
-    flashcardsPool = buildFlashcardsPool();
-    currentFlashcardIndex = 0;
-
-    const filterSelect = document.getElementById("fc-track-filter");
-    if (filterSelect) {
-      const tracks = Array.from(new Set(flashcardsPool.map(c => c.track))).sort();
-      filterSelect.innerHTML = `<option value="ALL">🌐 Toate Disciplinele (${flashcardsPool.length} Carduri)</option>`;
-      tracks.forEach(tr => {
-        const count = flashcardsPool.filter(c => c.track === tr).length;
-        const opt = document.createElement("option");
-        opt.value = tr;
-        opt.textContent = `${tr} (${count})`;
-        filterSelect.appendChild(opt);
-      });
-
-      filterSelect.onchange = e => {
-        activeFlashcardTrack = e.target.value;
-        currentFlashcardIndex = 0;
-        playUiSound("click");
-        renderCurrentFlashcard();
-      };
-    }
-
-    const cardEl = document.getElementById("feynman-card");
-    const flipBtn = document.getElementById("btn-flip-card");
-    const nextBtn = document.getElementById("btn-next-flashcard");
-
-    function flipCard() {
-      if (!cardEl) return;
-      cardEl.classList.toggle("flipped");
-      playUiSound("pop");
-    }
-
-    if (cardEl) {
-      cardEl.onclick = e => {
-        if (e.target.closest(".fc-grade-btn")) return;
-        flipCard();
-      };
-
-      cardEl.onkeydown = e => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          flipCard();
-        }
-      };
-    }
-
-    if (flipBtn) {
-      flipBtn.onclick = () => flipCard();
-    }
-
-    if (nextBtn) {
-      nextBtn.onclick = () => advanceFlashcard();
-    }
-
-    // Butoanele de autoevaluare (Spaced Repetition)
-    document.querySelectorAll(".fc-grade-btn").forEach(btn => {
-      btn.onclick = e => {
-        e.stopPropagation();
-        const grade = btn.getAttribute("data-grade");
-        let xpGained = 15;
-        let msg = "Răspuns evaluat!";
-        if (grade === "hard") {
-          xpGained = 5;
-          msg = "Revizuire marcată (+5 XP)";
-        } else if (grade === "good") {
-          xpGained = 15;
-          msg = "Memorare bună (+15 XP)";
-        } else if (grade === "easy") {
-          xpGained = 25;
-          msg = "Concept stăpânit perfect! (+25 XP)";
-          playUiSound("success");
-        }
-        addXp(xpGained, msg);
-        advanceFlashcard();
-      };
-    });
-
-    renderCurrentFlashcard();
-  }
-
-  function getActiveFlashcardList() {
-    if (activeFlashcardTrack === "ALL") return flashcardsPool;
-    return flashcardsPool.filter(c => c.track === activeFlashcardTrack);
-  }
-
-  function advanceFlashcard() {
-    const cardEl = document.getElementById("feynman-card");
-    if (cardEl) cardEl.classList.remove("flipped");
-    playUiSound("click");
-
-    const currentList = getActiveFlashcardList();
-    currentFlashcardIndex = (currentFlashcardIndex + 1) % (currentList.length || 1);
-
-    setTimeout(() => {
-      renderCurrentFlashcard();
-    }, 240);
-  }
-
-  function renderCurrentFlashcard() {
-    const cardEl = document.getElementById("feynman-card");
-    const categoryEl = document.getElementById("fc-category");
-    const qEl = document.getElementById("fc-q");
-    const aEl = document.getElementById("fc-a");
-    const counterBadge = document.getElementById("fc-counter-badge");
-
-    const list = getActiveFlashcardList();
-    if (list.length === 0) return;
-
-    const cur = list[currentFlashcardIndex % list.length];
-    if (categoryEl) categoryEl.textContent = cur.category || cur.track;
-    if (qEl) qEl.textContent = cur.q;
-    if (aEl) aEl.textContent = cur.a;
-    if (counterBadge) counterBadge.textContent = `Card ${(currentFlashcardIndex % list.length) + 1} / ${list.length}`;
-    if (cardEl) cardEl.classList.remove("flipped");
-  }
-
-  function updateFlashcardForLesson(lesson) {
-    if (!lesson) return;
-    const filterSelect = document.getElementById("fc-track-filter");
-    if (filterSelect && lesson.track) {
-      for (let i = 0; i < filterSelect.options.length; i++) {
-        if (filterSelect.options[i].value === lesson.track) {
-          filterSelect.selectedIndex = i;
-          activeFlashcardTrack = lesson.track;
-          currentFlashcardIndex = 0;
-          renderCurrentFlashcard();
-          break;
-        }
-      }
-    }
-  }
-
-  // =========================================================================
-  // POMODORO DEEP WORK FOCUS LAB CU RING SVG & PRESETURI
-  // =========================================================================
-  let pomoMode = "focus"; // "focus", "short", "long"
-  let pomoTotalSeconds = 25 * 60;
-  let pomoRemainingSeconds = 25 * 60;
-  let pomoRunning = false;
-  let pomoTimerId = null;
-  let pomoSessionCount = 1;
-
-  function initPomodoroTimer() {
-    const display = document.getElementById("pomo-display");
-    const toggleBtn = document.getElementById("pomo-btn");
-    const resetBtn = document.getElementById("btn-pomo-reset");
-    const ringEl = document.getElementById("pomo-progress-ring");
-    const statusLabel = document.getElementById("pomo-status-label");
-    const sessionBadge = document.getElementById("pomo-session-badge");
-    const sessionDots = document.getElementById("pomo-session-dots");
-
-    if (!display || !toggleBtn) return;
-
-    function formatTime(s) {
-      const mins = Math.floor(s / 60);
-      const secs = s % 60;
-      return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-    }
-
-    function updateRing() {
-      if (!ringEl) return;
-      const circumference = 515.22;
-      const progress = pomoRemainingSeconds / pomoTotalSeconds;
-      const offset = circumference * (1 - progress);
-      ringEl.style.strokeDashoffset = offset;
-
-      if (pomoMode === "focus") {
-        ringEl.style.stroke = "#10b981";
-      } else if (pomoMode === "short") {
-        ringEl.style.stroke = "#06b6d4";
-      } else {
-        ringEl.style.stroke = "#a855f7";
-      }
-    }
-
-    function updateDisplay() {
-      display.textContent = formatTime(pomoRemainingSeconds);
-      updateRing();
-      if (sessionBadge) sessionBadge.textContent = `Sesiunea ${pomoSessionCount} / 4`;
-
-      if (sessionDots) {
-        sessionDots.innerHTML = "";
-        for (let i = 1; i <= 4; i++) {
-          const dot = document.createElement("span");
-          dot.className = `pomo-dot ${i <= pomoSessionCount ? "active" : ""}`;
-          dot.textContent = i <= pomoSessionCount ? "🍅" : "⚪";
-          sessionDots.appendChild(dot);
-        }
-      }
-    }
-
-    function setMode(mode, minutes) {
-      pomoMode = mode;
-      pomoTotalSeconds = minutes * 60;
-      pomoRemainingSeconds = pomoTotalSeconds;
-      pomoRunning = false;
-      if (pomoTimerId) clearInterval(pomoTimerId);
-
-      document.querySelectorAll(".pomo-mode-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.getAttribute("data-mode") === mode);
-      });
-
-      if (statusLabel) {
-        if (mode === "focus") statusLabel.textContent = "CONCENTRARE";
-        else if (mode === "short") statusLabel.textContent = "PAUZĂ SCURTĂ";
-        else statusLabel.textContent = "RELAXARE PROFUNDĂ";
-      }
-
-      toggleBtn.textContent = "▶️ START FOCUS";
-      playUiSound("click");
-      updateDisplay();
-    }
-
-    document.querySelectorAll(".pomo-mode-btn").forEach(btn => {
-      btn.onclick = () => {
-        const mode = btn.getAttribute("data-mode");
-        const mins = parseInt(btn.getAttribute("data-minutes"), 10) || 25;
-        setMode(mode, mins);
-      };
-    });
-
-    toggleBtn.onclick = () => {
-      playUiSound("click");
-      if (!pomoRunning) {
-        pomoRunning = true;
-        toggleBtn.textContent = "⏸️ PAUZĂ FOCUS";
-        pomoTimerId = setInterval(() => {
-          if (pomoRemainingSeconds > 0) {
-            pomoRemainingSeconds--;
-            updateDisplay();
-          } else {
-            clearInterval(pomoTimerId);
-            pomoRunning = false;
-            playUiSound("success");
-
-            if (pomoMode === "focus") {
-              pomoSessionCount++;
-              addXp(75, "Sesiune Focus Pomodoro completată!");
-              if (pomoSessionCount > 4) {
-                pomoSessionCount = 1;
-                addXp(150, "Ciclul complet de 4 sesiuni Deep Work finalizat!");
-              }
-              setMode("short", 5);
-            } else {
-              addXp(25, "Pauză finalizată! Gata de o nouă sesiune.");
-              setMode("focus", 25);
-            }
-          }
-        }, 1000);
-      } else {
-        pomoRunning = false;
-        clearInterval(pomoTimerId);
-        toggleBtn.textContent = "▶️ CONTINUĂ";
-      }
-    };
-
-    if (resetBtn) {
-      resetBtn.onclick = () => {
-        playUiSound("click");
-        if (pomoTimerId) clearInterval(pomoTimerId);
-        pomoRunning = false;
-        pomoRemainingSeconds = pomoTotalSeconds;
-        toggleBtn.textContent = "▶️ START FOCUS";
-        updateDisplay();
-      };
-    }
-
-    updateDisplay();
-  }
-
-  // =========================================================================
   // ATRIBUIRE EVENIMENTE
   // =========================================================================
   function bindEvents() {
@@ -2669,24 +1767,12 @@
       if (btn) {
         btn.addEventListener("click", () => {
           const view = btn.getAttribute("data-view");
-          if (view === "catalog") {
-            document.body.classList.remove("viewing-chapters");
-          }
           if (view) switchView(view);
         });
       }
     });
 
-    // Buton Înapoi la Citadela 3D din Secțiunea de Capitole
-    const btnBackToCitadel = document.getElementById("btn-back-to-citadel");
-    if (btnBackToCitadel) {
-      btnBackToCitadel.addEventListener("click", () => {
-        playUiSound("click");
-        document.body.classList.remove("viewing-chapters");
-        updateScrollLock();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    }
+
 
     // Cluster Statistici Navigabil Direct
     if (els.streakPill) {
@@ -2721,10 +1807,7 @@
 
     // Buton Înapoi la Catalog din Studiul Focalizat
     if (els.backToCatalogBtn) {
-      els.backToCatalogBtn.addEventListener("click", () => {
-        document.body.classList.remove("viewing-chapters");
-        switchView("catalog");
-      });
+      els.backToCatalogBtn.addEventListener("click", () => switchView("catalog"));
     }
 
     // Buzunar Glisant (Pocket Drawer)
@@ -2757,6 +1840,47 @@
     }
     if (els.catalogSearchInput) {
       els.catalogSearchInput.addEventListener("input", renderCatalogChapters);
+    }
+
+    // Comutatoare Tab-uri Dual Split (Teorie, Exemple, Practică)
+    if (els.dualTabTheory) {
+      els.dualTabTheory.addEventListener("click", () => {
+        setActiveDualTab(els.dualTabTheory, "theory");
+      });
+    }
+    if (els.dualTabExamples) {
+      els.dualTabExamples.addEventListener("click", () => {
+        setActiveDualTab(els.dualTabExamples, "examples");
+      });
+    }
+    if (els.dualTabPractice) {
+      els.dualTabPractice.addEventListener("click", () => {
+        setActiveDualTab(els.dualTabPractice, "practice");
+      });
+    }
+
+    if (els.dualPrevBtn) {
+      els.dualPrevBtn.addEventListener("click", () => {
+        const trackLessons = allLessons.filter(l => l.track === state.activeTrack).sort(sortLessonsCanonical);
+        const idx = trackLessons.findIndex(l => l.id === state.activeLessonId);
+        if (idx > 0) {
+          state.activeLessonId = trackLessons[idx - 1].id;
+          saveState();
+          renderStudyView();
+        }
+      });
+    }
+
+    if (els.dualNextBtn) {
+      els.dualNextBtn.addEventListener("click", () => {
+        const trackLessons = allLessons.filter(l => l.track === state.activeTrack).sort(sortLessonsCanonical);
+        const idx = trackLessons.findIndex(l => l.id === state.activeLessonId);
+        if (idx >= 0 && idx < trackLessons.length - 1) {
+          state.activeLessonId = trackLessons[idx + 1].id;
+          saveState();
+          renderStudyView();
+        }
+      });
     }
 
     // Comutator Moduri de Practică în Studiul Focalizat
@@ -2851,1665 +1975,16 @@
       els.themeSelector.addEventListener("change", e => applyTheme(e.target.value));
     }
 
-    // Comutator Moduri Arhitectură / Layout (5 Arhitecturi Cardinale)
-    if (els.layoutSelector) {
-      els.layoutSelector.addEventListener("change", e => {
-        applyLayoutMode(e.target.value);
-        playUiSound("click");
-      });
-    }
-
-    // Buton Toggle Sunet Sintetizat
-    if (els.soundToggleBtn) {
-      els.soundToggleBtn.addEventListener("click", toggleSound);
-    }
-
-    // Cyber Command Kernel CLI
-    if (els.cyberCliRunBtn) {
-      els.cyberCliRunBtn.addEventListener("click", executeCyberCli);
-    }
-    if (els.cyberCliInput) {
-      els.cyberCliInput.addEventListener("keydown", e => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          executeCyberCli();
-        } else if (e.key.length === 1 || e.key === "Backspace") {
-          playUiSound("click");
-        }
-      });
-    }
-
-    // Etichete Rapide Cyber CLI
-    document.querySelectorAll(".cyber-tag").forEach(tag => {
-      tag.addEventListener("click", () => {
-        const cmd = tag.getAttribute("data-cmd");
-        if (els.cyberCliInput && cmd) {
-          els.cyberCliInput.value = cmd;
-          executeCyberCli();
-        }
-      });
-    });
-
-    // Dual Split Workspace Tabs (Teorie, Exemple, Practică, Exerciții)
-    function setActiveDualTab(activeTab, paneName, targetEl) {
-      document.querySelectorAll(".dual-nav-tab").forEach(t => t.classList.remove("active"));
-      if (activeTab) activeTab.classList.add("active");
-      playUiSound("click");
-
-      state.activeDualPane = paneName;
-      document.documentElement.setAttribute("data-dual-pane", paneName);
-      document.body.setAttribute("data-dual-pane", paneName);
-      if (els.studyView) els.studyView.setAttribute("data-dual-pane", paneName);
-
-      // Glisare animată de sus în jos pe containerul vizibil din dreapta
-      const targetContainer = (paneName === "theory" || paneName === "examples")
-        ? document.querySelector(".theory-card")
-        : els.practiceCard;
-
-      if (targetContainer) {
-        targetContainer.classList.remove("dual-pane-animate");
-        void targetContainer.offsetWidth; // retrigger reflow
-        targetContainer.classList.add("dual-pane-animate");
-        targetContainer.scrollTop = 0;
-        targetContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-
-    if (els.dualTabTheory) {
-      els.dualTabTheory.addEventListener("click", () => {
-        setActiveDualTab(els.dualTabTheory, "theory", els.lessonTheory || document.querySelector(".theory-card"));
-        updateChameleonAura(null, 1);
-      });
-    }
-    if (els.dualTabExamples) {
-      els.dualTabExamples.addEventListener("click", () => {
-        const exampleBox = document.querySelector(".example-box");
-        setActiveDualTab(els.dualTabExamples, "examples", exampleBox || els.lessonExample);
-        updateChameleonAura(null, 2);
-      });
-    }
-    if (els.dualTabPractice) {
-      els.dualTabPractice.addEventListener("click", () => {
-        switchPracticeMode("write");
-        setActiveDualTab(els.dualTabPractice, "practice", els.paneWrite || els.practiceCard);
-        updateChameleonAura(null, 3);
-      });
-    }
-    if (els.dualTabExercises) {
-      els.dualTabExercises.addEventListener("click", () => {
-        switchPracticeMode("quiz");
-        setActiveDualTab(els.dualTabExercises, "exercises", els.paneQuiz || els.practiceCard);
-        updateChameleonAura(null, 4);
-      });
-    }
-
-    if (els.dualPrevBtn) {
-      els.dualPrevBtn.addEventListener("click", () => {
-        const trackLessons = allLessons.filter(l => l.track === state.activeTrack).sort(sortLessonsCanonical);
-        const idx = trackLessons.findIndex(l => l.id === state.activeLessonId);
-        if (idx > 0) {
-          state.activeLessonId = trackLessons[idx - 1].id;
-          saveState();
-          renderStudyView();
-          playUiSound("click");
-        }
-      });
-    }
-
-    if (els.dualNextBtn) {
-      els.dualNextBtn.addEventListener("click", () => {
-        const trackLessons = allLessons.filter(l => l.track === state.activeTrack).sort(sortLessonsCanonical);
-        const idx = trackLessons.findIndex(l => l.id === state.activeLessonId);
-        if (idx !== -1 && idx + 1 < trackLessons.length) {
-          state.activeLessonId = trackLessons[idx + 1].id;
-          saveState();
-          renderStudyView();
-          playUiSound("click");
-        }
-      });
-    }
-
-    initPracticeSimCanvas();
-    initFlashcardSystem();
-    initPomodoroTimer();
-  }
-
-  /* ==========================================================================
-     INTERACTIVE AMBIENT PARTICLE CONSTELLATION SYSTEM (NEXT.JS CANVAS)
-     ========================================================================== */
-  function initAmbientParticles() {
-    const canvas = document.getElementById("ambient-particle-canvas");
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    let resizeTimer;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-        buildParticles();
-      }, 200);
-    });
-
-    const mouse = { x: null, y: null, radius: 130 };
-    window.addEventListener("mousemove", e => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-    window.addEventListener("mouseleave", () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
-
-    let particles = [];
-    class AmbientParticle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 1.6 + 0.8;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-
-        if (mouse.x !== null) {
-          const dx = mouse.x - this.x;
-          const dy = mouse.y - this.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < mouse.radius && dist > 0) {
-            const force = (mouse.radius - dist) / mouse.radius;
-            this.x -= (dx / dist) * force * 2.2;
-            this.y -= (dy / dist) * force * 2.2;
-          }
-        }
-      }
-      draw(themeColor) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = themeColor;
-        ctx.fill();
-      }
-    }
-
-    function buildParticles() {
-      particles = [];
-      const isMobile = window.innerWidth < 768;
-      const count = isMobile ? 16 : Math.min(55, Math.floor((width * height) / 24000));
-      for (let i = 0; i < count; i++) {
-        particles.push(new AmbientParticle());
-      }
-    }
-    buildParticles();
-
-    let isVisible = true;
-    document.addEventListener("visibilitychange", () => {
-      isVisible = !document.hidden;
-    });
-
-    function renderLoop() {
-      if (isVisible) {
-        ctx.clearRect(0, 0, width, height);
-        const style = getComputedStyle(document.documentElement);
-        const primaryColor = style.getPropertyValue("--accent-primary").trim() || "#10b981";
-
-        for (let i = 0; i < particles.length; i++) {
-          particles[i].update();
-          particles[i].draw(primaryColor);
-
-          for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const dist = Math.hypot(dx, dy);
-
-            if (dist < 110) {
-              ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              const alpha = (1 - dist / 110) * 0.14;
-              ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-              ctx.lineWidth = 0.7;
-              ctx.stroke();
-            }
-          }
-        }
-      }
-      requestAnimationFrame(renderLoop);
-    }
-    requestAnimationFrame(renderLoop);
-  }
-
-  /* ==========================================================================
-     CUSTOM MOMENTUM AIM CURSOR (EDITORIAL & COSMOS)
-     ========================================================================== */
-  function initAimCursor() {
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
-
-    window.addEventListener("mousemove", e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (els.aimDot) {
-        els.aimDot.style.left = `${mouseX}px`;
-        els.aimDot.style.top = `${mouseY}px`;
-      }
-    });
-
-    function loopCursor() {
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
-      if (els.aimCursor) {
-        els.aimCursor.style.left = `${ringX}px`;
-        els.aimCursor.style.top = `${ringY}px`;
-      }
-      requestAnimationFrame(loopCursor);
-    }
-    requestAnimationFrame(loopCursor);
-  }
-
-  /* ==========================================================================
-     SISTEMUL SOLAR POLIMAT & CITADELA 3D (SURVIVOR 13 ARCHITECTURE) (MOD 5)
-     ========================================================================== */
-  let cosmosOrbitInitialized = false;
-  let cosmosThreeRenderer = null;
-  let cosmosThreeCamera = null;
-
-  function initCosmosOrbitCanvas() {
-    const canvas = document.getElementById("cosmos-orbit-canvas");
-    if (!canvas) return;
-
-    // Pe mobil/telefon (<= 768px) sau în modul simplu, Cosmos este dezactivat pentru viteză maximă și zero consum GPU
-    if (window.innerWidth <= 768 || state.is3DActive === false) {
-      return;
-    }
-
-    // Telemetrie Warp eliminată conform cerinței utilizatorului
-    if (els.cosmosTelemetryNodes) {
-      els.cosmosTelemetryNodes.innerHTML = "";
-      els.cosmosTelemetryNodes.style.display = "none";
-    }
-
-    if (cosmosOrbitInitialized) {
-      if (cosmosThreeRenderer && cosmosThreeCamera) {
-        const parent = canvas.parentElement;
-        const w = parent ? parent.clientWidth : 800;
-        const h = parent ? parent.clientHeight : 600;
-        if (w > 0 && h > 0) {
-          cosmosThreeCamera.aspect = w / h;
-          cosmosThreeCamera.updateProjectionMatrix();
-          cosmosThreeRenderer.setSize(w, h);
-        }
-      }
-      return;
-    }
-    cosmosOrbitInitialized = true;
-
-    // Verificăm disponibilitatea Three.js
-    if (typeof THREE === "undefined") {
-      initFallback2DCosmos(canvas);
-      return;
-    }
-
-    try {
-      initThreeJSCosmos(canvas);
-    } catch (err) {
-      console.warn("WebGL Cosmos Init failed, falling back to 2D:", err);
-      initFallback2DCosmos(canvas);
-    }
-  }
-
-  function initThreeJSCosmos(canvas) {
-    const parent = canvas.parentElement;
-    let width = parent ? parent.clientWidth : 800;
-    let height = parent ? parent.clientHeight : 600;
-    if (width <= 0) width = 800;
-    if (height <= 0) height = 600;
-
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
-      antialias: true,
-      alpha: true,
-      powerPreference: "high-performance"
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setSize(width, height);
-    if (renderer.toneMapping !== undefined) {
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.3;
-    }
-    cosmosThreeRenderer = renderer;
-
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x020307, 0.02);
-
-    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
-    camera.position.set(0, 0.2, 20.5);
-    camera.lookAt(0, -0.6, 0);
-    cosmosThreeCamera = camera;
-
-    // World Group to hold all 3D entities
-    const worldGroup = new THREE.Group();
-    scene.add(worldGroup);
-
-    // 1. Lighting Rig (Clean Studio Lighting)
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
-    scene.add(ambientLight);
-
-    const topKeyLight = new THREE.DirectionalLight(0xffffff, 1.5);
-    topKeyLight.position.set(0, 20, 15);
-    scene.add(topKeyLight);
-
-    const cyanRim = new THREE.PointLight(0x00f0ff, 2.2, 50);
-    cyanRim.position.set(-15, -4, 10);
-    scene.add(cyanRim);
-
-    const magentaRim = new THREE.PointLight(0xd946ef, 2.2, 50);
-    magentaRim.position.set(15, -4, 10);
-    scene.add(magentaRim);
-
-    const amberFill = new THREE.PointLight(0xf59e0b, 1.8, 40);
-    amberFill.position.set(0, -6, 5);
-    scene.add(amberFill);
-
-    // 2. High-Tech Ground Floor Grid (Subtle, Clean)
-    const floorGrid = new THREE.GridHelper(80, 40, 0x38bdf8, 0x0f172a);
-    floorGrid.position.y = -5.5;
-    worldGroup.add(floorGrid);
-
-    // 3. Dynamic Texture Generator Helpers
-    function createCodeScreenTexture() {
-      const c = document.createElement("canvas");
-      c.width = 512;
-      c.height = 320;
-      const ctx = c.getContext("2d");
-      if (!ctx) return new THREE.Texture();
-      ctx.fillStyle = "#030712";
-      ctx.fillRect(0, 0, 512, 320);
-
-      // Terminal Header
-      ctx.fillStyle = "#0f172a";
-      ctx.fillRect(0, 0, 512, 28);
-      ctx.fillStyle = "#ef4444";
-      ctx.beginPath(); ctx.arc(16, 14, 5, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = "#eab308";
-      ctx.beginPath(); ctx.arc(32, 14, 5, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = "#22c55e";
-      ctx.beginPath(); ctx.arc(48, 14, 5, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = "#94a3b8";
-      ctx.font = "bold 11px monospace";
-      ctx.fillText("polymath_kernel.rs — 60 FPS", 70, 18);
-
-      // Code Lines
-      ctx.font = "bold 15px monospace";
-      ctx.fillStyle = "#38bdf8";
-      ctx.fillText("// INFORMATICĂ & PROGRAMARE", 20, 58);
-      ctx.fillStyle = "#f43f5e";
-      ctx.fillText("fn ", 20, 88);
-      ctx.fillStyle = "#a855f7";
-      ctx.fillText("build_citadel", 48, 88);
-      ctx.fillStyle = "#e2e8f0";
-      ctx.fillText("() -> Result<Cosmos, Error> {", 160, 88);
-      ctx.fillStyle = "#22c55e";
-      ctx.fillText("    let mut engine = CoreEngine::init();", 40, 118);
-      ctx.fillStyle = "#eab308";
-      ctx.fillText("    engine.bind(Python, Cpp, JavaScript);", 40, 148);
-      ctx.fillStyle = "#06b6d4";
-      ctx.fillText("    engine.deploy_quadrants(15_DOMAINS);", 40, 178);
-      ctx.fillStyle = "#38bdf8";
-      ctx.fillText("    Ok(engine.ignite_orbit())", 40, 208);
-      ctx.fillStyle = "#e2e8f0";
-      ctx.fillText("}", 20, 238);
-
-      ctx.fillStyle = "#10b981";
-      ctx.font = "bold 13px monospace";
-      ctx.fillText("> SATELITE_ORBIT: ACTIVE // 7 DISCIPLINE", 20, 278);
-      ctx.fillStyle = "#38bdf8";
-      ctx.fillRect(20, 290, 12, 18);
-
-      const tex = new THREE.CanvasTexture(c);
-      tex.needsUpdate = true;
-      return tex;
-    }
-
-    function createKeyboardTexture() {
-      const c = document.createElement("canvas");
-      c.width = 512;
-      c.height = 256;
-      const ctx = c.getContext("2d");
-      if (!ctx) return new THREE.Texture();
-      ctx.fillStyle = "#090d16";
-      ctx.fillRect(0, 0, 512, 256);
-
-      ctx.strokeStyle = "rgba(56, 189, 248, 0.4)";
-      ctx.lineWidth = 2;
-      for (let row = 0; row < 5; row++) {
-        for (let col = 0; col < 14; col++) {
-          ctx.fillStyle = "rgba(15, 23, 42, 0.85)";
-          ctx.strokeRect(20 + col * 34, 18 + row * 40, 30, 30);
-          ctx.fillRect(20 + col * 34, 18 + row * 40, 30, 30);
-        }
-      }
-      ctx.fillStyle = "rgba(56, 189, 248, 0.25)";
-      ctx.fillRect(150, 218, 210, 26);
-      ctx.strokeRect(150, 218, 210, 26);
-
-      const tex = new THREE.CanvasTexture(c);
-      tex.needsUpdate = true;
-      return tex;
-    }
-
-    function createServerTexture() {
-      const c = document.createElement("canvas");
-      c.width = 256;
-      c.height = 512;
-      const ctx = c.getContext("2d");
-      if (!ctx) return new THREE.Texture();
-      ctx.fillStyle = "#080c14";
-      ctx.fillRect(0, 0, 256, 512);
-
-      for (let i = 0; i < 5; i++) {
-        const y = 20 + i * 95;
-        ctx.fillStyle = "#0f172a";
-        ctx.fillRect(15, y, 226, 82);
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
-        ctx.strokeRect(15, y, 226, 82);
-
-        // Status LEDs
-        ctx.fillStyle = "#22c55e";
-        ctx.beginPath(); ctx.arc(35, y + 25, 6, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = "#fb923c";
-        ctx.beginPath(); ctx.arc(55, y + 25, 6, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = "#06b6d4";
-        ctx.beginPath(); ctx.arc(75, y + 25, 6, 0, Math.PI * 2); ctx.fill();
-
-        // Slits
-        ctx.fillStyle = "#020617";
-        for (let s = 0; s < 10; s++) {
-          ctx.fillRect(96 + s * 12, y + 16, 7, 50);
-        }
-      }
-
-      const tex = new THREE.CanvasTexture(c);
-      tex.needsUpdate = true;
-      return tex;
-    }
-
-    function createBookPageTexture() {
-      const c = document.createElement("canvas");
-      c.width = 256;
-      c.height = 384;
-      const ctx = c.getContext("2d");
-      if (!ctx) return new THREE.Texture();
-      ctx.fillStyle = "#faf5ea";
-      ctx.fillRect(0, 0, 256, 384);
-
-      ctx.strokeStyle = "rgba(168, 85, 247, 0.35)";
-      ctx.lineWidth = 3;
-      ctx.strokeRect(12, 12, 232, 360);
-
-      ctx.fillStyle = "#701a75";
-      ctx.font = "bold 20px serif";
-      ctx.textAlign = "center";
-      ctx.fillText("POLYMATH", 128, 48);
-
-      ctx.fillStyle = "rgba(51, 65, 85, 0.6)";
-      for (let i = 0; i < 14; i++) {
-        ctx.fillRect(25, 75 + i * 20, 206, 5);
-      }
-
-      const tex = new THREE.CanvasTexture(c);
-      tex.needsUpdate = true;
-      return tex;
-    }
-
-    function createPlanetEmblemTexture(icon, name, color) {
-      const c = document.createElement("canvas");
-      c.width = 256;
-      c.height = 256;
-      const ctx = c.getContext("2d");
-      if (!ctx) return new THREE.Texture();
-
-      ctx.fillStyle = "#080c16";
-      ctx.beginPath();
-      ctx.arc(128, 128, 120, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.lineWidth = 8;
-      ctx.strokeStyle = color || "#38bdf8";
-      ctx.stroke();
-
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
-      ctx.beginPath();
-      ctx.arc(128, 128, 106, 0, Math.PI * 2);
-      ctx.stroke();
-
-      ctx.font = "68px sans-serif";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(icon, 128, 92);
-
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 24px 'Space Grotesk', sans-serif";
-      ctx.fillText(name, 128, 178);
-
-      const tex = new THREE.CanvasTexture(c);
-      tex.needsUpdate = true;
-      return tex;
-    }
-
-    const interactiveObjects = [];
-    const disciplineNodes = {};
-    const majorFigureNodes = [];
-    let activeCosmosMode = "overview";
-    let isOrbitPaused = false;
-    let orbitSpeedMultiplier = 1.0;
-
-    // 4. Figure 1: 💻 CALCULATOR & TERMINAL (Informatică & Programare)
-    const itGroup = new THREE.Group();
-    itGroup.position.set(-8.8, -0.9, 0);
-    itGroup.scale.set(0.9, 0.9, 0.9);
-
-    const itBezelGeo = new THREE.BoxGeometry(4.4, 2.8, 0.25);
-    const itBezelMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
-    const itBezel = new THREE.Mesh(itBezelGeo, itBezelMat);
-    itBezel.position.y = 1.0;
-    itGroup.add(itBezel);
-
-    const itScreenGeo = new THREE.PlaneGeometry(4.05, 2.45);
-    const itScreenMat = new THREE.MeshBasicMaterial({ map: createCodeScreenTexture() });
-    const itScreen = new THREE.Mesh(itScreenGeo, itScreenMat);
-    itScreen.position.set(0, 1.0, 0.16);
-    itGroup.add(itScreen);
-
-    const itNeckGeo = new THREE.CylinderGeometry(0.18, 0.22, 1.2, 16);
-    const itNeckMat = new THREE.MeshStandardMaterial({ color: 0x64748b, metalness: 0.9, roughness: 0.1 });
-    const itNeck = new THREE.Mesh(itNeckGeo, itNeckMat);
-    itNeck.position.y = -0.7;
-    itGroup.add(itNeck);
-
-    const itBaseGeo = new THREE.CylinderGeometry(1.4, 1.6, 0.18, 32);
-    const itBaseMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.7, roughness: 0.3 });
-    const itBase = new THREE.Mesh(itBaseGeo, itBaseMat);
-    itBase.position.y = -1.35;
-    itGroup.add(itBase);
-
-    const itKbGeo = new THREE.BoxGeometry(3.6, 0.12, 1.6);
-    const itKbMat = new THREE.MeshBasicMaterial({ map: createKeyboardTexture() });
-    const itKb = new THREE.Mesh(itKbGeo, itKbMat);
-    itKb.position.set(0, -1.3, 1.2);
-    itKb.rotation.x = 0.15;
-    itGroup.add(itKb);
-
-    const itPedGeo = new THREE.RingGeometry(2.2, 2.5, 32);
-    const itPedMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.7 });
-    const itPed = new THREE.Mesh(itPedGeo, itPedMat);
-    itPed.position.y = -1.5;
-    itPed.rotation.x = Math.PI / 2;
-    itGroup.add(itPed);
-
-    itBezel.userData = {
-      id: "it",
-      title: "💻 Act I • Informatică & Algoritmi",
-      desc: "Calculator 3D: C++, Python, JavaScript, Java, TypeScript, C#, Algoritmi",
-      trackName: "Python",
-      division: "Informatică și Programare",
-      isMajor: true,
-      color: "#38bdf8",
-      icon: "💻"
-    };
-    interactiveObjects.push(itBezel);
-    worldGroup.add(itGroup);
-    disciplineNodes["it"] = { group: itGroup, mesh: itBezel, pos: itGroup.position, cameraTarget: new THREE.Vector3(-8.8, -0.9, 8.8) };
-    majorFigureNodes.push({ id: "it", group: itGroup, mesh: itBezel, title: "Informatică (7 Cursuri)", color: "#38bdf8" });
-
-    // 5. Figure 2: 🐧 SERVER RACK MAINFRAME (Sisteme Linux & DevOps)
-    const osGroup = new THREE.Group();
-    osGroup.position.set(-3.0, -1.4, 1.6);
-    osGroup.scale.set(0.9, 0.9, 0.9);
-
-    const osChassisGeo = new THREE.BoxGeometry(2.6, 4.8, 2.4);
-    const osChassisMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.85, roughness: 0.25 });
-    const osChassis = new THREE.Mesh(osChassisGeo, osChassisMat);
-    osGroup.add(osChassis);
-
-    const osFrontGeo = new THREE.PlaneGeometry(2.3, 4.5);
-    const osFrontMat = new THREE.MeshBasicMaterial({ map: createServerTexture() });
-    const osFront = new THREE.Mesh(osFrontGeo, osFrontMat);
-    osFront.position.set(0, 0, 1.25);
-    osGroup.add(osFront);
-
-    const osBadgeGeo = new THREE.CylinderGeometry(0.85, 0.85, 0.12, 32);
-    const osBadgeMat = new THREE.MeshBasicMaterial({ map: createPlanetEmblemTexture("🐧", "LINUX", "#fb923c") });
-    const osBadge = new THREE.Mesh(osBadgeGeo, osBadgeMat);
-    osBadge.position.set(0, 3.1, 0);
-    osBadge.rotation.x = Math.PI / 2;
-    osGroup.add(osBadge);
-
-    const osPedGeo = new THREE.RingGeometry(2.0, 2.3, 32);
-    const osPedMat = new THREE.MeshBasicMaterial({ color: 0xfb923c, side: THREE.DoubleSide, transparent: true, opacity: 0.7 });
-    const osPed = new THREE.Mesh(osPedGeo, osPedMat);
-    osPed.position.y = -2.5;
-    osPed.rotation.x = Math.PI / 2;
-    osGroup.add(osPed);
-
-    osChassis.userData = {
-      id: "os",
-      title: "🐧 Act II • Sisteme Linux & DevOps",
-      desc: "Server Mainframe 3D: Sisteme Linux, Docker, Shell & Cloud",
-      trackName: "DevOps & Sisteme Linux",
-      division: "Informatică și Programare",
-      isMajor: true,
-      color: "#fb923c",
-      icon: "🐧"
-    };
-    interactiveObjects.push(osChassis);
-    worldGroup.add(osGroup);
-    disciplineNodes["os"] = { group: osGroup, mesh: osChassis, pos: osGroup.position, cameraTarget: new THREE.Vector3(-3.0, -1.4, 9.2) };
-    majorFigureNodes.push({ id: "os", group: osGroup, mesh: osChassis, title: "Sisteme Linux & DevOps", color: "#fb923c" });
-
-    // 6. Figure 3: 🗄️ BAZE DE DATE CYLINDERS (Baze de Date & SQL)
-    const dbGroup = new THREE.Group();
-    dbGroup.position.set(3.0, -1.4, 1.6);
-    dbGroup.scale.set(0.9, 0.9, 0.9);
-
-    const dbCylGeo = new THREE.CylinderGeometry(2.2, 2.2, 0.95, 36);
-    const dbCylMat = new THREE.MeshStandardMaterial({
-      color: 0x064e3b,
-      metalness: 0.85,
-      roughness: 0.25,
-      emissive: 0x022c22,
-      emissiveIntensity: 0.3
-    });
-    const c1 = new THREE.Mesh(dbCylGeo, dbCylMat); c1.position.y = 1.35; dbGroup.add(c1);
-    const c2 = new THREE.Mesh(dbCylGeo, dbCylMat); c2.position.y = 0.0; dbGroup.add(c2);
-    const c3 = new THREE.Mesh(dbCylGeo, dbCylMat); c3.position.y = -1.35; dbGroup.add(c3);
-
-    const dbRingGeo = new THREE.TorusGeometry(2.3, 0.08, 16, 48);
-    const dbRingMat = new THREE.MeshBasicMaterial({ color: 0x10b981 });
-    const r1 = new THREE.Mesh(dbRingGeo, dbRingMat); r1.position.y = 0.68; r1.rotation.x = Math.PI / 2; dbGroup.add(r1);
-    const r2 = new THREE.Mesh(dbRingGeo, dbRingMat); r2.position.y = -0.68; r2.rotation.x = Math.PI / 2; dbGroup.add(r2);
-
-    const dbBadgeGeo = new THREE.CylinderGeometry(0.85, 0.85, 0.12, 32);
-    const dbBadgeMat = new THREE.MeshBasicMaterial({ map: createPlanetEmblemTexture("🗄️", "SQL", "#10b981") });
-    const dbBadge = new THREE.Mesh(dbBadgeGeo, dbBadgeMat);
-    dbBadge.position.set(0, 2.4, 0);
-    dbBadge.rotation.x = Math.PI / 2;
-    dbGroup.add(dbBadge);
-
-    const dbPedGeo = new THREE.RingGeometry(2.2, 2.5, 32);
-    const dbPedMat = new THREE.MeshBasicMaterial({ color: 0x10b981, side: THREE.DoubleSide, transparent: true, opacity: 0.7 });
-    const dbPed = new THREE.Mesh(dbPedGeo, dbPedMat);
-    dbPed.position.y = -2.0;
-    dbPed.rotation.x = Math.PI / 2;
-    dbGroup.add(dbPed);
-
-    c2.userData = {
-      id: "db",
-      title: "🗄️ Act III • Baze de Date & SQL",
-      desc: "Storage Pod 3D: Calcul Relațional, SQL, B-Tree & ACID",
-      trackName: "Baze de Date & SQL",
-      division: "Informatică și Programare",
-      isMajor: true,
-      color: "#10b981",
-      icon: "🗄️"
-    };
-    interactiveObjects.push(c2);
-    worldGroup.add(dbGroup);
-    disciplineNodes["db"] = { group: dbGroup, mesh: c2, pos: dbGroup.position, cameraTarget: new THREE.Vector3(3.0, -1.4, 9.2) };
-    majorFigureNodes.push({ id: "db", group: dbGroup, mesh: c2, title: "Baze de Date & SQL", color: "#10b981" });
-
-    // 7. Figure 4: 🌍 CARTE DESCHISĂ & GLOB (Limbi Străine & Comunicare)
-    const langGroup = new THREE.Group();
-    langGroup.position.set(8.8, -0.9, 0);
-    langGroup.scale.set(0.9, 0.9, 0.9);
-
-    const bookSpineGeo = new THREE.BoxGeometry(0.3, 3.4, 2.4);
-    const bookSpineMat = new THREE.MeshStandardMaterial({ color: 0x4a044e, metalness: 0.6, roughness: 0.4 });
-    const bookSpine = new THREE.Mesh(bookSpineGeo, bookSpineMat);
-    bookSpine.position.y = -0.2;
-    langGroup.add(bookSpine);
-
-    const bookPageGeo = new THREE.BoxGeometry(2.0, 3.2, 0.12);
-    const bookPageMat = new THREE.MeshBasicMaterial({ map: createBookPageTexture() });
-    const pageL = new THREE.Mesh(bookPageGeo, bookPageMat);
-    pageL.position.set(-1.0, -0.2, 0.3);
-    pageL.rotation.y = 0.35;
-    langGroup.add(pageL);
-
-    const pageR = new THREE.Mesh(bookPageGeo, bookPageMat);
-    pageR.position.set(1.0, -0.2, 0.3);
-    pageR.rotation.y = -0.35;
-    langGroup.add(pageR);
-
-    const globeGeo = new THREE.SphereGeometry(1.2, 18, 18);
-    const globeMat = new THREE.MeshStandardMaterial({
-      color: 0xd946ef,
-      wireframe: true,
-      emissive: 0x86198f,
-      emissiveIntensity: 0.7
-    });
-    const globe = new THREE.Mesh(globeGeo, globeMat);
-    globe.position.set(0, 2.4, 0);
-    langGroup.add(globe);
-
-    const gRingGeo = new THREE.TorusGeometry(1.6, 0.04, 16, 48);
-    const gRingMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24 });
-    const gRing = new THREE.Mesh(gRingGeo, gRingMat);
-    gRing.position.set(0, 2.4, 0);
-    gRing.rotation.x = Math.PI / 2;
-    langGroup.add(gRing);
-
-    const langPedGeo = new THREE.RingGeometry(2.2, 2.5, 32);
-    const langPedMat = new THREE.MeshBasicMaterial({ color: 0xd946ef, side: THREE.DoubleSide, transparent: true, opacity: 0.7 });
-    const langPed = new THREE.Mesh(langPedGeo, langPedMat);
-    langPed.position.y = -2.1;
-    langPed.rotation.x = Math.PI / 2;
-    langGroup.add(langPed);
-
-    bookSpine.userData = {
-      id: "lang",
-      title: "🌍 Act IV • Limbi Străine & Comunicare",
-      desc: "Codex 3D: 5 Cursuri (Engleză, Franceză, Spaniolă, Germană, Italiană)",
-      trackName: "Limba Engleză",
-      division: "Limbi Străine & Comunicare",
-      isMajor: true,
-      color: "#d946ef",
-      icon: "🌍"
-    };
-    interactiveObjects.push(bookSpine);
-    worldGroup.add(langGroup);
-    disciplineNodes["lang"] = { group: langGroup, mesh: bookSpine, pos: langGroup.position, cameraTarget: new THREE.Vector3(8.8, -0.9, 8.8), globe: globe };
-    majorFigureNodes.push({ id: "lang", group: langGroup, mesh: bookSpine, title: "Limbi Străine (5 Cursuri)", color: "#d946ef" });
-
-    // 8. Sistemul Ierarhic de Sateliți Orbitale (Sistem Solar pe Nivelul 2)
-    const allSatellites = [];
-    function attachSolarSystem(nodeId, satList, orbitRadius, speed) {
-      const node = disciplineNodes[nodeId];
-      if (!node) return;
-
-      const orbitGroup = new THREE.Group();
-      orbitGroup.visible = false;
-      orbitGroup.scale.set(0.001, 0.001, 0.001);
-      node.group.add(orbitGroup);
-      node.orbitGroup = orbitGroup;
-
-      // Inelul de orbită
-      const orbitRingGeo = new THREE.TorusGeometry(orbitRadius, 0.03, 8, 80);
-      const orbitRingMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.35 });
-      const orbitRing = new THREE.Mesh(orbitRingGeo, orbitRingMat);
-      orbitRing.rotation.x = Math.PI / 2;
-      orbitGroup.add(orbitRing);
-
-      const count = satList.length;
-      satList.forEach((sat, idx) => {
-        const coinGeo = new THREE.CylinderGeometry(0.70, 0.70, 0.13, 32);
-        const coinMat = new THREE.MeshBasicMaterial({
-          map: createPlanetEmblemTexture(sat.icon, sat.code, sat.color)
-        });
-        const coinMesh = new THREE.Mesh(coinGeo, coinMat);
-        coinMesh.rotation.x = Math.PI / 2;
-
-        coinMesh.userData = {
-          id: sat.code,
-          title: sat.name,
-          desc: `Disciplină activă • ${sat.name}`,
-          trackName: sat.name,
-          isSatellite: true,
-          color: sat.color,
-          icon: sat.icon,
-          domainId: nodeId
-        };
-        orbitGroup.add(coinMesh);
-        interactiveObjects.push(coinMesh);
-
-        allSatellites.push({
-          mesh: coinMesh,
-          orbitR: orbitRadius,
-          speed: speed,
-          offset: (idx * (Math.PI * 2 / count)),
-          domainId: nodeId
-        });
-      });
-    }
-
-    // IT Sub-satellites (7)
-    attachSolarSystem("it", [
-      { name: "C & C++", code: "C++", color: "#38bdf8", icon: "⚡" },
-      { name: "Python", code: "Py", color: "#3b82f6", icon: "🐍" },
-      { name: "JavaScript", code: "JS", color: "#eab308", icon: "💛" },
-      { name: "Java", code: "Java", color: "#f97316", icon: "☕" },
-      { name: "TypeScript & React", code: "TS", color: "#60a5fa", icon: "🔷" },
-      { name: "C#", code: "C#", color: "#a855f7", icon: "🟣" },
-      { name: "Algoritmi & Structuri de Date", code: "Algo", color: "#ec4899", icon: "🌳" }
-    ], 6.2, 0.015);
-
-    // Systems Sub-satellite (1)
-    attachSolarSystem("os", [
-      { name: "DevOps & Sisteme Linux", code: "Linux", color: "#fb923c", icon: "🐧" }
-    ], 5.0, 0.02);
-
-    // SQL Sub-satellite (1)
-    attachSolarSystem("db", [
-      { name: "Baze de Date & SQL", code: "SQL", color: "#10b981", icon: "🗄️" }
-    ], 5.0, 0.018);
-
-    // Languages Sub-satellites (5)
-    attachSolarSystem("lang", [
-      { name: "Limba Engleză", code: "EN", color: "#34d399", icon: "🇬🇧" },
-      { name: "Limba Franceză", code: "FR", color: "#6ee7b7", icon: "🇫🇷" },
-      { name: "Limba Spaniolă", code: "ES", color: "#a7f3d0", icon: "🇪🇸" },
-      { name: "Limba Germană", code: "DE", color: "#fbbf24", icon: "🇩🇪" },
-      { name: "Limba Italiană", code: "IT", color: "#f43f5e", icon: "🇮🇹" }
-    ], 5.8, 0.014);
-
-    const subSatellites = allSatellites;
-
-    // 7. Strat Plutitor Accesibil pentru Figurile Majore 3D și Sateliți
-    activeCosmosMode = "overview"; // "overview" | "solar"
-    let activeDomainId = null;
-
-    const labelsLayer = document.getElementById("cosmos-labels-layer");
-    if (labelsLayer) labelsLayer.innerHTML = "";
-    const majorLabelElements = [];
-    const satLabelElements = [];
-
-    let hoveredObject = null;
-    let hoveredTarget = null;
-    let hoveredMajorNode = null;
-    let hoveredSatelliteMesh = null;
-
-    function applyHoverState(hitObject) {
-      if (!hitObject) {
-        if (hoveredMajorNode && activeCosmosMode === "overview") {
-          hoveredMajorNode.group.scale.set(0.9, 0.9, 0.9);
-          hoveredMajorNode = null;
-        }
-        if (hoveredSatelliteMesh) {
-          hoveredSatelliteMesh.scale.set(1, 1, 1);
-          hoveredSatelliteMesh = null;
-        }
-        hoveredObject = null;
-        hoveredTarget = null;
-        return;
-      }
-
-      const targetData = hitObject.userData;
-      if (targetData && targetData.isMajor) {
-        const node = majorFigureNodes.find(n => n.id === targetData.id);
-        if (node) {
-          if (hoveredMajorNode && hoveredMajorNode !== node && activeCosmosMode === "overview") {
-            hoveredMajorNode.group.scale.set(0.9, 0.9, 0.9);
-          }
-          if (hoveredSatelliteMesh) {
-            hoveredSatelliteMesh.scale.set(1, 1, 1);
-            hoveredSatelliteMesh = null;
-          }
-          hoveredMajorNode = node;
-          if (activeCosmosMode === "overview") {
-            node.group.scale.set(0.96, 0.96, 0.96);
-          }
-        }
-      } else {
-        if (hoveredMajorNode && activeCosmosMode === "overview") {
-          hoveredMajorNode.group.scale.set(0.9, 0.9, 0.9);
-          hoveredMajorNode = null;
-        }
-        if (hoveredSatelliteMesh !== hitObject) {
-          if (hoveredSatelliteMesh) hoveredSatelliteMesh.scale.set(1, 1, 1);
-          hoveredSatelliteMesh = hitObject;
-          hitObject.scale.set(1.2, 1.2, 1.2);
-        }
-      }
-
-      hoveredObject = hitObject;
-      hoveredTarget = targetData;
-      if (targetData) updateHudCard(targetData);
-    }
-
-    majorFigureNodes.forEach(m => {
-      if (!labelsLayer) return;
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "major-figure-pill";
-      btn.setAttribute("style", `--pill-color: ${m.color || "#38bdf8"}`);
-      btn.innerHTML = `<span class="sat-pill-icon">${m.mesh.userData.icon || "💻"}</span><span class="sat-pill-text">${m.title}</span>`;
-      btn.addEventListener("click", e => {
-        e.stopPropagation();
-        playUiSound("warp");
-        flyToNode(m.id);
-      });
-      btn.addEventListener("mouseenter", () => {
-        applyHoverState(m.mesh);
-        playUiSound("quantum");
-      });
-      btn.addEventListener("mouseleave", () => {
-        applyHoverState(null);
-      });
-      labelsLayer.appendChild(btn);
-      majorLabelElements.push({ element: btn, mesh: m.mesh, id: m.id });
-    });
-
-    subSatellites.forEach(s => {
-      if (!labelsLayer) return;
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "sat-orbit-pill";
-      btn.style.display = "none";
-      btn.setAttribute("style", `--pill-color: ${s.mesh.userData.color || "#38bdf8"}`);
-      btn.innerHTML = `<span class="sat-pill-icon">${s.mesh.userData.icon || "🪐"}</span><span class="sat-pill-text">${s.mesh.userData.title}</span>`;
-      btn.addEventListener("click", e => {
-        e.stopPropagation();
-        playUiSound("warp");
-        warpToTrack(s.mesh.userData.trackName);
-      });
-      btn.addEventListener("mouseenter", () => {
-        applyHoverState(s.mesh);
-        playUiSound("quantum");
-      });
-      btn.addEventListener("mouseleave", () => {
-        applyHoverState(null);
-      });
-      labelsLayer.appendChild(btn);
-      satLabelElements.push({ element: btn, mesh: s.mesh, domainId: s.domainId });
-    });
-
-    // 8. Controale Interactive de Orbită în Antet
-    const pauseBtn = document.getElementById("cosmos-pause-btn");
-    const speedBtn = document.getElementById("cosmos-speed-btn");
-    const resetCamBtn = document.getElementById("cosmos-reset-cam-btn");
-
-    if (pauseBtn) {
-      pauseBtn.onclick = () => {
-        isOrbitPaused = !isOrbitPaused;
-        pauseBtn.textContent = isOrbitPaused ? "▶️ Rulare" : "⏸️ Pauză";
-        playUiSound("click");
-      };
-    }
-    if (speedBtn) {
-      speedBtn.onclick = () => {
-        orbitSpeedMultiplier = (orbitSpeedMultiplier === 1.0) ? 2.0 : 1.0;
-        speedBtn.textContent = `⚡ ${orbitSpeedMultiplier}x`;
-        playUiSound("click");
-      };
-    }
-    if (resetCamBtn) {
-      resetCamBtn.onclick = () => {
-        playUiSound("warp");
-        flyToNode("ALL");
-      };
-    }
-
-    // 9. Drag & Orbit Controls with Smooth Lerp
-    let isDragging = false;
-    let prevMouse = { x: 0, y: 0 };
-    let targetRot = { x: 0, y: 0 };
-    let curRot = { x: 0, y: 0 };
-    const mouseNorm = new THREE.Vector2(-9999, -9999);
-    const raycaster = new THREE.Raycaster();
-
-    canvas.addEventListener("mousedown", e => {
-      isDragging = true;
-      prevMouse = { x: e.clientX, y: e.clientY };
-    });
-    window.addEventListener("mouseup", () => { isDragging = false; });
-    window.addEventListener("mousemove", e => {
-      const rect = canvas.getBoundingClientRect();
-      const relX = e.clientX - rect.left;
-      const relY = e.clientY - rect.top;
-      if (relX >= 0 && relX <= rect.width && relY >= 0 && relY <= rect.height) {
-        mouseNorm.x = (relX / rect.width) * 2 - 1;
-        mouseNorm.y = -(relY / rect.height) * 2 + 1;
-      }
-
-      if (isDragging) {
-        const dx = e.clientX - prevMouse.x;
-        const dy = e.clientY - prevMouse.y;
-        targetRot.y += dx * 0.003;
-        targetRot.x += dy * 0.003;
-        targetRot.x = Math.max(-0.6, Math.min(0.6, targetRot.x));
-        prevMouse = { x: e.clientX, y: e.clientY };
-      }
-    });
-
-    // Touch Support
-    canvas.addEventListener("touchstart", e => {
-      if (e.touches.length === 1) {
-        isDragging = true;
-        prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      }
-    }, { passive: true });
-    window.addEventListener("touchmove", e => {
-      if (isDragging && e.touches.length === 1) {
-        const dx = e.touches[0].clientX - prevMouse.x;
-        const dy = e.touches[0].clientY - prevMouse.y;
-        targetRot.y += dx * 0.005;
-        targetRot.x += dy * 0.005;
-        targetRot.x = Math.max(-0.6, Math.min(0.6, targetRot.x));
-        prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      }
-    }, { passive: true });
-    window.addEventListener("touchend", () => { isDragging = false; });
-
-    // Wheel Zoom removed per user request (no camera zoom)
-
-    // Click handler on 3D Canvas
-    canvas.addEventListener("click", () => {
-      if (hoveredTarget) {
-        playUiSound("warp");
-        if (hoveredTarget.isMajor) {
-          flyToNode(hoveredTarget.id);
-        } else if (hoveredTarget.trackName) {
-          warpToTrack(hoveredTarget.trackName);
-        }
-      }
-    });
-
-    function flyToNode(id) {
-      document.querySelectorAll(".cosmos-jump-btn").forEach(b => {
-        b.classList.toggle("active", b.getAttribute("data-planet") === id);
-      });
-
-      if (id === "ALL") {
-        activeCosmosMode = "overview";
-        activeDomainId = null;
-
-        Object.keys(disciplineNodes).forEach(k => {
-          const node = disciplineNodes[k];
-          if (!node) return;
-
-          // Re-afișăm toate cele 4 figuri majore
-          if (node.group) {
-            node.group.visible = true;
-            if (typeof gsap !== "undefined") {
-              gsap.to(node.group.scale, { x: 0.9, y: 0.9, z: 0.9, duration: 0.8, ease: "power2.out" });
-            } else {
-              node.group.scale.set(0.9, 0.9, 0.9);
-            }
-          }
-
-          // Ascundem sateliții orbitali când suntem în privire de ansamblu
-          if (node.orbitGroup) {
-            if (typeof gsap !== "undefined") {
-              gsap.to(node.orbitGroup.scale, {
-                x: 0.001, y: 0.001, z: 0.001, duration: 0.6,
-                onComplete: () => { node.orbitGroup.visible = false; }
-              });
-            } else {
-              node.orbitGroup.scale.set(0.001, 0.001, 0.001);
-              node.orbitGroup.visible = false;
-            }
-          }
-        });
-
-        if (typeof gsap !== "undefined") {
-          gsap.to(camera.position, { x: 0, y: 0.2, z: 20.5, duration: 1.6, ease: "power3.inOut" });
-          gsap.to(targetRot, { x: 0, y: 0, duration: 1.2, ease: "power2.out" });
-        } else {
-          camera.position.set(0, 0.2, 20.5);
-          targetRot.x = targetRot.y = 0;
-        }
-
-        if (els.cosmosHudCard) els.cosmosHudCard.style.display = "none";
-        return;
-      }
-
-      const node = disciplineNodes[id];
-      if (node) {
-        activeCosmosMode = "solar";
-        activeDomainId = id;
-
-        Object.keys(disciplineNodes).forEach(k => {
-          const other = disciplineNodes[k];
-          if (!other) return;
-
-          if (k === id) {
-            // Figura aleasă: vizibilă și la scară grandioasă
-            if (other.group) {
-              other.group.visible = true;
-              if (typeof gsap !== "undefined") {
-                gsap.to(other.group.scale, { x: 1.05, y: 1.05, z: 1.05, duration: 0.8, ease: "back.out(1.2)" });
-              } else {
-                other.group.scale.set(1.05, 1.05, 1.05);
-              }
-            }
-
-            // Orbita figurii alese: vizibilă și extinsă
-            if (other.orbitGroup) {
-              other.orbitGroup.visible = true;
-              if (typeof gsap !== "undefined") {
-                gsap.to(other.orbitGroup.scale, { x: 1, y: 1, z: 1, duration: 1.0, ease: "back.out(1.4)" });
-              } else {
-                other.orbitGroup.scale.set(1, 1, 1);
-              }
-            }
-          } else {
-            // Celelalte 3 figuri: DISPAR COMPLET conform cerinței utilizatorului!
-            if (other.group) {
-              if (typeof gsap !== "undefined") {
-                gsap.to(other.group.scale, {
-                  x: 0.001, y: 0.001, z: 0.001, duration: 0.5,
-                  onComplete: () => { other.group.visible = false; }
-                });
-              } else {
-                other.group.scale.set(0.001, 0.001, 0.001);
-                other.group.visible = false;
-              }
-            }
-
-            if (other.orbitGroup) {
-              if (typeof gsap !== "undefined") {
-                gsap.to(other.orbitGroup.scale, {
-                  x: 0.001, y: 0.001, z: 0.001, duration: 0.5,
-                  onComplete: () => { other.orbitGroup.visible = false; }
-                });
-              } else {
-                other.orbitGroup.scale.set(0.001, 0.001, 0.001);
-                other.orbitGroup.visible = false;
-              }
-            }
-          }
-        });
-
-        if (typeof gsap !== "undefined") {
-          gsap.to(camera.position, {
-            x: node.cameraTarget.x,
-            y: node.cameraTarget.y,
-            z: node.cameraTarget.z,
-            duration: 1.6,
-            ease: "power3.inOut"
-          });
-          gsap.to(targetRot, { x: 0, y: 0, duration: 1.0 });
-        } else {
-          camera.position.set(node.cameraTarget.x, node.cameraTarget.y, node.cameraTarget.z);
-        }
-        updateHudCard(node.mesh.userData);
-      }
-    }
-
-    function warpToTrack(trackName) {
-      state.activeTrack = trackName;
-      saveState();
-
-      if (state.is3DActive !== false && window.innerWidth > 768) {
-        document.body.classList.add("viewing-chapters");
-        if (els.catalogDomainSubtitle) els.catalogDomainSubtitle.textContent = `DOMENIUL SELECTAT: ${state.activeTrack.toUpperCase()}`;
-        if (els.catalogSelectedDomainTitle) els.catalogSelectedDomainTitle.textContent = `Capitole disponibile (${allLessons.filter(l => l.track === state.activeTrack).length})`;
-        const badge = document.getElementById("chapters-course-badge");
-        if (badge) badge.textContent = `Curs: ${state.activeTrack}`;
-        updateCatalogFilterOptions();
-        renderCatalogChapters();
-        updateScrollLock();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        renderCatalogView();
-        const chaptersSec = document.getElementById("catalog-chapters-section");
-        if (chaptersSec) {
-          chaptersSec.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
-    }
-
-    function updateHudCard(target) {
-      if (!els.cosmosHudCard || !target) return;
-      els.cosmosHudCard.style.display = "block";
-      if (els.hudTargetName) els.hudTargetName.textContent = target.title;
-      if (els.hudCardDesc) els.hudCardDesc.textContent = target.desc;
-
-      const quickStats = document.getElementById("hud-quick-stats");
-      const statLessons = document.getElementById("hud-stat-lessons");
-      const statXp = document.getElementById("hud-stat-xp");
-      const chipsRow = document.getElementById("hud-chips-row");
-
-      if (quickStats) quickStats.style.display = "flex";
-      if (statLessons) {
-        const chaptersCount = allLessons.filter(l => l.track === target.trackName || target.id === "it" || target.id === "lang").length || 32;
-        statLessons.textContent = `${chaptersCount} Capitole`;
-      }
-      if (statXp) statXp.textContent = `+1200 XP`;
-
-      if (chipsRow) {
-        chipsRow.innerHTML = "";
-        const relatedTracks = getTracks().filter(t => t.division === target.division || t.name === target.trackName).slice(0, 4);
-        relatedTracks.forEach(rt => {
-          const chip = document.createElement("span");
-          chip.className = "hud-mini-chip";
-          chip.textContent = rt.name;
-          chip.onclick = e => {
-            e.stopPropagation();
-            warpToTrack(rt.name);
-          };
-          chipsRow.appendChild(chip);
-        });
-      }
-    }
-
-    // HUD Back & Warp Buttons
-    const hudBackBtn = document.getElementById("hud-back-btn");
-    if (hudBackBtn) {
-      hudBackBtn.onclick = (e) => {
-        e.stopPropagation();
-        playUiSound("warp");
-        flyToNode("ALL");
-      };
-    }
-
-    // Navigație Comenzi Rapide Solar System (Exact cele 5 Butoane din test)
-    document.querySelectorAll(".cosmos-jump-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const planetId = btn.getAttribute("data-planet") || "ALL";
-        playUiSound("click");
-        flyToNode(planetId);
-      });
-    });
-
-    // HUD Warp Button
-    if (els.hudWarpBtn) {
-      els.hudWarpBtn.addEventListener("click", () => {
-        const target = (hoveredTarget && hoveredTarget.trackName) || "Python";
-        playUiSound("warp");
-        warpToTrack(target);
-      });
-    }
-
-    // Resize Handler
-    window.addEventListener("resize", () => {
-      if (!canvas || !renderer || !camera) return;
-      const p = canvas.parentElement;
-      if (!p) return;
-      const w = p.clientWidth;
-      const h = p.clientHeight;
-      if (w <= 0 || h <= 0) return;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-    });
-
-    // 10. Animation Loop
-    let time = 0;
-    const tempProjVec = new THREE.Vector3();
-
-    function animate(t) {
-      if (state.activeView !== "catalog" || window.innerWidth <= 768 || state.is3DActive === false) {
-        requestAnimationFrame(animate);
-        return;
-      }
-
-      if (!isOrbitPaused) {
-        time += 1 * orbitSpeedMultiplier;
-      }
-
-      // Smooth Orbit Lerp
-      curRot.x += (targetRot.x - curRot.x) * 0.05;
-      curRot.y += (targetRot.y - curRot.y) * 0.05;
-      worldGroup.rotation.y = curRot.y;
-      worldGroup.rotation.x = curRot.x;
-
-      if (!isOrbitPaused) {
-        // Floating motion for the 4 3D sculpted figures (1.1 lower)
-        itGroup.rotation.y = Math.sin(time * 0.015) * 0.15;
-        itGroup.position.y = -0.9 + Math.sin(time * 0.025) * 0.12;
-
-        osGroup.rotation.y = Math.sin(time * 0.018 + 1) * 0.15;
-        osGroup.position.y = -1.4 + Math.sin(time * 0.025 + 1) * 0.12;
-
-        dbGroup.rotation.y += 0.006;
-        dbGroup.position.y = -1.4 + Math.sin(time * 0.025 + 2) * 0.12;
-
-        langGroup.position.y = -0.9 + Math.sin(time * 0.025 + 3) * 0.12;
-        if (disciplineNodes.lang && disciplineNodes.lang.globe) {
-          disciplineNodes.lang.globe.rotation.y += 0.012;
-          disciplineNodes.lang.globe.rotation.x += 0.005;
-        }
-
-        // Orbit Sub-Satellites for active domain
-        if (activeDomainId) {
-          subSatellites.forEach(s => {
-            if (s.domainId === activeDomainId) {
-              const angle = (time * s.speed) + s.offset;
-              s.mesh.position.x = Math.cos(angle) * s.orbitR;
-              s.mesh.position.z = Math.sin(angle) * s.orbitR;
-              s.mesh.position.y = Math.sin(angle * 2) * 0.2;
-              s.mesh.rotation.y += 0.01;
-            }
-          });
-        }
-
-        // Drift Floor Grid
-        if (typeof floorGrid !== "undefined" && floorGrid) {
-          floorGrid.rotation.y = t * 0.00004;
-        }
-      }
-
-      // Proiectare Etichete Sateliți 3D -> 2D
-      const cWidth = canvas.clientWidth || 800;
-      const cHeight = canvas.clientHeight || 600;
-
-      if (activeCosmosMode === "overview") {
-        satLabelElements.forEach(sl => { sl.element.style.display = "none"; });
-
-        majorLabelElements.forEach(l => {
-          l.mesh.getWorldPosition(tempProjVec);
-          tempProjVec.y += 2.0;
-          tempProjVec.project(camera);
-
-          if (tempProjVec.z < 1) {
-            const screenX = (tempProjVec.x * 0.5 + 0.5) * cWidth;
-            const screenY = (-(tempProjVec.y * 0.5) + 0.5) * cHeight;
-
-            if (screenX >= 25 && screenX <= cWidth - 25 && screenY >= 25 && screenY <= cHeight - 25) {
-              l.element.style.display = "inline-flex";
-              l.element.style.left = `${screenX}px`;
-              l.element.style.top = `${screenY}px`;
-            } else {
-              l.element.style.display = "none";
-            }
-          } else {
-            l.element.style.display = "none";
-          }
-        });
-      } else {
-        majorLabelElements.forEach(ml => { ml.element.style.display = "none"; });
-
-        satLabelElements.forEach(l => {
-          if (l.domainId === activeDomainId) {
-            l.mesh.getWorldPosition(tempProjVec);
-            tempProjVec.y += 0.70;
-            tempProjVec.project(camera);
-
-            if (tempProjVec.z < 1) {
-              const screenX = (tempProjVec.x * 0.5 + 0.5) * cWidth;
-              const screenY = (-(tempProjVec.y * 0.5) + 0.5) * cHeight;
-
-              if (screenX >= 25 && screenX <= cWidth - 25 && screenY >= 25 && screenY <= cHeight - 25) {
-                l.element.style.display = "inline-flex";
-                l.element.style.left = `${screenX}px`;
-                l.element.style.top = `${screenY}px`;
-              } else {
-                l.element.style.display = "none";
-              }
-            } else {
-              l.element.style.display = "none";
-            }
-          } else {
-            l.element.style.display = "none";
-          }
-        });
-      }
-
-      // Raycast Hover Detection pe obiecte active vizibile
-      raycaster.setFromCamera(mouseNorm, camera);
-      const activeInteractive = interactiveObjects.filter(obj => {
-        let curr = obj;
-        while (curr) {
-          if (curr.visible === false) return false;
-          curr = curr.parent;
-        }
-        return true;
-      });
-      const hits = raycaster.intersectObjects(activeInteractive);
-      let foundHit = null;
-
-      if (hits.length > 0) {
-        foundHit = hits[0].object;
-        if (hoveredObject !== foundHit) {
-          applyHoverState(foundHit);
-          playUiSound("quantum");
-        }
-      } else {
-        if (hoveredObject) {
-          applyHoverState(null);
-        }
-      }
-
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-    }
-    requestAnimationFrame(animate);
-  }
-
-  function initFallback2DCosmos(canvas) {
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const parent = canvas.parentElement;
-    let width = (canvas.width = parent ? parent.clientWidth : 800);
-    let height = (canvas.height = parent ? parent.clientHeight : 600);
-
-    const SOLAR_SYSTEM = [
-      { id: "it", name: "Planeta Informatică & Algoritmi", color: "#06b6d4", radius: 24, orbitRadius: Math.min(width, height) * 0.24, speed: 0.006, desc: "C++, Python, JavaScript, Java, TypeScript, C#, Algoritmi" },
-      { id: "os", name: "Planeta Sisteme, Linux & DevOps", color: "#f97316", radius: 22, orbitRadius: Math.min(width, height) * 0.36, speed: 0.004, desc: "Sisteme Linux, Docker, Shell & Cloud" },
-      { id: "db", name: "Planeta Baze de Date & Arhitectură", color: "#8b5cf6", radius: 20, orbitRadius: Math.min(width, height) * 0.47, speed: 0.0028, desc: "SQL, Modelare Relațională & ACID" },
-      { id: "lang", name: "Planeta Limbi Străine & Comunicare", color: "#10b981", radius: 24, orbitRadius: Math.min(width, height) * 0.58, speed: 0.0018, desc: "Engleză, Franceză, Spaniolă, Germană, Italiană" }
-    ];
-
-    let time = 0;
-    function draw2D() {
-      if (state.activeView !== "catalog") {
-        requestAnimationFrame(draw2D);
-        return;
-      }
-      ctx.clearRect(0, 0, width, height);
-      time += 1;
-      const cx = width / 2;
-      const cy = height / 2;
-
-      // Soare
-      ctx.beginPath();
-      ctx.arc(cx, cy, 32, 0, Math.PI * 2);
-      ctx.fillStyle = "#f59e0b";
-      ctx.fill();
-      ctx.strokeStyle = "#fef08a";
-      ctx.lineWidth = 3;
-      ctx.stroke();
-
-      SOLAR_SYSTEM.forEach(p => {
-        const angle = time * p.speed;
-        const px = cx + Math.cos(angle) * p.orbitRadius;
-        const py = cy + Math.sin(angle) * (p.orbitRadius * 0.45);
-
-        ctx.beginPath();
-        ctx.ellipse(cx, cy, p.orbitRadius, p.orbitRadius * 0.45, 0, 0, Math.PI * 2);
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(px, py, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-      });
-      requestAnimationFrame(draw2D);
-    }
-    requestAnimationFrame(draw2D);
-  }
-
-  /* ==========================================================================
-     DUAL SPLIT TOPIC WORKSPACE HELPER (SURVIVOR 12)
-     ========================================================================== */
-  function renderDualSplitWorkspace() {
-    if (!els.dualChapterSelect) return;
-    const chapters = allLessons
-      .filter(l => l.track === state.activeTrack)
-      .sort(sortLessonsCanonical);
-
-    if (els.dualTrackTitle) {
-      els.dualTrackTitle.textContent = state.activeTrack || "SQL";
-    }
-
-    els.dualChapterSelect.innerHTML = "";
-    chapters.forEach((ch, idx) => {
-      const opt = document.createElement("option");
-      opt.value = ch.id;
-      const isMastered = !!state.masteryPoints[ch.id];
-      opt.textContent = `${idx + 1}. ${ch.title} ${isMastered ? "★" : ""}`;
-      if (ch.id === state.activeLessonId) opt.selected = true;
-      els.dualChapterSelect.appendChild(opt);
-    });
-
-    els.dualChapterSelect.onchange = e => {
-      const newLessonId = e.target.value;
-      if (newLessonId) {
-        state.activeLessonId = newLessonId;
-        saveState();
-        renderStudyView();
-        playUiSound("click");
-      }
-    };
-
-    const activePane = state.activeDualPane || "theory";
-    document.documentElement.setAttribute("data-dual-pane", activePane);
-    document.body.setAttribute("data-dual-pane", activePane);
-    if (els.studyView) els.studyView.setAttribute("data-dual-pane", activePane);
-    document.querySelectorAll(".dual-nav-tab").forEach(tab => {
-      tab.classList.toggle("active", tab.getAttribute("data-pane") === activePane);
-    });
-  }
-
-  /* ==========================================================================
-     HELPER: RENDER CALENDAR LUNAR HEATMAP (28 DE ZILE)
-     ========================================================================== */
-  function renderCalendarInto(gridElement) {
-    if (!gridElement) return;
-    gridElement.innerHTML = "";
-    const today = getTodayKey();
-    const dailyTarget = getDailyTarget();
-
-    for (let i = 27; i >= 0; i--) {
-      const d = new Date();
-      d.setDate(d.getDate() - i);
-      const key = toLocalDateKey(d);
-
-      const autonomousCount = state.dailyHistory[key] || 0;
-      const assistedCount = state.assistedHistory[key] || 0;
-
-      const cell = document.createElement("div");
-      cell.className = "calendar-cell";
-
-      if (autonomousCount >= dailyTarget) {
-        cell.classList.add("cell-complete");
-        cell.title = `${key}: Obiectiv ${dailyTarget}/${dailyTarget} atins (${autonomousCount} autonome)`;
-      } else if (autonomousCount > 0) {
-        cell.classList.add("cell-streak");
-        cell.title = `${key}: Seria continuată (${autonomousCount} sarcini)`;
-      } else if (assistedCount > 0) {
-        cell.classList.add("cell-assisted");
-        cell.title = `${key}: Asistat 50/50 (${assistedCount} sarcini)`;
-      } else {
-        cell.title = `${key}: Fără activitate`;
-      }
-
-      if (key === today) cell.classList.add("today-cell");
-      cell.textContent = d.getDate();
-
-      gridElement.appendChild(cell);
-    }
-  }
-
-  /* ==========================================================================
-     CYBER COMMAND KERNEL EXECUTION ENGINE (MOD 4)
-     ========================================================================== */
-  function executeCyberCli() {
-    if (!els.cyberCliInput) return;
-    const cmd = els.cyberCliInput.value.trim().toLowerCase();
-    els.cyberCliInput.value = "";
-    if (!cmd) return;
-
-    playUiSound("warp");
-    const out = els.cyberTerminalOutput;
-
-    function log(msg, colorClass = "") {
-      if (!out) return;
-      const p = document.createElement("p");
-      p.className = `cyber-log-line ${colorClass}`;
-      p.textContent = msg;
-      out.appendChild(p);
-      out.scrollTop = out.scrollHeight;
-    }
-
-    log(`$ ${cmd}`, "text-cyan");
-
-    if (cmd === "help") {
-      log("> COMENZI DISPONIBILE:");
-      log("> run <cpp | python | sql | js | java | linux | algo | fr | es>");
-      log("> stats       -> Afișează telemetrie XP, streak și capitole rezolvate");
-      log("> sound       -> Comută efectele sonore sintetizate (on/off)");
-      log("> solve       -> Activează soluția asistată 50/50");
-      log("> clear       -> Curăță ecranul terminalului");
-    } else if (cmd === "clear") {
-      if (out) out.innerHTML = `<p class="cyber-log-line text-cyan">&gt; Consola curățată.</p>`;
-    } else if (cmd === "stats") {
-      const today = getTodayKey();
-      const done = state.dailyHistory[today] || 0;
-      log(`> SYS.STATS: XP=${state.xp} | STREAK=${state.streak} zile | AZI=${done}/3 | MASTER=${Object.keys(state.masteryPoints).length} capitole`);
-    } else if (cmd === "sound") {
-      toggleSound();
-      log(`> AUDIO: Stare comutată la ${state.soundEnabled ? "ACTIVAT" : "DEZACTIVAT"}.`, "text-cyan");
-    } else if (cmd.startsWith("run ") || cmd.startsWith("start ")) {
-      const query = cmd.replace(/^(run|start)\s+/, "").trim();
-      const tracks = getTracks();
-      const matched = tracks.find(t => {
-        const tn = t.name.toLowerCase();
-        return tn.includes(query) ||
-          (query === "cpp" && tn.includes("c++")) ||
-          (query === "c++" && tn.includes("c & c++")) ||
-          (query === "js" && tn.includes("javascript")) ||
-          (query === "fr" && tn.includes("franceză")) ||
-          (query === "es" && tn.includes("spaniolă")) ||
-          (query === "py" && tn.includes("python"));
-      });
-
-      if (matched) {
-        state.activeTrack = matched.name;
-        saveState();
-        renderCatalogView();
-        log(`> EXECUȚIE: Salt la disciplina ${matched.name}...`, "text-cyan");
-        const chaptersSection = document.getElementById("catalog-chapters-section");
-        if (chaptersSection) chaptersSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        log(`> EROARE: Disciplina "${query}" nu a fost găsită. Tastează 'help'.`);
-      }
-    } else {
-      log(`> Comandă necunoscută: "${cmd}". Tastează 'help' pentru instrucțiuni.`);
-    }
   }
 
   function renderAll() {
-    // Pe telefon (<= 768px), modul 3D este complet dezactivat: exclusiv catalogul 2D simplu, rapid pentru învățat
-    if (window.innerWidth <= 768) {
-      state.is3DActive = false;
-    }
     applyTheme(state.theme);
-    applyLayoutMode(state.layoutMode || "bento-nextjs");
-    if (els.soundToggleIcon) {
-      els.soundToggleIcon.textContent = state.is3DActive !== false ? "🧊 3D" : "📄 Simplu";
-    }
-    document.body.classList.toggle("simple-catalog-mode", !state.is3DActive);
     renderStats();
     switchView(state.activeView || "catalog");
-    updateScrollLock();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
     bindEvents();
     renderAll();
-    initAmbientParticles();
-    initAimCursor();
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth <= 768) {
-        state.is3DActive = false;
-        document.body.classList.add("simple-catalog-mode");
-      }
-      updateScrollLock();
-    });
   });
 })();

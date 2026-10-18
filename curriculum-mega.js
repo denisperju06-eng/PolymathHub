@@ -12089,5 +12089,269 @@ const MEGA_EXPANDED_CURRICULUM = [
     "expectedOutputPattern": "We\\s+prefer\\s+traveling\\s+off\\s+the\\s+beaten\\s+track\\s+to\\s+experience\\s+authentic\\s+culture\\.?",
     "regexPattern": "We\\s+prefer\\s+traveling\\s+off\\s+the\\s+beaten\\s+track\\s+to\\s+experience\\s+authentic\\s+culture\\.?",
     "hint": "Scrie We prefer traveling off the beaten track to experience authentic culture."
+  },
+  {
+    "id": "cpp-c23-expected",
+    "track": "C & C++",
+    "division": "Informatică și Programare",
+    "icon": "⚡",
+    "level": "4. Senior",
+    "xp": 45,
+    "title": "C++23: Tratarea Modernă a Erorilor cu std::expected și Operații Monadice",
+    "theory": "\n<p>În standardul modern <strong>C++23</strong>, <code>std::expected&lt;T, E&gt;</code> reprezintă revoluția tratării erorilor de sistem fără costul de performanță al excepțiilor (zero overhead). Un obiect <code>std::expected</code> conține fie o valoare validă de tipul <code>T</code>, fie o eroare detaliată de tipul <code>E</code> (de exemplu <code>std::string</code> sau un <code>enum class</code> de erori).</p>\n\n<h4>1. De ce înlocuiește std::expected excepțiile clasice?</h4>\n<p>Excepțiile C++ (<code>throw / catch</code>) cauzează o penalizare severă în sisteme critice, embedded sau jocuri de mare viteză din cauza mecanismului de <em>stack unwinding</em>. <code>std::expected</code> stochează datele direct pe stivă prin mecanisme de tip <code>std::variant</code>, forțând apelantul să inspecteze rezultatul în mod explicit.</p>\n\n<h4>2. Înlănțuirea Monadică cu .and_then() și .transform()</h4>\n<p>Metodele monadice permit înlănțuirea fluentă a operațiilor fără o cascadă urâtă de <code>if (res.has_value())</code>:</p>\n<pre><code>#include &lt;expected&gt;\n#include &lt;string&gt;\n#include &lt;iostream&gt;\n\nstd::expected&lt;double, std::string&gt; imparte(double a, double b) {\n    if (b == 0.0) return std::unexpected(\"Eroare: Impartire la zero!\");\n    return a / b;\n}\n\nint main() {\n    auto rezultat = imparte(10.0, 2.0)\n        .transform([](double v) { return v * 100; });\n\n    if (rezultat) {\n        std::cout &lt;&lt; \"Succes: \" &lt;&lt; *rezultat &lt;&lt; std::endl;\n    } else {\n        std::cout &lt;&lt; rezultat.error() &lt;&lt; std::endl;\n    }\n}</code></pre>\n",
+    "glossary": [
+      {
+        "term": "std::expected<T, E>",
+        "def": "Tip C++23 ce reține fie valoarea validă de tip T, fie eroarea de tip E."
+      },
+      {
+        "term": "std::unexpected",
+        "def": "Helper wrapper ce semnalează că valoarea returnată reprezintă o eroare."
+      },
+      {
+        "term": ".and_then()",
+        "def": "Operație monadică ce aplică o funcție ce returnează un alt std::expected dacă instanța curentă este validă."
+      },
+      {
+        "term": ".value_or(fallback)",
+        "def": "Returnează valoarea validă sau o valoare implicită de rezervă dacă există o eroare."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "std::expected<T, E>",
+        "right": "Container pentru succes sau eroare tipizată"
+      },
+      {
+        "left": "std::unexpected(err)",
+        "right": "Construiește starea de eroare"
+      },
+      {
+        "left": "res.value_or(defaultVal)",
+        "right": "Extrage valoarea sau folosește rezerva"
+      },
+      {
+        "left": "res.error()",
+        "right": "Accesează codul sau mesajul de eroare"
+      }
+    ],
+    "quiz": {
+      "question": "Ce avantaj major oferă std::expected<T, E> din C++23 față de mecanismul tradițional throw/catch?",
+      "options": [
+        "Elimină costul de stack unwinding și face fluxul erorilor vizibil explicit în semnătura funcției fără penalizare de runtime.",
+        "Rulează întotdeauna pe un nucleu separat CPU asincron.",
+        "Șterge automat toate fișierele de log în caz de eroare.",
+        "Permite doar tipuri primitive int și char, fără obiecte complexe."
+      ],
+      "correctIndex": 0,
+      "explanation": "std::expected aduce siguranța tipizării și forțează verificarea erorilor direct la compilare fără overhead-ul de runtime al excepțiilor."
+    },
+    "prompt": "Scrie returnarea unei erori de tipul unexpected cu mesajul 'Invalid' într-o funcție C++23: return std::unexpected(\"Invalid\");",
+    "task": "Scrie returnarea unei erori de tipul unexpected cu mesajul 'Invalid' într-o funcție C++23: return std::unexpected(\"Invalid\");",
+    "example": "return std::unexpected(\"Invalid\");",
+    "starterCode": "return std::unexpected(\"Invalid\");",
+    "officialSolution": "return std::unexpected(\"Invalid\");",
+    "expectedOutputPattern": "return\\s+std::unexpected\\(\"Invalid\"\\);?",
+    "regexPattern": "return\\s+std::unexpected\\(\"Invalid\"\\);?",
+    "hint": "Scrie return std::unexpected(\"Invalid\");"
+  },
+  {
+    "id": "py-asyncio-taskgroup",
+    "track": "Python",
+    "division": "Informatică și Programare",
+    "icon": "🐍",
+    "level": "3. Middle",
+    "xp": 40,
+    "title": "Python 3.11+: Concurență Structurată cu asyncio.TaskGroup",
+    "theory": "\n<p>În <strong>Python 3.11</strong>, biblioteca nativă <code>asyncio</code> a introdus <code>TaskGroup</code>, aducând paradigma <em>Structured Concurrency</em> (concurență structurată). Spre deosebire de vechiul <code>asyncio.gather()</code>, un <code>TaskGroup</code> garantează că toate sarcinile concurente create se termină sau sunt anulate curat înainte de ieșirea din blocul <code>async with</code>.</p>\n\n<h4>1. Avantajele Structured Concurrency</h4>\n<p>Când o sarcină dintr-un <code>TaskGroup</code> aruncă o excepție, Python anulează automat toate celelalte sarcini surori aflate încă în derulare și colectează toate erorile într-un obiect modern de tipul <code>ExceptionGroup</code>. Se elimină astfel sarcinile „orfane” (zombie coroutines) care rulau pe fundal și consumau resurse fără control.</p>\n\n<h4>2. Sintaxa cu async with asyncio.TaskGroup():</h4>\n<pre><code>import asyncio\n\nasync def fetch_user(user_id: int):\n    await asyncio.sleep(0.5)\n    return f\"User_{user_id}\"\n\nasync def main():\n    async with asyncio.TaskGroup() as tg:\n        t1 = tg.create_task(fetch_user(101))\n        t2 = tg.create_task(fetch_user(102))\n\n    # La acest punct, ambele task-uri s-au terminat garantat cu succes!\n    print(f\"Rezultate: {t1.result()}, {t2.result()}\")\n\nasyncio.run(main())</code></pre>\n",
+    "glossary": [
+      {
+        "term": "TaskGroup",
+        "def": "Context manager asincron din Python 3.11 ce orchestrează execuția sigură a unui grup de coroutine."
+      },
+      {
+        "term": "ExceptionGroup",
+        "def": "Tip de excepție agregată ce poate împacheta mai multe erori apărute simultan în task-uri paralele."
+      },
+      {
+        "term": "tg.create_task(coro)",
+        "def": "Metodă a grupului de sarcini prin care se programează executarea imediată a coroutinei."
+      },
+      {
+        "term": "Structured Concurrency",
+        "def": "Principiu arhitectural în care durata de viață a sarcinilor concurente este legată strict de blocul de cod care le-a creat."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "async with asyncio.TaskGroup() as tg:",
+        "right": "Deschide un context de concurență structurată"
+      },
+      {
+        "left": "tg.create_task(func())",
+        "right": "Lansează o coroutină în interiorul grupului"
+      },
+      {
+        "left": "task.result()",
+        "right": "Obține rezultatul după finalizarea grupului"
+      },
+      {
+        "left": "ExceptionGroup",
+        "right": "Agregă erorile din mai multe sarcini paralele"
+      }
+    ],
+    "quiz": {
+      "question": "Ce se întâmplă într-un asyncio.TaskGroup dacă una dintre sarcinile concurente aruncă o excepție neprinsă?",
+      "options": [
+        "TaskGroup anulează automat toate celelalte sarcini surori active și propagă un ExceptionGroup.",
+        "Programul se blochează la infinit fără să ofere niciun feedback.",
+        "Python ignoră eroarea și lasă restul sarcinilor să ruleze nesfârșit.",
+        "Sistemul de operare oprește interpretorul Python instantaneu cu SIGKILL."
+      ],
+      "correctIndex": 0,
+      "explanation": "Unul dintre cele mai mari atuuri ale concurenței structurate este că nu lasă task-uri orfane: la prima eroare, toate celelalte task-uri din grup sunt anulate cooperativ."
+    },
+    "prompt": "Inițializează un context manager asincron TaskGroup în Python: async with asyncio.TaskGroup() as tg:",
+    "task": "Inițializează un context manager asincron TaskGroup în Python: async with asyncio.TaskGroup() as tg:",
+    "example": "async with asyncio.TaskGroup() as tg:\n    tg.create_task(download(url))",
+    "starterCode": "async with asyncio.TaskGroup() as tg:",
+    "officialSolution": "async with asyncio.TaskGroup() as tg:",
+    "expectedOutputPattern": "async\\s+with\\s+asyncio\\.TaskGroup\\(\\)\\s+as\\s+tg:?",
+    "regexPattern": "async\\s+with\\s+asyncio\\.TaskGroup\\(\\)\\s+as\\s+tg:?",
+    "hint": "Tastează: async with asyncio.TaskGroup() as tg:"
+  },
+  {
+    "id": "devops-ebpf-tracing",
+    "track": "DevOps & Sisteme Linux",
+    "division": "Informatică și Programare",
+    "icon": "🐧",
+    "level": "3. Middle",
+    "xp": 40,
+    "title": "Linux Observability: Monitorizare de Înaltă Rezoluție cu eBPF și bpftrace",
+    "theory": "\n<p><strong>eBPF (Extended Berkeley Packet Filter)</strong> este o tehnologie revoluționară din kernelul Linux care permite rularea de programe sandboxed direct în spațiul kernel fără recompilarea nucleului și fără încărcarea de module instabile de kernel. Utilizat masiv în producție la Netflix, Meta și Google, eBPF oferă observabilitate, securitate și rețelistică de performanță absolută.</p>\n\n<h4>1. Kprobes, Tracepoints și Uprobes</h4>\n<p>Un program eBPF poate fi atașat la:</p>\n<ul>\n  <li><strong>Tracepoints:</strong> Puncte statice de instrumentare definite în mod stabil de nucleul Linux (ex: <code>syscalls:sys_enter_openat</code>).</li>\n  <li><strong>Kprobes / Kretprobes:</strong> Atașare dinamică la orice adresă sau funcție internă de kernel.</li>\n  <li><strong>Uprobes:</strong> Instrumentare dinamică în spațiul utilizator (aplicații C, Go sau Node.js).</li>\n</ul>\n\n<h4>2. Tracing Instantaneu cu Instrumentul bpftrace</h4>\n<pre><code># Monitorizează în timp real fiecare proces care deschide fișiere pe sistem:\nbpftrace -e 'tracepoint:syscalls:sys_enter_openat { printf(\"%s (%d) a deschis %s\\n\", comm, pid, str(args->filename)); }'\n\n# Agregă apelurile de sistem într-un histogram de latență:\nbpftrace -e 'kprobe:vfs_read { @start[tid] = nsecs; } kretprobe:vfs_read /@start[tid]/ { @ns = hist(nsecs - @start[tid]); delete(@start[tid]); }'</code></pre>\n",
+    "glossary": [
+      {
+        "term": "eBPF",
+        "def": "Mașină virtuală de instrucțiuni de tip registru rulată în siguranță direct în nucleul Linux."
+      },
+      {
+        "term": "bpftrace",
+        "def": "Limbaj de nivel înalt pentru urmărirea evenimentelor de sistem inspirat din DTrace."
+      },
+      {
+        "term": "Tracepoint",
+        "def": "Cârlig stabil garantat de kernel plasat în punctele cheie de execuție a apelurilor de sistem."
+      },
+      {
+        "term": "Kprobe",
+        "def": "Mecanism de atașare dinamică la intrarea sau ieșirea din funcțiile nucleului."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "bpftrace -e 'script'",
+        "right": "Rulează un one-liner de analiză de sistem"
+      },
+      {
+        "left": "tracepoint:syscalls:sys_enter_execve",
+        "right": "Interceptează lansarea oricărui proces nou"
+      },
+      {
+        "left": "comm, pid",
+        "right": "Numele executabilului și identificatorul procesului"
+      },
+      {
+        "left": "hist()",
+        "right": "Generează o histogramă logaritmică a latențelor"
+      }
+    ],
+    "quiz": {
+      "question": "Ce mecanism garantează că un program eBPF nu va bloca sistemul de operare și nu va corupe memoria kernelului?",
+      "options": [
+        "Verifier-ul eBPF din kernel analizează bytecode-ul înainte de execuție pentru a valida accesul la memorie și terminarea buclelor.",
+        "Rulează exclusiv într-o mașină virtuală Windows izolată.",
+        "eBPF poate fi apelat doar când calculatorul este conectat la internet.",
+        "Kernelul execută programul o singură dată pe săptămână."
+      ],
+      "correctIndex": 0,
+      "explanation": "eBPF Verifier verifică formal graful de flux de control al codului, asigurându-se că nu conține bucle infinite și că accesează doar adrese de memorie sigure și autorizate."
+    },
+    "prompt": "Comandă bpftrace pentru monitorizarea apelurilor syscalls:sys_enter_execve: bpftrace -e 'tracepoint:syscalls:sys_enter_execve { printf(\"%s\\n\", comm); }'",
+    "task": "Comandă bpftrace pentru monitorizarea apelurilor syscalls:sys_enter_execve: bpftrace -e 'tracepoint:syscalls:sys_enter_execve { printf(\"%s\\n\", comm); }'",
+    "example": "bpftrace -e 'tracepoint:syscalls:sys_enter_execve { printf(\"%s\\n\", comm); }'",
+    "starterCode": "bpftrace -e 'tracepoint:syscalls:sys_enter_execve { printf(\"%s\\n\", comm); }'",
+    "officialSolution": "bpftrace -e 'tracepoint:syscalls:sys_enter_execve { printf(\"%s\\n\", comm); }'",
+    "expectedOutputPattern": "bpftrace\\s+-e\\s+'tracepoint:syscalls:sys_enter_execve\\s*\\{\\s*printf\\(\"\\\\%s\\\\n\",\\s*comm\\);\\s*\\}'",
+    "regexPattern": "bpftrace\\s+-e\\s+'tracepoint:syscalls:sys_enter_execve\\s*\\{\\s*printf\\(\"\\\\%s\\\\n\",\\s*comm\\);\\s*\\}'",
+    "hint": "Tastează bpftrace -e 'tracepoint:syscalls:sys_enter_execve { printf(\"%s\\n\", comm); }'"
+  },
+  {
+    "id": "ts-discriminated-unions",
+    "track": "TypeScript & React",
+    "division": "Informatică și Programare",
+    "icon": "🔷",
+    "level": "2. Junior",
+    "xp": 35,
+    "title": "TypeScript: Discriminated Unions & Exhaustiveness Checking cu 'never'",
+    "theory": "\n<p>O tehnică fundamentală în <strong>TypeScript</strong> este folosirea <em>Discriminated Unions</em> (numite și Tagged Unions sau tipuri sumă algebrice). Când creezi tipuri pentru stări asincrone (de exemplu un apel API care poate fi <code>loading</code>, <code>success</code> sau <code>error</code>), un câmp literal comun (discriminantul) permite compilatorului să îngusteze tipul (type narrowing) în mod matematic.</p>\n\n<h4>1. Definirea Discriminantului</h4>\n<p>Fiecare membru al uniunii conține aceeași proprietate (adesea numită <code>status</code> sau <code>kind</code>) cu o valoare literală unică:</p>\n<pre><code>type ApiState =\n  | { status: 'idle' }\n  | { status: 'loading' }\n  | { status: 'success'; data: string[] }\n  | { status: 'error'; error: Error };</code></pre>\n\n<h4>2. Exhaustiveness Checking cu tipul 'never'</h4>\n<p>Dacă verifici toate stările într-un bloc <code>switch</code>, ramura <code>default</code> ar trebui să aibă tipul <code>never</code>. Dacă mâine adaugi o stare nouă (ex: <code>'cancelled'</code>) și uiți să o tratezi în switch, compilatorul va semnala o eroare la salvarea fișierului!</p>\n<pre><code>function renderUI(state: ApiState) {\n  switch (state.status) {\n    case 'idle': return 'Așteptare';\n    case 'loading': return 'Se încarcă...';\n    case 'success': return `Date primite: ${state.data.length}`;\n    case 'error': return `Eroare: ${state.error.message}`;\n    default: {\n      const _exhaustiveCheck: never = state;\n      throw new Error(`Stare netratată: ${_exhaustiveCheck}`);\n    }\n  }\n}</code></pre>\n",
+    "glossary": [
+      {
+        "term": "Discriminated Union",
+        "def": "Uniune de tipuri obiect ce partajează un câmp comun cu valori literale distincte."
+      },
+      {
+        "term": "Type Narrowing",
+        "def": "Procesul prin care TypeScript deduce tipul mai specific al unei variabile pe baza verificărilor if/switch."
+      },
+      {
+        "term": "tipul 'never'",
+        "def": "Tipul reprezentând absența oricărei valori posibile; apare când toate cazurile uniunii au fost epuizate."
+      },
+      {
+        "term": "Exhaustiveness Checking",
+        "def": "Garanție la compilare că fiecare variantă a unui tip de uniune a fost gestionată."
+      }
+    ],
+    "matchingPairs": [
+      {
+        "left": "status: 'success'",
+        "right": "Câmpul discriminant al uniunii"
+      },
+      {
+        "left": "const _check: never = state",
+        "right": "Verifică epuizarea completă a ramurilor"
+      },
+      {
+        "left": "switch (state.status)",
+        "right": "Realizează îngustarea automată a tipului"
+      },
+      {
+        "left": "state.data",
+        "right": "Disponibil doar în ramura 'success'"
+      }
+    ],
+    "quiz": {
+      "question": "De ce este recomandat să atribuim variabila de stare unui tip 'never' în ramura default a unui switch în TypeScript?",
+      "options": [
+        "Pentru a declanșa o eroare la compilare dacă se adaugă un caz nou în uniune pe care dezvoltatorul a uitat să îl trateze.",
+        "Pentru a forța rularea codului într-un worker separat de fundal.",
+        "Pentru a converti obiectul într-un format binar criptat AES.",
+        "Nu are niciun efect, este doar un comentariu de documentare."
+      ],
+      "correctIndex": 0,
+      "explanation": "Exhaustiveness checking cu 'never' este o plasă de siguranță critică în producție: orice modificare ulterioară a structurii datelor va fi detectată instantaneu de compilator."
+    },
+    "prompt": "Declară o verificare de exhaustivitate în TypeScript pe variabila state: const _exhaustiveCheck: never = state;",
+    "task": "Declară o verificare de exhaustivitate în TypeScript pe variabila state: const _exhaustiveCheck: never = state;",
+    "example": "const _exhaustiveCheck: never = state;",
+    "starterCode": "const _exhaustiveCheck: never = state;",
+    "officialSolution": "const _exhaustiveCheck: never = state;",
+    "expectedOutputPattern": "const\\s+_exhaustiveCheck:\\s*never\\s*=\\s*state;?",
+    "regexPattern": "const\\s+_exhaustiveCheck:\\s*never\\s*=\\s*state;?",
+    "hint": "Tastează: const _exhaustiveCheck: never = state;"
   }
 ];
+
+if (typeof window !== "undefined") {
+  window.MEGA_EXPANDED_CURRICULUM = MEGA_EXPANDED_CURRICULUM;
+}
