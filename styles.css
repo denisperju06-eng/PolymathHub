@@ -2965,9 +2965,9 @@ button {
    MODUL 2: DUAL SPLIT STUDIO (HORIZONTALLY SPLIT IDE WORKSPACE)
    -------------------------------------------------------------------------- */
 @media (min-width: 900px) {
-  [data-layout="dual-split"] .study-layout {
+  .study-layout {
     display: grid !important;
-    grid-template-columns: 310px 1fr !important;
+    grid-template-columns: 320px 1fr !important;
     gap: 1.5rem;
     align-items: start;
     max-width: 1440px;
@@ -2978,6 +2978,7 @@ button {
     grid-column: 1 / -1;
   }
   .dual-split-topic-nav {
+    display: flex !important;
     position: sticky;
     top: 5.5rem;
     max-height: calc(100vh - 140px);
@@ -2999,75 +3000,65 @@ button {
 
 /* ==========================================================================
    DUAL SPLIT SEQUENCING: DOAR SECȚIUNEA ALEASĂ ESTE VIZIBILĂ PE DREAPTA
-   (UNIVERSAL ÎN STUDIU - GLISARE LINĂ DE SUS ÎN JOS LA SELECTARE)
+   (UNIVERSAL ÎN TOATE LECȚIILE - GLISARE LINĂ DE SUS ÎN JOS LA SELECTARE)
    ========================================================================== */
 
 /* 1. Secvența Implicită sau Activă: TEORIE & CONCEPTE */
-[data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) .theory-card,
-[data-layout="dual-split"][data-dual-pane="theory"] .theory-card {
+:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) .theory-card,
+[data-dual-pane="theory"] .theory-card {
   display: block !important;
 }
-[data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #theory-article-content,
-[data-layout="dual-split"][data-dual-pane="theory"] #theory-article-content {
+:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #theory-article-content,
+[data-dual-pane="theory"] #theory-article-content {
   display: block !important;
   animation: dualSlideFromTop 0.35s ease-out;
 }
-[data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #ast-terminal-box,
-[data-layout="dual-split"][data-dual-pane="theory"] #ast-terminal-box {
+:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #ast-terminal-box,
+[data-dual-pane="theory"] #ast-terminal-box {
   display: none !important;
 }
-[data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #practice-card,
-[data-layout="dual-split"][data-dual-pane="theory"] #practice-card {
+:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #practice-card,
+[data-dual-pane="theory"] #practice-card {
   display: none !important;
 }
 
 /* 2. Secvența 2: EXEMPLE & CYBER AST ENGINE (CYBER DOAR LA EXEMPLU) */
-[data-layout="dual-split"][data-dual-pane="examples"] .theory-card {
+[data-dual-pane="examples"] .theory-card {
   display: block !important;
   border: none !important;
   background: transparent !important;
   box-shadow: none !important;
   padding: 0 !important;
 }
-[data-layout="dual-split"][data-dual-pane="examples"] #theory-article-content {
+[data-dual-pane="examples"] #theory-article-content {
   display: none !important;
 }
-[data-layout="dual-split"][data-dual-pane="examples"] #ast-terminal-box {
+[data-dual-pane="examples"] #ast-terminal-box {
   display: flex !important;
   width: 100% !important;
   margin-top: 0 !important;
   animation: dualSlideFromTop 0.35s ease-out;
 }
-[data-layout="dual-split"][data-dual-pane="examples"] #practice-card {
+[data-dual-pane="examples"] #practice-card {
   display: none !important;
 }
 
 /* 3. Secvența 3: ATELIER PRACTIC & RĂSPUNS */
-[data-layout="dual-split"][data-dual-pane="practice"] .theory-card {
+[data-dual-pane="practice"] .theory-card {
   display: none !important;
 }
-[data-layout="dual-split"][data-dual-pane="practice"] #practice-card {
+[data-dual-pane="practice"] #practice-card {
   display: block !important;
   animation: dualSlideFromTop 0.35s ease-out;
-}
-[data-layout="dual-split"][data-dual-pane="practice"] #practice-mode-write {
-  display: block !important;
-}
-[data-layout="dual-split"][data-dual-pane="practice"] #practice-mode-match,
-[data-layout="dual-split"][data-dual-pane="practice"] #practice-mode-quiz {
-  display: none !important;
 }
 
 /* 4. Secvența 4: EXERCIȚII TACTILE (NEOMORPHIC QUIZ & MATCHING) */
-[data-layout="dual-split"][data-dual-pane="exercises"] .theory-card {
+[data-dual-pane="exercises"] .theory-card {
   display: none !important;
 }
-[data-layout="dual-split"][data-dual-pane="exercises"] #practice-card {
+[data-dual-pane="exercises"] #practice-card {
   display: block !important;
   animation: dualSlideFromTop 0.35s ease-out;
-}
-[data-layout="dual-split"][data-dual-pane="exercises"] #practice-mode-write {
-  display: none !important;
 }
 
 /* Glisare animată de sus în jos: 'la alegere sa se mute de sus in jos' */
@@ -3555,7 +3546,8 @@ button {
 @media (min-width: 769px) {
   body:not(.simple-catalog-mode) #catalog-division-pills,
   body:not(.simple-catalog-mode) #catalog-domains-grid,
-  body:not(.simple-catalog-mode) #catalog-domains-toggle-wrap {
+  body:not(.simple-catalog-mode) #catalog-domains-toggle-wrap,
+  body:not(.simple-catalog-mode) #catalog-chapters-section {
     display: none !important;
   }
 }
@@ -3607,7 +3599,7 @@ button {
    DUAL SPLIT TOPIC NAVIGATOR & WORKSPACE (SURVIVOR 12)
    -------------------------------------------------------------------------- */
 .dual-split-topic-nav {
-  display: none;
+  display: flex !important;
   background: var(--bg-surface-glass);
   border: 1px solid var(--border-color);
   border-radius: 16px;
@@ -3615,10 +3607,6 @@ button {
   margin-bottom: 1.5rem;
   flex-direction: column;
   gap: 1rem;
-}
-
-[data-layout="dual-split"] .dual-split-topic-nav {
-  display: flex !important;
 }
 
 @media (min-width: 1024px) {

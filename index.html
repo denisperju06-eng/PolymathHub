@@ -298,9 +298,9 @@
   <main id="study-view" class="study-layout hidden">
     <!-- Bara Superioară de Navigare în Modul Studiu -->
     <nav class="study-top-nav" aria-label="Navigare Studiu">
-      <button id="back-to-catalog-btn" class="study-nav-btn" title="Înapoi la Catalogul General">
+      <button id="back-to-catalog-btn" class="study-nav-btn" title="Înapoi la Citadela 3D">
         <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        Înapoi la Cursuri
+        &larr; Înapoi la Citadela 3D
       </button>
       <div class="study-nav-center">
         <span class="study-current-track-tag" id="study-track-indicator">SQL</span>
@@ -530,39 +530,6 @@
           </div>
           <pre class="solution-code"><code id="official-solution-text"></code></pre>
           <p class="solution-explanation" id="official-solution-explanation"></p>
-        </div>
-
-        <!-- Live Runtime Simulation Sandbox (Etapa 3 Practică) -->
-        <div class="live-practice-sim-box neo-plate" id="live-practice-sim-box" style="margin-top: 1.5rem;">
-          <div class="sim-header">
-            <div class="sim-title-wrap">
-              <span class="sim-tag">SIMULATOR VIZUAL RUNTIME &bull; ETAPA 3</span>
-              <h4 class="sim-title" id="sim-title">Simulator Dinamic de Execuție &amp; Memorie</h4>
-            </div>
-            <div class="sim-badge" id="sim-status-badge">60 FPS &bull; Activ</div>
-          </div>
-          <div class="sim-canvas-wrap">
-            <canvas id="practice-sim-canvas" class="practice-sim-canvas" width="600" height="150"></canvas>
-          </div>
-          <div class="sim-controls-grid">
-            <div class="sim-ctrl-item">
-              <div class="sim-ctrl-header">
-                <label for="sim-density-slider">Densitate Blocuri:</label>
-                <span id="sim-density-val">12</span>
-              </div>
-              <input type="range" id="sim-density-slider" min="4" max="32" value="12" class="sim-range">
-            </div>
-            <div class="sim-ctrl-item">
-              <div class="sim-ctrl-header">
-                <label for="sim-speed-slider">Frecvență / Rata de Transfer:</label>
-                <span id="sim-speed-val">2.5x</span>
-              </div>
-              <input type="range" id="sim-speed-slider" min="1" max="5" step="0.5" value="2.5" class="sim-range">
-            </div>
-            <div class="sim-actions">
-              <button type="button" class="btn-sim-burst neo-plate" id="btn-sim-burst">⚡ Generează Burst Memorie (+15 XP)</button>
-            </div>
-          </div>
         </div>
       </div>
 

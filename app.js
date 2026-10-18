@@ -2846,28 +2846,21 @@
       playUiSound("click");
 
       state.activeDualPane = paneName;
-      if (state.layoutMode === "dual-split") {
-        document.documentElement.setAttribute("data-dual-pane", paneName);
-        document.body.setAttribute("data-dual-pane", paneName);
-        if (els.studyView) els.studyView.setAttribute("data-dual-pane", paneName);
+      document.documentElement.setAttribute("data-dual-pane", paneName);
+      document.body.setAttribute("data-dual-pane", paneName);
+      if (els.studyView) els.studyView.setAttribute("data-dual-pane", paneName);
 
-        // Glisare animată de sus în jos pe containerul vizibil din dreapta
-        const targetContainer = (paneName === "theory" || paneName === "examples")
-          ? document.querySelector(".theory-card")
-          : els.practiceCard;
+      // Glisare animată de sus în jos pe containerul vizibil din dreapta
+      const targetContainer = (paneName === "theory" || paneName === "examples")
+        ? document.querySelector(".theory-card")
+        : els.practiceCard;
 
-        if (targetContainer) {
-          targetContainer.classList.remove("dual-pane-animate");
-          void targetContainer.offsetWidth; // retrigger reflow
-          targetContainer.classList.add("dual-pane-animate");
-          targetContainer.scrollTop = 0;
-          targetContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      } else if (targetEl) {
-        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
-        targetEl.style.transition = "box-shadow 0.3s ease";
-        targetEl.style.boxShadow = "0 0 25px var(--accent-primary)";
-        setTimeout(() => { targetEl.style.boxShadow = ""; }, 1200);
+      if (targetContainer) {
+        targetContainer.classList.remove("dual-pane-animate");
+        void targetContainer.offsetWidth; // retrigger reflow
+        targetContainer.classList.add("dual-pane-animate");
+        targetContainer.scrollTop = 0;
+        targetContainer.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
 
@@ -3148,8 +3141,9 @@
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x020307, 0.02);
 
-    const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 1000);
-    camera.position.set(0, 5, 30);
+    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+    camera.position.set(0, 0.2, 17.5);
+    camera.lookAt(0, 0, 0);
     cosmosThreeCamera = camera;
 
     // World Group to hold all 3D entities
@@ -3372,7 +3366,8 @@
 
     // 4. Figure 1: 💻 CALCULATOR & TERMINAL (Informatică & Programare)
     const itGroup = new THREE.Group();
-    itGroup.position.set(-11, 1.2, 0);
+    itGroup.position.set(-9.8, 0.2, 0);
+    itGroup.scale.set(1.38, 1.38, 1.38);
 
     const itBezelGeo = new THREE.BoxGeometry(4.4, 2.8, 0.25);
     const itBezelMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
@@ -3424,12 +3419,13 @@
     };
     interactiveObjects.push(itBezel);
     worldGroup.add(itGroup);
-    disciplineNodes["it"] = { group: itGroup, mesh: itBezel, pos: itGroup.position, cameraTarget: new THREE.Vector3(-11, 1.2, 12) };
+    disciplineNodes["it"] = { group: itGroup, mesh: itBezel, pos: itGroup.position, cameraTarget: new THREE.Vector3(-9.8, 0.2, 8.8) };
     majorFigureNodes.push({ id: "it", group: itGroup, mesh: itBezel, title: "💻 Informatică (7 Cursuri)", color: "#38bdf8" });
 
     // 5. Figure 2: 🐧 SERVER RACK MAINFRAME (Sisteme Linux & DevOps)
     const osGroup = new THREE.Group();
-    osGroup.position.set(-3.8, -1.8, 2.5);
+    osGroup.position.set(-3.3, -0.3, 1.6);
+    osGroup.scale.set(1.38, 1.38, 1.38);
 
     const osChassisGeo = new THREE.BoxGeometry(2.6, 4.8, 2.4);
     const osChassisMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.85, roughness: 0.25 });
@@ -3468,12 +3464,13 @@
     };
     interactiveObjects.push(osChassis);
     worldGroup.add(osGroup);
-    disciplineNodes["os"] = { group: osGroup, mesh: osChassis, pos: osGroup.position, cameraTarget: new THREE.Vector3(-3.8, -1.8, 14.5) };
+    disciplineNodes["os"] = { group: osGroup, mesh: osChassis, pos: osGroup.position, cameraTarget: new THREE.Vector3(-3.3, -0.3, 9.2) };
     majorFigureNodes.push({ id: "os", group: osGroup, mesh: osChassis, title: "🐧 Sisteme Linux & DevOps", color: "#fb923c" });
 
     // 6. Figure 3: 🗄️ BAZE DE DATE CYLINDERS (Baze de Date & SQL)
     const dbGroup = new THREE.Group();
-    dbGroup.position.set(3.8, -1.8, 2.5);
+    dbGroup.position.set(3.3, -0.3, 1.6);
+    dbGroup.scale.set(1.38, 1.38, 1.38);
 
     const dbCylGeo = new THREE.CylinderGeometry(2.2, 2.2, 0.95, 36);
     const dbCylMat = new THREE.MeshStandardMaterial({
@@ -3518,12 +3515,13 @@
     };
     interactiveObjects.push(c2);
     worldGroup.add(dbGroup);
-    disciplineNodes["db"] = { group: dbGroup, mesh: c2, pos: dbGroup.position, cameraTarget: new THREE.Vector3(3.8, -1.8, 14.5) };
+    disciplineNodes["db"] = { group: dbGroup, mesh: c2, pos: dbGroup.position, cameraTarget: new THREE.Vector3(3.3, -0.3, 9.2) };
     majorFigureNodes.push({ id: "db", group: dbGroup, mesh: c2, title: "🗄️ Baze de Date & SQL", color: "#10b981" });
 
     // 7. Figure 4: 🌍 CARTE DESCHISĂ & GLOB (Limbi Străine & Comunicare)
     const langGroup = new THREE.Group();
-    langGroup.position.set(11, 1.2, 0);
+    langGroup.position.set(9.8, 0.2, 0);
+    langGroup.scale.set(1.38, 1.38, 1.38);
 
     const bookSpineGeo = new THREE.BoxGeometry(0.3, 3.4, 2.4);
     const bookSpineMat = new THREE.MeshStandardMaterial({ color: 0x4a044e, metalness: 0.6, roughness: 0.4 });
@@ -3558,7 +3556,7 @@
     const gRingMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24 });
     const gRing = new THREE.Mesh(gRingGeo, gRingMat);
     gRing.position.set(0, 2.4, 0);
-    gRing.rotation.x = Math.PI / 2.3;
+    gRing.rotation.x = Math.PI / 2;
     langGroup.add(gRing);
 
     const langPedGeo = new THREE.RingGeometry(2.2, 2.5, 32);
@@ -3580,7 +3578,7 @@
     };
     interactiveObjects.push(bookSpine);
     worldGroup.add(langGroup);
-    disciplineNodes["lang"] = { group: langGroup, mesh: bookSpine, pos: langGroup.position, cameraTarget: new THREE.Vector3(11, 1.2, 12), globe: globe };
+    disciplineNodes["lang"] = { group: langGroup, mesh: bookSpine, pos: langGroup.position, cameraTarget: new THREE.Vector3(9.8, 0.2, 8.8), globe: globe };
     majorFigureNodes.push({ id: "lang", group: langGroup, mesh: bookSpine, title: "🌍 Limbi Străine (5 Cursuri)", color: "#d946ef" });
 
     // 8. Sistemul Ierarhic de Sateliți Orbitale (Sistem Solar pe Nivelul 2)
@@ -3846,9 +3844,9 @@
           if (node.group) {
             node.group.visible = true;
             if (typeof gsap !== "undefined") {
-              gsap.to(node.group.scale, { x: 1, y: 1, z: 1, duration: 0.8, ease: "power2.out" });
+              gsap.to(node.group.scale, { x: 1.38, y: 1.38, z: 1.38, duration: 0.8, ease: "power2.out" });
             } else {
-              node.group.scale.set(1, 1, 1);
+              node.group.scale.set(1.38, 1.38, 1.38);
             }
           }
 
@@ -3867,10 +3865,10 @@
         });
 
         if (typeof gsap !== "undefined") {
-          gsap.to(camera.position, { x: 0, y: 1.5, z: 26, duration: 1.6, ease: "power3.inOut" });
+          gsap.to(camera.position, { x: 0, y: 0.2, z: 17.5, duration: 1.6, ease: "power3.inOut" });
           gsap.to(targetRot, { x: 0, y: 0, duration: 1.2, ease: "power2.out" });
         } else {
-          camera.position.set(0, 1.5, 26);
+          camera.position.set(0, 0.2, 17.5);
           targetRot.x = targetRot.y = 0;
         }
 
@@ -3888,13 +3886,13 @@
           if (!other) return;
 
           if (k === id) {
-            // Figura aleasă: vizibilă și la scară normală
+            // Figura aleasă: vizibilă și la scară grandioasă
             if (other.group) {
               other.group.visible = true;
               if (typeof gsap !== "undefined") {
-                gsap.to(other.group.scale, { x: 1, y: 1, z: 1, duration: 0.8, ease: "back.out(1.2)" });
+                gsap.to(other.group.scale, { x: 1.48, y: 1.48, z: 1.48, duration: 0.8, ease: "back.out(1.2)" });
               } else {
-                other.group.scale.set(1, 1, 1);
+                other.group.scale.set(1.48, 1.48, 1.48);
               }
             }
 
@@ -3953,10 +3951,12 @@
 
     function warpToTrack(trackName) {
       state.activeTrack = trackName;
+      const firstLesson = allLessons.find(l => l.track === trackName);
+      if (firstLesson) {
+        state.activeLessonId = firstLesson.id;
+      }
       saveState();
-      renderCatalogView();
-      const chapters = document.getElementById("catalog-chapters-section");
-      if (chapters) chapters.scrollIntoView({ behavior: "smooth", block: "start" });
+      switchView("study");
     }
 
     function updateHudCard(target) {
@@ -4057,15 +4057,15 @@
       if (!isOrbitPaused) {
         // Floating motion for the 4 3D sculpted figures
         itGroup.rotation.y = Math.sin(time * 0.015) * 0.15;
-        itGroup.position.y = Math.sin(time * 0.025) * 0.2;
+        itGroup.position.y = 0.2 + Math.sin(time * 0.025) * 0.2;
 
         osGroup.rotation.y = Math.sin(time * 0.018 + 1) * 0.15;
-        osGroup.position.y = Math.sin(time * 0.025 + 1) * 0.2;
+        osGroup.position.y = -0.3 + Math.sin(time * 0.025 + 1) * 0.2;
 
         dbGroup.rotation.y += 0.006;
-        dbGroup.position.y = Math.sin(time * 0.025 + 2) * 0.2;
+        dbGroup.position.y = -0.3 + Math.sin(time * 0.025 + 2) * 0.2;
 
-        langGroup.position.y = Math.sin(time * 0.025 + 3) * 0.2;
+        langGroup.position.y = 0.2 + Math.sin(time * 0.025 + 3) * 0.2;
         if (disciplineNodes.lang && disciplineNodes.lang.globe) {
           disciplineNodes.lang.globe.rotation.y += 0.012;
           disciplineNodes.lang.globe.rotation.x += 0.005;
@@ -4099,7 +4099,7 @@
 
         majorLabelElements.forEach(l => {
           l.mesh.getWorldPosition(tempProjVec);
-          tempProjVec.y += 2.6;
+          tempProjVec.y += 3.3;
           tempProjVec.project(camera);
 
           if (tempProjVec.z < 1) {

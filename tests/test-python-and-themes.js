@@ -72,6 +72,8 @@ async function testPythonAndThemes() {
 
   // Testare Mă dau bătut -> Copiază Soluția & Validează
   console.log("🏳️ 2. Verificare Python: 'Mă dau bătut' și 'Copiază Soluția & Validează'...");
+  await page.click("#dual-tab-practice");
+  await new Promise(r => setTimeout(r, 150));
   await page.click("#give-up-btn");
   await new Promise(r => setTimeout(r, 200));
 

@@ -115,7 +115,9 @@ async function testNewUX() {
   await page.setViewport({ width: 375, height: 667 });
   await new Promise(r => setTimeout(r, 200));
 
-  // Trecem la modul de potrivire
+  // Trecem la modul de potrivire în atelierul practic
+  await page.click("#dual-tab-practice");
+  await new Promise(r => setTimeout(r, 150));
   await page.click("#tab-mode-match");
   await new Promise(r => setTimeout(r, 250));
 

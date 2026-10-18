@@ -246,7 +246,9 @@ async function runAudit() {
       issues.push(`Dicționarul nu are 2 coloane: detectat ${dictCols} coloane.`);
     }
 
-    // Comutare la Quiz
+    // Comutare la Atelier Practic & Quiz
+    await page.click("#dual-tab-practice");
+    await new Promise(r => setTimeout(r, 150));
     await page.click("#tab-mode-quiz");
     await new Promise(r => setTimeout(r, 150));
     const quizCols = await page.evaluate(() => {
@@ -399,6 +401,8 @@ async function runAudit() {
     console.log("⚖️ Testare regulă anti-cheat și penalizare pentru soluție asistată (50/50)...");
     await page.click("#nav-study-btn");
     await new Promise(r => setTimeout(r, 200));
+    await page.click("#dual-tab-practice");
+    await new Promise(r => setTimeout(r, 150));
     await page.click("#tab-mode-write");
     await new Promise(r => setTimeout(r, 150));
 
