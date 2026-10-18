@@ -3583,18 +3583,18 @@ article.hidden,
 
 @media (min-width: 769px) {
   /* În modul 3D Citadela pe calculator, ascundem tot ce ar crea scroll sau aglomerație */
-  body:not(.simple-catalog-mode) .catalog-hero,
-  html:not([data-layout="cyber-kernel"]) body:not(.simple-catalog-mode) #cyber-command-stage,
-  body:not(.simple-catalog-mode) #catalog-division-pills,
-  body:not(.simple-catalog-mode) #catalog-domains-grid,
-  body:not(.simple-catalog-mode) #catalog-domains-toggle-wrap,
-  body:not(.simple-catalog-mode) #catalog-chapters-section {
+  body:not(.simple-catalog-mode):not(.viewing-chapters) .catalog-hero,
+  html:not([data-layout="cyber-kernel"]) body:not(.simple-catalog-mode):not(.viewing-chapters) #cyber-command-stage,
+  body:not(.simple-catalog-mode):not(.viewing-chapters) #catalog-division-pills,
+  body:not(.simple-catalog-mode):not(.viewing-chapters) #catalog-domains-grid,
+  body:not(.simple-catalog-mode):not(.viewing-chapters) #catalog-domains-toggle-wrap,
+  body:not(.simple-catalog-mode):not(.viewing-chapters) #catalog-chapters-section {
     display: none !important;
   }
 
   /* La calculator interzis scroll-ul în jos pe pagina principală 3D */
-  html:has(body:not(.simple-catalog-mode) #catalog-view:not(.hidden)),
-  body:not(.simple-catalog-mode):has(#catalog-view:not(.hidden)) {
+  html:has(body:not(.simple-catalog-mode):not(.viewing-chapters) #catalog-view:not(.hidden)),
+  body:not(.simple-catalog-mode):not(.viewing-chapters):has(#catalog-view:not(.hidden)) {
     overflow: hidden !important;
     height: 100vh !important;
     max-height: 100vh !important;
@@ -3635,8 +3635,8 @@ html:has(body.viewing-chapters) {
   max-height: none !important;
 }
 
-body.viewing-chapters #catalog-view {
-  overflow-y: auto !important;
+body.viewing-chapters #catalog-view:not(.hidden) {
+  overflow-y: visible !important;
   height: auto !important;
   max-height: none !important;
   padding: 6.5rem 1.5rem 5rem 1.5rem !important;

@@ -1051,6 +1051,10 @@
     state.activeView = target;
     saveState();
 
+    if (target !== "catalog") {
+      document.body.classList.remove("viewing-chapters");
+    }
+
     const views = [
       els.catalogView,
       els.studyView,
@@ -1330,12 +1334,20 @@
         </button>
       `;
 
-      item.addEventListener("click", () => {
+      function startThisLesson(e) {
+        if (e) e.stopPropagation();
         state.activeLessonId = lesson.id;
         lessonSessionAssisted = false;
         saveState();
+        document.body.classList.remove("viewing-chapters");
         switchView("study");
-      });
+      }
+
+      item.addEventListener("click", startThisLesson);
+      const startBtn = item.querySelector(".chapter-start-btn");
+      if (startBtn) {
+        startBtn.addEventListener("click", startThisLesson);
+      }
 
       els.catalogChaptersGrid.appendChild(item);
     });
