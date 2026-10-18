@@ -3161,256 +3161,486 @@
     const worldGroup = new THREE.Group();
     scene.add(worldGroup);
 
-    // 1. Lighting Rig
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
+    // 1. Lighting Rig (Clean Studio Lighting)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
     scene.add(ambientLight);
 
-    const goldKeyLight = new THREE.PointLight(0xd4af37, 2.5, 70);
-    goldKeyLight.position.set(0, 10, 10);
-    scene.add(goldKeyLight);
+    const topKeyLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    topKeyLight.position.set(0, 20, 15);
+    scene.add(topKeyLight);
 
-    const cyanFillLight = new THREE.PointLight(0x00f0ff, 1.8, 60);
-    cyanFillLight.position.set(-15, -5, 5);
-    scene.add(cyanFillLight);
+    const cyanRim = new THREE.PointLight(0x00f0ff, 2.2, 50);
+    cyanRim.position.set(-15, -4, 10);
+    scene.add(cyanRim);
 
-    const fuchsiaRimLight = new THREE.PointLight(0xd946ef, 1.8, 60);
-    fuchsiaRimLight.position.set(15, -5, 5);
-    scene.add(fuchsiaRimLight);
+    const magentaRim = new THREE.PointLight(0xd946ef, 2.2, 50);
+    magentaRim.position.set(15, -4, 10);
+    scene.add(magentaRim);
 
-    // 2. Ambient Particle Nebula (2500 Particles)
-    const pCount = 2500;
-    const pGeo = new THREE.BufferGeometry();
-    const pPos = new Float32Array(pCount * 3);
-    const pColors = new Float32Array(pCount * 3);
-    const colorA = new THREE.Color(0xd4af37);
-    const colorB = new THREE.Color(0x00f0ff);
+    const amberFill = new THREE.PointLight(0xf59e0b, 1.8, 40);
+    amberFill.position.set(0, -6, 5);
+    scene.add(amberFill);
 
-    for (let i = 0; i < pCount * 3; i += 3) {
-      pPos[i] = (Math.random() - 0.5) * 110;
-      pPos[i + 1] = (Math.random() - 0.5) * 80;
-      pPos[i + 2] = (Math.random() - 0.5) * 110;
-      const mixed = colorA.clone().lerp(colorB, Math.random());
-      pColors[i] = mixed.r;
-      pColors[i + 1] = mixed.g;
-      pColors[i + 2] = mixed.b;
+    // 2. High-Tech Ground Floor Grid (Subtle, Clean)
+    const floorGrid = new THREE.GridHelper(80, 40, 0x38bdf8, 0x0f172a);
+    floorGrid.position.y = -5.5;
+    worldGroup.add(floorGrid);
+
+    // 3. Dynamic Texture Generator Helpers
+    function createCodeScreenTexture() {
+      const c = document.createElement("canvas");
+      c.width = 512;
+      c.height = 320;
+      const ctx = c.getContext("2d");
+      if (!ctx) return new THREE.Texture();
+      ctx.fillStyle = "#030712";
+      ctx.fillRect(0, 0, 512, 320);
+
+      // Terminal Header
+      ctx.fillStyle = "#0f172a";
+      ctx.fillRect(0, 0, 512, 28);
+      ctx.fillStyle = "#ef4444";
+      ctx.beginPath(); ctx.arc(16, 14, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "#eab308";
+      ctx.beginPath(); ctx.arc(32, 14, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "#22c55e";
+      ctx.beginPath(); ctx.arc(48, 14, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = "bold 11px monospace";
+      ctx.fillText("polymath_kernel.rs — 60 FPS", 70, 18);
+
+      // Code Lines
+      ctx.font = "bold 15px monospace";
+      ctx.fillStyle = "#38bdf8";
+      ctx.fillText("// INFORMATICĂ & PROGRAMARE", 20, 58);
+      ctx.fillStyle = "#f43f5e";
+      ctx.fillText("fn ", 20, 88);
+      ctx.fillStyle = "#a855f7";
+      ctx.fillText("build_citadel", 48, 88);
+      ctx.fillStyle = "#e2e8f0";
+      ctx.fillText("() -> Result<Cosmos, Error> {", 160, 88);
+      ctx.fillStyle = "#22c55e";
+      ctx.fillText("    let mut engine = CoreEngine::init();", 40, 118);
+      ctx.fillStyle = "#eab308";
+      ctx.fillText("    engine.bind(Python, Cpp, JavaScript);", 40, 148);
+      ctx.fillStyle = "#06b6d4";
+      ctx.fillText("    engine.deploy_quadrants(15_DOMAINS);", 40, 178);
+      ctx.fillStyle = "#38bdf8";
+      ctx.fillText("    Ok(engine.ignite_orbit())", 40, 208);
+      ctx.fillStyle = "#e2e8f0";
+      ctx.fillText("}", 20, 238);
+
+      ctx.fillStyle = "#10b981";
+      ctx.font = "bold 13px monospace";
+      ctx.fillText("> SATELITE_ORBIT: ACTIVE // 7 DISCIPLINE", 20, 278);
+      ctx.fillStyle = "#38bdf8";
+      ctx.fillRect(20, 290, 12, 18);
+
+      const tex = new THREE.CanvasTexture(c);
+      tex.needsUpdate = true;
+      return tex;
     }
-    pGeo.setAttribute("position", new THREE.BufferAttribute(pPos, 3));
-    pGeo.setAttribute("color", new THREE.BufferAttribute(pColors, 3));
 
-    const pMat = new THREE.PointsMaterial({
-      size: 0.18,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.65,
-      blending: THREE.AdditiveBlending
-    });
-    const nebula = new THREE.Points(pGeo, pMat);
-    worldGroup.add(nebula);
+    function createKeyboardTexture() {
+      const c = document.createElement("canvas");
+      c.width = 512;
+      c.height = 256;
+      const ctx = c.getContext("2d");
+      if (!ctx) return new THREE.Texture();
+      ctx.fillStyle = "#090d16";
+      ctx.fillRect(0, 0, 512, 256);
 
-    // 3. Grid Plane
-    const grid = new THREE.GridHelper(100, 50, 0xd4af37, 0x161e2e);
-    grid.position.y = -10;
-    worldGroup.add(grid);
+      ctx.strokeStyle = "rgba(56, 189, 248, 0.4)";
+      ctx.lineWidth = 2;
+      for (let row = 0; row < 5; row++) {
+        for (let col = 0; col < 14; col++) {
+          ctx.fillStyle = "rgba(15, 23, 42, 0.85)";
+          ctx.strokeRect(20 + col * 34, 18 + row * 40, 30, 30);
+          ctx.fillRect(20 + col * 34, 18 + row * 40, 30, 30);
+        }
+      }
+      ctx.fillStyle = "rgba(56, 189, 248, 0.25)";
+      ctx.fillRect(150, 218, 210, 26);
+      ctx.strokeRect(150, 218, 210, 26);
 
-    // 4. Central Polymath Citadel Monolith (Survivor 13 Monolith)
-    const citadelGroup = new THREE.Group();
-    worldGroup.add(citadelGroup);
+      const tex = new THREE.CanvasTexture(c);
+      tex.needsUpdate = true;
+      return tex;
+    }
 
-    const cageGeo = new THREE.IcosahedronGeometry(5, 1);
-    const cageMat = new THREE.MeshStandardMaterial({
-      color: 0xd4af37,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.45,
-      emissive: 0x5a450e
-    });
-    const cageMesh = new THREE.Mesh(cageGeo, cageMat);
-    citadelGroup.add(cageMesh);
+    function createServerTexture() {
+      const c = document.createElement("canvas");
+      c.width = 256;
+      c.height = 512;
+      const ctx = c.getContext("2d");
+      if (!ctx) return new THREE.Texture();
+      ctx.fillStyle = "#080c14";
+      ctx.fillRect(0, 0, 256, 512);
 
-    const coreGeo = new THREE.OctahedronGeometry(2.8, 2);
-    const coreMat = new THREE.MeshStandardMaterial({
-      color: 0x00f0ff,
-      wireframe: true,
-      emissive: 0x004455,
-      emissiveIntensity: 0.85
-    });
-    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
-    citadelGroup.add(coreMesh);
+      for (let i = 0; i < 5; i++) {
+        const y = 20 + i * 95;
+        ctx.fillStyle = "#0f172a";
+        ctx.fillRect(15, y, 226, 82);
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+        ctx.strokeRect(15, y, 226, 82);
 
-    const ringGeo = new THREE.TorusGeometry(8, 0.05, 16, 120);
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.4 });
-    const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-    ringMesh.rotation.x = Math.PI / 2.2;
-    citadelGroup.add(ringMesh);
+        // Status LEDs
+        ctx.fillStyle = "#22c55e";
+        ctx.beginPath(); ctx.arc(35, y + 25, 6, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#fb923c";
+        ctx.beginPath(); ctx.arc(55, y + 25, 6, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#06b6d4";
+        ctx.beginPath(); ctx.arc(75, y + 25, 6, 0, Math.PI * 2); ctx.fill();
 
-    // Helper Laser Beam
-    function createBeam(from, to, hex) {
-      const geo = new THREE.BufferGeometry().setFromPoints([from, to]);
-      const mat = new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: 0.4 });
-      return new THREE.Line(geo, mat);
+        // Slits
+        ctx.fillStyle = "#020617";
+        for (let s = 0; s < 10; s++) {
+          ctx.fillRect(96 + s * 12, y + 16, 7, 50);
+        }
+      }
+
+      const tex = new THREE.CanvasTexture(c);
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function createBookPageTexture() {
+      const c = document.createElement("canvas");
+      c.width = 256;
+      c.height = 384;
+      const ctx = c.getContext("2d");
+      if (!ctx) return new THREE.Texture();
+      ctx.fillStyle = "#faf5ea";
+      ctx.fillRect(0, 0, 256, 384);
+
+      ctx.strokeStyle = "rgba(168, 85, 247, 0.35)";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(12, 12, 232, 360);
+
+      ctx.fillStyle = "#701a75";
+      ctx.font = "bold 20px serif";
+      ctx.textAlign = "center";
+      ctx.fillText("POLYMATH", 128, 48);
+
+      ctx.fillStyle = "rgba(51, 65, 85, 0.6)";
+      for (let i = 0; i < 14; i++) {
+        ctx.fillRect(25, 75 + i * 20, 206, 5);
+      }
+
+      const tex = new THREE.CanvasTexture(c);
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function createPlanetEmblemTexture(icon, name, color) {
+      const c = document.createElement("canvas");
+      c.width = 256;
+      c.height = 256;
+      const ctx = c.getContext("2d");
+      if (!ctx) return new THREE.Texture();
+
+      ctx.fillStyle = "#080c16";
+      ctx.beginPath();
+      ctx.arc(128, 128, 120, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.lineWidth = 8;
+      ctx.strokeStyle = color || "#38bdf8";
+      ctx.stroke();
+
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+      ctx.beginPath();
+      ctx.arc(128, 128, 106, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.font = "68px sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(icon, 128, 92);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 24px 'Space Grotesk', sans-serif";
+      ctx.fillText(name, 128, 178);
+
+      const tex = new THREE.CanvasTexture(c);
+      tex.needsUpdate = true;
+      return tex;
     }
 
     const interactiveObjects = [];
     const disciplineNodes = {};
+    const majorFigureNodes = [];
+    let activeCosmosMode = "overview";
+    let isOrbitPaused = false;
+    let orbitSpeedMultiplier = 1.0;
 
-    // 5. The 4 Major Quadrants (Survivor 13 Architecture)
-    // 01. ACT I • TENSOR & INFORMATICĂ (it)
-    const aiGroup = new THREE.Group();
-    aiGroup.position.set(-14, 4, 3);
-    const aiMesh = new THREE.Mesh(
-      new THREE.DodecahedronGeometry(3.0, 0),
-      new THREE.MeshStandardMaterial({ color: 0xf59e0b, wireframe: true, emissive: 0x78350f, emissiveIntensity: 0.7 })
-    );
-    aiMesh.userData = {
+    // 4. Figure 1: 💻 CALCULATOR & TERMINAL (Informatică & Programare)
+    const itGroup = new THREE.Group();
+    itGroup.position.set(-11, 1.2, 0);
+
+    const itBezelGeo = new THREE.BoxGeometry(4.4, 2.8, 0.25);
+    const itBezelMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
+    const itBezel = new THREE.Mesh(itBezelGeo, itBezelMat);
+    itBezel.position.y = 1.0;
+    itGroup.add(itBezel);
+
+    const itScreenGeo = new THREE.PlaneGeometry(4.05, 2.45);
+    const itScreenMat = new THREE.MeshBasicMaterial({ map: createCodeScreenTexture() });
+    const itScreen = new THREE.Mesh(itScreenGeo, itScreenMat);
+    itScreen.position.set(0, 1.0, 0.135);
+    itGroup.add(itScreen);
+
+    const itNeckGeo = new THREE.CylinderGeometry(0.18, 0.22, 1.2, 16);
+    const itNeckMat = new THREE.MeshStandardMaterial({ color: 0x64748b, metalness: 0.9, roughness: 0.1 });
+    const itNeck = new THREE.Mesh(itNeckGeo, itNeckMat);
+    itNeck.position.y = -0.7;
+    itGroup.add(itNeck);
+
+    const itBaseGeo = new THREE.CylinderGeometry(1.4, 1.6, 0.18, 32);
+    const itBaseMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.7, roughness: 0.3 });
+    const itBase = new THREE.Mesh(itBaseGeo, itBaseMat);
+    itBase.position.y = -1.35;
+    itGroup.add(itBase);
+
+    const itKbGeo = new THREE.BoxGeometry(3.6, 0.12, 1.6);
+    const itKbMat = new THREE.MeshBasicMaterial({ map: createKeyboardTexture() });
+    const itKb = new THREE.Mesh(itKbGeo, itKbMat);
+    itKb.position.set(0, -1.3, 1.2);
+    itKb.rotation.x = 0.15;
+    itGroup.add(itKb);
+
+    const itPedGeo = new THREE.RingGeometry(2.2, 2.5, 32);
+    const itPedMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.7 });
+    const itPed = new THREE.Mesh(itPedGeo, itPedMat);
+    itPed.position.y = -1.5;
+    itPed.rotation.x = Math.PI / 2;
+    itGroup.add(itPed);
+
+    itBezel.userData = {
       id: "it",
       title: "💻 Act I • Informatică & Algoritmi",
-      desc: "7 Sateliți Orbitali: C++, Python, JavaScript, Java, TypeScript, C#, Algoritmi",
+      desc: "Calculator 3D: C++, Python, JavaScript, Java, TypeScript, C#, Algoritmi",
       trackName: "Python",
       division: "Informatică și Programare",
       isMajor: true,
-      color: "#f59e0b",
+      color: "#38bdf8",
       icon: "💻"
     };
-    aiGroup.add(aiMesh);
-    const aiCore = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(1.5, 0),
-      new THREE.MeshStandardMaterial({ color: 0xfbbf24, wireframe: false, emissive: 0xd97706, roughness: 0.3 })
-    );
-    aiGroup.add(aiCore);
-    worldGroup.add(aiGroup);
-    interactiveObjects.push(aiMesh);
-    disciplineNodes["it"] = { group: aiGroup, mesh: aiMesh, cameraTarget: new THREE.Vector3(-14, 4, 11) };
+    interactiveObjects.push(itBezel);
+    worldGroup.add(itGroup);
+    disciplineNodes["it"] = { group: itGroup, mesh: itBezel, pos: itGroup.position, cameraTarget: new THREE.Vector3(-11, 1.2, 12) };
+    majorFigureNodes.push({ id: "it", group: itGroup, mesh: itBezel, title: "💻 Informatică (7 Cursuri)", color: "#38bdf8" });
 
-    // 02. ACT II • SILICON & SISTEME LINUX (os)
-    const sysGroup = new THREE.Group();
-    sysGroup.position.set(14, 5, -2);
-    const sysMesh = new THREE.Mesh(
-      new THREE.TorusKnotGeometry(2.5, 0.65, 64, 8),
-      new THREE.MeshStandardMaterial({ color: 0x06b6d4, wireframe: true, emissive: 0x0e7490, emissiveIntensity: 0.7 })
-    );
-    sysMesh.userData = {
+    // 5. Figure 2: 🐧 SERVER RACK MAINFRAME (Sisteme Linux & DevOps)
+    const osGroup = new THREE.Group();
+    osGroup.position.set(-3.8, -1.8, 2.5);
+
+    const osChassisGeo = new THREE.BoxGeometry(2.6, 4.8, 2.4);
+    const osChassisMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.85, roughness: 0.25 });
+    const osChassis = new THREE.Mesh(osChassisGeo, osChassisMat);
+    osGroup.add(osChassis);
+
+    const osFrontGeo = new THREE.PlaneGeometry(2.3, 4.5);
+    const osFrontMat = new THREE.MeshBasicMaterial({ map: createServerTexture() });
+    const osFront = new THREE.Mesh(osFrontGeo, osFrontMat);
+    osFront.position.set(0, 0, 1.21);
+    osGroup.add(osFront);
+
+    const osBadgeGeo = new THREE.CylinderGeometry(0.85, 0.85, 0.12, 32);
+    const osBadgeMat = new THREE.MeshBasicMaterial({ map: createPlanetEmblemTexture("🐧", "LINUX", "#fb923c") });
+    const osBadge = new THREE.Mesh(osBadgeGeo, osBadgeMat);
+    osBadge.position.set(0, 3.1, 0);
+    osBadge.rotation.x = Math.PI / 2;
+    osGroup.add(osBadge);
+
+    const osPedGeo = new THREE.RingGeometry(2.0, 2.3, 32);
+    const osPedMat = new THREE.MeshBasicMaterial({ color: 0xfb923c, side: THREE.DoubleSide, transparent: true, opacity: 0.7 });
+    const osPed = new THREE.Mesh(osPedGeo, osPedMat);
+    osPed.position.y = -2.5;
+    osPed.rotation.x = Math.PI / 2;
+    osGroup.add(osPed);
+
+    osChassis.userData = {
       id: "os",
       title: "🐧 Act II • Sisteme Linux & DevOps",
-      desc: "Sisteme Linux, Docker, Shell & Arhitectură Cloud",
+      desc: "Server Mainframe 3D: Sisteme Linux, Docker, Shell & Cloud",
       trackName: "DevOps & Sisteme Linux",
       division: "Informatică și Programare",
       isMajor: true,
-      color: "#06b6d4",
+      color: "#fb923c",
       icon: "🐧"
     };
-    sysGroup.add(sysMesh);
-    const sysCore = new THREE.Mesh(
-      new THREE.SphereGeometry(1.3, 16, 16),
-      new THREE.MeshStandardMaterial({ color: 0x22d3ee, wireframe: false, emissive: 0x0891b2, roughness: 0.3 })
-    );
-    sysGroup.add(sysCore);
-    worldGroup.add(sysGroup);
-    interactiveObjects.push(sysMesh);
-    disciplineNodes["os"] = { group: sysGroup, mesh: sysMesh, cameraTarget: new THREE.Vector3(14, 5, 6) };
+    interactiveObjects.push(osChassis);
+    worldGroup.add(osGroup);
+    disciplineNodes["os"] = { group: osGroup, mesh: osChassis, pos: osGroup.position, cameraTarget: new THREE.Vector3(-3.8, -1.8, 14.5) };
+    majorFigureNodes.push({ id: "os", group: osGroup, mesh: osChassis, title: "🐧 Sisteme Linux & DevOps", color: "#fb923c" });
 
-    // 03. ACT III • LATTICE & BAZE DE DATE (db)
-    const sqlGroup = new THREE.Group();
-    sqlGroup.position.set(-9, -5, 7);
-    const sqlMesh = new THREE.Mesh(
-      new THREE.OctahedronGeometry(3.0, 1),
-      new THREE.MeshStandardMaterial({ color: 0x10b981, wireframe: true, emissive: 0x064e3b, emissiveIntensity: 0.7 })
-    );
-    sqlMesh.userData = {
+    // 6. Figure 3: 🗄️ BAZE DE DATE CYLINDERS (Baze de Date & SQL)
+    const dbGroup = new THREE.Group();
+    dbGroup.position.set(3.8, -1.8, 2.5);
+
+    const dbCylGeo = new THREE.CylinderGeometry(2.2, 2.2, 0.95, 36);
+    const dbCylMat = new THREE.MeshStandardMaterial({
+      color: 0x064e3b,
+      metalness: 0.85,
+      roughness: 0.25,
+      emissive: 0x022c22,
+      emissiveIntensity: 0.3
+    });
+    const c1 = new THREE.Mesh(dbCylGeo, dbCylMat); c1.position.y = 1.35; dbGroup.add(c1);
+    const c2 = new THREE.Mesh(dbCylGeo, dbCylMat); c2.position.y = 0.0; dbGroup.add(c2);
+    const c3 = new THREE.Mesh(dbCylGeo, dbCylMat); c3.position.y = -1.35; dbGroup.add(c3);
+
+    const dbRingGeo = new THREE.TorusGeometry(2.3, 0.08, 16, 48);
+    const dbRingMat = new THREE.MeshBasicMaterial({ color: 0x10b981 });
+    const r1 = new THREE.Mesh(dbRingGeo, dbRingMat); r1.position.y = 0.68; r1.rotation.x = Math.PI / 2; dbGroup.add(r1);
+    const r2 = new THREE.Mesh(dbRingGeo, dbRingMat); r2.position.y = -0.68; r2.rotation.x = Math.PI / 2; dbGroup.add(r2);
+
+    const dbBadgeGeo = new THREE.CylinderGeometry(0.85, 0.85, 0.12, 32);
+    const dbBadgeMat = new THREE.MeshBasicMaterial({ map: createPlanetEmblemTexture("🗄️", "SQL", "#10b981") });
+    const dbBadge = new THREE.Mesh(dbBadgeGeo, dbBadgeMat);
+    dbBadge.position.set(0, 2.4, 0);
+    dbBadge.rotation.x = Math.PI / 2;
+    dbGroup.add(dbBadge);
+
+    const dbPedGeo = new THREE.RingGeometry(2.2, 2.5, 32);
+    const dbPedMat = new THREE.MeshBasicMaterial({ color: 0x10b981, side: THREE.DoubleSide, transparent: true, opacity: 0.7 });
+    const dbPed = new THREE.Mesh(dbPedGeo, dbPedMat);
+    dbPed.position.y = -2.0;
+    dbPed.rotation.x = Math.PI / 2;
+    dbGroup.add(dbPed);
+
+    c2.userData = {
       id: "db",
       title: "🗄️ Act III • Baze de Date & SQL",
-      desc: "Calcul Relațional, SQL, B-Tree & Tranzacții ACID",
+      desc: "Storage Pod 3D: Calcul Relațional, SQL, B-Tree & ACID",
       trackName: "Baze de Date & SQL",
       division: "Informatică și Programare",
       isMajor: true,
       color: "#10b981",
       icon: "🗄️"
     };
-    sqlGroup.add(sqlMesh);
-    const sqlCore = new THREE.Mesh(
-      new THREE.OctahedronGeometry(1.4, 0),
-      new THREE.MeshStandardMaterial({ color: 0x34d399, wireframe: false, emissive: 0x059669, roughness: 0.3 })
-    );
-    sqlGroup.add(sqlCore);
-    worldGroup.add(sqlGroup);
-    interactiveObjects.push(sqlMesh);
-    disciplineNodes["db"] = { group: sqlGroup, mesh: sqlMesh, cameraTarget: new THREE.Vector3(-9, -5, 15) };
+    interactiveObjects.push(c2);
+    worldGroup.add(dbGroup);
+    disciplineNodes["db"] = { group: dbGroup, mesh: c2, pos: dbGroup.position, cameraTarget: new THREE.Vector3(3.8, -1.8, 14.5) };
+    majorFigureNodes.push({ id: "db", group: dbGroup, mesh: c2, title: "🗄️ Baze de Date & SQL", color: "#10b981" });
 
-    // 04. ACT IV • PHONETICS & LIMBI STRĂINE (lang)
-    const lingGroup = new THREE.Group();
-    lingGroup.position.set(10, -4, 6);
-    const lingMesh = new THREE.Mesh(
-      new THREE.TorusGeometry(3.0, 0.8, 16, 50),
-      new THREE.MeshStandardMaterial({ color: 0xd946ef, wireframe: true, emissive: 0x86198f, emissiveIntensity: 0.7 })
-    );
-    lingMesh.userData = {
+    // 7. Figure 4: 🌍 CARTE DESCHISĂ & GLOB (Limbi Străine & Comunicare)
+    const langGroup = new THREE.Group();
+    langGroup.position.set(11, 1.2, 0);
+
+    const bookSpineGeo = new THREE.BoxGeometry(0.3, 3.4, 2.4);
+    const bookSpineMat = new THREE.MeshStandardMaterial({ color: 0x4a044e, metalness: 0.6, roughness: 0.4 });
+    const bookSpine = new THREE.Mesh(bookSpineGeo, bookSpineMat);
+    bookSpine.position.y = -0.2;
+    langGroup.add(bookSpine);
+
+    const bookPageGeo = new THREE.BoxGeometry(2.0, 3.2, 0.12);
+    const bookPageMat = new THREE.MeshBasicMaterial({ map: createBookPageTexture() });
+    const pageL = new THREE.Mesh(bookPageGeo, bookPageMat);
+    pageL.position.set(-1.0, -0.2, 0.3);
+    pageL.rotation.y = 0.35;
+    langGroup.add(pageL);
+
+    const pageR = new THREE.Mesh(bookPageGeo, bookPageMat);
+    pageR.position.set(1.0, -0.2, 0.3);
+    pageR.rotation.y = -0.35;
+    langGroup.add(pageR);
+
+    const globeGeo = new THREE.SphereGeometry(1.2, 18, 18);
+    const globeMat = new THREE.MeshStandardMaterial({
+      color: 0xd946ef,
+      wireframe: true,
+      emissive: 0x86198f,
+      emissiveIntensity: 0.7
+    });
+    const globe = new THREE.Mesh(globeGeo, globeMat);
+    globe.position.set(0, 2.4, 0);
+    langGroup.add(globe);
+
+    const gRingGeo = new THREE.TorusGeometry(1.6, 0.04, 16, 48);
+    const gRingMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24 });
+    const gRing = new THREE.Mesh(gRingGeo, gRingMat);
+    gRing.position.set(0, 2.4, 0);
+    gRing.rotation.x = Math.PI / 2.3;
+    langGroup.add(gRing);
+
+    const langPedGeo = new THREE.RingGeometry(2.2, 2.5, 32);
+    const langPedMat = new THREE.MeshBasicMaterial({ color: 0xd946ef, side: THREE.DoubleSide, transparent: true, opacity: 0.7 });
+    const langPed = new THREE.Mesh(langPedGeo, langPedMat);
+    langPed.position.y = -2.1;
+    langPed.rotation.x = Math.PI / 2;
+    langGroup.add(langPed);
+
+    bookSpine.userData = {
       id: "lang",
       title: "🌍 Act IV • Limbi Străine & Comunicare",
-      desc: "5 Sateliți: Engleză, Franceză, Spaniolă, Germană, Italiană",
+      desc: "Codex 3D: 5 Cursuri (Engleză, Franceză, Spaniolă, Germană, Italiană)",
       trackName: "Limba Engleză",
       division: "Limbi Străine & Comunicare",
       isMajor: true,
       color: "#d946ef",
       icon: "🌍"
     };
-    lingGroup.add(lingMesh);
-    const lingCore = new THREE.Mesh(
-      new THREE.DodecahedronGeometry(1.4, 0),
-      new THREE.MeshStandardMaterial({ color: 0xf472b6, wireframe: false, emissive: 0xdb2777, roughness: 0.3 })
-    );
-    lingGroup.add(lingCore);
-    worldGroup.add(lingGroup);
-    interactiveObjects.push(lingMesh);
-    disciplineNodes["lang"] = { group: lingGroup, mesh: lingMesh, cameraTarget: new THREE.Vector3(10, -4, 14) };
+    interactiveObjects.push(bookSpine);
+    worldGroup.add(langGroup);
+    disciplineNodes["lang"] = { group: langGroup, mesh: bookSpine, pos: langGroup.position, cameraTarget: new THREE.Vector3(11, 1.2, 12), globe: globe };
+    majorFigureNodes.push({ id: "lang", group: langGroup, mesh: bookSpine, title: "🌍 Limbi Străine (5 Cursuri)", color: "#d946ef" });
 
-    // Neon Laser Beams from Satellites to Central Citadel
-    worldGroup.add(createBeam(aiGroup.position, new THREE.Vector3(0, 0, 0), 0xf59e0b));
-    worldGroup.add(createBeam(sysGroup.position, new THREE.Vector3(0, 0, 0), 0x06b6d4));
-    worldGroup.add(createBeam(sqlGroup.position, new THREE.Vector3(0, 0, 0), 0x10b981));
-    worldGroup.add(createBeam(lingGroup.position, new THREE.Vector3(0, 0, 0), 0xd946ef));
+    // 8. Sistemul Ierarhic de Sateliți Orbitale (Sistem Solar pe Nivelul 2)
+    const allSatellites = [];
+    function attachSolarSystem(nodeId, satList, orbitRadius, speed) {
+      const node = disciplineNodes[nodeId];
+      if (!node) return;
 
-    // 6. Sub-satellites for Individual Courses with Icons & Logos
-    const subSatellites = [];
-    function addSubSatellites(parentGroup, satellitesList, baseOrbitR, speedMultiplier) {
-      const ring = new THREE.Mesh(
-        new THREE.TorusGeometry(baseOrbitR, 0.02, 8, 64),
-        new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.15 })
-      );
-      ring.rotation.x = Math.PI / 2;
-      parentGroup.add(ring);
+      const orbitGroup = new THREE.Group();
+      orbitGroup.visible = false;
+      orbitGroup.scale.set(0.001, 0.001, 0.001);
+      node.group.add(orbitGroup);
+      node.orbitGroup = orbitGroup;
 
-      const count = satellitesList.length;
-      satellitesList.forEach((sat, idx) => {
-        const satMesh = new THREE.Mesh(
-          new THREE.SphereGeometry(0.55, 12, 12),
-          new THREE.MeshStandardMaterial({
-            color: new THREE.Color(sat.color),
-            emissive: new THREE.Color(sat.color),
-            emissiveIntensity: 0.6,
-            roughness: 0.4
-          })
-        );
-        satMesh.userData = {
+      // Inelul de orbită
+      const orbitRingGeo = new THREE.TorusGeometry(orbitRadius, 0.03, 8, 80);
+      const orbitRingMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.35 });
+      const orbitRing = new THREE.Mesh(orbitRingGeo, orbitRingMat);
+      orbitRing.rotation.x = Math.PI / 2;
+      orbitGroup.add(orbitRing);
+
+      const count = satList.length;
+      satList.forEach((sat, idx) => {
+        const coinGeo = new THREE.CylinderGeometry(0.85, 0.85, 0.16, 32);
+        const coinMat = new THREE.MeshBasicMaterial({
+          map: createPlanetEmblemTexture(sat.icon, sat.code, sat.color)
+        });
+        const coinMesh = new THREE.Mesh(coinGeo, coinMat);
+        coinMesh.rotation.x = Math.PI / 2;
+
+        coinMesh.userData = {
           id: sat.code,
           title: sat.name,
-          desc: `Satelit orbital • ${sat.name}`,
+          desc: `Disciplină activă • ${sat.name}`,
           trackName: sat.name,
           isSatellite: true,
           color: sat.color,
-          icon: sat.icon
+          icon: sat.icon,
+          domainId: nodeId
         };
-        parentGroup.add(satMesh);
-        interactiveObjects.push(satMesh);
-        subSatellites.push({
-          mesh: satMesh,
-          orbitR: baseOrbitR,
-          speed: speedMultiplier,
-          offset: (idx * (Math.PI * 2 / count))
+        orbitGroup.add(coinMesh);
+        interactiveObjects.push(coinMesh);
+
+        allSatellites.push({
+          mesh: coinMesh,
+          orbitR: orbitRadius,
+          speed: speed,
+          offset: (idx * (Math.PI * 2 / count)),
+          domainId: nodeId
         });
       });
     }
 
     // IT Sub-satellites (7)
-    addSubSatellites(aiGroup, [
+    attachSolarSystem("it", [
       { name: "C & C++", code: "C++", color: "#38bdf8", icon: "⚡" },
       { name: "Python", code: "Py", color: "#3b82f6", icon: "🐍" },
       { name: "JavaScript", code: "JS", color: "#eab308", icon: "💛" },
@@ -3418,37 +3648,74 @@
       { name: "TypeScript & React", code: "TS", color: "#60a5fa", icon: "🔷" },
       { name: "C#", code: "C#", color: "#a855f7", icon: "🟣" },
       { name: "Algoritmi & Structuri de Date", code: "Algo", color: "#ec4899", icon: "🌳" }
-    ], 5.2, 0.015);
+    ], 6.2, 0.015);
 
     // Systems Sub-satellite (1)
-    addSubSatellites(sysGroup, [
+    attachSolarSystem("os", [
       { name: "DevOps & Sisteme Linux", code: "Linux", color: "#fb923c", icon: "🐧" }
-    ], 4.5, 0.02);
+    ], 5.0, 0.02);
 
     // SQL Sub-satellite (1)
-    addSubSatellites(sqlGroup, [
-      { name: "Baze de Date & SQL", code: "SQL", color: "#c084fc", icon: "🗄️" }
-    ], 4.6, 0.018);
+    attachSolarSystem("db", [
+      { name: "Baze de Date & SQL", code: "SQL", color: "#10b981", icon: "🗄️" }
+    ], 5.0, 0.018);
 
     // Languages Sub-satellites (5)
-    addSubSatellites(lingGroup, [
+    attachSolarSystem("lang", [
       { name: "Limba Engleză", code: "EN", color: "#34d399", icon: "🇬🇧" },
       { name: "Limba Franceză", code: "FR", color: "#6ee7b7", icon: "🇫🇷" },
       { name: "Limba Spaniolă", code: "ES", color: "#a7f3d0", icon: "🇪🇸" },
       { name: "Limba Germană", code: "DE", color: "#fbbf24", icon: "🇩🇪" },
       { name: "Limba Italiană", code: "IT", color: "#f43f5e", icon: "🇮🇹" }
-    ], 5.0, 0.014);
+    ], 5.8, 0.014);
 
-    // 7. Strat Plutitor Accesibil pentru Logo-uri și Etichete
+    const subSatellites = allSatellites;
+
+    // 7. Strat Plutitor Accesibil pentru Figurile Majore 3D și Sateliți
+    activeCosmosMode = "overview"; // "overview" | "solar"
+    let activeDomainId = null;
+
     const labelsLayer = document.getElementById("cosmos-labels-layer");
     if (labelsLayer) labelsLayer.innerHTML = "";
-    const labelElements = [];
+    const majorLabelElements = [];
+    const satLabelElements = [];
+
+    majorFigureNodes.forEach(m => {
+      if (!labelsLayer) return;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "major-figure-pill";
+      btn.setAttribute("style", `--pill-color: ${m.color || "#38bdf8"}`);
+      btn.innerHTML = `<span class="sat-pill-icon">${m.mesh.userData.icon || "💻"}</span><span class="sat-pill-text">${m.title}</span>`;
+      btn.addEventListener("click", e => {
+        e.stopPropagation();
+        playUiSound("warp");
+        flyToNode(m.id);
+      });
+      btn.addEventListener("mouseenter", () => {
+        if (hoveredObject) hoveredObject.scale.set(1, 1, 1);
+        hoveredObject = m.mesh;
+        hoveredObject.scale.set(1.15, 1.15, 1.15);
+        hoveredTarget = m.mesh.userData;
+        updateHudCard(hoveredTarget);
+        playUiSound("quantum");
+      });
+      btn.addEventListener("mouseleave", () => {
+        if (hoveredObject === m.mesh) {
+          hoveredObject.scale.set(1, 1, 1);
+          hoveredObject = null;
+        }
+      });
+      labelsLayer.appendChild(btn);
+      majorLabelElements.push({ element: btn, mesh: m.mesh, id: m.id });
+    });
 
     subSatellites.forEach(s => {
       if (!labelsLayer) return;
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "sat-orbit-pill";
+      btn.style.display = "none";
       btn.setAttribute("style", `--pill-color: ${s.mesh.userData.color || "#38bdf8"}`);
       btn.innerHTML = `<span class="sat-pill-icon">${s.mesh.userData.icon || "🪐"}</span><span class="sat-pill-text">${s.mesh.userData.title}</span>`;
       btn.addEventListener("click", e => {
@@ -3471,12 +3738,10 @@
         }
       });
       labelsLayer.appendChild(btn);
-      labelElements.push({ element: btn, mesh: s.mesh });
+      satLabelElements.push({ element: btn, mesh: s.mesh, domainId: s.domainId });
     });
 
     // 8. Controale Interactive de Orbită în Antet
-    let isOrbitPaused = false;
-    let orbitSpeedMultiplier = 1.0;
     const pauseBtn = document.getElementById("cosmos-pause-btn");
     const speedBtn = document.getElementById("cosmos-speed-btn");
     const resetCamBtn = document.getElementById("cosmos-reset-cam-btn");
@@ -3580,26 +3845,75 @@
       });
 
       if (id === "ALL") {
+        activeCosmosMode = "overview";
+        activeDomainId = null;
+
+        Object.keys(disciplineNodes).forEach(k => {
+          const node = disciplineNodes[k];
+          if (node && node.orbitGroup) {
+            if (typeof gsap !== "undefined") {
+              gsap.to(node.orbitGroup.scale, {
+                x: 0.001, y: 0.001, z: 0.001, duration: 0.6,
+                onComplete: () => { node.orbitGroup.visible = false; }
+              });
+            } else {
+              node.orbitGroup.scale.set(0.001, 0.001, 0.001);
+              node.orbitGroup.visible = false;
+            }
+          }
+        });
+
         if (typeof gsap !== "undefined") {
-          gsap.to(camera.position, { x: 0, y: 5, z: 30, duration: 1.8, ease: "power3.inOut" });
-          gsap.to(targetRot, { x: 0, y: 0, duration: 1.5, ease: "power2.out" });
+          gsap.to(camera.position, { x: 0, y: 1.5, z: 26, duration: 1.6, ease: "power3.inOut" });
+          gsap.to(targetRot, { x: 0, y: 0, duration: 1.2, ease: "power2.out" });
         } else {
-          camera.position.set(0, 5, 30);
+          camera.position.set(0, 1.5, 26);
           targetRot.x = targetRot.y = 0;
         }
+
+        if (els.cosmosHudCard) els.cosmosHudCard.style.display = "none";
         return;
       }
 
       const node = disciplineNodes[id];
       if (node) {
+        activeCosmosMode = "solar";
+        activeDomainId = id;
+
+        Object.keys(disciplineNodes).forEach(k => {
+          const other = disciplineNodes[k];
+          if (!other || !other.orbitGroup) return;
+          if (k === id) {
+            other.orbitGroup.visible = true;
+            if (typeof gsap !== "undefined") {
+              gsap.to(other.orbitGroup.scale, { x: 1, y: 1, z: 1, duration: 1.0, ease: "back.out(1.4)" });
+            } else {
+              other.orbitGroup.scale.set(1, 1, 1);
+            }
+          } else {
+            if (typeof gsap !== "undefined") {
+              gsap.to(other.orbitGroup.scale, {
+                x: 0.001, y: 0.001, z: 0.001, duration: 0.5,
+                onComplete: () => { other.orbitGroup.visible = false; }
+              });
+            } else {
+              other.orbitGroup.scale.set(0.001, 0.001, 0.001);
+              other.orbitGroup.visible = false;
+            }
+          }
+        });
+
         if (typeof gsap !== "undefined") {
           gsap.to(camera.position, {
             x: node.cameraTarget.x,
             y: node.cameraTarget.y,
             z: node.cameraTarget.z,
-            duration: 1.8,
+            duration: 1.6,
             ease: "power3.inOut"
           });
+          gsap.to(targetRot, { x: 0, y: 0, duration: 1.0 });
+        } else {
+          camera.position.set(node.cameraTarget.x, node.cameraTarget.y, node.cameraTarget.z);
         }
         updateHudCard(node.mesh.userData);
       }
@@ -3645,6 +3959,16 @@
           chipsRow.appendChild(chip);
         });
       }
+    }
+
+    // HUD Back & Warp Buttons
+    const hudBackBtn = document.getElementById("hud-back-btn");
+    if (hudBackBtn) {
+      hudBackBtn.onclick = (e) => {
+        e.stopPropagation();
+        playUiSound("warp");
+        flyToNode("ALL");
+      };
     }
 
     // Navigație Comenzi Rapide Solar System (Exact cele 5 Butoane din test)
@@ -3699,52 +4023,96 @@
       worldGroup.rotation.x = curRot.x;
 
       if (!isOrbitPaused) {
-        // Rotate Monolith Citadel
-        citadelGroup.rotation.y += 0.003;
-        cageMesh.rotation.x += 0.002;
-        coreMesh.rotation.y -= 0.005;
+        // Floating motion for the 4 3D sculpted figures
+        itGroup.rotation.y = Math.sin(time * 0.015) * 0.15;
+        itGroup.position.y = Math.sin(time * 0.025) * 0.2;
 
-        // Rotate Major Satellites
-        aiGroup.rotation.y += 0.006;
-        sysGroup.rotation.x += 0.008;
-        sqlGroup.rotation.y += 0.009;
-        lingGroup.rotation.z += 0.007;
+        osGroup.rotation.y = Math.sin(time * 0.018 + 1) * 0.15;
+        osGroup.position.y = Math.sin(time * 0.025 + 1) * 0.2;
 
-        // Orbit Sub-Satellites
-        subSatellites.forEach(s => {
-          const angle = (time * s.speed) + s.offset;
-          s.mesh.position.x = Math.cos(angle) * s.orbitR;
-          s.mesh.position.z = Math.sin(angle) * s.orbitR;
-          s.mesh.position.y = Math.sin(angle * 2) * 0.35;
-        });
+        dbGroup.rotation.y += 0.006;
+        dbGroup.position.y = Math.sin(time * 0.025 + 2) * 0.2;
 
-        // Drift Nebula
-        nebula.rotation.y = t * 0.00004;
+        langGroup.position.y = Math.sin(time * 0.025 + 3) * 0.2;
+        if (disciplineNodes.lang && disciplineNodes.lang.globe) {
+          disciplineNodes.lang.globe.rotation.y += 0.012;
+          disciplineNodes.lang.globe.rotation.x += 0.005;
+        }
+
+        // Orbit Sub-Satellites for active domain
+        if (activeDomainId) {
+          subSatellites.forEach(s => {
+            if (s.domainId === activeDomainId) {
+              const angle = (time * s.speed) + s.offset;
+              s.mesh.position.x = Math.cos(angle) * s.orbitR;
+              s.mesh.position.z = Math.sin(angle) * s.orbitR;
+              s.mesh.position.y = Math.sin(angle * 2) * 0.2;
+              s.mesh.rotation.y += 0.01;
+            }
+          });
+        }
+
+        // Drift Floor Grid
+        if (typeof floorGrid !== "undefined" && floorGrid) {
+          floorGrid.rotation.y = t * 0.00004;
+        }
       }
 
       // Proiectare Etichete Sateliți 3D -> 2D
       const cWidth = canvas.clientWidth || 800;
       const cHeight = canvas.clientHeight || 600;
 
-      labelElements.forEach(l => {
-        l.mesh.getWorldPosition(tempProjVec);
-        tempProjVec.project(camera);
+      if (activeCosmosMode === "overview") {
+        satLabelElements.forEach(sl => { sl.element.style.display = "none"; });
 
-        if (tempProjVec.z < 1) {
-          const screenX = (tempProjVec.x * 0.5 + 0.5) * cWidth;
-          const screenY = (-(tempProjVec.y * 0.5) + 0.5) * cHeight;
+        majorLabelElements.forEach(l => {
+          l.mesh.getWorldPosition(tempProjVec);
+          tempProjVec.y += 2.6;
+          tempProjVec.project(camera);
 
-          if (screenX >= 25 && screenX <= cWidth - 25 && screenY >= 25 && screenY <= cHeight - 25) {
-            l.element.style.display = "inline-flex";
-            l.element.style.left = `${screenX}px`;
-            l.element.style.top = `${screenY}px`;
+          if (tempProjVec.z < 1) {
+            const screenX = (tempProjVec.x * 0.5 + 0.5) * cWidth;
+            const screenY = (-(tempProjVec.y * 0.5) + 0.5) * cHeight;
+
+            if (screenX >= 25 && screenX <= cWidth - 25 && screenY >= 25 && screenY <= cHeight - 25) {
+              l.element.style.display = "inline-flex";
+              l.element.style.left = `${screenX}px`;
+              l.element.style.top = `${screenY}px`;
+            } else {
+              l.element.style.display = "none";
+            }
           } else {
             l.element.style.display = "none";
           }
-        } else {
-          l.element.style.display = "none";
-        }
-      });
+        });
+      } else {
+        majorLabelElements.forEach(ml => { ml.element.style.display = "none"; });
+
+        satLabelElements.forEach(l => {
+          if (l.domainId === activeDomainId) {
+            l.mesh.getWorldPosition(tempProjVec);
+            tempProjVec.y += 0.85;
+            tempProjVec.project(camera);
+
+            if (tempProjVec.z < 1) {
+              const screenX = (tempProjVec.x * 0.5 + 0.5) * cWidth;
+              const screenY = (-(tempProjVec.y * 0.5) + 0.5) * cHeight;
+
+              if (screenX >= 25 && screenX <= cWidth - 25 && screenY >= 25 && screenY <= cHeight - 25) {
+                l.element.style.display = "inline-flex";
+                l.element.style.left = `${screenX}px`;
+                l.element.style.top = `${screenY}px`;
+              } else {
+                l.element.style.display = "none";
+              }
+            } else {
+              l.element.style.display = "none";
+            }
+          } else {
+            l.element.style.display = "none";
+          }
+        });
+      }
 
       // Raycast Hover Detection
       raycaster.setFromCamera(mouseNorm, camera);

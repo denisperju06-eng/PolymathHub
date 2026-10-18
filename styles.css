@@ -1101,56 +1101,84 @@ body {
 
 .catalog-chapters-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 1.15rem;
 }
 
 .catalog-chapter-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 0.9rem 1.15rem;
-  background-color: var(--bg-elevated);
+  gap: 1.25rem;
+  padding: 1.2rem 1.4rem;
+  background: var(--bg-surface-glass);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: 18px;
+  box-shadow: 6px 6px 18px rgba(0, 0, 0, 0.35), -3px -3px 12px rgba(255, 255, 255, 0.04);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .catalog-chapter-item:hover {
   border-color: var(--accent-primary);
-  transform: translateX(3px);
-  background-color: var(--bg-reader);
+  transform: translateY(-3px) scale(1.008);
+  box-shadow: 10px 16px 30px rgba(0, 0, 0, 0.45), -4px -4px 16px rgba(255, 255, 255, 0.08), 0 0 20px var(--accent-soft);
 }
 
 .chapter-info-col {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.35rem;
   min-width: 0;
   flex: 1;
 }
 
 .chapter-level-tag {
+  display: inline-block;
+  align-self: flex-start;
   font-size: 0.68rem;
   font-weight: 700;
-  color: var(--text-secondary);
+  color: var(--accent-primary);
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.35), inset -1px -1px 3px rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="daylight-clean"] .chapter-level-tag {
+  background: rgba(29, 78, 216, 0.12);
+  color: #1e3a8a;
+  border-color: rgba(29, 78, 216, 0.25);
+  box-shadow: none;
+}
+
+[data-theme="sepia-book"] .chapter-level-tag {
+  background: rgba(140, 54, 22, 0.12);
+  color: #6c2207;
+  border-color: rgba(140, 54, 22, 0.25);
+  box-shadow: none;
 }
 
 .chapter-name {
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 .chapter-start-btn {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.15rem;
   min-height: 36px;
   font-size: 0.82rem;
   font-weight: 700;
-  border-radius: 8px;
-  background-color: var(--accent-primary);
-  color: #041f17;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary, #6366f1));
+  box-shadow: 0 4px 14px var(--accent-soft), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  color: #fff;
   border: none;
   cursor: pointer;
   white-space: nowrap;
@@ -1158,6 +1186,11 @@ body {
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
+}
+
+.catalog-chapter-item:hover .chapter-start-btn {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px var(--accent-soft);
 }
 
 [data-theme="cyber-dark"] .chapter-start-btn {
@@ -3123,32 +3156,39 @@ button {
   display: none !important;
 }
 
-/* Cosmos Orrery Hero Stage (Initial pe Main) */
+/* Cosmos Orrery Hero Stage (Initial pe Main - Fullscreen Imersiv pe Desktop) */
 #cosmos-orbit-stage {
   display: flex !important;
   flex-direction: column;
-  min-height: calc(100vh - 95px);
-  height: calc(100vh - 95px);
-  max-height: 980px;
-  padding: 1.25rem 1.5rem;
-  border-radius: 24px;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  height: calc(100vh - 72px);
+  min-height: calc(100vh - 72px);
+  max-height: calc(100vh - 72px);
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
   position: relative;
   overflow: hidden;
-  margin-bottom: 2rem;
-  background: radial-gradient(circle at 50% 30%, rgba(30, 20, 60, 0.45) 0%, rgba(3, 4, 12, 0.98) 75%);
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(168, 85, 247, 0.15);
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+  background: radial-gradient(circle at 50% 40%, #0a0f24 0%, #03050b 90%);
+  box-shadow: none;
 }
 
 .cosmos-stage-header {
-  flex-shrink: 0;
+  position: absolute;
+  top: 1.25rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem 1.25rem;
-  margin-bottom: 0.75rem;
-  z-index: 10;
+  pointer-events: none;
 }
 
 .cosmos-badge-row {
@@ -3169,18 +3209,30 @@ button {
 
 .cosmos-stage-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: #f8fafc;
   letter-spacing: -0.01em;
 }
 
 .cosmos-stage-sub {
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: #cbd5e1;
-  max-width: 800px;
-  margin-top: 0.25rem;
-  line-height: 1.5;
+  max-width: 650px;
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
+.cosmos-title-wrap,
+.cosmos-nav-shortcuts {
+  pointer-events: auto;
+  background: rgba(8, 12, 24, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0.65rem 1.15rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
 .cosmos-nav-shortcuts {
@@ -3188,7 +3240,6 @@ button {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 0.5rem;
 }
 
 .cosmos-jump-btn {
@@ -3246,17 +3297,17 @@ button {
 }
 
 .cosmos-canvas-wrapper {
-  flex: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  min-height: 520px;
-  height: auto;
-  position: relative;
-  border-radius: 18px;
-  background: radial-gradient(circle at center, #070914 0%, #020308 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  background: transparent;
   overflow: hidden;
-  margin-top: 0;
-  margin-bottom: 0.75rem;
   cursor: grab;
 }
 
@@ -3282,18 +3333,48 @@ button {
   overflow: hidden;
 }
 
+.major-figure-pill {
+  position: absolute;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(10, 14, 28, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--pill-color, #38bdf8);
+  color: #f8fafc;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), 0 0 16px var(--pill-color, rgba(56, 189, 248, 0.35));
+  transform: translate3d(-50%, -50%, 0);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.major-figure-pill:hover {
+  transform: translate3d(-50%, -50%, 0) scale(1.12);
+  background: rgba(20, 28, 55, 0.95);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.8), 0 0 24px var(--pill-color, rgba(56, 189, 248, 0.6));
+}
+
 .sat-orbit-pill {
   position: absolute;
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.25rem 0.55rem;
+  padding: 0.28rem 0.65rem;
   border-radius: 999px;
-  background: rgba(12, 16, 28, 0.85);
+  background: rgba(12, 16, 28, 0.88);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid var(--pill-color, #38bdf8);
   color: #f8fafc;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.72rem;
@@ -3309,7 +3390,7 @@ button {
 .sat-orbit-pill:hover {
   background: rgba(30, 41, 69, 0.95);
   border-color: var(--pill-color, #38bdf8);
-  box-shadow: 0 0 16px var(--pill-color, rgba(56, 189, 248, 0.6));
+  box-shadow: 0 0 18px var(--pill-color, rgba(56, 189, 248, 0.6));
   transform: translate3d(-50%, -50%, 0) scale(1.15);
   z-index: 10;
 }
@@ -3325,21 +3406,21 @@ button {
 
 .cosmos-hud-overlay {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1.25rem;
+  right: 1.5rem;
   pointer-events: none;
   z-index: 10;
 }
 
 .cosmos-hud-card {
-  background: rgba(15, 12, 30, 0.88);
+  background: rgba(12, 10, 26, 0.9);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(192, 132, 252, 0.35);
-  border-radius: 14px;
-  padding: 0.85rem 1.15rem;
-  width: 280px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  width: 290px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75);
   pointer-events: auto;
   animation: fadeIn 0.25s ease-out;
 }
@@ -3412,8 +3493,34 @@ button {
   transform: translateY(-1px);
 }
 
+.hud-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hud-back-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hud-back-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
 .hud-warp-btn {
-  width: 100%;
+  flex: 2;
   background: linear-gradient(135deg, #9333ea, #6366f1);
   color: #fff;
   border: none;
