@@ -837,7 +837,11 @@
     }
 
     if (validLayout === "dual-split") {
+      if (!state.activeDualPane) state.activeDualPane = "theory";
+      document.body.setAttribute("data-dual-pane", state.activeDualPane);
       renderDualSplitWorkspace();
+    } else {
+      document.body.removeAttribute("data-dual-pane");
     }
 
     // Aim cursor activ doar pe desktop în modurile Swiss Editorial & Spatial Cosmos
@@ -949,9 +953,30 @@
     if (els.xpCount) els.xpCount.textContent = `${state.xp} XP`;
     if (els.userRank) els.userRank.textContent = getRankTitle(state.xp);
 
-    // Stare Obiectiv Zilnic
+    // Stare Obiectiv Zilnic & Widget Unificat de Statistici
+    const isStreakMet = todayAutonomous >= dailyTarget;
+    const unifiedBadge = document.getElementById("unified-stats-badge");
+    const unifiedStreakIcon = document.getElementById("unified-streak-icon");
+    const unifiedStreakLabel = document.getElementById("unified-streak-label");
+
+    if (unifiedBadge) {
+      if (isStreakMet) {
+        unifiedBadge.classList.remove("streak-unfulfilled");
+        unifiedBadge.classList.add("streak-fulfilled");
+        if (unifiedStreakIcon) unifiedStreakIcon.textContent = "🔥";
+        if (unifiedStreakLabel) unifiedStreakLabel.textContent = "Streak!";
+        if (els.xpCount) els.xpCount.classList.add("score-milestone-glow");
+      } else {
+        unifiedBadge.classList.remove("streak-fulfilled");
+        unifiedBadge.classList.add("streak-unfulfilled");
+        if (unifiedStreakIcon) unifiedStreakIcon.textContent = "🎯";
+        if (unifiedStreakLabel) unifiedStreakLabel.textContent = "Azi";
+        if (els.xpCount) els.xpCount.classList.remove("score-milestone-glow");
+      }
+    }
+
     if (els.goalPill) {
-      if (todayAutonomous >= dailyTarget) {
+      if (isStreakMet) {
         els.goalPill.classList.add("goal-completed");
         if (els.dailyProgressText) els.dailyProgressText.textContent = `${dailyTarget}/${dailyTarget}`;
         if (els.dailyProgressLabel) els.dailyProgressLabel.textContent = "Complet!";
@@ -1859,6 +1884,8 @@
         els.pageAchievementsGrid.appendChild(card);
       });
     }
+
+    renderCurrentFlashcard();
   }
 
   function launchConfetti() {
@@ -2246,64 +2273,201 @@
     simAnimId = requestAnimationFrame(draw);
   }
 
-  // 3D Flip Flashcard
+  // =========================================================================
+  // SISTEM DE MEMORARE ACTIVĂ: FLASHCARD 3D FEYNMAN
+  // =========================================================================
+  let flashcardsPool = [];
   let currentFlashcardIndex = 0;
+  let activeFlashcardTrack = "ALL";
 
-  function updateFlashcardForLesson(lesson) {
+  function buildFlashcardsPool() {
+    const pool = [];
+    const seenTerms = new Set();
+
+    // Adunăm termenii din toate lecțiile din curriculum
+    allLessons.forEach(lesson => {
+      const track = lesson.track || "General";
+      if (Array.isArray(lesson.glossary)) {
+        lesson.glossary.forEach(g => {
+          if (g && g.term && !seenTerms.has(g.term)) {
+            seenTerms.add(g.term);
+            pool.push({
+              q: `Ce reprezintă conceptul „${g.term}”?`,
+              a: g.def,
+              category: `${track} • ${g.term}`,
+              track: track
+            });
+          }
+        });
+      }
+    });
+
+    // Fallback garantat dacă nu există încă termeni
+    if (pool.length === 0) {
+      pool.push(
+        { q: "Ce garantează principiul RAII în C++?", a: "Durata de viață a resurselor este legată de stivă (LIFO). Constructorul inițializează, iar destructorul eliberează automat memoria la ieșirea din domeniu fără memory leaks.", category: "C++ Determinism RAII", track: "C & C++" },
+        { q: "Ce este un Index B-Tree în baze de date?", a: "Structură arborescentă auto-echilibrată care menține datele sortate și permite căutări, acces secvențial, inserări și ștergeri în timp logaritmic O(log N).", category: "SQL & Storage Engine", track: "SQL" },
+        { q: "Ce reprezintă un Generator (yield) în Python?", a: "O funcție specială care returnează un iterator și generează valori la cerere (lazy evaluation), consumând memorie O(1) în loc să aloce liste mari în RAM.", category: "Python Memory & Tensors", track: "Python Modern & Data Structures" },
+        { q: "Ce este un Container Docker vs o Mașină Virtuală?", a: "Un container partajează kernel-ul sistemului de operare gazdă și izolează procesele prin cgroups și namespaces, fără overhead-ul unui hypervisor sau OS complet.", category: "DevOps & Sisteme Linux", track: "DevOps & Sisteme Linux" }
+      );
+    }
+
+    return pool;
+  }
+
+  function initFlashcardSystem() {
+    flashcardsPool = buildFlashcardsPool();
+    currentFlashcardIndex = 0;
+
+    const filterSelect = document.getElementById("fc-track-filter");
+    if (filterSelect) {
+      const tracks = Array.from(new Set(flashcardsPool.map(c => c.track))).sort();
+      filterSelect.innerHTML = `<option value="ALL">🌐 Toate Disciplinele (${flashcardsPool.length} Carduri)</option>`;
+      tracks.forEach(tr => {
+        const count = flashcardsPool.filter(c => c.track === tr).length;
+        const opt = document.createElement("option");
+        opt.value = tr;
+        opt.textContent = `${tr} (${count})`;
+        filterSelect.appendChild(opt);
+      });
+
+      filterSelect.onchange = e => {
+        activeFlashcardTrack = e.target.value;
+        currentFlashcardIndex = 0;
+        playUiSound("click");
+        renderCurrentFlashcard();
+      };
+    }
+
+    const cardEl = document.getElementById("feynman-card");
+    const flipBtn = document.getElementById("btn-flip-card");
+    const nextBtn = document.getElementById("btn-next-flashcard");
+
+    function flipCard() {
+      if (!cardEl) return;
+      cardEl.classList.toggle("flipped");
+      playUiSound("pop");
+    }
+
+    if (cardEl) {
+      cardEl.onclick = e => {
+        if (e.target.closest(".fc-grade-btn")) return;
+        flipCard();
+      };
+
+      cardEl.onkeydown = e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          flipCard();
+        }
+      };
+    }
+
+    if (flipBtn) {
+      flipBtn.onclick = () => flipCard();
+    }
+
+    if (nextBtn) {
+      nextBtn.onclick = () => advanceFlashcard();
+    }
+
+    // Butoanele de autoevaluare (Spaced Repetition)
+    document.querySelectorAll(".fc-grade-btn").forEach(btn => {
+      btn.onclick = e => {
+        e.stopPropagation();
+        const grade = btn.getAttribute("data-grade");
+        let xpGained = 15;
+        let msg = "Răspuns evaluat!";
+        if (grade === "hard") {
+          xpGained = 5;
+          msg = "Revizuire marcată (+5 XP)";
+        } else if (grade === "good") {
+          xpGained = 15;
+          msg = "Memorare bună (+15 XP)";
+        } else if (grade === "easy") {
+          xpGained = 25;
+          msg = "Concept stăpânit perfect! (+25 XP)";
+          playUiSound("success");
+        }
+        addXp(xpGained, msg);
+        advanceFlashcard();
+      };
+    });
+
+    renderCurrentFlashcard();
+  }
+
+  function getActiveFlashcardList() {
+    if (activeFlashcardTrack === "ALL") return flashcardsPool;
+    return flashcardsPool.filter(c => c.track === activeFlashcardTrack);
+  }
+
+  function advanceFlashcard() {
+    const cardEl = document.getElementById("feynman-card");
+    if (cardEl) cardEl.classList.remove("flipped");
+    playUiSound("click");
+
+    const currentList = getActiveFlashcardList();
+    currentFlashcardIndex = (currentFlashcardIndex + 1) % (currentList.length || 1);
+
+    setTimeout(() => {
+      renderCurrentFlashcard();
+    }, 240);
+  }
+
+  function renderCurrentFlashcard() {
     const cardEl = document.getElementById("feynman-card");
     const categoryEl = document.getElementById("fc-category");
     const qEl = document.getElementById("fc-q");
     const aEl = document.getElementById("fc-a");
-    const nextBtn = document.getElementById("btn-next-flashcard");
+    const counterBadge = document.getElementById("fc-counter-badge");
 
-    if (!cardEl || !qEl || !aEl) return;
+    const list = getActiveFlashcardList();
+    if (list.length === 0) return;
 
-    const pairs = (lesson && lesson.glossary && lesson.glossary.length > 0)
-      ? lesson.glossary.map(g => ({ q: `Ce înseamnă conceptul „${g.term}”?`, a: g.def, tag: lesson.track }))
-      : [
-          { q: "Ce garantează principiul RAII în C++?", a: "Durata de viață a resurselor este legată de stivă. Constructorul alocă, destructorul curăță automat.", tag: "C++23 Determinism" },
-          { q: "Ce reprezintă un Index B-Tree în baze de date?", a: "Structură arborescentă echilibrată care permite căutări, inserări și ștergeri în timp O(log N).", tag: "SQL & Storage" },
-          { q: "Ce este un closure în JavaScript / Python?", a: "O funcție care își amintește și poate accesa variabilele din contextul său lexical de creare.", tag: "Limbaje de Programare" }
-        ];
+    const cur = list[currentFlashcardIndex % list.length];
+    if (categoryEl) categoryEl.textContent = cur.category || cur.track;
+    if (qEl) qEl.textContent = cur.q;
+    if (aEl) aEl.textContent = cur.a;
+    if (counterBadge) counterBadge.textContent = `Card ${(currentFlashcardIndex % list.length) + 1} / ${list.length}`;
+    if (cardEl) cardEl.classList.remove("flipped");
+  }
 
-    const cur = pairs[currentFlashcardIndex % pairs.length];
-    if (categoryEl) categoryEl.textContent = cur.tag || (lesson ? lesson.track : "Polimat");
-    qEl.textContent = cur.q;
-    aEl.textContent = cur.a;
-    cardEl.classList.remove("flipped");
-
-    cardEl.onclick = () => {
-      cardEl.classList.toggle("flipped");
-      playUiSound("pop");
-      if (cardEl.classList.contains("flipped")) {
-        addXp(15, "Memorare activă flashcard!");
+  function updateFlashcardForLesson(lesson) {
+    if (!lesson) return;
+    const filterSelect = document.getElementById("fc-track-filter");
+    if (filterSelect && lesson.track) {
+      for (let i = 0; i < filterSelect.options.length; i++) {
+        if (filterSelect.options[i].value === lesson.track) {
+          filterSelect.selectedIndex = i;
+          activeFlashcardTrack = lesson.track;
+          currentFlashcardIndex = 0;
+          renderCurrentFlashcard();
+          break;
+        }
       }
-    };
-
-    if (nextBtn) {
-      nextBtn.onclick = () => {
-        currentFlashcardIndex++;
-        cardEl.classList.remove("flipped");
-        playUiSound("click");
-        setTimeout(() => {
-          const next = pairs[currentFlashcardIndex % pairs.length];
-          if (categoryEl) categoryEl.textContent = next.tag || (lesson ? lesson.track : "Polimat");
-          qEl.textContent = next.q;
-          aEl.textContent = next.a;
-        }, 220);
-      };
     }
   }
 
-  // Pomodoro Deep Work Focus Timer
-  let pomodoroSeconds = 25 * 60;
-  let pomodoroRunning = false;
-  let pomodoroTimerId = null;
+  // =========================================================================
+  // POMODORO DEEP WORK FOCUS LAB CU RING SVG & PRESETURI
+  // =========================================================================
+  let pomoMode = "focus"; // "focus", "short", "long"
+  let pomoTotalSeconds = 25 * 60;
+  let pomoRemainingSeconds = 25 * 60;
+  let pomoRunning = false;
+  let pomoTimerId = null;
+  let pomoSessionCount = 1;
 
   function initPomodoroTimer() {
     const display = document.getElementById("pomo-display");
     const toggleBtn = document.getElementById("pomo-btn");
     const resetBtn = document.getElementById("btn-pomo-reset");
+    const ringEl = document.getElementById("pomo-progress-ring");
+    const statusLabel = document.getElementById("pomo-status-label");
+    const sessionBadge = document.getElementById("pomo-session-badge");
+    const sessionDots = document.getElementById("pomo-session-dots");
+
     if (!display || !toggleBtn) return;
 
     function formatTime(s) {
@@ -2312,40 +2476,115 @@
       return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
     }
 
+    function updateRing() {
+      if (!ringEl) return;
+      const circumference = 515.22;
+      const progress = pomoRemainingSeconds / pomoTotalSeconds;
+      const offset = circumference * (1 - progress);
+      ringEl.style.strokeDashoffset = offset;
+
+      if (pomoMode === "focus") {
+        ringEl.style.stroke = "#10b981";
+      } else if (pomoMode === "short") {
+        ringEl.style.stroke = "#06b6d4";
+      } else {
+        ringEl.style.stroke = "#a855f7";
+      }
+    }
+
+    function updateDisplay() {
+      display.textContent = formatTime(pomoRemainingSeconds);
+      updateRing();
+      if (sessionBadge) sessionBadge.textContent = `Sesiunea ${pomoSessionCount} / 4`;
+
+      if (sessionDots) {
+        sessionDots.innerHTML = "";
+        for (let i = 1; i <= 4; i++) {
+          const dot = document.createElement("span");
+          dot.className = `pomo-dot ${i <= pomoSessionCount ? "active" : ""}`;
+          dot.textContent = i <= pomoSessionCount ? "🍅" : "⚪";
+          sessionDots.appendChild(dot);
+        }
+      }
+    }
+
+    function setMode(mode, minutes) {
+      pomoMode = mode;
+      pomoTotalSeconds = minutes * 60;
+      pomoRemainingSeconds = pomoTotalSeconds;
+      pomoRunning = false;
+      if (pomoTimerId) clearInterval(pomoTimerId);
+
+      document.querySelectorAll(".pomo-mode-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-mode") === mode);
+      });
+
+      if (statusLabel) {
+        if (mode === "focus") statusLabel.textContent = "CONCENTRARE";
+        else if (mode === "short") statusLabel.textContent = "PAUZĂ SCURTĂ";
+        else statusLabel.textContent = "RELAXARE PROFUNDĂ";
+      }
+
+      toggleBtn.textContent = "▶️ START FOCUS";
+      playUiSound("click");
+      updateDisplay();
+    }
+
+    document.querySelectorAll(".pomo-mode-btn").forEach(btn => {
+      btn.onclick = () => {
+        const mode = btn.getAttribute("data-mode");
+        const mins = parseInt(btn.getAttribute("data-minutes"), 10) || 25;
+        setMode(mode, mins);
+      };
+    });
+
     toggleBtn.onclick = () => {
       playUiSound("click");
-      if (!pomodoroRunning) {
-        pomodoroRunning = true;
-        toggleBtn.textContent = "PAUZĂ FOCUS";
-        pomodoroTimerId = setInterval(() => {
-          if (pomodoroSeconds > 0) {
-            pomodoroSeconds--;
-            display.textContent = formatTime(pomodoroSeconds);
+      if (!pomoRunning) {
+        pomoRunning = true;
+        toggleBtn.textContent = "⏸️ PAUZĂ FOCUS";
+        pomoTimerId = setInterval(() => {
+          if (pomoRemainingSeconds > 0) {
+            pomoRemainingSeconds--;
+            updateDisplay();
           } else {
-            clearInterval(pomodoroTimerId);
-            pomodoroRunning = false;
-            toggleBtn.textContent = "START FOCUS";
-            addXp(100, "Sesiune Pomodoro finalizată!");
+            clearInterval(pomoTimerId);
+            pomoRunning = false;
             playUiSound("success");
+
+            if (pomoMode === "focus") {
+              pomoSessionCount++;
+              addXp(75, "Sesiune Focus Pomodoro completată!");
+              if (pomoSessionCount > 4) {
+                pomoSessionCount = 1;
+                addXp(150, "Ciclul complet de 4 sesiuni Deep Work finalizat!");
+              }
+              setMode("short", 5);
+            } else {
+              addXp(25, "Pauză finalizată! Gata de o nouă sesiune.");
+              setMode("focus", 25);
+            }
           }
         }, 1000);
       } else {
-        pomodoroRunning = false;
-        clearInterval(pomodoroTimerId);
-        toggleBtn.textContent = "CONTINUĂ";
+        pomoRunning = false;
+        clearInterval(pomoTimerId);
+        toggleBtn.textContent = "▶️ CONTINUĂ";
       }
     };
 
     if (resetBtn) {
       resetBtn.onclick = () => {
         playUiSound("click");
-        clearInterval(pomodoroTimerId);
-        pomodoroRunning = false;
-        pomodoroSeconds = 25 * 60;
-        display.textContent = "25:00";
-        toggleBtn.textContent = "START FOCUS";
+        if (pomoTimerId) clearInterval(pomoTimerId);
+        pomoRunning = false;
+        pomoRemainingSeconds = pomoTotalSeconds;
+        toggleBtn.textContent = "▶️ START FOCUS";
+        updateDisplay();
       };
     }
+
+    updateDisplay();
   }
 
   // =========================================================================
@@ -2574,12 +2813,28 @@
       });
     });
 
-    // Dual Split Workspace Tabs (Teorie, Exemple, Practică)
-    function setActiveDualTab(activeTab, targetEl) {
+    // Dual Split Workspace Tabs (Teorie, Exemple, Practică, Exerciții)
+    function setActiveDualTab(activeTab, paneName, targetEl) {
       document.querySelectorAll(".dual-nav-tab").forEach(t => t.classList.remove("active"));
       if (activeTab) activeTab.classList.add("active");
       playUiSound("click");
-      if (targetEl) {
+
+      state.activeDualPane = paneName;
+      if (state.layoutMode === "dual-split") {
+        document.body.setAttribute("data-dual-pane", paneName);
+
+        // Glisare animată de sus în jos pe containerul vizibil din dreapta
+        const targetContainer = (paneName === "theory" || paneName === "examples")
+          ? document.querySelector(".theory-card")
+          : els.practiceCard;
+
+        if (targetContainer) {
+          targetContainer.classList.remove("dual-pane-animate");
+          void targetContainer.offsetWidth; // retrigger reflow
+          targetContainer.classList.add("dual-pane-animate");
+          targetContainer.scrollTop = 0;
+        }
+      } else if (targetEl) {
         targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
         targetEl.style.transition = "box-shadow 0.3s ease";
         targetEl.style.boxShadow = "0 0 25px var(--accent-primary)";
@@ -2589,28 +2844,28 @@
 
     if (els.dualTabTheory) {
       els.dualTabTheory.addEventListener("click", () => {
-        setActiveDualTab(els.dualTabTheory, els.lessonTheory || document.querySelector(".theory-card"));
+        setActiveDualTab(els.dualTabTheory, "theory", els.lessonTheory || document.querySelector(".theory-card"));
         updateChameleonAura(null, 1);
       });
     }
     if (els.dualTabExamples) {
       els.dualTabExamples.addEventListener("click", () => {
         const exampleBox = document.querySelector(".example-box");
-        setActiveDualTab(els.dualTabExamples, exampleBox || els.lessonExample);
+        setActiveDualTab(els.dualTabExamples, "examples", exampleBox || els.lessonExample);
         updateChameleonAura(null, 2);
       });
     }
     if (els.dualTabPractice) {
       els.dualTabPractice.addEventListener("click", () => {
         switchPracticeMode("write");
-        setActiveDualTab(els.dualTabPractice, els.paneWrite || els.practiceCard);
+        setActiveDualTab(els.dualTabPractice, "practice", els.paneWrite || els.practiceCard);
         updateChameleonAura(null, 3);
       });
     }
     if (els.dualTabExercises) {
       els.dualTabExercises.addEventListener("click", () => {
         switchPracticeMode("quiz");
-        setActiveDualTab(els.dualTabExercises, els.paneQuiz || els.practiceCard);
+        setActiveDualTab(els.dualTabExercises, "exercises", els.paneQuiz || els.practiceCard);
         updateChameleonAura(null, 4);
       });
     }
@@ -2642,6 +2897,7 @@
     }
 
     initPracticeSimCanvas();
+    initFlashcardSystem();
     initPomodoroTimer();
   }
 
@@ -3175,6 +3431,12 @@
         playUiSound("click");
       }
     };
+
+    const activePane = state.activeDualPane || "theory";
+    document.body.setAttribute("data-dual-pane", activePane);
+    document.querySelectorAll(".dual-nav-tab").forEach(tab => {
+      tab.classList.toggle("active", tab.getAttribute("data-pane") === activePane);
+    });
   }
 
   /* ==========================================================================

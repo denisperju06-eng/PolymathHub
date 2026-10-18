@@ -66,6 +66,7 @@
 [data-theme="sepia-book"] {
   --bg-primary: #f4ecd8;
   --bg-secondary: #fbf6e9;
+  --bg-surface: #fbf6e9;
   --bg-elevated: #efe4c8;
   --bg-reader: #fffdf7;
   --bg-code: #2b251d;
@@ -444,140 +445,283 @@ body {
   color: var(--text-secondary);
 }
 
-/* Nav Switcher: Cursuri vs Studiu */
+/* Nav Switcher: Cursuri vs Studiu vs Gamificare (Capsulă Modernă Flotantă) */
 .top-nav-links {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  padding: 0.25rem 0.35rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.04);
 }
 
 .nav-link-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.45rem;
   background: transparent;
   border: 1px solid transparent;
   color: var(--text-secondary);
-  padding: 0.45rem 0.85rem;
-  border-radius: 8px;
+  padding: 0.42rem 0.8rem;
+  border-radius: 9999px;
   font-weight: 600;
   font-size: 0.82rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .nav-link-btn svg {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   flex-shrink: 0;
+  stroke-width: 2.2;
 }
 
 .nav-link-btn:hover {
-  background-color: var(--bg-elevated);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--text-primary);
+  transform: translateY(-1px);
 }
 
 .nav-link-btn.active {
-  background-color: var(--accent-soft);
-  color: var(--accent-primary);
-  border-color: var(--accent-primary);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-color: rgba(var(--accent-rgb, 16, 185, 129), 0.35);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25), 0 0 12px rgba(var(--accent-rgb, 16, 185, 129), 0.15);
 }
 
-/* Stats Cluster: Butoane interactive cu Popup/Modal */
+.nav-link-btn.active svg {
+  color: var(--accent-primary);
+}
+
+/* Stats Cluster: Unic Widget Capsulă (Scor + Obiectiv Zilnic + Contur Dinamic Gri / Neon) */
 .stats-cluster {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
 }
 
-.stat-pill {
-  display: flex;
+.unified-stats-badge {
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background-color: var(--bg-elevated);
-  border: 1px solid var(--border-color);
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  gap: 0.55rem;
+  padding: 0.32rem 0.9rem;
+  border-radius: 9999px;
   user-select: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  background: rgba(100, 116, 139, 0.08);
 }
 
-.stat-pill:hover {
-  border-color: var(--accent-primary);
+/* Starea cu streak/scop neîndeplinit azi: Contur SUR (gri/slate) */
+.unified-stats-badge.streak-unfulfilled {
+  border: 1.5px solid #64748b;
+  box-shadow: none;
+  color: #94a3b8;
+}
+
+.unified-stats-badge.streak-unfulfilled:hover {
+  border-color: #94a3b8;
+  color: var(--text-primary);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: rgba(100, 116, 139, 0.15);
 }
 
-.stat-icon {
+/* Starea cu streak/scop îndeplinit azi (3/3): Contur NEON al temei active cu aură pulsantă */
+.unified-stats-badge.streak-fulfilled {
+  border: 1.5px solid var(--accent-primary);
+  background: rgba(var(--accent-rgb, 16, 185, 129), 0.14);
+  box-shadow: 0 0 16px var(--accent-glow), inset 0 0 8px rgba(var(--accent-rgb, 16, 185, 129), 0.15);
+  color: var(--text-primary);
+  animation: neonStreakPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes neonStreakPulse {
+  0%, 100% {
+    box-shadow: 0 0 12px var(--accent-glow), inset 0 0 6px rgba(var(--accent-rgb, 16, 185, 129), 0.12);
+    border-color: var(--accent-primary);
+  }
+  50% {
+    box-shadow: 0 0 24px var(--accent-glow), 0 0 10px var(--accent-primary), inset 0 0 12px rgba(var(--accent-rgb, 16, 185, 129), 0.22);
+    border-color: #ffffff;
+  }
+}
+
+.unified-stats-badge:hover {
+  transform: translateY(-1px);
+}
+
+.unified-stats-badge .stat-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  cursor: pointer !important;
+  transform: none !important;
+}
+
+.unified-stats-badge .stat-pill:hover {
+  transform: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.unified-stats-sep {
+  color: #64748b;
+  font-size: 0.8rem;
+  line-height: 1;
+  user-select: none;
+}
+
+.unified-stats-badge.streak-fulfilled .unified-stats-sep {
+  color: var(--accent-primary);
+}
+
+.unified-stats-badge .stat-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.95rem;
 }
 
-.stat-icon svg {
-  width: 17px;
-  height: 17px;
-}
-
-.stat-content {
+.unified-stats-badge .stat-content {
   display: flex;
-  flex-direction: column;
-  line-height: 1.15;
+  align-items: baseline;
+  gap: 0.25rem;
+  line-height: 1;
 }
 
-.stat-value {
+.unified-stats-badge .stat-value {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
   font-weight: 700;
   font-size: 0.85rem;
-}
-
-.stat-label {
-  font-size: 0.65rem;
-  color: var(--text-secondary);
-}
-
-/* Bifa de Obiectiv Complet */
-.goal-pill.goal-completed {
-  background-color: var(--success-bg);
-  border-color: var(--success-green);
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
-}
-
-.goal-pill.goal-completed .stat-value {
-  color: var(--success-green);
-}
-
-/* Tooltip / Popover pentru 3/3 */
-.goal-tooltip-content {
-  display: none;
-  position: absolute;
-  top: 115%;
-  right: 0;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 0.75rem 1rem;
-  width: 250px;
-  box-shadow: var(--shadow-card);
-  font-size: 0.78rem;
   color: var(--text-primary);
-  z-index: 1000;
-  line-height: 1.45;
-  pointer-events: none;
+  white-space: nowrap;
 }
 
-.goal-pill:hover .goal-tooltip-content,
-.goal-pill:focus .goal-tooltip-content {
-  display: block;
+.unified-stats-badge .stat-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
 }
 
+[data-theme="sepia-book"] .unified-stats-badge .stat-label,
+[data-theme="daylight-clean"] .unified-stats-badge .stat-label {
+  color: #1e293b !important;
+}
+
+[data-theme="neon-amethyst"] .unified-stats-badge .stat-label {
+  color: #f1f5f9 !important;
+}
+
+.unified-stats-badge.streak-fulfilled .stat-label {
+  color: var(--accent-primary) !important;
+}
+
+.unified-stats-badge.streak-fulfilled #xp-count {
+  color: var(--accent-primary);
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Evidențiere scor la completarea scopului zilnic */
+.score-milestone-glow {
+  color: var(--accent-primary) !important;
+  text-shadow: 0 0 14px var(--accent-glow);
+  display: inline-block;
+  animation: pulseScore 1.5s ease-out;
+}
+
+@keyframes pulseScore {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); filter: brightness(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Cluster Controale: Unic Dock cu 2 Părți (Design / Culori) */
 .controls-cluster {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   flex-shrink: 0;
   white-space: nowrap;
+}
+
+.unified-appearance-dock {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  padding: 2px 4px;
+  gap: 0;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.04);
+  transition: all 0.25s ease;
+}
+
+.unified-appearance-dock:hover {
+  border-color: rgba(var(--accent-rgb, 16, 185, 129), 0.4);
+  box-shadow: 0 0 14px rgba(var(--accent-rgb, 16, 185, 129), 0.15);
+}
+
+.appearance-segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.5rem;
+}
+
+.appearance-segment .appearance-icon {
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.appearance-segment select {
+  background: transparent !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+  padding: 0.28rem 0.4rem !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 6px !important;
+  max-width: 135px;
+}
+
+.appearance-segment select:hover,
+.appearance-segment select:focus {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--accent-primary) !important;
+}
+
+.appearance-segment select option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.appearance-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border-color);
+  margin: 0 2px;
+  flex-shrink: 0;
 }
 
 .theme-select {
@@ -2773,13 +2917,21 @@ button {
 @media (min-width: 900px) {
   [data-layout="dual-split"] .study-layout {
     display: grid !important;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 310px 1fr !important;
     gap: 1.5rem;
     align-items: start;
     max-width: 1440px;
+    margin: 0 auto;
+    padding-bottom: 3.5rem;
   }
   [data-layout="dual-split"] .study-top-nav {
     grid-column: 1 / -1;
+  }
+  [data-layout="dual-split"] .dual-split-topic-nav {
+    position: sticky;
+    top: 5.5rem;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
   }
   [data-layout="dual-split"] .theory-card {
     max-height: calc(100vh - 140px);
@@ -2794,6 +2946,92 @@ button {
     top: 5.5rem;
   }
 }
+
+/* ==========================================================================
+   DUAL SPLIT SEQUENCING: DOAR SECȚIUNEA ALEASĂ ESTE VIZIBILĂ PE DREAPTA
+   ȘI GLISEAZĂ LIN DE SUS ÎN JOS LA SELECTARE
+   ========================================================================== */
+
+/* 1. Secvența Implicită sau Activă: TEORIE & CONCEPTE */
+[data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) .theory-card,
+[data-layout="dual-split"][data-dual-pane="theory"] .theory-card {
+  display: block !important;
+}
+[data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #theory-article-content,
+[data-layout="dual-split"][data-dual-pane="theory"] #theory-article-content {
+  display: block !important;
+}
+[data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #ast-terminal-box,
+[data-layout="dual-split"][data-dual-pane="theory"] #ast-terminal-box {
+  display: none !important;
+}
+[data-layout="dual-split"]:not([data-dual-pane="examples"]):not([data-dual-pane="practice"]):not([data-dual-pane="exercises"]) #practice-card,
+[data-layout="dual-split"][data-dual-pane="theory"] #practice-card {
+  display: none !important;
+}
+
+/* 2. Secvența 2: EXEMPLE & AST DEBUGGER (SURVIVOR 03) */
+[data-layout="dual-split"][data-dual-pane="examples"] .theory-card {
+  display: block !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+[data-layout="dual-split"][data-dual-pane="examples"] #theory-article-content {
+  display: none !important;
+}
+[data-layout="dual-split"][data-dual-pane="examples"] #ast-terminal-box {
+  display: flex !important;
+  width: 100% !important;
+  margin-top: 0 !important;
+}
+[data-layout="dual-split"][data-dual-pane="examples"] #practice-card {
+  display: none !important;
+}
+
+/* 3. Secvența 3: ATELIER PRACTIC & SIMULATOR */
+[data-layout="dual-split"][data-dual-pane="practice"] .theory-card {
+  display: none !important;
+}
+[data-layout="dual-split"][data-dual-pane="practice"] #practice-card {
+  display: block !important;
+}
+[data-layout="dual-split"][data-dual-pane="practice"] #practice-mode-write {
+  display: block !important;
+}
+[data-layout="dual-split"][data-dual-pane="practice"] #practice-mode-match,
+[data-layout="dual-split"][data-dual-pane="practice"] #practice-mode-quiz {
+  display: none !important;
+}
+
+/* 4. Secvența 4: EXERCIȚII TACTILE (NEOMORPHIC QUIZ & MATCHING) */
+[data-layout="dual-split"][data-dual-pane="exercises"] .theory-card {
+  display: none !important;
+}
+[data-layout="dual-split"][data-dual-pane="exercises"] #practice-card {
+  display: block !important;
+}
+[data-layout="dual-split"][data-dual-pane="exercises"] #practice-mode-write {
+  display: none !important;
+}
+
+/* Glisare animată de sus în jos: 'la alegere sa se mute de sus in jos' */
+@keyframes dualSlideFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-layout="dual-split"] .dual-pane-animate {
+  animation: dualSlideFromTop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
 [data-layout="dual-split"] #dual-split-statusbar {
   display: flex !important;
 }
@@ -3083,8 +3321,8 @@ button {
 @media (min-width: 1024px) {
   [data-layout="dual-split"] .study-layout {
     display: grid !important;
-    grid-template-columns: 280px 1fr 1fr;
-    gap: 1.25rem;
+    grid-template-columns: 320px 1fr !important;
+    gap: 1.5rem;
     align-items: start;
   }
 
@@ -4028,11 +4266,40 @@ button {
   transform: translateY(-1px);
 }
 
-/* 5. 3D Flip Flashcard */
+/* 5. 3D Flip Flashcard & Deep Work Focus Lab */
+.dashboard-deepwork-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  align-items: stretch;
+}
+
+.deepwork-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  min-height: 440px;
+}
+
+.fc-counter-badge,
+.pomo-session-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent-primary);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-primary);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
 .flashcard-3d-scene {
-  perspective: 1000px;
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
   width: 100%;
-  height: 220px;
+  height: 250px;
   margin-top: 1rem;
 }
 
@@ -4041,21 +4308,25 @@ button {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .flashcard-3d-card.flipped {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
 .flashcard-face {
   position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  border-radius: 16px;
-  padding: 1.5rem;
+  border-radius: 18px;
+  padding: 1.25rem;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -4063,16 +4334,33 @@ button {
 }
 
 .flashcard-front {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.08));
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(6, 182, 212, 0.08));
   border: 1px solid rgba(16, 185, 129, 0.35);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
 }
 
 .flashcard-back {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(245, 158, 11, 0.08));
-  border: 1px solid rgba(139, 92, 246, 0.35);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(245, 158, 11, 0.09));
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+.fc-face-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fc-flip-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 600;
 }
 
 .flashcard-chip {
@@ -4092,7 +4380,7 @@ button {
 }
 
 .flashcard-front-title {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-primary);
   margin: 0;
@@ -4100,26 +4388,96 @@ button {
 }
 
 .flashcard-back-text {
-  font-size: 0.9rem;
-  line-height: 1.55;
+  font-size: 0.85rem;
+  line-height: 1.5;
   color: var(--text-primary);
   margin: 0;
 }
 
 .flashcard-hint-pill {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--text-secondary);
   font-family: 'JetBrains Mono', monospace;
 }
 
-.flashcard-xp-badge {
-  font-size: 0.72rem;
-  color: #34d399;
+.fc-grade-btn {
+  flex: 1;
+  padding: 0.4rem 0.25rem;
+  font-size: 0.68rem;
   font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.fc-grade-btn:hover {
+  transform: translateY(-1px);
+}
+
+.fc-grade-hard:hover { border-color: #ef4444; background: rgba(239, 68, 68, 0.25); color: #fca5a5; }
+.fc-grade-good:hover { border-color: #f59e0b; background: rgba(245, 158, 11, 0.25); color: #fcd34d; }
+.fc-grade-easy:hover { border-color: #10b981; background: rgba(16, 185, 129, 0.25); color: #86efac; }
+
+/* 6. Pomodoro Deep Work Focus Lab */
+.pomo-modes-bar {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pomo-mode-btn {
+  flex: 1;
+  padding: 0.45rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.pomo-mode-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+}
+
+.pomo-mode-btn.active {
+  background: var(--accent-soft);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
   font-weight: 700;
 }
 
-/* 6. Pomodoro Box */
-.pomodoro-box {
-  background: var(--bg-elevated);
+.pomo-clock-container {
+  width: 100%;
+}
+
+.pomo-ring-wrap {
+  filter: drop-shadow(0 0 16px rgba(16, 185, 129, 0.2));
+}
+
+.pomo-svg-ring {
+  display: block;
+}
+
+.pomo-session-dots {
+  user-select: none;
+}
+
+.pomo-dot {
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.pomo-dot.active {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.6));
 }
