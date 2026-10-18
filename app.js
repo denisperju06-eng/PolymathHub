@@ -764,7 +764,8 @@
 
   function updateScrollLock() {
     const isMobile = window.innerWidth <= 768;
-    const isDesktop3DCatalog = !isMobile && (state.is3DActive !== false) && !document.body.classList.contains("simple-catalog-mode") && (state.activeView === "catalog");
+    const isViewingChapters = document.body.classList.contains("viewing-chapters");
+    const isDesktop3DCatalog = !isMobile && (state.is3DActive !== false) && !document.body.classList.contains("simple-catalog-mode") && (state.activeView === "catalog") && !isViewingChapters;
     if (isDesktop3DCatalog) {
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
@@ -2656,12 +2657,24 @@
       if (btn) {
         btn.addEventListener("click", () => {
           const view = btn.getAttribute("data-view");
+          if (view === "catalog") {
+            document.body.classList.remove("viewing-chapters");
+          }
           if (view) switchView(view);
         });
       }
     });
 
-
+    // Buton Înapoi la Citadela 3D din Secțiunea de Capitole
+    const btnBackToCitadel = document.getElementById("btn-back-to-citadel");
+    if (btnBackToCitadel) {
+      btnBackToCitadel.addEventListener("click", () => {
+        playUiSound("click");
+        document.body.classList.remove("viewing-chapters");
+        updateScrollLock();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
 
     // Cluster Statistici Navigabil Direct
     if (els.streakPill) {
@@ -2696,7 +2709,10 @@
 
     // Buton Înapoi la Catalog din Studiul Focalizat
     if (els.backToCatalogBtn) {
-      els.backToCatalogBtn.addEventListener("click", () => switchView("catalog"));
+      els.backToCatalogBtn.addEventListener("click", () => {
+        document.body.classList.remove("viewing-chapters");
+        switchView("catalog");
+      });
     }
 
     // Buzunar Glisant (Pocket Drawer)
@@ -3165,7 +3181,7 @@
     scene.fog = new THREE.FogExp2(0x020307, 0.02);
 
     const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
-    camera.position.set(0, 0.2, 19.5);
+    camera.position.set(0, 0.2, 20.5);
     camera.lookAt(0, -0.6, 0);
     cosmosThreeCamera = camera;
 
@@ -3389,7 +3405,7 @@
 
     // 4. Figure 1: 💻 CALCULATOR & TERMINAL (Informatică & Programare)
     const itGroup = new THREE.Group();
-    itGroup.position.set(-8.0, -0.9, 0);
+    itGroup.position.set(-8.8, -0.9, 0);
     itGroup.scale.set(0.9, 0.9, 0.9);
 
     const itBezelGeo = new THREE.BoxGeometry(4.4, 2.8, 0.25);
@@ -3442,12 +3458,12 @@
     };
     interactiveObjects.push(itBezel);
     worldGroup.add(itGroup);
-    disciplineNodes["it"] = { group: itGroup, mesh: itBezel, pos: itGroup.position, cameraTarget: new THREE.Vector3(-8.0, -0.9, 8.8) };
+    disciplineNodes["it"] = { group: itGroup, mesh: itBezel, pos: itGroup.position, cameraTarget: new THREE.Vector3(-8.8, -0.9, 8.8) };
     majorFigureNodes.push({ id: "it", group: itGroup, mesh: itBezel, title: "Informatică (7 Cursuri)", color: "#38bdf8" });
 
     // 5. Figure 2: 🐧 SERVER RACK MAINFRAME (Sisteme Linux & DevOps)
     const osGroup = new THREE.Group();
-    osGroup.position.set(-2.7, -1.4, 1.6);
+    osGroup.position.set(-3.0, -1.4, 1.6);
     osGroup.scale.set(0.9, 0.9, 0.9);
 
     const osChassisGeo = new THREE.BoxGeometry(2.6, 4.8, 2.4);
@@ -3487,12 +3503,12 @@
     };
     interactiveObjects.push(osChassis);
     worldGroup.add(osGroup);
-    disciplineNodes["os"] = { group: osGroup, mesh: osChassis, pos: osGroup.position, cameraTarget: new THREE.Vector3(-2.7, -1.4, 9.2) };
+    disciplineNodes["os"] = { group: osGroup, mesh: osChassis, pos: osGroup.position, cameraTarget: new THREE.Vector3(-3.0, -1.4, 9.2) };
     majorFigureNodes.push({ id: "os", group: osGroup, mesh: osChassis, title: "Sisteme Linux & DevOps", color: "#fb923c" });
 
     // 6. Figure 3: 🗄️ BAZE DE DATE CYLINDERS (Baze de Date & SQL)
     const dbGroup = new THREE.Group();
-    dbGroup.position.set(2.7, -1.4, 1.6);
+    dbGroup.position.set(3.0, -1.4, 1.6);
     dbGroup.scale.set(0.9, 0.9, 0.9);
 
     const dbCylGeo = new THREE.CylinderGeometry(2.2, 2.2, 0.95, 36);
@@ -3538,12 +3554,12 @@
     };
     interactiveObjects.push(c2);
     worldGroup.add(dbGroup);
-    disciplineNodes["db"] = { group: dbGroup, mesh: c2, pos: dbGroup.position, cameraTarget: new THREE.Vector3(2.7, -1.4, 9.2) };
+    disciplineNodes["db"] = { group: dbGroup, mesh: c2, pos: dbGroup.position, cameraTarget: new THREE.Vector3(3.0, -1.4, 9.2) };
     majorFigureNodes.push({ id: "db", group: dbGroup, mesh: c2, title: "Baze de Date & SQL", color: "#10b981" });
 
     // 7. Figure 4: 🌍 CARTE DESCHISĂ & GLOB (Limbi Străine & Comunicare)
     const langGroup = new THREE.Group();
-    langGroup.position.set(8.0, -0.9, 0);
+    langGroup.position.set(8.8, -0.9, 0);
     langGroup.scale.set(0.9, 0.9, 0.9);
 
     const bookSpineGeo = new THREE.BoxGeometry(0.3, 3.4, 2.4);
@@ -3601,7 +3617,7 @@
     };
     interactiveObjects.push(bookSpine);
     worldGroup.add(langGroup);
-    disciplineNodes["lang"] = { group: langGroup, mesh: bookSpine, pos: langGroup.position, cameraTarget: new THREE.Vector3(8.0, -0.9, 8.8), globe: globe };
+    disciplineNodes["lang"] = { group: langGroup, mesh: bookSpine, pos: langGroup.position, cameraTarget: new THREE.Vector3(8.8, -0.9, 8.8), globe: globe };
     majorFigureNodes.push({ id: "lang", group: langGroup, mesh: bookSpine, title: "Limbi Străine (5 Cursuri)", color: "#d946ef" });
 
     // 8. Sistemul Ierarhic de Sateliți Orbitale (Sistem Solar pe Nivelul 2)
@@ -3625,7 +3641,7 @@
 
       const count = satList.length;
       satList.forEach((sat, idx) => {
-        const coinGeo = new THREE.CylinderGeometry(0.85, 0.85, 0.16, 32);
+        const coinGeo = new THREE.CylinderGeometry(0.70, 0.70, 0.13, 32);
         const coinMat = new THREE.MeshBasicMaterial({
           map: createPlanetEmblemTexture(sat.icon, sat.code, sat.color)
         });
@@ -3925,10 +3941,10 @@
         });
 
         if (typeof gsap !== "undefined") {
-          gsap.to(camera.position, { x: 0, y: 0.2, z: 19.5, duration: 1.6, ease: "power3.inOut" });
+          gsap.to(camera.position, { x: 0, y: 0.2, z: 20.5, duration: 1.6, ease: "power3.inOut" });
           gsap.to(targetRot, { x: 0, y: 0, duration: 1.2, ease: "power2.out" });
         } else {
-          camera.position.set(0, 0.2, 19.5);
+          camera.position.set(0, 0.2, 20.5);
           targetRot.x = targetRot.y = 0;
         }
 
@@ -4011,12 +4027,25 @@
 
     function warpToTrack(trackName) {
       state.activeTrack = trackName;
-      const firstLesson = allLessons.find(l => l.track === trackName);
-      if (firstLesson) {
-        state.activeLessonId = firstLesson.id;
-      }
       saveState();
-      switchView("study");
+
+      if (state.is3DActive !== false && window.innerWidth > 768) {
+        document.body.classList.add("viewing-chapters");
+        if (els.catalogDomainSubtitle) els.catalogDomainSubtitle.textContent = `DOMENIUL SELECTAT: ${state.activeTrack.toUpperCase()}`;
+        if (els.catalogSelectedDomainTitle) els.catalogSelectedDomainTitle.textContent = `Capitole disponibile (${allLessons.filter(l => l.track === state.activeTrack).length})`;
+        const badge = document.getElementById("chapters-course-badge");
+        if (badge) badge.textContent = `Curs: ${state.activeTrack}`;
+        updateCatalogFilterOptions();
+        renderCatalogChapters();
+        updateScrollLock();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        renderCatalogView();
+        const chaptersSec = document.getElementById("catalog-chapters-section");
+        if (chaptersSec) {
+          chaptersSec.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
     }
 
     function updateHudCard(target) {
@@ -4183,7 +4212,7 @@
         satLabelElements.forEach(l => {
           if (l.domainId === activeDomainId) {
             l.mesh.getWorldPosition(tempProjVec);
-            tempProjVec.y += 0.85;
+            tempProjVec.y += 0.70;
             tempProjVec.project(camera);
 
             if (tempProjVec.z < 1) {
