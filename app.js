@@ -819,7 +819,7 @@
     }
 
     if (els.cosmosOrbitStage) {
-      if (validLayout === "spatial-cosmos" && state.activeView === "catalog") {
+      if (state.activeView === "catalog") {
         els.cosmosOrbitStage.classList.remove("hidden");
         initCosmosOrbitCanvas();
       } else {
@@ -828,7 +828,7 @@
     }
 
     if (els.dualSplitStatusbar) {
-      if (validLayout === "dual-split") {
+      if (state.activeView === "study" || validLayout === "dual-split") {
         els.dualSplitStatusbar.classList.remove("hidden");
         updateDualSplitStatusbar();
       } else {
@@ -836,7 +836,8 @@
       }
     }
 
-    if (validLayout === "dual-split") {
+    // Dual Split Workspace este activat peste tot în ecranul de studiu și răspuns
+    if (state.activeView === "study" || validLayout === "dual-split") {
       if (!state.activeDualPane) state.activeDualPane = "theory";
       document.documentElement.setAttribute("data-dual-pane", state.activeDualPane);
       document.body.setAttribute("data-dual-pane", state.activeDualPane);
@@ -1059,6 +1060,10 @@
   // VIEW 1: CATALOG VIEW (DASHBOARDUL PRINCIPAL FĂRĂ SARCINI CLUTTER)
   // =========================================================================
   function renderCatalogView() {
+    if (els.cosmosOrbitStage) {
+      els.cosmosOrbitStage.classList.remove("hidden");
+      initCosmosOrbitCanvas();
+    }
     const tracks = getTracks();
     els.catalogDomainsGrid.innerHTML = "";
 
@@ -1308,6 +1313,13 @@
   function renderStudyView() {
     const lesson = allLessons.find(l => l.id === state.activeLessonId) || allLessons[0];
     if (!lesson) return;
+
+    // Dual Split Workspace este activat universal în studiul focalizat și răspuns
+    if (!state.activeDualPane) state.activeDualPane = "theory";
+    document.documentElement.setAttribute("data-dual-pane", state.activeDualPane);
+    document.body.setAttribute("data-dual-pane", state.activeDualPane);
+    if (els.studyView) els.studyView.setAttribute("data-dual-pane", state.activeDualPane);
+    renderDualSplitWorkspace();
 
     // Resetare sesiune de asistență pentru capitolul curent
     lessonSessionAssisted = false;
@@ -3062,6 +3074,11 @@
     const canvas = document.getElementById("cosmos-orbit-canvas");
     if (!canvas) return;
 
+    // Pe mobil/telefon (<= 768px) Cosmos este dezactivat pentru viteză maximă și zero consum GPU
+    if (window.innerWidth <= 768) {
+      return;
+    }
+
     // Butoane Rapide de Telemetrie
     if (els.cosmosTelemetryNodes && els.cosmosTelemetryNodes.children.length === 0) {
       els.cosmosTelemetryNodes.innerHTML = "";
@@ -3246,11 +3263,13 @@
     );
     aiMesh.userData = {
       id: "it",
-      title: "Act I • Tensor & Informatică",
-      desc: "7 Sateliți: C++, Python, JavaScript, Java, TypeScript, C#, Algoritmi",
+      title: "💻 Act I • Informatică & Algoritmi",
+      desc: "7 Sateliți Orbitali: C++, Python, JavaScript, Java, TypeScript, C#, Algoritmi",
       trackName: "Python",
+      division: "Informatică și Programare",
       isMajor: true,
-      color: "#f59e0b"
+      color: "#f59e0b",
+      icon: "💻"
     };
     aiGroup.add(aiMesh);
     const aiCore = new THREE.Mesh(
@@ -3271,11 +3290,13 @@
     );
     sysMesh.userData = {
       id: "os",
-      title: "Act II • Silicon Systems & Linux",
+      title: "🐧 Act II • Sisteme Linux & DevOps",
       desc: "Sisteme Linux, Docker, Shell & Arhitectură Cloud",
       trackName: "DevOps & Sisteme Linux",
+      division: "Informatică și Programare",
       isMajor: true,
-      color: "#06b6d4"
+      color: "#06b6d4",
+      icon: "🐧"
     };
     sysGroup.add(sysMesh);
     const sysCore = new THREE.Mesh(
@@ -3296,11 +3317,13 @@
     );
     sqlMesh.userData = {
       id: "db",
-      title: "Act III • Lattice & Baze de Date",
+      title: "🗄️ Act III • Baze de Date & SQL",
       desc: "Calcul Relațional, SQL, B-Tree & Tranzacții ACID",
       trackName: "Baze de Date & SQL",
+      division: "Informatică și Programare",
       isMajor: true,
-      color: "#10b981"
+      color: "#10b981",
+      icon: "🗄️"
     };
     sqlGroup.add(sqlMesh);
     const sqlCore = new THREE.Mesh(
@@ -3321,11 +3344,13 @@
     );
     lingMesh.userData = {
       id: "lang",
-      title: "Act IV • Phonetics & Limbi Străine",
+      title: "🌍 Act IV • Limbi Străine & Comunicare",
       desc: "5 Sateliți: Engleză, Franceză, Spaniolă, Germană, Italiană",
       trackName: "Limba Engleză",
+      division: "Limbi Străine & Comunicare",
       isMajor: true,
-      color: "#d946ef"
+      color: "#d946ef",
+      icon: "🌍"
     };
     lingGroup.add(lingMesh);
     const lingCore = new THREE.Mesh(
@@ -3343,7 +3368,7 @@
     worldGroup.add(createBeam(sqlGroup.position, new THREE.Vector3(0, 0, 0), 0x10b981));
     worldGroup.add(createBeam(lingGroup.position, new THREE.Vector3(0, 0, 0), 0xd946ef));
 
-    // 6. Sub-satellites for Individual Courses
+    // 6. Sub-satellites for Individual Courses with Icons & Logos
     const subSatellites = [];
     function addSubSatellites(parentGroup, satellitesList, baseOrbitR, speedMultiplier) {
       const ring = new THREE.Mesh(
@@ -3370,7 +3395,8 @@
           desc: `Satelit orbital • ${sat.name}`,
           trackName: sat.name,
           isSatellite: true,
-          color: sat.color
+          color: sat.color,
+          icon: sat.icon
         };
         parentGroup.add(satMesh);
         interactiveObjects.push(satMesh);
@@ -3385,35 +3411,98 @@
 
     // IT Sub-satellites (7)
     addSubSatellites(aiGroup, [
-      { name: "C & C++", code: "C++", color: "#38bdf8" },
-      { name: "Python", code: "Py", color: "#3b82f6" },
-      { name: "JavaScript", code: "JS", color: "#eab308" },
-      { name: "Java", code: "Java", color: "#f97316" },
-      { name: "TypeScript & React", code: "TS", color: "#60a5fa" },
-      { name: "C#", code: "C#", color: "#a855f7" },
-      { name: "Algoritmi & Structuri de Date", code: "Algo", color: "#ec4899" }
+      { name: "C & C++", code: "C++", color: "#38bdf8", icon: "⚡" },
+      { name: "Python", code: "Py", color: "#3b82f6", icon: "🐍" },
+      { name: "JavaScript", code: "JS", color: "#eab308", icon: "💛" },
+      { name: "Java", code: "Java", color: "#f97316", icon: "☕" },
+      { name: "TypeScript & React", code: "TS", color: "#60a5fa", icon: "🔷" },
+      { name: "C#", code: "C#", color: "#a855f7", icon: "🟣" },
+      { name: "Algoritmi & Structuri de Date", code: "Algo", color: "#ec4899", icon: "🌳" }
     ], 5.2, 0.015);
 
     // Systems Sub-satellite (1)
     addSubSatellites(sysGroup, [
-      { name: "DevOps & Sisteme Linux", code: "Linux", color: "#fb923c" }
+      { name: "DevOps & Sisteme Linux", code: "Linux", color: "#fb923c", icon: "🐧" }
     ], 4.5, 0.02);
 
     // SQL Sub-satellite (1)
     addSubSatellites(sqlGroup, [
-      { name: "Baze de Date & SQL", code: "SQL", color: "#c084fc" }
+      { name: "Baze de Date & SQL", code: "SQL", color: "#c084fc", icon: "🗄️" }
     ], 4.6, 0.018);
 
     // Languages Sub-satellites (5)
     addSubSatellites(lingGroup, [
-      { name: "Limba Engleză", code: "EN", color: "#34d399" },
-      { name: "Limba Franceză", code: "FR", color: "#6ee7b7" },
-      { name: "Limba Spaniolă", code: "ES", color: "#a7f3d0" },
-      { name: "Limba Germană", code: "DE", color: "#fbbf24" },
-      { name: "Limba Italiană", code: "IT", color: "#f43f5e" }
+      { name: "Limba Engleză", code: "EN", color: "#34d399", icon: "🇬🇧" },
+      { name: "Limba Franceză", code: "FR", color: "#6ee7b7", icon: "🇫🇷" },
+      { name: "Limba Spaniolă", code: "ES", color: "#a7f3d0", icon: "🇪🇸" },
+      { name: "Limba Germană", code: "DE", color: "#fbbf24", icon: "🇩🇪" },
+      { name: "Limba Italiană", code: "IT", color: "#f43f5e", icon: "🇮🇹" }
     ], 5.0, 0.014);
 
-    // 7. Drag & Orbit Controls with Smooth Lerp
+    // 7. Strat Plutitor Accesibil pentru Logo-uri și Etichete
+    const labelsLayer = document.getElementById("cosmos-labels-layer");
+    if (labelsLayer) labelsLayer.innerHTML = "";
+    const labelElements = [];
+
+    subSatellites.forEach(s => {
+      if (!labelsLayer) return;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "sat-orbit-pill";
+      btn.setAttribute("style", `--pill-color: ${s.mesh.userData.color || "#38bdf8"}`);
+      btn.innerHTML = `<span class="sat-pill-icon">${s.mesh.userData.icon || "🪐"}</span><span class="sat-pill-text">${s.mesh.userData.title}</span>`;
+      btn.addEventListener("click", e => {
+        e.stopPropagation();
+        playUiSound("warp");
+        warpToTrack(s.mesh.userData.trackName);
+      });
+      btn.addEventListener("mouseenter", () => {
+        if (hoveredObject) hoveredObject.scale.set(1, 1, 1);
+        hoveredObject = s.mesh;
+        hoveredObject.scale.set(1.25, 1.25, 1.25);
+        hoveredTarget = s.mesh.userData;
+        updateHudCard(hoveredTarget);
+        playUiSound("quantum");
+      });
+      btn.addEventListener("mouseleave", () => {
+        if (hoveredObject === s.mesh) {
+          hoveredObject.scale.set(1, 1, 1);
+          hoveredObject = null;
+        }
+      });
+      labelsLayer.appendChild(btn);
+      labelElements.push({ element: btn, mesh: s.mesh });
+    });
+
+    // 8. Controale Interactive de Orbită în Antet
+    let isOrbitPaused = false;
+    let orbitSpeedMultiplier = 1.0;
+    const pauseBtn = document.getElementById("cosmos-pause-btn");
+    const speedBtn = document.getElementById("cosmos-speed-btn");
+    const resetCamBtn = document.getElementById("cosmos-reset-cam-btn");
+
+    if (pauseBtn) {
+      pauseBtn.onclick = () => {
+        isOrbitPaused = !isOrbitPaused;
+        pauseBtn.textContent = isOrbitPaused ? "▶️ Rulare" : "⏸️ Pauză";
+        playUiSound("click");
+      };
+    }
+    if (speedBtn) {
+      speedBtn.onclick = () => {
+        orbitSpeedMultiplier = (orbitSpeedMultiplier === 1.0) ? 2.0 : 1.0;
+        speedBtn.textContent = `⚡ ${orbitSpeedMultiplier}x`;
+        playUiSound("click");
+      };
+    }
+    if (resetCamBtn) {
+      resetCamBtn.onclick = () => {
+        playUiSound("warp");
+        flyToNode("ALL");
+      };
+    }
+
+    // 9. Drag & Orbit Controls with Smooth Lerp
     let isDragging = false;
     let prevMouse = { x: 0, y: 0 };
     let targetRot = { x: 0, y: 0 };
@@ -3502,14 +3591,17 @@
       }
 
       const node = disciplineNodes[id];
-      if (node && typeof gsap !== "undefined") {
-        gsap.to(camera.position, {
-          x: node.cameraTarget.x,
-          y: node.cameraTarget.y,
-          z: node.cameraTarget.z,
-          duration: 1.8,
-          ease: "power3.inOut"
-        });
+      if (node) {
+        if (typeof gsap !== "undefined") {
+          gsap.to(camera.position, {
+            x: node.cameraTarget.x,
+            y: node.cameraTarget.y,
+            z: node.cameraTarget.z,
+            duration: 1.8,
+            ease: "power3.inOut"
+          });
+        }
+        updateHudCard(node.mesh.userData);
       }
     }
 
@@ -3519,6 +3611,40 @@
       renderCatalogView();
       const chapters = document.getElementById("catalog-chapters-section");
       if (chapters) chapters.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function updateHudCard(target) {
+      if (!els.cosmosHudCard || !target) return;
+      els.cosmosHudCard.style.display = "block";
+      if (els.hudTargetName) els.hudTargetName.textContent = target.title;
+      if (els.hudCardDesc) els.hudCardDesc.textContent = target.desc;
+
+      const quickStats = document.getElementById("hud-quick-stats");
+      const statLessons = document.getElementById("hud-stat-lessons");
+      const statXp = document.getElementById("hud-stat-xp");
+      const chipsRow = document.getElementById("hud-chips-row");
+
+      if (quickStats) quickStats.style.display = "flex";
+      if (statLessons) {
+        const chaptersCount = allLessons.filter(l => l.track === target.trackName || target.id === "it" || target.id === "lang").length || 32;
+        statLessons.textContent = `${chaptersCount} Capitole`;
+      }
+      if (statXp) statXp.textContent = `+1200 XP`;
+
+      if (chipsRow) {
+        chipsRow.innerHTML = "";
+        const relatedTracks = getTracks().filter(t => t.division === target.division || t.name === target.trackName).slice(0, 4);
+        relatedTracks.forEach(rt => {
+          const chip = document.createElement("span");
+          chip.className = "hud-mini-chip";
+          chip.textContent = rt.name;
+          chip.onclick = e => {
+            e.stopPropagation();
+            warpToTrack(rt.name);
+          };
+          chipsRow.appendChild(chip);
+        });
+      }
     }
 
     // Navigație Comenzi Rapide Solar System (Exact cele 5 Butoane din test)
@@ -3552,14 +3678,19 @@
       renderer.setSize(w, h);
     });
 
-    // 8. Animation Loop
+    // 10. Animation Loop
     let time = 0;
+    const tempProjVec = new THREE.Vector3();
+
     function animate(t) {
-      if (state.layoutMode !== "spatial-cosmos" || state.activeView !== "catalog") {
+      if (state.activeView !== "catalog" || window.innerWidth <= 768) {
         requestAnimationFrame(animate);
         return;
       }
-      time += 1;
+
+      if (!isOrbitPaused) {
+        time += 1 * orbitSpeedMultiplier;
+      }
 
       // Smooth Orbit Lerp
       curRot.x += (targetRot.x - curRot.x) * 0.05;
@@ -3567,27 +3698,53 @@
       worldGroup.rotation.y = curRot.y;
       worldGroup.rotation.x = curRot.x;
 
-      // Rotate Monolith Citadel
-      citadelGroup.rotation.y += 0.003;
-      cageMesh.rotation.x += 0.002;
-      coreMesh.rotation.y -= 0.005;
+      if (!isOrbitPaused) {
+        // Rotate Monolith Citadel
+        citadelGroup.rotation.y += 0.003;
+        cageMesh.rotation.x += 0.002;
+        coreMesh.rotation.y -= 0.005;
 
-      // Rotate Major Satellites
-      aiGroup.rotation.y += 0.006;
-      sysGroup.rotation.x += 0.008;
-      sqlGroup.rotation.y += 0.009;
-      lingGroup.rotation.z += 0.007;
+        // Rotate Major Satellites
+        aiGroup.rotation.y += 0.006;
+        sysGroup.rotation.x += 0.008;
+        sqlGroup.rotation.y += 0.009;
+        lingGroup.rotation.z += 0.007;
 
-      // Orbit Sub-Satellites
-      subSatellites.forEach(s => {
-        const angle = (time * s.speed) + s.offset;
-        s.mesh.position.x = Math.cos(angle) * s.orbitR;
-        s.mesh.position.z = Math.sin(angle) * s.orbitR;
-        s.mesh.position.y = Math.sin(angle * 2) * 0.35;
+        // Orbit Sub-Satellites
+        subSatellites.forEach(s => {
+          const angle = (time * s.speed) + s.offset;
+          s.mesh.position.x = Math.cos(angle) * s.orbitR;
+          s.mesh.position.z = Math.sin(angle) * s.orbitR;
+          s.mesh.position.y = Math.sin(angle * 2) * 0.35;
+        });
+
+        // Drift Nebula
+        nebula.rotation.y = t * 0.00004;
+      }
+
+      // Proiectare Etichete Sateliți 3D -> 2D
+      const cWidth = canvas.clientWidth || 800;
+      const cHeight = canvas.clientHeight || 600;
+
+      labelElements.forEach(l => {
+        l.mesh.getWorldPosition(tempProjVec);
+        tempProjVec.project(camera);
+
+        if (tempProjVec.z < 1) {
+          const screenX = (tempProjVec.x * 0.5 + 0.5) * cWidth;
+          const screenY = (-(tempProjVec.y * 0.5) + 0.5) * cHeight;
+
+          if (screenX >= 25 && screenX <= cWidth - 25 && screenY >= 25 && screenY <= cHeight - 25) {
+            l.element.style.display = "inline-flex";
+            l.element.style.left = `${screenX}px`;
+            l.element.style.top = `${screenY}px`;
+          } else {
+            l.element.style.display = "none";
+          }
+        } else {
+          l.element.style.display = "none";
+        }
       });
-
-      // Drift Nebula
-      nebula.rotation.y = t * 0.00004;
 
       // Raycast Hover Detection
       raycaster.setFromCamera(mouseNorm, camera);
@@ -3612,16 +3769,7 @@
       // Update HUD card
       if (foundHit && foundHit.userData) {
         hoveredTarget = foundHit.userData;
-        if (els.cosmosHudCard) {
-          els.cosmosHudCard.style.display = "block";
-          if (els.hudTargetName) els.hudTargetName.textContent = hoveredTarget.title;
-          if (els.hudCardDesc) els.hudCardDesc.textContent = hoveredTarget.desc;
-        }
-      } else {
-        hoveredTarget = null;
-        if (els.cosmosHudCard) {
-          els.cosmosHudCard.style.display = "none";
-        }
+        updateHudCard(hoveredTarget);
       }
 
       renderer.render(scene, camera);
@@ -3646,7 +3794,7 @@
 
     let time = 0;
     function draw2D() {
-      if (state.layoutMode !== "spatial-cosmos" || state.activeView !== "catalog") {
+      if (state.activeView !== "catalog") {
         requestAnimationFrame(draw2D);
         return;
       }

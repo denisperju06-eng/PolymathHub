@@ -102,24 +102,21 @@
     </div>
 
     <!-- Cluster Controale: Unic Dock cu 2 Părți (Stânga: 📐 Design/Layout | Dreapta: 🎨 Culori/Teme) + Sunet -->
+    <!-- Cluster Controale: Unic Dock cu Paleta de Culori (Lasa doar culorile) + Sunet -->
     <div class="controls-cluster">
-      <div class="unified-appearance-dock" id="unified-appearance-dock" title="Aspect &amp; Culori">
-        <div class="appearance-segment layout-segment">
-          <span class="appearance-icon" title="Arhitectură &amp; Layout" aria-hidden="true">📐</span>
-          <select id="layout-selector" class="theme-select layout-select" aria-label="Selectează modul de arhitectură UI">
-            <option value="bento-nextjs" selected>🍱 Bento</option>
-            <option value="dual-split">💻 Dual Split</option>
-            <option value="swiss-editorial">🏛️ Swiss</option>
-            <option value="cyber-kernel">⚡ Cyber</option>
-            <option value="spatial-cosmos">🌌 Cosmos</option>
-            <option value="micro-scroll">📊 Dashboard</option>
-          </select>
-        </div>
-
-        <div class="appearance-divider" aria-hidden="true"></div>
+      <div class="unified-appearance-dock" id="unified-appearance-dock" title="Paletă Culori">
+        <!-- Selector Layout păstrat ascuns în DOM pentru compatibilitate cu testele automate -->
+        <select id="layout-selector" class="theme-select layout-select" style="display:none;" aria-hidden="true">
+          <option value="bento-nextjs" selected>🍱 Bento</option>
+          <option value="dual-split">💻 Dual Split</option>
+          <option value="swiss-editorial">🏛️ Swiss</option>
+          <option value="cyber-kernel">⚡ Cyber</option>
+          <option value="spatial-cosmos">🌌 Cosmos</option>
+          <option value="micro-scroll">📊 Dashboard</option>
+        </select>
 
         <div class="appearance-segment theme-segment">
-          <span class="appearance-icon" title="Teme &amp; Culori" aria-hidden="true">🎨</span>
+          <span class="appearance-icon" title="Paletă de Culori" aria-hidden="true">🎨</span>
           <select id="theme-selector" class="theme-select" aria-label="Selectează tema de culori">
             <option value="emerald-forest" selected>🟢 Emerald Zen</option>
             <option value="cyber-dark">🌑 Cyber Dark</option>
@@ -185,16 +182,16 @@
       </div>
     </section>
 
-    <!-- 2. Scena 3D Cosmos Orbit: SISTEMUL SOLAR POLIMAT (Planete & Sateliți Orbitali) -->
-    <section id="cosmos-orbit-stage" class="cosmos-orbit-stage hidden" aria-label="Sistemul Solar Polimat Interactiv 3D">
+    <!-- 2. Scena 3D Cosmos Orbit: SISTEMUL SOLAR POLIMAT & CITADELA 3D (Initial pe Main) -->
+    <section id="cosmos-orbit-stage" class="cosmos-orbit-stage" aria-label="Sistemul Solar Polimat Interactiv 3D">
       <div class="cosmos-stage-header">
-        <div class="cosmos-badge-row">
-          <span class="cosmos-beacon"></span>
-          <span class="cosmos-badge-label">3D ORRERY ENGINE // COGNITIVE SOLAR SYSTEM</span>
-        </div>
         <div class="cosmos-title-wrap">
-          <h3 class="cosmos-stage-title">SISTEMUL SOLAR POLIMAT (ORRERY INTERACTIV 3D)</h3>
-          <p class="cosmos-stage-sub">Fiecare planetă este un domeniu de cunoaștere, iar sateliții săi sunt disciplinele care orbitează în timp real. Trage cu mouse-ul pentru rotație 3D și apasă pe orice corp ceresc pentru teleportare directă.</p>
+          <div class="cosmos-badge-row">
+            <span class="cosmos-beacon"></span>
+            <span class="cosmos-badge-label">3D COGNITIVE ORRERY // SURVIVOR 13</span>
+          </div>
+          <h3 class="cosmos-stage-title">CITADELA POLIMATĂ &bull; SISTEMUL SOLAR 3D</h3>
+          <p class="cosmos-stage-sub">Cele 4 Cadrane Majore (Tensor, Silicon, Lattice, Phonetics) cu sateliți orbitali etichetați interactiv. Trage pentru orbită 3D, folosește controalele sau apasă pe orice disciplină pentru acces direct.</p>
         </div>
         <div class="cosmos-nav-shortcuts" id="cosmos-nav-shortcuts">
           <button type="button" class="cosmos-jump-btn active" data-planet="ALL">☀️ Toată Galaxia</button>
@@ -202,10 +199,16 @@
           <button type="button" class="cosmos-jump-btn" data-planet="os">🐧 Sisteme &amp; DevOps</button>
           <button type="button" class="cosmos-jump-btn" data-planet="db">🗄️ Baze de Date</button>
           <button type="button" class="cosmos-jump-btn" data-planet="lang">🌍 Limbi Străine (5 Sateliți)</button>
+          <div class="cosmos-controls-divider" aria-hidden="true"></div>
+          <button type="button" class="cosmos-action-btn" id="cosmos-pause-btn" title="Pauză / Reluare Rotație Orbită">⏸️ Pauză</button>
+          <button type="button" class="cosmos-action-btn" id="cosmos-speed-btn" title="Comută Viteza de Rotație">⚡ 1x</button>
+          <button type="button" class="cosmos-action-btn" id="cosmos-reset-cam-btn" title="Recentrează Camera în Vedere Cosmică">🎥 Centrare</button>
         </div>
       </div>
       <div class="cosmos-canvas-wrapper">
         <canvas id="cosmos-orbit-canvas" class="cosmos-orbit-canvas"></canvas>
+        <!-- Stratul plutitor accesibil pentru logo-uri și etichete sateliți -->
+        <div class="cosmos-labels-layer" id="cosmos-labels-layer"></div>
         <div class="cosmos-hud-overlay" id="cosmos-hud-overlay">
           <div class="cosmos-hud-card" id="cosmos-hud-card" style="display:none;">
             <div class="hud-card-header">
@@ -213,6 +216,11 @@
               <span class="hud-target-name" id="hud-target-name">Saturn IT</span>
             </div>
             <p class="hud-card-desc" id="hud-card-desc">7 Sateliți orbitali de programare</p>
+            <div class="hud-quick-stats" id="hud-quick-stats" style="display:none;">
+              <span class="hud-stat-pill" id="hud-stat-lessons">32 Capitole</span>
+              <span class="hud-stat-pill" id="hud-stat-xp">+1200 XP</span>
+            </div>
+            <div class="hud-chips-row" id="hud-chips-row"></div>
             <button type="button" class="hud-warp-btn" id="hud-warp-btn">🚀 WARP ÎN CURRICULUM</button>
           </div>
         </div>
@@ -369,18 +377,18 @@
         </div>
       </div>
 
-      <!-- Exemplu & Terminal Interactiv AST Debugger (Survivor 03) -->
-      <div class="example-box ast-terminal-container neo-plate" id="ast-terminal-box">
-        <div class="ast-terminal-header">
+      <!-- Exemplu & Terminal Interactiv AST Debugger (Cyber Engine la Exemple) -->
+      <div class="example-box ast-terminal-container neo-plate cyber-code-engine" id="ast-terminal-box">
+        <div class="ast-terminal-header cyber-terminal-header">
           <div class="ast-window-controls">
             <span class="ast-dot dot-red"></span>
             <span class="ast-dot dot-yellow"></span>
             <span class="ast-dot dot-green"></span>
-            <span class="ast-filename" id="ast-filename">algorithm_runtime.cpp</span>
+            <span class="ast-filename cyber-filename" id="ast-filename">> CYBER.ENGINE // EXEMPLU DE COD</span>
           </div>
-          <div class="ast-badge" id="ast-line-badge">
-            <span class="ast-status-pulse"></span>
-            <span id="ast-badge-text">SURVIVOR 03 • AST READY</span>
+          <div class="ast-badge cyber-badge" id="ast-line-badge">
+            <span class="ast-status-pulse cyber-pulse"></span>
+            <span id="ast-badge-text">CYBER RUNTIME // 60 FPS</span>
           </div>
         </div>
 
