@@ -773,6 +773,7 @@
     if (stage) {
       stage.style.display = state.is3DActive ? "block" : "none";
     }
+    document.body.classList.toggle("simple-catalog-mode", !state.is3DActive);
     const simpleHero = document.querySelector(".catalog-hero");
     if (simpleHero && window.innerWidth > 768) {
       simpleHero.style.display = state.is3DActive ? "none" : "block";
@@ -3088,25 +3089,10 @@
       return;
     }
 
-    // Butoane Rapide de Telemetrie
-    if (els.cosmosTelemetryNodes && els.cosmosTelemetryNodes.children.length === 0) {
+    // Telemetrie Warp eliminată conform cerinței utilizatorului
+    if (els.cosmosTelemetryNodes) {
       els.cosmosTelemetryNodes.innerHTML = "";
-      const tracks = getTracks();
-      tracks.forEach(t => {
-        const chip = document.createElement("button");
-        chip.type = "button";
-        chip.className = "cosmos-telemetry-chip";
-        chip.innerHTML = `<span>⚡ Warp:</span> <strong>${t.name}</strong>`;
-        chip.addEventListener("click", () => {
-          playUiSound("warp");
-          state.activeTrack = t.name;
-          saveState();
-          renderCatalogView();
-          const chaptersSection = document.getElementById("catalog-chapters-section");
-          if (chaptersSection) chaptersSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-        els.cosmosTelemetryNodes.appendChild(chip);
-      });
+      els.cosmosTelemetryNodes.style.display = "none";
     }
 
     if (cosmosOrbitInitialized) {
@@ -3854,7 +3840,20 @@
 
         Object.keys(disciplineNodes).forEach(k => {
           const node = disciplineNodes[k];
-          if (node && node.orbitGroup) {
+          if (!node) return;
+
+          // Re-afișăm toate cele 4 figuri majore
+          if (node.group) {
+            node.group.visible = true;
+            if (typeof gsap !== "undefined") {
+              gsap.to(node.group.scale, { x: 1, y: 1, z: 1, duration: 0.8, ease: "power2.out" });
+            } else {
+              node.group.scale.set(1, 1, 1);
+            }
+          }
+
+          // Ascundem sateliții orbitali când suntem în privire de ansamblu
+          if (node.orbitGroup) {
             if (typeof gsap !== "undefined") {
               gsap.to(node.orbitGroup.scale, {
                 x: 0.001, y: 0.001, z: 0.001, duration: 0.6,
@@ -3886,23 +3885,52 @@
 
         Object.keys(disciplineNodes).forEach(k => {
           const other = disciplineNodes[k];
-          if (!other || !other.orbitGroup) return;
+          if (!other) return;
+
           if (k === id) {
-            other.orbitGroup.visible = true;
-            if (typeof gsap !== "undefined") {
-              gsap.to(other.orbitGroup.scale, { x: 1, y: 1, z: 1, duration: 1.0, ease: "back.out(1.4)" });
-            } else {
-              other.orbitGroup.scale.set(1, 1, 1);
+            // Figura aleasă: vizibilă și la scară normală
+            if (other.group) {
+              other.group.visible = true;
+              if (typeof gsap !== "undefined") {
+                gsap.to(other.group.scale, { x: 1, y: 1, z: 1, duration: 0.8, ease: "back.out(1.2)" });
+              } else {
+                other.group.scale.set(1, 1, 1);
+              }
+            }
+
+            // Orbita figurii alese: vizibilă și extinsă
+            if (other.orbitGroup) {
+              other.orbitGroup.visible = true;
+              if (typeof gsap !== "undefined") {
+                gsap.to(other.orbitGroup.scale, { x: 1, y: 1, z: 1, duration: 1.0, ease: "back.out(1.4)" });
+              } else {
+                other.orbitGroup.scale.set(1, 1, 1);
+              }
             }
           } else {
-            if (typeof gsap !== "undefined") {
-              gsap.to(other.orbitGroup.scale, {
-                x: 0.001, y: 0.001, z: 0.001, duration: 0.5,
-                onComplete: () => { other.orbitGroup.visible = false; }
-              });
-            } else {
-              other.orbitGroup.scale.set(0.001, 0.001, 0.001);
-              other.orbitGroup.visible = false;
+            // Celelalte 3 figuri: DISPAR COMPLET conform cerinței utilizatorului!
+            if (other.group) {
+              if (typeof gsap !== "undefined") {
+                gsap.to(other.group.scale, {
+                  x: 0.001, y: 0.001, z: 0.001, duration: 0.5,
+                  onComplete: () => { other.group.visible = false; }
+                });
+              } else {
+                other.group.scale.set(0.001, 0.001, 0.001);
+                other.group.visible = false;
+              }
+            }
+
+            if (other.orbitGroup) {
+              if (typeof gsap !== "undefined") {
+                gsap.to(other.orbitGroup.scale, {
+                  x: 0.001, y: 0.001, z: 0.001, duration: 0.5,
+                  onComplete: () => { other.orbitGroup.visible = false; }
+                });
+              } else {
+                other.orbitGroup.scale.set(0.001, 0.001, 0.001);
+                other.orbitGroup.visible = false;
+              }
             }
           }
         });
@@ -4118,9 +4146,17 @@
         });
       }
 
-      // Raycast Hover Detection
+      // Raycast Hover Detection pe obiecte active vizibile
       raycaster.setFromCamera(mouseNorm, camera);
-      const hits = raycaster.intersectObjects(interactiveObjects);
+      const activeInteractive = interactiveObjects.filter(obj => {
+        let curr = obj;
+        while (curr) {
+          if (curr.visible === false) return false;
+          curr = curr.parent;
+        }
+        return true;
+      });
+      const hits = raycaster.intersectObjects(activeInteractive);
       let foundHit = null;
 
       if (hits.length > 0) {
@@ -4360,6 +4396,7 @@
     if (els.soundToggleIcon) {
       els.soundToggleIcon.textContent = state.is3DActive !== false ? "🧊 3D" : "📄 Simplu";
     }
+    document.body.classList.toggle("simple-catalog-mode", !state.is3DActive);
     renderStats();
     switchView(state.activeView || "catalog");
   }

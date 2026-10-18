@@ -2902,7 +2902,8 @@ button {
 .cosmos-orbit-canvas:active {
   cursor: grabbing;
 }
-.cosmos-quick-telemetry {
+.cosmos-quick-telemetry,
+#cosmos-telemetry-nodes {
   display: none !important;
 }
 .cosmos-telemetry-chip {
@@ -3179,32 +3180,22 @@ button {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-  height: calc(100vh - 72px);
-  min-height: calc(100vh - 72px);
-  max-height: calc(100vh - 72px);
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
   padding: 0 !important;
   border-radius: 0 !important;
   border: none !important;
   position: relative;
   overflow: hidden;
   margin-top: 0;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0;
   background: radial-gradient(circle at 50% 40%, #0a0f24 0%, #03050b 90%);
   box-shadow: none;
 }
 
 .cosmos-stage-header {
-  position: absolute;
-  top: 1.25rem;
-  left: 1.5rem;
-  right: 1.5rem;
-  z-index: 10;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem 1.25rem;
-  pointer-events: none;
+  display: none !important;
 }
 
 .cosmos-badge-row {
@@ -3557,6 +3548,14 @@ button {
 
 @media (max-width: 768px) {
   #cosmos-orbit-stage {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  body:not(.simple-catalog-mode) #catalog-division-pills,
+  body:not(.simple-catalog-mode) #catalog-domains-grid,
+  body:not(.simple-catalog-mode) #catalog-domains-toggle-wrap {
     display: none !important;
   }
 }

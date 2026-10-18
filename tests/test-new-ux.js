@@ -25,6 +25,7 @@ async function testNewUX() {
   // =========================================================================
   console.log("\n📚 1. Verificare Catalog: Număr inițial moderat de domenii (6) & Buton Toggle...");
 
+  await page.evaluate(() => document.body.classList.add("simple-catalog-mode"));
   const initialDomainsCount = await page.evaluate(() => document.querySelectorAll(".domain-card").length);
   if (initialDomainsCount === 6) {
     successes.push(`✓ Catalog: Inițial sunt afișate exact 6 domenii (moderat, aerisit, fără aglomerație).`);
