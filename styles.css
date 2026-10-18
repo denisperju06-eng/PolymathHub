@@ -1025,6 +1025,12 @@ body {
   background-color: #732a10;
 }
 
+[data-theme="sepia-book"] .division-pill-btn.active {
+  background-color: #732a10;
+  color: #ffffff;
+  border-color: #732a10;
+}
+
 [data-theme="neon-amethyst"] .chapter-start-btn {
   color: #0d0716;
 }
@@ -3550,4 +3556,570 @@ button {
 [data-layout="micro-scroll"] .domain-card:hover {
   border-color: var(--accent-primary);
   transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   POLYMATHHUB REDESIGN MASTER STYLES:
+   1. AETHERIS AMBIENT GLOW ORBS (CAMELEONIC)
+   2. SURVIVOR 11 TACTILE NEOMORPHIC DEPTH
+   3. SURVIVOR 03 VISUAL RUNTIME AST DEBUGGER
+   4. LIVE PRACTICE SIMULATION SANDBOX
+   5. OBSIDIAN 3D FLIP FLASHCARD & POMODORO TIMER
+   ========================================================================== */
+
+/* 1. Ambient Chameleon Orbs */
+.ambient-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.32;
+}
+
+#orb1 {
+  width: 420px;
+  height: 420px;
+  top: -80px;
+  left: 8%;
+  background: var(--orb-1, rgba(16, 185, 129, 0.3));
+  animation: orbFloat1 20s ease-in-out infinite alternate;
+}
+
+#orb2 {
+  width: 480px;
+  height: 480px;
+  bottom: -100px;
+  right: 6%;
+  background: var(--orb-2, rgba(6, 182, 212, 0.26));
+  animation: orbFloat2 24s ease-in-out infinite alternate;
+}
+
+#orb3 {
+  width: 360px;
+  height: 360px;
+  top: 45%;
+  left: 55%;
+  background: var(--orb-3, rgba(139, 92, 246, 0.22));
+  animation: orbFloat3 28s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(50px, 40px) scale(1.12); }
+}
+
+@keyframes orbFloat2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-45px, -35px) scale(1.08); }
+}
+
+@keyframes orbFloat3 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-35px, 45px) scale(0.96); }
+}
+
+/* 2. Survivor 11 Tactile Neomorphic Depth */
+.neo-plate {
+  background: var(--bg-elevated);
+  box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.4), -4px -4px 10px rgba(255, 255, 255, 0.035);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neo-plate:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 8px 8px 18px rgba(0, 0, 0, 0.5), -4px -4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.neo-plate:active,
+.neo-pressed {
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.65), inset -3px -3px 8px rgba(255, 255, 255, 0.04) !important;
+  transform: translateY(2px) !important;
+  border-color: var(--accent-primary) !important;
+}
+
+/* 3. Survivor 03 Visual Runtime AST Debugger */
+.ast-terminal-container {
+  background: rgba(4, 7, 14, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  margin-top: 1.25rem;
+}
+
+.ast-terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background: rgba(10, 16, 28, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ast-window-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ast-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+
+.ast-filename {
+  margin-left: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.ast-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+.ast-status-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseBeacon 1.5s infinite;
+}
+
+.ast-terminal-body {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.25rem;
+  padding: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .ast-terminal-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ast-code-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.ast-col-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.ast-code-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: rgba(2, 4, 8, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  max-height: 380px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.ast-code-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--text-secondary);
+}
+
+.ast-code-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.ast-code-row.line-active {
+  background: rgba(16, 185, 129, 0.18);
+  border-left: 3px solid #10b981;
+  color: #ecfdf5;
+  font-weight: 700;
+  box-shadow: inset 0 0 15px rgba(16, 185, 129, 0.14);
+}
+
+.ast-line-num {
+  color: rgba(255, 255, 255, 0.3);
+  user-select: none;
+  width: 1.5rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.ast-line-code {
+  flex: 1;
+  white-space: pre;
+  word-break: normal;
+}
+
+.ast-line-badge-tag {
+  font-size: 0.65rem;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ast-controls-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.ast-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.78rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ast-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+.ast-btn-step {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+}
+
+.ast-btn-run {
+  border-color: rgba(6, 182, 212, 0.4);
+  background: rgba(6, 182, 212, 0.12);
+  color: #67e8f9;
+}
+
+.ast-inspector-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ast-explain-card,
+.ast-memory-card {
+  padding: 1rem;
+  border-radius: 14px;
+  background: var(--bg-elevated);
+}
+
+.ast-inspect-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.ast-line-indicator,
+.ast-heap-val {
+  color: var(--accent-primary);
+  font-size: 0.72rem;
+}
+
+.ast-explain-text {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.ast-blocks-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.35rem;
+  margin: 0.75rem 0;
+}
+
+.ast-block-cell {
+  height: 14px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease;
+}
+
+.ast-block-cell.active-block {
+  background: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+}
+
+.ast-vars-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.ast-vars-label {
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.ast-vars-code {
+  font-family: 'JetBrains Mono', monospace;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+}
+
+/* 4. Live Practice Simulation Sandbox */
+.live-practice-sim-box {
+  padding: 1.25rem;
+  border-radius: 18px;
+  background: var(--bg-elevated);
+  margin-top: 1.25rem;
+}
+
+.sim-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.sim-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  letter-spacing: 0.5px;
+}
+
+.sim-title {
+  margin: 0.2rem 0 0 0;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.sim-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+.sim-canvas-wrap {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(2, 4, 8, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.practice-sim-canvas {
+  width: 100%;
+  height: 150px;
+  display: block;
+}
+
+.sim-controls-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .sim-controls-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sim-ctrl-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sim-ctrl-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.sim-range {
+  accent-color: var(--accent-primary);
+  cursor: pointer;
+}
+
+.btn-sim-burst {
+  padding: 0.55rem 1rem;
+  font-size: 0.78rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: #f59e0b;
+  border-color: rgba(245, 158, 11, 0.4);
+  background: rgba(245, 158, 11, 0.12);
+  cursor: pointer;
+  border-radius: 12px;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.btn-sim-burst:hover {
+  background: rgba(245, 158, 11, 0.22);
+  transform: translateY(-1px);
+}
+
+/* 5. 3D Flip Flashcard */
+.flashcard-3d-scene {
+  perspective: 1000px;
+  width: 100%;
+  height: 220px;
+  margin-top: 1rem;
+}
+
+.flashcard-3d-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.flashcard-3d-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  padding: 1.5rem;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.flashcard-front {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.08));
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.flashcard-back {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(245, 158, 11, 0.08));
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  transform: rotateY(180deg);
+}
+
+.flashcard-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+}
+
+.flashcard-chip-back {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #c084fc;
+  text-transform: uppercase;
+}
+
+.flashcard-front-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.flashcard-back-text {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.flashcard-hint-pill {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.flashcard-xp-badge {
+  font-size: 0.72rem;
+  color: #34d399;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+}
+
+/* 6. Pomodoro Box */
+.pomodoro-box {
+  background: var(--bg-elevated);
 }

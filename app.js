@@ -558,6 +558,7 @@
     dualTabTheory: document.getElementById("dual-tab-theory"),
     dualTabExamples: document.getElementById("dual-tab-examples"),
     dualTabPractice: document.getElementById("dual-tab-practice"),
+    dualTabExercises: document.getElementById("dual-tab-exercises"),
     dualPrevBtn: document.getElementById("dual-prev-btn"),
     dualNextBtn: document.getElementById("dual-next-btn"),
     aimCursor: document.getElementById("aim-cursor"),
@@ -1328,6 +1329,9 @@
 
     renderMatchingGame(lesson);
     renderQuizMode(lesson);
+    renderAstDebuggerForLesson(lesson);
+    updateFlashcardForLesson(lesson);
+    updateChameleonAura(null, 1);
     switchPracticeMode(state.activePracticeMode || "write");
   }
 
@@ -1402,14 +1406,15 @@
     // Coloana Stângă
     pairs.forEach((pair, idx) => {
       const btn = document.createElement("button");
-      btn.className = "match-card";
+      btn.className = "match-card neo-plate";
       btn.textContent = pair.left;
       btn.dataset.idx = String(idx);
       btn.addEventListener("click", () => {
         if (matchState.matchedIndices.has(idx)) return;
         matchState.selectedLeftIndex = idx;
-        Array.from(els.matchColLeft.children).forEach(c => c.classList.remove("selected"));
-        btn.classList.add("selected");
+        Array.from(els.matchColLeft.children).forEach(c => c.classList.remove("selected", "neo-pressed"));
+        btn.classList.add("selected", "neo-pressed");
+        playUiSound("click");
       });
       els.matchColLeft.appendChild(btn);
     });
@@ -1421,7 +1426,7 @@
 
     shuffledRight.forEach(item => {
       const btn = document.createElement("button");
-      btn.className = "match-card";
+      btn.className = "match-card neo-plate";
       btn.textContent = formatRomanianTypography(item.text);
       btn.dataset.idx = String(item.originalIdx);
 
@@ -1538,11 +1543,13 @@
 
     qData.options.forEach((optText, idx) => {
       const btn = document.createElement("button");
-      btn.className = "quiz-option-btn";
+      btn.className = "quiz-option-btn neo-plate";
       btn.textContent = formatRomanianTypography(optText);
       const isCorrect = idx === qData.correctIndex;
 
       btn.addEventListener("click", () => {
+        playUiSound("click");
+        btn.classList.add("neo-pressed");
         // Dacă a fost deja selectat răspunsul corect, blochează orice alt click
         const alreadySolved = Array.from(els.quizOptionsGrid.querySelectorAll(".quiz-option-btn")).some(b => b.classList.contains("correct"));
         if (alreadySolved) return;
@@ -1904,6 +1911,444 @@
   }
 
   // =========================================================================
+  // MOTORUL DE REDESIGN POLYMATH:
+  // 1. AETHERIS AMBIENT CHAMELEON AURA
+  // 2. SURVIVOR 03 VISUAL RUNTIME AST DEBUGGER
+  // 3. LIVE PRACTICE SIMULATION SANDBOX
+  // 4. OBSIDIAN 3D FLIP FLASHCARD & POMODORO TIMER
+  // =========================================================================
+
+  function updateChameleonAura(colorHexOrRgb, stepNum) {
+    const stepColors = {
+      1: { o1: "rgba(16, 185, 129, 0.32)", o2: "rgba(6, 182, 212, 0.26)", o3: "rgba(139, 92, 246, 0.2)" }, // Emerald/Cyan
+      2: { o1: "rgba(6, 182, 212, 0.34)", o2: "rgba(139, 92, 246, 0.28)", o3: "rgba(59, 130, 246, 0.22)" }, // Cyan/Amethyst
+      3: { o1: "rgba(245, 158, 11, 0.32)", o2: "rgba(16, 185, 129, 0.26)", o3: "rgba(249, 115, 22, 0.2)" }, // Amber/Emerald
+      4: { o1: "rgba(168, 85, 247, 0.32)", o2: "rgba(236, 72, 153, 0.28)", o3: "rgba(6, 182, 212, 0.2)" }  // Purple/Pink
+    };
+
+    const scheme = stepColors[stepNum] || stepColors[1];
+    document.documentElement.style.setProperty("--orb-1", scheme.o1);
+    document.documentElement.style.setProperty("--orb-2", scheme.o2);
+    document.documentElement.style.setProperty("--orb-3", scheme.o3);
+  }
+
+  let activeAstLineIndex = 0;
+  let astRunInterval = null;
+
+  function generateAstForLesson(lesson) {
+    const rawExample = lesson.example || lesson.starterCode || "";
+    const lines = rawExample
+      .split("\n")
+      .map(l => l.trimEnd())
+      .filter(l => l.trim().length > 0);
+
+    if (lines.length === 0) {
+      return [
+        { code: "// Execuție modul " + (lesson.track || "Polimat"), op: "Modulul este inițializat în memorie.", heap: "0 Bytes", blocks: 1, vars: "status: READY" }
+      ];
+    }
+
+    return lines.map((codeLine, idx) => {
+      const trimmed = codeLine.trim();
+      let op = "Execută instrucțiunea în registrul procesorului.";
+      let heap = `${(idx + 1) * 32} Bytes`;
+      let blocks = Math.min(8, Math.max(1, (idx + 1) % 8 + 1));
+      let vars = `line_${idx + 1}: OK`;
+
+      if (trimmed.startsWith("//") || trimmed.startsWith("--") || trimmed.startsWith("#")) {
+        op = "Directivă sau comentariu semantic de documentare în codul sursă.";
+        heap = "0 Bytes (Static)";
+        blocks = 0;
+        vars = "scope: global";
+      } else if (trimmed.includes("SELECT") || trimmed.includes("WHERE") || trimmed.includes("FROM")) {
+        op = "Plan de execuție SQL: filtru scanare index și alocare buffer de rezultate.";
+        heap = `${(idx + 1) * 64} Bytes (Buffer)`;
+        blocks = Math.min(8, idx + 2);
+        vars = "query_plan: SCAN_INDEX";
+      } else if (trimmed.includes("def ") || trimmed.includes("function") || trimmed.includes("class ")) {
+        op = "Declarație de funcție sau clasă: rezervă descriptorul în tabela de simboluri.";
+        heap = "128 Bytes (Stack Frame)";
+        blocks = 2;
+        vars = "symbol: callable";
+      } else if (trimmed.includes("return")) {
+        op = "Instrucțiune RETURN: transferă valoarea calculată și curăță automat stiva LIFO.";
+        heap = "0 Bytes (Curățat RAII)";
+        blocks = 0;
+        vars = "return_val: OK";
+      } else if (trimmed.includes("vector") || trimmed.includes("list") || trimmed.includes("[]") || trimmed.includes("Array")) {
+        op = "Alocare container secvențial în memorie continuă Heap cu aliniere la Cache.";
+        heap = "512 Bytes (Buffer Heap)";
+        blocks = 6;
+        vars = "ptr: 0x7ffd98";
+      } else if (trimmed.includes("import ") || trimmed.includes("#include")) {
+        op = "Legare dinamică și încărcare modul / antete în spațiul de adrese al procesului.";
+        heap = "64 Bytes (Metadata)";
+        blocks = 1;
+        vars = "module: loaded";
+      } else if (trimmed.includes("=") && !trimmed.includes("==")) {
+        op = "Operație de atribuire: evaluare expresie și scriere în memorie.";
+        heap = `${(idx + 1) * 48} Bytes`;
+        blocks = Math.min(8, idx + 2);
+        vars = "register: assigned";
+      }
+
+      return {
+        code: codeLine,
+        op,
+        heap,
+        blocks,
+        vars
+      };
+    });
+  }
+
+  function renderAstDebuggerForLesson(lesson) {
+    const linesContainer = document.getElementById("ast-code-lines");
+    if (!linesContainer) return;
+
+    if (astRunInterval) {
+      clearInterval(astRunInterval);
+      astRunInterval = null;
+    }
+
+    const astLines = generateAstForLesson(lesson);
+    activeAstLineIndex = 0;
+
+    const extMap = {
+      "C & C++": "main.cpp",
+      "Python Modern & Data Structures": "model.py",
+      "SQL": "query.sql",
+      "JavaScript: DOM & Events": "app.js",
+      "TypeScript & React": "component.tsx",
+      "DevOps & Sisteme Linux": "deploy.sh",
+      "Algoritmi & Structuri de Date": "algorithm.cpp"
+    };
+
+    const fileNameEl = document.getElementById("ast-filename");
+    if (fileNameEl) {
+      fileNameEl.textContent = extMap[lesson.track] || `${(lesson.track || "code").toLowerCase().replace(/[^a-z0-9]/g, "_")}.txt`;
+    }
+
+    function updateAstDisplay() {
+      linesContainer.innerHTML = "";
+      astLines.forEach((item, idx) => {
+        const isCurrent = idx === activeAstLineIndex;
+        const row = document.createElement("div");
+        row.className = `ast-code-row ${isCurrent ? "line-active" : ""}`;
+        row.innerHTML = `
+          <span class="ast-line-num">${idx + 1}</span>
+          <span class="ast-line-code">${escapeHtml(item.code)}</span>
+          ${isCurrent ? '<span class="ast-line-badge-tag">◄ EXECUTĂ</span>' : ''}
+        `;
+        row.addEventListener("click", () => {
+          activeAstLineIndex = idx;
+          playUiSound("click");
+          updateAstDisplay();
+        });
+        linesContainer.appendChild(row);
+      });
+
+      const current = astLines[activeAstLineIndex] || astLines[0];
+      const badgeText = document.getElementById("ast-badge-text");
+      if (badgeText) badgeText.textContent = `LINIA ${activeAstLineIndex + 1} / ${astLines.length}`;
+
+      const currentLineIndicator = document.getElementById("ast-current-line-num");
+      if (currentLineIndicator) currentLineIndicator.textContent = `Rândul ${activeAstLineIndex + 1}`;
+
+      const explainEl = document.getElementById("ast-explain");
+      if (explainEl && current) explainEl.textContent = current.op;
+
+      const heapEl = document.getElementById("ast-heap-val");
+      if (heapEl && current) heapEl.textContent = current.heap;
+
+      const varsEl = document.getElementById("ast-vars-val");
+      if (varsEl && current) varsEl.textContent = current.vars;
+
+      const blocksContainer = document.getElementById("ast-memory-blocks");
+      if (blocksContainer && current) {
+        blocksContainer.innerHTML = "";
+        for (let b = 0; b < 8; b++) {
+          const cell = document.createElement("div");
+          cell.className = `ast-block-cell ${b < current.blocks ? "active-block" : ""}`;
+          blocksContainer.appendChild(cell);
+        }
+      }
+    }
+
+    updateAstDisplay();
+
+    const stepBtn = document.getElementById("ast-step-btn");
+    if (stepBtn) {
+      stepBtn.onclick = () => {
+        activeAstLineIndex = (activeAstLineIndex + 1) % astLines.length;
+        playUiSound("click");
+        updateAstDisplay();
+      };
+    }
+
+    const runBtn = document.getElementById("ast-run-btn");
+    if (runBtn) {
+      runBtn.onclick = () => {
+        if (astRunInterval) clearInterval(astRunInterval);
+        let s = 0;
+        astRunInterval = setInterval(() => {
+          activeAstLineIndex = s;
+          updateAstDisplay();
+          playUiSound("pop");
+          s++;
+          if (s >= astLines.length) {
+            clearInterval(astRunInterval);
+            astRunInterval = null;
+            addXp(30, "Execuție completă AST!");
+            playUiSound("success");
+          }
+        }, 400);
+      };
+    }
+
+    const resetBtn = document.getElementById("ast-reset-btn");
+    if (resetBtn) {
+      resetBtn.onclick = () => {
+        if (astRunInterval) clearInterval(astRunInterval);
+        activeAstLineIndex = 0;
+        updateAstDisplay();
+        playUiSound("click");
+      };
+    }
+  }
+
+  // Live Practice Simulation Canvas
+  let simAnimId = null;
+  let simPackets = [];
+  let simBurstSparks = [];
+  let simDensity = 12;
+  let simSpeed = 2.5;
+
+  function initPracticeSimCanvas() {
+    const canvas = document.getElementById("practice-sim-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const densitySlider = document.getElementById("sim-density-slider");
+    const densityVal = document.getElementById("sim-density-val");
+    const speedSlider = document.getElementById("sim-speed-slider");
+    const speedVal = document.getElementById("sim-speed-val");
+    const burstBtn = document.getElementById("btn-sim-burst");
+
+    if (densitySlider) {
+      densitySlider.oninput = e => {
+        simDensity = parseInt(e.target.value, 10);
+        if (densityVal) densityVal.textContent = simDensity;
+        createPackets();
+      };
+    }
+
+    if (speedSlider) {
+      speedSlider.oninput = e => {
+        simSpeed = parseFloat(e.target.value);
+        if (speedVal) speedVal.textContent = `${simSpeed}x`;
+      };
+    }
+
+    if (burstBtn) {
+      burstBtn.onclick = () => {
+        for (let i = 0; i < 35; i++) {
+          simBurstSparks.push({
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            vx: (Math.random() - 0.5) * 8 * (simSpeed / 2),
+            vy: (Math.random() - 0.5) * 8 * (simSpeed / 2),
+            radius: Math.random() * 3 + 1,
+            alpha: 1,
+            color: Math.random() > 0.5 ? "#10b981" : "#06b6d4"
+          });
+        }
+        addXp(15, "Burst Memorie generat!");
+        playUiSound("success");
+      };
+    }
+
+    function createPackets() {
+      simPackets = [];
+      const cw = canvas.width || 600;
+      const ch = canvas.height || 150;
+      for (let i = 0; i < simDensity; i++) {
+        simPackets.push({
+          x: Math.random() * cw,
+          y: Math.random() * ch,
+          vx: (Math.random() * 1.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1),
+          vy: (Math.random() * 0.8 + 0.2) * (Math.random() > 0.5 ? 1 : -1),
+          r: Math.random() * 3 + 2,
+          color: i % 2 === 0 ? "#10b981" : "#67e8f9"
+        });
+      }
+    }
+
+    createPackets();
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.lineWidth = 0.6;
+      for (let i = 0; i < simPackets.length; i++) {
+        for (let j = i + 1; j < simPackets.length; j++) {
+          const dx = simPackets[i].x - simPackets[j].x;
+          const dy = simPackets[i].y - simPackets[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 90) {
+            ctx.strokeStyle = `rgba(16, 185, 129, ${0.45 * (1 - dist / 90)})`;
+            ctx.beginPath();
+            ctx.moveTo(simPackets[i].x, simPackets[i].y);
+            ctx.lineTo(simPackets[j].x, simPackets[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      simPackets.forEach(p => {
+        p.x += p.vx * (simSpeed / 2);
+        p.y += p.vy * (simSpeed / 2);
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      });
+
+      for (let i = simBurstSparks.length - 1; i >= 0; i--) {
+        const s = simBurstSparks[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.alpha -= 0.025;
+        if (s.alpha <= 0) {
+          simBurstSparks.splice(i, 1);
+        } else {
+          ctx.save();
+          ctx.globalAlpha = s.alpha;
+          ctx.fillStyle = s.color;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      simAnimId = requestAnimationFrame(draw);
+    }
+
+    if (simAnimId) cancelAnimationFrame(simAnimId);
+    simAnimId = requestAnimationFrame(draw);
+  }
+
+  // 3D Flip Flashcard
+  let currentFlashcardIndex = 0;
+
+  function updateFlashcardForLesson(lesson) {
+    const cardEl = document.getElementById("feynman-card");
+    const categoryEl = document.getElementById("fc-category");
+    const qEl = document.getElementById("fc-q");
+    const aEl = document.getElementById("fc-a");
+    const nextBtn = document.getElementById("btn-next-flashcard");
+
+    if (!cardEl || !qEl || !aEl) return;
+
+    const pairs = (lesson && lesson.glossary && lesson.glossary.length > 0)
+      ? lesson.glossary.map(g => ({ q: `Ce înseamnă conceptul „${g.term}”?`, a: g.def, tag: lesson.track }))
+      : [
+          { q: "Ce garantează principiul RAII în C++?", a: "Durata de viață a resurselor este legată de stivă. Constructorul alocă, destructorul curăță automat.", tag: "C++23 Determinism" },
+          { q: "Ce reprezintă un Index B-Tree în baze de date?", a: "Structură arborescentă echilibrată care permite căutări, inserări și ștergeri în timp O(log N).", tag: "SQL & Storage" },
+          { q: "Ce este un closure în JavaScript / Python?", a: "O funcție care își amintește și poate accesa variabilele din contextul său lexical de creare.", tag: "Limbaje de Programare" }
+        ];
+
+    const cur = pairs[currentFlashcardIndex % pairs.length];
+    if (categoryEl) categoryEl.textContent = cur.tag || (lesson ? lesson.track : "Polimat");
+    qEl.textContent = cur.q;
+    aEl.textContent = cur.a;
+    cardEl.classList.remove("flipped");
+
+    cardEl.onclick = () => {
+      cardEl.classList.toggle("flipped");
+      playUiSound("pop");
+      if (cardEl.classList.contains("flipped")) {
+        addXp(15, "Memorare activă flashcard!");
+      }
+    };
+
+    if (nextBtn) {
+      nextBtn.onclick = () => {
+        currentFlashcardIndex++;
+        cardEl.classList.remove("flipped");
+        playUiSound("click");
+        setTimeout(() => {
+          const next = pairs[currentFlashcardIndex % pairs.length];
+          if (categoryEl) categoryEl.textContent = next.tag || (lesson ? lesson.track : "Polimat");
+          qEl.textContent = next.q;
+          aEl.textContent = next.a;
+        }, 220);
+      };
+    }
+  }
+
+  // Pomodoro Deep Work Focus Timer
+  let pomodoroSeconds = 25 * 60;
+  let pomodoroRunning = false;
+  let pomodoroTimerId = null;
+
+  function initPomodoroTimer() {
+    const display = document.getElementById("pomo-display");
+    const toggleBtn = document.getElementById("pomo-btn");
+    const resetBtn = document.getElementById("btn-pomo-reset");
+    if (!display || !toggleBtn) return;
+
+    function formatTime(s) {
+      const mins = Math.floor(s / 60);
+      const secs = s % 60;
+      return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    }
+
+    toggleBtn.onclick = () => {
+      playUiSound("click");
+      if (!pomodoroRunning) {
+        pomodoroRunning = true;
+        toggleBtn.textContent = "PAUZĂ FOCUS";
+        pomodoroTimerId = setInterval(() => {
+          if (pomodoroSeconds > 0) {
+            pomodoroSeconds--;
+            display.textContent = formatTime(pomodoroSeconds);
+          } else {
+            clearInterval(pomodoroTimerId);
+            pomodoroRunning = false;
+            toggleBtn.textContent = "START FOCUS";
+            addXp(100, "Sesiune Pomodoro finalizată!");
+            playUiSound("success");
+          }
+        }, 1000);
+      } else {
+        pomodoroRunning = false;
+        clearInterval(pomodoroTimerId);
+        toggleBtn.textContent = "CONTINUĂ";
+      }
+    };
+
+    if (resetBtn) {
+      resetBtn.onclick = () => {
+        playUiSound("click");
+        clearInterval(pomodoroTimerId);
+        pomodoroRunning = false;
+        pomodoroSeconds = 25 * 60;
+        display.textContent = "25:00";
+        toggleBtn.textContent = "START FOCUS";
+      };
+    }
+  }
+
+  // =========================================================================
   // ATRIBUIRE EVENIMENTE
   // =========================================================================
   function bindEvents() {
@@ -2143,16 +2588,31 @@
     }
 
     if (els.dualTabTheory) {
-      els.dualTabTheory.addEventListener("click", () => setActiveDualTab(els.dualTabTheory, els.lessonTheory || document.querySelector(".theory-card")));
+      els.dualTabTheory.addEventListener("click", () => {
+        setActiveDualTab(els.dualTabTheory, els.lessonTheory || document.querySelector(".theory-card"));
+        updateChameleonAura(null, 1);
+      });
     }
     if (els.dualTabExamples) {
       els.dualTabExamples.addEventListener("click", () => {
         const exampleBox = document.querySelector(".example-box");
         setActiveDualTab(els.dualTabExamples, exampleBox || els.lessonExample);
+        updateChameleonAura(null, 2);
       });
     }
     if (els.dualTabPractice) {
-      els.dualTabPractice.addEventListener("click", () => setActiveDualTab(els.dualTabPractice, els.paneWrite || els.practiceCard));
+      els.dualTabPractice.addEventListener("click", () => {
+        switchPracticeMode("write");
+        setActiveDualTab(els.dualTabPractice, els.paneWrite || els.practiceCard);
+        updateChameleonAura(null, 3);
+      });
+    }
+    if (els.dualTabExercises) {
+      els.dualTabExercises.addEventListener("click", () => {
+        switchPracticeMode("quiz");
+        setActiveDualTab(els.dualTabExercises, els.paneQuiz || els.practiceCard);
+        updateChameleonAura(null, 4);
+      });
     }
 
     if (els.dualPrevBtn) {
@@ -2180,6 +2640,9 @@
         }
       });
     }
+
+    initPracticeSimCanvas();
+    initPomodoroTimer();
   }
 
   /* ==========================================================================

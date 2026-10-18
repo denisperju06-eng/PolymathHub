@@ -10,8 +10,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Three.js & GSAP pentru 3D Cosmos & Tranzitii de Camera -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
+  <!-- Aetheris Ambient Glow Orbs (Cameleonic, reactioneaza la etapele lectiei) -->
+  <div id="orb1" class="ambient-orb" aria-hidden="true"></div>
+  <div id="orb2" class="ambient-orb" aria-hidden="true"></div>
+  <div id="orb3" class="ambient-orb" aria-hidden="true"></div>
+
   <!-- Custom Momentum Aim Cursor (Activ în Modurile Editorial & Cosmos) -->
   <div id="aim-cursor" class="custom-aim-cursor" aria-hidden="true"></div>
   <div id="aim-dot" class="custom-aim-dot" aria-hidden="true"></div>
@@ -303,15 +311,22 @@
         <button type="button" class="dual-nav-tab" id="dual-tab-examples" data-pane="examples">
           <span class="dual-tab-icon">💡</span>
           <div class="dual-tab-info">
-            <strong>2. Exemple de Referință</strong>
-            <small>Sintaxă &amp; Model de Rulare</small>
+            <strong>2. Exemple &amp; AST Debugger</strong>
+            <small>Execuție Pas cu Pas (Survivor 03)</small>
           </div>
         </button>
         <button type="button" class="dual-nav-tab" id="dual-tab-practice" data-pane="practice">
           <span class="dual-tab-icon">⚡</span>
           <div class="dual-tab-info">
-            <strong>3. Laborator Practic</strong>
-            <small>Write, Match, Quiz &amp; Evaluare</small>
+            <strong>3. Atelier Practic &amp; Simulator</strong>
+            <small>Codare 50/50 &amp; Live Simulation</small>
+          </div>
+        </button>
+        <button type="button" class="dual-nav-tab" id="dual-tab-exercises" data-pane="exercises">
+          <span class="dual-tab-icon">🎯</span>
+          <div class="dual-tab-info">
+            <strong>4. Exerciții Tactile (Neomorphic)</strong>
+            <small>Quiz &amp; Potrivire Concepte (Survivor 11)</small>
           </div>
         </button>
       </div>
@@ -321,7 +336,7 @@
       </div>
     </aside>
 
-    <!-- 1. CAPITOLUL ENCICLOPEDIC (Teorie Stil Carte + Dicționar 2x2 + Model Paralel) -->
+    <!-- 1. CAPITOLUL ENCICLOPEDIC (Teorie Stil Carte + Dicționar + Model Paralel AST Debugger) -->
     <article class="card theory-card">
       <div class="lesson-meta-bar">
         <span class="badge-category" id="lesson-category-badge">Domeniu</span>
@@ -342,13 +357,75 @@
         <div class="dictionary-grid" id="lesson-dictionary"></div>
       </div>
 
-      <!-- Exemplu Asemănător & Model de Rezolvare (FĂRĂ răspunsul la întrebare) -->
-      <div class="example-box">
-        <div class="example-header">
-          <span>Model Paralel &amp; Exemplu de Referință</span>
-          <button id="copy-example-btn" class="btn-copy">Copiază</button>
+      <!-- Exemplu & Terminal Interactiv AST Debugger (Survivor 03) -->
+      <div class="example-box ast-terminal-container neo-plate" id="ast-terminal-box">
+        <div class="ast-terminal-header">
+          <div class="ast-window-controls">
+            <span class="ast-dot dot-red"></span>
+            <span class="ast-dot dot-yellow"></span>
+            <span class="ast-dot dot-green"></span>
+            <span class="ast-filename" id="ast-filename">algorithm_runtime.cpp</span>
+          </div>
+          <div class="ast-badge" id="ast-line-badge">
+            <span class="ast-status-pulse"></span>
+            <span id="ast-badge-text">SURVIVOR 03 • AST READY</span>
+          </div>
         </div>
-        <pre class="code-display"><code id="lesson-example"></code></pre>
+
+        <div class="ast-terminal-body">
+          <!-- Stânga: Rânduri de Cod Interactive Clicabile -->
+          <div class="ast-code-col">
+            <div class="ast-col-title">
+              <span>COD EXECUTABIL &bull; APASĂ PE ORICE RÂND</span>
+              <button id="copy-example-btn" class="btn-copy">Copiază</button>
+            </div>
+            <div class="ast-code-lines" id="ast-code-lines">
+              <!-- Populate dinamic din exemplul de cod al lecției -->
+            </div>
+            <!-- Păstrăm elementul original pentru compatibilitate completă -->
+            <pre class="code-display hidden" style="display:none;"><code id="lesson-example"></code></pre>
+
+            <div class="ast-controls-bar">
+              <button type="button" class="ast-btn ast-btn-step" id="ast-step-btn" title="Pasul următor (F10)">
+                <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Pas Următor (F10)
+              </button>
+              <button type="button" class="ast-btn ast-btn-run" id="ast-run-btn" title="Rulează tot codul (F5)">
+                <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+                Rulează Tot (F5)
+              </button>
+              <button type="button" class="ast-btn ast-btn-reset" id="ast-reset-btn" title="Resetează pointerul de execuție">
+                <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                Resetează
+              </button>
+            </div>
+          </div>
+
+          <!-- Dreapta: Explicație Semantică în Timp Real & Memorie Stack/Heap -->
+          <div class="ast-inspector-col">
+            <div class="ast-explain-card neo-plate">
+              <div class="ast-inspect-header">
+                <span class="ast-inspect-label">SEMANTICĂ INSTRUCȚIUNE</span>
+                <span class="ast-line-indicator" id="ast-current-line-num">Rândul 1</span>
+              </div>
+              <p class="ast-explain-text" id="ast-explain">Selectează un rând din stânga sau apasă pe „Pas Următor” pentru a inspecta semantica instrucțiunii în memoria RAM.</p>
+            </div>
+
+            <div class="ast-memory-card neo-plate">
+              <div class="ast-inspect-header">
+                <span class="ast-inspect-label">INSPECTOR MEMORIE (STACK &amp; HEAP)</span>
+                <span class="ast-heap-val" id="ast-heap-val">0 Bytes</span>
+              </div>
+              <div class="ast-blocks-grid" id="ast-memory-blocks">
+                <!-- Blocuri de memorie animate -->
+              </div>
+              <div class="ast-vars-row">
+                <span class="ast-vars-label">Registru / Pointer:</span>
+                <code class="ast-vars-code" id="ast-vars-val">null</code>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
 
@@ -430,6 +507,39 @@
           </div>
           <pre class="solution-code"><code id="official-solution-text"></code></pre>
           <p class="solution-explanation" id="official-solution-explanation"></p>
+        </div>
+
+        <!-- Live Runtime Simulation Sandbox (Etapa 3 Practică) -->
+        <div class="live-practice-sim-box neo-plate" id="live-practice-sim-box" style="margin-top: 1.5rem;">
+          <div class="sim-header">
+            <div class="sim-title-wrap">
+              <span class="sim-tag">SIMULATOR VIZUAL RUNTIME &bull; ETAPA 3</span>
+              <h4 class="sim-title" id="sim-title">Simulator Dinamic de Execuție &amp; Memorie</h4>
+            </div>
+            <div class="sim-badge" id="sim-status-badge">60 FPS &bull; Activ</div>
+          </div>
+          <div class="sim-canvas-wrap">
+            <canvas id="practice-sim-canvas" class="practice-sim-canvas" width="600" height="150"></canvas>
+          </div>
+          <div class="sim-controls-grid">
+            <div class="sim-ctrl-item">
+              <div class="sim-ctrl-header">
+                <label for="sim-density-slider">Densitate Blocuri:</label>
+                <span id="sim-density-val">12</span>
+              </div>
+              <input type="range" id="sim-density-slider" min="4" max="32" value="12" class="sim-range">
+            </div>
+            <div class="sim-ctrl-item">
+              <div class="sim-ctrl-header">
+                <label for="sim-speed-slider">Frecvență / Rata de Transfer:</label>
+                <span id="sim-speed-val">2.5x</span>
+              </div>
+              <input type="range" id="sim-speed-slider" min="1" max="5" step="0.5" value="2.5" class="sim-range">
+            </div>
+            <div class="sim-actions">
+              <button type="button" class="btn-sim-burst neo-plate" id="btn-sim-burst">⚡ Generează Burst Memorie (+15 XP)</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -687,6 +797,51 @@
       </div>
       <div class="calendar-grid" id="gamification-calendar-grid"></div>
     </section>
+
+    <!-- Obsidian 3D Flip Flashcard & Pomodoro Deep Work Focus Lab -->
+    <div class="dashboard-deepwork-grid" style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+      <!-- Flashcard 3D cu Întoarcere Perspectivă (Feynman Concept Recall) -->
+      <section class="settings-section-card neo-plate">
+        <div class="section-title-wrap">
+          <span class="sub-label-badge" style="color: var(--accent-primary); font-size: 0.72rem; font-family: monospace; font-weight: 700;">MEMORARE ACTIVĂ • PERSPECTIVĂ 3D</span>
+          <h3 class="settings-card-title" style="margin-top: 0.35rem;">Flashcard Polimat Tridimensional</h3>
+        </div>
+        <div class="flashcard-3d-scene" id="flashcard-3d-scene">
+          <div class="flashcard-3d-card" id="feynman-card" tabindex="0" role="button" aria-label="Apasă pentru a întoarce cardul">
+            <div class="flashcard-face flashcard-front">
+              <span class="flashcard-chip" id="fc-category">C++ Determinism RAII</span>
+              <h4 class="flashcard-front-title" id="fc-q">Ce garantează principiul RAII în C++?</h4>
+              <div class="flashcard-hint-pill">👆 Click pe card pentru întoarcere 3D</div>
+            </div>
+            <div class="flashcard-face flashcard-back">
+              <span class="flashcard-chip-back">RĂSPUNS CHEIE</span>
+              <p class="flashcard-back-text" id="fc-a">Durata de viață a oricărei resurse este legată strict de stivă (LIFO). Constructorul inițializează, iar destructorul eliberează automat memoria la ieșirea din domeniu fără memory leaks.</p>
+              <span class="flashcard-xp-badge">+15 XP Memorare</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 1rem; text-align: center;">
+          <button type="button" class="btn-primary" id="btn-next-flashcard" style="font-size: 0.85rem; padding: 0.5rem 1.25rem;">
+            Următorul Flashcard &rarr;
+          </button>
+        </div>
+      </section>
+
+      <!-- Pomodoro Deep Work Focus Timer -->
+      <section class="settings-section-card neo-plate">
+        <div class="section-title-wrap">
+          <span class="sub-label-badge" style="color: #67e8f9; font-size: 0.72rem; font-family: monospace; font-weight: 700;">DEEP WORK FOCUS LAB</span>
+          <h3 class="settings-card-title" style="margin-top: 0.35rem;">Timer de Focalizare Pomodoro</h3>
+        </div>
+        <div class="pomodoro-box neo-plate" style="text-align: center; padding: 2rem 1rem; margin-top: 1rem; border-radius: 16px;">
+          <div class="pomodoro-display" id="pomo-display" style="font-size: 3.2rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: 2px; color: var(--text-primary);">25:00</div>
+          <div class="pomodoro-controls" style="margin-top: 1.25rem; display: flex; gap: 0.75rem; justify-content: center;">
+            <button type="button" class="btn-primary" id="pomo-btn" style="padding: 0.55rem 1.25rem;">START FOCUS</button>
+            <button type="button" class="btn-secondary" id="btn-pomo-reset" style="padding: 0.55rem 1.25rem;">RESETEAZĂ</button>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <!-- =========================================================================
