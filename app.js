@@ -762,7 +762,28 @@
     }
   }
 
+  function updateScrollLock() {
+    const isMobile = window.innerWidth <= 768;
+    const isDesktop3DCatalog = !isMobile && (state.is3DActive !== false) && !document.body.classList.contains("simple-catalog-mode") && (state.activeView === "catalog");
+    if (isDesktop3DCatalog) {
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      window.scrollTo(0, 0);
+    } else {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    }
+  }
+
   function toggleSound() {
+    if (window.innerWidth <= 768) {
+      state.is3DActive = false;
+      document.body.classList.add("simple-catalog-mode");
+      state.soundEnabled = !state.soundEnabled;
+      saveState();
+      updateScrollLock();
+      return;
+    }
     state.is3DActive = (state.is3DActive === undefined) ? false : !state.is3DActive;
     state.soundEnabled = !state.soundEnabled;
     saveState();
@@ -778,6 +799,7 @@
     if (simpleHero && window.innerWidth > 768) {
       simpleHero.style.display = state.is3DActive ? "none" : "block";
     }
+    updateScrollLock();
     if (state.is3DActive) {
       showToast("🧊 Modul 3D Citadela activat");
     } else {
@@ -1063,6 +1085,7 @@
     }
 
     renderStats();
+    updateScrollLock();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -3077,8 +3100,8 @@
     const canvas = document.getElementById("cosmos-orbit-canvas");
     if (!canvas) return;
 
-    // Pe mobil/telefon (<= 768px) Cosmos este dezactivat pentru viteză maximă și zero consum GPU
-    if (window.innerWidth <= 768) {
+    // Pe mobil/telefon (<= 768px) sau în modul simplu, Cosmos este dezactivat pentru viteză maximă și zero consum GPU
+    if (window.innerWidth <= 768 || state.is3DActive === false) {
       return;
     }
 
@@ -3142,7 +3165,7 @@
     scene.fog = new THREE.FogExp2(0x020307, 0.02);
 
     const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
-    camera.position.set(0, 0.2, 17.5);
+    camera.position.set(0, 0.2, 18.5);
     camera.lookAt(0, 0, 0);
     cosmosThreeCamera = camera;
 
@@ -3367,7 +3390,7 @@
     // 4. Figure 1: 💻 CALCULATOR & TERMINAL (Informatică & Programare)
     const itGroup = new THREE.Group();
     itGroup.position.set(-9.8, 0.2, 0);
-    itGroup.scale.set(1.38, 1.38, 1.38);
+    itGroup.scale.set(1.1, 1.1, 1.1);
 
     const itBezelGeo = new THREE.BoxGeometry(4.4, 2.8, 0.25);
     const itBezelMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
@@ -3425,7 +3448,7 @@
     // 5. Figure 2: 🐧 SERVER RACK MAINFRAME (Sisteme Linux & DevOps)
     const osGroup = new THREE.Group();
     osGroup.position.set(-3.3, -0.3, 1.6);
-    osGroup.scale.set(1.38, 1.38, 1.38);
+    osGroup.scale.set(1.1, 1.1, 1.1);
 
     const osChassisGeo = new THREE.BoxGeometry(2.6, 4.8, 2.4);
     const osChassisMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.85, roughness: 0.25 });
@@ -3470,7 +3493,7 @@
     // 6. Figure 3: 🗄️ BAZE DE DATE CYLINDERS (Baze de Date & SQL)
     const dbGroup = new THREE.Group();
     dbGroup.position.set(3.3, -0.3, 1.6);
-    dbGroup.scale.set(1.38, 1.38, 1.38);
+    dbGroup.scale.set(1.1, 1.1, 1.1);
 
     const dbCylGeo = new THREE.CylinderGeometry(2.2, 2.2, 0.95, 36);
     const dbCylMat = new THREE.MeshStandardMaterial({
@@ -3521,7 +3544,7 @@
     // 7. Figure 4: 🌍 CARTE DESCHISĂ & GLOB (Limbi Străine & Comunicare)
     const langGroup = new THREE.Group();
     langGroup.position.set(9.8, 0.2, 0);
-    langGroup.scale.set(1.38, 1.38, 1.38);
+    langGroup.scale.set(1.1, 1.1, 1.1);
 
     const bookSpineGeo = new THREE.BoxGeometry(0.3, 3.4, 2.4);
     const bookSpineMat = new THREE.MeshStandardMaterial({ color: 0x4a044e, metalness: 0.6, roughness: 0.4 });
@@ -3844,9 +3867,9 @@
           if (node.group) {
             node.group.visible = true;
             if (typeof gsap !== "undefined") {
-              gsap.to(node.group.scale, { x: 1.38, y: 1.38, z: 1.38, duration: 0.8, ease: "power2.out" });
+              gsap.to(node.group.scale, { x: 1.1, y: 1.1, z: 1.1, duration: 0.8, ease: "power2.out" });
             } else {
-              node.group.scale.set(1.38, 1.38, 1.38);
+              node.group.scale.set(1.1, 1.1, 1.1);
             }
           }
 
@@ -3865,10 +3888,10 @@
         });
 
         if (typeof gsap !== "undefined") {
-          gsap.to(camera.position, { x: 0, y: 0.2, z: 17.5, duration: 1.6, ease: "power3.inOut" });
+          gsap.to(camera.position, { x: 0, y: 0.2, z: 18.5, duration: 1.6, ease: "power3.inOut" });
           gsap.to(targetRot, { x: 0, y: 0, duration: 1.2, ease: "power2.out" });
         } else {
-          camera.position.set(0, 0.2, 17.5);
+          camera.position.set(0, 0.2, 18.5);
           targetRot.x = targetRot.y = 0;
         }
 
@@ -3890,9 +3913,9 @@
             if (other.group) {
               other.group.visible = true;
               if (typeof gsap !== "undefined") {
-                gsap.to(other.group.scale, { x: 1.48, y: 1.48, z: 1.48, duration: 0.8, ease: "back.out(1.2)" });
+                gsap.to(other.group.scale, { x: 1.22, y: 1.22, z: 1.22, duration: 0.8, ease: "back.out(1.2)" });
               } else {
-                other.group.scale.set(1.48, 1.48, 1.48);
+                other.group.scale.set(1.22, 1.22, 1.22);
               }
             }
 
@@ -4039,7 +4062,7 @@
     const tempProjVec = new THREE.Vector3();
 
     function animate(t) {
-      if (state.activeView !== "catalog" || window.innerWidth <= 768) {
+      if (state.activeView !== "catalog" || window.innerWidth <= 768 || state.is3DActive === false) {
         requestAnimationFrame(animate);
         return;
       }
@@ -4391,6 +4414,10 @@
   }
 
   function renderAll() {
+    // Pe telefon (<= 768px), modul 3D este complet dezactivat: exclusiv catalogul 2D simplu, rapid pentru învățat
+    if (window.innerWidth <= 768) {
+      state.is3DActive = false;
+    }
     applyTheme(state.theme);
     applyLayoutMode(state.layoutMode || "bento-nextjs");
     if (els.soundToggleIcon) {
@@ -4399,6 +4426,7 @@
     document.body.classList.toggle("simple-catalog-mode", !state.is3DActive);
     renderStats();
     switchView(state.activeView || "catalog");
+    updateScrollLock();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -4406,5 +4434,13 @@
     renderAll();
     initAmbientParticles();
     initAimCursor();
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 768) {
+        state.is3DActive = false;
+        document.body.classList.add("simple-catalog-mode");
+      }
+      updateScrollLock();
+    });
   });
 })();
