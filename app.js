@@ -15,7 +15,8 @@
     assistedHistory: {}, // { [date]: count of assisted (50/50) tasks }
     theme: "emerald-forest",
     layoutMode: "bento-nextjs",
-    soundEnabled: true,
+    soundEnabled: false,
+    is3DActive: true,
     customLessons: [],
     activeTrack: "SQL",
     activeLessonId: "sql-1",
@@ -762,16 +763,24 @@
   }
 
   function toggleSound() {
+    state.is3DActive = (state.is3DActive === undefined) ? false : !state.is3DActive;
     state.soundEnabled = !state.soundEnabled;
     saveState();
     if (els.soundToggleIcon) {
-      els.soundToggleIcon.textContent = state.soundEnabled ? "🔊" : "🔇";
+      els.soundToggleIcon.textContent = state.is3DActive ? "🧊 3D" : "📄 Simplu";
     }
-    if (state.soundEnabled) {
-      playUiSound("success");
-      showToast("🔊 Efecte audio sintetizate activate");
+    const stage = document.getElementById("cosmos-orbit-stage");
+    if (stage) {
+      stage.style.display = state.is3DActive ? "block" : "none";
+    }
+    const simpleHero = document.querySelector(".catalog-hero");
+    if (simpleHero && window.innerWidth > 768) {
+      simpleHero.style.display = state.is3DActive ? "none" : "block";
+    }
+    if (state.is3DActive) {
+      showToast("🧊 Modul 3D Citadela activat");
     } else {
-      showToast("🔇 Efecte audio dezactivate");
+      showToast("📄 Modul Simplu activat");
     }
   }
 
@@ -3820,12 +3829,7 @@
     }, { passive: true });
     window.addEventListener("touchend", () => { isDragging = false; });
 
-    // Wheel Zoom
-    canvas.addEventListener("wheel", e => {
-      camera.position.z += e.deltaY * 0.02;
-      camera.position.z = Math.max(12, Math.min(48, camera.position.z));
-      e.preventDefault();
-    }, { passive: false });
+    // Wheel Zoom removed per user request (no camera zoom)
 
     // Click handler on 3D Canvas
     canvas.addEventListener("click", () => {
@@ -4354,7 +4358,7 @@
     applyTheme(state.theme);
     applyLayoutMode(state.layoutMode || "bento-nextjs");
     if (els.soundToggleIcon) {
-      els.soundToggleIcon.textContent = state.soundEnabled ? "🔊" : "🔇";
+      els.soundToggleIcon.textContent = state.is3DActive !== false ? "🧊 3D" : "📄 Simplu";
     }
     renderStats();
     switchView(state.activeView || "catalog");
