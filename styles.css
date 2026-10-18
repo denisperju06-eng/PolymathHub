@@ -3405,8 +3405,8 @@ button {
 
 .cosmos-hud-overlay {
   position: absolute;
-  top: 1.25rem;
-  right: 1.5rem;
+  top: 5.8rem;
+  right: 2rem;
   pointer-events: none;
   z-index: 10;
 }

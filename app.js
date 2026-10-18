@@ -3165,8 +3165,8 @@
     scene.fog = new THREE.FogExp2(0x020307, 0.02);
 
     const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
-    camera.position.set(0, 0.2, 18.5);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(0, 0.2, 19.5);
+    camera.lookAt(0, -0.6, 0);
     cosmosThreeCamera = camera;
 
     // World Group to hold all 3D entities
@@ -3389,8 +3389,8 @@
 
     // 4. Figure 1: 💻 CALCULATOR & TERMINAL (Informatică & Programare)
     const itGroup = new THREE.Group();
-    itGroup.position.set(-9.8, 0.2, 0);
-    itGroup.scale.set(1.1, 1.1, 1.1);
+    itGroup.position.set(-8.0, -0.9, 0);
+    itGroup.scale.set(0.9, 0.9, 0.9);
 
     const itBezelGeo = new THREE.BoxGeometry(4.4, 2.8, 0.25);
     const itBezelMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
@@ -3401,7 +3401,7 @@
     const itScreenGeo = new THREE.PlaneGeometry(4.05, 2.45);
     const itScreenMat = new THREE.MeshBasicMaterial({ map: createCodeScreenTexture() });
     const itScreen = new THREE.Mesh(itScreenGeo, itScreenMat);
-    itScreen.position.set(0, 1.0, 0.135);
+    itScreen.position.set(0, 1.0, 0.16);
     itGroup.add(itScreen);
 
     const itNeckGeo = new THREE.CylinderGeometry(0.18, 0.22, 1.2, 16);
@@ -3442,13 +3442,13 @@
     };
     interactiveObjects.push(itBezel);
     worldGroup.add(itGroup);
-    disciplineNodes["it"] = { group: itGroup, mesh: itBezel, pos: itGroup.position, cameraTarget: new THREE.Vector3(-9.8, 0.2, 8.8) };
-    majorFigureNodes.push({ id: "it", group: itGroup, mesh: itBezel, title: "💻 Informatică (7 Cursuri)", color: "#38bdf8" });
+    disciplineNodes["it"] = { group: itGroup, mesh: itBezel, pos: itGroup.position, cameraTarget: new THREE.Vector3(-8.0, -0.9, 8.8) };
+    majorFigureNodes.push({ id: "it", group: itGroup, mesh: itBezel, title: "Informatică (7 Cursuri)", color: "#38bdf8" });
 
     // 5. Figure 2: 🐧 SERVER RACK MAINFRAME (Sisteme Linux & DevOps)
     const osGroup = new THREE.Group();
-    osGroup.position.set(-3.3, -0.3, 1.6);
-    osGroup.scale.set(1.1, 1.1, 1.1);
+    osGroup.position.set(-2.7, -1.4, 1.6);
+    osGroup.scale.set(0.9, 0.9, 0.9);
 
     const osChassisGeo = new THREE.BoxGeometry(2.6, 4.8, 2.4);
     const osChassisMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.85, roughness: 0.25 });
@@ -3458,7 +3458,7 @@
     const osFrontGeo = new THREE.PlaneGeometry(2.3, 4.5);
     const osFrontMat = new THREE.MeshBasicMaterial({ map: createServerTexture() });
     const osFront = new THREE.Mesh(osFrontGeo, osFrontMat);
-    osFront.position.set(0, 0, 1.21);
+    osFront.position.set(0, 0, 1.25);
     osGroup.add(osFront);
 
     const osBadgeGeo = new THREE.CylinderGeometry(0.85, 0.85, 0.12, 32);
@@ -3487,13 +3487,13 @@
     };
     interactiveObjects.push(osChassis);
     worldGroup.add(osGroup);
-    disciplineNodes["os"] = { group: osGroup, mesh: osChassis, pos: osGroup.position, cameraTarget: new THREE.Vector3(-3.3, -0.3, 9.2) };
-    majorFigureNodes.push({ id: "os", group: osGroup, mesh: osChassis, title: "🐧 Sisteme Linux & DevOps", color: "#fb923c" });
+    disciplineNodes["os"] = { group: osGroup, mesh: osChassis, pos: osGroup.position, cameraTarget: new THREE.Vector3(-2.7, -1.4, 9.2) };
+    majorFigureNodes.push({ id: "os", group: osGroup, mesh: osChassis, title: "Sisteme Linux & DevOps", color: "#fb923c" });
 
     // 6. Figure 3: 🗄️ BAZE DE DATE CYLINDERS (Baze de Date & SQL)
     const dbGroup = new THREE.Group();
-    dbGroup.position.set(3.3, -0.3, 1.6);
-    dbGroup.scale.set(1.1, 1.1, 1.1);
+    dbGroup.position.set(2.7, -1.4, 1.6);
+    dbGroup.scale.set(0.9, 0.9, 0.9);
 
     const dbCylGeo = new THREE.CylinderGeometry(2.2, 2.2, 0.95, 36);
     const dbCylMat = new THREE.MeshStandardMaterial({
@@ -3538,13 +3538,13 @@
     };
     interactiveObjects.push(c2);
     worldGroup.add(dbGroup);
-    disciplineNodes["db"] = { group: dbGroup, mesh: c2, pos: dbGroup.position, cameraTarget: new THREE.Vector3(3.3, -0.3, 9.2) };
-    majorFigureNodes.push({ id: "db", group: dbGroup, mesh: c2, title: "🗄️ Baze de Date & SQL", color: "#10b981" });
+    disciplineNodes["db"] = { group: dbGroup, mesh: c2, pos: dbGroup.position, cameraTarget: new THREE.Vector3(2.7, -1.4, 9.2) };
+    majorFigureNodes.push({ id: "db", group: dbGroup, mesh: c2, title: "Baze de Date & SQL", color: "#10b981" });
 
     // 7. Figure 4: 🌍 CARTE DESCHISĂ & GLOB (Limbi Străine & Comunicare)
     const langGroup = new THREE.Group();
-    langGroup.position.set(9.8, 0.2, 0);
-    langGroup.scale.set(1.1, 1.1, 1.1);
+    langGroup.position.set(8.0, -0.9, 0);
+    langGroup.scale.set(0.9, 0.9, 0.9);
 
     const bookSpineGeo = new THREE.BoxGeometry(0.3, 3.4, 2.4);
     const bookSpineMat = new THREE.MeshStandardMaterial({ color: 0x4a044e, metalness: 0.6, roughness: 0.4 });
@@ -3601,8 +3601,8 @@
     };
     interactiveObjects.push(bookSpine);
     worldGroup.add(langGroup);
-    disciplineNodes["lang"] = { group: langGroup, mesh: bookSpine, pos: langGroup.position, cameraTarget: new THREE.Vector3(9.8, 0.2, 8.8), globe: globe };
-    majorFigureNodes.push({ id: "lang", group: langGroup, mesh: bookSpine, title: "🌍 Limbi Străine (5 Cursuri)", color: "#d946ef" });
+    disciplineNodes["lang"] = { group: langGroup, mesh: bookSpine, pos: langGroup.position, cameraTarget: new THREE.Vector3(8.0, -0.9, 8.8), globe: globe };
+    majorFigureNodes.push({ id: "lang", group: langGroup, mesh: bookSpine, title: "Limbi Străine (5 Cursuri)", color: "#d946ef" });
 
     // 8. Sistemul Ierarhic de Sateliți Orbitale (Sistem Solar pe Nivelul 2)
     const allSatellites = [];
@@ -3696,6 +3696,59 @@
     const majorLabelElements = [];
     const satLabelElements = [];
 
+    let hoveredObject = null;
+    let hoveredTarget = null;
+    let hoveredMajorNode = null;
+    let hoveredSatelliteMesh = null;
+
+    function applyHoverState(hitObject) {
+      if (!hitObject) {
+        if (hoveredMajorNode && activeCosmosMode === "overview") {
+          hoveredMajorNode.group.scale.set(0.9, 0.9, 0.9);
+          hoveredMajorNode = null;
+        }
+        if (hoveredSatelliteMesh) {
+          hoveredSatelliteMesh.scale.set(1, 1, 1);
+          hoveredSatelliteMesh = null;
+        }
+        hoveredObject = null;
+        hoveredTarget = null;
+        return;
+      }
+
+      const targetData = hitObject.userData;
+      if (targetData && targetData.isMajor) {
+        const node = majorFigureNodes.find(n => n.id === targetData.id);
+        if (node) {
+          if (hoveredMajorNode && hoveredMajorNode !== node && activeCosmosMode === "overview") {
+            hoveredMajorNode.group.scale.set(0.9, 0.9, 0.9);
+          }
+          if (hoveredSatelliteMesh) {
+            hoveredSatelliteMesh.scale.set(1, 1, 1);
+            hoveredSatelliteMesh = null;
+          }
+          hoveredMajorNode = node;
+          if (activeCosmosMode === "overview") {
+            node.group.scale.set(0.96, 0.96, 0.96);
+          }
+        }
+      } else {
+        if (hoveredMajorNode && activeCosmosMode === "overview") {
+          hoveredMajorNode.group.scale.set(0.9, 0.9, 0.9);
+          hoveredMajorNode = null;
+        }
+        if (hoveredSatelliteMesh !== hitObject) {
+          if (hoveredSatelliteMesh) hoveredSatelliteMesh.scale.set(1, 1, 1);
+          hoveredSatelliteMesh = hitObject;
+          hitObject.scale.set(1.2, 1.2, 1.2);
+        }
+      }
+
+      hoveredObject = hitObject;
+      hoveredTarget = targetData;
+      if (targetData) updateHudCard(targetData);
+    }
+
     majorFigureNodes.forEach(m => {
       if (!labelsLayer) return;
       const btn = document.createElement("button");
@@ -3709,18 +3762,11 @@
         flyToNode(m.id);
       });
       btn.addEventListener("mouseenter", () => {
-        if (hoveredObject) hoveredObject.scale.set(1, 1, 1);
-        hoveredObject = m.mesh;
-        hoveredObject.scale.set(1.15, 1.15, 1.15);
-        hoveredTarget = m.mesh.userData;
-        updateHudCard(hoveredTarget);
+        applyHoverState(m.mesh);
         playUiSound("quantum");
       });
       btn.addEventListener("mouseleave", () => {
-        if (hoveredObject === m.mesh) {
-          hoveredObject.scale.set(1, 1, 1);
-          hoveredObject = null;
-        }
+        applyHoverState(null);
       });
       labelsLayer.appendChild(btn);
       majorLabelElements.push({ element: btn, mesh: m.mesh, id: m.id });
@@ -3740,18 +3786,11 @@
         warpToTrack(s.mesh.userData.trackName);
       });
       btn.addEventListener("mouseenter", () => {
-        if (hoveredObject) hoveredObject.scale.set(1, 1, 1);
-        hoveredObject = s.mesh;
-        hoveredObject.scale.set(1.25, 1.25, 1.25);
-        hoveredTarget = s.mesh.userData;
-        updateHudCard(hoveredTarget);
+        applyHoverState(s.mesh);
         playUiSound("quantum");
       });
       btn.addEventListener("mouseleave", () => {
-        if (hoveredObject === s.mesh) {
-          hoveredObject.scale.set(1, 1, 1);
-          hoveredObject = null;
-        }
+        applyHoverState(null);
       });
       labelsLayer.appendChild(btn);
       satLabelElements.push({ element: btn, mesh: s.mesh, domainId: s.domainId });
@@ -3790,8 +3829,6 @@
     let curRot = { x: 0, y: 0 };
     const mouseNorm = new THREE.Vector2(-9999, -9999);
     const raycaster = new THREE.Raycaster();
-    let hoveredObject = null;
-    let hoveredTarget = null;
 
     canvas.addEventListener("mousedown", e => {
       isDragging = true;
@@ -3867,9 +3904,9 @@
           if (node.group) {
             node.group.visible = true;
             if (typeof gsap !== "undefined") {
-              gsap.to(node.group.scale, { x: 1.1, y: 1.1, z: 1.1, duration: 0.8, ease: "power2.out" });
+              gsap.to(node.group.scale, { x: 0.9, y: 0.9, z: 0.9, duration: 0.8, ease: "power2.out" });
             } else {
-              node.group.scale.set(1.1, 1.1, 1.1);
+              node.group.scale.set(0.9, 0.9, 0.9);
             }
           }
 
@@ -3888,10 +3925,10 @@
         });
 
         if (typeof gsap !== "undefined") {
-          gsap.to(camera.position, { x: 0, y: 0.2, z: 18.5, duration: 1.6, ease: "power3.inOut" });
+          gsap.to(camera.position, { x: 0, y: 0.2, z: 19.5, duration: 1.6, ease: "power3.inOut" });
           gsap.to(targetRot, { x: 0, y: 0, duration: 1.2, ease: "power2.out" });
         } else {
-          camera.position.set(0, 0.2, 18.5);
+          camera.position.set(0, 0.2, 19.5);
           targetRot.x = targetRot.y = 0;
         }
 
@@ -3913,9 +3950,9 @@
             if (other.group) {
               other.group.visible = true;
               if (typeof gsap !== "undefined") {
-                gsap.to(other.group.scale, { x: 1.22, y: 1.22, z: 1.22, duration: 0.8, ease: "back.out(1.2)" });
+                gsap.to(other.group.scale, { x: 1.05, y: 1.05, z: 1.05, duration: 0.8, ease: "back.out(1.2)" });
               } else {
-                other.group.scale.set(1.22, 1.22, 1.22);
+                other.group.scale.set(1.05, 1.05, 1.05);
               }
             }
 
@@ -4078,17 +4115,17 @@
       worldGroup.rotation.x = curRot.x;
 
       if (!isOrbitPaused) {
-        // Floating motion for the 4 3D sculpted figures
+        // Floating motion for the 4 3D sculpted figures (1.1 lower)
         itGroup.rotation.y = Math.sin(time * 0.015) * 0.15;
-        itGroup.position.y = 0.2 + Math.sin(time * 0.025) * 0.2;
+        itGroup.position.y = -0.9 + Math.sin(time * 0.025) * 0.12;
 
         osGroup.rotation.y = Math.sin(time * 0.018 + 1) * 0.15;
-        osGroup.position.y = -0.3 + Math.sin(time * 0.025 + 1) * 0.2;
+        osGroup.position.y = -1.4 + Math.sin(time * 0.025 + 1) * 0.12;
 
         dbGroup.rotation.y += 0.006;
-        dbGroup.position.y = -0.3 + Math.sin(time * 0.025 + 2) * 0.2;
+        dbGroup.position.y = -1.4 + Math.sin(time * 0.025 + 2) * 0.12;
 
-        langGroup.position.y = 0.2 + Math.sin(time * 0.025 + 3) * 0.2;
+        langGroup.position.y = -0.9 + Math.sin(time * 0.025 + 3) * 0.12;
         if (disciplineNodes.lang && disciplineNodes.lang.globe) {
           disciplineNodes.lang.globe.rotation.y += 0.012;
           disciplineNodes.lang.globe.rotation.x += 0.005;
@@ -4122,7 +4159,7 @@
 
         majorLabelElements.forEach(l => {
           l.mesh.getWorldPosition(tempProjVec);
-          tempProjVec.y += 3.3;
+          tempProjVec.y += 2.0;
           tempProjVec.project(camera);
 
           if (tempProjVec.z < 1) {
@@ -4185,22 +4222,13 @@
       if (hits.length > 0) {
         foundHit = hits[0].object;
         if (hoveredObject !== foundHit) {
-          if (hoveredObject) hoveredObject.scale.set(1, 1, 1);
-          hoveredObject = foundHit;
-          hoveredObject.scale.set(1.18, 1.18, 1.18);
+          applyHoverState(foundHit);
           playUiSound("quantum");
         }
       } else {
         if (hoveredObject) {
-          hoveredObject.scale.set(1, 1, 1);
-          hoveredObject = null;
+          applyHoverState(null);
         }
-      }
-
-      // Update HUD card
-      if (foundHit && foundHit.userData) {
-        hoveredTarget = foundHit.userData;
-        updateHudCard(hoveredTarget);
       }
 
       renderer.render(scene, camera);
