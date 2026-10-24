@@ -5,8 +5,11 @@
     "puppeteer-core": "^25.14.0"
   },
   "scripts": {
-    "dev": "python3 -m http.server 8000 --bind 127.0.0.1",
+    "dev": "node --env-file-if-exists=.env.local scripts/dev-server.mjs",
     "build": "node scripts/build-static.js",
-    "test": "node --test tests/vocabulary.test.js"
+    "test": "node --test tests/vocabulary.test.js tests/account.test.mjs"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }

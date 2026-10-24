@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "polymath_edtech_state_v2";
+  let STORAGE_KEY = "polymath_edtech_state_v2";
   const DAILY_GOAL_TARGET = 3;
 
   const defaultState = {
@@ -21,9 +21,9 @@
     activePracticeMode: "write", // "write" | "match" | "quiz"
     activeView: "home",       // "catalog" | "study" | "activity" | "leagues"
     user: {
-      firstName: "Denis",
-      lastName: "Perju",
-      email: "denis@polymath.com",
+      firstName: "",
+      lastName: "",
+      email: "",
       bio: "Pasionat de programare, limbi străine și cunoaștere polimată.",
       avatar: "🎓"
     },
@@ -311,7 +311,7 @@
         raw = window.localStorage.getItem("polymath_state_profile_default") || window.localStorage.getItem("polymath_edtech_state_v1");
       }
       if (!raw) {
-        return { ...defaultState };
+        return structuredClone(defaultState);
       }
       const parsed = { ...defaultState, ...JSON.parse(raw) };
       const today = getTodayKey();
@@ -337,7 +337,7 @@
       };
       return parsed;
     } catch (e) {
-      return { ...defaultState };
+      return structuredClone(defaultState);
     }
   }
 
@@ -348,6 +348,7 @@
   function saveState() {
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      window.dispatchEvent(new Event("polymath:progress"));
     } catch (e) {
       console.error("Eroare la salvare:", e);
     }
@@ -792,7 +793,10 @@
   function syncRoute(mode = "push", params = {}) {
     const query = new URLSearchParams(params);
     if (state.activeView === "study") query.set("lesson", state.activeLessonId);
-    if (state.activeView === "catalog") query.set("track", state.activeTrack);
+    if (state.activeView === "catalog") {
+      query.set("track", state.activeTrack);
+      if (currentDivisionFilter !== "ALL") query.set("division", currentDivisionFilter === "Limbi Străine & Comunicare" ? "languages" : "coding");
+    }
     const hash = `#${ROUTES[state.activeView]}${query.size ? "?" + query.toString() : ""}`;
     if (window.location.hash !== hash) window.history[mode === "replace" ? "replaceState" : "pushState"]({}, "", hash);
   }
@@ -806,6 +810,17 @@
     }
     if (params.track && allLessons.some(item => item.track === params.track)) state.activeTrack = params.track;
     state.activeView = target;
+    document.body.dataset.view = target;
+    document.querySelector(".top-bar").classList.remove("menu-open");
+    document.getElementById("shell-menu-toggle")?.setAttribute("aria-expanded", "false");
+    if (target === "catalog" && params.division) {
+      currentDivisionFilter = params.division === "languages" ? "Limbi Străine & Comunicare" : params.division === "coding" ? "Informatică și Programare" : "ALL";
+      const tracks = getTracks().filter(track => currentDivisionFilter === "ALL" || track.division === currentDivisionFilter);
+      if (!tracks.some(track => track.name === state.activeTrack) && tracks.length) state.activeTrack = tracks[0].name;
+      document.querySelectorAll(".division-pill-btn").forEach(button => button.classList.toggle("active", button.dataset.division === currentDivisionFilter));
+      if (!allLessons.some(lesson => lesson.id === state.activeLessonId && lesson.track === state.activeTrack)) state.activeLessonId = allLessons.find(lesson => lesson.track === state.activeTrack)?.id;
+      domainsExpanded = false;
+    }
     saveState();
     document.querySelectorAll("body > main").forEach(view => view.classList.add("hidden"));
     document.querySelectorAll(".nav-link-btn").forEach(btn => {
@@ -821,7 +836,7 @@
     else if (target === "activity") renderActivityView();
     else if (target === "leagues") renderLeaguesView();
     if (window.PolymathStudio && target !== "study") window.PolymathStudio.render(target, params);
-    document.getElementById("page-label").textContent = VIEW_LABELS[target];
+
     document.title = `${VIEW_LABELS[target]} · PolymathHub`;
     document.body.dataset.view = target;
     if (options.history !== "none") syncRoute(options.history || "push", params);
@@ -1844,6 +1859,7 @@
         currentDivisionFilter = pill.getAttribute("data-division") || "ALL";
         domainsExpanded = false;
         renderCatalogView();
+        syncRoute();
       });
     });
 
@@ -2009,6 +2025,14 @@
     navigate: (view, params = {}) => switchView(view, { params }),
     snapshot: () => ({ state, lessons: allLessons, tracks: getTracks() }),
     toast: showToast,
+    replaceProgress: (course, accountId) => {
+      STORAGE_KEY = "polymath_edtech_state_v2" + (accountId ? ":" + accountId : "");
+      state = { ...structuredClone(defaultState), ...(course || {}), user: structuredClone(defaultState.user) };
+      if (!allLessons.some(lesson => lesson.id === state.activeLessonId)) state.activeLessonId = allLessons[0]?.id;
+      applyTheme(state.theme);
+      const route = readRoute(); switchView(route.view, { params: route.params, history: "replace" });
+    },
+    guestProgress: () => { try { return JSON.parse(localStorage.getItem("polymath_edtech_state_v2") || "null"); } catch { return null; } },
     selectTrack: name => {
       const lessons = allLessons.filter(item => item.track === name).sort(sortLessonsCanonical);
       if (lessons.length) { state.activeLessonId = lessons.find(item => !state.masteryPoints[item.id])?.id || lessons[0].id; state.activeTrack = name; switchView("study"); }
