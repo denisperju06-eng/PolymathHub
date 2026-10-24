@@ -1,50 +1,40 @@
 <!DOCTYPE html>
-<html lang="ro" data-theme="emerald-forest">
+<html lang="ro" data-theme="daylight-clean">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>PolymathHub | Enciclopedie &amp; Laborator Interactiv</title>
+  <title>PolymathHub · Învață cu sens</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2310b981%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z%22/><path d=%22M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z%22/></svg>">
+  <meta name="description" content="Învață programare și limbi străine în ritmul tău. Lecții, dicționar bilingv, carduri de vocabular și exerciții practice.">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="studio.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+  <a class="skip-link" href="#page-content">Sari la conținut</a>
   <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
   <!-- BARA SUPERIOARĂ STATISTICI, NAVIGAȚIE PAGINI & PROFIL -->
   <header class="top-bar">
-    <div class="brand" id="brand-home-btn" role="button" tabindex="0" title="Mergi la Pagina Principală (Catalog Domenii)">
+    <div class="brand" id="brand-home-btn" role="button" tabindex="0" title="Mergi la pagina Acasă">
       <div class="brand-logo" aria-hidden="true">
         <svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
       </div>
       <div>
-        <h1 class="brand-title">Polymath<span>Book</span></h1>
-        <p class="brand-subtitle">Enciclopedie &amp; Practică Activă</p>
+        <h1 class="brand-title">Polymath<span>Hub</span></h1>
+        <p class="brand-subtitle">ÎNVAȚĂ. EXPLOREAZĂ. EVOLUEAZĂ.</p>
       </div>
     </div>
 
     <!-- Navigație Pagini SPA (Elimină Pop-up-urile Agasante) -->
-    <nav class="top-nav-links" aria-label="Navigație Pagini Aplicație">
-      <button class="nav-link-btn active" data-view="catalog" id="nav-catalog-btn">
-        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        Catalog
-      </button>
-      <button class="nav-link-btn" data-view="study" id="nav-study-btn">
-        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-        Studiu
-      </button>
-      <button class="nav-link-btn" data-view="activity" id="nav-activity-btn">
-        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        Activitate
-      </button>
-      <button class="nav-link-btn" data-view="leagues" id="nav-leagues-btn">
-        <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-        Ligi
-      </button>
-    </nav>
+<nav id="main-navigation" class="top-nav-links" aria-label="Navigație principală"><span class="nav-caption">NAVIGARE</span><button class="nav-link-btn" data-view="home" id="nav-home-btn"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/></svg><span>Acasă</span></button><button class="nav-link-btn" data-view="catalog" id="nav-catalog-btn"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg><span>Explorează</span></button><button class="nav-link-btn" data-view="study" id="nav-study-btn"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h6a4 4 0 0 1 3 2 4 4 0 0 1 3-2h6v15h-6a4 4 0 0 0-3 2 4 4 0 0 0-3-2H3z"/><path d="M12 6v15"/></svg><span>Învățare</span></button><button class="nav-link-btn" data-view="vocabulary" id="nav-vocabulary-btn"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h11v13H4zM8 8h3M8 12h4M17 8h3v13H9v-2"/></svg><span>Vocabular</span></button><button class="nav-link-btn" data-view="activity" id="nav-activity-btn"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h17M6 16v-5M12 16V5M18 16V9"/></svg><span>Progresul meu</span></button><button class="nav-link-btn" data-view="leagues" id="nav-leagues-btn"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8v6a4 4 0 0 1-8 0zM8 5H4v3a4 4 0 0 0 4 4M16 5h4v3a4 4 0 0 1-4 4M12 13v5M8 21h8"/></svg><span>Realizări</span></button></nav>
+
+    <div class="focus-quick-links"><button type="button" data-go="catalog">Explorează</button><button type="button" data-go="vocabulary">Vocabular</button></div>
+    <div id="account-control" class="account-control" hidden></div>
+    <button type="button" id="shell-menu-toggle" class="shell-menu-toggle" aria-expanded="false" aria-controls="main-navigation" aria-label="Deschide meniul de navigare"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>Meniu</span></button>
 
     <!-- Cluster Statistici Interactive (Navighează Direct la Paginile Dedicate) -->
     <div class="stats-cluster">
@@ -89,24 +79,27 @@
     <!-- Cluster Controale: Schimbare Fundal / Temă cu Emoji Colorat -->
     <div class="controls-cluster">
       <select id="theme-selector" class="theme-select" aria-label="Selectează tema de culori">
-        <option value="emerald-forest" selected>🟢 Emerald Zen (Verde)</option>
+        <option value="emerald-forest">🟢 Emerald Zen (Verde)</option>
         <option value="cyber-dark">🌑 Cyber Dark (Negru)</option>
         <option value="sepia-book">📜 Carte Sepia (Cald)</option>
         <option value="neon-amethyst">🟣 Amethyst Neon (Violet)</option>
         <option value="sunset-amber">🌅 Sunset Amber (Apus)</option>
         <option value="ocean-deep">🌊 Ocean Deep (Albastru)</option>
-        <option value="daylight-clean">☀️ Daylight Clean (Luminos)</option>
+        <option value="daylight-clean" selected>☀️ Daylight Clean (Luminos)</option>
       </select>
     </div>
   </header>
 
+  <div id="page-content" class="page-content-anchor" tabindex="-1"></div>
+  <main id="home-view" class="studio-page hidden" tabindex="-1"></main>
+  <main id="vocabulary-view" class="studio-page hidden" tabindex="-1"></main>
   <!-- =========================================================================
        VIEW 1: PAGINA PRINCIPALĂ (CATALOG & DOMENII DE CURS)
        ========================================================================= -->
-  <main id="catalog-view" class="catalog-layout">
+  <main id="catalog-view" class="catalog-layout hidden">
     <section class="catalog-hero">
-      <h2>Enciclopedia &amp; Laboratorul Interactiv</h2>
-      <p>Selectează o disciplină de studiu din domeniul Informatică sau Limbi Străine pentru a explora capitolele enciclopedice și a începe practica activă.</p>
+      <span class="eyebrow">BIBLIOTECA TA DE CUNOAȘTERE</span><h2>Ce vrei să descoperi astăzi?</h2>
+      <p>De la prima linie de cod la prima conversație. Alege un domeniu și găsește următorul tău pas.</p>
     </section>
 
     <!-- Filtru Categorii / Diviziuni (Informatică & Programare vs Limbi Străine) -->
@@ -306,7 +299,7 @@
         </div>
 
         <div class="input-zone" id="input-zone">
-          <label for="user-answer-input" class="input-label">Scrie răspunsul tău mai jos (rămâne roșu până este 100% corect):</label>
+          <label for="user-answer-input" class="input-label">Răspunsul tău: încearcă, verifică și învață din feedback.</label>
           <textarea
             id="user-answer-input"
             class="answer-textarea"
@@ -500,7 +493,7 @@
        BUZUNAR GLISANT OFF-CANVAS (POCKET DRAWER PENTRU SCHIMBARE RAPIDĂ)
        ========================================================================= -->
   <div id="pocket-drawer-backdrop" class="pocket-drawer-backdrop hidden"></div>
-  <aside id="pocket-drawer" class="pocket-drawer" aria-label="Buzunar Navigare Capitole">
+  <aside id="pocket-drawer" class="pocket-drawer" inert aria-hidden="true" aria-label="Buzunar Navigare Capitole">
     <div class="pocket-drawer-header">
       <h3 class="pocket-drawer-title">
         <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem; color:var(--accent-primary);"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
@@ -529,6 +522,9 @@
   <script src="curriculum-polyglot.js"></script>
   <script src="curriculum-cpp.js"></script>
   <script src="curriculum-mega.js"></script>
+  <script src="vocabulary.js"></script>
   <script src="app.js"></script>
+  <script src="studio.js"></script>
+  <script src="account.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "polymath_edtech_state_v2";
+  let STORAGE_KEY = "polymath_edtech_state_v2";
   const DAILY_GOAL_TARGET = 3;
 
   const defaultState = {
@@ -13,17 +13,17 @@
     masteryPoints: {},   // { [lessonId]: points }
     dailyHistory: {},    // { [date]: count of autonomous tasks }
     assistedHistory: {}, // { [date]: count of assisted (50/50) tasks }
-    theme: "emerald-forest",
+    theme: "daylight-clean",
     customLessons: [],
     activeTrack: "SQL",
     activeLessonId: "sql-1",
     activeDualPane: "theory", // "theory" | "examples" | "practice"
     activePracticeMode: "write", // "write" | "match" | "quiz"
-    activeView: "catalog",       // "catalog" | "study" | "activity" | "leagues"
+    activeView: "home",       // "catalog" | "study" | "activity" | "leagues"
     user: {
-      firstName: "Denis",
-      lastName: "Perju",
-      email: "denis@polymath.com",
+      firstName: "",
+      lastName: "",
+      email: "",
       bio: "Pasionat de programare, limbi străine și cunoaștere polimată.",
       avatar: "🎓"
     },
@@ -311,7 +311,7 @@
         raw = window.localStorage.getItem("polymath_state_profile_default") || window.localStorage.getItem("polymath_edtech_state_v1");
       }
       if (!raw) {
-        return { ...defaultState };
+        return structuredClone(defaultState);
       }
       const parsed = { ...defaultState, ...JSON.parse(raw) };
       const today = getTodayKey();
@@ -328,7 +328,7 @@
       parsed.dailyHistory = parsed.dailyHistory || {};
       parsed.assistedHistory = parsed.assistedHistory || {};
       parsed.theme = parsed.theme || "emerald-forest";
-      parsed.activeView = ["catalog", "study", "activity", "leagues"].includes(parsed.activeView) ? parsed.activeView : "catalog";
+      parsed.activeView = ["home", "catalog", "study", "vocabulary", "activity", "leagues"].includes(parsed.activeView) ? parsed.activeView : "home";
       parsed.activeDualPane = ["theory", "examples", "practice"].includes(parsed.activeDualPane) ? parsed.activeDualPane : "theory";
       parsed.customLessons = [];
       parsed.preferences = {
@@ -337,7 +337,7 @@
       };
       return parsed;
     } catch (e) {
-      return { ...defaultState };
+      return structuredClone(defaultState);
     }
   }
 
@@ -348,6 +348,7 @@
   function saveState() {
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      window.dispatchEvent(new Event("polymath:progress"));
     } catch (e) {
       console.error("Eroare la salvare:", e);
     }
@@ -355,7 +356,7 @@
 
   function renderAllViews() {
     renderStats();
-    if (state.activeView === "catalog") renderCatalog();
+    if (state.activeView === "catalog") renderCatalogView();
     else if (state.activeView === "study") renderStudyView();
     else if (state.activeView === "activity") renderActivityView();
     else if (state.activeView === "leagues") renderLeaguesView();
@@ -780,48 +781,69 @@
   // =========================================================================
   // VIEW SWITCHING (SPA MULTI-PAGE: CATALOG, STUDY, ACTIVITY, LEAGUES)
   // =========================================================================
-  function switchView(viewName) {
-    const validViews = ["catalog", "study", "activity", "leagues"];
-    const target = validViews.includes(viewName) ? viewName : "catalog";
-    state.activeView = target;
-    saveState();
+  const ROUTES = { home: "acasa", catalog: "exploreaza", study: "invata", vocabulary: "vocabular", activity: "progres", leagues: "realizari" };
+  const VIEW_LABELS = { home: "Acasă", catalog: "Explorează", study: "Învățare", vocabulary: "Vocabular", activity: "Progresul meu", leagues: "Realizări" };
 
-    const views = [
-      els.catalogView,
-      els.studyView,
-      els.activityView,
-      els.leaguesView
-    ];
-    views.forEach(v => {
-      if (v) v.classList.add("hidden");
-    });
+  function readRoute() {
+    const [path, query = ""] = window.location.hash.slice(1).split("?");
+    const view = Object.keys(ROUTES).find(key => ROUTES[key] === path || key === path);
+    return { view: view || "home", params: Object.fromEntries(new URLSearchParams(query)) };
+  }
 
-    document.querySelectorAll(".nav-link-btn").forEach(btn => {
-      if (btn.getAttribute("data-view") === target) {
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
-    });
-
-    closePocketDrawer();
-
-    if (target === "catalog") {
-      if (els.catalogView) els.catalogView.classList.remove("hidden");
-      renderCatalogView();
-    } else if (target === "study") {
-      if (els.studyView) els.studyView.classList.remove("hidden");
-      renderStudyView();
-    } else if (target === "activity") {
-      if (els.activityView) els.activityView.classList.remove("hidden");
-      renderActivityView();
-    } else if (target === "leagues") {
-      if (els.leaguesView) els.leaguesView.classList.remove("hidden");
-      renderLeaguesView();
+  function syncRoute(mode = "push", params = {}) {
+    const query = new URLSearchParams(params);
+    if (state.activeView === "study") query.set("lesson", state.activeLessonId);
+    if (state.activeView === "catalog") {
+      query.set("track", state.activeTrack);
+      if (currentDivisionFilter !== "ALL") query.set("division", currentDivisionFilter === "Limbi Străine & Comunicare" ? "languages" : "coding");
     }
+    const hash = `#${ROUTES[state.activeView]}${query.size ? "?" + query.toString() : ""}`;
+    if (window.location.hash !== hash) window.history[mode === "replace" ? "replaceState" : "pushState"]({}, "", hash);
+  }
 
+  function switchView(viewName, options = {}) {
+    const target = Object.hasOwn(ROUTES, viewName) ? viewName : "home";
+    const params = options.params || {};
+    if (params.lesson) {
+      const lesson = allLessons.find(item => item.id === params.lesson);
+      if (lesson) { state.activeLessonId = lesson.id; state.activeTrack = lesson.track; }
+    }
+    if (params.track && allLessons.some(item => item.track === params.track)) state.activeTrack = params.track;
+    state.activeView = target;
+    document.body.dataset.view = target;
+    document.querySelector(".top-bar").classList.remove("menu-open");
+    document.getElementById("shell-menu-toggle")?.setAttribute("aria-expanded", "false");
+    if (target === "catalog" && params.division) {
+      currentDivisionFilter = params.division === "languages" ? "Limbi Străine & Comunicare" : params.division === "coding" ? "Informatică și Programare" : "ALL";
+      const tracks = getTracks().filter(track => currentDivisionFilter === "ALL" || track.division === currentDivisionFilter);
+      if (!tracks.some(track => track.name === state.activeTrack) && tracks.length) state.activeTrack = tracks[0].name;
+      document.querySelectorAll(".division-pill-btn").forEach(button => button.classList.toggle("active", button.dataset.division === currentDivisionFilter));
+      if (!allLessons.some(lesson => lesson.id === state.activeLessonId && lesson.track === state.activeTrack)) state.activeLessonId = allLessons.find(lesson => lesson.track === state.activeTrack)?.id;
+      domainsExpanded = false;
+    }
+    saveState();
+    document.querySelectorAll("body > main").forEach(view => view.classList.add("hidden"));
+    document.querySelectorAll(".nav-link-btn").forEach(btn => {
+      const active = btn.dataset.view === target;
+      btn.classList.toggle("active", active);
+      if (active) btn.setAttribute("aria-current", "page"); else btn.removeAttribute("aria-current");
+    });
+    closePocketDrawer();
+    const view = document.getElementById(`${target}-view`);
+    if (view) { view.classList.remove("hidden"); view.classList.remove("page-enter"); void view.offsetWidth; view.classList.add("page-enter"); }
+    if (target === "catalog") renderCatalogView();
+    else if (target === "study") renderStudyView();
+    else if (target === "activity") renderActivityView();
+    else if (target === "leagues") renderLeaguesView();
+    if (window.PolymathStudio && target !== "study") window.PolymathStudio.render(target, params);
+
+    document.title = `${VIEW_LABELS[target]} · PolymathHub`;
+    document.body.dataset.view = target;
+    if (options.history !== "none") syncRoute(options.history || "push", params);
     renderStats();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "instant" });
+    const heading = view && view.querySelector("h2");
+    if (heading && options.history !== "replace") { heading.tabIndex = -1; heading.focus({ preventScroll: true }); }
   }
 
   // =========================================================================
@@ -881,8 +903,10 @@
 
       function selectDomainAndScroll() {
         state.activeTrack = track.name;
+        if (!trackLessons.some(lesson => lesson.id === state.activeLessonId)) state.activeLessonId = trackLessons.find(lesson => !state.masteryPoints[lesson.id])?.id || trackLessons[0]?.id;
         saveState();
         renderCatalogView();
+        syncRoute();
         const chaptersSection = document.getElementById("catalog-chapters-section") || els.catalogSelectedDomainTitle;
         if (chaptersSection) {
           chaptersSection.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1078,6 +1102,7 @@
 
   function setActiveDualTab(tabEl, paneName) {
     state.activeDualPane = paneName;
+    saveState();
     document.documentElement.setAttribute("data-dual-pane", paneName);
     document.body.setAttribute("data-dual-pane", paneName);
     if (els.studyView) els.studyView.setAttribute("data-dual-pane", paneName);
@@ -1106,6 +1131,7 @@
     if (!lesson) return;
 
     state.activeTrack = lesson.track;
+    if (state.activeView === "study") syncRoute();
     renderDualSplitWorkspace();
 
     // Resetare sesiune de asistență pentru capitolul curent
@@ -1157,11 +1183,13 @@
 
     renderMatchingGame(lesson);
     renderQuizMode(lesson);
-    switchPracticeMode(state.activePracticeMode || "write");
+    switchPracticeMode(state.activePracticeMode || "write", { activatePane: false });
+    if (window.PolymathStudio) window.PolymathStudio.render("study", {});
   }
 
-  function switchPracticeMode(mode) {
+  function switchPracticeMode(mode, { activatePane = true } = {}) {
     state.activePracticeMode = mode;
+    saveState();
     els.tabModeWrite.classList.toggle("active", mode === "write");
     els.tabModeWrite.setAttribute("aria-selected", mode === "write" ? "true" : "false");
     els.tabModeMatch.classList.toggle("active", mode === "match");
@@ -1174,7 +1202,7 @@
     els.paneQuiz.classList.toggle("hidden", mode !== "quiz");
 
     // Comută automat la tab-ul de practică în Dual Mode dacă era pe teorie sau exemple
-    if (state.activeDualPane !== "practice" && els.dualTabPractice) {
+    if (activatePane && state.activeDualPane !== "practice" && els.dualTabPractice) {
       setActiveDualTab(els.dualTabPractice, "practice");
     }
   }
@@ -1463,7 +1491,7 @@
       void els.inputZone.offsetWidth;
       els.inputZone.classList.add("state-error");
       els.validationFeedback.textContent = rawInput.trim()
-        ? "❌ Răspuns incorect! Caseta rămâne roșie până când tastezi varianta corectă."
+        ? "Încă nu este corect. Verifică cerința și încearcă din nou."
         : "❌ Caseta este goală! Scrie răspunsul la cerința evidențiată mai sus.";
       els.validationFeedback.style.color = "var(--error-red)";
     }
@@ -1474,12 +1502,18 @@
   // =========================================================================
   function openPocketDrawer() {
     renderPocketDrawer();
+    els.pocketDrawer.inert = false;
+    els.pocketDrawer.setAttribute("aria-hidden", "false");
     els.pocketDrawer.classList.add("open");
     els.pocketDrawerBackdrop.classList.remove("hidden");
     els.openPocketDrawerBtn.setAttribute("aria-expanded", "true");
+    els.closePocketDrawerBtn.focus();
   }
 
   function closePocketDrawer() {
+    if (els.pocketDrawer.contains(document.activeElement)) els.openPocketDrawerBtn.focus();
+    els.pocketDrawer.inert = true;
+    els.pocketDrawer.setAttribute("aria-hidden", "true");
     els.pocketDrawer.classList.remove("open");
     els.pocketDrawerBackdrop.classList.add("hidden");
     els.openPocketDrawerBtn.setAttribute("aria-expanded", "false");
@@ -1753,17 +1787,17 @@
   function bindEvents() {
     // Navigare Brand spre Pagina Principală (Catalog)
     if (els.brandHomeBtn) {
-      els.brandHomeBtn.addEventListener("click", () => switchView("catalog"));
+      els.brandHomeBtn.addEventListener("click", () => switchView("home"));
       els.brandHomeBtn.addEventListener("keydown", e => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          switchView("catalog");
+          switchView("home");
         }
       });
     }
 
     // Navigație Pagini Top SPA (Catalog, Studiu, Activitate, Ligi, Profil)
-    [els.navCatalogBtn, els.navStudyBtn, els.navActivityBtn, els.navLeaguesBtn].forEach(btn => {
+    Array.from(document.querySelectorAll(".nav-link-btn")).forEach(btn => {
       if (btn) {
         btn.addEventListener("click", () => {
           const view = btn.getAttribute("data-view");
@@ -1810,6 +1844,8 @@
       els.backToCatalogBtn.addEventListener("click", () => switchView("catalog"));
     }
 
+    document.addEventListener("keydown", event => { if (event.key === "Escape" && els.pocketDrawer.classList.contains("open")) closePocketDrawer(); });
+
     // Buzunar Glisant (Pocket Drawer)
     if (els.openPocketDrawerBtn) els.openPocketDrawerBtn.addEventListener("click", openPocketDrawer);
     if (els.closePocketDrawerBtn) els.closePocketDrawerBtn.addEventListener("click", closePocketDrawer);
@@ -1823,6 +1859,7 @@
         currentDivisionFilter = pill.getAttribute("data-division") || "ALL";
         domainsExpanded = false;
         renderCatalogView();
+        syncRoute();
       });
     });
 
@@ -1980,8 +2017,29 @@
   function renderAll() {
     applyTheme(state.theme);
     renderStats();
-    switchView(state.activeView || "catalog");
+    const route = readRoute();
+    switchView(route.view, { params: route.params, history: "replace" });
   }
+
+  window.PolymathApp = {
+    navigate: (view, params = {}) => switchView(view, { params }),
+    snapshot: () => ({ state, lessons: allLessons, tracks: getTracks() }),
+    toast: showToast,
+    replaceProgress: (course, accountId) => {
+      STORAGE_KEY = "polymath_edtech_state_v2" + (accountId ? ":" + accountId : "");
+      state = { ...structuredClone(defaultState), ...(course || {}), user: structuredClone(defaultState.user) };
+      if (!allLessons.some(lesson => lesson.id === state.activeLessonId)) state.activeLessonId = allLessons[0]?.id;
+      applyTheme(state.theme);
+      const route = readRoute(); switchView(route.view, { params: route.params, history: "replace" });
+    },
+    guestProgress: () => { try { return JSON.parse(localStorage.getItem("polymath_edtech_state_v2") || "null"); } catch { return null; } },
+    selectTrack: name => {
+      const lessons = allLessons.filter(item => item.track === name).sort(sortLessonsCanonical);
+      if (lessons.length) { state.activeLessonId = lessons.find(item => !state.masteryPoints[item.id])?.id || lessons[0].id; state.activeTrack = name; switchView("study"); }
+    }
+  };
+  window.addEventListener("popstate", () => { const route = readRoute(); switchView(route.view, { params: route.params, history: "none" }); });
+  window.addEventListener("hashchange", () => { const route = readRoute(); if (route.view !== state.activeView) switchView(route.view, { params: route.params, history: "none" }); });
 
   document.addEventListener("DOMContentLoaded", () => {
     bindEvents();

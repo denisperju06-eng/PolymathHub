@@ -1,9 +1,9 @@
 {
-  "name": "Polymath Studio - Informatică & Engleză (A1-A2 | B1-B2 | C1-C2)",
+  "name": "PolymathHub · Învață cu sens",
   "short_name": "PolymathHub",
-  "description": "Platformă interactivă pentru SQL, Java, JavaScript și Engleză (A1–A2, B1–B2, C1–C2) cu Streak zilnic și validare activă.",
+  "description": "Programare și limbi străine, cu dicționar bilingv, carduri de vocabular și exerciții.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0b0f19",
-  "theme_color": "#6366f1"
+  "background_color": "#f7f8f5",
+  "theme_color": "#397456"
 }

@@ -3,5 +3,13 @@
     "axe-core": "^4.14.0",
     "htmlhint": "^1.9.2",
     "puppeteer-core": "^25.14.0"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env.local scripts/dev-server.mjs",
+    "build": "node scripts/build-static.js",
+    "test": "node --test tests/vocabulary.test.js tests/account.test.mjs"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
