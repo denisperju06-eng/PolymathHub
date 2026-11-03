@@ -90,6 +90,23 @@ test("a stale progress revision returns conflict rather than overwriting another
   const response = await run(handler, { method: "PUT", url: "/api/progress", headers: { cookie: "__Host-pm_access=access" }, body: { course: {}, vocabulary: {}, revision: 2 } });
   assert.equal(response.statusCode, 409);
 });
+test("a tab bound to another account cannot read, write, or end the active session", async () => {
+  const otherId = "22222222-2222-4222-8222-222222222222";
+  const fetcher = async url => {
+    assert.match(url, /\/auth\/v1\/user$/);
+    return result({ ...user, id: otherId });
+  };
+  const headers = { cookie: "__Host-pm_access=second-account", "x-polymath-account": id };
+  const progress = createProgressHandler({ env, fetcher });
+  const account = createAccountHandler({ env, fetcher });
+  for (const method of ["GET", "PUT"]) {
+    const response = await run(progress, { method, url: "/api/progress", headers, body: { revision: null } });
+    assert.equal(response.statusCode, 412);
+  }
+  const logout = await run(account, { method: "POST", url: "/api/account?action=logout", headers });
+  assert.equal(logout.statusCode, 412);
+  assert.equal(logout.headers["set-cookie"], undefined);
+});
 test("progress validation drops credentials and rebuilds untrusted source URLs", () => {
   const progress = validateProgress({ revision: null, course: { password: "secret", xp: -10, user: { email: user.email }, completedLessons: ["sql-1", "sql-1"], masteryPoints: { "sql-1": 1, invalid: -1 } }, vocabulary: { saved: ["en:curious", "en:curious"], cache: [{ id: "en:test", lang: "en", word: "test", examples: [], source: "online", sourceUrl: "javascript:alert(1)" }] } });
   assert.equal(progress.course.password, undefined); assert.equal(progress.course.user, undefined); assert.equal(progress.course.xp, undefined);
