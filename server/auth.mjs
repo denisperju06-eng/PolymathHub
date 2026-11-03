@@ -71,6 +71,13 @@ export function publicUser(user) {
   return { id: user.id, email: user.email, name: String(user.user_metadata?.display_name || user.email?.split("@")[0] || "").slice(0, 60) };
 }
 
+export function checkExpectedAccount(req, user) {
+  const expected = req.headers["x-polymath-account"];
+  if (expected && expected !== user?.id) {
+    throw new ApiError(412, "Contul activ s-a schimbat în altă filă. Reîncarcă pagina.");
+  }
+}
+
 export function provider(config, fetcher = fetch) {
   return async (path, { token, method = "GET", body, headers = {} } = {}) => {
     let response;

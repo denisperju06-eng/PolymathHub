@@ -1,4 +1,4 @@
-import { ApiError, configuration, send, sameOrigin, readJson, provider, sessionFor, publicUser, credentials, setSession, fail } from "../server/auth.mjs";
+import { ApiError, configuration, send, sameOrigin, readJson, provider, sessionFor, publicUser, credentials, setSession, fail, checkExpectedAccount } from "../server/auth.mjs";
 
 export function createAccountHandler({ env = process.env, fetcher = fetch } = {}) {
   return async function handler(req, res) {
@@ -16,6 +16,7 @@ export function createAccountHandler({ env = process.env, fetcher = fetch } = {}
       if (!sameOrigin(req)) throw new ApiError(403, "Cererea nu poate fi acceptată de pe această pagină.");
       if (action === "logout") {
         const session = await sessionFor(req, res, call);
+        if (session) checkExpectedAccount(req, session.user);
         if (session) await call("/auth/v1/logout?scope=local", { method: "POST", token: session.token });
         setSession(req, res, null); return send(res, 200, { user: null });
       }

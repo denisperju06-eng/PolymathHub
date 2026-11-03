@@ -23,7 +23,7 @@ Nu se verifică existența căsuței poștale și nu se trimite email de confirm
 
 Sesiunea folosește cookie-uri `HttpOnly`, `Secure` și `SameSite=Lax` pe domeniul public. Parolele sunt gestionate de Supabase Auth, nu sunt stocate de aplicație. Cheile rămân în variabilele Vercel. Verificarea originii protejează operațiile de modificare, iar accesul la PostgreSQL folosește tokenul utilizatorului și politicile RLS.
 
-La conectare se preia progresul contului. Importul sesiunii de vizitator este oferit explicit doar la crearea unui cont nou. Conturile folosesc spații de cache separate în browser. Salvarea utilizează o revizie pentru a detecta modificările din altă sesiune și a evita suprascrierea lor automată.
+La conectare se preia progresul contului. Un cont nou pornește cu progres separat de sesiunea de vizitator. Conturile folosesc spații de cache separate în browser. Salvarea utilizează o revizie pentru a detecta modificările din altă sesiune și a evita suprascrierea lor automată.
 
 ## Testare locală
 

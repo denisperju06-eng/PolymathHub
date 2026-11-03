@@ -1,4 +1,4 @@
-import { ApiError, configuration, send, sameOrigin, readJson, provider, sessionFor, fail } from "../server/auth.mjs";
+import { ApiError, configuration, send, sameOrigin, readJson, provider, sessionFor, fail, checkExpectedAccount } from "../server/auth.mjs";
 
 const cleanObject = value => value && !Array.isArray(value) && typeof value === "object" ? value : {};
 export function validateProgress(body) {
@@ -35,6 +35,7 @@ export function createProgressHandler({ env = process.env, fetcher = fetch } = {
       const config = configuration(env); if (!config) throw new ApiError(503, "Sincronizarea contului nu este activată momentan.");
       const call = provider(config, fetcher); const session = await sessionFor(req, res, call);
       if (!session) throw new ApiError(401, "Conectează-te pentru a accesa progresul contului.");
+      checkExpectedAccount(req, session.user);
       const userId = session.user.id;
       if (!/^[0-9a-f-]{36}$/i.test(userId)) throw new ApiError(401, "Sesiunea nu este validă.");
       const base = "/rest/v1/learning_progress";
