@@ -4,6 +4,7 @@ import path from "node:path";
 import { execFile } from "node:child_process";
 import account from "../api/account.mjs";
 import progress from "../api/progress.mjs";
+import adminAccounts from "../api/admin-accounts.mjs";
 import { readJson, send, fail } from "../server/auth.mjs";
 const root = path.resolve(new URL("..", import.meta.url).pathname);
 const types = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".json": "application/json" };
@@ -12,6 +13,7 @@ const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, "http://localhost");
   if (url.pathname === "/api/account") return account(req, res);
   if (url.pathname === "/api/progress") return progress(req, res);
+  if (url.pathname === "/api/admin-accounts") return adminAccounts(req, res);
   if (url.pathname === "/api/sql-lab") {
     if (req.method !== "POST") {
       res.setHeader("Allow", "POST");

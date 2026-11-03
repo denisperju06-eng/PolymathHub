@@ -25,6 +25,12 @@ Sesiunea folosește cookie-uri `HttpOnly`, `Secure` și `SameSite=Lax` pe domeni
 
 La conectare se preia progresul contului. Un cont nou pornește cu progres separat de sesiunea de vizitator. Conturile folosesc spații de cache separate în browser. Salvarea utilizează o revizie pentru a detecta modificările din altă sesiune și a evita suprascrierea lor automată.
 
+## Panou de administrare
+
+Conturile apar în Supabase la **Authentication → Users**. Progresul se salvează în `public.learning_progress`, legat de ID-ul contului din `auth.users`.
+
+Migrarea `202611040001_admin_accounts.sql` activează panoul din **Contul meu → Panou administrator**. Atribuie rolul în SQL Editor inserând UID-ul exact al contului din **Authentication → Users** în `polymath_private.administrators(user_id)`. Rolul este legat de UID și poate fi modificat doar prin acces administrativ la bază. Panoul oferă consultare și căutare. Afișează nume, email, datele contului și statistici din progresul salvat.
+
 ## Testare locală
 
 Necesită Node.js 22. Copiază `.env.example` în `.env.local` și completează variabilele din propriul proiect pentru un test real. Nu publica fișierul `.env.local`.

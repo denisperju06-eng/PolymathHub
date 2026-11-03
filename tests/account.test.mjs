@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createAccountHandler } from "../api/account.mjs";
 import { createProgressHandler, validateProgress } from "../api/progress.mjs";
+import { createAdminAccountsHandler } from "../api/admin-accounts.mjs";
 import { credentials, sameOrigin, configuration } from "../server/auth.mjs";
 
 const env = { SUPABASE_URL: "https://project.supabase.co", SUPABASE_ANON_KEY: "public-test-key" };
@@ -112,4 +113,36 @@ test("progress validation drops credentials and rebuilds untrusted source URLs",
   assert.equal(progress.course.password, undefined); assert.equal(progress.course.user, undefined); assert.equal(progress.course.xp, undefined);
   assert.deepEqual(progress.course.completedLessons, ["sql-1"]); assert.deepEqual(progress.course.masteryPoints, { "sql-1": 1 });
   assert.deepEqual(progress.vocabulary.saved, ["en:curious"]); assert.match(progress.vocabulary.cache[0].sourceUrl, /^https:\/\/en\.wiktionary\.org/);
+});
+
+test("the admin directory requires a session and refuses authenticated non-admins", async () => {
+  const handler = createAdminAccountsHandler({ env, fetcher: async url =>
+    url.endsWith("/user") ? result(user) : result({ allowed: false }) });
+  const url = "/api/admin-accounts";
+  assert.equal((await run(handler, { url })).statusCode, 401);
+  const headers = { cookie: "__Host-pm_access=access" };
+  const denied = await run(handler, { url, headers });
+  assert.equal(denied.statusCode, 403);
+  assert.equal(denied.body.accounts, undefined);
+  assert.deepEqual((await run(handler, { url: url + "?action=access", headers })).body, { allowed: false });
+});
+
+test("admin queries use the verified user token, bind to the active account, and paginate", async () => {
+  const listing = { allowed: true, page: 2, matched: 26, page_size: 25, accounts: [{ name: "Student", xp: 25 }] };
+  let rpcCalls = 0;
+  const handler = createAdminAccountsHandler({ env, fetcher: async (url, options) => {
+    if (url.endsWith("/user")) return result(user);
+    rpcCalls++;
+    assert.match(url, /polymath_admin_accounts$/);
+    assert.equal(options.headers.Authorization, "Bearer access");
+    assert.deepEqual(JSON.parse(options.body), { p_page: 2, p_query: "student", p_access_only: false });
+    return result(listing);
+  } });
+  const headers = { cookie: "__Host-pm_access=access", "x-polymath-account": id };
+  const url = "/api/admin-accounts?page=2&q=student";
+  const response = await run(handler, { url, headers });
+  assert.deepEqual(response.body, listing);
+  assert.match(response.headers["cache-control"], /no-store/);
+  assert.equal((await run(handler, { url, headers: { ...headers, "x-polymath-account": "other" } })).statusCode, 412);
+  assert.equal(rpcCalls, 1);
 });
