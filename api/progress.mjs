@@ -8,6 +8,7 @@ export function validateProgress(body) {
   for (const field of ["lastCompletionDate", "theme", "activeTrack", "activeLessonId", "activeDualPane", "activePracticeMode", "activeView"]) if (typeof course[field] === "string" && course[field].length <= 160) safeCourse[field] = course[field];
   safeCourse.completedLessons = Array.isArray(course.completedLessons) ? [...new Set(course.completedLessons.filter(value => typeof value === "string" && value.length <= 100))].slice(0, 2000) : [];
   for (const field of ["masteryPoints", "dailyHistory", "assistedHistory"]) safeCourse[field] = Object.fromEntries(Object.entries(cleanObject(course[field])).filter(([key, value]) => /^[a-zA-Z0-9:_-]{1,100}$/.test(key) && Number.isSafeInteger(value) && value >= 0 && value <= 10000).slice(0, 3000));
+  safeCourse.rewardedExercises = Object.fromEntries(Object.entries(cleanObject(course.rewardedExercises)).filter(([key, value]) => /^[a-zA-Z0-9_-]{1,100}:(write|match|quiz|assisted)$/.test(key) && value === 1).slice(0, 2000));
   const preferences = cleanObject(course.preferences);
   safeCourse.preferences = { dailyTarget: Number.isSafeInteger(preferences.dailyTarget) && preferences.dailyTarget >= 1 && preferences.dailyTarget <= 100 ? preferences.dailyTarget : 3, confettiEnabled: preferences.confettiEnabled !== false };
   const safeVocabulary = { saved: [], learned: [], cache: [] };

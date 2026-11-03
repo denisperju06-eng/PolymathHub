@@ -58,12 +58,12 @@ const MEGA_EXPANDED_CURRICULUM = [
     },
     "task": "Completează structura if - elif - else pentru variabila 'scor':\n- dacă scor >= 90, afișează 'Excelent' (print('Excelent'))\n- elif scor >= 50, afișează 'Admis' (print('Admis'))\n- else, afișează 'Respins' (print('Respins')).",
     "starterCode": "scor = 85\n\n# Scrie condiția if, elif și else:\n",
-    "expectedOutputPattern": "if\\s+scor\\s*>=\\s*90\\s*:[\\s\\S]+?elif\\s+scor\\s*>=\\s*50\\s*:[\\s\\S]+?else\\s*:",
+    "expectedOutputPattern": "^(?:scor[ \\t]*=[ \\t]*-?\\d+[ \\t]*\\r?\\n(?:[ \\t]*(?:#[^\\r\\n]*)?\\r?\\n)*)?if[ \\t]+scor[ \\t]*>=[ \\t]*90[ \\t]*:[ \\t]*\\r?\\n[ \\t]+print[ \\t]*\\([ \\t]*([\"'])Excelent\\1[ \\t]*\\)[ \\t]*\\r?\\nelif[ \\t]+scor[ \\t]*>=[ \\t]*50[ \\t]*:[ \\t]*\\r?\\n[ \\t]+print[ \\t]*\\([ \\t]*([\"'])Admis\\2[ \\t]*\\)[ \\t]*\\r?\\nelse[ \\t]*:[ \\t]*\\r?\\n[ \\t]+print[ \\t]*\\([ \\t]*([\"'])Respins\\3[ \\t]*\\)$",
     "hint": "Folosește if scor >= 90:, apoi elif scor >= 50: și finalizează cu else:.",
     "officialSolution": "if scor >= 90:\n    print(\"Excelent\")\nelif scor >= 50:\n    print(\"Admis\")\nelse:\n    print(\"Respins\")",
     "example": "nota = 8\nif nota >= 9:\n    print(\"Excelent\")\nelif nota >= 5:\n    print(\"Admis\")\nelse:\n    print(\"Respins\")",
     "prompt": "Completează structura if - elif - else pentru variabila 'scor':\n- dacă scor >= 90, afișează 'Excelent' (print('Excelent'))\n- elif scor >= 50, afișează 'Admis' (print('Admis'))\n- else, afișează 'Respins' (print('Respins')).",
-    "regexPattern": "if\\s+scor\\s*>=\\s*90\\s*:[\\s\\S]+?elif\\s+scor\\s*>=\\s*50\\s*:[\\s\\S]+?else\\s*:"
+    "regexPattern": "^(?:scor[ \\t]*=[ \\t]*-?\\d+[ \\t]*\\r?\\n(?:[ \\t]*(?:#[^\\r\\n]*)?\\r?\\n)*)?if[ \\t]+scor[ \\t]*>=[ \\t]*90[ \\t]*:[ \\t]*\\r?\\n[ \\t]+print[ \\t]*\\([ \\t]*([\"'])Excelent\\1[ \\t]*\\)[ \\t]*\\r?\\nelif[ \\t]+scor[ \\t]*>=[ \\t]*50[ \\t]*:[ \\t]*\\r?\\n[ \\t]+print[ \\t]*\\([ \\t]*([\"'])Admis\\2[ \\t]*\\)[ \\t]*\\r?\\nelse[ \\t]*:[ \\t]*\\r?\\n[ \\t]+print[ \\t]*\\([ \\t]*([\"'])Respins\\3[ \\t]*\\)$"
   },
   {
     "id": "py-new-2",
@@ -10458,12 +10458,12 @@ const MEGA_EXPANDED_CURRICULUM = [
     },
     "task": "Scrie propoziția 'Estudiaba en mi habitación cuando llegó mi hermano.' (Învățam în camera mea când a sosit fratele meu).",
     "starterCode": "Estudiaba en mi habitación ",
-    "expectedOutputPattern": "Estudiaba\\s+en\\s+mi\\s+habitaci[óo]n\\s+quand[o]\\s+lleg[óo]\\s+mi\\s+hermano\\.?",
+    "expectedOutputPattern": "Estudiaba\\s+en\\s+mi\\s+habitaci[óo]n\\s+cuando\\s+lleg[óo]\\s+mi\\s+hermano\\.?",
     "hint": "Scrie Estudiaba en mi habitación cuando llegó mi hermano.",
     "prompt": "Scrie propoziția 'Estudiaba en mi habitación cuando llegó mi hermano.' (Învățam în camera mea când a sosit fratele meu).",
     "officialSolution": "Estudiaba en mi habitación cuando llegó mi hermano.",
     "example": "Estudiaba en mi habitación cuando llegó mi hermano.",
-    "regexPattern": "Estudiaba\\s+en\\s+mi\\s+habitaci[óo]n\\s+quand[o]\\s+lleg[óo]\\s+mi\\s+hermano\\.?"
+    "regexPattern": "Estudiaba\\s+en\\s+mi\\s+habitaci[óo]n\\s+cuando\\s+lleg[óo]\\s+mi\\s+hermano\\.?"
   },
   {
     "id": "es-b1-p31",
@@ -12281,8 +12281,9 @@ const MEGA_EXPANDED_CURRICULUM = [
     "example": "bpftrace -e 'tracepoint:syscalls:sys_enter_execve { printf(\"%s\\n\", comm); }'",
     "starterCode": "bpftrace -e 'tracepoint:syscalls:sys_enter_execve { printf(\"%s\\n\", comm); }'",
     "officialSolution": "bpftrace -e 'tracepoint:syscalls:sys_enter_execve { printf(\"%s\\n\", comm); }'",
-    "expectedOutputPattern": "bpftrace\\s+-e\\s+'tracepoint:syscalls:sys_enter_execve\\s*\\{\\s*printf\\(\"\\\\%s\\\\n\",\\s*comm\\);\\s*\\}'",
-    "regexPattern": "bpftrace\\s+-e\\s+'tracepoint:syscalls:sys_enter_execve\\s*\\{\\s*printf\\(\"\\\\%s\\\\n\",\\s*comm\\);\\s*\\}'",
+    "acceptedAnswers": ["bpftrace -e 'tracepoint:syscalls:sys_enter_execve { printf(\"%s\\n\", comm); }'"],
+    "expectedOutputPattern": "^bpftrace\\s+-e\\s+'tracepoint:syscalls:sys_enter_execve\\s*\\{\\s*printf\\(\"%s\\\\n\",\\s*comm\\);\\s*\\}'$",
+    "regexPattern": "^bpftrace\\s+-e\\s+'tracepoint:syscalls:sys_enter_execve\\s*\\{\\s*printf\\(\"%s\\\\n\",\\s*comm\\);\\s*\\}'$",
     "hint": "Tastează bpftrace -e 'tracepoint:syscalls:sys_enter_execve { printf(\"%s\\n\", comm); }'"
   },
   {

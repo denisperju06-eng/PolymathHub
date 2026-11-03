@@ -3,7 +3,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": null,
-  "functions": { "api/*.mjs": { "maxDuration": 30 } },
+  "functions": {
+    "api/*.mjs": { "maxDuration": 30 },
+    "api/sql-lab.py": { "maxDuration": 10, "excludeFiles": "{tests/**,dist/**,scripts/**,curriculum*.js}" }
+  },
   "headers": [
     { "source": "/(.*)", "headers": [
       { "key": "X-Content-Type-Options", "value": "nosniff" },

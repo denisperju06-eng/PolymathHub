@@ -65,7 +65,14 @@ h2:focus { outline:none; }
 .welcome-copy h3 em { font-family:Georgia,serif; font-weight:400; color:#557c45; }
 .welcome-copy p { color:#62765b; font-size:11px; line-height:1.9; margin-bottom:22px; }
 .studio-primary,.studio-secondary { min-height:41px; border:1px solid var(--accent-primary); display:inline-flex; align-items:center; justify-content:center; gap:12px; padding:10px 18px; border-radius:7px; font-size:11px; font-weight:600; line-height:1.4; transition:background .18s,transform .18s; text-decoration:none; }
-.studio-primary { color:#fff; background:var(--accent-primary); }
+.studio-primary { color:var(--studio-on-accent,#fff); background:var(--accent-primary); }
+:is([data-theme="emerald-forest"],[data-theme="cyber-dark"],[data-theme="neon-amethyst"],[data-theme="sunset-amber"],[data-theme="ocean-deep"]) { --studio-on-accent:#000; }
+#pocket-lesson-list .lesson-item { width:100%; text-align:start; color:var(--text-primary); }
+#sql-lab-note { margin-top:.65rem; color:var(--text-secondary); font-size:.85rem; }
+.sql-lab-result { overflow-x:auto; }
+.sql-lab-result table { border-collapse:collapse; margin:.75rem 0; font-size:.9rem; }
+.sql-lab-result caption { text-align:start; font-weight:600; margin-bottom:.35rem; }
+.sql-lab-result :is(th,td) { border:1px solid var(--border-color); padding:.4rem .8rem; text-align:start; }
 .studio-primary:hover { background:var(--accent-hover); transform:translateY(-1px); }
 .studio-secondary { color:var(--accent-primary); background:transparent; border-color:var(--border-color); }
 .studio-secondary:hover { background:var(--accent-soft); }
@@ -392,7 +399,7 @@ body[data-view="study"] .study-content-area { width:100%; }
  body[data-view="study"] .dual-select-label { font-size:8px; }
  body[data-view="study"] .dual-nav-tabs { grid-row:3; gap:6px; }
  body[data-view="study"] .dual-nav-tab { flex-direction:column; gap:4px; padding:8px 5px; }
- body[data-view="study"] .dual-tab-info strong { font-size:8px; }.dual-tab-icon { font-size:16px; }
+ body[data-view="study"] .dual-tab-info strong { font-size:11px; }.dual-tab-icon { font-size:16px; }
  body[data-view="study"] .dual-nav-footer { grid-column:2; grid-row:1; }
  body[data-view="study"] .dual-nav-footer button { font-size:9px; padding:6px 8px; min-height:31px; }
 }
