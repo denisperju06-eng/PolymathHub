@@ -259,7 +259,7 @@ Ellos / Ustedes han hablado / comido / vivido
             },
             "task": "Scrie propoziția 'Estudiaba en mi habitación cuando llegó mi hermano.' (Învățam în camera mea când a sosit fratele meu).",
             "starterCode": "Estudiaba en mi habitación ",
-            "expectedOutputPattern": "Estudiaba\\s+en\\s+mi\\s+habitaci[óo]n\\s+quand[o]\\s+lleg[óo]\\s+mi\\s+hermano\\.?",
+            "expectedOutputPattern": "Estudiaba\\s+en\\s+mi\\s+habitaci[óo]n\\s+cuando\\s+lleg[óo]\\s+mi\\s+hermano\\.?",
             "hint": "Scrie Estudiaba en mi habitación cuando llegó mi hermano."
         },
         {

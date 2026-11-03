@@ -65,7 +65,7 @@ def get_python_lessons():
                 },
                 "task": "Completează structura if - elif - else pentru variabila 'scor':\n- dacă scor >= 90, afișează 'Excelent' (print('Excelent'))\n- elif scor >= 50, afișează 'Admis' (print('Admis'))\n- else, afișează 'Respins' (print('Respins')).",
                 "starterCode": "scor = 85\n\n# Scrie condiția if, elif și else:\n",
-                "expectedOutputPattern": "if\\s+scor\\s*>=\\s*90\\s*:[\\s\\S]+?elif\\s+scor\\s*>=\\s*50\\s*:[\\s\\S]+?else\\s*:",
+                "expectedOutputPattern": "^(?:scor[ \\t]*=[ \\t]*-?\\d+[ \\t]*\\r?\\n(?:[ \\t]*(?:#[^\\r\\n]*)?\\r?\\n)*)?if[ \\t]+scor[ \\t]*>=[ \\t]*90[ \\t]*:[ \\t]*\\r?\\n[ \\t]+print[ \\t]*\\([ \\t]*([\"'])Excelent\\1[ \\t]*\\)[ \\t]*\\r?\\nelif[ \\t]+scor[ \\t]*>=[ \\t]*50[ \\t]*:[ \\t]*\\r?\\n[ \\t]+print[ \\t]*\\([ \\t]*([\"'])Admis\\2[ \\t]*\\)[ \\t]*\\r?\\nelse[ \\t]*:[ \\t]*\\r?\\n[ \\t]+print[ \\t]*\\([ \\t]*([\"'])Respins\\3[ \\t]*\\)$",
                 "hint": "Folosește if scor >= 90:, apoi elif scor >= 50: și finalizează cu else:.",
                 "officialSolution": "if scor >= 90:\n    print(\"Excelent\")\nelif scor >= 50:\n    print(\"Admis\")\nelse:\n    print(\"Respins\")",
                 "example": "nota = 8\nif nota >= 9:\n    print(\"Excelent\")\nelif nota >= 5:\n    print(\"Admis\")\nelse:\n    print(\"Respins\")",

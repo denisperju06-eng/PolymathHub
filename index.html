@@ -296,6 +296,7 @@
         <div class="question-highlight-box">
           <span class="question-badge">CERINȚĂ PRACTICĂ:</span>
           <p class="question-text" id="lesson-prompt"></p>
+          <p id="sql-lab-note" hidden>Laborator SQLite · tabelul <code>Orders(Id, Quantity)</code>. Cantități de exemplu: 0, 1, 42, 100, 101. Interogarea rulează pe server și este verificată pe două seturi de date.</p>
         </div>
 
         <div class="input-zone" id="input-zone">
@@ -313,6 +314,7 @@
           </div>
         </div>
 
+        <div id="sql-lab-result" class="sql-lab-result" aria-live="polite"></div>
         <div class="action-buttons-row">
           <button id="verify-btn" class="btn-primary">
             <svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -360,7 +362,7 @@
           </div>
         </div>
         <div class="matching-footer">
-          <span id="match-status-msg" class="validation-feedback">Potrivește toate perechile pentru a câștiga puncte de Măiestrie!</span>
+          <span id="match-status-msg" class="validation-feedback" role="status">Potrivește toate perechile pentru a câștiga puncte de Măiestrie!</span>
           <button id="reset-match-btn" class="btn-secondary btn-sm">
             <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:0.35rem;"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
             Reamestecă Coloanele
@@ -375,7 +377,7 @@
           <p class="question-text" id="quiz-question-text"></p>
         </div>
         <div class="quiz-options-grid" id="quiz-options-grid"></div>
-        <div id="quiz-feedback-msg" class="validation-feedback" style="margin-top:0.85rem;">Selectează opțiunea corectă de mai sus.</div>
+        <div id="quiz-feedback-msg" class="validation-feedback" role="status" style="margin-top:0.85rem;">Selectează opțiunea corectă de mai sus.</div>
       </div>
     </article>
   </div>

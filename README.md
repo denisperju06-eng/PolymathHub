@@ -7,6 +7,7 @@ Platformă publică de învățare în română pentru programare și limbi str�
 - **Acasă**: acces direct la lecția curentă, alegerea între programare și limbi străine, progres și vocabular. Fără hero decorativ sau nume de utilizator inventat.
 - **Explorează**: catalogul existent, cu filtre, căutare de capitole și selecția disciplinei.
 - **Învățare**: teorie, exemple, scriere, potrivire și quiz; curriculumul existent este păstrat.
+- **Laborator SQL**: primul exercițiu SQL rulează o interogare SELECT pe două seturi de date de test, într-o bază SQLite temporară. Interfața afișează tabelul rezultat și feedbackul. Funcția Python de pe Vercel nu necesită cont sau variabile de mediu.
 - **Vocabular**: engleză, franceză și spaniolă, cu româna ca limbă de sprijin.
 - **Progresul meu / Realizări**: activitate, calendar, XP, ligi și realizări.
 
@@ -24,7 +25,7 @@ Progresul cursurilor rămâne în cheia existentă `polymath_edtech_state_v2`. V
 
 ## Pornire și verificare
 
-Necesită Node.js 22. Serverul de dezvoltare include aceleași rute API ca Vercel. Interfața nu are dependențe JavaScript de runtime.
+Necesită Node.js 22 și Python 3.12+ pentru laboratorul SQL. Serverul de dezvoltare include aceleași rute API ca Vercel. Interfața nu are dependențe JavaScript de runtime.
 
 ```sh
 npm run dev
@@ -44,6 +45,7 @@ Buildul copiază exclusiv cele 14 fișiere publice ale aplicației în `dist/`. 
 - `studio.css`: noua interfață responsive; `styles.css` păstrează componentele și temele existente.
 - `scripts/build-static.js`: build static fără bundler.
 - `api/`, `server/`, `account.js`: autentificare și sincronizare prin Vercel/Supabase.
+- `api/sql-lab.py`: laborator SQLite scris în Python. Răspunsurile sunt evaluate după rezultat; datele se recreează în memorie la fiecare cerere.
 - `vercel.json`: build de producție și configurarea funcțiilor API.
 
 ## Surse pentru căutarea online

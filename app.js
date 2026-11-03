@@ -13,6 +13,7 @@
     masteryPoints: {},   // { [lessonId]: points }
     dailyHistory: {},    // { [date]: count of autonomous tasks }
     assistedHistory: {}, // { [date]: count of assisted (50/50) tasks }
+    rewardedExercises: {},
     theme: "daylight-clean",
     customLessons: [],
     activeTrack: "SQL",
@@ -327,6 +328,7 @@
       parsed.masteryPoints = parsed.masteryPoints || {};
       parsed.dailyHistory = parsed.dailyHistory || {};
       parsed.assistedHistory = parsed.assistedHistory || {};
+      parsed.rewardedExercises = { ...parsed.rewardedExercises };
       parsed.theme = parsed.theme || "emerald-forest";
       parsed.activeView = ["home", "catalog", "study", "vocabulary", "activity", "leagues"].includes(parsed.activeView) ? parsed.activeView : "home";
       parsed.activeDualPane = ["theory", "examples", "practice"].includes(parsed.activeDualPane) ? parsed.activeDualPane : "theory";
@@ -386,7 +388,15 @@
   }
 
   // Înregistrare activitate autonomă 100% (rezolvat de sine stătător)
-  function recordAutonomousActivity(xpEarned, lesson) {
+  function claimExercise(lesson, mode) {
+    const key = lesson.id + ":" + mode;
+    if (state.rewardedExercises[key]) return false;
+    state.rewardedExercises = { ...state.rewardedExercises, [key]: 1 };
+    return true;
+  }
+
+  function recordAutonomousActivity(xpEarned, lesson, mode) {
+    if (!claimExercise(lesson, mode)) return false;
     const today = getTodayKey();
     const yesterday = getYesterdayKey();
 
@@ -419,11 +429,13 @@
     }
 
     saveState();
+    return true;
   }
 
   // Înregistrare activitate asistată 50/50 (utilizatorul a cerut răspunsul)
   // Penalizare: doar 5 XP, fără punct de Mastery, NU contorizează la obiectivul 3/3, dar streak-ul se menține
   function recordAssistedActivity(lesson) {
+    if (!claimExercise(lesson, "assisted")) return false;
     const today = getTodayKey();
     const yesterday = getYesterdayKey();
 
@@ -448,6 +460,7 @@
     }
 
     saveState();
+    return true;
   }
 
   const LEAGUES = [
@@ -1127,6 +1140,8 @@
   // VIEW 2: STUDY VIEW (WORKSPACEL DE LECTURĂ & ANTRENAMENT INTERACTIV)
   // =========================================================================
   function renderStudyView() {
+    ++sqlCheck;
+    els.verifyBtn.disabled = false;
     const lesson = allLessons.find(l => l.id === state.activeLessonId) || allLessons[0];
     if (!lesson) return;
 
@@ -1171,7 +1186,10 @@
 
     // Resetare casetă scriere
     els.inputZone.classList.remove("state-error", "state-success");
-    els.userAnswerInput.value = lesson.starterCode || "";
+    const starter = lesson.starterCode || "";
+    els.userAnswerInput.value = isWrittenAnswerCorrect(lesson, starter) ? "" : starter;
+    document.getElementById("sql-lab-note").hidden = lesson.id !== "sql-1";
+    document.getElementById("sql-lab-result").replaceChildren();
     els.validationFeedback.textContent = "Citește cerința evidențiată mai sus și tastează răspunsul.";
     els.hintDrawer.classList.add("hidden");
     els.solutionDrawer.classList.add("hidden");
@@ -1309,7 +1327,9 @@
           if (matchState.matchedIndices.size === pairs.length) {
             els.matchStatusMsg.textContent = "✅ Felicitări! Ai potrivit corect toate perechile!";
             els.matchStatusMsg.style.color = "var(--success-green)";
-            recordAutonomousActivity(20, lesson);
+            if (!recordAutonomousActivity(20, lesson, "match")) {
+              els.matchStatusMsg.textContent += " Punctele au fost deja acordate.";
+            }
             renderStats();
             els.lessonStatusBadge.textContent = getLessonMasteryStatus(lesson).label;
             launchConfetti();
@@ -1337,57 +1357,30 @@
   // MODUL 3: QUIZ 2x2 (GRILĂ SIMETRICĂ DE ALEGERE MULTIPLĂ)
   // =========================================================================
   function getQuizForLesson(lesson) {
-    if (lesson.quiz && lesson.quiz.question && Array.isArray(lesson.quiz.options)) {
-      return lesson.quiz;
+    const quiz = lesson.quiz;
+    const authored = quiz?.question && Array.isArray(quiz.options);
+    const correct = authored ? quiz.options[quiz.correctIndex] : getLessonOfficialSolution(lesson);
+    const distractors = authored ? quiz.options.filter((_, i) => i !== quiz.correctIndex)
+      : allLessons.filter(other => other.track === lesson.track && other.id !== lesson.id)
+        .map(getLessonOfficialSolution).filter(answer => !isWrittenAnswerCorrect(lesson, answer));
+    const seen = new Set();
+    const options = [];
+    for (const text of [correct, ...distractors]) {
+      const key = normalizeInput(text, lesson.caseSensitive);
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      options.push(text);
+      if (options.length === 4) break;
     }
-
-    const sol = lesson.officialSolution;
-    let distractor1 = "";
-    let distractor2 = "";
-    let distractor3 = "";
-
-    const siblings = allLessons.filter(l => l.track === lesson.track && l.id !== lesson.id);
-    if (siblings.length >= 2) {
-      distractor2 = siblings[0].officialSolution;
-      distractor3 = siblings[1].officialSolution;
+    for (let i = options.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [options[i], options[j]] = [options[j], options[i]];
     }
-
-    if (lesson.track && lesson.track.includes("Engleză")) {
-      distractor1 = sol.includes(" is ") ? sol.replace(" is ", " are ")
-        : sol.includes(" are ") ? sol.replace(" are ", " is ")
-        : sol.includes(" am ") ? sol.replace(" am ", " is ")
-        : sol.includes(" don't ") ? sol.replace(" don't ", " doesn't ")
-        : sol.includes(" has ") ? sol.replace(" has ", " have ")
-        : sol.replace(/\.$/, "") + " yesterday.";
-      if (!distractor2) distractor2 = "She " + sol.toLowerCase();
-      if (!distractor3) distractor3 = sol.replace(/\b(to|the|a|an)\b/gi, "").trim();
-    } else if (lesson.track === "SQL") {
-      distractor1 = sol.includes("WHERE") ? sol.replace("WHERE", "HAVING") : sol.replace("SELECT", "SELECT ALL");
-      if (!distractor2) distractor2 = sol.replace(/;?$/, " ORDER BY 1;");
-      if (!distractor3) distractor3 = sol.replace(/BETWEEN ([^ ]+) AND ([^ ;]+)/i, "IN ($1, $2)");
-    } else if (lesson.track === "Java") {
-      distractor1 = sol.includes("System.out.println") ? sol.replace("System.out.println", "System.print") : sol + " // lipsă tip";
-      if (!distractor2) distractor2 = sol.replace(/;?$/, "; // Runtime check");
-      if (!distractor3) distractor3 = sol.replace("public ", "private ");
-    } else {
-      distractor1 = sol.includes("const ") ? sol.replace("const ", "var ") : sol + "; // undefined reference";
-      if (!distractor2) distractor2 = sol.replace("===", "==");
-      if (!distractor3) distractor3 = sol.replace("=>", "function()");
-    }
-
-    const options = [
-      { text: sol, isCorrect: true },
-      { text: distractor1, isCorrect: false },
-      { text: distractor2, isCorrect: false },
-      { text: distractor3, isCorrect: false }
-    ].sort(() => Math.random() - 0.5);
-
-    const correctIdx = options.findIndex(o => o.isCorrect);
-
     return {
-      question: `Care este varianta corectă conform regulilor din capitolul „${lesson.title}”?`,
-      options: options.map(o => o.text),
-      correctIndex: correctIdx
+      question: authored ? quiz.question : "Care este soluția de referință? " + (lesson.prompt || lesson.task || lesson.title),
+      options,
+      correctIndex: options.indexOf(correct),
+      explanation: authored ? quiz.explanation : lesson.explanation
     };
   }
 
@@ -1398,6 +1391,10 @@
     els.quizFeedbackMsg.style.color = "var(--text-secondary)";
     els.quizOptionsGrid.innerHTML = "";
 
+    if (qData.options.length < 2 || qData.correctIndex < 0) {
+      els.quizFeedbackMsg.textContent = "Grila nu este disponibilă. Încearcă modul Scriere.";
+      return;
+    }
     qData.options.forEach((optText, idx) => {
       const btn = document.createElement("button");
       btn.className = "quiz-option-btn";
@@ -1412,9 +1409,10 @@
         if (isCorrect) {
           btn.classList.remove("wrong");
           btn.classList.add("correct");
-          els.quizFeedbackMsg.textContent = "✅ Răspuns corect! Punctul de Măiestrie a fost acordat.";
+          const rewarded = recordAutonomousActivity(15, lesson, "quiz");
+          els.quizFeedbackMsg.textContent = "✅ Răspuns corect. " +
+            (rewarded ? "" : "Punctele au fost deja acordate. ") + (qData.explanation || "");
           els.quizFeedbackMsg.style.color = "var(--success-green)";
-          recordAutonomousActivity(15, lesson);
           renderStats();
           els.lessonStatusBadge.textContent = getLessonMasteryStatus(lesson).label;
           launchConfetti();
@@ -1443,11 +1441,8 @@
   // =========================================================================
   // MODUL 1: SCRIERE & VALIDARE (CU REGULĂ ANTI-CHEAT 50/50 PENTRU SOLUȚIE ASISTATĂ)
   // =========================================================================
-  function verifyCurrentAnswer() {
-    const lesson = allLessons.find(l => l.id === state.activeLessonId);
-    if (!lesson) return;
-
-    const rawInput = els.userAnswerInput.value;
+  function isWrittenAnswerCorrect(lesson, rawInput) {
+    if (!rawInput.trim()) return false;
     const normalizedUser = normalizeInput(rawInput, lesson.caseSensitive);
 
     let isCorrect = Array.isArray(lesson.acceptedAnswers) && lesson.acceptedAnswers.some(
@@ -1464,6 +1459,64 @@
         // Fallback
       }
     }
+    return isCorrect;
+  }
+
+  let sqlCheck = 0;
+
+  function renderSqlResult(columns, rows) {
+    const host = document.getElementById("sql-lab-result");
+    host.replaceChildren();
+    const table = document.createElement("table");
+    table.createCaption().textContent = "Rezultat pe datele de exemplu";
+    const head = table.createTHead().insertRow();
+    for (const column of columns) {
+      const cell = document.createElement("th");
+      cell.scope = "col";
+      cell.textContent = column;
+      head.append(cell);
+    }
+    const body = table.createTBody();
+    for (const row of rows) {
+      const tr = body.insertRow();
+      for (const value of row) tr.insertCell().textContent = value ?? "NULL";
+    }
+    host.append(table);
+  }
+
+  async function verifyCurrentAnswer() {
+    const lesson = allLessons.find(l => l.id === state.activeLessonId);
+    if (!lesson || els.verifyBtn.disabled) return;
+    const rawInput = els.userAnswerInput.value;
+    let isCorrect, failure;
+    if (lesson.id === "sql-1") {
+      document.getElementById("sql-lab-result").replaceChildren();
+      if (rawInput.trim()) {
+        const attempt = ++sqlCheck;
+        const isCurrent = () => attempt === sqlCheck && state.activeView === "study" && rawInput === els.userAnswerInput.value;
+        els.verifyBtn.disabled = true;
+        els.validationFeedback.textContent = "Se rulează interogarea pe server…";
+        try {
+          const response = await fetch("/api/sql-lab", {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ query: rawInput }), signal: AbortSignal.timeout(8000)
+          });
+          if (!response.ok && ![400, 413].includes(response.status)) throw new Error("API unavailable");
+          const result = await response.json();
+          if (!isCurrent()) return;
+          if (Array.isArray(result.rows)) renderSqlResult(result.columns, result.rows);
+          isCorrect = result.correct === true;
+          failure = result.error;
+        } catch {
+          if (!isCurrent()) return;
+          failure = "Laboratorul SQL nu răspunde momentan. Încearcă din nou.";
+        } finally {
+          if (attempt === sqlCheck) els.verifyBtn.disabled = false;
+        }
+      }
+    } else {
+      isCorrect = isWrittenAnswerCorrect(lesson, rawInput);
+    }
 
     if (isCorrect) {
       els.inputZone.classList.remove("state-error");
@@ -1471,16 +1524,21 @@
       els.nextLessonBtn.classList.remove("hidden");
 
       if (lessonSessionAssisted) {
-        // Cazul 50/50: a cerut răspunsul sau l-a copiat direct
-        recordAssistedActivity(lesson);
-        els.validationFeedback.innerHTML = "⚠️ <strong>Rezolvare Asistată (50/50):</strong> Ai obținut <strong>+5 XP de consolare</strong>. Progresul de Măiestrie și Obiectivul Zilnic 3/3 nu se contorizează pentru soluțiile asistate, dar Streak-ul a fost menținut!";
+        const rewarded = recordAssistedActivity(lesson);
+        els.validationFeedback.textContent = rewarded
+          ? "Rezolvare asistată: +5 XP. Obiectivul zilnic rămâne neschimbat."
+          : "Rezolvare asistată. Punctele au fost deja acordate.";
         els.validationFeedback.style.color = "var(--assisted-amber)";
       } else {
-        // Cazul Autonom 100%: a rezolvat de sine stătător
-        recordAutonomousActivity(lesson.xp || 30, lesson);
-        els.validationFeedback.textContent = "✅ Excelent! Răspunsul este 100% corect. Ai câștigat XP complet și ai avansat în Obiectivul Zilnic 3/3!";
+        const before = state.xp;
+        const rewarded = recordAutonomousActivity(lesson.xp || 30, lesson, "write");
+        const daily = Math.min(state.dailyHistory[getTodayKey()] || 0, getDailyTarget());
+        const confirmation = lesson.id === "sql-1" ? "Interogarea a întors rezultatul așteptat." : "Răspunsul corespunde cerinței.";
+        els.validationFeedback.textContent = "✅ " + confirmation + (rewarded
+          ? " +" + (state.xp - before) + " XP. Obiectiv azi: " + daily + "/" + getDailyTarget() + "."
+          : " Punctele pentru acest exercițiu au fost deja acordate.");
         els.validationFeedback.style.color = "var(--success-green)";
-        launchConfetti();
+        if (rewarded) launchConfetti();
       }
 
       renderStats();
@@ -1490,9 +1548,9 @@
       els.inputZone.classList.remove("state-error");
       void els.inputZone.offsetWidth;
       els.inputZone.classList.add("state-error");
-      els.validationFeedback.textContent = rawInput.trim()
+      els.validationFeedback.textContent = failure || (rawInput.trim()
         ? "Încă nu este corect. Verifică cerința și încearcă din nou."
-        : "❌ Caseta este goală! Scrie răspunsul la cerința evidențiată mai sus.";
+        : "❌ Caseta este goală! Scrie răspunsul la cerința evidențiată mai sus.");
       els.validationFeedback.style.color = "var(--error-red)";
     }
   }
@@ -1553,16 +1611,19 @@
       const isActive = lesson.id === state.activeLessonId;
 
       const li = document.createElement("li");
-      li.className = `lesson-item ${isActive ? "active" : ""} ${mStatus.current > 0 ? "completed" : ""}`;
-      li.innerHTML = `
+      const button = document.createElement("button");
+      button.type = "button";
+      if (isActive) button.setAttribute("aria-current", "true");
+      button.className = `lesson-item ${isActive ? "active" : ""} ${mStatus.current > 0 ? "completed" : ""}`;
+      button.innerHTML = `
         <div style="display:flex; flex-direction:column; gap:2px; min-width:0; flex:1;">
           <span style="font-size:0.68rem; color:var(--text-secondary); font-weight:700;">${lesson.level || "Nivel"}</span>
           <span style="word-break:break-word; text-wrap:pretty;">${idx + 1}. ${formatRomanianTypography(lesson.title)}</span>
         </div>
-        <span class="lesson-mastery-pill">${mStatus.icon} ${mStatus.current}/${mStatus.max}</span>
+        <span class="lesson-mastery-pill">${mStatus.label}</span>
       `;
 
-      li.addEventListener("click", () => {
+      button.addEventListener("click", () => {
         state.activeLessonId = lesson.id;
         lessonSessionAssisted = false;
         saveState();
@@ -1570,6 +1631,7 @@
         renderStudyView();
       });
 
+      li.append(button);
       els.pocketLessonList.appendChild(li);
     });
   }
@@ -1648,7 +1710,7 @@
       icon: `<svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>`,
       title: "Disciplină de Fier",
       desc: "Îndeplinește obiectivul zilnic complet într-o singură zi.",
-      isUnlocked: s => (s.dailyHistory[getTodayKey()] || 0) >= getDailyTarget()
+      isUnlocked: s => Object.values(s.dailyHistory).some(count => count >= getDailyTarget())
     },
     {
       id: "xp_seeker",
