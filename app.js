@@ -14,6 +14,7 @@
     dailyHistory: {},    // { [date]: count of autonomous tasks }
     assistedHistory: {}, // { [date]: count of assisted (50/50) tasks }
     rewardedExercises: {},
+    bookmarkedLessons: [],
     theme: "daylight-clean",
     customLessons: [],
     activeTrack: "SQL",
@@ -55,7 +56,8 @@
     ...(typeof NEW_EXPANDED_CURRICULUM !== "undefined" ? NEW_EXPANDED_CURRICULUM : []),
     ...(typeof CPP_EXPANDED_CURRICULUM !== "undefined" ? CPP_EXPANDED_CURRICULUM : []),
     ...(typeof MEGA_EXPANDED_CURRICULUM !== "undefined" ? MEGA_EXPANDED_CURRICULUM : []),
-    ...(typeof RUST_RESOURCES_CURRICULUM !== "undefined" ? RUST_RESOURCES_CURRICULUM : [])
+    ...(typeof RUST_RESOURCES_CURRICULUM !== "undefined" ? RUST_RESOURCES_CURRICULUM : []),
+    ...(typeof GO_AI_SECURITY_CURRICULUM !== "undefined" ? GO_AI_SECURITY_CURRICULUM : [])
   ];
 
   // Deduplicare inteligentă pe baza ID-ului
@@ -118,6 +120,15 @@
       l.division = "Informatică și Programare";
     } else if (l.track && l.track.includes("Rust")) {
       l.track = "Rust & Sisteme Moderne";
+      l.division = "Informatică și Programare";
+    } else if (l.track && l.track.includes("Go")) {
+      l.track = "Go & Sisteme Distribuite";
+      l.division = "Informatică și Programare";
+    } else if (l.track && l.track.includes("Securitate")) {
+      l.track = "Securitate Cibernetică & Web";
+      l.division = "Informatică și Programare";
+    } else if (l.track && (l.track.includes("Inteligență") || l.track.includes("AI"))) {
+      l.track = "Inteligență Artificială & ML";
       l.division = "Informatică și Programare";
     } else if (l.track && (l.track.includes("Open-Source") || l.track.includes("Resurse"))) {
       l.track = "Resurse & Proiecte Open-Source";
@@ -336,8 +347,9 @@
       parsed.dailyHistory = parsed.dailyHistory || {};
       parsed.assistedHistory = parsed.assistedHistory || {};
       parsed.rewardedExercises = { ...parsed.rewardedExercises };
+      parsed.bookmarkedLessons = Array.isArray(parsed.bookmarkedLessons) ? parsed.bookmarkedLessons : [];
       parsed.theme = parsed.theme || "emerald-forest";
-      parsed.activeView = ["home", "catalog", "study", "vocabulary", "activity", "leagues"].includes(parsed.activeView) ? parsed.activeView : "home";
+      parsed.activeView = ["home", "catalog", "study", "lab", "vocabulary", "activity", "leagues"].includes(parsed.activeView) ? parsed.activeView : "home";
       parsed.activeDualPane = ["theory", "examples", "practice"].includes(parsed.activeDualPane) ? parsed.activeDualPane : "theory";
       parsed.customLessons = [];
       parsed.preferences = {
@@ -367,6 +379,7 @@
     renderStats();
     if (state.activeView === "catalog") renderCatalogView();
     else if (state.activeView === "study") renderStudyView();
+    else if (state.activeView === "lab") renderLabView();
     else if (state.activeView === "activity") renderActivityView();
     else if (state.activeView === "leagues") renderLeaguesView();
   }
@@ -537,8 +550,14 @@
     brandHomeBtn: document.getElementById("brand-home-btn"),
     navCatalogBtn: document.getElementById("nav-catalog-btn"),
     navStudyBtn: document.getElementById("nav-study-btn"),
+    navLabBtn: document.getElementById("nav-lab-btn"),
     navActivityBtn: document.getElementById("nav-activity-btn"),
     navLeaguesBtn: document.getElementById("nav-leagues-btn"),
+    quickSearchTrigger: document.getElementById("quick-search-trigger"),
+    quickSearchModal: document.getElementById("quick-search-modal"),
+    quickSearchField: document.getElementById("quick-search-field"),
+    quickSearchCloseBtn: document.getElementById("quick-search-close-btn"),
+    quickSearchResults: document.getElementById("quick-search-results"),
 
 
     // Stats Cluster
@@ -591,6 +610,10 @@
     lessonCategoryBadge: document.getElementById("lesson-category-badge"),
     lessonLevelBadge: document.getElementById("lesson-level-badge"),
     lessonStatusBadge: document.getElementById("lesson-status-badge"),
+    btnBookmarkLesson: document.getElementById("btn-bookmark-lesson"),
+    btnBookmarkText: document.getElementById("btn-bookmark-text"),
+    btnExportProgress: document.getElementById("btn-export-progress"),
+    inputImportProgress: document.getElementById("input-import-progress"),
     lessonTitle: document.getElementById("lesson-title"),
     lessonTheory: document.getElementById("lesson-theory"),
     dictionaryBox: document.getElementById("dictionary-box"),
@@ -684,6 +707,9 @@
     "DevOps & Sisteme Linux": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>`,
     "Algoritmi & Structuri de Date": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>`,
     "Rust & Sisteme Moderne": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>`,
+    "Go & Sisteme Distribuite": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"></path></svg>`,
+    "Securitate Cibernetică & Web": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+    "Inteligență Artificială & ML": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04z"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04z"></path></svg>`,
     "Resurse & Proiecte Open-Source": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
     "Engleză (A1–A2)": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
     "Engleză (B1–B2)": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>`,
@@ -704,6 +730,9 @@
     "DevOps & Sisteme Linux": "Comenzi terminal Bash, pipes, Docker multi-stage, Git internals și protocoale de rețea.",
     "Algoritmi & Structuri de Date": "Tehnici Two Pointers, căutare binară O(log n), stive și optimizarea complexității.",
     "Rust & Sisteme Moderne": "Limbaj de performanță nativă fără Garbage Collector: ownership, borrowing, siguranță la nivel de memorie, concurență și instrumente CLI.",
+    "Go & Sisteme Distribuite": "Concepte esențiale Golang: goroutines, canale mpsc, interfețe implicite, compoziție și microservicii REST API.",
+    "Securitate Cibernetică & Web": "Bune practici de securitate: prevenirea SQL Injection, XSS, CSRF, hashing robust cu Argon2id și token-uri JWT sigure.",
+    "Inteligență Artificială & ML": "Fundamente de inteligență artificială: Machine Learning, Rețele Neuronale, Backpropagation, Embeddings, Transformers și RAG.",
     "Resurse & Proiecte Open-Source": "Sinteză practică a marilor repozitorii GitHub: ghiduri universitare OSSU, Roadmaps de carieră, Build Your Own X și TheAlgorithms.",
     "Engleză (A1–A2)": "Fundamente gramaticale, prezent simplu/continuu, verbe neregulate și dialog uzual.",
     "Engleză (B1–B2)": "Timpuri compuse, diateză pasivă, fraze condiționale și vocabular intermediar.",
@@ -724,6 +753,9 @@
     "DevOps & Sisteme Linux": "Informatică și Programare",
     "Algoritmi & Structuri de Date": "Informatică și Programare",
     "Rust & Sisteme Moderne": "Informatică și Programare",
+    "Go & Sisteme Distribuite": "Informatică și Programare",
+    "Securitate Cibernetică & Web": "Informatică și Programare",
+    "Inteligență Artificială & ML": "Informatică și Programare",
     "Resurse & Proiecte Open-Source": "Informatică și Programare",
     "Engleză (A1–A2)": "Limbi Străine & Comunicare",
     "Engleză (B1–B2)": "Limbi Străine & Comunicare",
@@ -739,8 +771,8 @@
 
   function getTracks() {
     const tracksOrder = [
-      "SQL", "Java", "JavaScript", "TypeScript & React", "C & C++", "Rust & Sisteme Moderne", "C#", "Python",
-      "DevOps & Sisteme Linux", "Algoritmi & Structuri de Date", "Resurse & Proiecte Open-Source",
+      "SQL", "Java", "JavaScript", "TypeScript & React", "C & C++", "Rust & Sisteme Moderne", "Go & Sisteme Distribuite", "C#", "Python",
+      "DevOps & Sisteme Linux", "Algoritmi & Structuri de Date", "Securitate Cibernetică & Web", "Inteligență Artificială & ML", "Resurse & Proiecte Open-Source",
       "Engleză (A1–A2)", "Engleză (B1–B2)", "Engleză (C1–C2)", "Engleză: Familie & Hobby",
       "Limba Franceză", "Limba Spaniolă"
     ];
@@ -807,8 +839,8 @@
   // =========================================================================
   // VIEW SWITCHING (SPA MULTI-PAGE: CATALOG, STUDY, ACTIVITY, LEAGUES)
   // =========================================================================
-  const ROUTES = { home: "acasa", catalog: "exploreaza", study: "invata", vocabulary: "vocabular", activity: "progres", leagues: "realizari" };
-  const VIEW_LABELS = { home: "Acasă", catalog: "Explorează", study: "Învățare", vocabulary: "Vocabular", activity: "Progresul meu", leagues: "Realizări" };
+  const ROUTES = { home: "acasa", catalog: "exploreaza", study: "invata", lab: "laborator", vocabulary: "vocabular", activity: "progres", leagues: "realizari" };
+  const VIEW_LABELS = { home: "Acasă", catalog: "Explorează", study: "Învățare", lab: "Laborator Cod", vocabulary: "Vocabular", activity: "Progresul meu", leagues: "Realizări" };
 
   function readRoute() {
     const [path, query = ""] = window.location.hash.slice(1).split("?");
@@ -859,6 +891,7 @@
     if (view) { view.classList.remove("hidden"); view.classList.remove("page-enter"); void view.offsetWidth; view.classList.add("page-enter"); }
     if (target === "catalog") renderCatalogView();
     else if (target === "study") renderStudyView();
+    else if (target === "lab") renderLabView();
     else if (target === "activity") renderActivityView();
     else if (target === "leagues") renderLeaguesView();
     if (window.PolymathStudio && target !== "study") window.PolymathStudio.render(target, params);
@@ -879,8 +912,15 @@
     const tracks = getTracks();
     els.catalogDomainsGrid.innerHTML = "";
 
+    const favBadge = document.getElementById("favorite-count-badge");
+    if (favBadge) favBadge.textContent = (state.bookmarkedLessons || []).length;
+
     const visibleTracks = tracks.filter(track => {
       if (!currentDivisionFilter || currentDivisionFilter === "ALL") return true;
+      if (currentDivisionFilter === "FAVORITES") {
+        const bookmarks = state.bookmarkedLessons || [];
+        return allLessons.some(l => l.track === track.name && bookmarks.includes(l.id));
+      }
       return track.division === currentDivisionFilter;
     });
 
@@ -1047,7 +1087,8 @@
         l.title.toLowerCase().includes(query) ||
         (l.theory && l.theory.toLowerCase().includes(query)) ||
         (l.prompt && l.prompt.toLowerCase().includes(query));
-      return matchesLevel && matchesQuery;
+      const matchesFavorites = currentDivisionFilter !== "FAVORITES" || (state.bookmarkedLessons || []).includes(l.id);
+      return matchesLevel && matchesQuery && matchesFavorites;
     });
 
     els.catalogChaptersGrid.innerHTML = "";
@@ -1173,6 +1214,7 @@
     els.lessonCategoryBadge.textContent = lesson.track;
     els.lessonLevelBadge.textContent = lesson.level || "1. Începător";
     els.lessonStatusBadge.textContent = mStatus.label;
+    updateBookmarkUI();
 
     els.lessonTitle.textContent = formatRomanianTypography(lesson.title);
     els.lessonTheory.innerHTML = formatTheoryContent(lesson.theory, lesson);
@@ -1857,6 +1899,480 @@
   }
 
   // =========================================================================
+  // SISTEM DE MARCAJE / FAVORITE (BOOKMARKS)
+  // =========================================================================
+  function updateBookmarkUI() {
+    const btn = document.getElementById("btn-bookmark-lesson");
+    const text = document.getElementById("btn-bookmark-text");
+    const badge = document.getElementById("favorite-count-badge");
+    const count = (state.bookmarkedLessons || []).length;
+
+    if (badge) badge.textContent = count;
+    if (!btn || !text) return;
+
+    const isBookmarked = (state.bookmarkedLessons || []).includes(state.activeLessonId);
+    btn.classList.toggle("bookmarked", isBookmarked);
+    text.textContent = isBookmarked ? "Salvat" : "Salvează";
+    btn.title = isBookmarked ? "Elimină din favorite" : "Salvează capitolul la favorite";
+  }
+
+  function toggleCurrentLessonBookmark() {
+    if (!state.activeLessonId) return;
+    state.bookmarkedLessons = state.bookmarkedLessons || [];
+    const idx = state.bookmarkedLessons.indexOf(state.activeLessonId);
+    if (idx === -1) {
+      state.bookmarkedLessons.push(state.activeLessonId);
+      showToast("⭐ Capitol adăugat la favorite!");
+    } else {
+      state.bookmarkedLessons.splice(idx, 1);
+      showToast("Capitol eliminat din favorite.");
+    }
+    saveState();
+    updateBookmarkUI();
+    if (currentDivisionFilter === "FAVORITES") renderCatalogView();
+  }
+
+  // =========================================================================
+  // LABORATOR DE COD INTERACTIV (PLAYGROUND / RUNNER JS & ALGORITMI)
+  // =========================================================================
+  const LAB_PRESETS = {
+    "algo-two-pointers": `// Algoritm: Two Pointers (Găsirea a două numere cu suma țintă)
+function gasestePerecheCuSuma(arr, tinta) {
+  let stanga = 0;
+  let dreapta = arr.length - 1;
+  console.log("Tablou sortat:", arr, "Țintă căutată:", tinta);
+
+  while (stanga < dreapta) {
+    const suma = arr[stanga] + arr[dreapta];
+    console.log(\`Pas: arr[\${stanga}]=\${arr[stanga]} + arr[\${dreapta}]=\${arr[dreapta]} -> Suma = \${suma}\`);
+    if (suma === tinta) {
+      return { gasit: true, indexStanga: stanga, indexDreapta: dreapta, numere: [arr[stanga], arr[dreapta]] };
+    } else if (suma < tinta) {
+      stanga++;
+    } else {
+      dreapta--;
+    }
+  }
+  return { gasit: false };
+}
+
+const numere = [2, 4, 7, 11, 15, 20, 24];
+const rezultat = gasestePerecheCuSuma(numere, 22);
+console.log("Rezultat final:", JSON.stringify(rezultat));`,
+
+    "algo-binary-search": `// Algoritm: Căutare Binară O(log n)
+function cautareBinara(tablou, cheie) {
+  let stanga = 0;
+  let dreapta = tablou.length - 1;
+  let pasi = 0;
+
+  while (stanga <= dreapta) {
+    pasi++;
+    const mijloc = Math.floor((stanga + dreapta) / 2);
+    console.log(\`Pasul \${pasi}: Interval [\${stanga} .. \${dreapta}], Mijloc: index \${mijloc} (valoare: \${tablou[mijloc]})\`);
+    if (tablou[mijloc] === cheie) {
+      return { index: mijloc, pasiTotal: pasi };
+    } else if (tablou[mijloc] < cheie) {
+      stanga = mijloc + 1;
+    } else {
+      dreapta = mijloc - 1;
+    }
+  }
+  return { index: -1, pasiTotal: pasi };
+}
+
+const dateSortate = [10, 23, 35, 47, 52, 68, 71, 85, 93, 104, 120, 150];
+const gasit = cautareBinara(dateSortate, 85);
+console.log("Element găsit:", JSON.stringify(gasit));`,
+
+    "js-async": `// Asincronism modern: Async / Await și Promisiuni paralele
+async function simuleazaCerereAPI(serviciu, delayMs) {
+  console.log(\`[Start] Apel către \${serviciu}...\`);
+  await new Promise(r => setTimeout(r, delayMs));
+  console.log(\`[Gata] Răspuns de la \${serviciu} în \${delayMs}ms\`);
+  return { serviciu, status: 200, timestamp: Date.now() };
+}
+
+async function executaPipeline() {
+  console.log("Lansare cereri concurente cu Promise.all:");
+  const rezultate = await Promise.all([
+    simuleazaCerereAPI("Serviciu Utilizatori", 400),
+    simuleazaCerereAPI("Serviciu Catalog Cursuri", 250),
+    simuleazaCerereAPI("Serviciu Recompense XP", 150)
+  ]);
+  console.log("Toate serviciile au răspuns cu succes!");
+  console.log(rezultate);
+}
+
+executaPipeline();`,
+
+    "js-array-methods": `// Transformare de date: Map, Filter & Reduce
+const cursanti = [
+  { nume: "Andrei", limbaj: "Rust", xp: 120, activ: true },
+  { nume: "Elena", limbaj: "Go", xp: 240, activ: true },
+  { nume: "Mihai", limbaj: "Python", xp: 85, activ: false },
+  { nume: "Ioana", limbaj: "Rust", xp: 310, activ: true }
+];
+
+console.log("1. Doar cursanții activi:");
+const activi = cursanti.filter(c => c.activ);
+console.log(activi);
+
+console.log("2. Total XP cumulat:");
+const totalXp = activi.reduce((acc, c) => acc + c.xp, 0);
+console.log("Total XP:", totalXp);
+
+console.log("3. Extragere diplome formatate:");
+const diplome = activi.map(c => \`\${c.nume} (\${c.limbaj}) - Nivel: \${c.xp >= 200 ? 'Expert' : 'Practicant'}\`);
+console.log(diplome);`,
+
+    "rust-concept": `// Simulare Logică: Verificator de Împrumuturi Rust (Borrow Checker)
+class MemorieRust {
+  constructor() {
+    this.proprietar = null;
+    this.referinteImutabile = 0;
+    this.referintaMutabila = false;
+  }
+  aloca(variabila) {
+    this.proprietar = variabila;
+    console.log(\`[Ownership]: Variabila '\${variabila}' este proprietarul resursei pe Heap.\`);
+  }
+  imprumutaCitire(nume) {
+    if (this.referintaMutabila) {
+      console.error(\`[Eroare Compilare]: Nu poți împrumuta '&' lui '\${nume}' cât timp există '&mut' exclusiv!\`);
+      return false;
+    }
+    this.referinteImutabile++;
+    console.log(\`[Borrow]: Împrumut imutabil acordat lui '\${nume}'. Total referințe active: \${this.referinteImutabile}\`);
+    return true;
+  }
+  imprumutaScriere(nume) {
+    if (this.referinteImutabile > 0 || this.referintaMutabila) {
+      console.error(\`[Eroare Compilare]: Nu poți împrumuta '&mut' exclusiv lui '\${nume}' când alte referințe sunt active!\`);
+      return false;
+    }
+    this.referintaMutabila = true;
+    console.log(\`[Borrow Mutabil]: Acces exclusiv '&mut' acordat lui '\${nume}'.\`);
+    return true;
+  }
+}
+
+const mem = new MemorieRust();
+mem.aloca("s1");
+mem.imprumutaCitire("ref1");
+mem.imprumutaCitire("ref2");
+mem.imprumutaScriere("mutRef"); // Va genera eroarea de regulă de aur!`,
+
+    "go-concurrency": `// Simulare Concepte Go: Canale & Gorutine (Producer-Consumer)
+class CanalGo {
+  constructor(nume) {
+    this.nume = nume;
+    this.coada = [];
+  }
+  trimite(valoare) {
+    this.coada.push(valoare);
+    console.log(\`[ch <-\] Trimis '\${valoare}' în canalul \${this.nume}\`);
+  }
+  primeste() {
+    if (this.coada.length === 0) {
+      console.log(\`[<- ch] Canalul \${this.nume} este gol; așteaptă...\`);
+      return null;
+    }
+    const val = this.coada.shift();
+    console.log(\`[<- ch] Recepționat '\${val}' din canalul \${this.nume}\`);
+    return val;
+  }
+}
+
+const ch = new CanalGo("comenzi");
+ch.trimite("Comanda #101");
+ch.trimite("Comanda #102");
+ch.primeste();
+ch.primeste();`,
+
+    "sec-hash": `// Securitate: Simulare Hashing cu Salt & Generare Token JWT
+function simuleazaHashCuSalt(parola, salt) {
+  let hash = 0;
+  const combinat = salt + parola + salt;
+  for (let i = 0; i < combinat.length; i++) {
+    hash = ((hash << 5) - hash) + combinat.charCodeAt(i);
+    hash |= 0;
+  }
+  return \`$argon2id$v=19$m=65536,t=3,p=4$\${btoa(salt)}$\${Math.abs(hash).toString(16)}\`;
+}
+
+function simuleazaJWT(user, rol) {
+  const header = btoa(JSON.stringify({ alg: "HS256", typ: "JWT" }));
+  const payload = btoa(JSON.stringify({ sub: user, rol: rol, exp: Math.floor(Date.now() / 1000) + 3600 }));
+  const semnatura = btoa("semnatura_criptografica_server");
+  return \`\${header}.\${payload}.\${semnatura}\`;
+}
+
+console.log("Parolă hashuită cu salt (simulare Argon2):");
+console.log(simuleazaHashCuSalt("ParolaMeaSigura123!", "salt_unic_per_user_987"));
+
+console.log("\\nToken JWT generat pentru autentificare sesiune:");
+const token = simuleazaJWT("alex@polymath.ro", "admin");
+console.log(token);
+console.log("Decodare payload token:", atob(token.split('.')[1]));`
+  };
+
+  let labInitialized = false;
+  function renderLabView() {
+    const input = document.getElementById("lab-code-input");
+    const output = document.getElementById("lab-console-output");
+    const presetSelect = document.getElementById("lab-preset-select");
+    const runBtn = document.getElementById("lab-run-btn");
+    const resetBtn = document.getElementById("lab-reset-btn");
+    const clearBtn = document.getElementById("lab-clear-console-btn");
+
+    if (!input || !output) return;
+
+    if (!labInitialized) {
+      labInitialized = true;
+      if (presetSelect) {
+        input.value = LAB_PRESETS[presetSelect.value] || LAB_PRESETS["algo-two-pointers"];
+        presetSelect.addEventListener("change", () => {
+          input.value = LAB_PRESETS[presetSelect.value] || "";
+          output.innerHTML = `<span style="color:var(--text-secondary);">Șablon încărcat: ${presetSelect.options[presetSelect.selectedIndex].text}. Apasă pe «Rulează Codul».</span>`;
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+          if (presetSelect) input.value = LAB_PRESETS[presetSelect.value] || "";
+          showToast("Cod resetat la șablonul inițial.");
+        });
+      }
+
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          output.innerHTML = `<span style="color:var(--text-secondary);">Consolă golită.</span>`;
+        });
+      }
+
+      if (runBtn) {
+        runBtn.addEventListener("click", executeLabCode);
+      }
+    }
+  }
+
+  function executeLabCode() {
+    const input = document.getElementById("lab-code-input");
+    const output = document.getElementById("lab-console-output");
+    if (!input || !output) return;
+
+    const code = input.value;
+    output.innerHTML = "";
+
+    const logs = [];
+    const originalLog = console.log;
+    const originalInfo = console.info;
+    const originalWarn = console.warn;
+    const originalError = console.error;
+
+    function formatArg(arg) {
+      if (arg === null) return "null";
+      if (arg === undefined) return "undefined";
+      if (typeof arg === "object") {
+        try { return JSON.stringify(arg, null, 2); } catch (e) { return String(arg); }
+      }
+      return String(arg);
+    }
+
+    console.log = (...args) => {
+      logs.push({ type: "log", text: args.map(formatArg).join(" ") });
+      originalLog.apply(console, args);
+    };
+    console.info = (...args) => {
+      logs.push({ type: "info", text: args.map(formatArg).join(" ") });
+      originalInfo.apply(console, args);
+    };
+    console.warn = (...args) => {
+      logs.push({ type: "warn", text: args.map(formatArg).join(" ") });
+      originalWarn.apply(console, args);
+    };
+    console.error = (...args) => {
+      logs.push({ type: "error", text: args.map(formatArg).join(" ") });
+      originalError.apply(console, args);
+    };
+
+    let executionError = null;
+    const startTime = performance.now();
+
+    try {
+      const runner = new Function(code);
+      runner();
+    } catch (err) {
+      executionError = err;
+    } finally {
+      console.log = originalLog;
+      console.info = originalInfo;
+      console.warn = originalWarn;
+      console.error = originalError;
+    }
+
+    const duration = (performance.now() - startTime).toFixed(1);
+
+    if (logs.length === 0 && !executionError) {
+      output.innerHTML = `<div style="color:var(--text-secondary);"><span style="color:var(--accent-primary);">✔ Execuție finalizată în ${duration}ms</span> (niciun apel de consolă).</div>`;
+      return;
+    }
+
+    let html = `<div style="margin-bottom:0.75rem; font-size:0.8rem; color:var(--text-secondary); border-bottom:1px solid var(--border-color); padding-bottom:0.35rem;">Timp de execuție: ${duration}ms</div>`;
+
+    logs.forEach(item => {
+      let color = "var(--text-primary)";
+      if (item.type === "error") color = "var(--error-red)";
+      else if (item.type === "warn") color = "var(--warning-amber)";
+      else if (item.type === "info") color = "var(--accent-primary)";
+      html += `<div style="color:${color}; margin-bottom:0.25rem;">${escapeHtml(item.text)}</div>`;
+    });
+
+    if (executionError) {
+      html += `<div style="color:var(--error-red); margin-top:0.5rem; font-weight:700;">[Eroare la Rulare]: ${escapeHtml(executionError.message)}</div>`;
+    }
+
+    output.innerHTML = html;
+  }
+
+  // =========================================================================
+  // OMNIBAR: CĂUTARE RAPIDĂ GLOBALĂ (CTRL + K)
+  // =========================================================================
+  let quickSearchOpen = false;
+  let quickSearchSelectedIndex = 0;
+  let quickSearchResultsList = [];
+
+  function openQuickSearch() {
+    const modal = document.getElementById("quick-search-modal");
+    const input = document.getElementById("quick-search-field");
+    if (!modal || !input) return;
+    modal.classList.remove("hidden");
+    quickSearchOpen = true;
+    input.value = "";
+    performQuickSearch("");
+    setTimeout(() => input.focus(), 50);
+  }
+
+  function closeQuickSearch() {
+    const modal = document.getElementById("quick-search-modal");
+    if (!modal) return;
+    modal.classList.add("hidden");
+    quickSearchOpen = false;
+  }
+
+  function performQuickSearch(query) {
+    const resultsContainer = document.getElementById("quick-search-results");
+    if (!resultsContainer) return;
+
+    const q = (query || "").toLowerCase().trim();
+    let matches = [];
+
+    if (!q) {
+      matches = allLessons.slice(0, 10);
+    } else {
+      matches = allLessons.filter(lesson => {
+        return (
+          lesson.title.toLowerCase().includes(q) ||
+          lesson.track.toLowerCase().includes(q) ||
+          (lesson.level && lesson.level.toLowerCase().includes(q)) ||
+          (lesson.glossary && lesson.glossary.some(g => g.term.toLowerCase().includes(q)))
+        );
+      }).slice(0, 15);
+    }
+
+    quickSearchResultsList = matches;
+    quickSearchSelectedIndex = 0;
+
+    if (matches.length === 0) {
+      resultsContainer.innerHTML = `<div style="padding:1.5rem; text-align:center; color:var(--text-secondary);">Niciun capitol găsit pentru «${escapeHtml(q)}». Încearcă un alt termen (ex: Rust, Python, Docker, Go, Algoritmi).</div>`;
+      return;
+    }
+
+    resultsContainer.innerHTML = matches.map((lesson, idx) => {
+      const isSelected = idx === quickSearchSelectedIndex;
+      return `
+        <div class="quick-search-item ${isSelected ? 'selected' : ''}" data-idx="${idx}" data-lesson-id="${lesson.id}" data-track="${escapeHtml(lesson.track)}">
+          <div class="quick-search-item-left">
+            <span>${lesson.icon || '📖'}</span>
+            <span class="quick-search-item-title">${escapeHtml(lesson.title)}</span>
+          </div>
+          <span class="quick-search-item-meta">${escapeHtml(lesson.track)} · ${escapeHtml(lesson.level || '')}</span>
+        </div>
+      `;
+    }).join("");
+
+    resultsContainer.querySelectorAll(".quick-search-item").forEach(item => {
+      item.addEventListener("click", () => {
+        const id = item.getAttribute("data-lesson-id");
+        const track = item.getAttribute("data-track");
+        selectQuickSearchResult(id, track);
+      });
+    });
+  }
+
+  function updateQuickSearchSelection() {
+    const items = document.querySelectorAll(".quick-search-item");
+    items.forEach((item, idx) => {
+      item.classList.toggle("selected", idx === quickSearchSelectedIndex);
+      if (idx === quickSearchSelectedIndex) {
+        item.scrollIntoView({ block: "nearest" });
+      }
+    });
+  }
+
+  function selectQuickSearchResult(lessonId, trackName) {
+    closeQuickSearch();
+    state.activeTrack = trackName;
+    state.activeLessonId = lessonId;
+    saveState();
+    switchView("study");
+  }
+
+  // =========================================================================
+  // SISTEM DE BACKUP & EXPORT / IMPORT PROGRES (JSON)
+  // =========================================================================
+  function exportProgressJSON() {
+    const backupData = {
+      version: "polymathhub_backup_v2",
+      exportedAt: new Date().toISOString(),
+      state: state
+    };
+    const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    const dateStr = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `polymathhub-progres-${dateStr}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast("✔ Progresul tău a fost exportat cu succes!");
+  }
+
+  function importProgressJSON(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        const parsed = JSON.parse(e.target.result);
+        const importedState = parsed.state || parsed;
+        if (typeof importedState.xp !== "number") {
+          throw new Error("Format de fișier invalid");
+        }
+        state = { ...structuredClone(defaultState), ...importedState };
+        saveState();
+        renderAllViews();
+        showToast("✔ Progres restaurat complet! Bine ai revenit.");
+      } catch (err) {
+        showToast("Eroare la import: Fișierul selectat nu este un backup PolymathHub valid.");
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  // =========================================================================
   // ATRIBUIRE EVENIMENTE
   // =========================================================================
   function bindEvents() {
@@ -1917,6 +2433,83 @@
     // Buton Înapoi la Catalog din Studiul Focalizat
     if (els.backToCatalogBtn) {
       els.backToCatalogBtn.addEventListener("click", () => switchView("catalog"));
+    }
+
+    // Butoane Rapide (Focus Quick Links)
+    document.querySelectorAll(".focus-quick-links button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const go = btn.getAttribute("data-go");
+        if (go) switchView(go);
+      });
+    });
+
+    // Căutare Rapidă Globală (Omnibar / Ctrl + K)
+    if (els.quickSearchTrigger) {
+      els.quickSearchTrigger.addEventListener("click", openQuickSearch);
+    }
+    if (els.quickSearchCloseBtn) {
+      els.quickSearchCloseBtn.addEventListener("click", closeQuickSearch);
+    }
+    if (els.quickSearchModal) {
+      els.quickSearchModal.addEventListener("click", e => {
+        if (e.target === els.quickSearchModal) closeQuickSearch();
+      });
+    }
+    if (els.quickSearchField) {
+      els.quickSearchField.addEventListener("input", e => {
+        performQuickSearch(e.target.value);
+      });
+      els.quickSearchField.addEventListener("keydown", e => {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          if (quickSearchResultsList.length) {
+            quickSearchSelectedIndex = (quickSearchSelectedIndex + 1) % quickSearchResultsList.length;
+            updateQuickSearchSelection();
+          }
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          if (quickSearchResultsList.length) {
+            quickSearchSelectedIndex = (quickSearchSelectedIndex - 1 + quickSearchResultsList.length) % quickSearchResultsList.length;
+            updateQuickSearchSelection();
+          }
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          const targetItem = quickSearchResultsList[quickSearchSelectedIndex];
+          if (targetItem) {
+            selectQuickSearchResult(targetItem.id, targetItem.track);
+          }
+        } else if (e.key === "Escape") {
+          closeQuickSearch();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", e => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        if (quickSearchOpen) closeQuickSearch();
+        else openQuickSearch();
+      } else if (e.key === "Escape" && quickSearchOpen) {
+        closeQuickSearch();
+      }
+    });
+
+    // Buton Marcaj Capitol (Bookmark)
+    if (els.btnBookmarkLesson) {
+      els.btnBookmarkLesson.addEventListener("click", toggleCurrentLessonBookmark);
+    }
+
+    // Export & Import Progres
+    if (els.btnExportProgress) {
+      els.btnExportProgress.addEventListener("click", exportProgressJSON);
+    }
+    if (els.inputImportProgress) {
+      els.inputImportProgress.addEventListener("change", e => {
+        if (e.target.files && e.target.files[0]) {
+          importProgressJSON(e.target.files[0]);
+          e.target.value = "";
+        }
+      });
     }
 
     document.addEventListener("keydown", event => { if (event.key === "Escape" && els.pocketDrawer.classList.contains("open")) closePocketDrawer(); });
