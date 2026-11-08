@@ -54,7 +54,8 @@
     ...(typeof ADVANCED_CURRICULUM !== "undefined" && typeof ADVANCED_CURRICULUM_EXPANSION === "undefined" ? ADVANCED_CURRICULUM : []),
     ...(typeof NEW_EXPANDED_CURRICULUM !== "undefined" ? NEW_EXPANDED_CURRICULUM : []),
     ...(typeof CPP_EXPANDED_CURRICULUM !== "undefined" ? CPP_EXPANDED_CURRICULUM : []),
-    ...(typeof MEGA_EXPANDED_CURRICULUM !== "undefined" ? MEGA_EXPANDED_CURRICULUM : [])
+    ...(typeof MEGA_EXPANDED_CURRICULUM !== "undefined" ? MEGA_EXPANDED_CURRICULUM : []),
+    ...(typeof RUST_RESOURCES_CURRICULUM !== "undefined" ? RUST_RESOURCES_CURRICULUM : [])
   ];
 
   // Deduplicare inteligentă pe baza ID-ului
@@ -114,6 +115,12 @@
       l.division = "Informatică și Programare";
     } else if (l.track && l.track.includes("Algoritmi")) {
       l.track = "Algoritmi & Structuri de Date";
+      l.division = "Informatică și Programare";
+    } else if (l.track && l.track.includes("Rust")) {
+      l.track = "Rust & Sisteme Moderne";
+      l.division = "Informatică și Programare";
+    } else if (l.track && (l.track.includes("Open-Source") || l.track.includes("Resurse"))) {
+      l.track = "Resurse & Proiecte Open-Source";
       l.division = "Informatică și Programare";
     } else if (l.track && l.track.includes("Franceză")) {
       l.track = "Limba Franceză";
@@ -676,6 +683,8 @@
     "Python": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>`,
     "DevOps & Sisteme Linux": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>`,
     "Algoritmi & Structuri de Date": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>`,
+    "Rust & Sisteme Moderne": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>`,
+    "Resurse & Proiecte Open-Source": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
     "Engleză (A1–A2)": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
     "Engleză (B1–B2)": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>`,
     "Engleză (C1–C2)": `<svg class="ui-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`,
@@ -694,6 +703,8 @@
     "Python": "Sintaxă expresivă, structuri de date native, list comprehensions și algoritmi.",
     "DevOps & Sisteme Linux": "Comenzi terminal Bash, pipes, Docker multi-stage, Git internals și protocoale de rețea.",
     "Algoritmi & Structuri de Date": "Tehnici Two Pointers, căutare binară O(log n), stive și optimizarea complexității.",
+    "Rust & Sisteme Moderne": "Limbaj de performanță nativă fără Garbage Collector: ownership, borrowing, siguranță la nivel de memorie, concurență și instrumente CLI.",
+    "Resurse & Proiecte Open-Source": "Sinteză practică a marilor repozitorii GitHub: ghiduri universitare OSSU, Roadmaps de carieră, Build Your Own X și TheAlgorithms.",
     "Engleză (A1–A2)": "Fundamente gramaticale, prezent simplu/continuu, verbe neregulate și dialog uzual.",
     "Engleză (B1–B2)": "Timpuri compuse, diateză pasivă, fraze condiționale și vocabular intermediar.",
     "Engleză (C1–C2)": "Structuri de inversiune, modale deductive, nuanțe stilistice și colocuiri academice.",
@@ -712,6 +723,8 @@
     "Python": "Informatică și Programare",
     "DevOps & Sisteme Linux": "Informatică și Programare",
     "Algoritmi & Structuri de Date": "Informatică și Programare",
+    "Rust & Sisteme Moderne": "Informatică și Programare",
+    "Resurse & Proiecte Open-Source": "Informatică și Programare",
     "Engleză (A1–A2)": "Limbi Străine & Comunicare",
     "Engleză (B1–B2)": "Limbi Străine & Comunicare",
     "Engleză (C1–C2)": "Limbi Străine & Comunicare",
@@ -726,8 +739,8 @@
 
   function getTracks() {
     const tracksOrder = [
-      "SQL", "Java", "JavaScript", "TypeScript & React", "C & C++", "C#", "Python",
-      "DevOps & Sisteme Linux", "Algoritmi & Structuri de Date",
+      "SQL", "Java", "JavaScript", "TypeScript & React", "C & C++", "Rust & Sisteme Moderne", "C#", "Python",
+      "DevOps & Sisteme Linux", "Algoritmi & Structuri de Date", "Resurse & Proiecte Open-Source",
       "Engleză (A1–A2)", "Engleză (B1–B2)", "Engleză (C1–C2)", "Engleză: Familie & Hobby",
       "Limba Franceză", "Limba Spaniolă"
     ];
