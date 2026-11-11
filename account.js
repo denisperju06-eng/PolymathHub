@@ -23,6 +23,7 @@
     if (!account.configured) return;
     control.innerHTML = `<button type="button" class="account-button" data-open-account>${accountIcon}<span>${account.user ? "Contul meu" : "Intră în cont"}</span></button>`;
     if ($("account-sync")) $("account-sync").textContent = account.sync;
+    window.dispatchEvent(new Event("polymath:account"));
   }
   async function applyUser(user) {
     account.loading = true;
@@ -46,7 +47,7 @@
       account.ready = true; account.sync = progress ? "Progresul contului este actualizat." : "Cont conectat. Progresul se va salva automat.";
     } catch {
       window.PolymathStudio.replaceVocabulary(stored("polymath_vocabulary_v1:" + user.id, emptyVocabulary()));
-      window.PolymathApp.replaceProgress(stored("polymath_edtech_state_v2:" + user.id, null), user.id);
+      window.PolymathApp.replaceProgress(window.PolymathApp.accountProgress?.(user.id) || stored("polymath_edtech_state_v2:" + user.id, null), user.id);
       account.sync = "Sincronizarea nu este disponibilă. Încearcă să reîncarci progresul contului.";
     } finally {
       account.admin = await access;
@@ -90,7 +91,7 @@
     if (account.loading || account.authenticating) return;
     const element = dialog();
     if (account.user) {
-      element.innerHTML = `<button type="button" class="dialog-close" data-close-account aria-label="Închide contul">×</button><span class="eyebrow">POLYMATHHUB</span><h2 id="auth-title">Contul meu</h2><p class="auth-intro">Lecțiile și cuvintele tale, în același cont.</p><div class="account-summary"><strong>${text(account.user.name)}</strong><span>${text(account.user.email)}</span></div><p id="account-sync" class="account-sync" role="status">${text(account.sync)}</p><button class="studio-secondary" type="button" data-reload-account>Reîncarcă progresul din cont</button><p class="auth-note">Reîncărcarea preia ultima versiune salvată în cont și înlocuiește modificările care nu s-au sincronizat.</p><button type="button" class="studio-primary" data-logout-account style="margin-top:18px;width:100%">Ieși din cont</button><div id="auth-feedback" role="status"></div>`;
+      element.innerHTML = `<button type="button" class="dialog-close" data-close-account aria-label="Închide contul">×</button><span class="eyebrow">POLYMATHHUB</span><h2 id="auth-title">Contul meu</h2><p class="auth-intro">${window.PolymathSqlCourse ? "Exercițiile și greșelile tale, salvate în contul laboratorului." : "Lecțiile și cuvintele tale, în același cont."}</p><div class="account-summary"><strong>${text(account.user.name)}</strong><span>${text(account.user.email)}</span></div><p id="account-sync" class="account-sync" role="status">${text(account.sync)}</p><button class="studio-secondary" type="button" data-reload-account>Reîncarcă progresul din cont</button><p class="auth-note">Reîncărcarea preia ultima versiune salvată în cont și înlocuiește modificările care nu s-au sincronizat.</p><button type="button" class="studio-primary" data-logout-account style="margin-top:18px;width:100%">Ieși din cont</button><div id="auth-feedback" role="status"></div>`;
       if (account.admin) {
         const button = document.createElement("button");
         button.type = "button";
@@ -139,7 +140,7 @@
       <div class="admin-table-wrap" hidden>
         <table class="admin-table">
           <thead><tr><th scope="col">Nume și email</th><th scope="col">Creat la</th><th scope="col">Ultima conectare</th>
-            <th scope="col">XP</th><th scope="col">Lecții parcurse</th><th scope="col">Cuvinte salvate</th></tr></thead>
+            <th scope="col">XP</th><th scope="col">${window.PolymathSqlCourse ? "Exerciții SQL" : "Lecții parcurse"}</th><th scope="col">${window.PolymathSqlCourse ? "De repetat" : "Cuvinte salvate"}</th>${window.PolymathSqlCourse ? '<th scope="col">Proiect final</th>' : ""}</tr></thead>
           <tbody></tbody>
         </table>
       </div>
@@ -181,7 +182,7 @@
         rows.innerHTML = data.accounts.map(row => `<tr>
           <th scope="row"><strong>${text(row.name)}</strong><span>${text(row.email || "—")}</span></th>
           <td>${text(formatAdminDate(row.created_at))}</td><td>${text(formatAdminDate(row.last_sign_in_at))}</td>
-          <td>${text(row.xp)}</td><td>${text(row.lessons)}</td><td>${text(row.saved_words)}</td>
+          <td>${text(row.xp)}</td><td>${text(window.PolymathSqlCourse ? row.sql_completed : row.lessons)}</td><td>${text(window.PolymathSqlCourse ? row.sql_review : row.saved_words)}</td>${window.PolymathSqlCourse ? `<td>${text(row.sql_project)}/3</td>` : ""}
         </tr>`).join("");
         table.hidden = data.accounts.length === 0;
         pager.hidden = pages === 1;

@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node --env-file-if-exists=.env.local scripts/dev-server.mjs",
     "build": "node scripts/build-static.js",
-    "test": "node --test tests/vocabulary.test.js tests/account.test.mjs && python3 tests/test_sql_lab.py"
+    "test": "node --test tests/vocabulary.test.js tests/account.test.mjs tests/sql-progress.test.js && python3 tests/test_sql_lab.py && python3 tests/test_sql_course.py"
   },
   "engines": {
     "node": "22.x"

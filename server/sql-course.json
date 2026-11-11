@@ -1,0 +1,736 @@
+{
+  "lessons": [
+    {
+      "id": "l1",
+      "title": "Tabele și primele interogări",
+      "description": "Rânduri, coloane și cheia primară. Citește datele unui magazin.",
+      "theory": [
+        "Un tabel grupează date de același fel. Fiecare rând descrie un obiect, iar coloanele sunt proprietățile lui. În customers, id identifică unic clientul.",
+        "SELECT alege coloanele afișate, iar FROM indică tabelul. SELECT * citește toate coloanele. Interogarea citește datele fără să le modifice."
+      ],
+      "example": "SELECT * FROM customers;",
+      "exercises": [
+        "s1-all",
+        "s1-columns"
+      ]
+    },
+    {
+      "id": "l2",
+      "title": "SELECT și nume clare",
+      "description": "Alege informația utilă și redenumește coloanele rezultatului.",
+      "theory": [
+        "SELECT name, price FROM products afișează numai numele și prețul, în această ordine. Virgula separă coloanele.",
+        "AS oferă un nume coloanei din rezultat, fără să schimbe tabelul. Poți folosi alte aliasuri corecte: evaluăm valorile și ordinea coloanelor."
+      ],
+      "example": "SELECT name AS produs, stock AS stoc FROM products;",
+      "exercises": [
+        "s2-select",
+        "s2-alias"
+      ]
+    },
+    {
+      "id": "l3",
+      "title": "WHERE: filtrează datele",
+      "description": "Compară valori și combină condiții cu AND.",
+      "theory": [
+        "WHERE păstrează doar rândurile care îndeplinesc condiția. Operatorii >, >=, <, <= și = compară valori. Texte precum completed se scriu între apostrofuri.",
+        "AND cere ca ambele condiții să fie adevărate. NULL înseamnă valoare necunoscută; folosește IS NULL pentru a o căuta, nu = NULL."
+      ],
+      "example": "SELECT name FROM products WHERE stock > 0 AND price < 50;",
+      "exercises": [
+        "s3-stock",
+        "s3-orders"
+      ]
+    },
+    {
+      "id": "l4",
+      "title": "ORDER BY și LIMIT",
+      "description": "Ordonează rezultatele și alege primele rânduri.",
+      "theory": [
+        "ORDER BY price DESC sortează de la mare la mic. ASC sortează crescător și este opțiunea implicită. Fără ORDER BY, ordinea rândurilor nu este garantată.",
+        "La egalitate, o a doua coloană face ordinea previzibilă: ORDER BY price DESC, id ASC. LIMIT 3 păstrează primele trei rânduri după sortare."
+      ],
+      "example": "SELECT name, stock FROM products ORDER BY stock DESC, id ASC LIMIT 2;",
+      "exercises": [
+        "s4-price",
+        "s4-limit"
+      ]
+    },
+    {
+      "id": "l5",
+      "title": "JOIN: leagă tabelele",
+      "description": "Asociază comenzile cu clienții, inclusiv clienții fără comenzi.",
+      "theory": [
+        "orders.customer_id indică spre customers.id. JOIN ... ON leagă rândurile folosind această relație, nu poziția lor în tabel.",
+        "INNER JOIN păstrează doar potrivirile. LEFT JOIN păstrează și rândurile din stânga fără corespondent: coloanele din dreapta devin NULL. Aliasurile c și o scurtează numele tabelelor."
+      ],
+      "example": "SELECT c.name, o.status FROM customers c JOIN orders o ON o.customer_id = c.id;",
+      "exercises": [
+        "s5-inner",
+        "s5-left"
+      ]
+    },
+    {
+      "id": "l6",
+      "title": "GROUP BY și agregări",
+      "description": "Transformă rândurile în totaluri utile.",
+      "theory": [
+        "GROUP BY city formează un grup pentru fiecare oraș. COUNT(*) numără rândurile din fiecare grup; SUM(total) adună valorile.",
+        "După LEFT JOIN, COUNT(o.id) numără comenzile reale, în timp ce COUNT(*) numără și rândul clientului fără comandă. COALESCE(SUM(o.total), 0) înlocuiește totalul NULL cu zero."
+      ],
+      "example": "SELECT customer_id, COUNT(*) AS comenzi FROM orders GROUP BY customer_id;",
+      "exercises": [
+        "s6-cities",
+        "s6-status"
+      ]
+    }
+  ],
+  "project": {
+    "id": "project",
+    "title": "Analiza comenzilor unui magazin",
+    "description": "Trei rapoarte pentru un mic magazin. Combină tot ce ai exersat.",
+    "exercises": [
+      "p1",
+      "p2",
+      "p3"
+    ]
+  },
+  "exercises": [
+    {
+      "id": "s1-all",
+      "lesson": "l1",
+      "title": "Cine sunt clienții?",
+      "prompt": "Afișează toate coloanele și toți clienții din customers.",
+      "reference": "SELECT * FROM customers",
+      "hints": [
+        "Pornește cu SELECT.",
+        "Asteriscul * înseamnă toate coloanele.",
+        "Folosește FROM customers pentru a alege tabelul."
+      ],
+      "explanation": "SELECT * citește fiecare coloană. Fără WHERE, sunt returnați toți clienții.",
+      "ordered": false
+    },
+    {
+      "id": "s1-columns",
+      "lesson": "l1",
+      "title": "Fișa scurtă a clientului",
+      "prompt": "Afișează id și name, în această ordine, pentru fiecare client.",
+      "reference": "SELECT id, name FROM customers",
+      "hints": [
+        "Nu ai nevoie de toate coloanele.",
+        "Scrie id și name separate prin virgulă.",
+        "Tabelul sursă este customers."
+      ],
+      "explanation": "Ordinea coloanelor din SELECT devine ordinea coloanelor din rezultat.",
+      "ordered": false
+    },
+    {
+      "id": "s2-select",
+      "lesson": "l2",
+      "title": "Prețurile produselor",
+      "prompt": "Afișează name și price, în această ordine, pentru toate produsele.",
+      "reference": "SELECT name, price FROM products",
+      "hints": [
+        "Sursa este products.",
+        "Alege numai cele două coloane cerute.",
+        "Structura este SELECT coloana1, coloana2 FROM tabel."
+      ],
+      "explanation": "Proiecția elimină coloanele care nu sunt necesare, fără să elimine produse.",
+      "ordered": false
+    },
+    {
+      "id": "s2-alias",
+      "lesson": "l2",
+      "title": "Un rezultat ușor de citit",
+      "prompt": "Afișează name și price din products. Dă-le aliasurile produs și pret sau alte denumiri clare.",
+      "reference": "SELECT name AS produs, price AS pret FROM products",
+      "hints": [
+        "Aliasul redenumește o coloană din rezultat.",
+        "Folosește AS după fiecare coloană.",
+        "Exemplu de fragment: name AS produs."
+      ],
+      "explanation": "Aliasurile sunt etichete. Evaluarea acceptă denumiri diferite dacă valorile și ordinea coloanelor sunt corecte.",
+      "ordered": false
+    },
+    {
+      "id": "s3-stock",
+      "lesson": "l3",
+      "title": "Produse disponibile, până la 100 lei",
+      "prompt": "Afișează name și price pentru produsele cu stock > 0 și price <= 100.",
+      "reference": "SELECT name, price FROM products WHERE stock > 0 AND price <= 100",
+      "hints": [
+        "Ai două condiții care trebuie îndeplinite simultan.",
+        "Leagă condițiile prin AND.",
+        "Limita de preț include 100, deci folosește <=."
+      ],
+      "explanation": "AND păstrează numai produsele disponibile care respectă și limita de preț. Un preț NULL nu satisface comparația.",
+      "ordered": false
+    },
+    {
+      "id": "s3-orders",
+      "lesson": "l3",
+      "title": "Comenzi finalizate",
+      "prompt": "Afișează id și total pentru comenzile cu status completed și total >= 100.",
+      "reference": "SELECT id, total FROM orders WHERE status = 'completed' AND total >= 100",
+      "hints": [
+        "Filtrează tabelul orders.",
+        "Valoarea textuală se scrie între apostrofuri.",
+        "Combină status = 'completed' cu total >= 100 prin AND."
+      ],
+      "explanation": "Filtrarea se aplică fiecărui rând înainte ca rezultatul să fie afișat.",
+      "ordered": false
+    },
+    {
+      "id": "s4-price",
+      "lesson": "l4",
+      "title": "De la cel mai scump produs",
+      "prompt": "Afișează name și price pentru toate produsele, ordonate după price descrescător; la preț egal, după id crescător.",
+      "reference": "SELECT name, price FROM products ORDER BY price DESC, id ASC",
+      "hints": [
+        "ORDER BY se scrie după FROM.",
+        "DESC pune valorile mari primele.",
+        "Adaugă id ASC după virgulă pentru egalități."
+      ],
+      "explanation": "Un criteriu secundar face ordinea stabilă când două produse au același preț. În acest exercițiu, ordinea contează.",
+      "ordered": true
+    },
+    {
+      "id": "s4-limit",
+      "lesson": "l4",
+      "title": "Primele trei produse alfabetic",
+      "prompt": "Afișează name și price pentru primele 3 produse ordonate alfabetic după name, apoi id crescător.",
+      "reference": "SELECT name, price FROM products ORDER BY name ASC, id ASC LIMIT 3",
+      "hints": [
+        "Sortează înainte să limitezi.",
+        "ORDER BY name ASC, id ASC rezolvă și egalitățile.",
+        "LIMIT 3 se scrie la final."
+      ],
+      "explanation": "LIMIT se aplică rezultatului sortat. Fără sortare, cele trei produse pot fi arbitrare.",
+      "ordered": true
+    },
+    {
+      "id": "s5-inner",
+      "lesson": "l5",
+      "title": "Cine a făcut fiecare comandă?",
+      "prompt": "Afișează numele clientului și totalul fiecărei comenzi. Include numai clienții cu comenzi.",
+      "reference": "SELECT c.name, o.total FROM customers c JOIN orders o ON o.customer_id = c.id",
+      "hints": [
+        "Datele sunt în două tabele.",
+        "Leagă orders.customer_id de customers.id.",
+        "Selectează c.name și o.total după JOIN."
+      ],
+      "explanation": "JOIN întoarce câte un rând pentru fiecare comandă și clientul asociat. Un client poate apărea de mai multe ori.",
+      "ordered": false
+    },
+    {
+      "id": "s5-left",
+      "lesson": "l5",
+      "title": "Păstrează și clienții fără comenzi",
+      "prompt": "Afișează numele fiecărui client și totalul comenzilor lui. Păstrează și clienții fără comenzi, cu total NULL.",
+      "reference": "SELECT c.name, o.total FROM customers c LEFT JOIN orders o ON o.customer_id = c.id",
+      "hints": [
+        "customers este tabelul din stânga.",
+        "Ai nevoie de LEFT JOIN, nu doar JOIN.",
+        "Condiția relației rămâne o.customer_id = c.id."
+      ],
+      "explanation": "LEFT JOIN păstrează fiecare client. Lipsa unei comenzi produce un total NULL, nu zero.",
+      "ordered": false
+    },
+    {
+      "id": "s6-cities",
+      "lesson": "l6",
+      "title": "Clienți pe oraș",
+      "prompt": "Afișează city și numărul de clienți din fiecare oraș.",
+      "reference": "SELECT city, COUNT(*) AS clienti FROM customers GROUP BY city",
+      "hints": [
+        "Grupează după city.",
+        "COUNT(*) numără rândurile din fiecare grup.",
+        "Coloanele rezultatului sunt city și COUNT(*)."
+      ],
+      "explanation": "GROUP BY produce un rând pentru fiecare oraș distinct. Mai mulți clienți din același oraș sunt numărați împreună.",
+      "ordered": false
+    },
+    {
+      "id": "s6-status",
+      "lesson": "l6",
+      "title": "Totaluri pe starea comenzii",
+      "prompt": "Afișează status, numărul comenzilor și suma total, pentru fiecare status.",
+      "reference": "SELECT status, COUNT(*) AS comenzi, SUM(total) AS suma FROM orders GROUP BY status",
+      "hints": [
+        "Fiecare status trebuie să aibă un singur rând.",
+        "Folosește COUNT(*) și SUM(total).",
+        "Grupează după status, fără să grupezi și după id."
+      ],
+      "explanation": "COUNT numără comenzile; SUM adună valorile lor. Agregările lucrează separat în fiecare grup.",
+      "ordered": false
+    },
+    {
+      "id": "p1",
+      "lesson": "project",
+      "title": "1. Comenzi importante",
+      "prompt": "Afișează id și total pentru comenzile completed de cel puțin 100 lei, după total descrescător, apoi id crescător.",
+      "reference": "SELECT id, total FROM orders WHERE status = 'completed' AND total >= 100 ORDER BY total DESC, id ASC",
+      "hints": [
+        "Combină filtrarea cu sortarea.",
+        "Folosește AND și pragul inclusiv >= 100.",
+        "Ordonează după total DESC, id ASC."
+      ],
+      "explanation": "Raportul combină SELECT, WHERE și ORDER BY pentru o listă previzibilă de comenzi.",
+      "ordered": true
+    },
+    {
+      "id": "p2",
+      "lesson": "project",
+      "title": "2. Clienții comenzilor finalizate",
+      "prompt": "Afișează numele clientului, orașul și totalul pentru fiecare comandă completed.",
+      "reference": "SELECT c.name, c.city, o.total FROM customers c JOIN orders o ON c.id = o.customer_id WHERE o.status = 'completed'",
+      "hints": [
+        "Leagă customers și orders.",
+        "Filtrează starea din orders.",
+        "SELECT trebuie să includă c.name, c.city și o.total, în această ordine."
+      ],
+      "explanation": "Relația dintre tabele oferă contextul comenzii, iar WHERE selectează comenzile finalizate.",
+      "ordered": false
+    },
+    {
+      "id": "p3",
+      "lesson": "project",
+      "title": "3. Valoarea fiecărui client",
+      "prompt": "Afișează id-ul și numele fiecărui client, numărul comenzilor completed și suma lor. Include clienții fără astfel de comenzi, cu 0 și 0.",
+      "reference": "SELECT c.id, c.name, COUNT(o.id), COALESCE(SUM(o.total), 0) FROM customers c LEFT JOIN orders o ON c.id = o.customer_id AND o.status = 'completed' GROUP BY c.id, c.name",
+      "hints": [
+        "Păstrează toți clienții cu LEFT JOIN.",
+        "Filtrul completed se pune în ON, pentru a nu elimina clienții fără potriviri.",
+        "Grupează după c.id, c.name; folosește COUNT(o.id) și COALESCE(SUM(o.total), 0)."
+      ],
+      "explanation": "Filtrul din ON păstrează clienții fără comenzi completed. COUNT(o.id) ignoră NULL, iar COALESCE oferă un total zero.",
+      "ordered": false
+    }
+  ],
+  "tables": {
+    "customers": {
+      "columns": [
+        "id",
+        "name",
+        "city"
+      ],
+      "types": [
+        "INTEGER PRIMARY KEY",
+        "TEXT",
+        "TEXT"
+      ]
+    },
+    "products": {
+      "columns": [
+        "id",
+        "name",
+        "category",
+        "price",
+        "stock"
+      ],
+      "types": [
+        "INTEGER PRIMARY KEY",
+        "TEXT",
+        "TEXT",
+        "INTEGER",
+        "INTEGER"
+      ]
+    },
+    "orders": {
+      "columns": [
+        "id",
+        "customer_id",
+        "total",
+        "status"
+      ],
+      "types": [
+        "INTEGER PRIMARY KEY",
+        "INTEGER",
+        "INTEGER",
+        "TEXT"
+      ]
+    }
+  },
+  "datasets": [
+    {
+      "customers": [
+        [
+          1,
+          "Ana",
+          "Bălți"
+        ],
+        [
+          2,
+          "Ion",
+          "Chișinău"
+        ],
+        [
+          3,
+          "Maria",
+          "Bălți"
+        ],
+        [
+          4,
+          "Vlad",
+          "Cahul"
+        ]
+      ],
+      "products": [
+        [
+          1,
+          "Agendă",
+          "Papetărie",
+          45,
+          12
+        ],
+        [
+          2,
+          "Caiet",
+          "Papetărie",
+          20,
+          0
+        ],
+        [
+          3,
+          "Pix",
+          "Papetărie",
+          10,
+          30
+        ],
+        [
+          4,
+          "Rucsac",
+          "Accesorii",
+          150,
+          4
+        ],
+        [
+          5,
+          "Cană",
+          "Accesorii",
+          100,
+          2
+        ]
+      ],
+      "orders": [
+        [
+          1,
+          1,
+          120,
+          "completed"
+        ],
+        [
+          2,
+          1,
+          70,
+          "pending"
+        ],
+        [
+          3,
+          2,
+          100,
+          "completed"
+        ],
+        [
+          4,
+          3,
+          250,
+          "completed"
+        ],
+        [
+          5,
+          2,
+          50,
+          "cancelled"
+        ]
+      ]
+    },
+    {
+      "customers": [
+        [
+          11,
+          "Daria",
+          "Orhei"
+        ],
+        [
+          12,
+          "Petru",
+          "Bălți"
+        ],
+        [
+          13,
+          "Sofia",
+          "Orhei"
+        ],
+        [
+          14,
+          "Dan",
+          "Soroca"
+        ],
+        [
+          15,
+          "Daria",
+          "Cahul"
+        ]
+      ],
+      "products": [
+        [
+          11,
+          "Penar",
+          "Școală",
+          80,
+          2
+        ],
+        [
+          12,
+          "Album",
+          "Școală",
+          100,
+          4
+        ],
+        [
+          13,
+          "Album",
+          "Artă",
+          100,
+          1
+        ],
+        [
+          14,
+          "Rigla",
+          "Școală",
+          15,
+          0
+        ],
+        [
+          15,
+          "Set desen",
+          "Artă",
+          180,
+          6
+        ],
+        [
+          16,
+          "Abțibild",
+          "Artă",
+          5,
+          12
+        ]
+      ],
+      "orders": [
+        [
+          11,
+          11,
+          100,
+          "completed"
+        ],
+        [
+          12,
+          12,
+          180,
+          "pending"
+        ],
+        [
+          13,
+          11,
+          90,
+          "completed"
+        ],
+        [
+          14,
+          13,
+          100,
+          "completed"
+        ],
+        [
+          15,
+          15,
+          300,
+          "cancelled"
+        ],
+        [
+          16,
+          12,
+          450,
+          "completed"
+        ]
+      ]
+    }
+  ],
+  "hidden": [
+    {
+      "customers": [
+        [
+          101,
+          "Nora",
+          "Bălți"
+        ],
+        [
+          102,
+          "Nora",
+          "Bălți"
+        ],
+        [
+          103,
+          "Luca",
+          "Cahul"
+        ],
+        [
+          104,
+          "Mia",
+          null
+        ],
+        [
+          105,
+          "Rareș",
+          "Cahul"
+        ]
+      ],
+      "products": [
+        [
+          101,
+          "Album",
+          "A",
+          100,
+          1
+        ],
+        [
+          102,
+          "Album",
+          "B",
+          100,
+          2
+        ],
+        [
+          103,
+          "Abac",
+          "A",
+          99,
+          0
+        ],
+        [
+          104,
+          "Ziar",
+          "B",
+          null,
+          5
+        ],
+        [
+          105,
+          "Bloc",
+          "A",
+          101,
+          3
+        ],
+        [
+          106,
+          "Carte",
+          "A",
+          0,
+          1
+        ]
+      ],
+      "orders": [
+        [
+          101,
+          101,
+          100,
+          "completed"
+        ],
+        [
+          102,
+          101,
+          100,
+          "completed"
+        ],
+        [
+          103,
+          102,
+          99,
+          "completed"
+        ],
+        [
+          104,
+          103,
+          500,
+          "pending"
+        ],
+        [
+          105,
+          102,
+          0,
+          "cancelled"
+        ]
+      ]
+    },
+    {
+      "customers": [
+        [
+          201,
+          "Ema",
+          "Soroca"
+        ],
+        [
+          202,
+          "Emil",
+          "Soroca"
+        ],
+        [
+          203,
+          "Eva",
+          "Orhei"
+        ]
+      ],
+      "products": [
+        [
+          201,
+          "Carte",
+          "A",
+          100,
+          0
+        ],
+        [
+          202,
+          "Ac",
+          "A",
+          1,
+          1
+        ],
+        [
+          203,
+          "Ac",
+          "B",
+          1,
+          1
+        ],
+        [
+          204,
+          "Zmeu",
+          "B",
+          99,
+          2
+        ]
+      ],
+      "orders": [
+        [
+          201,
+          201,
+          101,
+          "completed"
+        ],
+        [
+          202,
+          202,
+          100,
+          "pending"
+        ],
+        [
+          203,
+          201,
+          0,
+          "completed"
+        ]
+      ]
+    }
+  ]
+}
