@@ -1,10 +1,12 @@
 import SqlProgress from "../sql-progress.js";
+import LanguagePractice from "../language-practice.js";
 import { ApiError, configuration, send, sameOrigin, readJson, provider, sessionFor, fail, checkExpectedAccount } from "../server/auth.mjs";
 
 const cleanObject = value => value && !Array.isArray(value) && typeof value === "object" ? value : {};
 export function validateProgress(body) {
   const course = cleanObject(body.course); const vocabulary = cleanObject(body.vocabulary);
   const safeCourse = {};
+  if (course.languagePractice && typeof course.languagePractice === "object") safeCourse.languagePractice = LanguagePractice.clean(course.languagePractice);
   if (course.sqlPractice && typeof course.sqlPractice === "object") safeCourse.sqlPractice = SqlProgress.clean(course.sqlPractice);
   for (const field of ["streak", "longestStreak", "xp"]) if (Number.isSafeInteger(course[field]) && course[field] >= 0 && course[field] <= 10_000_000) safeCourse[field] = course[field];
   for (const field of ["lastCompletionDate", "theme", "activeTrack", "activeLessonId", "activeDualPane", "activePracticeMode", "activeView"]) if (typeof course[field] === "string" && course[field].length <= 160) safeCourse[field] = course[field];

@@ -1,18 +1,25 @@
 <!doctype html>
-<html lang="ro" data-theme="daylight-clean">
+<html lang="ro">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Învață SQL prin exerciții executate real, explicații și un proiect practic de analiză a comenzilor.">
-  <title>SQL de la zero · PolymathHub</title>
-  <link rel="stylesheet" href="studio.css"><link rel="stylesheet" href="sql-course.css">
+  <meta name="description" content="Un spațiu de studiu pentru programare și limbi străine. Înțelege teoria, exersează și revino la ce ai învățat.">
+  <title>PolymathHub · Jurnalul tău de studiu</title>
+  <link rel="stylesheet" href="sql-course.css">
 </head>
-<body class="sql-app">
+<body class="learning-app">
   <a class="skip-link" href="#main-content">Sari la conținut</a>
-  <header class="sql-header"><a class="sql-brand" href="#traseu" aria-label="PolymathHub — traseul SQL"><span class="brand-symbol" aria-hidden="true">P</span><span>Polymath<span class="brand-accent">Hub</span></span></a><span class="lab-tag">LABORATOR SQL</span><div id="account-control" hidden></div></header>
-  <nav class="sql-nav" aria-label="Navigație principală"><a href="#traseu" data-view="traseu">Traseul meu</a><a href="#greseli" data-view="greseli">Greșelile mele <span id="mistake-count" class="nav-count">0</span></a><a href="#proiect" data-view="proiect">Proiect final</a><a href="#progres" data-view="progres">Progres</a><span id="header-xp">0 XP</span></nav>
-  <main id="main-content" tabindex="-1"><div class="loading-card" role="status">Se pregătește laboratorul SQL…</div></main>
-  <footer class="sql-footer"><span>PolymathHub · Înțelege. Încearcă. Revino.</span><span>6 lecții · 12 exerciții · 1 proiect</span></footer>
-  <div id="sql-toast" class="sql-toast" role="status" aria-live="polite" hidden></div>
-  <script src="sql-progress.js"></script><script src="sql-course.js"></script><script src="account.js"></script>
+  <header class="app-header">
+    <a class="wordmark" href="#acasa" aria-label="PolymathHub — Acasă">Polymath<span>Hub</span></a>
+    <div id="header-context" class="header-context"></div>
+    <nav id="global-nav" aria-label="Navigație principală"><a href="#acasa">Acasă</a><a href="#cursuri">Cursuri</a><a href="#progres">Progres</a></nav>
+    <div class="header-tools"><button id="outline-button" class="icon-button" aria-label="Deschide cuprinsul" hidden><img src="assets/icons/list.svg" alt=""></button><button id="help-button" class="icon-button" aria-label="Ajutor"><img src="assets/icons/question.svg" alt=""></button><div id="account-control" hidden></div></div>
+  </header>
+  <aside id="learning-rail" class="learning-rail" aria-label="Traseul cursului" hidden></aside>
+  <main id="main-content" tabindex="-1"><p class="loading-message" role="status">Pregătim spațiul tău de studiu…</p></main>
+  <footer id="app-footer" class="app-footer">PolymathHub · Învață în ritmul tău.</footer>
+  <div id="sql-toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="course-dialog" class="outline-dialog" aria-label="Cuprinsul cursului"><button class="dialog-close" data-close-dialog aria-label="Închide cuprinsul">×</button><div id="mobile-outline"></div></dialog>
+  <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title"><button class="dialog-close" data-close-dialog aria-label="Închide ajutorul">×</button><p class="section-label">UN PAS PE RÂND</p><h2 id="help-title">Cum înveți aici</h2><p>Începe cu teoria. Când ideea este clară, continuă la practică. Poți reveni oricând la explicație sau la o lecție anterioară.</p><p>Indiciile apar treptat. Încercările greșite se păstrează în <a href="#greseli">Greșelile mele</a>, pentru a le relua mai târziu.</p><p>Cu un cont de laborator, progresul se salvează și pentru alte dispozitive. Conturile sunt separate de site-ul principal.</p></dialog>
+  <script src="sql-progress.js"></script><script src="language-practice.js"></script><script src="sql-course.js"></script><script src="account.js"></script>
 </body>
 </html>

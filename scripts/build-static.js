@@ -3,7 +3,7 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const output = path.join(root, "dist");
 fs.mkdirSync(output, { recursive: true });
-const files = fs.readdirSync(root).filter(file => /^(index\.html|styles\.css|studio\.css|app\.js|studio\.js|account\.js|vocabulary\.js|manifest\.json|curriculum(?:-[\w-]+)?\.js|sql-(?:course|progress)\.(?:html|css|js))$/.test(file));
+const files = fs.readdirSync(root).filter(file => /^(index\.html|styles\.css|studio\.css|app\.js|studio\.js|account\.js|vocabulary\.js|manifest\.json|curriculum(?:-[\w-]+)?\.js|sql-(?:course|progress)\.(?:html|css|js)|language-practice\.js)$/.test(file));
 for (const file of files) fs.copyFileSync(path.join(root, file), path.join(output, file));
 for (const required of ["index.html", "app.js", "studio.js", "vocabulary.js", "studio.css"]) {
   if (!fs.existsSync(path.join(output, required))) throw new Error(`Missing required asset: ${required}`);
@@ -11,3 +11,5 @@ for (const required of ["index.html", "app.js", "studio.js", "vocabulary.js", "s
 console.log(`Static build ready: ${files.length} assets in dist/`);
 
 if (process.env.POLYMATH_SQL_LAB === "1") fs.copyFileSync(path.join(root, "sql-course.html"), path.join(output, "index.html"));
+
+fs.cpSync(path.join(root, "assets/icons"), path.join(output, "assets/icons"), { recursive: true });

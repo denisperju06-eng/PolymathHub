@@ -2,6 +2,12 @@
 
 Versiunea aprobată pentru teza de an: 6 lecții, 12 exerciții și 3 cerințe într-un proiect despre comenzile unui magazin. Numai branchul `production` este publicat ca laborator, la https://polymathhub-lab.vercel.app. `main` rămâne site-ul complet.
 
+## Interfața de studiu
+
+Pagina de start folosește un jurnal de studiu: continuarea ultimei activități și două intrări, Programare și Limbi străine. În curs, cuprinsul rămâne în stânga pe calculator și se deschide într-un dialog pe telefon. Teoria și practica au pagini distincte.
+
+Practica SQL arată cerința și o previzualizare a tabelelor deasupra editorului; toate rândurile pot fi extinse. Rezultatul apare imediat sub butonul de execuție. Laboratorul include și o singură lecție demonstrativă de franceză, „Au marché”: explicații, conversație cu traducere și pronunție prin vocea disponibilă în browser, apoi trei completări cu feedback separat. Greșelile și progresul ei se salvează în același cont, cu 20 XP acordate o singură dată. Aceasta demonstrează adaptarea interfeței la alt domeniu; catalogul complet de limbi rămâne în `main`.
+
 ## Cum demonstrezi proiectul
 
 1. Deschide prima lecție și citește explicația despre rânduri și coloane.
@@ -10,7 +16,8 @@ Versiunea aprobată pentru teza de an: 6 lecții, 12 exerciții și 3 cerințe �
 4. Rulează din nou: XP rămâne neschimbat. Reîncarcă pagina: progresul persistă.
 5. Continuă cu WHERE, ORDER BY, JOIN și GROUP BY. Fiecare exercițiu are trei indicii progresive.
 6. În proiectul final, rezolvă cele trei rapoarte. Progresul proiectului arată separat 0–3 cerințe îndeplinite.
-7. Creează un cont de laborator, rezolvă un exercițiu, ieși și reconectează-te. Progresul personal se încarcă din Supabase. Datele vizitatorului rămân separate.
+7. Deschide **Limbi străine → Au marché**, completează intenționat greșit primul cuvânt și verifică explicația din **Greșelile mele**. Corectează cu `acheter`, `combien`, `combien`, apoi reîncarcă: răspunsurile și progresul rămân salvate.
+8. Creează un cont de laborator, rezolvă un exercițiu, ieși și reconectează-te. Progresul personal se încarcă din Supabase. Datele vizitatorului rămân separate.
 
 ## Tehnologii și responsabilități
 
@@ -35,7 +42,7 @@ Proiectul nou pornește fără administratori permanenți. Pentru proprietar: cr
 
 ## Verificare locală
 
-Necesită Node.js 22+ și Python 3.11+:
+Necesită Node.js 22+ și Python 3.11+. Suita verifică 37 de cazuri Node și 15 cazuri Python (52 în total):
 
 ```sh
 npm test
